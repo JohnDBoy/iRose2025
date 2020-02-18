@@ -181,11 +181,6 @@ int APIENTRY WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmd
 	CreateConsole();
 #endif
 
-#ifndef _DEBUG
-	// 시스템 정보를 모음
-	TI_ReadSysInfoFile ();
-#endif
-
 	g_pObjMGR = CObjectMANAGER::Instance ();
 	g_pCApp->ResetExitGame();
 
