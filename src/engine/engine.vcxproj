@@ -295,6 +295,7 @@
     <ClInclude Include="include\zz_visible.h" />
     <ClInclude Include="include\zz_waiting_line.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="bitmap1.bmp" />

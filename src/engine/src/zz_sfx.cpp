@@ -188,7 +188,6 @@
 #include "zz_interface.h"
 
 #include <algorithm>
-#include <functional>
 
 // sfx_ocean uses ocean_block that currently in use.
 // So, if we does not have any ocean_block available, we cannot render sfx_ocean.
@@ -282,15 +281,7 @@ bool zz_sfx_ocean::render ()
 	sprite_tm.a00 = static_cast<float>(srcrect.right)/texture_width;
 	sprite_tm.a11 = static_cast<float>(srcrect.bottom)/texture_height;
 
-	DWORD depth_test;
-	LPDIRECT3DDEVICE9	d3d_device	= NULL;
-	d3d_device						= r->get_device();
-	 
-
-	d3d_device->GetRenderState(D3DRS_ZENABLE,&depth_test);
-	d3d_device->SetRenderState(D3DRS_ZENABLE,D3DZB_FALSE);
-	
-
+	bool depth_test = r->enable_zbuffer( false );
 
 	r->begin_sprite( ZZ_SPRITE_ALPHABLEND, "ocean" );
 	{
@@ -303,9 +294,7 @@ bool zz_sfx_ocean::render ()
 	}
 	r->end_sprite();
 	
-	
-	d3d_device->SetRenderState(D3DRS_ZENABLE,depth_test);
-	
+	r->enable_zbuffer( depth_test );
 	
 	return true;
 }
@@ -351,7 +340,7 @@ bool zz_manager_sfx::push_sfx (e_type type_in)
 	switch (type_in)
 	{
 	case OCEAN:
-	    if (!sfx_ocean) return false;
+		if (!sfx_ocean) return false;
 		sequence.push_back(sfx_ocean);
 		break;
 	}
@@ -394,7 +383,7 @@ void zz_screen_sfx::clear()
 {
 	if(screen_texture)
 	{
-	    screen_texture->Release();
+		screen_texture->Release();
 		screen_texture=NULL;
 	}
 	if(screen_surface)
@@ -420,7 +409,7 @@ void zz_screen_sfx::clear()
 
 void zz_screen_sfx::initialize()
 {    
-    clear();
+	clear();
 }
 
 
@@ -435,7 +424,7 @@ void zz_screen_sfx::pre_make_texture()
 	zz_view *view=znzin->view;
 	zz_viewport view_port;
 	d3d_device = r->get_device();
-	               	
+					
 	if(!wide_screen_onoff)
 		znzin->renderer->get_viewport(view_port);
 	else
@@ -452,7 +441,7 @@ void zz_screen_sfx::pre_make_texture()
 	screen_texture->GetSurfaceLevel(0,&screen_surface);
 
 	d3d_device->GetRenderTarget(0,&screen_back_buffer);   
-	    
+		
 	r->backbuffer_surface=screen_surface;
 	d3d_device->SetRenderTarget(0,screen_surface);
 
@@ -474,7 +463,7 @@ void zz_screen_sfx::post_make_texture()
 UINT zz_screen_sfx::GetAdaptiveTextureSize(UINT size)
 {
 
-    bool state;
+	bool state;
 
 	if(size<1)
 	state = FALSE;
@@ -482,7 +471,7 @@ UINT zz_screen_sfx::GetAdaptiveTextureSize(UINT size)
 	state = ((size&(size-1))==0);
 	
 	if(state)
-    return size;
+	return size;
    
 	return 1 << log2ge(size);
 
@@ -491,20 +480,20 @@ UINT zz_screen_sfx::GetAdaptiveTextureSize(UINT size)
 void zz_screen_sfx::make_tiles1()
 {
 
-    int i;
-    zz_renderer_d3d *r =(zz_renderer_d3d*)(znzin->renderer) ;
-    LPDIRECT3DDEVICE9 d3d_device;
+	int i;
+	zz_renderer_d3d *r =(zz_renderer_d3d*)(znzin->renderer) ;
+	LPDIRECT3DDEVICE9 d3d_device;
 	d3d_device = r->get_device();
-    zz_camera *cam = znzin->get_camera();
-    zz_view *view = znzin->view;
+	zz_camera *cam = znzin->get_camera();
+	zz_view *view = znzin->view;
 
 	float z_depth;
-    float region[2];
-    float texture_ratio_x,texture_ratio_y;
+	float region[2];
+	float texture_ratio_x,texture_ratio_y;
 
 
 	z_depth=cam->get_near_plane();
-    z_depth*=-1.1f;
+	z_depth*=-1.1f;
 	get_viewing_region(z_depth,region);
 	
 	if(!wide_screen_onoff)
@@ -515,64 +504,64 @@ void zz_screen_sfx::make_tiles1()
 	else
 	{
 
-        texture_ratio_x = (float(wide_viewport.width))/screen_texture_width;
+		texture_ratio_x = (float(wide_viewport.width))/screen_texture_width;
 		texture_ratio_y = (float(wide_viewport.height))/screen_texture_height;
 
 	}
 
 	int grid_x,grid_y;
 	float center_x,center_y;
-    float length_x,length_y;
-    float position_x,position_y;
+	float length_x,length_y;
+	float position_x,position_y;
 
 	D3DXMATRIX t_m,s_m;
 
 	length_x=texture_ratio_x/10.0f;
 	length_y=texture_ratio_y/10.0f;
 
-    num_current_tile=25;
+	num_current_tile=25;
 	
 	for(i=0;i<num_current_tile;i+=1)
 	{
 		m_tiles[i] = new TileBehavior;
-        
+		
 		d3d_device->CreateVertexBuffer(6*sizeof(VERTEX_TRAIL),D3DUSAGE_WRITEONLY, D3DFVF_XYZ | D3DFVF_TEX1,
-                                      D3DPOOL_MANAGED, &m_tiles[i]->m_pVBTile, NULL );  
-                           
+									  D3DPOOL_MANAGED, &m_tiles[i]->m_pVBTile, NULL );  
+						   
 		grid_x=i%5;
 		grid_y=i/5;
 		
-        center_x=length_x+grid_x*length_x*2.0f;
+		center_x=length_x+grid_x*length_x*2.0f;
 		center_y=length_y+grid_y*length_y*2.0f;
    
-   				
+				
 		VERTEX_TRAIL vec[6]; 
-        char *vertes=NULL;
+		char *vertes=NULL;
 		m_tiles[i]->m_pVBTile->Lock(0,0,(void**)&vertes,D3DLOCK_DISCARD);
 
-	    vec[0].position.x=-1.0f;vec[0].position.y=1.0f;vec[0].position.z=z_depth;vec[0].uv.x=center_x-length_x;vec[0].uv.y=center_y-length_y;	   
-        vec[1].position.x=-1.0f;vec[1].position.y=-1.0f;vec[1].position.z=z_depth;vec[1].uv.x=center_x-length_x;vec[1].uv.y=center_y+length_y;	   
-   	    vec[2].position.x=1.0f;vec[2].position.y=-1.0f;vec[2].position.z=z_depth;vec[2].uv.x=center_x+length_x;vec[2].uv.y=center_y+length_y;	   
-          
-	    vec[3].position.x=-1.0f;vec[3].position.y=1.0f;vec[3].position.z=z_depth;vec[3].uv.x=center_x-length_x;vec[3].uv.y=center_y-length_y;	   
-        vec[4].position.x=1.0f;vec[4].position.y=-1.0f;vec[4].position.z=z_depth;vec[4].uv.x=center_x+length_x;vec[4].uv.y=center_y+length_y;	   
-   	    vec[5].position.x=1.0f;vec[5].position.y=1.0f;vec[5].position.z=z_depth;vec[5].uv.x=center_x+length_x;vec[5].uv.y=center_y-length_y;	   
-        
+		vec[0].position.x=-1.0f;vec[0].position.y=1.0f;vec[0].position.z=z_depth;vec[0].uv.x=center_x-length_x;vec[0].uv.y=center_y-length_y;	   
+		vec[1].position.x=-1.0f;vec[1].position.y=-1.0f;vec[1].position.z=z_depth;vec[1].uv.x=center_x-length_x;vec[1].uv.y=center_y+length_y;	   
+		vec[2].position.x=1.0f;vec[2].position.y=-1.0f;vec[2].position.z=z_depth;vec[2].uv.x=center_x+length_x;vec[2].uv.y=center_y+length_y;	   
+		  
+		vec[3].position.x=-1.0f;vec[3].position.y=1.0f;vec[3].position.z=z_depth;vec[3].uv.x=center_x-length_x;vec[3].uv.y=center_y-length_y;	   
+		vec[4].position.x=1.0f;vec[4].position.y=-1.0f;vec[4].position.z=z_depth;vec[4].uv.x=center_x+length_x;vec[4].uv.y=center_y+length_y;	   
+		vec[5].position.x=1.0f;vec[5].position.y=1.0f;vec[5].position.z=z_depth;vec[5].uv.x=center_x+length_x;vec[5].uv.y=center_y-length_y;	   
+		
 		
 		
 		
 		memcpy(vertes, vec, 6*sizeof(VERTEX_TRAIL));
 		m_tiles[i]->m_pVBTile->Unlock();
-	    
-	    position_x=region[0]*(-0.8f+grid_x*0.4f);
+		
+		position_x=region[0]*(-0.8f+grid_x*0.4f);
 		position_y=region[1]*(0.8f-grid_y*0.4f);
 		
 		D3DXMatrixTranslation(&t_m,position_x,position_y,0.0f);
 		D3DXMatrixScaling(&s_m,0.2f*region[0],0.2f*region[1],1.0f);
 	 
-	    m_tiles[i]->modelbase=s_m*t_m;
+		m_tiles[i]->modelbase=s_m*t_m;
 	}
-    
+	
 	
 }
 
@@ -581,20 +570,20 @@ void zz_screen_sfx::make_tiles1()
 void zz_screen_sfx::make_tiles2()
 {
 
-    int i;
-    zz_renderer_d3d *r =(zz_renderer_d3d*)(znzin->renderer) ;
-    LPDIRECT3DDEVICE9 d3d_device;
+	int i;
+	zz_renderer_d3d *r =(zz_renderer_d3d*)(znzin->renderer) ;
+	LPDIRECT3DDEVICE9 d3d_device;
 	d3d_device = r->get_device();
-    zz_camera *cam = znzin->get_camera();
-    zz_view *view = znzin->view;
+	zz_camera *cam = znzin->get_camera();
+	zz_view *view = znzin->view;
 
 	float z_depth;
-    float region[2];
-    float texture_ratio_x,texture_ratio_y;
+	float region[2];
+	float texture_ratio_x,texture_ratio_y;
 
 
 	z_depth=cam->get_near_plane();
-    z_depth*=-1.1f;
+	z_depth*=-1.1f;
 	get_viewing_region(z_depth,region);
 	
 	if(!wide_screen_onoff)
@@ -605,55 +594,55 @@ void zz_screen_sfx::make_tiles2()
 	else
 	{
 
-        texture_ratio_x = (float(wide_viewport.width))/screen_texture_width;
+		texture_ratio_x = (float(wide_viewport.width))/screen_texture_width;
 		texture_ratio_y = (float(wide_viewport.height))/screen_texture_height;
 
 	}
 		
 	float center_x,center_y;
-    float length_x,length_y;
-    float position_x,position_y;
+	float length_x,length_y;
+	float position_x,position_y;
 
 	D3DXMATRIX t_m,s_m;
 
 	length_x=texture_ratio_x/4.0f;
 	length_y=texture_ratio_y/2.0f;
 
-    num_current_tile=2;
+	num_current_tile=2;
 	
 	for(i=0;i<num_current_tile;i+=1)
 	{
 		m_tiles[i] = new TileBehavior;
-        
+		
 		d3d_device->CreateVertexBuffer(6*sizeof(VERTEX_TRAIL),D3DUSAGE_WRITEONLY, D3DFVF_XYZ | D3DFVF_TEX1,
-                                      D3DPOOL_MANAGED, &m_tiles[i]->m_pVBTile, NULL );  
-                           
+									  D3DPOOL_MANAGED, &m_tiles[i]->m_pVBTile, NULL );  
+						   
 		center_x=length_x+i*length_x*2.0f;
 		center_y=length_y;
    
-   				
+				
 		VERTEX_TRAIL vec[6]; 
-        char *vertes=NULL;
+		char *vertes=NULL;
 		m_tiles[i]->m_pVBTile->Lock(0,0,(void**)&vertes,D3DLOCK_DISCARD);
 
-	    vec[0].position.x=-1.0f;vec[0].position.y=1.0f;vec[0].position.z=z_depth;vec[0].uv.x=center_x-length_x;vec[0].uv.y=center_y-length_y;	   
-        vec[1].position.x=-1.0f;vec[1].position.y=-1.0f;vec[1].position.z=z_depth;vec[1].uv.x=center_x-length_x;vec[1].uv.y=center_y+length_y;	   
-   	    vec[2].position.x=1.0f;vec[2].position.y=-1.0f;vec[2].position.z=z_depth;vec[2].uv.x=center_x+length_x;vec[2].uv.y=center_y+length_y;	   
-        vec[3].position.x=-1.0f;vec[3].position.y=1.0f;vec[3].position.z=z_depth;vec[3].uv.x=center_x-length_x;vec[3].uv.y=center_y-length_y;	   
-        vec[4].position.x=1.0f;vec[4].position.y=-1.0f;vec[4].position.z=z_depth;vec[4].uv.x=center_x+length_x;vec[4].uv.y=center_y+length_y;	   
-   	    vec[5].position.x=1.0f;vec[5].position.y=1.0f;vec[5].position.z=z_depth;vec[5].uv.x=center_x+length_x;vec[5].uv.y=center_y-length_y;	   
-        
+		vec[0].position.x=-1.0f;vec[0].position.y=1.0f;vec[0].position.z=z_depth;vec[0].uv.x=center_x-length_x;vec[0].uv.y=center_y-length_y;	   
+		vec[1].position.x=-1.0f;vec[1].position.y=-1.0f;vec[1].position.z=z_depth;vec[1].uv.x=center_x-length_x;vec[1].uv.y=center_y+length_y;	   
+		vec[2].position.x=1.0f;vec[2].position.y=-1.0f;vec[2].position.z=z_depth;vec[2].uv.x=center_x+length_x;vec[2].uv.y=center_y+length_y;	   
+		vec[3].position.x=-1.0f;vec[3].position.y=1.0f;vec[3].position.z=z_depth;vec[3].uv.x=center_x-length_x;vec[3].uv.y=center_y-length_y;	   
+		vec[4].position.x=1.0f;vec[4].position.y=-1.0f;vec[4].position.z=z_depth;vec[4].uv.x=center_x+length_x;vec[4].uv.y=center_y+length_y;	   
+		vec[5].position.x=1.0f;vec[5].position.y=1.0f;vec[5].position.z=z_depth;vec[5].uv.x=center_x+length_x;vec[5].uv.y=center_y-length_y;	   
+		
 		
 		memcpy(vertes, vec, 6*sizeof(VERTEX_TRAIL));
 		m_tiles[i]->m_pVBTile->Unlock();
-	    
-	    position_x=region[0]*(-0.5f+i);
+		
+		position_x=region[0]*(-0.5f+i);
 		position_y=0.0f;
 		
 		D3DXMatrixTranslation(&t_m,position_x,position_y,0.0f);
 		D3DXMatrixScaling(&s_m,region[0]*0.5f,region[1],1.0f);
 	 
-	    m_tiles[i]->modelbase=s_m*t_m;
+		m_tiles[i]->modelbase=s_m*t_m;
 	}
   
    
@@ -687,7 +676,7 @@ void zz_screen_sfx::make_tiles3()
 	else
 	{
 
-        texture_ratio_x = (float(wide_viewport.width))/screen_texture_width;
+		texture_ratio_x = (float(wide_viewport.width))/screen_texture_width;
 		texture_ratio_y = (float(wide_viewport.height))/screen_texture_height;
 
 	}
@@ -708,28 +697,28 @@ void zz_screen_sfx::make_tiles3()
 	for(i=0;i<num_current_tile;i+=1)
 	{
 		m_tiles[i] = new TileBehavior;
-	    
+		
 		grid_x=i%2;
 		grid_y=i/2;
 		
 		d3d_device->CreateVertexBuffer(6*sizeof(VERTEX_TRAIL),D3DUSAGE_WRITEONLY, D3DFVF_XYZ | D3DFVF_TEX1,
 										D3DPOOL_MANAGED, &m_tiles[i]->m_pVBTile, NULL );  
-	                        
+							
 		center_x=length_x+grid_x*length_x*2.0f;
 		center_y=length_y+grid_y*length_y*2.0f;
 
-	   			
+				
 		VERTEX_TRAIL vec[6]; 
 		char *vertes=NULL;
 		m_tiles[i]->m_pVBTile->Lock(0,0,(void**)&vertes,D3DLOCK_DISCARD);
 
 		vec[0].position.x=-1.0f;vec[0].position.y=1.0f;vec[0].position.z=z_depth;vec[0].uv.x=center_x-length_x;vec[0].uv.y=center_y-length_y;	   
 		vec[1].position.x=-1.0f;vec[1].position.y=-1.0f;vec[1].position.z=z_depth;vec[1].uv.x=center_x-length_x;vec[1].uv.y=center_y+length_y;	   
-   		vec[2].position.x=1.0f;vec[2].position.y=-1.0f;vec[2].position.z=z_depth;vec[2].uv.x=center_x+length_x;vec[2].uv.y=center_y+length_y;	   
-	  	vec[3].position.x=-1.0f;vec[3].position.y=1.0f;vec[3].position.z=z_depth;vec[3].uv.x=center_x-length_x;vec[3].uv.y=center_y-length_y;	   
+		vec[2].position.x=1.0f;vec[2].position.y=-1.0f;vec[2].position.z=z_depth;vec[2].uv.x=center_x+length_x;vec[2].uv.y=center_y+length_y;	   
+		vec[3].position.x=-1.0f;vec[3].position.y=1.0f;vec[3].position.z=z_depth;vec[3].uv.x=center_x-length_x;vec[3].uv.y=center_y-length_y;	   
 		vec[4].position.x=1.0f;vec[4].position.y=-1.0f;vec[4].position.z=z_depth;vec[4].uv.x=center_x+length_x;vec[4].uv.y=center_y+length_y;	   
-   		vec[5].position.x=1.0f;vec[5].position.y=1.0f;vec[5].position.z=z_depth;vec[5].uv.x=center_x+length_x;vec[5].uv.y=center_y-length_y;	   
-	    
+		vec[5].position.x=1.0f;vec[5].position.y=1.0f;vec[5].position.z=z_depth;vec[5].uv.x=center_x+length_x;vec[5].uv.y=center_y-length_y;	   
+		
 		
 		memcpy(vertes, vec, 6*sizeof(VERTEX_TRAIL));
 		m_tiles[i]->m_pVBTile->Unlock();
@@ -776,7 +765,7 @@ void zz_screen_sfx::make_tiles4()
 	{
 			return;
 	}
-		                  
+						  
 	char *vertes=NULL;
 	MYLINEVERTEX vec[6];
 	
@@ -784,7 +773,7 @@ void zz_screen_sfx::make_tiles4()
 	{
 		assert(!"renderer_d3d: vertex_buffer->Lock() failed\n");
 		ZZ_LOG("r_d3d: vertex_buffer->Lock() failed\n");
-	    return;
+		return;
 	}
 
 	vec[0].pos.x=-region[0];vec[0].pos.y=region[1];vec[0].pos.z=z_depth;vec[0].diffuse=D3DCOLOR_COLORVALUE(1.0f,1.0f,1.0f,1.0f);	   
@@ -793,7 +782,7 @@ void zz_screen_sfx::make_tiles4()
 	vec[3].pos.x=-region[0];vec[3].pos.y=region[1];vec[3].pos.z=z_depth;vec[3].diffuse=D3DCOLOR_COLORVALUE(1.0f,1.0f,1.0f,1.0f);	   
 	vec[4].pos.x=region[0];vec[4].pos.y=-region[1];vec[4].pos.z=z_depth;vec[4].diffuse=D3DCOLOR_COLORVALUE(1.0f,1.0f,1.0f,1.0f);	   
 	vec[5].pos.x=region[0];vec[5].pos.y=region[1];vec[5].pos.z=z_depth;vec[5].diffuse=D3DCOLOR_COLORVALUE(1.0f,1.0f,1.0f,1.0f);	   
-	    
+		
 		
 	memcpy(vertes, vec, 6*sizeof(MYLINEVERTEX));
 	
@@ -801,7 +790,7 @@ void zz_screen_sfx::make_tiles4()
 	{
 		assert(!"renderer_d3d: vertex_buffer->UnLock() failed\n");
 		ZZ_LOG("r_d3d: vertex_buffer->UnLock() failed\n");
-	    return;
+		return;
 	}
 	
 		
@@ -813,16 +802,16 @@ void zz_screen_sfx::make_tiles4()
 
 void zz_screen_sfx::get_viewing_region(float z_depth,float region[2])
 {
-    zz_camera * cam = znzin->get_camera();
+	zz_camera * cam = znzin->get_camera();
 
-    if(z_depth>=0)
+	if(z_depth>=0)
 	*(region)=*(region+1)=1000.0f;
-    else
+	else
 	{
-     *(region+1)=-1.0f*z_depth*tanf(cam->get_fov()*0.5f*3.141592f/180.0f);
+	 *(region+1)=-1.0f*z_depth*tanf(cam->get_fov()*0.5f*3.141592f/180.0f);
 	 *(region)=*(region+1)*cam->get_aspect_ratio();
 	}
-  	   
+	   
 }
 
 
@@ -846,12 +835,12 @@ void zz_screen_sfx::update_screen2()
 {
 
 	float region[2];
-    D3DXMATRIX t_m;
+	D3DXMATRIX t_m;
 
-    zz_camera *cam = znzin->get_camera();
-    get_viewing_region(-1.1f*cam->get_near_plane(),region);
+	zz_camera *cam = znzin->get_camera();
+	get_viewing_region(-1.1f*cam->get_near_plane(),region);
   
-    update_time();
+	update_time();
 
    
 	for(int i=0;i<num_current_tile;i+=1)
@@ -944,11 +933,11 @@ void zz_screen_sfx::update_screen4()
 	vec[0].pos.x=-region[0];vec[0].pos.y=region[1];vec[0].pos.z=z_depth;vec[0].diffuse=color;	   
 	vec[1].pos.x=-region[0];vec[1].pos.y=-region[1];vec[1].pos.z=z_depth;vec[1].diffuse=color;	   
 	vec[2].pos.x=region[0];vec[2].pos.y=-region[1];vec[2].pos.z=z_depth;vec[2].diffuse=color;	   
-	        
+			
 	vec[3].pos.x=-region[0];vec[3].pos.y=region[1];vec[3].pos.z=z_depth;vec[3].diffuse=color;	   
 	vec[4].pos.x=region[0];vec[4].pos.y=-region[1];vec[4].pos.z=z_depth;vec[4].diffuse=color;	   
 	vec[5].pos.x=region[0];vec[5].pos.y=region[1];vec[5].pos.z=z_depth;vec[5].diffuse=color;	   
-	    
+		
 	memcpy(vertes, vec, 6*sizeof(MYLINEVERTEX));
 	m_tiles[0]->m_pVBTile->Unlock();
 
@@ -959,7 +948,7 @@ void zz_screen_sfx::update_screen4()
 
 void zz_screen_sfx::render()
 {
-    
+	
   struct MYLINEVERTEX {
 		D3DXVECTOR3 pos;
 		D3DCOLOR diffuse;
@@ -974,15 +963,15 @@ void zz_screen_sfx::render()
 	zz_renderer_d3d*	r			= (zz_renderer_d3d*)(znzin->renderer) ;
 	LPDIRECT3DDEVICE9	d3d_device	= NULL;
 	d3d_device						= r->get_device();
-	D3DVIEWPORT9 buffer_port;
-    	    
+	//D3DVIEWPORT9 buffer_port;
+			
 	D3DXMatrixIdentity(&id_m);
 	  
 	d3d_device->GetTransform(D3DTS_PROJECTION,&projection_m);
 	d3d_device->GetTransform(D3DTS_VIEW,&camera_m);
 	d3d_device->GetTransform(D3DTS_WORLD,&model_m);
 	d3d_device->SetTransform(D3DTS_VIEW,&id_m);
-	    
+		
 	if(wide_screen_onoff)
 	r->set_viewport(wide_viewport); 	
 	
@@ -993,7 +982,7 @@ void zz_screen_sfx::render()
 	r->set_pixel_shader(ZZ_HANDLE_NULL);
 	r->enable_alpha_blend(false, ZZ_BT_NORMAL);
    
-    
+	
 	if(state_number<4)
 	{
 		r->set_texture_stage_state( 0, ZZ_TSS_COLORARG1, ZZ_TA_TEXTURE ); 
@@ -1021,7 +1010,7 @@ void zz_screen_sfx::render()
 	else
 		d3d_device->SetFVF(D3DFVF_XYZ | D3DFVF_DIFFUSE);
   
- 	for(int i=0;i<num_current_tile;i+=1)
+	for(int i=0;i<num_current_tile;i+=1)
 	{
 		d3d_device->SetTransform(D3DTS_WORLD,&m_tiles[i]->modelview); 
 		if(state_number<4)
@@ -1066,7 +1055,7 @@ void zz_screen_sfx::pre_render()
 				case 2:
 				make_tiles2();
 				break; 
-			    
+				
 				case 3:
 				make_tiles3();
 				break; 
@@ -1182,7 +1171,7 @@ void zz_screen_sfx::stop()
 
 	if(play_onoff)
 	{
-      accumulate_time = max_time+1.0f;
+	  accumulate_time = max_time+1.0f;
 	}
 	
 
@@ -1206,37 +1195,37 @@ void zz_screen_sfx::pre_clear_wide()
 {
 	if(wide_screen_onoff)
 	{
-        zz_renderer_d3d *r =(zz_renderer_d3d*)(znzin->renderer) ;
+		zz_renderer_d3d *r =(zz_renderer_d3d*)(znzin->renderer) ;
 		r->set_viewport(viewport);
-    }
+	}
 }
 
 void zz_screen_sfx::post_clear_wide()
 {
-    if(wide_screen_onoff)
+	if(wide_screen_onoff)
 	{
-        zz_renderer_d3d *r =(zz_renderer_d3d*)(znzin->renderer) ;
+		zz_renderer_d3d *r =(zz_renderer_d3d*)(znzin->renderer) ;
 		r->set_viewport(wide_viewport);
-    }
+	}
 
 }
 
 void zz_screen_sfx::play_widescreen_mode(float ratio)
 {
 	wide_screen_ratio = ratio;
-    wide_screen_onoff = true;
+	wide_screen_onoff = true;
 
-    zz_camera * cam = znzin->get_camera();
+	zz_camera * cam = znzin->get_camera();
 	zz_renderer_d3d *r =(zz_renderer_d3d*)(znzin->renderer) ;
 	r->get_viewport(viewport);
-    wide_viewport.height = (dword)(viewport.width*wide_screen_ratio);
+	wide_viewport.height = (dword)(viewport.width*wide_screen_ratio);
 	wide_viewport.width = viewport.width;
 	wide_viewport.x = viewport.x;
 	wide_viewport.y = (viewport.height-wide_viewport.height)/2;
 	wide_viewport.maxz = viewport.maxz;
 	wide_viewport.minz = viewport.minz;
-    r->set_viewport(wide_viewport);
-    screen_ratio=cam->get_aspect_ratio();
+	r->set_viewport(wide_viewport);
+	screen_ratio=cam->get_aspect_ratio();
 	cam->set_aspect_ratio(1.0f/wide_screen_ratio);
 	cam->set_perspective(cam->get_fov(),cam->get_aspect_ratio(),cam->get_near_plane(),cam->get_far_plane());
    
@@ -1245,19 +1234,19 @@ void zz_screen_sfx::play_widescreen_mode(float ratio)
 void zz_screen_sfx::play_widescreen_mode(int x,int y, int width,int height)
 {
 	wide_screen_ratio = ((float)height)/width;
-    wide_screen_onoff = true;
+	wide_screen_onoff = true;
 
-    zz_camera * cam = znzin->get_camera();
+	zz_camera * cam = znzin->get_camera();
 	zz_renderer_d3d *r =(zz_renderer_d3d*)(znzin->renderer) ;
 	r->get_viewport(viewport);
-    wide_viewport.height = height;
+	wide_viewport.height = height;
 	wide_viewport.width = width;
 	wide_viewport.x = x;
 	wide_viewport.y = y;
 	wide_viewport.maxz = viewport.maxz;
 	wide_viewport.minz = viewport.minz;
-    r->set_viewport(wide_viewport);
-    screen_ratio=cam->get_aspect_ratio();
+	r->set_viewport(wide_viewport);
+	screen_ratio=cam->get_aspect_ratio();
 	cam->set_aspect_ratio(1.0f/wide_screen_ratio);
 	cam->set_perspective(cam->get_fov(),cam->get_aspect_ratio(),cam->get_near_plane(),cam->get_far_plane());
    
@@ -1269,7 +1258,7 @@ void zz_screen_sfx::stop_widescreen_mode()
 	zz_renderer_d3d *r =(zz_renderer_d3d*)(znzin->renderer) ;
 	wide_screen_onoff = false;	
 	r->set_viewport(viewport);
-    cam->set_aspect_ratio(screen_ratio);
+	cam->set_aspect_ratio(screen_ratio);
 	cam->set_perspective(cam->get_fov(),cam->get_aspect_ratio(),cam->get_near_plane(),cam->get_far_plane());
  
 }
@@ -1325,10 +1314,10 @@ void zz_camera_sfx::init()
 	phi = 270.0f;
 	length = 100.0f;
 	steal_onoff = FALSE;
-    base_angle_speed = 0.0f;
+	base_angle_speed = 0.0f;
 	speed = 0.0f;
-    side_speed = 0.0f;
-    height_speed = 0.0f;
+	side_speed = 0.0f;
+	height_speed = 0.0f;
 
 }
 
@@ -1365,18 +1354,18 @@ void zz_camera_sfx::Init_observer_Camera(float xPos, float yPos, float zPos)
 
 	camera_base_m._14 = xPos;
 	camera_base_m._24 = yPos;
-    camera_base_m._34 = zPos;
+	camera_base_m._34 = zPos;
 	camera_base_m._44 = 1.0f;
 
 	length = inv_m._34 - zPos;
-    seta = 0.0f;
+	seta = 0.0f;
 	phi = 0.0f;
 
 	speed = 0.0f;
-    speed_step = 0.0f;
+	speed_step = 0.0f;
 
 	side_speed = 0.0f;
-    side_speed_step = 0.0f;
+	side_speed_step = 0.0f;
 
 	height_speed = 0.0f;
 	height_speed_step = 0.0f;
@@ -1384,8 +1373,8 @@ void zz_camera_sfx::Init_observer_Camera(float xPos, float yPos, float zPos)
 	base_angle_speed = 0.0f;
 	base_angle_speed_step = 0.0f;
 
-    view_angle_speed = 0;
-    view_angle_speed_step = 0; 
+	view_angle_speed = 0;
+	view_angle_speed_step = 0; 
 }
 
 void zz_camera_sfx::steal_camera()
@@ -1398,9 +1387,9 @@ void zz_camera_sfx::steal_camera()
 		   mat4 projection_matrix;
 
 		   camera->set_transform(zz_camera::ZZ_MATRIX_MODELVIEW,camera_sfx_m);
-	       far_plane = camera->get_far_plane();	       
+		   far_plane = camera->get_far_plane();	       
 		   camera->set_perspective(camera->get_fov(), camera->get_aspect_ratio(), camera->get_near_plane(), 50000.0f);
-	       camera->get_transform(zz_camera::ZZ_MATRIX_PROJECTION, projection_matrix);
+		   camera->get_transform(zz_camera::ZZ_MATRIX_PROJECTION, projection_matrix);
 		   r->set_projection_matrix(projection_matrix);
 	   }  
    }
@@ -1422,7 +1411,7 @@ void zz_camera_sfx::calculate_steal_camera()
 
 //		get_camera_sfx_matrix(t);
 		get_camera_observer_sfx_matrix();
-	    
+		
 		steal_success = true;
 	}
 
@@ -1438,7 +1427,7 @@ const mat4& zz_camera_sfx::get_steal_camera()
 	t=camera->get_eye();
 
 //	get_camera_sfx_matrix(t);
-    calculate_steal_camera();
+	calculate_steal_camera();
 
 	return camera_sfx_m;
 }
@@ -1451,11 +1440,11 @@ void zz_camera_sfx::return_camera()
 	{
 		zz_renderer_d3d *r =(zz_renderer_d3d*)(znzin->renderer) ;
 		camera = znzin->get_camera();
-	 	camera->set_transform(zz_camera::ZZ_MATRIX_MODELVIEW,camera_m);
-	    
+		camera->set_transform(zz_camera::ZZ_MATRIX_MODELVIEW,camera_m);
+		
 		mat4 projection_matrix;
 		camera->set_perspective(camera->get_fov(), camera->get_aspect_ratio(), camera->get_near_plane(), far_plane);
-	    camera->get_transform(zz_camera::ZZ_MATRIX_PROJECTION, projection_matrix);
+		camera->get_transform(zz_camera::ZZ_MATRIX_PROJECTION, projection_matrix);
 		r->set_projection_matrix(projection_matrix);
 
 	}
@@ -1486,9 +1475,9 @@ void zz_camera_sfx::get_camera_observer_sfx_matrix()
 	float height_step;
 
 	delta_time = 0.001f*ZZ_TIME_TO_MSEC(znzin->get_diff_time());
-    
+	
 	height_step = height_speed * delta_time;
-    
+	
 	if((length + height_step) < 0.0f)
 	{
 		length = 0.0f;
@@ -1520,7 +1509,7 @@ void zz_camera_sfx::get_camera_observer_sfx_matrix()
 	m1._34 = camera_base_m._34 + length;
 	m1._44 = 1.0f;
 
-    
+	
 	float fangle_step;
 	fangle_step = view_angle_speed*delta_time;
 	
@@ -1712,12 +1701,12 @@ void zz_camera_sfx::update_time(float *xPos, float *yPos)
 	if(view_angle_speed < -fabsf(view_angle_speed)*60.0f)
 		view_angle_speed = -fabsf(view_angle_speed)*60.0f;
 //---------------------------------------------------------------------
-    
+	
 	float delta_time;
 	delta_time = 0.001f*ZZ_TIME_TO_MSEC(znzin->get_diff_time());
 	
 	mat4 m1, m2;
-    float base_angle = base_angle_speed*delta_time;
+	float base_angle = base_angle_speed*delta_time;
 
 	m1 = camera_base_m;
 	
@@ -1725,7 +1714,7 @@ void zz_camera_sfx::update_time(float *xPos, float *yPos)
 	m2._12 = -sinf(base_angle); m2._22 = cosf(base_angle); m2._32 = 0.0f; m2._42 = 0.0f;
 	m2._13 = 0.0f; m2._23 = 0.0f; m2._33 = 1.0f; m2._43 = 0.0f;
 	m2._14 = 0.0f; m2._24 = 0.0f; m2._34 = 0.0f; m2._44 = 1.0f;
-    
+	
 	camera_base_m = m1 *  m2;
 
 	
@@ -1747,7 +1736,7 @@ void zz_camera_sfx::set_observer_zpos(float z)
 
 void zz_camera_sfx::update_angle(int mouse_xx,int mouse_yy)
 {
-    if(steal_onoff)
+	if(steal_onoff)
 	{
 		if(mouse_xx*mouse_xx>mouse_yy*mouse_yy)
 		phi-=0.5f*mouse_xx;
@@ -1796,7 +1785,7 @@ void zz_camera_sfx::update_length(int delta)
 
 void zz_camera_sfx::play_onoff()
 {
-    steal_onoff=!steal_onoff;  
+	steal_onoff=!steal_onoff;  
 }
 
 bool zz_camera_sfx::get_play_onoff()
@@ -1824,7 +1813,7 @@ void zz_camera_sfx::draw_camera()
 
 	d3d_device->SetTransform(D3DTS_VIEW, (const D3DXMATRIX *)&znzin->camera_sfx.camera_sfx_m);
 	d3d_device->SetTransform(D3DTS_WORLD,(const D3DXMATRIX *)&model_m);
-    
+	
 	r->draw_camera();
 	
 	d3d_device->SetTransform(D3DTS_WORLD,&mem_m1); 
@@ -1835,22 +1824,22 @@ void zz_camera_sfx::draw_camera()
 
 void zz_camera_sfx::get_viewing_region(float z_depth,float region[2])
 {
-    zz_camera * cam = znzin->get_camera();
+	zz_camera * cam = znzin->get_camera();
 
-    if(z_depth>=0)
+	if(z_depth>=0)
 		*(region)=*(region+1)=1000.0f;
-    else
+	else
 	{
-    *(region+1)=-1.0f*z_depth*tanf(cam->get_fov()*0.5f*3.141592f/180.0f);
+	*(region+1)=-1.0f*z_depth*tanf(cam->get_fov()*0.5f*3.141592f/180.0f);
 	*(region)=*(region+1)*cam->get_aspect_ratio();
 	}
-  	   
+	   
 }
 
 zz_sprite_sfx::zz_sprite_sfx()
 {
 	play_onoff = false;
-    pause_onoff = false;
+	pause_onoff = false;
 } 
 zz_sprite_sfx::~zz_sprite_sfx()
 {
@@ -1860,7 +1849,7 @@ zz_sprite_sfx::~zz_sprite_sfx()
 
 void zz_sprite_sfx::input_sprite_sfx_element(zz_texture * tex, const zz_rect * src_rect, const vec3 * center, const vec3 * position, color32 color, float ft1, float ft2, float max_t)
 {
-    
+	
 	if( play_onoff == false)
 	{
 		sfx_tex = tex;
@@ -1870,10 +1859,10 @@ void zz_sprite_sfx::input_sprite_sfx_element(zz_texture * tex, const zz_rect * s
 		sfx_position = *position;
 		play_onoff = true;
 		accumulate_time = 0.0f;
-	    fade_t1 = ft1;
-	    fade_t2 = ft2;
+		fade_t1 = ft1;
+		fade_t2 = ft2;
 		max_time = max_t;
-	    pause_onoff = false;
+		pause_onoff = false;
 	}
 
 }
@@ -1944,8 +1933,8 @@ void zz_sprite_sfx::post_render()
 	   d3d_device->SetRenderState( D3DRS_SRCBLEND, D3DBLEND_SRCALPHA );
 	   d3d_device->SetRenderState( D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA );
 */
-       r->init_sprite_state();
-       
+	   r->init_sprite_state();
+	   
 	   draw_sprite();
    }
 
@@ -1988,7 +1977,7 @@ zz_avatar_selection_sfx::zz_avatar_selection_sfx()
 	view_length = 2.15f;
 	view_seta = 3.141592f * 1.5f;
 	view_height = -0.10f;
-    m_texBackGround = NULL;
+	m_texBackGround = NULL;
 }
 
 zz_avatar_selection_sfx::~zz_avatar_selection_sfx()
@@ -2003,7 +1992,7 @@ zz_avatar_selection_sfx::~zz_avatar_selection_sfx()
 void zz_avatar_selection_sfx::change_avatar_viewport()
 {
 	zz_renderer_d3d *r =(zz_renderer_d3d*)(znzin->renderer) ;
-    r->get_viewport(viewport);
+	r->get_viewport(viewport);
 	r->set_viewport(avatar_selection_viewport);
 }
 
@@ -2012,10 +2001,10 @@ void zz_avatar_selection_sfx::set_avatar_selection_viewport(float x, float y, fl
 	avatar_selection_viewport.maxz = 1.0f;
 	avatar_selection_viewport.minz = 0.0f;
 	
-	avatar_selection_viewport.x = x;
-	avatar_selection_viewport.y = y;
-	avatar_selection_viewport.width = width;
-	avatar_selection_viewport.height = height;
+	avatar_selection_viewport.x = (dword)x;
+	avatar_selection_viewport.y = (dword)y;
+	avatar_selection_viewport.width = (dword)width;
+	avatar_selection_viewport.height = (dword)height;
 }
 
 void zz_avatar_selection_sfx::clear_scene()
@@ -2028,7 +2017,7 @@ void zz_avatar_selection_sfx::clear_scene()
 void zz_avatar_selection_sfx::change_default_viewport()
 {
 	zz_renderer_d3d *r =(zz_renderer_d3d*)(znzin->renderer) ;
-    r->set_viewport(viewport);
+	r->set_viewport(viewport);
 }
 
 void zz_avatar_selection_sfx::change_avatar_graphicpipeline()
@@ -2037,13 +2026,13 @@ void zz_avatar_selection_sfx::change_avatar_graphicpipeline()
 	zz_camera * cam = znzin->get_camera();
 	
 	LPDIRECT3DDEVICE9 d3d_device;
-    d3d_device = r->get_device();
+	d3d_device = r->get_device();
 
 	d3d_device->GetTransform(D3DTS_PROJECTION, &projection_m);
 	cam->get_transform(zz_camera::ZZ_MATRIX_MODELVIEW,view_m);
 	
 	buffer_m = r->get_modelview_matrix();
-    buffer_m2 = r->get_projection_matrix();
+	buffer_m2 = r->get_projection_matrix();
 
 //	d3d_device->SetTransform(D3DTS_PROJECTION, &avatar_projection_m);
 //	d3d_device->SetTransform(D3DTS_VIEW, &avatar_view_m);
@@ -2066,7 +2055,7 @@ void zz_avatar_selection_sfx::change_default_graphicpipeline()
 	zz_renderer_d3d *r =(zz_renderer_d3d*)(znzin->renderer) ;
 	zz_camera * cam = znzin->get_camera();
 	LPDIRECT3DDEVICE9 d3d_device;
-    d3d_device = r->get_device();
+	d3d_device = r->get_device();
 	
 	
 	cam->set_transform(zz_camera::ZZ_MATRIX_MODELVIEW,view_m);
@@ -2100,7 +2089,7 @@ void zz_avatar_selection_sfx::calculate_avatar_projection_matrix()
 	view_far = 100.0f;
 	
 //	D3DXMatrixPerspectiveFovRH( &avatar_projection_m, view_fov, view_ratio, view_near, view_far);
-    D3DXMatrixOrthoRH( &avatar_projection_m, view_length, (view_length/view_ratio), view_near, view_far);
+	D3DXMatrixOrthoRH( &avatar_projection_m, view_length, (view_length/view_ratio), view_near, view_far);
 
 }
 
@@ -2129,33 +2118,33 @@ void zz_avatar_selection_sfx::set_texture(const char *filename)
 void zz_avatar_selection_sfx::draw_background()
 {
 	VERTEX_TRAIL vec[6];
-    D3DXMATRIX buffer_mat;
-    D3DXMATRIX I_mat;
-    float max_length[2];
-    const float z_length = 1.1f * view_near; 
+	D3DXMATRIX buffer_mat;
+	D3DXMATRIX I_mat;
+	float max_length[2];
+	const float z_length = 1.1f * view_near; 
 	 
 	LPDIRECT3DDEVICE9 d3d_device;
-    zz_renderer_d3d *r =(zz_renderer_d3d*)(znzin->renderer) ;
+	zz_renderer_d3d *r =(zz_renderer_d3d*)(znzin->renderer) ;
 	d3d_device = r->get_device();
-    zz_camera * cam = znzin->get_camera();
+	zz_camera * cam = znzin->get_camera();
 
-    d3d_device->GetTransform(D3DTS_VIEW, &buffer_mat);
-    
+	d3d_device->GetTransform(D3DTS_VIEW, &buffer_mat);
+	
 	D3DXMatrixIdentity(&I_mat);
-    d3d_device->SetTransform(D3DTS_VIEW, &I_mat);
+	d3d_device->SetTransform(D3DTS_VIEW, &I_mat);
 
 	max_length[1] = z_length * tanf(view_fov * 0.5f);
 	max_length[0] = max_length[1] * view_ratio;
 
 	vec[0].position.x = -max_length[0]; vec[0].position.y = max_length[1]; vec[0].position.z = -z_length; vec[0].uv.x = 0.0f; vec[0].uv.y = 0.0f;
-    vec[1].position.x = -max_length[0]; vec[1].position.y = -max_length[1]; vec[1].position.z = -z_length; vec[1].uv.x = 0.0f; vec[1].uv.y = 1.0f;
+	vec[1].position.x = -max_length[0]; vec[1].position.y = -max_length[1]; vec[1].position.z = -z_length; vec[1].uv.x = 0.0f; vec[1].uv.y = 1.0f;
 	vec[2].position.x = max_length[0]; vec[2].position.y = -max_length[1]; vec[2].position.z = -z_length; vec[2].uv.x = 1.0f; vec[2].uv.y = 1.0f;
 	
 	vec[3].position.x = -max_length[0]; vec[3].position.y = max_length[1]; vec[3].position.z = -z_length; vec[3].uv.x = 0.0f; vec[3].uv.y = 0.0f;
 	vec[4].position.x = max_length[0]; vec[4].position.y = -max_length[1]; vec[4].position.z = -z_length; vec[4].uv.x = 1.0f; vec[4].uv.y = 1.0f;
 	vec[5].position.x = max_length[0]; vec[5].position.y = max_length[1]; vec[5].position.z = -z_length; vec[5].uv.x = 1.0f; vec[5].uv.y = 0.0f;
 
-    r->enable_fog(false);
+	r->enable_fog(false);
 	r->set_vertex_shader(ZZ_HANDLE_NULL);
 	r->set_pixel_shader(ZZ_HANDLE_NULL);
 	r->enable_alpha_blend(false, ZZ_BT_NORMAL);
@@ -2166,8 +2155,8 @@ void zz_avatar_selection_sfx::draw_background()
 	m_texBackGround->set(0);
 	
 	d3d_device->SetFVF(D3DFVF_XYZ | D3DFVF_TEX1);
-    d3d_device->DrawPrimitiveUP( D3DPT_TRIANGLELIST, 2, vec, sizeof(VERTEX_TRAIL)); 
-    d3d_device->SetTransform(D3DTS_VIEW, &buffer_mat);
+	d3d_device->DrawPrimitiveUP( D3DPT_TRIANGLELIST, 2, vec, sizeof(VERTEX_TRAIL)); 
+	d3d_device->SetTransform(D3DTS_VIEW, &buffer_mat);
 
 }
 
@@ -2187,7 +2176,7 @@ zz_moving_camera_screen_sfx::~zz_moving_camera_screen_sfx()
 void zz_moving_camera_screen_sfx::change_camera_viewport()
 {
 	zz_renderer_d3d *r =(zz_renderer_d3d*)(znzin->renderer) ;
-    r->get_viewport(viewport);
+	r->get_viewport(viewport);
 	r->set_viewport(moving_camera_screen_viewport);
 }
 
@@ -2206,7 +2195,7 @@ void zz_moving_camera_screen_sfx::set_camera_screen_viewport(int x, int y, int w
 void zz_moving_camera_screen_sfx::change_default_viewport()
 {
 	zz_renderer_d3d *r =(zz_renderer_d3d*)(znzin->renderer) ;
-    r->set_viewport(viewport);
+	r->set_viewport(viewport);
 }
 
 void zz_moving_camera_screen_sfx::change_camera_graphicpipeline()
@@ -2215,13 +2204,13 @@ void zz_moving_camera_screen_sfx::change_camera_graphicpipeline()
 	zz_camera * cam = znzin->get_camera();
 	
 	LPDIRECT3DDEVICE9 d3d_device;
-    d3d_device = r->get_device();
+	d3d_device = r->get_device();
 
 	d3d_device->GetTransform(D3DTS_PROJECTION, &projection_m);
 	cam->get_transform(zz_camera::ZZ_MATRIX_MODELVIEW,view_m);
 	
 	buffer_m = r->get_modelview_matrix();
-    buffer_m2 = r->get_projection_matrix();
+	buffer_m2 = r->get_projection_matrix();
 
 
 //	d3d_device->SetTransform(D3DTS_PROJECTION, &avatar_projection_m);
@@ -2239,7 +2228,7 @@ void zz_moving_camera_screen_sfx::change_default_graphicpipeline()
 	zz_renderer_d3d *r =(zz_renderer_d3d*)(znzin->renderer) ;
 	zz_camera * cam = znzin->get_camera();
 	LPDIRECT3DDEVICE9 d3d_device;
-    d3d_device = r->get_device();
+	d3d_device = r->get_device();
 		
 	cam->set_transform(zz_camera::ZZ_MATRIX_MODELVIEW,view_m);
 	r->set_projection_matrix((mat4)buffer_m2);
@@ -2265,21 +2254,21 @@ void zz_moving_camera_screen_sfx::Input_camera_matrix(const vec3 &position, cons
 
 	buffer_m.set(position, rotation);
 	inv_buffer_m = buffer_m.inverse();
-    
+	
 	camera_view_m._11 = inv_buffer_m._11;	camera_view_m._12 = inv_buffer_m._21; camera_view_m._13 = inv_buffer_m._31; camera_view_m._14 = inv_buffer_m._41;    
 	camera_view_m._21 = inv_buffer_m._12;	camera_view_m._22 = inv_buffer_m._22; camera_view_m._23 = inv_buffer_m._32; camera_view_m._24 = inv_buffer_m._42;    
 	camera_view_m._31 = inv_buffer_m._13;	camera_view_m._32 = inv_buffer_m._23; camera_view_m._33 = inv_buffer_m._33; camera_view_m._34 = inv_buffer_m._43;    
 	camera_view_m._41 = inv_buffer_m._14;	camera_view_m._42 = inv_buffer_m._24; camera_view_m._43 = inv_buffer_m._34; camera_view_m._44 = inv_buffer_m._44;    
 
-    view_position = position;
+	view_position = position;
 	
 /*	D3DXMatrixInverse(&inv_camera_view_m, NULL, &camera_view_m);
    
 	D3DXVECTOR4 buffer_position;
-    float max_x, max_y;
+	float max_x, max_y;
 
 	max_y = 
-     
+	 
 
 
 	buffer_position. 

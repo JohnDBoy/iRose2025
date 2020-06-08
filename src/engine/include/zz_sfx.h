@@ -90,6 +90,7 @@
 #include "zz_algebra.h"
 #include "zz_camera.h"
 #include "zz_renderer_d3d.h"
+#include <functional>;
 
 class zz_sfx {
 public:

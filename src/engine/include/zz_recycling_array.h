@@ -11,6 +11,8 @@
 #ifndef __ZZ_RECYCLING_ARRAY_H__
 #define __ZZ_RECYCLING_ARRAY_H__
 
+#include <stdexcept>;
+
 #pragma warning (disable : 4311)
 
 template <class TArrayElement> class zz_recycling_array 
@@ -59,7 +61,9 @@ public:
 		}
 
 		if (m_bAlive[i]) {
-			return nullptr;
+			// huh? if we got here, there are no free elements in the list... yet 
+			// GetNumFreeElements didn't tell us that in the beginning.  Logic error.
+			throw(std::logic_error("TArrayElement::New(): internal logic error."));
 		}
 
 		// clear it
