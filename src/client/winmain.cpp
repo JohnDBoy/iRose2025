@@ -1,5 +1,4 @@
 #include "stdafx.h"
-#define AROSE
 
 #include "CApplication.h"
 #include "Game.h"
@@ -176,13 +175,16 @@ int APIENTRY WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmd
 	UINT iFullScreen = g_ClientStorage.GetVideoFullScreen();
 
 	g_pCApp->SetFullscreenMode( iFullScreen );
-	g_pCApp->CreateWND ("classCLIENT", "Tsuki Online [loading]", Resolution.iWidth, Resolution.iHeight,Resolution.iDepth, hInstance);
+	g_pCApp->CreateWND ("classCLIENT", "ROSE Online [loading]", Resolution.iWidth, Resolution.iHeight,Resolution.iDepth, hInstance);
+
+#ifdef _CONSOLE
+	CreateConsole();
+#endif
 
 #ifndef _DEBUG
 	// 시스템 정보를 모음
 	TI_ReadSysInfoFile ();
 #endif
-
 
 	g_pObjMGR = CObjectMANAGER::Instance ();
 	g_pCApp->ResetExitGame();

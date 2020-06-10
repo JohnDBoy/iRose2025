@@ -5,7 +5,7 @@
 
 #pragma once
 
-#ifdef	__SERVER
+#ifdef __SERVER
 #include <VCL.h>
 #else
 #define WIN32_LEAN_AND_MEAN		// Exclude rarely-used stuff from Windows headers
@@ -41,6 +41,12 @@ typedef	LPDIRECT3DVERTEXBUFFER9		LPD3DVERTEXBUFFER;
 //#define FRAROSE
 #ifdef FRAROSE
 	#define _GBC
+#endif
+
+#define _CONSOLE
+
+#ifdef _CONSOLE
+#include "Console.hpp"
 #endif
 
 //#define _NEWUI

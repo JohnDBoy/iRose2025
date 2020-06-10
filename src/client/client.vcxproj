@@ -540,6 +540,7 @@
     <ClInclude Include="CCamera.h" />
     <ClInclude Include="CClientStorage.h" />
     <ClInclude Include="CommandFilter.h" />
+    <ClInclude Include="Console.hpp" />
     <ClInclude Include="CViewMSG.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="JCommandState.h" />

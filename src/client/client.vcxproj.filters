@@ -2263,6 +2263,9 @@
     <ClInclude Include="..\Engine\include\zz_interface.h">
       <Filter>Include</Filter>
     </ClInclude>
+    <ClInclude Include="Console.hpp">
+      <Filter>Source Files\Util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="GlobalScr.lua">
