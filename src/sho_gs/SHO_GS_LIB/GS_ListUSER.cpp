@@ -11,7 +11,7 @@ extern void IncUserCNT( int iUserCNT, classUSER *pUSER );
 extern void DecUserCNT( int iUserCNT, classUSER *pUSER );
 
 //-------------------------------------------------------------------------------------------------
-// Worker Thread °¹¼ö = CPU * 2 + 2
+// Worker Thread ê°¯ìˆ˜ = CPU * 2 + 2
 CUserLIST::CUserLIST ( UINT uiInitDataCNT, UINT uiIncDataCNT ) 
 						      : CDataPOOL< classUSER > ("CUserPOOL", uiInitDataCNT, uiIncDataCNT ),
 								m_csHashACCOUNT( 4000 ),
@@ -54,11 +54,11 @@ void CUserLIST::FreeData (classUSER *pData)
 }
 
 //-------------------------------------------------------------------------------------------------
-// @@ ¼­·Î ´Ù¸¥ ¾²·¹µå¿¡ÀÇÇØ Áßº¹ È£ÃâµÉ¼ö ÀÖ´Ù...
-// @@ ¹Ýµå½Ã ¼ÒÄÏÀÌ Á¾·áµÇ¾î ÀÖ¾î¾ß ÇÑ´Ù.
+// @@ ì„œë¡œ ë‹¤ë¥¸ ì“°ë ˆë“œì—ì˜í•´ ì¤‘ë³µ í˜¸ì¶œë ìˆ˜ ìžˆë‹¤...
+// @@ ë°˜ë“œì‹œ ì†Œì¼“ì´ ì¢…ë£Œë˜ì–´ ìžˆì–´ì•¼ í•œë‹¤.
 void CUserLIST::DeleteUSER (classUSER *pUSER, BYTE btLogOutMODE)
 {
-	// °°Àº ÄÚµå ¿©·¯¹ø ½ÇÇàµÇÁö ¾Êµµ·Ï..
+	// ê°™ì€ ì½”ë“œ ì—¬ëŸ¬ë²ˆ ì‹¤í–‰ë˜ì§€ ì•Šë„ë¡..
 	pUSER->LockSOCKET ();
 	{
 		if ( pUSER->m_btLogOutMODE ) {
@@ -69,7 +69,7 @@ void CUserLIST::DeleteUSER (classUSER *pUSER, BYTE btLogOutMODE)
 		pUSER->m_btLogOutMODE = btLogOutMODE;
 
 		if ( pUSER->m_iClanCreateMoney )
-			pUSER->CheckClanCreateCondition( 2 );	// Å¬·£ »ý¼ºÇÏ´Ù Á¾·á :: °¨¼ÒµÈ Á¶°Ç º¹¿ø
+			pUSER->CheckClanCreateCondition( 2 );	// í´ëžœ ìƒì„±í•˜ë‹¤ ì¢…ë£Œ :: ê°ì†Œëœ ì¡°ê±´ ë³µì›
 	}
 	pUSER->UnlockSOCKET ();
 
@@ -78,7 +78,7 @@ void CUserLIST::DeleteUSER (classUSER *pUSER, BYTE btLogOutMODE)
 		pUser2->m_iLinkedCartUsrIDX = 0;
 
 		if ( pUSER->Is_CartDriver() ) {
-			// ³ª°¡´Â ÄÉ¸¯ÀÌ ¿îÀüÀÚ´Ù.. ¼Õ´ÔÀ» °È±â »óÅÂ·Î º¯°æ
+			// ë‚˜ê°€ëŠ” ì¼€ë¦­ì´ ìš´ì „ìžë‹¤.. ì†ë‹˜ì„ ê±·ê¸° ìƒíƒœë¡œ ë³€ê²½
 			pUser2->m_btRideMODE = 0;
 			pUser2->m_btRideATTR = RIDE_ATTR_NORMAL;
 		}
@@ -116,11 +116,11 @@ void CUserLIST::DeleteUSER (classUSER *pUSER, BYTE btLogOutMODE)
 
 bool CUserLIST::SendPacketToSocketIDX (int iClientSocketIDX, classPACKET *pCPacket)
 {
-	// ¹Ýµå½Ã pCPacketÀº 1 À¯Àú¿¡°Ô º¸³»´Â ÆÐÅ¶ÀÌ¾î¾ß ÇÑ´Ù.
+	// ë°˜ë“œì‹œ pCPacketì€ 1 ìœ ì €ì—ê²Œ ë³´ë‚´ëŠ” íŒ¨í‚·ì´ì–´ì•¼ í•œë‹¤.
 	classUSER *pFindUSER = (classUSER*)this->GetSOCKET( iClientSocketIDX );
 	if ( pFindUSER ) {
 		if ( !pFindUSER->SendPacket( pCPacket ) ) {
-			// º¸³»±â ½ÇÆÐ...
+			// ë³´ë‚´ê¸° ì‹¤íŒ¨...
 		}
 
 		return true;
@@ -145,10 +145,10 @@ void CUserLIST::Check_SocketALIVE ()
 	m_csNullZONE.Lock ();
 		pUserNODE = m_NullZoneLIST.GetHeadNode();
 		while( pUserNODE ) {
-			// ¸¶Áö¸·À¸·Î ÆÐÅ¶À» º¸³½ÈÄ 30ÃÊ°¡ ³Ñ¾úÀ¸¸é...
+			// ë§ˆì§€ë§‰ìœ¼ë¡œ íŒ¨í‚·ì„ ë³´ë‚¸í›„ 30ì´ˆê°€ ë„˜ì—ˆìœ¼ë©´...
 			if ( dwCurTIME - ( (classUSER*)pUserNODE->DATA )->Get_CheckTIME() >= 30*1000 ) {
 				pUserNODE->DATA->SendPacket( pCPacket );
-				// 5ºÐµ¿¾È ¾Ï°Íµµ º¸³»Áö ¸øÇßÀ¸¸é... Â©·¯~~~~
+				// 5ë¶„ë™ì•ˆ ì•”ê²ƒë„ ë³´ë‚´ì§€ ëª»í–ˆìœ¼ë©´... ì§¤ëŸ¬~~~~
 				if ( dwCurTIME - SOCKET_KEEP_ALIVE_TIME > ( (classUSER*)pUserNODE->DATA )->Get_CheckTIME() )
 					( (classUSER*)pUserNODE->DATA )->CloseSocket ();
 			}
@@ -222,7 +222,7 @@ void CUserLIST::Send_wsv_GUILD_COMMAND (int iSocketIDX, BYTE btResult, char *szS
 //-------------------------------------------------------------------------------------------------
 bool CUserLIST::Add_CHAR (classUSER *pUSER)
 {
-	// GS_CThreadSQL::Run_SqlPACKET()¿¡¼­ È£ÃâµÇ´Â ÇÔ¼ö·Î Lock ÇÊ¿ä ¾ø´Ù.
+	// GS_CThreadSQL::Run_SqlPACKET()ì—ì„œ í˜¸ì¶œë˜ëŠ” í•¨ìˆ˜ë¡œ Lock í•„ìš” ì—†ë‹¤.
 	pUSER->m_HashCHAR = CStrVAR::GetHASH( pUSER->Get_NAME() );
 	m_csHashCHAR.Lock ();
 	m_pHashCHAR->Insert( pUSER->m_HashCHAR, pUSER );
@@ -272,10 +272,10 @@ bool CUserLIST::Add_ACCOUNT (int iSocketIDX, t_PACKET *pRecvPket, char *szAccoun
 
 	if ( pUSER->Send_srv_JOIN_SERVER_REPLY( pRecvPket, szAccount ) ) {
 		if ( RESULT_CONFIRM_ACCOUNT_OK == pRecvPket->m_wls_CONFIRM_ACCOUNT_REPLY.m_btResult ) {
-			// ¿ì¼± ÀÌ°÷¿¡¼­ °èÁ¤ ¼­¹ö¿¡ °èÁ¤ Ãß°¡ Àü¼Û...
+			// ìš°ì„  ì´ê³³ì—ì„œ ê³„ì • ì„œë²„ì— ê³„ì • ì¶”ê°€ ì „ì†¡...
 			g_pSockASV->Send_zws_ADD_ACCOUNT( szAccount, pUSER->Get_MD5PW(), pUSER->Get_IP() );
 
-			// Á¸¿¡¼­ ºüÁø »ç¿ëÀÚ ¸®½ºÆ®¿¡ µî·Ï...
+			// ì¡´ì—ì„œ ë¹ ì§„ ì‚¬ìš©ìž ë¦¬ìŠ¤íŠ¸ì— ë“±ë¡...
 			g_pUserLIST->Add_NullZONE( &pUSER->m_ZoneNODE );
 
 			pUSER->m_dwLSID     = pRecvPket->m_wls_CONFIRM_ACCOUNT_REPLY.m_dwLSID;
@@ -298,7 +298,7 @@ bool CUserLIST::Add_ACCOUNT (int iSocketIDX, t_PACKET *pRecvPket, char *szAccoun
 
 				Packet_AppendString( pSelCharPket, szCharName );
 
-				// SQL¾²·¹µå¿¡ µî·Ï..
+				// SQLì“°ë ˆë“œì— ë“±ë¡..
 				pUSER->Recv_cli_SELECT_CHAR( pSelCharPket, 
 							true			/* pRecvPket->m_wls_CONFIRM_ACCOUNT_REPLY.m_bFirstZONE */,
 							MOVE_MODE_RUN	/* pRecvPket->m_wls_CONFIRM_ACCOUNT_REPLY.m_btRunMODE  */,

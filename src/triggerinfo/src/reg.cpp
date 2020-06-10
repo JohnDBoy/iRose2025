@@ -3,10 +3,10 @@
 
 /*********************************************************************
  *
- * GetRegistryValue - Registry¿¡¼­ °ªÀ» °¡Áö°í ¿Â´Ù
+ * GetRegistryValue - Registryì—ì„œ ê°’ì„ ê°€ì§€ê³  ì˜¨ë‹¤
  * hKey		: HKEY_LOCAL_MACHINE, HKEY_CLASSES_ROOT, HKEY_CURRENT_USER, HKEY_LOCAL_MACHINE, HKEY_USERS
  *				Windows Me/98/95:  HKEY_DYN_DATA
- * KeyPath	: Key Path ¿¹ ) "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Hotfix\\Q246009"
+ * KeyPath	: Key Path ì˜ˆ ) "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Hotfix\\Q246009"
  *
  */
 

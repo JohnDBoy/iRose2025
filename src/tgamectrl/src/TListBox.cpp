@@ -123,7 +123,7 @@ unsigned int CTListBox::Process( UINT uiMsg,WPARAM wParam,LPARAM lParam )
 	
 
 
-		if( m_nPutLnNum  + m_nMaxLnCnt >= (int)m_ITM.size() )///¸®½ºÆ®ÀÇ ÃÖ´ë¹üÀ§¹ÛÀ¸·Î ¾È³ª°¡µµ·Ï ¼öÁ¤ 
+		if( m_nPutLnNum  + m_nMaxLnCnt >= (int)m_ITM.size() )///ë¦¬ìŠ¤íŠ¸ì˜ ìµœëŒ€ë²”ìœ„ë°–ìœ¼ë¡œ ì•ˆë‚˜ê°€ë„ë¡ ìˆ˜ì • 
 			iExtent = (int)m_ITM.size() - m_nPutLnNum;
 
 
@@ -148,10 +148,10 @@ void	CTListBox::Draw()
 {
 	if(!IsVision() || m_pFontMgr == NULL || m_bOwnerDraw ) return ;
 
-	int iValue = GetValue();///Ã¹¹øÂ° ÂïÀ» ¶óÀÎ
-	int iExtent = GetExtent();///È­¸é¿¡ º¸¿©ÁÙ¼ö ÀÖ´Â ÃÖ´ë ¶óÀÎ¼ö
+	int iValue = GetValue();///ì²«ë²ˆì§¸ ì°ì„ ë¼ì¸
+	int iExtent = GetExtent();///í™”ë©´ì— ë³´ì—¬ì¤„ìˆ˜ ìžˆëŠ” ìµœëŒ€ ë¼ì¸ìˆ˜
 	
-	if( iValue + iExtent >= (int)m_ITM.size() )///¸®½ºÆ®ÀÇ ÃÖ´ë¹üÀ§¹ÛÀ¸·Î ¾È³ª°¡µµ·Ï ¼öÁ¤ 
+	if( iValue + iExtent >= (int)m_ITM.size() )///ë¦¬ìŠ¤íŠ¸ì˜ ìµœëŒ€ë²”ìœ„ë°–ìœ¼ë¡œ ì•ˆë‚˜ê°€ë„ë¡ ìˆ˜ì • 
 		iExtent = (int)m_ITM.size() - iValue;
 
 	m_pFontMgr->SetTransformSprite( (float)m_sPosition.x, (float)m_sPosition.y );
@@ -185,7 +185,7 @@ void	CTListBox::Draw()
 /*
 void CTListBox::SelectItem()
 {
-	//ÅØ½ºÆ® Ãâ·Â 
+	//í…ìŠ¤íŠ¸ ì¶œë ¥ 
 	
 	POINT sPT = { g_ScenMGR.m_iMosPosX,g_ScenMGR.m_iMosPosY };
 	RECT  sRT;
@@ -216,13 +216,13 @@ void CTListBox::SetText( int index, const char* text, D3DCOLOR dwColor )
 	itm.m_dwColor = dwColor;
 	m_ITM[index] = itm;
 }
-///ÇÑ¶óÀÎ¿¡ Ç¥½ÃÇÒ¼ö ÀÖ´Â ÃÖ´ë¹®ÀÚ±æÀÌº¸´Ù Å©¸é Àß¶ó¼­ Ãß°¡ÇÑ´Ù.
+///í•œë¼ì¸ì— í‘œì‹œí• ìˆ˜ ìžˆëŠ” ìµœëŒ€ë¬¸ìžê¸¸ì´ë³´ë‹¤ í¬ë©´ ìž˜ë¼ì„œ ì¶”ê°€í•œë‹¤.
 void CTListBox::AppendText(const char* szTxt,D3DCOLOR dwColor,bool bAutoIncValue )
 {
 	if( szTxt == NULL )
 		return;
 
-	///ÃÖ´ë ¾ÆÀÌÅÛ¼ö¸¦ ³ÑÀ¸¸é Á¦ÀÏ¸ÕÀú µé¾î¿Â ¾ÆÀÌÅÛÀ» ¹ö¸°´Ù.
+	///ìµœëŒ€ ì•„ì´í…œìˆ˜ë¥¼ ë„˜ìœ¼ë©´ ì œì¼ë¨¼ì € ë“¤ì–´ì˜¨ ì•„ì´í…œì„ ë²„ë¦°ë‹¤.
 	if( (m_iMaxSize > 0) && !m_ITM.empty() && (m_iMaxSize <= (int)m_ITM.size()) )
 		m_ITM.pop_front();
 
@@ -234,7 +234,7 @@ void CTListBox::AppendText(const char* szTxt,D3DCOLOR dwColor,bool bAutoIncValue
 	CTSplitString szString;	
 	SIZE szSize = szString.GetSizeText( m_iFont, szTxt );
 	
-	//È«±Ù :
+	//í™ê·¼ :
 	if( szSize.cx <= m_iWidth )
 	//if( iLen <= m_nMaxPutChar )
 	{

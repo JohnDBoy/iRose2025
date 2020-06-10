@@ -217,17 +217,17 @@
  * *****************  Version 21  *****************
  * User: Zho          Date: 04-01-02   Time: 1:37p
  * Updated in $/engine/include
- * ocean Å¸ÀÔ Ãß°¡
+ * ocean íƒ€ìž… ì¶”ê°€
  * 
  * *****************  Version 20  *****************
  * User: Zho          Date: 03-12-30   Time: 6:39p
  * Updated in $/engine/include
- * getWorldObjectHeightInScene ¼öÁ¤
+ * getWorldObjectHeightInScene ìˆ˜ì •
  * 
  * *****************  Version 19  *****************
  * User: Zho          Date: 03-12-30   Time: 12:06p
  * Updated in $/engine/include
- * getWorldObjectHeightInScene() Ãß°¡
+ * getWorldObjectHeightInScene() ì¶”ê°€
  * 
  * *****************  Version 18  *****************
  * User: Zho          Date: 03-12-29   Time: 11:30p
@@ -247,7 +247,7 @@
  * *****************  Version 15  *****************
  * User: Zho          Date: 03-12-24   Time: 1:06p
  * Updated in $/engine/include
- * updateSceneTransform() Ãß°¡
+ * updateSceneTransform() ì¶”ê°€
  * 
  * *****************  Version 14  *****************
  * User: Zho          Date: 03-12-23   Time: 5:20p
@@ -350,7 +350,7 @@
  * *****************  Version 155  *****************
  * User: Zho          Date: 03-11-27   Time: 5:45p
  * Updated in $/znzin11/engine/include
- * getTexturePointer() Ãß°¡
+ * getTexturePointer() ì¶”ê°€
  * 
  * *****************  Version 154  *****************
  * User: Zho          Date: 03-11-27   Time: 4:50p
@@ -431,27 +431,27 @@ extern "C" {
 #define ZZ_DLL __declspec(dllimport)
 #endif
 
-// ½ºÅ©¸³Æ®¿¡ ³ëÃâ½ÃÅ³ ÇÔ¼ö´Â ZZ_SCRIPT ¸¦ »ç¿ë
+// ìŠ¤í¬ë¦½íŠ¸ì— ë…¸ì¶œì‹œí‚¬ í•¨ìˆ˜ëŠ” ZZ_SCRIPT ë¥¼ ì‚¬ìš©
 #define ZZ_SCRIPT ZZ_DLL
 
 //--------------------------------------------------------------------------------
-// ÀÛ¼º½Ã ÁÖÀÇ »çÇ×:
-// - ½ºÅ©¸³Æ®¿Í DLL ¸ðµÎ »ç¿ëÇÒ ÇÔ¼ö´Â ZZ_SCRIPT ¸¦ »ç¿ë
-// - DLL ¿¡¸¸ »ç¿ëÇÒ ÇÔ¼ö´Â ZZ_DLL À» »ç¿ë
-// - ÇÔ¼öÀÇ ( ¿Í ); ±âÈ£´Â ÁÂ¿ì¿¡ °ø¹éÀ» ²À »ðÀÔ
-// - ½ºÅ©¸³Æ®¿¡ »ç¿ëÇÒ ¼ö ÀÖ´Â ÇÔ¼öÀÇ ÀÎÀÚ¿Í ¸®ÅÏÅ¸ÀÔÀº ´ÙÀ½À¸·Î Á¦ÇÑ
+// ìž‘ì„±ì‹œ ì£¼ì˜ ì‚¬í•­:
+// - ìŠ¤í¬ë¦½íŠ¸ì™€ DLL ëª¨ë‘ ì‚¬ìš©í•  í•¨ìˆ˜ëŠ” ZZ_SCRIPT ë¥¼ ì‚¬ìš©
+// - DLL ì—ë§Œ ì‚¬ìš©í•  í•¨ìˆ˜ëŠ” ZZ_DLL ì„ ì‚¬ìš©
+// - í•¨ìˆ˜ì˜ ( ì™€ ); ê¸°í˜¸ëŠ” ì¢Œìš°ì— ê³µë°±ì„ ê¼­ ì‚½ìž…
+// - ìŠ¤í¬ë¦½íŠ¸ì— ì‚¬ìš©í•  ìˆ˜ ìžˆëŠ” í•¨ìˆ˜ì˜ ì¸ìžì™€ ë¦¬í„´íƒ€ìž…ì€ ë‹¤ìŒìœ¼ë¡œ ì œí•œ
 //   - (void, int, float, HNODE, ZSTRING)
-// - ZZ_SCRIPT ´Â ¶óÀÎÀÇ Á¦ÀÏ Ã³À½¿¡ À§Ä¡ÇØ¾ß ÇÔ
-// - ÀÌ ÆÄÀÏÀÌ °»½ÅµÇ¸é, export_interface.lua ½ºÅ©¸³Æ®¸¦ ½ÇÇà½ÃÄÑ¾ß ÇÔ
+// - ZZ_SCRIPT ëŠ” ë¼ì¸ì˜ ì œì¼ ì²˜ìŒì— ìœ„ì¹˜í•´ì•¼ í•¨
+// - ì´ íŒŒì¼ì´ ê°±ì‹ ë˜ë©´, export_interface.lua ìŠ¤í¬ë¦½íŠ¸ë¥¼ ì‹¤í–‰ì‹œì¼œì•¼ í•¨
 //--------------------------------------------------------------------------------
 
-// Æ÷ÀÎÅÍ¸¦ unsigned int·Î »ç¿ëÇÏ±â À§ÇØ
-// ÁÖÀÇ! 32-bit ¸Ó½Å¿¡¼­¸¸ µ¿ÀÛÇÔ
+// í¬ì¸í„°ë¥¼ unsigned intë¡œ ì‚¬ìš©í•˜ê¸° ìœ„í•´
+// ì£¼ì˜! 32-bit ë¨¸ì‹ ì—ì„œë§Œ ë™ìž‘í•¨
 typedef unsigned int HNODE;
 
 typedef const char * ZSTRING;
 
-// ºñÁ®ºí Å¬·¡½º Å¸ÀÔ ÇÚµé
+// ë¹„ì ¸ë¸” í´ëž˜ìŠ¤ íƒ€ìž… í•¸ë“¤
 enum zz_class_type {
 	ZZ_TYPE_NONE       = 0,
 	ZZ_TYPE_VISIBLE    = (1 << 0),
@@ -465,7 +465,7 @@ enum zz_class_type {
 	ZZ_TYPE_OCEAN = (1 << 8)
 };
 
-// ÆÄ¶ó¹ÌÅÍ Å¸ÀÔ
+// íŒŒë¼ë¯¸í„° íƒ€ìž…
 enum zz_param_type {
 	ZZ_PARAM_NONE = 0,
 	ZZ_PARAM_INT = 1,
@@ -477,7 +477,7 @@ enum zz_param_type {
 	ZZ_PARAM_END = 999  // TERMINATOR
 };
 
-// Å°Á¤ÀÇ
+// í‚¤ì •ì˜
 enum zz_key_type {
 	ZZ_KEY_NONE = 0,
 	ZZ_KEY_ESC = 1,
@@ -581,58 +581,58 @@ int useWireMode ( int bUse );
 ZZ_SCRIPT
 void setClearColor ( float fClearColorX, float fClearColorY, float fClearColorZ );
 
-/// ½¦µµ¿ì¸ÊÀÇ °¡·Î¼¼·Î Å©±â
-/// @return ÀÌÀü°ª
+/// ì‰ë„ìš°ë§µì˜ ê°€ë¡œì„¸ë¡œ í¬ê¸°
+/// @return ì´ì „ê°’
 ZZ_SCRIPT
 int setShadowmapSize ( int iSize );
 
-/// ½¦µµ¿ì¸Ê ºí·¯ Å¸ÀÔ
-/// ÁÖÀÇ: attachWindow() Àü¿¡ È£ÃâµÇ¾î¾ß ÇÔ(init.lua ±ÇÀå)
-/// @iBlurType : 0(ºí·¯»ç¿ë¾ÈÇÔ), 1(ºí·¯ ÇÑ¹ø Àû¿ë), 2(ºí·¯ µÎ¹ø Àû¿ë)...
-/// @return : ÀÌÀü Å¸ÀÔ°ª
+/// ì‰ë„ìš°ë§µ ë¸”ëŸ¬ íƒ€ìž…
+/// ì£¼ì˜: attachWindow() ì „ì— í˜¸ì¶œë˜ì–´ì•¼ í•¨(init.lua ê¶Œìž¥)
+/// @iBlurType : 0(ë¸”ëŸ¬ì‚¬ìš©ì•ˆí•¨), 1(ë¸”ëŸ¬ í•œë²ˆ ì ìš©), 2(ë¸”ëŸ¬ ë‘ë²ˆ ì ìš©)...
+/// @return : ì´ì „ íƒ€ìž…ê°’
 ZZ_SCRIPT
 int setShadowmapBlurType ( int iBlurType );
 
 ZZ_SCRIPT
 void useShadowmap ( int bUse );
 
-/// ±Û·Î¿ìÈ¿°ú¸¦ »ç¿ëÇÒÁö ¿©ºÎ
-/// @bUse : 0(»ç¿ë¾ÈÇÔ), 1(»ç¿ëÇÔ)
+/// ê¸€ë¡œìš°íš¨ê³¼ë¥¼ ì‚¬ìš©í• ì§€ ì—¬ë¶€
+/// @bUse : 0(ì‚¬ìš©ì•ˆí•¨), 1(ì‚¬ìš©í•¨)
 ZZ_SCRIPT
 void useGlow ( int bUse );
 
-/// ±Û·Î¿ì È¿°úÀÇ ·»´õÅ¸°Ù ÅØ½ºÃÄ ÇØ»óµµ
-/// @iSize : ÅØ½ºÃÄ ÇØ»óµµ(ÇÈ¼¿). °¡·Î = ¼¼·Î
+/// ê¸€ë¡œìš° íš¨ê³¼ì˜ ë Œë”íƒ€ê²Ÿ í…ìŠ¤ì³ í•´ìƒë„
+/// @iSize : í…ìŠ¤ì³ í•´ìƒë„(í”½ì…€). ê°€ë¡œ = ì„¸ë¡œ
 ZZ_SCRIPT
 void setGlowmapSize ( int iSize );
 
-/// ±Û·Î¿ì È¿°úÀÇ ºí·¯¸µ½Ã È¥ÇÕ ³óµµ »ö»ó. ¹üÀ§ (0, 1.f)
-/// ÀÌ °ªÀÌ Å©¸é, ±Û·Î¿ì°¡ ¹à¾ÆÁø´Ù.
-/// µðÆúÆ® : 0.01f, 0.01f, 0.01f
+/// ê¸€ë¡œìš° íš¨ê³¼ì˜ ë¸”ëŸ¬ë§ì‹œ í˜¼í•© ë†ë„ ìƒ‰ìƒ. ë²”ìœ„ (0, 1.f)
+/// ì´ ê°’ì´ í¬ë©´, ê¸€ë¡œìš°ê°€ ë°ì•„ì§„ë‹¤.
+/// ë””í´íŠ¸ : 0.01f, 0.01f, 0.01f
 ZZ_SCRIPT
 void setGlowColor ( float fColorR, float fColorG, float fColorB );
 
-/// ±×¸²ÀÚ¸ÊÀÇ »ö»ó
-/// 0¿¡¼­ 1 »çÀÌÀÇ RGB °ª
+/// ê·¸ë¦¼ìžë§µì˜ ìƒ‰ìƒ
+/// 0ì—ì„œ 1 ì‚¬ì´ì˜ RGB ê°’
 ZZ_SCRIPT
 void setShadowmapColor ( float fColorR, float fColorG, float fColorB );
 
 ZZ_SCRIPT
 int setMipmapFilter ( int FilterType );
 
-/// ·ÎµùµÉ ÅØ½ºÃÄÀÇ ¹Ó¸Ê ·¹º§ ¼³Á¤ÇÏ±â.
-/// @Level -1ÀÌ¸é ÅØ½ºÃÄ(dds)¿¡ ÁöÁ¤µÈ ±×´ë·Î »ç¿ëÇÏ±â. 0ÀÌ¸é °¡´ÉÇÑÇÑ ¸¹ÀÌ. 1ÀÌ¸é ÇÏ³ª¸¸. 1ÀÌ»óÀÌ¸é °³¼ö´ë·Î
-/// ¸®ÅÏ°ªÀº ÀÌÀü¿¡ ÀúÀåµÇ¾î ÀÖ´Â ·¹º§°ª
+/// ë¡œë”©ë  í…ìŠ¤ì³ì˜ ë°‰ë§µ ë ˆë²¨ ì„¤ì •í•˜ê¸°.
+/// @Level -1ì´ë©´ í…ìŠ¤ì³(dds)ì— ì§€ì •ëœ ê·¸ëŒ€ë¡œ ì‚¬ìš©í•˜ê¸°. 0ì´ë©´ ê°€ëŠ¥í•œí•œ ë§Žì´. 1ì´ë©´ í•˜ë‚˜ë§Œ. 1ì´ìƒì´ë©´ ê°œìˆ˜ëŒ€ë¡œ
+/// ë¦¬í„´ê°’ì€ ì´ì „ì— ì €ìž¥ë˜ì–´ ìžˆëŠ” ë ˆë²¨ê°’
 ZZ_SCRIPT
 int setMipmapLevel ( int Level );
 
-/// Ãà¼ÒÇÊÅÍ Å¸ÀÔ ¼³Á¤ÇÏ±â.
-/// ¸®ÅÏ°ªÀº ÀÌÀü¿¡ ÀúÀåµÇ¾î ÀÖ´Â ·¹º§°ª
+/// ì¶•ì†Œí•„í„° íƒ€ìž… ì„¤ì •í•˜ê¸°.
+/// ë¦¬í„´ê°’ì€ ì´ì „ì— ì €ìž¥ë˜ì–´ ìžˆëŠ” ë ˆë²¨ê°’
 ZZ_SCRIPT
 int setMinFilter ( int FilterType );
 
-/// È®´ëÇÊÅÍ Å¸ÀÔ ¼³Á¤ÇÏ±â.
-/// ¸®ÅÏ°ªÀº ÀÌÀü¿¡ ÀúÀåµÇ¾î ÀÖ´Â ·¹º§°ª
+/// í™•ëŒ€í•„í„° íƒ€ìž… ì„¤ì •í•˜ê¸°.
+/// ë¦¬í„´ê°’ì€ ì´ì „ì— ì €ìž¥ë˜ì–´ ìžˆëŠ” ë ˆë²¨ê°’
 ZZ_SCRIPT
 int setMagFilter ( int FilterType );
 
@@ -664,7 +664,7 @@ int useDrawBoundingVolume ( int bDraw );
 ZZ_SCRIPT
 int useDrawViewFrustum ( int bDraw );
 
-/// ±×¸²ÀÚ¸Ê ºäÆ÷Æ®¸¦ Ç¥½ÃÇÒ °ÍÀÎÁö ¿©ºÎ
+/// ê·¸ë¦¼ìžë§µ ë·°í¬íŠ¸ë¥¼ í‘œì‹œí•  ê²ƒì¸ì§€ ì—¬ë¶€
 ZZ_SCRIPT
 int setDrawShadowmapViewport ( int bDraw );
 
@@ -678,11 +678,11 @@ int useRefreshCull ( int bRefresh );
 ZZ_SCRIPT
 int setTimeDelay ( int Delay );
 
-/// ÅØ½ºÃÄ ·Îµù½Ã ÅØ½ºÃÄ »çÀÌÁî¿¡ ¿À¸¥ÂÊ ½¬ÇÁÆ®(2·Î ³ª´­)½ÃÅ³ °ª. ±âº»°ª 0
-/// ÅØ½ºÃÄ ¸Þ¸ð¸®°¡ ¸ðÀÚ¸¦ ½Ã¿¡, iScale À» 1ÀÌ³ª 2À¸·Î ÇÏ¸é
-/// ·ÎµùÇÏ´Â ÅØ½ºÃÄÀÇ Å©±â¸¦ 2¹è¶Ç´Â 4¹è ´õ ÀûÀº Å©±â·Î ·ÎµùÇÏ¹Ç·Î,
-/// ¸Þ¸ð¸®¸¦ Àû°Ô Â÷ÁöÇÑ´Ù. ´Ü, ÅØ½ºÃÄ ÇØ»óµµ°¡ ÇöÀúÈ÷ ¶³¾îÁø´Ù.
-/// ÅØ½ºÃÄ Å©±â´Â ±âº»ÀûÀ¸·Î 2ÀÇ ¹è¼ö¸¦ µû¸£±â ¶§¹®¿¡, ½¬ÇÁÆ®¿¬»êÀ» »ç¿ëÇÑ´Ù.
+/// í…ìŠ¤ì³ ë¡œë”©ì‹œ í…ìŠ¤ì³ ì‚¬ì´ì¦ˆì— ì˜¤ë¥¸ìª½ ì‰¬í”„íŠ¸(2ë¡œ ë‚˜ëˆŒ)ì‹œí‚¬ ê°’. ê¸°ë³¸ê°’ 0
+/// í…ìŠ¤ì³ ë©”ëª¨ë¦¬ê°€ ëª¨ìžë¥¼ ì‹œì—, iScale ì„ 1ì´ë‚˜ 2ìœ¼ë¡œ í•˜ë©´
+/// ë¡œë”©í•˜ëŠ” í…ìŠ¤ì³ì˜ í¬ê¸°ë¥¼ 2ë°°ë˜ëŠ” 4ë°° ë” ì ì€ í¬ê¸°ë¡œ ë¡œë”©í•˜ë¯€ë¡œ,
+/// ë©”ëª¨ë¦¬ë¥¼ ì ê²Œ ì°¨ì§€í•œë‹¤. ë‹¨, í…ìŠ¤ì³ í•´ìƒë„ê°€ í˜„ì €ížˆ ë–¨ì–´ì§„ë‹¤.
+/// í…ìŠ¤ì³ í¬ê¸°ëŠ” ê¸°ë³¸ì ìœ¼ë¡œ 2ì˜ ë°°ìˆ˜ë¥¼ ë”°ë¥´ê¸° ë•Œë¬¸ì—, ì‰¬í”„íŠ¸ì—°ì‚°ì„ ì‚¬ìš©í•œë‹¤.
 ZZ_SCRIPT
 int setTextureLoadingScale ( int iScale );
 
@@ -690,25 +690,25 @@ int setTextureLoadingScale ( int iScale );
 // functions
 //--------------------------------------------------------------------------------
 
-/// ÇØ´ç ÀÌ¸§ÀÇ ³ëµå¸¦ Ã£¾Æ ÇÚµéÀ» ³Ñ°ÜÁØ´Ù.
-/// @param pNodeName °¡Á®¿Ã ³ëµåÀÇ ÀÌ¸§.
-/// @return          Ã£Àº ³ëµåÀÇ ÇÚµé. ±× ³ëµå°¡ ¾øÀ» ¶§¿¡´Â 0À» ¸®ÅÏÇÑ´Ù.
+/// í•´ë‹¹ ì´ë¦„ì˜ ë…¸ë“œë¥¼ ì°¾ì•„ í•¸ë“¤ì„ ë„˜ê²¨ì¤€ë‹¤.
+/// @param pNodeName ê°€ì ¸ì˜¬ ë…¸ë“œì˜ ì´ë¦„.
+/// @return          ì°¾ì€ ë…¸ë“œì˜ í•¸ë“¤. ê·¸ ë…¸ë“œê°€ ì—†ì„ ë•Œì—ëŠ” 0ì„ ë¦¬í„´í•œë‹¤.
 ZZ_SCRIPT
 HNODE findNode ( ZSTRING pNodeName );
 
-/// ¸Þ½¬ÆÄÀÏÀ» ¸Þ¸ð¸®·Î ·ÎµåÇÑ´Ù.
-/// @param pMeshName ÀÌ ÀÌ¸§À¸·Î ¸Þ½¬°¡ µî·ÏµÈ´Ù.
-/// @param pMeshPath ·ÎµåÇÒ ¸Þ½¬ ÆÄÀÏ ÀÌ¸§.
-/// @return          ¼º°øÇÏ¸é ¸Þ½¬ÀÇ ÇÚµé, ½ÇÆÐÇÏ¸é 0.
+/// ë©”ì‰¬íŒŒì¼ì„ ë©”ëª¨ë¦¬ë¡œ ë¡œë“œí•œë‹¤.
+/// @param pMeshName ì´ ì´ë¦„ìœ¼ë¡œ ë©”ì‰¬ê°€ ë“±ë¡ëœë‹¤.
+/// @param pMeshPath ë¡œë“œí•  ë©”ì‰¬ íŒŒì¼ ì´ë¦„.
+/// @return          ì„±ê³µí•˜ë©´ ë©”ì‰¬ì˜ í•¸ë“¤, ì‹¤íŒ¨í•˜ë©´ 0.
 ZZ_SCRIPT
 HNODE loadMesh (
 	ZSTRING pMeshName,
 	ZSTRING pMeshPath
 );
 
-/// ¸Þ½¬¸¦ ¸Þ¸ð¸®·ÎºÎÅÍ ¾ð·ÎµåÇÑ´Ù.
-/// @param hMesh ±âÁ¸ÀÇ ¸Þ½¬¿¡ ´ëÇÑ ÇÚµé.
-/// @return      ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0.
+/// ë©”ì‰¬ë¥¼ ë©”ëª¨ë¦¬ë¡œë¶€í„° ì–¸ë¡œë“œí•œë‹¤.
+/// @param hMesh ê¸°ì¡´ì˜ ë©”ì‰¬ì— ëŒ€í•œ í•¸ë“¤.
+/// @return      ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0.
 ZZ_SCRIPT
 int unloadMesh ( HNODE hMesh );
 
@@ -716,11 +716,11 @@ int unloadMesh ( HNODE hMesh );
 ZZ_SCRIPT
 void setMeshType ( HNODE hMesh, int bDynamic );
 
-/// ÄÃ·¯¸Ê ÀçÁúÀ» ÀÐ¾îµéÀÎ´Ù.
-/// @pMaterialName : µî·ÏµÉ ÀçÁú ÀÌ¸§
-/// @hShader       : µî·ÏµÈ ½¦ÀÌ´õ ÇÚµé
-/// @pMapFileName  : ÅØ½ºÃÄ ÆÄÀÏ °æ·Î ¹× ÀÌ¸§
-/// @¸®ÅÏ°ª        : ¼º°øÇÏ¸é ÀçÁúÇÚµé, ½ÇÆÐÇÏ¸é 0
+/// ì»¬ëŸ¬ë§µ ìž¬ì§ˆì„ ì½ì–´ë“¤ì¸ë‹¤.
+/// @pMaterialName : ë“±ë¡ë  ìž¬ì§ˆ ì´ë¦„
+/// @hShader       : ë“±ë¡ëœ ì‰ì´ë” í•¸ë“¤
+/// @pMapFileName  : í…ìŠ¤ì³ íŒŒì¼ ê²½ë¡œ ë° ì´ë¦„
+/// @ë¦¬í„´ê°’        : ì„±ê³µí•˜ë©´ ìž¬ì§ˆí•¸ë“¤, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT 
 HNODE loadColormapMaterial (
 	ZSTRING pMaterialName,
@@ -728,12 +728,12 @@ HNODE loadColormapMaterial (
 	ZSTRING pMapFileName
 );
 
-/// ÄÃ·¯¸Ê ÀçÁúÀ» »ý¼ºÇÑ´Ù.
-/// @pMaterialName : µî·ÏµÉ ÀçÁú ÀÌ¸§
-/// @hShader       : µî·ÏµÈ ½¦ÀÌ´õ ÇÚµé
-/// @iWidth        : ³ÐÀÌ
-/// @iHeight       : ³ôÀÌ
-/// @¸®ÅÏ°ª        : ¼º°øÇÏ¸é ÀçÁúÇÚµé, ½ÇÆÐÇÏ¸é 0
+/// ì»¬ëŸ¬ë§µ ìž¬ì§ˆì„ ìƒì„±í•œë‹¤.
+/// @pMaterialName : ë“±ë¡ë  ìž¬ì§ˆ ì´ë¦„
+/// @hShader       : ë“±ë¡ëœ ì‰ì´ë” í•¸ë“¤
+/// @iWidth        : ë„“ì´
+/// @iHeight       : ë†’ì´
+/// @ë¦¬í„´ê°’        : ì„±ê³µí•˜ë©´ ìž¬ì§ˆí•¸ë“¤, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT
 HNODE loadNullColormapMaterial ( 
 								ZSTRING pMaterialName,
@@ -742,52 +742,52 @@ HNODE loadNullColormapMaterial (
 								int iHeight
 								);
 
-/// ÀçÁúÀ» µî·ÏÇØÁ¦ÇÑ´Ù.
-/// @param hMaterial ÀçÁú ÇÚµé
-/// @return          ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0
+/// ìž¬ì§ˆì„ ë“±ë¡í•´ì œí•œë‹¤.
+/// @param hMaterial ìž¬ì§ˆ í•¸ë“¤
+/// @return          ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT
 int unloadMaterial ( HNODE hMaterial );
 
-/// ÀçÁúÀÇ ¾ËÆÄ ¼Ó¼ºÀ» ¼³Á¤ÇÑ´Ù.
-/// @param hMaterial ÀçÁú ÇÚµé
-/// @param bUseAlpha 1ÀÌ¸é ¾ËÆÄ°ª »ç¿ë, 0ÀÌ¸é ¾ËÆÄ°ª »ç¿ë ¾ÈÇÔ.
-/// @return          ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0
+/// ìž¬ì§ˆì˜ ì•ŒíŒŒ ì†ì„±ì„ ì„¤ì •í•œë‹¤.
+/// @param hMaterial ìž¬ì§ˆ í•¸ë“¤
+/// @param bUseAlpha 1ì´ë©´ ì•ŒíŒŒê°’ ì‚¬ìš©, 0ì´ë©´ ì•ŒíŒŒê°’ ì‚¬ìš© ì•ˆí•¨.
+/// @return          ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT 
 int setMaterialUseAlpha (
 	HNODE hMaterial,
 	int bUseAlpha
 );
 
-/// ÀçÁúÀÇ ¾ç¸é ¼Ó¼ºÀ» ¼³Á¤ÇÑ´Ù.
-/// @param hMaterial   ÀçÁú ÇÚµé
-/// @param bUseTwoSide 1ÀÌ¸é ¾ç¸é »ç¿ë, 0ÀÌ¸é ´Ü¸é¸¸ »ç¿ë.
-/// @result            ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0
+/// ìž¬ì§ˆì˜ ì–‘ë©´ ì†ì„±ì„ ì„¤ì •í•œë‹¤.
+/// @param hMaterial   ìž¬ì§ˆ í•¸ë“¤
+/// @param bUseTwoSide 1ì´ë©´ ì–‘ë©´ ì‚¬ìš©, 0ì´ë©´ ë‹¨ë©´ë§Œ ì‚¬ìš©.
+/// @result            ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT 
 int setMaterialUseTwoSide (
 	HNODE hMaterial,
 	int bUseTwoSide
 );
 
-/// ÀçÁúÀÇ ¾ËÆÄ Å×½ºÆ® ¼Ó¼ºÀ» ¼³Á¤ÇÑ´Ù.
+/// ìž¬ì§ˆì˜ ì•ŒíŒŒ í…ŒìŠ¤íŠ¸ ì†ì„±ì„ ì„¤ì •í•œë‹¤.
 ZZ_SCRIPT
 int setMaterialUseAlphaTest (
 	HNODE hMaterial,
 	int bUseAlphaTest
 );
 
-/// ÀçÁúÀÇ ¾ËÆÄ ·¹ÆÛ·±½º °ªÀ» ¼³Á¤ÇÑ´Ù.
+/// ìž¬ì§ˆì˜ ì•ŒíŒŒ ë ˆí¼ëŸ°ìŠ¤ ê°’ì„ ì„¤ì •í•œë‹¤.
 ZZ_SCRIPT
 int setMaterialAlphaRef (
 	 HNODE hMaterial,
 	 int iAlphaRef
 );
 
-/// ºñÁ®ºíÀ» ·ÎµùÇÑ´Ù.
-/// @param pVisibleName µî·ÏµÉ ºñÁ®ºí ÀÌ¸§
-/// @param hMesh        µî·ÏµÈ ¸Þ½¬ ÇÚµé
-/// @param hMaterial    µî·ÏµÈ ÀçÁú ÇÚµé
-/// @param hLight       µî·ÏµÈ ¶óÀÌÆ® ÇÚµé
-/// @return             ºñÁ®ºí ÇÚµé. ½ÇÆÐÇÏ¸é 0
+/// ë¹„ì ¸ë¸”ì„ ë¡œë”©í•œë‹¤.
+/// @param pVisibleName ë“±ë¡ë  ë¹„ì ¸ë¸” ì´ë¦„
+/// @param hMesh        ë“±ë¡ëœ ë©”ì‰¬ í•¸ë“¤
+/// @param hMaterial    ë“±ë¡ëœ ìž¬ì§ˆ í•¸ë“¤
+/// @param hLight       ë“±ë¡ëœ ë¼ì´íŠ¸ í•¸ë“¤
+/// @return             ë¹„ì ¸ë¸” í•¸ë“¤. ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT 
 HNODE loadVisible (
 	ZSTRING pVisibleName,
@@ -796,13 +796,13 @@ HNODE loadVisible (
 	HNODE hLight
 );
 
-/// ¾Ö´Ï¸ÞÀÌÅÍºíÀ» ·ÎµùÇÑ´Ù.
-/// @param pAnimatableName µî·ÏµÉ ¾Ö´Ï¸ÞÀÌÅÍºí ÀÌ¸§
-/// @param hMesh        µî·ÏµÉ ¸Þ½¬ ÇÚµé
-/// @param hMaterial    µî·ÏµÉ ÀçÁú ÇÚµé
-/// @param hLight       µî·ÏµÉ ¶óÀÌÆ® ÇÚµé
-/// @param hMotion      µî·ÏµÉ ¶óÀÌÆ® ÇÚµé
-/// @return             ¾Ö´Ï¸ÞÀÌÅÍºí ÇÚµé. ½ÇÆÐÇÏ¸é 0
+/// ì• ë‹ˆë©”ì´í„°ë¸”ì„ ë¡œë”©í•œë‹¤.
+/// @param pAnimatableName ë“±ë¡ë  ì• ë‹ˆë©”ì´í„°ë¸” ì´ë¦„
+/// @param hMesh        ë“±ë¡ë  ë©”ì‰¬ í•¸ë“¤
+/// @param hMaterial    ë“±ë¡ë  ìž¬ì§ˆ í•¸ë“¤
+/// @param hLight       ë“±ë¡ë  ë¼ì´íŠ¸ í•¸ë“¤
+/// @param hMotion      ë“±ë¡ë  ë¼ì´íŠ¸ í•¸ë“¤
+/// @return             ì• ë‹ˆë©”ì´í„°ë¸” í•¸ë“¤. ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT
 HNODE loadAnimatable (
 	ZSTRING pAnimatableName,
@@ -812,24 +812,24 @@ HNODE loadAnimatable (
 	HNODE hLight
 );
 
-/// ºñÁ®ºíÀ» ¾ð·ÎµåÇÑ´Ù.
-/// @param hVisible ºñÁ®ºí ÇÚµé
-/// @return         ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0
+/// ë¹„ì ¸ë¸”ì„ ì–¸ë¡œë“œí•œë‹¤.
+/// @param hVisible ë¹„ì ¸ë¸” í•¸ë“¤
+/// @return         ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT
 int unloadVisible ( HNODE hVisible );
 
 ZZ_SCRIPT
 int unloadAnimatable ( HNODE hAnimatable );
 
-/// °ËÀÜ»ó »èÁ¦.
+/// ê²€ìž”ìƒ ì‚­ì œ.
 ZZ_SCRIPT
 int unloadTrail ( HNODE hTrail );
 
-/// ºñÁ®ºíÀÇ OBB¸¦ ¼³Á¤ÇÑ´Ù.
-/// @param hVisible ºñÁ®ºí ÇÚµé
-/// @param LocalCenterXYZ ·ÎÄÃ ¼¾ÅÍÀÇ xyz(Àý´ëÁÂÇ¥)
-/// @param HalfLengthXYZ  ¹Ú½ºÀÇ ³ÐÀÌ/³ôÀÌ/±æÀÌÀÇ ¹Ý
-/// @return               ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0
+/// ë¹„ì ¸ë¸”ì˜ OBBë¥¼ ì„¤ì •í•œë‹¤.
+/// @param hVisible ë¹„ì ¸ë¸” í•¸ë“¤
+/// @param LocalCenterXYZ ë¡œì»¬ ì„¼í„°ì˜ xyz(ì ˆëŒ€ì¢Œí‘œ)
+/// @param HalfLengthXYZ  ë°•ìŠ¤ì˜ ë„“ì´/ë†’ì´/ê¸¸ì´ì˜ ë°˜
+/// @return               ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT 
 int setObbox (
 	HNODE hVisible,
@@ -841,13 +841,13 @@ int setObbox (
 	float HalfLengthZ
 );
 
-/// ¸ðÆÛ(¹öÅØ½º ¾Ö´Ï¸ÞÀÌ¼ÇÀÌ µÇ´Â °´Ã¼)¸¦ ·ÎµåÇÑ´Ù.
-/// @param pMorpherName µî·ÏÇÒ ¸ðÆÛ ÀÌ¸§
-/// @param hMesh        ¸Þ½¬ ÇÚµé
-/// @param hMotion      ¸ð¼Ç ÇÚµé
-/// @param hMaterial    ÀçÁú ÇÚµé
-/// @param hLight       ¶óÀÌÆ® ÇÚµé
-/// @return             ¸ðÆÛ ÇÚµéÀ» ¸®ÅÏ, ½ÇÆÐÇÏ¸é 0
+/// ëª¨í¼(ë²„í…ìŠ¤ ì• ë‹ˆë©”ì´ì…˜ì´ ë˜ëŠ” ê°ì²´)ë¥¼ ë¡œë“œí•œë‹¤.
+/// @param pMorpherName ë“±ë¡í•  ëª¨í¼ ì´ë¦„
+/// @param hMesh        ë©”ì‰¬ í•¸ë“¤
+/// @param hMotion      ëª¨ì…˜ í•¸ë“¤
+/// @param hMaterial    ìž¬ì§ˆ í•¸ë“¤
+/// @param hLight       ë¼ì´íŠ¸ í•¸ë“¤
+/// @return             ëª¨í¼ í•¸ë“¤ì„ ë¦¬í„´, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT 
 HNODE loadMorpher (
 	ZSTRING pMorpherName,
@@ -857,19 +857,19 @@ HNODE loadMorpher (
 	HNODE hLight
 );
 
-/// ¸ðÆÛ ¾ð·Îµå.
-/// @param hMorpher µî·ÏÇØÁ¦ÇÒ ¸ðÆÛ ÇÚµé
-/// @return         ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0
+/// ëª¨í¼ ì–¸ë¡œë“œ.
+/// @param hMorpher ë“±ë¡í•´ì œí•  ëª¨í¼ í•¸ë“¤
+/// @return         ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT
 int unloadMorpher ( HNODE hMorpher );
 
-/// ÁöÇü ºí·ÎÄ¿ ·Îµå.
-/// @param pTerrainName   µî·ÏµÉ ÁöÇüÀÌ¸§
-/// @param pHeightmapName ÇÏÀÌÆ®¸ÊÀ¸·Î »ç¿ëµÉ ÆÄÀÏÀÌ¸§
-/// @param hLight         »ç¿ëÇÒ ¶óÀÌÆ® ÇÚµé
-/// @param BlockSize      ºí·Ï »çÀÌÁî
-/// @param BlockScale3    ºí·Ï ½ºÄÉÀÏ
-/// @return               µî·ÏµÈ ÁöÇüÇÚµé, ½ÇÆÐÇÏ¸é 0
+/// ì§€í˜• ë¸”ë¡œì»¤ ë¡œë“œ.
+/// @param pTerrainName   ë“±ë¡ë  ì§€í˜•ì´ë¦„
+/// @param pHeightmapName í•˜ì´íŠ¸ë§µìœ¼ë¡œ ì‚¬ìš©ë  íŒŒì¼ì´ë¦„
+/// @param hLight         ì‚¬ìš©í•  ë¼ì´íŠ¸ í•¸ë“¤
+/// @param BlockSize      ë¸”ë¡ ì‚¬ì´ì¦ˆ
+/// @param BlockScale3    ë¸”ë¡ ìŠ¤ì¼€ì¼
+/// @return               ë“±ë¡ëœ ì§€í˜•í•¸ë“¤, ì‹¤íŒ¨í•˜ë©´ 0
 //ZZ_SCRIPT 
 //HNODE loadTerrainBlocker (
 //	ZSTRING pTerrainName,
@@ -879,25 +879,25 @@ int unloadMorpher ( HNODE hMorpher );
 //	ZPFLOAT BlockScale3
 //);
 
-/// ÁöÇü ºí·ÎÄ¿¸¦ ÇØÁ¦.
-/// @param hTerrain ÁöÇü ºí·ÎÄ¿ ÇÚµé
-/// @return         ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0
+/// ì§€í˜• ë¸”ë¡œì»¤ë¥¼ í•´ì œ.
+/// @param hTerrain ì§€í˜• ë¸”ë¡œì»¤ í•¸ë“¤
+/// @return         ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0
 //ZZ_SCRIPT
 //int unloadTerrainBlocker ( HNODE hTerrain );
 
-/// ½ºÄÌ¸®Åæ ·Îµå.
+/// ìŠ¤ì¼ˆë¦¬í†¤ ë¡œë“œ.
 ZZ_SCRIPT
 HNODE loadSkeleton (
 	ZSTRING pSkeletonName,
 	ZSTRING pSkeletonPath
 );
 
-/// ¸ðµ¨ ·Îµå.
-/// @param pModelName  ¸ðµ¨ ÀÌ¸§
-/// @param hSkeleton   ½ºÄÌ¸®Åæ ÇÚµé
-/// @param hMotion     ¸ð¼Ç ÇÚµé
-/// @param ScaleInLoad ·Îµù½Ã Àû¿ëµÉ ½ºÄÉÀÏ
-/// @return            ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0
+/// ëª¨ë¸ ë¡œë“œ.
+/// @param pModelName  ëª¨ë¸ ì´ë¦„
+/// @param hSkeleton   ìŠ¤ì¼ˆë¦¬í†¤ í•¸ë“¤
+/// @param hMotion     ëª¨ì…˜ í•¸ë“¤
+/// @param ScaleInLoad ë¡œë”©ì‹œ ì ìš©ë  ìŠ¤ì¼€ì¼
+/// @return            ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT
 HNODE loadModel (
 	ZSTRING pModelName,
@@ -906,26 +906,26 @@ HNODE loadModel (
 	float ScaleInLoad
 );
 
-// ½ºÄÌ¸®Åæ ÇØÁ¦
-// ÇØÁ¦½Ã¿¡´Â ÀÌ ½ºÄÌ¸®ÅæÀ» »ç¿ëÇÏ´Â ¸ðµç ¸ðµ¨µéÀÌ ¸ÕÀú
-// ÇØÁ¦µÇ¾î ÀÖ¾î¾ß ÇÑ´Ù.
+// ìŠ¤ì¼ˆë¦¬í†¤ í•´ì œ
+// í•´ì œì‹œì—ëŠ” ì´ ìŠ¤ì¼ˆë¦¬í†¤ì„ ì‚¬ìš©í•˜ëŠ” ëª¨ë“  ëª¨ë¸ë“¤ì´ ë¨¼ì €
+// í•´ì œë˜ì–´ ìžˆì–´ì•¼ í•œë‹¤.
 ZZ_SCRIPT
 int unloadSkeleton (
 	HNODE hSkeleton
 );
 
-/// ¸ðµ¨ ¾ð·Îµå
-/// @param hModel ¸ðµ¨ ÇÚµé
-/// @result       ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0
+/// ëª¨ë¸ ì–¸ë¡œë“œ
+/// @param hModel ëª¨ë¸ í•¸ë“¤
+/// @result       ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT
 int unloadModel ( HNODE hModel );
 
-/// ·»´õÀ¯´Ö Ãß°¡
-/// @param hVisible  ºñÁ®ºí ÇÚµé
-/// @param hMesh     ¸Þ½¬ ÇÚµé
-/// @param hMaterial ÀçÁú ÇÚµé
-/// @param hLight    ¶óÀÌÆ® ÇÚµé
-/// @return          ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0
+/// ë Œë”ìœ ë‹› ì¶”ê°€
+/// @param hVisible  ë¹„ì ¸ë¸” í•¸ë“¤
+/// @param hMesh     ë©”ì‰¬ í•¸ë“¤
+/// @param hMaterial ìž¬ì§ˆ í•¸ë“¤
+/// @param hLight    ë¼ì´íŠ¸ í•¸ë“¤
+/// @return          ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT 
 int addRenderUnit (
 	HNODE hVisible,
@@ -934,41 +934,41 @@ int addRenderUnit (
 	HNODE hLight
 );
 
-/// ·»´õÀ¯´Ö ÀüºÎ »èÁ¦
-/// @param hVisible ·»´õÀ¯´ÖµéÀ» »èÁ¦ÇÒ ºñÁ®ºíÀÇ ÇÚµé
-/// @result         ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0
+/// ë Œë”ìœ ë‹› ì „ë¶€ ì‚­ì œ
+/// @param hVisible ë Œë”ìœ ë‹›ë“¤ì„ ì‚­ì œí•  ë¹„ì ¸ë¸”ì˜ í•¸ë“¤
+/// @result         ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT
 int clearRenderUnit ( HNODE hVisible );
 
-/// ·»´õÀ¯´Ö °³¼ö ¾ò±â
+/// ë Œë”ìœ ë‹› ê°œìˆ˜ ì–»ê¸°
 ZZ_SCRIPT
 int getNumRenderUnit ( HNODE hVisible );
 
-/// ³ëµå¸¦ ¸µÅ©½ÃÅ²´Ù.
-/// @param hParent ºÎ¸ð ³ëµåÀÇ ÇÚµé (¾øÀ¸¸é ÃÖ»óÀ§ ³ëµå·Î ¸¸µê)
-/// @param hNode   ºÎ¸ð ³ëµå¿¡ ¿¬°á½ÃÅ³ ÀÚ½Ä³ëµåÀÇ ÇÚµé
-/// @return        ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0
+/// ë…¸ë“œë¥¼ ë§í¬ì‹œí‚¨ë‹¤.
+/// @param hParent ë¶€ëª¨ ë…¸ë“œì˜ í•¸ë“¤ (ì—†ìœ¼ë©´ ìµœìƒìœ„ ë…¸ë“œë¡œ ë§Œë“¦)
+/// @param hNode   ë¶€ëª¨ ë…¸ë“œì— ì—°ê²°ì‹œí‚¬ ìžì‹ë…¸ë“œì˜ í•¸ë“¤
+/// @return        ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT 
 int linkNode (
 	HNODE hParent,
 	HNODE hNode
 );
 
-/// ³ëµåÀÇ ¸µÅ©¸¦ ÇØÁ¦½ÃÅ²´Ù.
-/// ÇØ´ç ³ëµå¸¦ ºÎ¸ð·ÎºÎÅÍ ¸µÅ©ÇØÁ¦ÇÑ´Ù.
-/// @param hNode   ÀÚ½Ä ³ëµåÀÇ ÇÚµé
-/// @return        ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0
+/// ë…¸ë“œì˜ ë§í¬ë¥¼ í•´ì œì‹œí‚¨ë‹¤.
+/// í•´ë‹¹ ë…¸ë“œë¥¼ ë¶€ëª¨ë¡œë¶€í„° ë§í¬í•´ì œí•œë‹¤.
+/// @param hNode   ìžì‹ ë…¸ë“œì˜ í•¸ë“¤
+/// @return        ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT 
 int unlinkNode (
 	HNODE hNode
 );
 
-/// ¸ðµ¨ÀÇ º»¿¡ ¾ÆÀÌÅÛÀ» Á÷Á¢ ¸µÅ©½ÃÅ²´Ù.
-/// ¸µÅ©¸¦ ÇØÁ¦ÇÒ ¶§¿¡´Â unlinkNode () »ç¿ë
-/// @param hParentModel ¸µÅ©µÉ ¸ðµ¨ÀÇ ÇÚµé
-/// @param hNode        ¸µÅ©½ÃÅ³ ¾ÆÀÌÅÛÀÇ ÇÚµé
-/// @param iSkel        ¸ðµ¨ÀÇ º» ¹øÈ£(ÇöÀç·Î¼­´Â ·Î±×ÆÄÀÏ ÂüÁ¶)
-/// @return             ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0
+/// ëª¨ë¸ì˜ ë³¸ì— ì•„ì´í…œì„ ì§ì ‘ ë§í¬ì‹œí‚¨ë‹¤.
+/// ë§í¬ë¥¼ í•´ì œí•  ë•Œì—ëŠ” unlinkNode () ì‚¬ìš©
+/// @param hParentModel ë§í¬ë  ëª¨ë¸ì˜ í•¸ë“¤
+/// @param hNode        ë§í¬ì‹œí‚¬ ì•„ì´í…œì˜ í•¸ë“¤
+/// @param iSkel        ëª¨ë¸ì˜ ë³¸ ë²ˆí˜¸(í˜„ìž¬ë¡œì„œëŠ” ë¡œê·¸íŒŒì¼ ì°¸ì¡°)
+/// @return             ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT
 int linkBone (
 	HNODE hParentModel,
@@ -976,12 +976,12 @@ int linkBone (
 	int iSkel
 );
 
-/// ¸ðµ¨ÀÇ ´õ¹Ì³ëµå¿¡ ¾ÆÀÌÅÛÀ» ¸µÅ©½ÃÅ²´Ù.
-/// ¸µÅ©¸¦ ÇØÁ¦ÇÒ ¶§¿¡´Â unlinkNode () »ç¿ë
-/// @param hParentModel ´õ¹Ì³ëµå¸¦ ¼ÒÀ¯ÇÏ´Â ¸ðµ¨ÀÇ ÇÚµé
-/// @param hNode        ¸µÅ©µÇ¾îÁö´Â ¾ÆÀÌÅÛÀÇ ÇÚµé
-/// @param iDummy       ¸ðµ¨ÀÇ ´õ¹Ì ³ëµå ÀÎµ¦½º
-/// @return             ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0
+/// ëª¨ë¸ì˜ ë”ë¯¸ë…¸ë“œì— ì•„ì´í…œì„ ë§í¬ì‹œí‚¨ë‹¤.
+/// ë§í¬ë¥¼ í•´ì œí•  ë•Œì—ëŠ” unlinkNode () ì‚¬ìš©
+/// @param hParentModel ë”ë¯¸ë…¸ë“œë¥¼ ì†Œìœ í•˜ëŠ” ëª¨ë¸ì˜ í•¸ë“¤
+/// @param hNode        ë§í¬ë˜ì–´ì§€ëŠ” ì•„ì´í…œì˜ í•¸ë“¤
+/// @param iDummy       ëª¨ë¸ì˜ ë”ë¯¸ ë…¸ë“œ ì¸ë±ìŠ¤
+/// @return             ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT
 int linkDummy (
 	HNODE hParentModel,
@@ -989,27 +989,27 @@ int linkDummy (
 	int iDummy
 );
 
-/// ¶óÀÌÆ® ·Îµå.
-/// @param pLightName ¶óÀÌÆ® ÆÄÀÏ ÀÌ¸§
-/// @result           ¶óÀÌÆ® ÇÚµé, ½ÇÆÐÇÏ¸é 0
+/// ë¼ì´íŠ¸ ë¡œë“œ.
+/// @param pLightName ë¼ì´íŠ¸ íŒŒì¼ ì´ë¦„
+/// @result           ë¼ì´íŠ¸ í•¸ë“¤, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT 
 HNODE loadLight ( ZSTRING pLightName );	
 
-/// ¶óÀÌÆ® ¾ð·Îµå.
-/// @param hLight ¶óÀÌÆ® ÇÚµé
-/// @result       ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0
+/// ë¼ì´íŠ¸ ì–¸ë¡œë“œ.
+/// @param hLight ë¼ì´íŠ¸ í•¸ë“¤
+/// @result       ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT
 int unloadLight ( HNODE hLight );
 
-/// Æ÷ÀÎÆ® ¶óÀÌÆ® ·Îµå
+/// í¬ì¸íŠ¸ ë¼ì´íŠ¸ ë¡œë“œ
 ZZ_SCRIPT
 HNODE loadLightPoint ( ZSTRING pLightName );
 
-/// ¶óÀÌÆ® ¼Ó¼º ¼³Á¤
-/// @param hLight ¶óÀÌÆ® ÇÚµé
-/// @param pProperty ¼Ó¼º ½ºÆ®¸µ("ambient", "diffuse", "specular", "direction", "position", "attenuation")
-/// @param Value3    ¼Ó¼º °ª
-/// @return          ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0
+/// ë¼ì´íŠ¸ ì†ì„± ì„¤ì •
+/// @param hLight ë¼ì´íŠ¸ í•¸ë“¤
+/// @param pProperty ì†ì„± ìŠ¤íŠ¸ë§("ambient", "diffuse", "specular", "direction", "position", "attenuation")
+/// @param Value3    ì†ì„± ê°’
+/// @return          ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT 
 int setLight (
 	HNODE hLight,
@@ -1056,25 +1056,25 @@ int setScale (
 	float ScaleZ
 );
 
-/// È­¸é¿¡ º¸ÀÏÁöÀÇ ¿©ºÎ ¹× Åõ¸íµµ ¾ò±â
+/// í™”ë©´ì— ë³´ì¼ì§€ì˜ ì—¬ë¶€ ë° íˆ¬ëª…ë„ ì–»ê¸°
 ZZ_SCRIPT
 float getVisibility ( HNODE hVisible );
 
-/// ºñÁ®ºíÀÇ Åõ¸íµµ ¼¼ÆÃ.
-/// @return ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0
+/// ë¹„ì ¸ë¸”ì˜ íˆ¬ëª…ë„ ì„¸íŒ….
+/// @return ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT
 int setVisibility ( HNODE hVisible, float fVisibility );
 
-/// ºñÁ®ºíÀÇ Åõ¸íµµ ¼¼ÆÃ. ¸ðµç ÇÏÀ§ ÀÚ½Ä³ëµåµé±îÁö Àû¿ëµÊ.
-/// @return ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0
+/// ë¹„ì ¸ë¸”ì˜ íˆ¬ëª…ë„ ì„¸íŒ…. ëª¨ë“  í•˜ìœ„ ìžì‹ë…¸ë“œë“¤ê¹Œì§€ ì ìš©ë¨.
+/// @return ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT
 int setVisibilityRecursive ( HNODE hVisible, float fVisibility );
 
-/// ½¦ÀÌ´õ¿¡ Æ¯Á¤ Æ÷¸Ë¿¡ »ç¿ëÇÒ ½¦ÀÌ´õ¸¦ ¼³Á¤ÇÑ´Ù.
-/// @hShader : ½¦ÀÌ´õ ÇÚµé(loadShader()¸¦ ÅëÇØ ¾òÀº°ª)
-/// @pVertexShaderPath : ¹öÅØ½º ½¦ÀÌ´õ °æ·Î¸í
-/// @pPixelShaderPath : ÇÈ¼¿ ½¦ÀÌ´õ °æ·Î¸í
-/// @iFormat : Æ÷¸Ë ¹øÈ£(ÁÖÀÇ: ¼øÂ÷ÀûÀ¸·Î ÁöÁ¤ÇØ¾ß ÇÑ´Ù. Áï, 0 ´ÙÀ½¿¡, 1. 1 ´ÙÀ½¿¡ 2 ½ÄÀ¸·Î. ½ºÅµ °¡´É)
+/// ì‰ì´ë”ì— íŠ¹ì • í¬ë§·ì— ì‚¬ìš©í•  ì‰ì´ë”ë¥¼ ì„¤ì •í•œë‹¤.
+/// @hShader : ì‰ì´ë” í•¸ë“¤(loadShader()ë¥¼ í†µí•´ ì–»ì€ê°’)
+/// @pVertexShaderPath : ë²„í…ìŠ¤ ì‰ì´ë” ê²½ë¡œëª…
+/// @pPixelShaderPath : í”½ì…€ ì‰ì´ë” ê²½ë¡œëª…
+/// @iFormat : í¬ë§· ë²ˆí˜¸(ì£¼ì˜: ìˆœì°¨ì ìœ¼ë¡œ ì§€ì •í•´ì•¼ í•œë‹¤. ì¦‰, 0 ë‹¤ìŒì—, 1. 1 ë‹¤ìŒì— 2 ì‹ìœ¼ë¡œ. ìŠ¤í‚µ ê°€ëŠ¥)
 ZZ_SCRIPT
 int setShaderFormat (
 	HNODE hShader,
@@ -1096,7 +1096,7 @@ HNODE loadShader (
 ZZ_SCRIPT
 int unloadShader ( HNODE hShader );
 
-/// ¸ð¼Ç ·Îµù
+/// ëª¨ì…˜ ë¡œë”©
 /// @pMotionName			name of motion object
 /// @pMotionFileName		file path to load into motion
 /// @bUseLoop				loop motion or not
@@ -1149,8 +1149,8 @@ void doLog ( ZSTRING pLogMessage );
 ZZ_DLL
 void doLogf ( const char * pMsgFormat, ... );
 
-// hModel ¸ðµ¨À» ½Ã°è¹Ý´ë¹æÇâÀ¸·Î Angle °¢µµ¸¸Å­ È¸Àü½ÃÅ´
-// ÁÖÀÇ: Model °´Ã¼¸¸ °¡´ÉÇÔ(Visible ¶Ç´Â Morpher µîÀº ¾ÈµÊ)
+// hModel ëª¨ë¸ì„ ì‹œê³„ë°˜ëŒ€ë°©í–¥ìœ¼ë¡œ Angle ê°ë„ë§Œí¼ íšŒì „ì‹œí‚´
+// ì£¼ì˜: Model ê°ì²´ë§Œ ê°€ëŠ¥í•¨(Visible ë˜ëŠ” Morpher ë“±ì€ ì•ˆë¨)
 ZZ_SCRIPT 
 int turnModel ( HNODE hModel, float Angle );
 
@@ -1308,8 +1308,8 @@ ZSTRING getName ( HNODE hNode );
 ZZ_SCRIPT
 int setName ( HNODE hNode, ZSTRING pNewName );
 
-/// 2-3 ÀÎÄª ¸ðµå Ä«¸Þ¶ó¸¦ »ç¿ëÇÒ ¶§ »ç¿ëÇÑ´Ù.
-/// ÁÖÀÇ: cameraUpdate() ¸¦ ¸Å ÇÁ·¹ÀÓ¸¶´Ù È£ÃâÇØ¾ß ÇÑ´Ù.
+/// 2-3 ì¸ì¹­ ëª¨ë“œ ì¹´ë©”ë¼ë¥¼ ì‚¬ìš©í•  ë•Œ ì‚¬ìš©í•œë‹¤.
+/// ì£¼ì˜: cameraUpdate() ë¥¼ ë§¤ í”„ë ˆìž„ë§ˆë‹¤ í˜¸ì¶œí•´ì•¼ í•œë‹¤.
 ZZ_SCRIPT
 int cameraAttachTarget ( HNODE hCamera, HNODE hModel );
 
@@ -1332,15 +1332,15 @@ int lookAt (
 ZZ_SCRIPT
 int setCameraPerspective ( HNODE hCamera, float fFovY, float fAspectRatio, float fNear, float fFar );
 
-/// ÁöÇü¿ë ¸Þ½¬(ÆÐÄ¡) »ý¼º
-/// ÁÖÀÇ: ½ºÅ©¸³Æ®¿¡¼­ Áö¿øµÇÁö ¾ÊÀ½(floa * ¶§¹®)
-/// fOrigX, fOrigY : ¿ùµåÁÂÇ¥»óÀÇ ±âÁØÁ¡(ÁöÇü¸Þ½¬ÀÇ ¿ÞÂÊ À§)
-/// iDetailLevel   : ÇÏ³ªÀÇ ÆÐÄ¡ ±âÁØ °¡·Î(¶Ç´Â ¼¼·Î) ¸é °³¼ö(¿¹. 1, 2, 4 µîµî)
-/// iType0         : ±âº» ÅØ½ºÃÄÀÇ ÅØ½ºÃÄÁÂÇ¥ Å¸ÀÔ (zz_mesh_tool::zz_uv_type ÂüÁ¶)
-/// iType1         : »óÀ§ ºí·»µù ÅØ½ºÃÄÀÇ ÅØ½ºÃÄÁÂÇ¥ Å¸ÀÔ (zz_mesh_tool::zz_uv_type ÂüÁ¶)
-/// pHeightList    : float ¹è¿­ÀÇ Æ÷ÀÎÅÍ(¹è¿­ÀÇ °³¼ö´Â ¹öÅØ½º °³¼ö¿Í µ¿ÀÏ. (iDetailLevel+1)^2
-/// iMapSize       : ¶óÀÌÆ®¸ÊÀÇ Å©±â. ¿¹) 16000
-/// iBlockSize     : ÇÏ³ªÀÇ ºí·° »çÀÌÁî. ¿¹) 1000
+/// ì§€í˜•ìš© ë©”ì‰¬(íŒ¨ì¹˜) ìƒì„±
+/// ì£¼ì˜: ìŠ¤í¬ë¦½íŠ¸ì—ì„œ ì§€ì›ë˜ì§€ ì•ŠìŒ(floa * ë•Œë¬¸)
+/// fOrigX, fOrigY : ì›”ë“œì¢Œí‘œìƒì˜ ê¸°ì¤€ì (ì§€í˜•ë©”ì‰¬ì˜ ì™¼ìª½ ìœ„)
+/// iDetailLevel   : í•˜ë‚˜ì˜ íŒ¨ì¹˜ ê¸°ì¤€ ê°€ë¡œ(ë˜ëŠ” ì„¸ë¡œ) ë©´ ê°œìˆ˜(ì˜ˆ. 1, 2, 4 ë“±ë“±)
+/// iType0         : ê¸°ë³¸ í…ìŠ¤ì³ì˜ í…ìŠ¤ì³ì¢Œí‘œ íƒ€ìž… (zz_mesh_tool::zz_uv_type ì°¸ì¡°)
+/// iType1         : ìƒìœ„ ë¸”ë Œë”© í…ìŠ¤ì³ì˜ í…ìŠ¤ì³ì¢Œí‘œ íƒ€ìž… (zz_mesh_tool::zz_uv_type ì°¸ì¡°)
+/// pHeightList    : float ë°°ì—´ì˜ í¬ì¸í„°(ë°°ì—´ì˜ ê°œìˆ˜ëŠ” ë²„í…ìŠ¤ ê°œìˆ˜ì™€ ë™ì¼. (iDetailLevel+1)^2
+/// iMapSize       : ë¼ì´íŠ¸ë§µì˜ í¬ê¸°. ì˜ˆ) 16000
+/// iBlockSize     : í•˜ë‚˜ì˜ ë¸”ëŸ­ ì‚¬ì´ì¦ˆ. ì˜ˆ) 1000
 ZZ_DLL
 HNODE loadTerrainMesh (
 					   ZSTRING pMeshName,
@@ -1352,8 +1352,8 @@ HNODE loadTerrainMesh (
 					   int iBlockSize
 					   );
 
-// ÁöÇü¿ë ÀçÁú »ý¼º
-// ÁÖÀÇ: ½ºÅ©¸³Æ®¿¡¼­ Áö¿øµÇÁö ¾ÊÀ½(loadTerrainMesh°¡ Áö¿øµÇÁö ¾Ê±â ¶§¹®¿¡)
+// ì§€í˜•ìš© ìž¬ì§ˆ ìƒì„±
+// ì£¼ì˜: ìŠ¤í¬ë¦½íŠ¸ì—ì„œ ì§€ì›ë˜ì§€ ì•ŠìŒ(loadTerrainMeshê°€ ì§€ì›ë˜ì§€ ì•Šê¸° ë•Œë¬¸ì—)
 ZZ_DLL
 HNODE loadTerrainMaterial (
 	ZSTRING pMatName,
@@ -1363,94 +1363,94 @@ HNODE loadTerrainMaterial (
 	HNODE pLightTexture
 );
 
-// ÁÖ¾îÁø ³ëµå ÇÚµé(hNode)ÀÌ iTypeÀÇ Å¬·¡½º Å¸ÀÔÀÎÁö ¿©ºÎ¸¦ ¸®ÅÏ.
-// 1ÀÌ¸é Âü. 0ÀÌ¸é °ÅÁþ
-// hNode : ³ëµå ÇÚµé
-// iType : Å¬·¡½º Å¸ÀÔ ÇÚµé(ex. ZZ_TYPE_VISIBLE)
+// ì£¼ì–´ì§„ ë…¸ë“œ í•¸ë“¤(hNode)ì´ iTypeì˜ í´ëž˜ìŠ¤ íƒ€ìž…ì¸ì§€ ì—¬ë¶€ë¥¼ ë¦¬í„´.
+// 1ì´ë©´ ì°¸. 0ì´ë©´ ê±°ì§“
+// hNode : ë…¸ë“œ í•¸ë“¤
+// iType : í´ëž˜ìŠ¤ íƒ€ìž… í•¸ë“¤(ex. ZZ_TYPE_VISIBLE)
 ZZ_SCRIPT
 int isA ( HNODE hNode, int iType );
 
-// hNode ³ëµåÀÇ Å¸ÀÔÀ» ¸®ÅÏÇÑ´Ù.
+// hNode ë…¸ë“œì˜ íƒ€ìž…ì„ ë¦¬í„´í•œë‹¤.
 int getTypeOf ( HNODE hNode );
 
-// ¾À±×·¡ÇÁ¿¡¼­ ³ëµåµéÀÌ ÇöÀç ¸î °³ ÀÖ´ÂÁö
+// ì”¬ê·¸ëž˜í”„ì—ì„œ ë…¸ë“œë“¤ì´ í˜„ìž¬ ëª‡ ê°œ ìžˆëŠ”ì§€
 ZZ_SCRIPT
 int getNumSceneNode ( void );
 
-// ¾À±×·¡ÇÁ¿¡¼­ ³ëµåµé Áß iIndex¹øÂ° ³ëµå¸¦ ¾ò¾î¿È.
+// ì”¬ê·¸ëž˜í”„ì—ì„œ ë…¸ë“œë“¤ ì¤‘ iIndexë²ˆì§¸ ë…¸ë“œë¥¼ ì–»ì–´ì˜´.
 ZZ_SCRIPT
 HNODE getSceneNode ( int iIndex );
 
-/// ÇØ´ç ³ëµå°¡ ºäÇÁ·¯½ºÅÒ ¾È¿¡ Á¸ÀçÇÏ´Â°¡.
-/// ÁöÇüÀÌ³ª ¹° ¿ÀºêÁ§Æ®´Â ´ë»ó¿¡¼­ Á¦¿ÜµÈ´Ù.
-/// Á¸ÀçÇÏ¸é 1À» ¸®ÅÏ, ¾Æ´Ï¸é 0À» ¸®ÅÏ.
+/// í•´ë‹¹ ë…¸ë“œê°€ ë·°í”„ëŸ¬ìŠ¤í…€ ì•ˆì— ì¡´ìž¬í•˜ëŠ”ê°€.
+/// ì§€í˜•ì´ë‚˜ ë¬¼ ì˜¤ë¸Œì íŠ¸ëŠ” ëŒ€ìƒì—ì„œ ì œì™¸ëœë‹¤.
+/// ì¡´ìž¬í•˜ë©´ 1ì„ ë¦¬í„´, ì•„ë‹ˆë©´ 0ì„ ë¦¬í„´.
 ZZ_SCRIPT
 int inViewfrustum ( HNODE hVisible );
 
-// ¸ð¼ÇÀÇ ÃÑ ½Ã°£ ¾ò¾î¿À±â
+// ëª¨ì…˜ì˜ ì´ ì‹œê°„ ì–»ì–´ì˜¤ê¸°
 ZZ_SCRIPT
 int getMotionTotalTime ( HNODE hMotion );
 
-// ¸ð¼ÇÀÇ ÃÑ ÇÁ·¹ÀÓ °³¼ö ¾ò¾î¿À±â
-// return : ÇÁ·¹ÀÓ ¹øÈ£: (0, .... ,n-1)
+// ëª¨ì…˜ì˜ ì´ í”„ë ˆìž„ ê°œìˆ˜ ì–»ì–´ì˜¤ê¸°
+// return : í”„ë ˆìž„ ë²ˆí˜¸: (0, .... ,n-1)
 ZZ_SCRIPT
 int getMotionTotalFrame ( HNODE hMotion );
 
-// ³ëµå ÇÏ³ª¸¸ ·»´õ¸µÇÏ±â.
+// ë…¸ë“œ í•˜ë‚˜ë§Œ ë Œë”ë§í•˜ê¸°.
 ZZ_SCRIPT
 int renderNode ( HNODE hNode );
 
-// ·»´õ¸µ ½ÃÀÛÇÏ±â Àü¿¡ È£Ãâ
+// ë Œë”ë§ ì‹œìž‘í•˜ê¸° ì „ì— í˜¸ì¶œ
 ZZ_SCRIPT
 void beginScene ( void );
 
-// ·»´õ¸µ ÈÄ¿¡ È£Ãâ
+// ë Œë”ë§ í›„ì— í˜¸ì¶œ
 ZZ_SCRIPT
 void endScene ( void );
 
-/// ¾À¿¡ ´ëÇÑ ÀüÃ³¸® ÀÛ¾÷. 
-/// beginScene() ÀÌÀü¿¡ È£Ãâ
+/// ì”¬ì— ëŒ€í•œ ì „ì²˜ë¦¬ ìž‘ì—…. 
+/// beginScene() ì´ì „ì— í˜¸ì¶œ
 ZZ_SCRIPT
 void preProcessScene ( void );
 
-/// ¾À¿¡ ´ëÇÑ ÈÄÃ³¸® ÀÛ¾÷.
-/// ¿¹¸¦ µé¸é, ±Û·Î¿ì È¿°ú Ã³¸®
-/// endScene()  ÀÌÀü¿¡ È£Ãâ.
-/// ÀÏ¹ÝÀûÀ¸·Î beginSprite() ÀÌÀü¿¡ È£ÃâÇØÁØ´Ù. ±×·¸Áö ¾ÊÀ¸¸é ½ºÇÁ¶óÀÌÆ®·Î Ãâ·ÂµÈ ÀÎÅÍÆäÀÌ½ºµµ ÈÄÃ³¸®°¡ Àû¿ëµÇ±â ¶§¹®.
+/// ì”¬ì— ëŒ€í•œ í›„ì²˜ë¦¬ ìž‘ì—….
+/// ì˜ˆë¥¼ ë“¤ë©´, ê¸€ë¡œìš° íš¨ê³¼ ì²˜ë¦¬
+/// endScene()  ì´ì „ì— í˜¸ì¶œ.
+/// ì¼ë°˜ì ìœ¼ë¡œ beginSprite() ì´ì „ì— í˜¸ì¶œí•´ì¤€ë‹¤. ê·¸ë ‡ì§€ ì•Šìœ¼ë©´ ìŠ¤í”„ë¼ì´íŠ¸ë¡œ ì¶œë ¥ëœ ì¸í„°íŽ˜ì´ìŠ¤ë„ í›„ì²˜ë¦¬ê°€ ì ìš©ë˜ê¸° ë•Œë¬¸.
 ZZ_SCRIPT
 void postProcessScene ( void );
 
 ZZ_SCRIPT
 void swapBuffers ( void );
 
-//// ÇöÀç ¾À±×·¡ÇÁÀÇ ¸ðµç ³ëµåµéÀ» ·»´õ¸µÇÑ´Ù.
-//// return : ·»´õ¸µÇÑ ³ëµåµéÀÇ °³¼ö
+//// í˜„ìž¬ ì”¬ê·¸ëž˜í”„ì˜ ëª¨ë“  ë…¸ë“œë“¤ì„ ë Œë”ë§í•œë‹¤.
+//// return : ë Œë”ë§í•œ ë…¸ë“œë“¤ì˜ ê°œìˆ˜
 //ZZ_SCRIPT
 //int renderSceneTime (int iTime);
 
-// È­¸éÀ» ¸ðµÎ Áö¿ò
+// í™”ë©´ì„ ëª¨ë‘ ì§€ì›€
 ZZ_SCRIPT
 void clearScreen ( void );
 
-// D3D µð¹ÙÀÌ½º¸¦ ¾òÀ½
-// ¾øÀ¸¸é NULLÀ» ¸®ÅÏ
+// D3D ë””ë°”ì´ìŠ¤ë¥¼ ì–»ìŒ
+// ì—†ìœ¼ë©´ NULLì„ ë¦¬í„´
 ZZ_SCRIPT
 HNODE getDevice ( void );
 
-// ÆäÀÌµå-ÀÎ È¿°ú
-// zeroToOne À» 0¿¡¼­ 1·Î ÁÖ¸é Á¡ÁøÀûÀ¸·Î °ËÀº»ö¿¡¼­ ¿ø·¡»öÀ¸·Î º¯È¯ÇÑ´Ù
+// íŽ˜ì´ë“œ-ì¸ íš¨ê³¼
+// zeroToOne ì„ 0ì—ì„œ 1ë¡œ ì£¼ë©´ ì ì§„ì ìœ¼ë¡œ ê²€ì€ìƒ‰ì—ì„œ ì›ëž˜ìƒ‰ìœ¼ë¡œ ë³€í™˜í•œë‹¤
 ZZ_SCRIPT
 void fadeIn ( float fZeroToOne );
 
-/// °¨¸¶ ÄÁÆ®·Ñ °ª ÁöÁ¤.
-/// fGammaValue : -4 ¿¡¼­ 8±îÁö ÁöÁ¤ °¡´É. µðÆúÆ® 0
+/// ê°ë§ˆ ì»¨íŠ¸ë¡¤ ê°’ ì§€ì •.
+/// fGammaValue : -4 ì—ì„œ 8ê¹Œì§€ ì§€ì • ê°€ëŠ¥. ë””í´íŠ¸ 0
 ZZ_SCRIPT
 void setGammaValue ( float fGammaValue );
 
 ZZ_SCRIPT
 void renderScene ( void );
 
-/// ÇöÀç ºñÀúºíÀÇ À§Ä¡ ¾ò¾î¿À±â.
+/// í˜„ìž¬ ë¹„ì €ë¸”ì˜ ìœ„ì¹˜ ì–»ì–´ì˜¤ê¸°.
 ZZ_SCRIPT
 float getPositionX ( HNODE hVisible );
 
@@ -1461,65 +1461,65 @@ ZZ_SCRIPT
 float getPositionZ ( HNODE hVisible );
 
 
-/// ºñÁ®ºíÀÇ ¿ùµåÁÂÇ¥¸¦ ¾ò´Â´Ù.
-/// ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0À» ¸®ÅÏ.
-/// ¿¹)
+/// ë¹„ì ¸ë¸”ì˜ ì›”ë“œì¢Œí‘œë¥¼ ì–»ëŠ”ë‹¤.
+/// ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0ì„ ë¦¬í„´.
+/// ì˜ˆ)
 /// D3DXVECTOR3 pos;
 /// getPosition( model, 0, pos ); 
 
 ZZ_DLL
 int getPosition ( HNODE hVisible, float fPositionXYZ[3] );
 
-// Ã¹¹øÂ° ½Ç¼ö¸®ÅÏ°ª : xÁÂÇ¥
-// µÎ¹øÂ° ½Ç¼ö¸®ÅÏ°ª : yÁÂÇ¥
-// ¼¼¹øÂ° ½Ç¼ö¸®ÅÏ°ª : zÁÂÇ¥
+// ì²«ë²ˆì§¸ ì‹¤ìˆ˜ë¦¬í„´ê°’ : xì¢Œí‘œ
+// ë‘ë²ˆì§¸ ì‹¤ìˆ˜ë¦¬í„´ê°’ : yì¢Œí‘œ
+// ì„¸ë²ˆì§¸ ì‹¤ìˆ˜ë¦¬í„´ê°’ : zì¢Œí‘œ
 ZZ_SCRIPT
 int getPositionScript ( HNODE hVisible );
 
-/// ¸ðµ¨ÀÇ ¼Óµµ ÁöÁ¤
+/// ëª¨ë¸ì˜ ì†ë„ ì§€ì •
 /// @fVelocity : distance(cm) of the model per second.
-/// @return : ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0
+/// @return : ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT
 int setModelMoveVelocity ( HNODE hModel, float fVelocity );
 
-/// ¸ðµ¨ÀÇ ¼Óµµ ¾ò±â
+/// ëª¨ë¸ì˜ ì†ë„ ì–»ê¸°
 /// @return : distance(cm) of the model per second.
 ZZ_SCRIPT
 float getModelMoveVelocity ( HNODE hModel );
 
-/// ¸ðµ¨ÀÇ ¹æÇâÀ» ¼³Á¤
-/// @fAngleDegree : °¢µµ(´ÜÀ§:degree). ±âÁØ(¿ùµåÀÇ -YÃàÀÌ 0µµ), ¹æÇâ(½Ã°è¹Ý´ë¹æÇâÀÌ ¾çÀÇ ¹æÇâ)
-/// @bImmediate : 1ÀÌ¸é Áï°¢ È¸Àü, 0ÀÌ¸é Á¡ÁøÀûÀ¸·Î È¸Àü
-/// @return       : ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0
+/// ëª¨ë¸ì˜ ë°©í–¥ì„ ì„¤ì •
+/// @fAngleDegree : ê°ë„(ë‹¨ìœ„:degree). ê¸°ì¤€(ì›”ë“œì˜ -Yì¶•ì´ 0ë„), ë°©í–¥(ì‹œê³„ë°˜ëŒ€ë°©í–¥ì´ ì–‘ì˜ ë°©í–¥)
+/// @bImmediate : 1ì´ë©´ ì¦‰ê° íšŒì „, 0ì´ë©´ ì ì§„ì ìœ¼ë¡œ íšŒì „
+/// @return       : ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT
 int setModelDirection ( HNODE hModel, float fAngleDegree, int bImmediate );
 
-/// À§Ä¡ÁÂÇ¥¸¦ ÅëÇØ ¸ðµ¨ÀÇ ÀÌµ¿ ¹æÇâ ¼³Á¤ÇÏ±â
-/// @return : ¼º°øÇÏ¸é 1, ½ÇÆÐ¸é 0
+/// ìœ„ì¹˜ì¢Œí‘œë¥¼ í†µí•´ ëª¨ë¸ì˜ ì´ë™ ë°©í–¥ ì„¤ì •í•˜ê¸°
+/// @return : ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨ë©´ 0
 ZZ_SCRIPT
 int setModelDirectionByPosition ( HNODE hModel, float fX, float fY );
 
-/// ¸ðµ¨ÀÇ ¹æÇâ ¾ò±â
+/// ëª¨ë¸ì˜ ë°©í–¥ ì–»ê¸°
 ZZ_SCRIPT
 float getModelDirection ( HNODE hModel );
 
-/// ¸ðµ¨ÀÇ ¹æÇâ º¤ÅÍ ¾ò±â
+/// ëª¨ë¸ì˜ ë°©í–¥ ë²¡í„° ì–»ê¸°
 ZZ_DLL
 int getModelDirectionVector ( HNODE hModel, float fDirectionXYZ[3] );
 
-/// getModelDirectionVector()ÀÇ ½ºÅ©¸³Æ® ¹öÀü
-// Ã¹¹øÂ° ½Ç¼ö¸®ÅÏ°ª : xÁÂÇ¥
-// µÎ¹øÂ° ½Ç¼ö¸®ÅÏ°ª : yÁÂÇ¥
-// ¼¼¹øÂ° ½Ç¼ö¸®ÅÏ°ª : zÁÂÇ¥
+/// getModelDirectionVector()ì˜ ìŠ¤í¬ë¦½íŠ¸ ë²„ì „
+// ì²«ë²ˆì§¸ ì‹¤ìˆ˜ë¦¬í„´ê°’ : xì¢Œí‘œ
+// ë‘ë²ˆì§¸ ì‹¤ìˆ˜ë¦¬í„´ê°’ : yì¢Œí‘œ
+// ì„¸ë²ˆì§¸ ì‹¤ìˆ˜ë¦¬í„´ê°’ : zì¢Œí‘œ
 ZZ_SCRIPT
 int getModelDirectionVectorScript ( HNODE hModel );
 
-/// ºñÀúºí È¸Àü
-/// ·ÎÄÃ ÃàÀ» ±âÁØÀ¸·Î ÁöÁ¤µÈ (»ó´ëÀûÀÎ) °¢µµ¸¸Å­ ½Ã°è¹Ý´ë¹æÇâÀ¸·Î È¸Àü½ÃÅ´
-/// @return ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0
+/// ë¹„ì €ë¸” íšŒì „
+/// ë¡œì»¬ ì¶•ì„ ê¸°ì¤€ìœ¼ë¡œ ì§€ì •ëœ (ìƒëŒ€ì ì¸) ê°ë„ë§Œí¼ ì‹œê³„ë°˜ëŒ€ë°©í–¥ìœ¼ë¡œ íšŒì „ì‹œí‚´
+/// @return ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT int rotateAxis ( HNODE hVisible, float fAngleDegree, float fAxisX, float fAxisY, float fAxisZ );
 
-/// start ¿Í end ¸¦ (¿ùµåÁÂÇ¥ÀÇ) ½ÃÀÛ ¹× Á¾·á º¤ÅÍ·Î ÇÏ¿© (Àý´ë)È¸ÀüÀ¸·Î Àû¿ë½ÃÅ²´Ù.
+/// start ì™€ end ë¥¼ (ì›”ë“œì¢Œí‘œì˜) ì‹œìž‘ ë° ì¢…ë£Œ ë²¡í„°ë¡œ í•˜ì—¬ (ì ˆëŒ€)íšŒì „ìœ¼ë¡œ ì ìš©ì‹œí‚¨ë‹¤.
 ZZ_DLL
 int rotateByVectorAbsolute ( HNODE hVisible, const float * fStartXYZ, const float * fEndXYZ );
 
@@ -1528,18 +1528,18 @@ int rotateByVectorAbsoluteScript ( HNODE hVisible,
 						  float fStartX, float fStartY, float fStartZ, 
 						  float fEndX, float fEndY, float fEndZ );
 
-/// »ó´ëÀû º¤ÅÍ È¸Àü ÇÔ¼ö.
-/// ºñÁ®ºí ¿ÀºêÁ§Æ®ÀÇ ·ÎÄÃ º¤ÅÍ(fLocalStartAxisXYZ)¸¦
-/// ºñÁ®ºíÀÇ ¿øÁ¡À¸·ÎºÎÅÍ ¿ùµå ¸ñÇ¥ À§Ä¡(fWorldEndTargetXYZ)À» °¡¸®Å°´Â º¤ÅÍ·Î 
-/// È¸Àü½ÃÅ°´Â È¸ÀüÀ» Àû¿ëÇÑ´Ù.
-/// ¿¹)
+/// ìƒëŒ€ì  ë²¡í„° íšŒì „ í•¨ìˆ˜.
+/// ë¹„ì ¸ë¸” ì˜¤ë¸Œì íŠ¸ì˜ ë¡œì»¬ ë²¡í„°(fLocalStartAxisXYZ)ë¥¼
+/// ë¹„ì ¸ë¸”ì˜ ì›ì ìœ¼ë¡œë¶€í„° ì›”ë“œ ëª©í‘œ ìœ„ì¹˜(fWorldEndTargetXYZ)ì„ ê°€ë¦¬í‚¤ëŠ” ë²¡í„°ë¡œ 
+/// íšŒì „ì‹œí‚¤ëŠ” íšŒì „ì„ ì ìš©í•œë‹¤.
+/// ì˜ˆ)
 /*
     HNODE model = getBone(findNode("00300_0", 0);
     FLOAT pos[3];
 	FLOAT axis[] = {1, 0, 0};
 	getPosition( model, pos )
     
-	// È­»ìÀÇ ³ª°¡´Â ¹æÇâ(1, 0, 0)À» ¸ðµ¨ÀÇ Áß½ÉÀ» °¡¸®Å°µµ·Ï È¸Àü½ÃÅ´
+	// í™”ì‚´ì˜ ë‚˜ê°€ëŠ” ë°©í–¥(1, 0, 0)ì„ ëª¨ë¸ì˜ ì¤‘ì‹¬ì„ ê°€ë¦¬í‚¤ë„ë¡ íšŒì „ì‹œí‚´
     rotateByVectorRelative( sword[1], axis, pos );
 */
 ZZ_DLL
@@ -1553,43 +1553,43 @@ int rotateByVectorRelativeVector ( HNODE hVisible,
 							const float fLocalStartAxisXYZ[3],
 							const float fWorldEndTargetXYZ[3] );
 
-/// »ó´ëÀû º¤ÅÍ È¸Àü ÇÔ¼öÀÇ ½ºÅ©¸³Æ®¿ë ¹öÀü
+/// ìƒëŒ€ì  ë²¡í„° íšŒì „ í•¨ìˆ˜ì˜ ìŠ¤í¬ë¦½íŠ¸ìš© ë²„ì „
 ZZ_SCRIPT
 int rotateByVectorRelativeScript (
 	HNODE hVisible,
 	float fLocalStartAxisX, float fLocalStartAxisY, float fLocalStartAxisZ,
 	float fWorldEndTargetX, float fWorldEndTargetY, float fWorldEndTargetZ );
 
-/// ·Î±×¸¦ ³²±æ °ÍÀÎÁö ¸»°ÍÀÎÁö
-/// @bTrueFalse : 1ÀÌ¸é ·Î±× ³²±è. 0ÀÌ¸é ·Î±× ¾È ³²±è
-/// @return     : ÀÌÀü°ª ¸®ÅÏ
+/// ë¡œê·¸ë¥¼ ë‚¨ê¸¸ ê²ƒì¸ì§€ ë§ê²ƒì¸ì§€
+/// @bTrueFalse : 1ì´ë©´ ë¡œê·¸ ë‚¨ê¹€. 0ì´ë©´ ë¡œê·¸ ì•ˆ ë‚¨ê¹€
+/// @return     : ì´ì „ê°’ ë¦¬í„´
 ZZ_SCRIPT
 int activateLog ( int bTrueFalse );
 
-/// ³ëµå¸¦ ¾ð·ÎµåÇÑ´Ù. ¸ðµç ³ëµå Å¸ÀÔ¿¡ ´ëÇØ °¡´É
-/// ÀÚµ¿ÀûÀ¸·Î ¸µÅ©°¡ ±úÁø´Ù. unlinkBone()ÀÌ³ª unlinkDummy(), unlinkNode() µîÀ» µû·Î È£ÃâÇÒ ÇÊ¿ä ¾øÀ½.
-/// @return   : ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0
+/// ë…¸ë“œë¥¼ ì–¸ë¡œë“œí•œë‹¤. ëª¨ë“  ë…¸ë“œ íƒ€ìž…ì— ëŒ€í•´ ê°€ëŠ¥
+/// ìžë™ì ìœ¼ë¡œ ë§í¬ê°€ ê¹¨ì§„ë‹¤. unlinkBone()ì´ë‚˜ unlinkDummy(), unlinkNode() ë“±ì„ ë”°ë¡œ í˜¸ì¶œí•  í•„ìš” ì—†ìŒ.
+/// @return   : ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT
 int unloadNode ( HNODE hModel );
 
-/// ³ëµå¸¦ ¾ð·ÎµåÇÏ´Â µ¿½Ã¿¡ Â÷ÀÏµå ³ëµå±îÁö ¾ð·ÎµåÇÑ´Ù.
-/// ÀÚµ¿ÀûÀ¸·Î ¸µÅ©°¡ ±úÁø´Ù.
-/// @return   : ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0
+/// ë…¸ë“œë¥¼ ì–¸ë¡œë“œí•˜ëŠ” ë™ì‹œì— ì°¨ì¼ë“œ ë…¸ë“œê¹Œì§€ ì–¸ë¡œë“œí•œë‹¤.
+/// ìžë™ì ìœ¼ë¡œ ë§í¬ê°€ ê¹¨ì§„ë‹¤.
+/// @return   : ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT
 int unloadNodeRecursive ( HNODE hNode );
 
-/// ÅØ½ºÃÄ °»½Å(½Ã°£À» Ã¼Å©ÇØ¼­ ¹Ù²ï ÅØ½ºÃÄ´Â °»½ÅÇÔ)
+/// í…ìŠ¤ì³ ê°±ì‹ (ì‹œê°„ì„ ì²´í¬í•´ì„œ ë°”ë€ í…ìŠ¤ì³ëŠ” ê°±ì‹ í•¨)
 /// @terun
 ZZ_SCRIPT
 int reloadTextures ( void );
 
-/// ½Ã°£Â÷ ¾ò±â
-/// @return ½Ã°£Â÷(´ÜÀ§´Â milisecond)
+/// ì‹œê°„ì°¨ ì–»ê¸°
+/// @return ì‹œê°„ì°¨(ë‹¨ìœ„ëŠ” milisecond)
 ZZ_SCRIPT
 int getTimeDiff ( void );
 
-/// ÁöÇü °´Ã¼ »ý¼º
-/// ¼³¸í : loadTerrainMesh ÂüÁ¶.
+/// ì§€í˜• ê°ì²´ ìƒì„±
+/// ì„¤ëª… : loadTerrainMesh ì°¸ì¡°.
 ZZ_DLL
 HNODE loadTerrainBlock (
 	ZSTRING pTerrainBlockName,
@@ -1606,19 +1606,19 @@ HNODE loadTerrainBlock (
 	HNODE hLight
 );
 
-/// ³ëµå ¼±ÅÃÇÏ±â. ¿£Áø¿¡¼­ »ç¿ë
-/// @return ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0
+/// ë…¸ë“œ ì„ íƒí•˜ê¸°. ì—”ì§„ì—ì„œ ì‚¬ìš©
+/// @return ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT
 int selectNode ( HNODE hNode );
 
-// float ÇüÀ¸·Î ½ºÅ©¸³Æ® ±Û·Î¹ú º¯¼ö °ª ¾ò¾î¿À±â
+// float í˜•ìœ¼ë¡œ ìŠ¤í¬ë¦½íŠ¸ ê¸€ë¡œë²Œ ë³€ìˆ˜ ê°’ ì–»ì–´ì˜¤ê¸°
 ZZ_SCRIPT
 float getGlobalFloat ( ZSTRING pName );
 
 ZZ_SCRIPT
 int setCameraFollowYaw ( HNODE hCamera, float fYawDeg );
 
-/// @fPitch 0 (-60 µµ) - 1.0 (80 µµ)
+/// @fPitch 0 (-60 ë„) - 1.0 (80 ë„)
 ZZ_SCRIPT
 int setCameraFollowPitch ( HNODE hCamera, float fPitch );
 
@@ -1643,10 +1643,10 @@ int getCameraDir ( HNODE hCamera, float dirFront[3] );
 ZZ_DLL
 int getCameraUp ( HNODE hCamera, float dirUp[3] );
 
-/// ºñÀúºí ³ëµåÀÇ Æ÷±× »óÅÂ ¼³Á¤
-/// ÁÖÀÇ: ºñÀúºíÀÇ ¸ðµç ·»´õÀ¯´ÖÀ» Ãß°¡ÇÑ ´ÙÀ½ È£ÃâÇØ¾ß ÇÑ´Ù. Áï, ¸ðµç À¯´ÖµéÀ» addRenderUnit() ÈÄ¿¡ È£Ãâ
-///       ±×·¸Áö ¾ÊÀ¸¸é, ÇöÀç µî·ÏµÈ ·»´õÀ¯´ÖÀÇ ÀçÁú¿¡¸¸ Àû¿ëµÈ´Ù.
-/// ÇÒÀÏ: ÀçÁúÀÇ »óÅÂ¸¦ º¯°æÇÏÁö ¸»°í, ÀçÁú¿¡ Æ÷±×¹ÞÀ» ¿©ºÎ¸¦ ¼³Á¤ÇÏ°Å³ª, ºñÀúºí ÀÚÃ¼¿¡ Æ÷±×¹ÞÀ» ¿©ºÎ¸¦ ¼³Á¤Åä·Ï.
+/// ë¹„ì €ë¸” ë…¸ë“œì˜ í¬ê·¸ ìƒíƒœ ì„¤ì •
+/// ì£¼ì˜: ë¹„ì €ë¸”ì˜ ëª¨ë“  ë Œë”ìœ ë‹›ì„ ì¶”ê°€í•œ ë‹¤ìŒ í˜¸ì¶œí•´ì•¼ í•œë‹¤. ì¦‰, ëª¨ë“  ìœ ë‹›ë“¤ì„ addRenderUnit() í›„ì— í˜¸ì¶œ
+///       ê·¸ë ‡ì§€ ì•Šìœ¼ë©´, í˜„ìž¬ ë“±ë¡ëœ ë Œë”ìœ ë‹›ì˜ ìž¬ì§ˆì—ë§Œ ì ìš©ëœë‹¤.
+/// í• ì¼: ìž¬ì§ˆì˜ ìƒíƒœë¥¼ ë³€ê²½í•˜ì§€ ë§ê³ , ìž¬ì§ˆì— í¬ê·¸ë°›ì„ ì—¬ë¶€ë¥¼ ì„¤ì •í•˜ê±°ë‚˜, ë¹„ì €ë¸” ìžì²´ì— í¬ê·¸ë°›ì„ ì—¬ë¶€ë¥¼ ì„¤ì •í† ë¡.
 ZZ_SCRIPT
 int setReceiveFog     ( HNODE hVisible, int hUseFog );
 
@@ -1684,23 +1684,23 @@ HNODE loadSky ( ZSTRING pSkyName, HNODE hMesh, HNODE hMaterial, HNODE hLight );
 ZZ_SCRIPT
 int unloadSky ( HNODE hSky );
 
-/// ÇÏ´ÃÀÇ È¸Àü ¼Óµµ ÁöÁ¤
-/// iSkyUnit : ÇÏ´Ã¿¡ ÁöÁ¤µÈ ·»´õ À¯´Ö Áß ÇÏ³ª ¼±ÅÃ
-/// fAngleDegreePerSecond : ÃÊ´ç È¸Àü °¢µµ
-/// ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0
+/// í•˜ëŠ˜ì˜ íšŒì „ ì†ë„ ì§€ì •
+/// iSkyUnit : í•˜ëŠ˜ì— ì§€ì •ëœ ë Œë” ìœ ë‹› ì¤‘ í•˜ë‚˜ ì„ íƒ
+/// fAngleDegreePerSecond : ì´ˆë‹¹ íšŒì „ ê°ë„
+/// ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT
 int setSkyRotationSpeed ( HNODE hSky, int iSkyUnit, float fAngleDegreePerSecond );
 
-/// °´Ã¼(Visible ÀÌ³ª Model)ÀÇ ÇöÀç ÇÁ·¹ÀÓÀ» ¾ò´Â´Ù.
-/// ½ÇÆÐÇÏ¸é, -1
-/// ¼º°øÇÏ¸é, ÇöÀç ÇÁ·¹ÀÓ ¹øÈ£(0ºÎÅÍ ½ÃÀÛ)
+/// ê°ì²´(Visible ì´ë‚˜ Model)ì˜ í˜„ìž¬ í”„ë ˆìž„ì„ ì–»ëŠ”ë‹¤.
+/// ì‹¤íŒ¨í•˜ë©´, -1
+/// ì„±ê³µí•˜ë©´, í˜„ìž¬ í”„ë ˆìž„ ë²ˆí˜¸(0ë¶€í„° ì‹œìž‘)
 ZZ_SCRIPT
 int getMotionFrame ( HNODE hNode );
 
-/// ½ºÅ©¸° ÁÂÇ¥¸¦ ¿ùµå ÁÂÇ¥·Î º¯È¯
-/// ¿ùµå ÁÂÇ¥ÀÇ z´Â 0À¸·Î °¡Á¤ÇÔ
-/// X, Y : ½ºÅ©¸°ÁÂÇ¥. ¿¹) (100, 100)
-/// ÁÖÀÇ: x¿Í y¸¦ °¢°¢ µû·Î »Ì¾Æ¾ß ÇÔ
+/// ìŠ¤í¬ë¦° ì¢Œí‘œë¥¼ ì›”ë“œ ì¢Œí‘œë¡œ ë³€í™˜
+/// ì›”ë“œ ì¢Œí‘œì˜ zëŠ” 0ìœ¼ë¡œ ê°€ì •í•¨
+/// X, Y : ìŠ¤í¬ë¦°ì¢Œí‘œ. ì˜ˆ) (100, 100)
+/// ì£¼ì˜: xì™€ yë¥¼ ê°ê° ë”°ë¡œ ë½‘ì•„ì•¼ í•¨
 ZZ_SCRIPT
 float pickScreenX ( int screenX, int screenY );
 
@@ -1710,13 +1710,13 @@ float pickScreenY ( int screenX, int screenY );
 ZZ_DLL
 bool pickScreenXY ( int screenX, int screenY, float * worldX, float * worldY );
 
-/// ³ëµå ´ë ¹ÝÁ÷¼± Ãæµ¹ Ã¼Å©
-/// °¡´ÉÇÑ ³ëµå´Â Visible, Model, Morpher, TerrainBlock µî.
-/// ¹ÝÁ÷¼± : ½ÃÀÛÁ¡(originX, originY, originZ), ¹æÇâº¤ÅÍ(dirX, dirY, dirZ)
-/// pContactPointX/Y/Z : Á¢ÃË ÁöÁ¡ À§Ä¡¸¦ ¹ÞÀ» Æ÷ÀÎÅÍ.
-/// pDistance : origin°ú Ãæµ¹ÁöÁ¡ »çÀÌÀÇ °Å¸®¸¦ ¹ÞÀ» Æ÷ÀÎÅÍ. ÇÊ¿ä¾øÀ¸¸é 0À» ÀÔ·ÂÇØµµ µÊ.
-/// Ãæµ¹ÇÏ¸é 1, ±×·¸Áö ¾ÊÀ¸¸é 0
-/// Ãæµ¹Çß´Ù¸é, Ãæµ¹ÁöÁ¡ÀÌ pfContactPointX/Y/Z¿¡ ÀúÀåµÇ°í, pfDistance ¿¡ origin°úÀÇ °Å¸®°¡ ÀúÀåµÊ
+/// ë…¸ë“œ ëŒ€ ë°˜ì§ì„  ì¶©ëŒ ì²´í¬
+/// ê°€ëŠ¥í•œ ë…¸ë“œëŠ” Visible, Model, Morpher, TerrainBlock ë“±.
+/// ë°˜ì§ì„  : ì‹œìž‘ì (originX, originY, originZ), ë°©í–¥ë²¡í„°(dirX, dirY, dirZ)
+/// pContactPointX/Y/Z : ì ‘ì´‰ ì§€ì  ìœ„ì¹˜ë¥¼ ë°›ì„ í¬ì¸í„°.
+/// pDistance : originê³¼ ì¶©ëŒì§€ì  ì‚¬ì´ì˜ ê±°ë¦¬ë¥¼ ë°›ì„ í¬ì¸í„°. í•„ìš”ì—†ìœ¼ë©´ 0ì„ ìž…ë ¥í•´ë„ ë¨.
+/// ì¶©ëŒí•˜ë©´ 1, ê·¸ë ‡ì§€ ì•Šìœ¼ë©´ 0
+/// ì¶©ëŒí–ˆë‹¤ë©´, ì¶©ëŒì§€ì ì´ pfContactPointX/Y/Zì— ì €ìž¥ë˜ê³ , pfDistance ì— originê³¼ì˜ ê±°ë¦¬ê°€ ì €ìž¥ë¨
 ZZ_DLL
 int intersectRay (
 	HNODE hNode,
@@ -1726,27 +1726,27 @@ int intersectRay (
 	float * pDistance
  );
 
-/// Ãæµ¹ÇÏ¸é 1, ±×·¸Áö ¾ÊÀ¸¸é 0
-/// Ãæµ¹Çß´Ù¸é, Ãæµ¹ÁöÁ¡ÀÌ FloatArrayÀÇ 0, 1, 2 ÀÎµ¦½º¿¡, origin°úÀÇ °Å¸®°¡ ÀÎµ¦½º 3¿¡ µé¾î°£´Ù.
-/// »ç¿ëÇÏ´Â ½Ç¼öÇü ÀÎµ¦½º °³¼ö : 4
+/// ì¶©ëŒí•˜ë©´ 1, ê·¸ë ‡ì§€ ì•Šìœ¼ë©´ 0
+/// ì¶©ëŒí–ˆë‹¤ë©´, ì¶©ëŒì§€ì ì´ FloatArrayì˜ 0, 1, 2 ì¸ë±ìŠ¤ì—, originê³¼ì˜ ê±°ë¦¬ê°€ ì¸ë±ìŠ¤ 3ì— ë“¤ì–´ê°„ë‹¤.
+/// ì‚¬ìš©í•˜ëŠ” ì‹¤ìˆ˜í˜• ì¸ë±ìŠ¤ ê°œìˆ˜ : 4
 ZZ_SCRIPT
 int intersectRayScript ( HNODE hNode, float originX, float originY, float originZ, float dirX, float dirY, float dirZ );
 
-/// ³ëµå´ë ³ëµå Ãæµ¹ Ã¼Å©(obb-obb ±îÁö)
-/// Æú¸®°ï´ÜÀ§°¡ ¾Æ´Ñ ¹Ù¿îµù¹Ú½º±îÁö¸¸.
-/// ³ëµå´Â Visible, Model, Morpher µîÀÌ µÉ ¼ö ÀÖ´Ù.
-/// Ãæµ¹ÇÏ¸é 1, ±×·¸Áö ¾ÊÀ¸¸é 0
+/// ë…¸ë“œëŒ€ ë…¸ë“œ ì¶©ëŒ ì²´í¬(obb-obb ê¹Œì§€)
+/// í´ë¦¬ê³¤ë‹¨ìœ„ê°€ ì•„ë‹Œ ë°”ìš´ë”©ë°•ìŠ¤ê¹Œì§€ë§Œ.
+/// ë…¸ë“œëŠ” Visible, Model, Morpher ë“±ì´ ë  ìˆ˜ ìžˆë‹¤.
+/// ì¶©ëŒí•˜ë©´ 1, ê·¸ë ‡ì§€ ì•Šìœ¼ë©´ 0
 ZZ_SCRIPT
 int intersectNode ( HNODE hNodeA, HNODE hNodeB );
 
-/// ³ëµå´ë ³ëµå Ãæµ¹ Ã¼Å©(sphere-sphere ±îÁö)
-/// Æú¸®°ï´ÜÀ§°¡ ¾Æ´Ñ ¹Ù¿îµù¹Ú½º±îÁö¸¸.
-/// ³ëµå´Â Visible, Model, Morpher µîÀÌ µÉ ¼ö ÀÖ´Ù.
-/// Ãæµ¹ÇÏ¸é 1, ±×·¸Áö ¾ÊÀ¸¸é 0
+/// ë…¸ë“œëŒ€ ë…¸ë“œ ì¶©ëŒ ì²´í¬(sphere-sphere ê¹Œì§€)
+/// í´ë¦¬ê³¤ë‹¨ìœ„ê°€ ì•„ë‹Œ ë°”ìš´ë”©ë°•ìŠ¤ê¹Œì§€ë§Œ.
+/// ë…¸ë“œëŠ” Visible, Model, Morpher ë“±ì´ ë  ìˆ˜ ìžˆë‹¤.
+/// ì¶©ëŒí•˜ë©´ 1, ê·¸ë ‡ì§€ ì•Šìœ¼ë©´ 0
 ZZ_SCRIPT
 int intersectNodeSphereSphere ( HNODE hNodeA, HNODE hNodeB );
 
-/// ³ëµå(Æú¸®°ï)´ë ³ëµå(±¸) Ãæµ¹ Ã¼Å©
+/// ë…¸ë“œ(í´ë¦¬ê³¤)ëŒ€ ë…¸ë“œ(êµ¬) ì¶©ëŒ ì²´í¬
 ZZ_DLL
 int intersectNodeTriSphere ( HNODE hNodeByTri_In, float vSphereCenter_In[3], float fSphereRadius_In );
 
@@ -1768,29 +1768,29 @@ float getCameraEyeY ( HNODE hCamera );
 ZZ_SCRIPT
 float getCameraEyeZ ( HNODE hCamera );
 
-/// ¾À ³»¿¡¼­ ³ëµå ÇÈÅ·ÇÏ±â(Visible ·ùÀÇ °´Ã¼µé¸¸ ÇÈÅ·µÈ´Ù)
-/// screenX, screenY : È­¸é ½ºÅ©¸° ÁÂÇ¥(¿¹. 200, 100)
-/// fContactPointX/Y/Z : Á¢ÃËÁöÁ¡ ¿ùµå ÁÂÇ¥¸¦ ¹ÞÀ» Æ÷ÀÎÅÍº¯¼ö.
-/// fDistance : Ä«¸Þ¶ó¿Í Á¢ÃËÁöÁ¡ »çÀÌÀÇ °Å¸®¸¦ ¹ÞÀ» Æ÷ÀÎÅÍº¯¼ö. ÇÊ¿ä¾øÀ¸¸é 0À» ÀÔ·Â
-/// Á¢ÃËÇÏ´Â ³ëµå°¡ ÀÖ´Ù¸é, ±× ³ëµå¸¦ ¸®ÅÏ, ¾ø´Ù¸é 0À» ¸®ÅÏ
+/// ì”¬ ë‚´ì—ì„œ ë…¸ë“œ í”½í‚¹í•˜ê¸°(Visible ë¥˜ì˜ ê°ì²´ë“¤ë§Œ í”½í‚¹ëœë‹¤)
+/// screenX, screenY : í™”ë©´ ìŠ¤í¬ë¦° ì¢Œí‘œ(ì˜ˆ. 200, 100)
+/// fContactPointX/Y/Z : ì ‘ì´‰ì§€ì  ì›”ë“œ ì¢Œí‘œë¥¼ ë°›ì„ í¬ì¸í„°ë³€ìˆ˜.
+/// fDistance : ì¹´ë©”ë¼ì™€ ì ‘ì´‰ì§€ì  ì‚¬ì´ì˜ ê±°ë¦¬ë¥¼ ë°›ì„ í¬ì¸í„°ë³€ìˆ˜. í•„ìš”ì—†ìœ¼ë©´ 0ì„ ìž…ë ¥
+/// ì ‘ì´‰í•˜ëŠ” ë…¸ë“œê°€ ìžˆë‹¤ë©´, ê·¸ ë…¸ë“œë¥¼ ë¦¬í„´, ì—†ë‹¤ë©´ 0ì„ ë¦¬í„´
 ZZ_DLL
 HNODE pickNode ( int screenX, int screenY, float * pContactPointX, float * pContactPointY, float * pContactPointZ, float * pDistance );
 
-// pickNode() ¿Í µ¿ÀÏÇÑ ½ºÅ©¸³Æ®Àü¿ë ÇÔ¼ö
-/// ¼º°øÇÑ´Ù¸é, float_arrayÀÇ Ã³À½ ³× °³¸¦ °¢°¢ fContactPointX, fContactPointY, fContactPointZ, fDistance ·Î »ç¿ëÇÑ´Ù.
+// pickNode() ì™€ ë™ì¼í•œ ìŠ¤í¬ë¦½íŠ¸ì „ìš© í•¨ìˆ˜
+/// ì„±ê³µí•œë‹¤ë©´, float_arrayì˜ ì²˜ìŒ ë„¤ ê°œë¥¼ ê°ê° fContactPointX, fContactPointY, fContactPointZ, fDistance ë¡œ ì‚¬ìš©í•œë‹¤.
 ZZ_SCRIPT
 HNODE pickNodeScript ( int screenX, int screenY );
 
-// Ä«¸Þ¶ó Å¸°ÙÀÇ ³ôÀÌ°ª º¸Á¤
-// fHeight : ³ôÀÌ°ª(cm)
-// ½ÇÆÐÇÏ¸é 0, ¼º°øÇÏ¸é 1 ¸®ÅÏ
+// ì¹´ë©”ë¼ íƒ€ê²Ÿì˜ ë†’ì´ê°’ ë³´ì •
+// fHeight : ë†’ì´ê°’(cm)
+// ì‹¤íŒ¨í•˜ë©´ 0, ì„±ê³µí•˜ë©´ 1 ë¦¬í„´
 ZZ_SCRIPT
 int setCameraTargetHeight ( HNODE hCamera, float fHeight );
 
-// float Çü ¹è¿­À» ¼³Á¤ÇÑ´Ù.
-// ¹è¿­ÀÇ Å©±â´Â 256
-// ¿£Áø ÇÔ¼ö¿Í ½ºÅ©¸³Æ®°¡ ¼­·Î µÎ °³ ÀÌ»óÀÇ ½Ç¼öÇü º¯¼ö¸¦ ÁÖ°í ¹ÞÀ» ¶§ »ç¿ëÇÑ´Ù.
-// ¸ðµç ÇÔ¼öµéÀÌ ÀÌ ÀÓ½Ãº¯¼ö ¹è¿­À» »ç¿ëÇÏ´Â °ÍÀº ¾Æ´Ï´Ù.
+// float í˜• ë°°ì—´ì„ ì„¤ì •í•œë‹¤.
+// ë°°ì—´ì˜ í¬ê¸°ëŠ” 256
+// ì—”ì§„ í•¨ìˆ˜ì™€ ìŠ¤í¬ë¦½íŠ¸ê°€ ì„œë¡œ ë‘ ê°œ ì´ìƒì˜ ì‹¤ìˆ˜í˜• ë³€ìˆ˜ë¥¼ ì£¼ê³  ë°›ì„ ë•Œ ì‚¬ìš©í•œë‹¤.
+// ëª¨ë“  í•¨ìˆ˜ë“¤ì´ ì´ ìž„ì‹œë³€ìˆ˜ ë°°ì—´ì„ ì‚¬ìš©í•˜ëŠ” ê²ƒì€ ì•„ë‹ˆë‹¤.
 ZZ_SCRIPT
 float getFloatArray ( int iIndex );
 
@@ -1806,9 +1806,9 @@ int getRay (
 	float * pOriginX, float * pOriginY, float * pOriginZ,
 	float * pDirectionX, float * pDirectionY, float * pDirectionZ );
 
-// µ¿½Ã»ç¿ë ÅØ½ºÃÄ°¡ 4 ¹Ì¸¸ÀÎ ÇÏµå¿þ¾î¿¡¼­´Â,
-// seMultiPass( 1 )·Î ¼³Á¤ÇÑ °Í°ú µ¿ÀÏÇÑ È¿°ú¸¦ °®À½.
-// ÁöÇü ·»´õ¸µ ½Ã µÎÆÐ½º·Î ·»´õ¸µ ÇÔ.
+// ë™ì‹œì‚¬ìš© í…ìŠ¤ì³ê°€ 4 ë¯¸ë§Œì¸ í•˜ë“œì›¨ì–´ì—ì„œëŠ”,
+// seMultiPass( 1 )ë¡œ ì„¤ì •í•œ ê²ƒê³¼ ë™ì¼í•œ íš¨ê³¼ë¥¼ ê°–ìŒ.
+// ì§€í˜• ë Œë”ë§ ì‹œ ë‘íŒ¨ìŠ¤ë¡œ ë Œë”ë§ í•¨.
 ZZ_SCRIPT
 int useMultiPass ( int bUseMultiPass );
 
@@ -1821,122 +1821,122 @@ int weldMesh ( HNODE hMesh );
 ZZ_SCRIPT
 int clearMeshMatid ( HNODE hMesh );
 
-/// bTextMode : ÅØ½ºÆ®¸ðµå·Î ÀúÀåÇÏ·Á¸é 1, ¹ÙÀÌ³Ê¸®´Â 0
+/// bTextMode : í…ìŠ¤íŠ¸ëª¨ë“œë¡œ ì €ìž¥í•˜ë ¤ë©´ 1, ë°”ì´ë„ˆë¦¬ëŠ” 0
 ZZ_SCRIPT
 int saveMesh ( HNODE hMesh, ZSTRING pSavePath, int bTextMode );
 
-// fPointX/Y ·Î ÁöÁ¤µÈ ¿ùµåÁÂÇ¥·ÎºÎÅÍ À§¹æÇâ(z¹æÇâ)À¸·ÎÀÇ ÃÖ´ë ³ôÀÌ°ªÀ» ¸®ÅÏÇÑ´Ù.
-// hNode : ³ôÀÌ¸¦ ºñ±³ÇÒ ¿ÀºêÁ§Æ® ÇÚµé(ºñÁ®ºí, ¸ðµ¨, ¸ðÆÛ, ÁöÇü µî)
-// ¸¸¾à, Ãæµ¹µÇÁö ¾Ê´Â´Ù¸é, -999999999.f (9 ¾ÆÈ©°³)¸¦ ¸®ÅÏÇÔ.
-// »ç¿ë¿¹. [ test/test_update_collision.lua ]
-// ÁÖÀÇ: ÀÌÀü ÀÎÅÍÆäÀÌ½º(getPointHeight)¿¡´Â float fPointZ °¡ ÀÖ¾úÀ¸³ª, ÀÌ ÇÔ¼ö°¡ ÇöÀç 2DÁÂÇ¥ »ó¿¡¼­ ÃÖ´ë ³ôÀÌ¸¦ ±¸ÇÏ´Â °ÍÀÌ±â ¶§¹®¿¡,
-//       ³ôÀÌ°ªÀ» ÀÔ·ÂÀ¸·Î ³Ö¾î ÁÙ ÇÊ¿ä°¡ ¾øÀ¸¸ç, ±×·Î ÀÎÇÑ ¹ö±×ÀÇ À§ÇèÀÌ ÀÖÀ¸¹Ç·Î »ý·«Çß´Ù.
+// fPointX/Y ë¡œ ì§€ì •ëœ ì›”ë“œì¢Œí‘œë¡œë¶€í„° ìœ„ë°©í–¥(zë°©í–¥)ìœ¼ë¡œì˜ ìµœëŒ€ ë†’ì´ê°’ì„ ë¦¬í„´í•œë‹¤.
+// hNode : ë†’ì´ë¥¼ ë¹„êµí•  ì˜¤ë¸Œì íŠ¸ í•¸ë“¤(ë¹„ì ¸ë¸”, ëª¨ë¸, ëª¨í¼, ì§€í˜• ë“±)
+// ë§Œì•½, ì¶©ëŒë˜ì§€ ì•ŠëŠ”ë‹¤ë©´, -999999999.f (9 ì•„í™‰ê°œ)ë¥¼ ë¦¬í„´í•¨.
+// ì‚¬ìš©ì˜ˆ. [ test/test_update_collision.lua ]
+// ì£¼ì˜: ì´ì „ ì¸í„°íŽ˜ì´ìŠ¤(getPointHeight)ì—ëŠ” float fPointZ ê°€ ìžˆì—ˆìœ¼ë‚˜, ì´ í•¨ìˆ˜ê°€ í˜„ìž¬ 2Dì¢Œí‘œ ìƒì—ì„œ ìµœëŒ€ ë†’ì´ë¥¼ êµ¬í•˜ëŠ” ê²ƒì´ê¸° ë•Œë¬¸ì—,
+//       ë†’ì´ê°’ì„ ìž…ë ¥ìœ¼ë¡œ ë„£ì–´ ì¤„ í•„ìš”ê°€ ì—†ìœ¼ë©°, ê·¸ë¡œ ì¸í•œ ë²„ê·¸ì˜ ìœ„í—˜ì´ ìžˆìœ¼ë¯€ë¡œ ìƒëžµí–ˆë‹¤.
 ZZ_SCRIPT
 float getWorldHeight ( HNODE hNode, float fPointX, float fPointY );
 
-// Origin ¿¡¼­ Dir·Î ÇâÇÏ´Â ·¹ÀÌ¸¦ ½î¾Æ ÁöÁ¤µÈ ¿ÀºêÁ§Æ®¿Í 
-// °¡Àå °¡±î¿î(¶Ç´Â ¸Õ) Ãæµ¹Á¡±îÁöÀÇ °Å¸®¸¦ ¸®ÅÏÇÑ´Ù.
-// hVisible : ·¹ÀÌ¸¦ ½ò ´ë»ó ¿ÀºêÁ§Æ® ÇÚµé(ºñÁ®ºí, ¸ðµ¨, ¸ðÆÛ, ÁöÇü µî)
-// iNearest : 1(°¡Àå °¡±î¿î °Å¸®¸¦ ¼±ÅÃ), 0(°¡Àå ¸Õ °Å¸®¸¦ ¼±ÅÃ)
-// ¿ÀºêÁ§Æ®¿¡ Ãæµ¹ÇÏÁö ¾Ê´Â °æ¿ì¿¡´Â 999999999.f (9 ¾ÆÈ©°³)¸¦ ¸®ÅÏÇÔ.
+// Origin ì—ì„œ Dirë¡œ í–¥í•˜ëŠ” ë ˆì´ë¥¼ ì˜ì•„ ì§€ì •ëœ ì˜¤ë¸Œì íŠ¸ì™€ 
+// ê°€ìž¥ ê°€ê¹Œìš´(ë˜ëŠ” ë¨¼) ì¶©ëŒì ê¹Œì§€ì˜ ê±°ë¦¬ë¥¼ ë¦¬í„´í•œë‹¤.
+// hVisible : ë ˆì´ë¥¼ ì  ëŒ€ìƒ ì˜¤ë¸Œì íŠ¸ í•¸ë“¤(ë¹„ì ¸ë¸”, ëª¨ë¸, ëª¨í¼, ì§€í˜• ë“±)
+// iNearest : 1(ê°€ìž¥ ê°€ê¹Œìš´ ê±°ë¦¬ë¥¼ ì„ íƒ), 0(ê°€ìž¥ ë¨¼ ê±°ë¦¬ë¥¼ ì„ íƒ)
+// ì˜¤ë¸Œì íŠ¸ì— ì¶©ëŒí•˜ì§€ ì•ŠëŠ” ê²½ìš°ì—ëŠ” 999999999.f (9 ì•„í™‰ê°œ)ë¥¼ ë¦¬í„´í•¨.
 ZZ_SCRIPT
 float shootRay ( HNODE hVisible, int iNearest,
 				float fOriginX, float fOriginY, float fOriginZ, 
 				float fDirX, float fDirY, float fDirZ );
 
-/// shootRay ÀÇ Ãà¾à ¹öÀü.
+/// shootRay ì˜ ì¶•ì•½ ë²„ì „.
 ZZ_DLL
 float shootRayVec3 ( HNODE hVisible, int iNearest, float vOrigin[3], float vDirection[3] );
 
-// ºñÁ®ºíÀÇ Ãæµ¹ ·¹º§À» Á¤ÀÇÇÑ´Ù. (0 Àº Ãæµ¹ °í·Á ¾ÈÇÔ. ÇöÀç 4(Æú¸®°ï´ÜÀ§·Î Ãæµ¹)°¡ ÃÖ´ë)
-// ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0
+// ë¹„ì ¸ë¸”ì˜ ì¶©ëŒ ë ˆë²¨ì„ ì •ì˜í•œë‹¤. (0 ì€ ì¶©ëŒ ê³ ë ¤ ì•ˆí•¨. í˜„ìž¬ 4(í´ë¦¬ê³¤ë‹¨ìœ„ë¡œ ì¶©ëŒ)ê°€ ìµœëŒ€)
+// ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT
 int setCollisionLevel ( HNODE hVisible, int iLevel );
 
-/// ºñÁ®ºíÀÇ Ãæµ¹ ·¹º§À» ¾ò¾î¿Â´Ù.
+/// ë¹„ì ¸ë¸”ì˜ ì¶©ëŒ ë ˆë²¨ì„ ì–»ì–´ì˜¨ë‹¤.
 ZZ_SCRIPT
 int getCollisionLevel ( HNODE hVisible );
 
-// ºñÁ®ºíÀÇ ¶óÀÌÆ®¸ÊÀ» ¼³Á¤ÇÑ´Ù. (½ÇÁ¦·Î´Â ·»´õÀ¯´Ö¿¡ µî·ÏµÈ ÀçÁúµéÀÇ ¼Ó¼ºÀ» º¯°æÇÑ´Ù)
-// pLightmapFilename : ¶óÀÌÆ®¸Ê ÆÄÀÏ ÀÌ¸§. ÄÃ·¯¸Ê ÀçÁúÀ» µû·Î ¸¸µé ÇÊ¿ä ¾øÀÌ °æ·Î¸í¸¸ ÁöÁ¤ÇÏ¸é µÈ´Ù.
-// iX, iY : ÇÏ³ªÀÇ ÀÌ¹ÌÁö ÆÄÀÏ¿¡ ¿©·¯ ¶óÀÌÆ®¸ÊÀ» °øÀ¯ÇÒ °æ¿ì, °¡·Î ¼¼·Î ÀÎµ¦½º
-// iWidth, iHeight : ÇÏ³ªÀÇ ÀÌ¹ÌÁö ÆÄÀÏ¿¡ µé¾î°¡´Â ¶óÀÌÆ®¸ÊÀÇ °¡·Î ¹× ¼¼·Î °³¼ö
-//                   (¿¹. ÃÑ 12°³(4x3)ÀÇ ¸ÊÀÌ Æ÷ÇÔµÈ´Ù¸é iWidth = 4, iHeight = 3 ÀÌ µÇ¾î¾ß ÇÑ´Ù.
-// ÁÖÀÇ. ÀçÁúÀ» °øÀ¯ÇÏ´Â ºñÁ®ºíµéÀÌ ÀÖ´Ù¸é, ±× ºñÁ®ºíµé¿¡´Â ¸ðµÎ µ¿ÀÏÇÑ ¶óÀÌÆ®¸ÊÀÌ Àû¿ëµÈ´Ù.
+// ë¹„ì ¸ë¸”ì˜ ë¼ì´íŠ¸ë§µì„ ì„¤ì •í•œë‹¤. (ì‹¤ì œë¡œëŠ” ë Œë”ìœ ë‹›ì— ë“±ë¡ëœ ìž¬ì§ˆë“¤ì˜ ì†ì„±ì„ ë³€ê²½í•œë‹¤)
+// pLightmapFilename : ë¼ì´íŠ¸ë§µ íŒŒì¼ ì´ë¦„. ì»¬ëŸ¬ë§µ ìž¬ì§ˆì„ ë”°ë¡œ ë§Œë“¤ í•„ìš” ì—†ì´ ê²½ë¡œëª…ë§Œ ì§€ì •í•˜ë©´ ëœë‹¤.
+// iX, iY : í•˜ë‚˜ì˜ ì´ë¯¸ì§€ íŒŒì¼ì— ì—¬ëŸ¬ ë¼ì´íŠ¸ë§µì„ ê³µìœ í•  ê²½ìš°, ê°€ë¡œ ì„¸ë¡œ ì¸ë±ìŠ¤
+// iWidth, iHeight : í•˜ë‚˜ì˜ ì´ë¯¸ì§€ íŒŒì¼ì— ë“¤ì–´ê°€ëŠ” ë¼ì´íŠ¸ë§µì˜ ê°€ë¡œ ë° ì„¸ë¡œ ê°œìˆ˜
+//                   (ì˜ˆ. ì´ 12ê°œ(4x3)ì˜ ë§µì´ í¬í•¨ëœë‹¤ë©´ iWidth = 4, iHeight = 3 ì´ ë˜ì–´ì•¼ í•œë‹¤.
+// ì£¼ì˜. ìž¬ì§ˆì„ ê³µìœ í•˜ëŠ” ë¹„ì ¸ë¸”ë“¤ì´ ìžˆë‹¤ë©´, ê·¸ ë¹„ì ¸ë¸”ë“¤ì—ëŠ” ëª¨ë‘ ë™ì¼í•œ ë¼ì´íŠ¸ë§µì´ ì ìš©ëœë‹¤.
 ZZ_SCRIPT
 int setMaterialLightmap ( HNODE hMaterial, ZSTRING pLightmapFilename, int iX, int iY, int iWidth, int iHeight );
 
-/// hChild ³ëµå°¡ hParent ³ëµåÀÇ ÀÚ½Ä ¶Ç´Â ÈÄ¼ÕÀÏ °æ¿ì 1À» ¸®ÅÏ, ¾Æ´Ï¸é 0À» ¸®ÅÏ
-/// hChild¿Í hParent °¡ µ¿ÀÏÇÑ °æ¿ì¿¡µµ 1À» ¸®ÅÏ.
+/// hChild ë…¸ë“œê°€ hParent ë…¸ë“œì˜ ìžì‹ ë˜ëŠ” í›„ì†ì¼ ê²½ìš° 1ì„ ë¦¬í„´, ì•„ë‹ˆë©´ 0ì„ ë¦¬í„´
+/// hChildì™€ hParent ê°€ ë™ì¼í•œ ê²½ìš°ì—ë„ 1ì„ ë¦¬í„´.
 ZZ_SCRIPT
 int isDescendantOf ( HNODE hChild, HNODE hParent );
 
-/// hChild ³ëµå°¡ iType(¿¹, ZZ_TYPE_MODEL)ÀÇ Å¸ÀÔÀÎ ¿ÀºêÁ§Æ®ÀÇ ÀÚ½Ä(¶Ç´Â ÈÄ¼Õ)ÀÌ¶ó¸é 1À», ¾Æ´Ï¶ó¸é 0À» ¸®ÅÏÇÑ´Ù.
-/// ¿¹¸¦ µé¾î, ÇöÀç hChild ³ëµå°¡ iTypeÅ¸ÀÔ ±× Â÷ÀÏµå(¶Ç´Â ±× ÈÄ¼Õ)ÀÏ °æ¿ì 1À» ¸®ÅÏÇÑ´Ù.
-/// ÁÖÀÇ: ÀÚ±â ÀÚ½ÅÀÌ iTypeÀÎ °æ¿ì¿¡µµ 1À» ¸®ÅÏ.
+/// hChild ë…¸ë“œê°€ iType(ì˜ˆ, ZZ_TYPE_MODEL)ì˜ íƒ€ìž…ì¸ ì˜¤ë¸Œì íŠ¸ì˜ ìžì‹(ë˜ëŠ” í›„ì†)ì´ë¼ë©´ 1ì„, ì•„ë‹ˆë¼ë©´ 0ì„ ë¦¬í„´í•œë‹¤.
+/// ì˜ˆë¥¼ ë“¤ì–´, í˜„ìž¬ hChild ë…¸ë“œê°€ iTypeíƒ€ìž… ê·¸ ì°¨ì¼ë“œ(ë˜ëŠ” ê·¸ í›„ì†)ì¼ ê²½ìš° 1ì„ ë¦¬í„´í•œë‹¤.
+/// ì£¼ì˜: ìžê¸° ìžì‹ ì´ iTypeì¸ ê²½ìš°ì—ë„ 1ì„ ë¦¬í„´.
 ZZ_SCRIPT
 int isDescendantOfType ( HNODE hChild, int iType );
 
-/// ºÎ¸ð ³ëµå¸¦ ¾ò´Â´Ù.
-/// ºÎ¸ð ³ëµå°¡ ¾øÀ¸¸é 0À» ¸®ÅÏ
+/// ë¶€ëª¨ ë…¸ë“œë¥¼ ì–»ëŠ”ë‹¤.
+/// ë¶€ëª¨ ë…¸ë“œê°€ ì—†ìœ¼ë©´ 0ì„ ë¦¬í„´
 ZZ_SCRIPT
 HNODE getParent ( HNODE hChild );
 
 ZZ_SCRIPT
 HNODE loadParticle ( ZSTRING pParticleName, ZSTRING pParticleFilename );
 
-// ¸Þ¸ð¸®·ÎºÎÅÍ ÆÄÆ¼Å¬ ·ÎµùÇÏ±â
-// pParticleName : ÆÄÆ¼Å¬ ÀÌ¸§
-// pParticleMem  : ÆÄÆ¼Å¬ ³»¿ëÀÌ µé¾îÀÖ´Â ¸Þ¸ð¸® Æ÷ÀÎÅÍ
-// iMemSize : ¸Þ¸ð¸® Å©±â
+// ë©”ëª¨ë¦¬ë¡œë¶€í„° íŒŒí‹°í´ ë¡œë”©í•˜ê¸°
+// pParticleName : íŒŒí‹°í´ ì´ë¦„
+// pParticleMem  : íŒŒí‹°í´ ë‚´ìš©ì´ ë“¤ì–´ìžˆëŠ” ë©”ëª¨ë¦¬ í¬ì¸í„°
+// iMemSize : ë©”ëª¨ë¦¬ í¬ê¸°
 ZZ_SCRIPT
 HNODE loadParticleFromMem ( ZSTRING pParticleName, ZSTRING pParticleMem, int iMemSize );
 
 ZZ_SCRIPT
 int unloadParticle ( HNODE hParticle );
 
-// ÆÄÆ¼Å¬ Á¦¾î
+// íŒŒí‹°í´ ì œì–´
 // iControl : 0(Stop), 1(Start)
-// ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0
+// ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT
 int controlParticle ( HNODE hParticle, int iControl ); 
 
-// min-max ¾È¿¡ ÀÖ´Â ¸ðµç Visible ³ëµåµéÀ» Ã£¾Æ ±¸¼ºÇÏ°í,
-// ±× °³¼ö¸¦ ¸®ÅÏ
-// ÁÖÀÇ : collectByMinMax() ¿Í collectNode() »çÀÌ¿¡´Â ´Ù¸¥ collectByMinMax()³ª collectByNodeBBox()¸¦ È£ÃâÇÒ ¼ö ¾øÀ½.
+// min-max ì•ˆì— ìžˆëŠ” ëª¨ë“  Visible ë…¸ë“œë“¤ì„ ì°¾ì•„ êµ¬ì„±í•˜ê³ ,
+// ê·¸ ê°œìˆ˜ë¥¼ ë¦¬í„´
+// ì£¼ì˜ : collectByMinMax() ì™€ collectNode() ì‚¬ì´ì—ëŠ” ë‹¤ë¥¸ collectByMinMax()ë‚˜ collectByNodeBBox()ë¥¼ í˜¸ì¶œí•  ìˆ˜ ì—†ìŒ.
 ZZ_SCRIPT
 int collectByMinMax ( float fMinX, float fMinY, float fMinZ, float fMaxX, float fMaxY, float fMaxZ );
 
 ZZ_DLL
 int collectByMinMaxVec3 ( float fMin[3], float fMax[3] );
 
-// hVisibleÀÇ ¹Ù¿îµù¹Ú½º¿Í Ãæµ¹ÇÏ´Â ¸ðµç ³ëµåµéÀ» Ã£¾Æ ±¸¼ºÇÏ°í, ±× °³¼ö¸¦ ¸®ÅÏ
-// ÁÖÀÇ : collectByNodeBBox() ¿Í collectNode() »çÀÌ¿¡´Â ´Ù¸¥ collectByMinMax()³ª collectByNodeBBox()¸¦ È£ÃâÇÒ ¼ö ¾øÀ½.
+// hVisibleì˜ ë°”ìš´ë”©ë°•ìŠ¤ì™€ ì¶©ëŒí•˜ëŠ” ëª¨ë“  ë…¸ë“œë“¤ì„ ì°¾ì•„ êµ¬ì„±í•˜ê³ , ê·¸ ê°œìˆ˜ë¥¼ ë¦¬í„´
+// ì£¼ì˜ : collectByNodeBBox() ì™€ collectNode() ì‚¬ì´ì—ëŠ” ë‹¤ë¥¸ collectByMinMax()ë‚˜ collectByNodeBBox()ë¥¼ í˜¸ì¶œí•  ìˆ˜ ì—†ìŒ.
 ZZ_SCRIPT
 int collectByNodeBBox ( HNODE hVisible );
 
-/// ±¸·Î Á¤ÀÇµÈ ¿µ¿ª¿¡ ÀÖ´Â ³ëµåµéÀ» Ã£¾Æ ±¸¼ºÇÏ°í, ±× °³¼ö¸¦ ¸®ÅÏ
+/// êµ¬ë¡œ ì •ì˜ëœ ì˜ì—­ì— ìžˆëŠ” ë…¸ë“œë“¤ì„ ì°¾ì•„ êµ¬ì„±í•˜ê³ , ê·¸ ê°œìˆ˜ë¥¼ ë¦¬í„´
 ZZ_DLL
 int collectBySphere ( float vCenter[3], float fDistance );
 
-// collectByMinMax·Î ±¸¼ºµÈ iNode ¹øÂ° ³ëµå ¾ò±â
+// collectByMinMaxë¡œ êµ¬ì„±ëœ iNode ë²ˆì§¸ ë…¸ë“œ ì–»ê¸°
 ZZ_SCRIPT
 HNODE getCollectNode ( int iNode );
 
-// ÆÄÆ¼Å¬ÀÇ ÇöÀç »óÅÂ ¸®ÅÏ
-// 0 : ÆÄÆ¼Å¬ Á¤Áö. 1 : ÆÄÆ¼Å¬ ÇÃ·¹ÀÌ Áß
+// íŒŒí‹°í´ì˜ í˜„ìž¬ ìƒíƒœ ë¦¬í„´
+// 0 : íŒŒí‹°í´ ì •ì§€. 1 : íŒŒí‹°í´ í”Œë ˆì´ ì¤‘
 ZZ_SCRIPT
 int getParticleState ( HNODE hParticle );
 
-// ÀçÁúÀÇ ½¦ÀÌ´õ ¼¼ÆÃ
-// ½ÇÆÐÇÏ¸é 0, ¼º°øÇÏ¸é 1
+// ìž¬ì§ˆì˜ ì‰ì´ë” ì„¸íŒ…
+// ì‹¤íŒ¨í•˜ë©´ 0, ì„±ê³µí•˜ë©´ 1
 ZZ_SCRIPT
 int setMaterialShader ( HNODE hMaterial, HNODE hShader );
 
 ZZ_SCRIPT
 HNODE getMaterialShader ( HNODE hMaterial );
 
-// ºñÁ®ºí¿¡ µî·ÏµÈ ÀçÁú ¾ò±â
+// ë¹„ì ¸ë¸”ì— ë“±ë¡ëœ ìž¬ì§ˆ ì–»ê¸°
 ZZ_SCRIPT
 HNODE getVisibleMaterial ( HNODE hVisible, int iRenderUnit );
 
@@ -1955,27 +1955,27 @@ HNODE getVisibleLight ( HNODE hVisible, int iRenderUnit );
 ZZ_SCRIPT
 int setVisibleLight ( HNODE hVisible, int iRenderUnit, HNODE hLight );
 
-// ¶óÀÌÆ®¸Ê¿¡ Àû¿ëµÇ´Â ÇÕ¼º¸ðµå ¼³Á¤
+// ë¼ì´íŠ¸ë§µì— ì ìš©ë˜ëŠ” í•©ì„±ëª¨ë“œ ì„¤ì •
 // iBlendStyle = { 4 : ZZ_TOP_MODULATE, 5 : ZZ_TOP_MODULATE2X, 6 : ZZ_TOP_MODULATE4X }
 ZZ_SCRIPT
 int setLightmapBlendStyle ( int iBlendStyle );
 
-// ¾À ¾÷µ¥ÀÌÆ®.
-// beginScene() ÀÌÀü¿¡ È£Ãâ
-// ÁÖÀÇ : updateScene() È£Ãâ ÈÄ¿¡´Â ¾À³»¿¡ Æ÷ÇÔµÈ ¿ÀºêÁ§Æ®¸¦ »èÁ¦ÇÏ¸é ¾ÈµÊ.
-// Áï, ¿ÀºêÁ§Æ® »èÁ¦ÈÄ updateScene()À» È£ÃâÇØ¾ß ÇÔ.
-// »Ó¸¸ ¾Æ´Ï¶ó, beginScene()->renderScene()->endScene() ±¸°£¿¡µµ ¿ÀºêÁ§Æ® »èÁ¦ ±ÝÁö
+// ì”¬ ì—…ë°ì´íŠ¸.
+// beginScene() ì´ì „ì— í˜¸ì¶œ
+// ì£¼ì˜ : updateScene() í˜¸ì¶œ í›„ì—ëŠ” ì”¬ë‚´ì— í¬í•¨ëœ ì˜¤ë¸Œì íŠ¸ë¥¼ ì‚­ì œí•˜ë©´ ì•ˆë¨.
+// ì¦‰, ì˜¤ë¸Œì íŠ¸ ì‚­ì œí›„ updateScene()ì„ í˜¸ì¶œí•´ì•¼ í•¨.
+// ë¿ë§Œ ì•„ë‹ˆë¼, beginScene()->renderScene()->endScene() êµ¬ê°„ì—ë„ ì˜¤ë¸Œì íŠ¸ ì‚­ì œ ê¸ˆì§€
 ZZ_SCRIPT
 void updateScene ( void );
 
-/// ¾À º¯È¯Á¤º¸ ¾÷µ¥ÀÌÆ®. ¸ðµ¨ÀÇ ÀÌµ¿ ¹× È¸Àü °»½Å¿ë.
-/// endScene() ÀÌÈÄ¿¡ È£Ãâ.
-/// ÀÌ ÇÔ¼ö¸¦ È£ÃâÇÑ ´ÙÀ½, ¸ðµ¨ÀÇ ÁÂÇ¥¸¦ Á¡°ËÇÏ°í, ¾Ë¸ÂÁö ¾Ê´Ù¸é, ´Ù½Ã Á÷Á¢ °»½ÅÇÒ ¼ö ÀÖ´Ù(setPosition()...)
+/// ì”¬ ë³€í™˜ì •ë³´ ì—…ë°ì´íŠ¸. ëª¨ë¸ì˜ ì´ë™ ë° íšŒì „ ê°±ì‹ ìš©.
+/// endScene() ì´í›„ì— í˜¸ì¶œ.
+/// ì´ í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•œ ë‹¤ìŒ, ëª¨ë¸ì˜ ì¢Œí‘œë¥¼ ì ê²€í•˜ê³ , ì•Œë§žì§€ ì•Šë‹¤ë©´, ë‹¤ì‹œ ì§ì ‘ ê°±ì‹ í•  ìˆ˜ ìžˆë‹¤(setPosition()...)
 ZZ_SCRIPT
 void updateSceneTransform ( void );
 
-// ¿ÀºêÁ§Æ® ÇÏ³ª¸¸ °³º°ÀûÀ¸·Î ¾Ö´Ï¸ÞÀÌ¼Ç °»½ÅÇÏ±â
-// ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0
+// ì˜¤ë¸Œì íŠ¸ í•˜ë‚˜ë§Œ ê°œë³„ì ìœ¼ë¡œ ì• ë‹ˆë©”ì´ì…˜ ê°±ì‹ í•˜ê¸°
+// ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT
 int applyMotion ( HNODE hAnimatable );
 
@@ -1991,53 +1991,53 @@ int setMaterialObjectAlpha ( HNODE hMaterial, float fAlpha );
 ZZ_SCRIPT
 int setCameraTransparency ( float fTransparency );
 
-// ÀçÁúÀÇ ºí·»µù Å¸ÀÔ. 0 : ÀÏ¹Ý, 1 : ¹à°Ô
+// ìž¬ì§ˆì˜ ë¸”ë Œë”© íƒ€ìž…. 0 : ì¼ë°˜, 1 : ë°ê²Œ
 // (ZZ_BLEND_TYPE)
 ZZ_SCRIPT
 int setMaterialBlendType ( HNODE hMaterial, int iBlendType );
 
-/// ÀçÁúÀÇ ¾ËÆÄ ºí·»µù ¼¼ºÎ ÁöÁ¤
-/// setMaterialUseAlpha() ¿¡ ÀÇÇØ ¾ËÆÄºí·»µù ÁöÁ¤µÈ ¿ÀºêÁ§Æ®¸¸ ¿µÇâ¹ÞÀ½.
+/// ìž¬ì§ˆì˜ ì•ŒíŒŒ ë¸”ë Œë”© ì„¸ë¶€ ì§€ì •
+/// setMaterialUseAlpha() ì— ì˜í•´ ì•ŒíŒŒë¸”ë Œë”© ì§€ì •ëœ ì˜¤ë¸Œì íŠ¸ë§Œ ì˜í–¥ë°›ìŒ.
 /// @iBlendSrc : ZZ_BLEND ( in renderer.h )
 /// @iBlendDest : ZZ_BLEND ( in renderer.h )
 /// @iBlendOp : ZZ_BLENDOP ( in renderer.h )
 ZZ_SCRIPT
 int setMaterialBlendTypeCustom ( HNODE hMaterial, int iBlendSrc, int iBlendDest, int iBlendOp );
 
-// ¸ðµ¨ÀÇ ¾Ö´Ï¸ÞÀÌ¼Ç ¼Óµµ Á¶Àý.
-// fSpeed : ¿øº» ¾Ö´Ï¸ÞÀÌ¼ÇÀÇ ¼Óµµ¿¡ °öÇØÁú °ª. 1.0ÀÌ¸é ¿ø·¡ ¸ð¼ÇÀÇ ¼Óµµ ±×´ë·Î À¯Áö. 0.5 ¸é µÎ ¹è ´À¸®°Ô, 2.0ÀÌ¸é µÎ ¹è ºü¸£°Ô
-// ¸®ÅÏ°ª : 1ÀÌ¸é ¼º°ø. 0ÀÌ¸é ½ÇÆÐ
-// ÁÖÀÇ : 
-//   Ã¹¹øÂ° ÀÎÀÚ°¡ MotionÀÌ ¾Æ´Ï°í, ¸ðµ¨ÀÌ³ª ¸ðÆÛÀÎ °ÍÀ» ÁÖÀÇ
-//   setVisibleVelocity()´Â ÀÌµ¿ ¼ÓµµÀÎ ¹Ý¸é, ÀÌ ÇÔ¼ö´Â ¾Ö´Ï¸ÞÀÌ¼ÇÀÇ ¼Óµµ
+// ëª¨ë¸ì˜ ì• ë‹ˆë©”ì´ì…˜ ì†ë„ ì¡°ì ˆ.
+// fSpeed : ì›ë³¸ ì• ë‹ˆë©”ì´ì…˜ì˜ ì†ë„ì— ê³±í•´ì§ˆ ê°’. 1.0ì´ë©´ ì›ëž˜ ëª¨ì…˜ì˜ ì†ë„ ê·¸ëŒ€ë¡œ ìœ ì§€. 0.5 ë©´ ë‘ ë°° ëŠë¦¬ê²Œ, 2.0ì´ë©´ ë‘ ë°° ë¹ ë¥´ê²Œ
+// ë¦¬í„´ê°’ : 1ì´ë©´ ì„±ê³µ. 0ì´ë©´ ì‹¤íŒ¨
+// ì£¼ì˜ : 
+//   ì²«ë²ˆì§¸ ì¸ìžê°€ Motionì´ ì•„ë‹ˆê³ , ëª¨ë¸ì´ë‚˜ ëª¨í¼ì¸ ê²ƒì„ ì£¼ì˜
+//   setVisibleVelocity()ëŠ” ì´ë™ ì†ë„ì¸ ë°˜ë©´, ì´ í•¨ìˆ˜ëŠ” ì• ë‹ˆë©”ì´ì…˜ì˜ ì†ë„
 ZZ_SCRIPT
 int setAnimatableSpeed ( HNODE hAnimatable, float fSpeed );
 
-// ¾Ö´Ï¸ÞÀÌ¼Ç ¼Óµµ ¾ò±â
-// ¸®ÅÏ°ª : ¼Óµµ¸¦ ¸®ÅÏ, ½ÇÆÐÇÏ¸é, 0º¸´Ù ÀÛÀº °ªÀ» ¸®ÅÏ
+// ì• ë‹ˆë©”ì´ì…˜ ì†ë„ ì–»ê¸°
+// ë¦¬í„´ê°’ : ì†ë„ë¥¼ ë¦¬í„´, ì‹¤íŒ¨í•˜ë©´, 0ë³´ë‹¤ ìž‘ì€ ê°’ì„ ë¦¬í„´
 ZZ_SCRIPT
 float getAnimatableSpeed ( HNODE hAnimatable );
 
 
-// ¾Ö´Ï¸ÞÀÌÅÍºí(¸ðµ¨ Æ÷ÇÔ)ÀÇ ¾Ö´Ï¸ÞÀÌ¼Ç ÄÁÆ®·Ñ
-// hAnimatable : ex) ¸ðµ¨
+// ì• ë‹ˆë©”ì´í„°ë¸”(ëª¨ë¸ í¬í•¨)ì˜ ì• ë‹ˆë©”ì´ì…˜ ì»¨íŠ¸ë¡¤
+// hAnimatable : ex) ëª¨ë¸
 // iControl : 0 : Stop, 1 : Start, 2 : Pause
-// ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0
+// ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT
 int controlAnimatable ( HNODE hAnimatable, int iControl );
 
-// ¾Ö´Ï¸ÞÀÌÅÍºíÀÇ ¾Ö´Ï¸ÞÀÌ¼Ç »óÅÂ ¾ò±â
+// ì• ë‹ˆë©”ì´í„°ë¸”ì˜ ì• ë‹ˆë©”ì´ì…˜ ìƒíƒœ ì–»ê¸°
 // @return : 0(Stopped), 1(Started), 2(Paused)
 ZZ_SCRIPT
 int getAnimatableState ( HNODE hAnimatable );
 
-// °ËÀÜ»ó °´Ã¼ »ý¼º(½ºÅ©¸³Æ® Àü¿ë)
-// fDistancePerPoint : 1°³ÀÇ Æ÷ÀÎÆ®°¡ »õ·Î »ý¼ºµÇ´Â °Å¸®(cm ´ÜÀ§). Áï, fDistancePerPoint °Å¸®¸¸Å­ ÀÌµ¿µÇ¸é »õ·Î Æ÷ÀÎÆ®°¡ »ý¼ºµÈ´Ù.
-// iDurationInMilliSecond : ¹Ð¸® ¼¼ÄÁµå ´ÜÀ§ÀÇ ¶óÀÌÇÁ Å¸ÀÓ. Æ÷ÀÎÆ®µéÀº ÀÌ ½Ã°£¸¸Å­ »ì¾ÆÀÖ´Ù Á×´Â´Ù.
-// pTexturePath : »ç¿ëµÉ ÅØ½ºÃÄ °æ·Î
-// fColorRed/Green/Blue : ÅØ½ºÃÄ¿¡ ºí·»µùµÉ »ö»ó°ª(0 ~ 1.0)
-// fSP_X/Y/Z : °ËÀÇ ¿øÁ¡¿¡ ´ëÇÑ ½ÃÀÛ Æ÷ÀÎÆ®ÀÇ ·ÎÄÃ ÁÂÇ¥
-// fEP_X/Y/Z : °ËÀÇ ¿øÁ¡¿¡ ´ëÇÑ Á¾·á Æ÷ÀÎÆ®ÀÇ ·ÎÄÃ ÁÂÇ¥
+// ê²€ìž”ìƒ ê°ì²´ ìƒì„±(ìŠ¤í¬ë¦½íŠ¸ ì „ìš©)
+// fDistancePerPoint : 1ê°œì˜ í¬ì¸íŠ¸ê°€ ìƒˆë¡œ ìƒì„±ë˜ëŠ” ê±°ë¦¬(cm ë‹¨ìœ„). ì¦‰, fDistancePerPoint ê±°ë¦¬ë§Œí¼ ì´ë™ë˜ë©´ ìƒˆë¡œ í¬ì¸íŠ¸ê°€ ìƒì„±ëœë‹¤.
+// iDurationInMilliSecond : ë°€ë¦¬ ì„¸ì»¨ë“œ ë‹¨ìœ„ì˜ ë¼ì´í”„ íƒ€ìž„. í¬ì¸íŠ¸ë“¤ì€ ì´ ì‹œê°„ë§Œí¼ ì‚´ì•„ìžˆë‹¤ ì£½ëŠ”ë‹¤.
+// pTexturePath : ì‚¬ìš©ë  í…ìŠ¤ì³ ê²½ë¡œ
+// fColorRed/Green/Blue : í…ìŠ¤ì³ì— ë¸”ë Œë”©ë  ìƒ‰ìƒê°’(0 ~ 1.0)
+// fSP_X/Y/Z : ê²€ì˜ ì›ì ì— ëŒ€í•œ ì‹œìž‘ í¬ì¸íŠ¸ì˜ ë¡œì»¬ ì¢Œí‘œ
+// fEP_X/Y/Z : ê²€ì˜ ì›ì ì— ëŒ€í•œ ì¢…ë£Œ í¬ì¸íŠ¸ì˜ ë¡œì»¬ ì¢Œí‘œ
 ZZ_SCRIPT
 HNODE loadTrailScript ( ZSTRING pName, 
 				 float fDistancePerPoint,
@@ -2048,13 +2048,13 @@ HNODE loadTrailScript ( ZSTRING pName,
 				 float fSP_X, float fSP_Y, float fSP_Z,
 				 float fEP_X, float fEP_Y, float fEP_Z );
 
-// °ËÀÜ»ó °´Ã¼ »ý¼º
-// fDistancePerPoint : 1°³ÀÇ Æ÷ÀÎÆ®°¡ »õ·Î »ý¼ºµÇ´Â °Å¸®(cm ´ÜÀ§). Áï, fDistancePerPoint °Å¸®¸¸Å­ ÀÌµ¿µÇ¸é »õ·Î Æ÷ÀÎÆ®°¡ »ý¼ºµÈ´Ù.
-// iDurationInMilliSecond : ¹Ð¸® ¼¼ÄÁµå ´ÜÀ§ÀÇ ¶óÀÌÇÁ Å¸ÀÓ. Æ÷ÀÎÆ®µéÀº ÀÌ ½Ã°£¸¸Å­ »ì¾ÆÀÖ´Ù Á×´Â´Ù.
-// pTexturePath : »ç¿ëµÉ ÅØ½ºÃÄ °æ·Î
-// Color : ÅØ½ºÃÄ¿¡ ºí·»µùµÉ »ö»ó°ª. D3DCOLOR. ARGB
-// vStrat : °ËÀÇ ¿øÁ¡¿¡ ´ëÇÑ ½ÃÀÛ Æ÷ÀÎÆ®ÀÇ ·ÎÄÃ ÁÂÇ¥
-// vEnd : °ËÀÇ ¿øÁ¡¿¡ ´ëÇÑ Á¾·á Æ÷ÀÎÆ®ÀÇ ·ÎÄÃ ÁÂÇ¥
+// ê²€ìž”ìƒ ê°ì²´ ìƒì„±
+// fDistancePerPoint : 1ê°œì˜ í¬ì¸íŠ¸ê°€ ìƒˆë¡œ ìƒì„±ë˜ëŠ” ê±°ë¦¬(cm ë‹¨ìœ„). ì¦‰, fDistancePerPoint ê±°ë¦¬ë§Œí¼ ì´ë™ë˜ë©´ ìƒˆë¡œ í¬ì¸íŠ¸ê°€ ìƒì„±ëœë‹¤.
+// iDurationInMilliSecond : ë°€ë¦¬ ì„¸ì»¨ë“œ ë‹¨ìœ„ì˜ ë¼ì´í”„ íƒ€ìž„. í¬ì¸íŠ¸ë“¤ì€ ì´ ì‹œê°„ë§Œí¼ ì‚´ì•„ìžˆë‹¤ ì£½ëŠ”ë‹¤.
+// pTexturePath : ì‚¬ìš©ë  í…ìŠ¤ì³ ê²½ë¡œ
+// Color : í…ìŠ¤ì³ì— ë¸”ë Œë”©ë  ìƒ‰ìƒê°’. D3DCOLOR. ARGB
+// vStrat : ê²€ì˜ ì›ì ì— ëŒ€í•œ ì‹œìž‘ í¬ì¸íŠ¸ì˜ ë¡œì»¬ ì¢Œí‘œ
+// vEnd : ê²€ì˜ ì›ì ì— ëŒ€í•œ ì¢…ë£Œ í¬ì¸íŠ¸ì˜ ë¡œì»¬ ì¢Œí‘œ
 ZZ_DLL
 HNODE loadTrail ( ZSTRING pName, 
 				 float fDistancePerPoint,
@@ -2065,147 +2065,147 @@ HNODE loadTrail ( ZSTRING pName,
 				 ZZ_VECTOR vStart,
 				 ZZ_VECTOR vEnd );
 
-/// °ËÀÜ»ó ÄÁÆ®·Ñ
+/// ê²€ìž”ìƒ ì»¨íŠ¸ë¡¤
 /// @iControl
-///   0 : Á¤Áö. Á¤ÁöÇÏ´Â Áï½Ã È­¸é¿¡ °ËÀÜ»óÀÌ »ç¶óÁü. Áï, ºÎµå·´°Ô Á¡ÁøÀûÀ¸·Î »ç¶óÁöÁö ¾ÊÀ½)
-///   1 : ½ÃÀÛ
-///   2 : ÀÏ½ÃÁ¤Áö. °ËÀÜ»óÀº È­¸é¿¡ ±×´ë·Î Á¤ÁöÇØ ÀÖÀ½
-///   3 : Á¡ÁøÀû Á¤Áö. Æ÷ÀÎÆ®¸¦ »õ·Î »ý¼ºÇÏÁö ¾ÊÀ½. ½Ã°£¿¡ µû¶ó °ËÀÜ»óÀÌ Á¡Â÷ÀûÀ¸·Î »ç¶óÁü.
+///   0 : ì •ì§€. ì •ì§€í•˜ëŠ” ì¦‰ì‹œ í™”ë©´ì— ê²€ìž”ìƒì´ ì‚¬ë¼ì§. ì¦‰, ë¶€ë“œëŸ½ê²Œ ì ì§„ì ìœ¼ë¡œ ì‚¬ë¼ì§€ì§€ ì•ŠìŒ)
+///   1 : ì‹œìž‘
+///   2 : ì¼ì‹œì •ì§€. ê²€ìž”ìƒì€ í™”ë©´ì— ê·¸ëŒ€ë¡œ ì •ì§€í•´ ìžˆìŒ
+///   3 : ì ì§„ì  ì •ì§€. í¬ì¸íŠ¸ë¥¼ ìƒˆë¡œ ìƒì„±í•˜ì§€ ì•ŠìŒ. ì‹œê°„ì— ë”°ë¼ ê²€ìž”ìƒì´ ì ì°¨ì ìœ¼ë¡œ ì‚¬ë¼ì§.
 ZZ_SCRIPT
 int controlTrail ( HNODE hTrail, int iControl );
 
-/// °ËÀÜ»ó »óÅÂ ¾ò±â
+/// ê²€ìž”ìƒ ìƒíƒœ ì–»ê¸°
 /// @return 
-///   0 : Á¤Áö
-///   1 : ½ÃÀÛ
-///   2 : ÀÏ½ÃÁ¤Áö
-///   3 : Á¡ÁøÀû Á¤Áö
+///   0 : ì •ì§€
+///   1 : ì‹œìž‘
+///   2 : ì¼ì‹œì •ì§€
+///   3 : ì ì§„ì  ì •ì§€
 ZZ_SCRIPT
 int getTrailState ( HNODE hTrail );
 
-/// ¾ø¾îÁø ÀÎÅÍÆäÀÌ½º. 
+/// ì—†ì–´ì§„ ì¸í„°íŽ˜ì´ìŠ¤. 
 /// obsolete interface
 ZZ_SCRIPT
 void setDataPath ( ZSTRING pDataPath );
 
-// Åõ¸íÇÑ ¿ÀºêÁ§Æ®ÀÇ ·»´õ¸µ ¿ì¼±¼øÀ§.
-// iPriority : 	ZZ_DP_HIGHEST, ZZ_DP_HIGH, ZZ_DP_NORMAL(µðÆúÆ®), ZZ_DP_LOW, ZZ_DP_LOWEST
-// ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0
+// íˆ¬ëª…í•œ ì˜¤ë¸Œì íŠ¸ì˜ ë Œë”ë§ ìš°ì„ ìˆœìœ„.
+// iPriority : 	ZZ_DP_HIGHEST, ZZ_DP_HIGH, ZZ_DP_NORMAL(ë””í´íŠ¸), ZZ_DP_LOW, ZZ_DP_LOWEST
+// ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT
 int setDrawPriority ( HNODE hVisible, int iPriority );
 
-// ·»´õ¸µ ¿ì¼±¼øÀ§ ¾ò±â
-// ½ÇÆÐÇÏ¸é -1À» ¸®ÅÏ
+// ë Œë”ë§ ìš°ì„ ìˆœìœ„ ì–»ê¸°
+// ì‹¤íŒ¨í•˜ë©´ -1ì„ ë¦¬í„´
 ZZ_SCRIPT
 int getDrawPriority ( HNODE hVisible );
 
-// ¸ðµ¨¿¡ ¿¬°áµÈ ´õ¹Ì °³¼ö ¸®ÅÏ
+// ëª¨ë¸ì— ì—°ê²°ëœ ë”ë¯¸ ê°œìˆ˜ ë¦¬í„´
 ZZ_SCRIPT
 int getNumDummies ( HNODE hModel );
 
-// ¸ðµ¨¿¡ ¿¬°áµÈ º» °³¼ö ¸®ÅÏ
+// ëª¨ë¸ì— ì—°ê²°ëœ ë³¸ ê°œìˆ˜ ë¦¬í„´
 ZZ_SCRIPT
 int getNumBones ( HNODE hModel );
 
-// iBoneIndex ¹øÂ° º» ¿ÀºêÁ§Æ® ¾ò±â
+// iBoneIndex ë²ˆì§¸ ë³¸ ì˜¤ë¸Œì íŠ¸ ì–»ê¸°
 ZZ_SCRIPT
 HNODE getBone ( HNODE hModel, int iBoneIndex );
 
-// ¾Ö´Ï¸ÞÀÌÅÍºí¿¡¼­ »ç¿ëÇÏ´Â ¸ð¼ÇÀÇ ½ÃÀÛ Áö¿¬½Ã°£(¹Ð¸®¼¼ÄÁµå) ¾ò±â
+// ì• ë‹ˆë©”ì´í„°ë¸”ì—ì„œ ì‚¬ìš©í•˜ëŠ” ëª¨ì…˜ì˜ ì‹œìž‘ ì§€ì—°ì‹œê°„(ë°€ë¦¬ì„¸ì»¨ë“œ) ì–»ê¸°
 ZZ_SCRIPT
 int getStartDelay ( HNODE hAnimatable );
 
-// ¾Ö´Ï¸ÞÀÌÅÍºí¿¡¼­ »ç¿ëÇÏ´Â ¸ð¼ÇÀÇ ½ÃÀÛ Áö¿¬½Ã°£(¹Ð¸®¼¼ÄÁµå) ¼³Á¤
-// ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0
+// ì• ë‹ˆë©”ì´í„°ë¸”ì—ì„œ ì‚¬ìš©í•˜ëŠ” ëª¨ì…˜ì˜ ì‹œìž‘ ì§€ì—°ì‹œê°„(ë°€ë¦¬ì„¸ì»¨ë“œ) ì„¤ì •
+// ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT
 int setStartDelay ( HNODE hAnimatable, int iDelayMilliSecond );
 
-// ¾Ö´Ï¸ÞÀÌÅÍºíÀÇ ¾Ö´Ï¸ÞÀÌ¼Ç ¹Ýº¹ È¸¼ö ¼³Á¤
-// iRepeatCount : 0ÀÌ¸é ¹«ÇÑ¹Ýº¹, ÁöÁ¤µÈ °³¼ö¸¸Å­¸¸ ¾Ö´Ï¸ÞÀÌ¼Ç ¹Ýº¹
+// ì• ë‹ˆë©”ì´í„°ë¸”ì˜ ì• ë‹ˆë©”ì´ì…˜ ë°˜ë³µ íšŒìˆ˜ ì„¤ì •
+// iRepeatCount : 0ì´ë©´ ë¬´í•œë°˜ë³µ, ì§€ì •ëœ ê°œìˆ˜ë§Œí¼ë§Œ ì• ë‹ˆë©”ì´ì…˜ ë°˜ë³µ
 ZZ_SCRIPT
 int setRepeatCount ( HNODE hAnimatable, int iRepeatCount );
 
-/// ¹Ýº¹ È¸¼ö ¾ò¾î ¿À±â
+/// ë°˜ë³µ íšŒìˆ˜ ì–»ì–´ ì˜¤ê¸°
 ZZ_SCRIPT
 int getRepeatCount ( HNODE hAnimatable );
 
-/// ºñÁ®ºí ³ëµå¸¦ ¸µÅ©½ÃÅ´. ´Ü, ÇöÀç ¿ùµå»óÀÇ ÁÂÇ¥´Â ±×´ë·Î À¯ÁöÇÑ´Ù.
-/// Áï, ·ÎÄÃ ÁÂÇ¥°¡ ¿ùµå¿¡ ±âÁØÀ¸·Î º¯°æµÈ´Ù.
-/// ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0
+/// ë¹„ì ¸ë¸” ë…¸ë“œë¥¼ ë§í¬ì‹œí‚´. ë‹¨, í˜„ìž¬ ì›”ë“œìƒì˜ ì¢Œí‘œëŠ” ê·¸ëŒ€ë¡œ ìœ ì§€í•œë‹¤.
+/// ì¦‰, ë¡œì»¬ ì¢Œí‘œê°€ ì›”ë“œì— ê¸°ì¤€ìœ¼ë¡œ ë³€ê²½ëœë‹¤.
+/// ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT
 int linkVisibleWorld ( HNODE hParent, HNODE hChild );
 					 
-/// ºñÁ®ºí ³ëµåÀÇ ¸µÅ©¸¦ ÇØÁ¦½ÃÅ²´Ù. ´Ü, ÇØÁ¦µÈ ³ëµå´Â ÇöÀç À§Ä¡»ó¿¡ ±×´ë·Î ³²´Â´Ù.
-/// @param hNode   ÀÚ½Ä ³ëµåÀÇ ÇÚµé
-/// @return        ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0
+/// ë¹„ì ¸ë¸” ë…¸ë“œì˜ ë§í¬ë¥¼ í•´ì œì‹œí‚¨ë‹¤. ë‹¨, í•´ì œëœ ë…¸ë“œëŠ” í˜„ìž¬ ìœ„ì¹˜ìƒì— ê·¸ëŒ€ë¡œ ë‚¨ëŠ”ë‹¤.
+/// @param hNode   ìžì‹ ë…¸ë“œì˜ í•¸ë“¤
+/// @return        ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT 
 int unlinkVisibleWorld (
 	HNODE hVisible
 );
 
-/// ¾Ö´Ï¸ÞÀÌÅÍºí °´Ã¼ÀÇ ¸ð¼ÇÀ» iFrameÀ¸·Î ÁöÁ¤µÈ ÇÁ·¹ÀÓÀÇ ¸ð¼ÇÀ¸·Î ¼³Á¤ÇÑ´Ù.
-/// @iFrame : ÇÁ·¹ÀÓ ¹øÈ£
+/// ì• ë‹ˆë©”ì´í„°ë¸” ê°ì²´ì˜ ëª¨ì…˜ì„ iFrameìœ¼ë¡œ ì§€ì •ëœ í”„ë ˆìž„ì˜ ëª¨ì…˜ìœ¼ë¡œ ì„¤ì •í•œë‹¤.
+/// @iFrame : í”„ë ˆìž„ ë²ˆí˜¸
 ZZ_SCRIPT
 int setAnimatableFrame ( HNODE hAnimatable, int iFrame );
 
-/// ¾Ö´Ï¸ÞÀÌÅÍºí °´Ã¼ÀÇ ¸ð¼ÇÀ» iTimeMilliSecondÀ¸·Î ÁöÁ¤µÈ ½Ã°£ÀÇ ¸ð¼ÇÀ¸·Î ¼³Á¤ÇÑ´Ù.
-// @iTimeMilliSecond : ¹Ð¸®¼¼ÄÁµå ´ÜÀ§ÀÇ ½Ã°£
+/// ì• ë‹ˆë©”ì´í„°ë¸” ê°ì²´ì˜ ëª¨ì…˜ì„ iTimeMilliSecondìœ¼ë¡œ ì§€ì •ëœ ì‹œê°„ì˜ ëª¨ì…˜ìœ¼ë¡œ ì„¤ì •í•œë‹¤.
+// @iTimeMilliSecond : ë°€ë¦¬ì„¸ì»¨ë“œ ë‹¨ìœ„ì˜ ì‹œê°„
 ZZ_SCRIPT
 int setAnimatableTime ( HNODE hAnimatable, int iTimeMilliSecond );
 
-// ÇöÀç ¾îÅÂÄ¡ µÇ¾î ÀÖ´Â ¸ð¼ÇÀ» ¾ò¾î¿È
+// í˜„ìž¬ ì–´íƒœì¹˜ ë˜ì–´ ìžˆëŠ” ëª¨ì…˜ì„ ì–»ì–´ì˜´
 ZZ_SCRIPT
 HNODE getMotion ( HNODE hAnimatable );
 
-/// °¡Àå ¸¶Áö¸·¿¡ Ãß°¡µÈ ·»´õÀ¯´Ö »èÁ¦
-/// ´ëÀÀµÇ´Â ÇÔ¼ö(addRenderUnit())
-/// hVisible : ºñÁ®ºí ¶Ç´Â ¸ðµ¨
+/// ê°€ìž¥ ë§ˆì§€ë§‰ì— ì¶”ê°€ëœ ë Œë”ìœ ë‹› ì‚­ì œ
+/// ëŒ€ì‘ë˜ëŠ” í•¨ìˆ˜(addRenderUnit())
+/// hVisible : ë¹„ì ¸ë¸” ë˜ëŠ” ëª¨ë¸
 ZZ_SCRIPT
 int popRenderUnit ( HNODE hVisible );
 
-// Ãæµ¹°Ë»ç½Ã °í·ÁÇÒ ´ë»ó Å¬·¡½ºµéÀ» Á¤ÀÇ
-// pickNode() µî¿¡ »ç¿ëµÊ
+// ì¶©ëŒê²€ì‚¬ì‹œ ê³ ë ¤í•  ëŒ€ìƒ í´ëž˜ìŠ¤ë“¤ì„ ì •ì˜
+// pickNode() ë“±ì— ì‚¬ìš©ë¨
 ZZ_SCRIPT
 int setIncludeClasses ( int iIncludeClasses );
 
-/// Ãæµ¹°Ë»ç½Ã °í·ÁµÇ´Â ´ë»ó Å¬·¡½ºµéÀ» ¾ò´Â´Ù.
+/// ì¶©ëŒê²€ì‚¬ì‹œ ê³ ë ¤ë˜ëŠ” ëŒ€ìƒ í´ëž˜ìŠ¤ë“¤ì„ ì–»ëŠ”ë‹¤.
 ZZ_SCRIPT
 int getIncludeClasses ( void );
 
-// Ãæµ¹°Ë»ç½Ã Á¦¿ÜÇÒ ´ë»ó Å¬·¡½ºµéÀ» Á¤ÀÇ
-// pickNode() µî¿¡ »ç¿ëµÊ
+// ì¶©ëŒê²€ì‚¬ì‹œ ì œì™¸í•  ëŒ€ìƒ í´ëž˜ìŠ¤ë“¤ì„ ì •ì˜
+// pickNode() ë“±ì— ì‚¬ìš©ë¨
 ZZ_SCRIPT
 int setExcludeClasses ( int iExcludeClasses );
 
-/// Ãæµ¹°Ë»ç½Ã Á¦¿ÜµÇ´Â ´ë»ó Å¬·¡½ºµéÀ» ¾ò´Â´Ù.
+/// ì¶©ëŒê²€ì‚¬ì‹œ ì œì™¸ë˜ëŠ” ëŒ€ìƒ í´ëž˜ìŠ¤ë“¤ì„ ì–»ëŠ”ë‹¤.
 ZZ_SCRIPT
 int getExcludeClasses ( void );
 
-/// worldToScreen() ÀÇ ½ºÅ©¸³Æ®¿ë ¹öÀü
-/// ½Ç¼öÇü¹è¿­ 0, 1, 2¿¡ º¯È¯µÈ ½ºÅ©¸° ÁÂÇ¥¸¦ ÀúÀåÇÑ´Ù.
+/// worldToScreen() ì˜ ìŠ¤í¬ë¦½íŠ¸ìš© ë²„ì „
+/// ì‹¤ìˆ˜í˜•ë°°ì—´ 0, 1, 2ì— ë³€í™˜ëœ ìŠ¤í¬ë¦° ì¢Œí‘œë¥¼ ì €ìž¥í•œë‹¤.
 ZZ_SCRIPT
 void worldToScreenScript ( float fWorldX, float fWorldY, float fWorldZ );
 
-/// 3Â÷¿ø ¿ùµåÁÂÇ¥¸¦ ½ºÅ©¸° ÁÂÇ¥·Î º¯È¯
-/// fWorldX/Y/Z : ¿ùµåÁÂÇ¥
-/// fScreenX/Y/Z : º¯È¯µÈ ½ºÅ©¸° ÁÂÇ¥(0ºÎÅÍ ½ÃÀÛ. ½ºÅ©¸° ¿À¸¥ÂÊ°ú ¾Æ·¡ÂÊ ¹æÇâÀ¸·Î Áõ°¡)
+/// 3ì°¨ì› ì›”ë“œì¢Œí‘œë¥¼ ìŠ¤í¬ë¦° ì¢Œí‘œë¡œ ë³€í™˜
+/// fWorldX/Y/Z : ì›”ë“œì¢Œí‘œ
+/// fScreenX/Y/Z : ë³€í™˜ëœ ìŠ¤í¬ë¦° ì¢Œí‘œ(0ë¶€í„° ì‹œìž‘. ìŠ¤í¬ë¦° ì˜¤ë¥¸ìª½ê³¼ ì•„ëž˜ìª½ ë°©í–¥ìœ¼ë¡œ ì¦ê°€)
 ZZ_DLL
 void worldToScreen ( float fWorldX, float fWorldY, float fWorldZ, float * fScreenX, float * fScreenY, float * fScreenZ );
 
-/// Model ÀÇ ¸Þ½Ã ³ôÀÌ¸¦ ¸®ÅÏÇÔ
-/// ´õ ¾ö¹ÐÇÏ°Ô ¸»ÇÏÀÚ¸é, ¸ðµ¨¿¡ ·»´õÀ¯´ÖÀ¸·Î µî·ÏµÈ ¸Þ½ÃµéÀÇ ¹Ù¿îµù ¹Ú½º¸¦ ¾ò¾î,
-/// ±× ³ôÀÌ¸¦ ¸®ÅÏÇÑ´Ù. µû¶ó¼­, ¸µÅ©·Î ¿¬°áµÈ ¸Ó¸®³ª, ¸ðÀÚ µîÀÇ °´Ã¼´Â °í·ÁÇÏÁö ¾Ê´Â´Ù.
+/// Model ì˜ ë©”ì‹œ ë†’ì´ë¥¼ ë¦¬í„´í•¨
+/// ë” ì—„ë°€í•˜ê²Œ ë§í•˜ìžë©´, ëª¨ë¸ì— ë Œë”ìœ ë‹›ìœ¼ë¡œ ë“±ë¡ëœ ë©”ì‹œë“¤ì˜ ë°”ìš´ë”© ë°•ìŠ¤ë¥¼ ì–»ì–´,
+/// ê·¸ ë†’ì´ë¥¼ ë¦¬í„´í•œë‹¤. ë”°ë¼ì„œ, ë§í¬ë¡œ ì—°ê²°ëœ ë¨¸ë¦¬ë‚˜, ëª¨ìž ë“±ì˜ ê°ì²´ëŠ” ê³ ë ¤í•˜ì§€ ì•ŠëŠ”ë‹¤.
 ZZ_SCRIPT
 float getModelHeight ( HNODE hModel );
 
-/// ¹Ù´Ù °´Ã¼ »ý¼º
-/// @fOrigX/Y/Z : ¹Ù´Ùºí·ÏÀÇ ¿ùµå»óÀÇ ¿øÁ¡(¿ÞÂÊ »ó´Ü)
-/// @fWidth/fHeight : ³ÐÀÌ ¹× ³ôÀÌ
-/// @iRepeatU/V : ÅØ½ºÃÄÁÂÇ¥ ¹Ýº¹ °³¼ö(°¡·Î/¼¼·Î)
-/// @hShader : ½¦ÀÌ´õ ÇÚµé(shader_ocean À¸·Î ÁöÁ¤ÇØ¾ß ÇÔ)
-/// @hLight : ¶óÀÌÆ® ÇÚµé(0 °¡´É)
-/// ¼³¸í : ³»ºÎÀûÀ¸·Î ¸Þ½Ã¿Í ÀçÁúÀ» »ý¼ºÇÑ´Ù.
-///        »èÁ¦½Ã¿¡´Â unloadOceanBlock()À» È£Ãâ(ÀÚµ¿ÀûÀ¸·Î ¸Þ½Ã¿Í ÀçÁúµµ »èÁ¦µÊ)
+/// ë°”ë‹¤ ê°ì²´ ìƒì„±
+/// @fOrigX/Y/Z : ë°”ë‹¤ë¸”ë¡ì˜ ì›”ë“œìƒì˜ ì›ì (ì™¼ìª½ ìƒë‹¨)
+/// @fWidth/fHeight : ë„“ì´ ë° ë†’ì´
+/// @iRepeatU/V : í…ìŠ¤ì³ì¢Œí‘œ ë°˜ë³µ ê°œìˆ˜(ê°€ë¡œ/ì„¸ë¡œ)
+/// @hShader : ì‰ì´ë” í•¸ë“¤(shader_ocean ìœ¼ë¡œ ì§€ì •í•´ì•¼ í•¨)
+/// @hLight : ë¼ì´íŠ¸ í•¸ë“¤(0 ê°€ëŠ¥)
+/// ì„¤ëª… : ë‚´ë¶€ì ìœ¼ë¡œ ë©”ì‹œì™€ ìž¬ì§ˆì„ ìƒì„±í•œë‹¤.
+///        ì‚­ì œì‹œì—ëŠ” unloadOceanBlock()ì„ í˜¸ì¶œ(ìžë™ì ìœ¼ë¡œ ë©”ì‹œì™€ ìž¬ì§ˆë„ ì‚­ì œë¨)
 ZZ_SCRIPT
 HNODE loadOceanBlock (
 	ZSTRING pOceanBlockName,
@@ -2216,7 +2216,7 @@ HNODE loadOceanBlock (
 	HNODE hLight
 );
 
-// ÀÌ ÀÎÅÍÆäÀÌ½º´Â »ç¿ëÇÒ ÇÊ¿ä ¾øÀ½. loadOceanBlock¿¡¼­(¸¸) Á÷Á¢ È£Ãâ
+// ì´ ì¸í„°íŽ˜ì´ìŠ¤ëŠ” ì‚¬ìš©í•  í•„ìš” ì—†ìŒ. loadOceanBlockì—ì„œ(ë§Œ) ì§ì ‘ í˜¸ì¶œ
 ZZ_SCRIPT
 HNODE loadOceanMaterial (
 	ZSTRING pMatName,
@@ -2224,19 +2224,19 @@ HNODE loadOceanMaterial (
 	ZSTRING pFirstTexture
 );
 
-/// OceanBlock °´Ã¼´Â ²À ÀÌ ÇÔ¼ö·Î »èÁ¦ÇØ¾ß ÇÔ
+/// OceanBlock ê°ì²´ëŠ” ê¼­ ì´ í•¨ìˆ˜ë¡œ ì‚­ì œí•´ì•¼ í•¨
 ZZ_SCRIPT
 int unloadOceanBlock ( HNODE hOceanBlock );
 
-/// ÀçÁú¿¡ ÅØ½ºÃÄ¸¦ Ãß°¡ÀûÀ¸·Î µî·ÏÇÔ
-/// ÅØ½ºÃÄ ¸ñ·ÏÀÇ °¡Àå ¸¶Áö¸·¿¡ Ãß°¡µÊ.
-/// ÅØ½ºÃÄ ¾Ö´Ï¸ÞÀÌ¼ÇÀ» À§ÇØ »ç¿ëµÊ
+/// ìž¬ì§ˆì— í…ìŠ¤ì³ë¥¼ ì¶”ê°€ì ìœ¼ë¡œ ë“±ë¡í•¨
+/// í…ìŠ¤ì³ ëª©ë¡ì˜ ê°€ìž¥ ë§ˆì§€ë§‰ì— ì¶”ê°€ë¨.
+/// í…ìŠ¤ì³ ì• ë‹ˆë©”ì´ì…˜ì„ ìœ„í•´ ì‚¬ìš©ë¨
 ZZ_SCRIPT
 int pushTexture ( HNODE hMaterial, ZSTRING pTexturePath );
 
-/// ¹Ù´Ù ºí·°ÀÇ ÅØ½ºÃÄ ¾Ö´Ï¸ÞÀÌ¼Ç ½Ã°£°£°ÝÀ» ¼³Á¤
-/// @iIntervalMilliSecond : ¹Ð¸®¼¼ÄÁµå ´ÜÀ§ÀÇ ½Ã°£ °£°Ý. ÀÌ ½Ã°£¸¸Å­ µÚ¿¡ ´ÙÀ½ ÅØ½ºÃÄ·Î
-///                         º¯°æµÈ´Ù.
+/// ë°”ë‹¤ ë¸”ëŸ­ì˜ í…ìŠ¤ì³ ì• ë‹ˆë©”ì´ì…˜ ì‹œê°„ê°„ê²©ì„ ì„¤ì •
+/// @iIntervalMilliSecond : ë°€ë¦¬ì„¸ì»¨ë“œ ë‹¨ìœ„ì˜ ì‹œê°„ ê°„ê²©. ì´ ì‹œê°„ë§Œí¼ ë’¤ì— ë‹¤ìŒ í…ìŠ¤ì³ë¡œ
+///                         ë³€ê²½ëœë‹¤.
 ZZ_SCRIPT
 int setOceanBlockInterval ( HNODE hOceanBlock, int iIntervalMilliSecond );
 
@@ -2246,40 +2246,40 @@ int setMeshNumClipFaces ( HNODE hMesh, int iNumClipFaces );
 ZZ_SCRIPT
 int getMeshNumClipFaces ( HNODE hMesh );
 
-/// ¾ó±¼ÀÇ ´«±ô¹ÚÀÓÀ» À§ÇØ »ç¿ë.
-/// @hVisible  : ¾ó±¼ ºñÁ®ºí
-/// @bClipFace : 0(»ç¿ë¾ÈÇÔ, ±âº»°ª), 1(´«¶ß±â), 2(´«°¨±â)
-/// @return    : ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0
+/// ì–¼êµ´ì˜ ëˆˆê¹œë°•ìž„ì„ ìœ„í•´ ì‚¬ìš©.
+/// @hVisible  : ì–¼êµ´ ë¹„ì ¸ë¸”
+/// @bClipFace : 0(ì‚¬ìš©ì•ˆí•¨, ê¸°ë³¸ê°’), 1(ëˆˆëœ¨ê¸°), 2(ëˆˆê°ê¸°)
+/// @return    : ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT
 int setVisibleClipFace ( HNODE hVisible, int iClipFace );
 
 ZZ_SCRIPT
 int getVisibleClipFace ( HNODE hVisible );
 
-/// DDS ÆÄÀÏ·Î ÇöÀç È­¸é ÀúÀåÇÏ±â
+/// DDS íŒŒì¼ë¡œ í˜„ìž¬ í™”ë©´ ì €ìž¥í•˜ê¸°
 ZZ_SCRIPT
 int saveToDDS ( ZSTRING pFileNameDDS );
 
-/// BMP ÆÄÀÏ·Î ÇöÀç È­¸é ÀúÀåÇÏ±â
+/// BMP íŒŒì¼ë¡œ í˜„ìž¬ í™”ë©´ ì €ìž¥í•˜ê¸°
 ZZ_SCRIPT
 int saveToBMP ( ZSTRING pFileNameBMP );
 
-/// »ç¿ëÀÚ µ¥ÀÌÅÍ ¼³Á¤ÇÏ±â
-/// @return ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0
+/// ì‚¬ìš©ìž ë°ì´í„° ì„¤ì •í•˜ê¸°
+/// @return ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT
 int setUserData ( HNODE hVisible, HNODE hData );
 
 ZZ_SCRIPT
 HNODE getUserData ( HNODE hVisible );
 
-// ¿ÀºêÁ§Æ®ÀÇ ÇöÀç À§Ä¡¿¡ ´ëÇÑ ¹Ì²ô·³ º¤ÅÍ ¾ò±â
-// fMin = ¹Ì²ô·³ Àû¿ëµÉ ÃÖ¼Ò ±â¿ï±â. ±â¿ï±â´Â 0ÀÏ¶§ Áö¸é°ú ÆòÇà, 1ÀÏ¶§ ¼öÁ÷. [0..1]
-// fMax = ¹Ì²ô·³ Àû¿ëµÉ ÃÖ´ë ±â¿ï±â. [0..1]
+// ì˜¤ë¸Œì íŠ¸ì˜ í˜„ìž¬ ìœ„ì¹˜ì— ëŒ€í•œ ë¯¸ë„ëŸ¼ ë²¡í„° ì–»ê¸°
+// fMin = ë¯¸ë„ëŸ¼ ì ìš©ë  ìµœì†Œ ê¸°ìš¸ê¸°. ê¸°ìš¸ê¸°ëŠ” 0ì¼ë•Œ ì§€ë©´ê³¼ í‰í–‰, 1ì¼ë•Œ ìˆ˜ì§. [0..1]
+// fMax = ë¯¸ë„ëŸ¼ ì ìš©ë  ìµœëŒ€ ê¸°ìš¸ê¸°. [0..1]
 // fNeighborDistance = ex) 30.0f
-// fVelocity = ¹Ì²ô·³ º¤ÅÍ°¡ Àû¿ëµÇ´Â Å©±â. ¼öÁ÷ °æ»ç¸é(Àýº®)¿¡¼­ 1ÃÊ´ç ÀÌµ¿µÇ´Â °Å¸®(cm)
-//             ex) 2000.0f (1ÃÊ ´ç 2000cm. )
-// vSliding = ¾ò¾îÁú ¹Ì²ô·³ º¤ÅÍ
-// @return = ±â¿ï±â°ª. 0.0(ÆòÁö)-1.0(90µµ °æ»ç)
+// fVelocity = ë¯¸ë„ëŸ¼ ë²¡í„°ê°€ ì ìš©ë˜ëŠ” í¬ê¸°. ìˆ˜ì§ ê²½ì‚¬ë©´(ì ˆë²½)ì—ì„œ 1ì´ˆë‹¹ ì´ë™ë˜ëŠ” ê±°ë¦¬(cm)
+//             ex) 2000.0f (1ì´ˆ ë‹¹ 2000cm. )
+// vSliding = ì–»ì–´ì§ˆ ë¯¸ë„ëŸ¼ ë²¡í„°
+// @return = ê¸°ìš¸ê¸°ê°’. 0.0(í‰ì§€)-1.0(90ë„ ê²½ì‚¬)
 /*
 ex)
     if (getModelVelocity( model ) > 0.1) then
@@ -2289,15 +2289,15 @@ ex)
 ZZ_DLL
 float getSliding ( HNODE hVisible, float fMin, float fMax, float fNeighborDistance, float fVelocity, float vSliding[3] );
 
-// float_array 3°³ »ç¿ë
+// float_array 3ê°œ ì‚¬ìš©
 ZZ_SCRIPT
 float getSlidingScript ( HNODE hVisible, float fMin, float fMax, float fNeighborDistance, float fVelocity );
 
-/// ´õ¹ÌÀÇ ¿ùµåÁÂÇ¥ À§Ä¡ ¾ò±â
-/// @hModel : ´õ¹Ì°¡ Æ÷ÇÔµÈ ¸ðµ¨ÀÇ ÇÚµé
-/// @iDummyIndex : ´õ¹ÌÀÇ ÀÎµ¦½º
-/// @fPosXYZ : °á°ú·Î ´õ¹ÌÀÇ ¿ùµå À§Ä¡°¡ ÀúÀåµÊ. D3DXVECTOR3 Å¸ÀÔ°ú È£È¯µÊ.
-/// ¿¹)
+/// ë”ë¯¸ì˜ ì›”ë“œì¢Œí‘œ ìœ„ì¹˜ ì–»ê¸°
+/// @hModel : ë”ë¯¸ê°€ í¬í•¨ëœ ëª¨ë¸ì˜ í•¸ë“¤
+/// @iDummyIndex : ë”ë¯¸ì˜ ì¸ë±ìŠ¤
+/// @fPosXYZ : ê²°ê³¼ë¡œ ë”ë¯¸ì˜ ì›”ë“œ ìœ„ì¹˜ê°€ ì €ìž¥ë¨. D3DXVECTOR3 íƒ€ìž…ê³¼ í˜¸í™˜ë¨.
+/// ì˜ˆ)
 /// D3DXVECTOR3 pos;
 /// getDummyPosition( model, 0, pos ); 
 ZZ_DLL
@@ -2306,102 +2306,102 @@ int getDummyPosition ( HNODE hModel, int iDummyIndex, float fPosXYZ[3] );
 ZZ_SCRIPT
 int getDummyPositionScript ( HNODE hModel, int iDummyIndex );
 
-/// 2Â÷¿ø ÁÂÇ¥¿¡ ´ëÀÀÇÏ´Â ÁöÇüÀÇ ³ôÀÌ ¾ò±â
-/// ¸¸¾à, ÇØ´ç ÁÂÇ¥¿¡ ÁöÇüÀÌ Á¸ÀçÇÏÁö ¾Ê°Å³ª ¹®Á¦°¡ ¹ß»ýÇÏ¸é -ZZ_INFINITE °¡ ¸®ÅÏµÈ´Ù.
-/// @return : ³ôÀÌ ÁÂÇ¥
+/// 2ì°¨ì› ì¢Œí‘œì— ëŒ€ì‘í•˜ëŠ” ì§€í˜•ì˜ ë†’ì´ ì–»ê¸°
+/// ë§Œì•½, í•´ë‹¹ ì¢Œí‘œì— ì§€í˜•ì´ ì¡´ìž¬í•˜ì§€ ì•Šê±°ë‚˜ ë¬¸ì œê°€ ë°œìƒí•˜ë©´ -ZZ_INFINITE ê°€ ë¦¬í„´ëœë‹¤.
+/// @return : ë†’ì´ ì¢Œí‘œ
 ZZ_SCRIPT
 float getTerrainHeight ( float fPositionX, float fPositionY );
 
 ZZ_SCRIPT
 float setBlendFactor ( float fFactor );
 
-/// ¸Þ½ÃÀÇ Á¤º¸ ¾ò±â.
-/// iInfoType = {1(¸é °³¼ö), 2(Á¤Á¡ °³¼ö), 3(¹öÅØ½ºÆ÷¸Ë), 4(ÀçÁú°³¼ö), 5(¸ÊÃ¤³Î°³¼ö),
-// 6(º»ÀÎµ¦½º°³¼ö)}
+/// ë©”ì‹œì˜ ì •ë³´ ì–»ê¸°.
+/// iInfoType = {1(ë©´ ê°œìˆ˜), 2(ì •ì  ê°œìˆ˜), 3(ë²„í…ìŠ¤í¬ë§·), 4(ìž¬ì§ˆê°œìˆ˜), 5(ë§µì±„ë„ê°œìˆ˜),
+// 6(ë³¸ì¸ë±ìŠ¤ê°œìˆ˜)}
 ZZ_SCRIPT
 int getMeshInfo ( HNODE hMesh, int iInfoType );
 
-/// ¸Þ½Ã¿¡ ³ë¸» Á¤º¸ Ãß°¡
-/// ±âÁ¸ÀÇ ³ë¸»Á¤º¸´Â ¹«½ÃµÊ.
+/// ë©”ì‹œì— ë…¸ë§ ì •ë³´ ì¶”ê°€
+/// ê¸°ì¡´ì˜ ë…¸ë§ì •ë³´ëŠ” ë¬´ì‹œë¨.
 ZZ_SCRIPT
 int buildNormal ( HNODE hMesh );
 
-/// ÀÌÆåÆ® ÆÄÀÏ ·Îµù
-/// .eft ÆÄÀÏ Å×½ºÆ®¿ë ÀÌÆåÆ® ÆÄÀÏ ·Îµù ½ºÅ©¸³Æ®
-/// ÁÖÀÇ: ·Îµù Å×½ºÆ®¿ëÀ¸·Î¸¸ »ç¿ëÇÏ°í, ½ÇÁ¦ °ÔÀÓ¿¡¼­´Â »ç¿ëÇÏÁö ¸»°Í.
+/// ì´íŽ™íŠ¸ íŒŒì¼ ë¡œë”©
+/// .eft íŒŒì¼ í…ŒìŠ¤íŠ¸ìš© ì´íŽ™íŠ¸ íŒŒì¼ ë¡œë”© ìŠ¤í¬ë¦½íŠ¸
+/// ì£¼ì˜: ë¡œë”© í…ŒìŠ¤íŠ¸ìš©ìœ¼ë¡œë§Œ ì‚¬ìš©í•˜ê³ , ì‹¤ì œ ê²Œìž„ì—ì„œëŠ” ì‚¬ìš©í•˜ì§€ ë§ê²ƒ.
 ZZ_SCRIPT
 HNODE loadEffect ( ZSTRING pEffectName, ZSTRING pEffectFilePath );
 
-/// ÀÌÆåÆ® ÆÄÀÏ ¾ð·Îµå.
-/// ÁÖÀÇ: ÀÌÆåÆ® »ý¼º½Ã ÀÚµ¿ »ý¼ºµÈ ´õ¹Ì ºñÀúºí ¹× ¸ð¼Çµéµµ ÇÔ²² ¾ð·ÎµåµÈ´Ù.
-///          Å×½ºÆ®¿ëÀ¸·Î¸¸ »ç¿ëÇÏ°í, ½ÇÁ¦ °ÔÀÓ¿¡¼­´Â »ç¿ëÇÏÁö ¸»°Í.
+/// ì´íŽ™íŠ¸ íŒŒì¼ ì–¸ë¡œë“œ.
+/// ì£¼ì˜: ì´íŽ™íŠ¸ ìƒì„±ì‹œ ìžë™ ìƒì„±ëœ ë”ë¯¸ ë¹„ì €ë¸” ë° ëª¨ì…˜ë“¤ë„ í•¨ê»˜ ì–¸ë¡œë“œëœë‹¤.
+///          í…ŒìŠ¤íŠ¸ìš©ìœ¼ë¡œë§Œ ì‚¬ìš©í•˜ê³ , ì‹¤ì œ ê²Œìž„ì—ì„œëŠ” ì‚¬ìš©í•˜ì§€ ë§ê²ƒ.
 ZZ_SCRIPT
 int unloadEffect ( HNODE hNode );
 
-/// »èÁ¦µÈ ÇÔ¼ö.
-/// ½ÇÁ¦ °æ·Î ¾ò±â
-/// ÁÖÀÇ: ³»ºÎÀûÀ¸·Î static ¹®ÀÚ¿­À» »ç¿ëÇÏ±â ¶§¹®¿¡ º¹»çÇØ¼­ »ç¿ë¿ä.
-///       Áï, ´ÙÀ½¹ø È£Ãâ½Ã ÀÌÀü °ª ¹«È¿È­ µÊ. 255ÀÚ ÀÌÇÏÀÇ ¹®ÀÚ¿­¸¸ °¡´É.
+/// ì‚­ì œëœ í•¨ìˆ˜.
+/// ì‹¤ì œ ê²½ë¡œ ì–»ê¸°
+/// ì£¼ì˜: ë‚´ë¶€ì ìœ¼ë¡œ static ë¬¸ìžì—´ì„ ì‚¬ìš©í•˜ê¸° ë•Œë¬¸ì— ë³µì‚¬í•´ì„œ ì‚¬ìš©ìš”.
+///       ì¦‰, ë‹¤ìŒë²ˆ í˜¸ì¶œì‹œ ì´ì „ ê°’ ë¬´íš¨í™” ë¨. 255ìž ì´í•˜ì˜ ë¬¸ìžì—´ë§Œ ê°€ëŠ¥.
 ZZ_SCRIPT
 ZSTRING getRealPath ( ZSTRING pPath );
 
-/// ½ºÆäÅ§·¯°¡ µé¾î°¡´Â ÀçÁú·Î ¼³Á¤
-/// ÁÖÀÇ: ½ºÆäÅ§·¯ ÀçÁúÀº setMaterialShader()·Î ½ºÆäÅ§·¯¸¦ »ç¿ëÇÏ´Â ½¦ÀÌ´õ¸¦ ÁöÁ¤ÇØ¾ß ÇÑ´Ù.
+/// ìŠ¤íŽ˜í˜ëŸ¬ê°€ ë“¤ì–´ê°€ëŠ” ìž¬ì§ˆë¡œ ì„¤ì •
+/// ì£¼ì˜: ìŠ¤íŽ˜í˜ëŸ¬ ìž¬ì§ˆì€ setMaterialShader()ë¡œ ìŠ¤íŽ˜í˜ëŸ¬ë¥¼ ì‚¬ìš©í•˜ëŠ” ì‰ì´ë”ë¥¼ ì§€ì •í•´ì•¼ í•œë‹¤.
 ZZ_SCRIPT
 int setMaterialUseSpecular ( HNODE hMaterial, int bUseSpecular );
 
-/// ºôº¸µå(billboard) È¿°ú
-/// ºñÀúºíÀÇ Æ¯Á¤ ÃàÀ» Ä«¸Þ¶ó·Î ÇâÇÏµµ·Ï È¸Àü½ÃÅ´. ÀÌÈÄ·Î Áö¼ÓÀûÀ¸·Î Àû¿ëµÊ.
-/// bUseBillboard : ºôº¸µå¸¦ »ç¿ëÇÒÁö ¿©ºÎ. 0ÀÌ¸é ÀÌÀü¼Ó¼º ÇØÁ¦(ºôº¸µùÇÏÁö ¾ÊÀ½). 1ÀÌ¸é »ç¿ëÇÔ
+/// ë¹Œë³´ë“œ(billboard) íš¨ê³¼
+/// ë¹„ì €ë¸”ì˜ íŠ¹ì • ì¶•ì„ ì¹´ë©”ë¼ë¡œ í–¥í•˜ë„ë¡ íšŒì „ì‹œí‚´. ì´í›„ë¡œ ì§€ì†ì ìœ¼ë¡œ ì ìš©ë¨.
+/// bUseBillboard : ë¹Œë³´ë“œë¥¼ ì‚¬ìš©í• ì§€ ì—¬ë¶€. 0ì´ë©´ ì´ì „ì†ì„± í•´ì œ(ë¹Œë³´ë”©í•˜ì§€ ì•ŠìŒ). 1ì´ë©´ ì‚¬ìš©í•¨
 ZZ_SCRIPT
 int setBillboard ( HNODE hVisible, int bUseBillboard );
 
-/// ÇÑÃàÀ» Áß½ÉÀ¸·Î È¸ÀüÇÏ´Â ºôº¸µå(billboard) È¿°ú
-/// ºñÀúºíÀÇ Æ¯Á¤ ÃàÀ» Ä«¸Þ¶ó·Î ÇâÇÏµµ·Ï È¸Àü½ÃÅ´. ÀÌÈÄ·Î Áö¼ÓÀûÀ¸·Î Àû¿ëµÊ.
-/// bUseBillboard : ºôº¸µå¸¦ »ç¿ëÇÒÁö ¿©ºÎ. 0ÀÌ¸é ÀÌÀü¼Ó¼º ÇØÁ¦(ºôº¸µùÇÏÁö ¾ÊÀ½). 1ÀÌ¸é »ç¿ëÇÔ
-/// iRotationAxis : È¸ÀüÀÇ ±âÁØÀÌ µÇ´Â ºñÀúºíÀÇ ·ÎÄÃ Ãà. °ª (0(x), 1(y), 2(z))
-/// iDirectionAxis : Ä«¸Þ¶ó¸¦ ÇâÇÏ°Ô µÇ´Â ºñÀúºíÀÇ ·ÎÅ¬ Ãà. °ª (0(x), 1(y), 2(z))
-/// iRotationAxis¿Í iDirectionAxis °¡ °°À¸¸é ÇØÁ¦ÇÏ´Â È¿°ú.
+/// í•œì¶•ì„ ì¤‘ì‹¬ìœ¼ë¡œ íšŒì „í•˜ëŠ” ë¹Œë³´ë“œ(billboard) íš¨ê³¼
+/// ë¹„ì €ë¸”ì˜ íŠ¹ì • ì¶•ì„ ì¹´ë©”ë¼ë¡œ í–¥í•˜ë„ë¡ íšŒì „ì‹œí‚´. ì´í›„ë¡œ ì§€ì†ì ìœ¼ë¡œ ì ìš©ë¨.
+/// bUseBillboard : ë¹Œë³´ë“œë¥¼ ì‚¬ìš©í• ì§€ ì—¬ë¶€. 0ì´ë©´ ì´ì „ì†ì„± í•´ì œ(ë¹Œë³´ë”©í•˜ì§€ ì•ŠìŒ). 1ì´ë©´ ì‚¬ìš©í•¨
+/// iRotationAxis : íšŒì „ì˜ ê¸°ì¤€ì´ ë˜ëŠ” ë¹„ì €ë¸”ì˜ ë¡œì»¬ ì¶•. ê°’ (0(x), 1(y), 2(z))
+/// iDirectionAxis : ì¹´ë©”ë¼ë¥¼ í–¥í•˜ê²Œ ë˜ëŠ” ë¹„ì €ë¸”ì˜ ë¡œí´ ì¶•. ê°’ (0(x), 1(y), 2(z))
+/// iRotationAxisì™€ iDirectionAxis ê°€ ê°™ìœ¼ë©´ í•´ì œí•˜ëŠ” íš¨ê³¼.
 ZZ_SCRIPT
 int setBillboardOneAxis ( HNODE hVisible, int bUseBillboard, int iRotationAxis, int iDirectionAxis );
 
-/// hMaterial ÀçÁúÀÇ iTextureIndex (µðÆúÆ® 0)¹øÂ°ÀÇ ÅØ½ºÃÄ°´Ã¼¸¦ ¸®ÅÏÇÑ´Ù.
-// ¸®ÅÏ°ªÀ» LPDIRECT3DTEXTURE9 ·Î Çüº¯È¯ÇÏ¿© »ç¿ëÇØ¾ß ÇÔ.
-// »ç¿ë¹ýÀº view.cppÀÇ test_LockTexture() ÇÔ¼ö Âü°í.
-// ÁÖÀÇ: ÀçÁú¿¡ ¹Ó¸ÊÀÌ Æ÷ÇÔµÇ¾î ÀÖ´Ù¸é, setMipmapLevel()·Î ¹Ó¸ÊÀ» 1·Î ¼¼ÆÃÇØ ÁÖ¾î¾ß ÇÑ´Ù.
+/// hMaterial ìž¬ì§ˆì˜ iTextureIndex (ë””í´íŠ¸ 0)ë²ˆì§¸ì˜ í…ìŠ¤ì³ê°ì²´ë¥¼ ë¦¬í„´í•œë‹¤.
+// ë¦¬í„´ê°’ì„ LPDIRECT3DTEXTURE9 ë¡œ í˜•ë³€í™˜í•˜ì—¬ ì‚¬ìš©í•´ì•¼ í•¨.
+// ì‚¬ìš©ë²•ì€ view.cppì˜ test_LockTexture() í•¨ìˆ˜ ì°¸ê³ .
+// ì£¼ì˜: ìž¬ì§ˆì— ë°‰ë§µì´ í¬í•¨ë˜ì–´ ìžˆë‹¤ë©´, setMipmapLevel()ë¡œ ë°‰ë§µì„ 1ë¡œ ì„¸íŒ…í•´ ì£¼ì–´ì•¼ í•œë‹¤.
 ZZ_SCRIPT
 HNODE getTexture ( HNODE hMaterial, int iTextureIndex );
 
 ZZ_SCRIPT
 void resetScreen ( void );
 
-/// ºñÀúºíÀÇ ¼öÆò ¹ÝÁö¸§À» ¸®ÅÏÇÑ´Ù.
-/// ³»ºÎÀûÀ¸·Î´Â AABB¹Ù¿îµù¹Ú½ºÀÇ x ¶Ç´Â y°ªÀ» ¸®ÅÏÇÑ´Ù.
-/// bSelectSmaller 1ÀÌ¸é x¿Í y Áß ÀÛÀº °ªÀ», 0ÀÌ¸é Å« °ªÀ» ¸®ÅÏÇÑ´Ù.
+/// ë¹„ì €ë¸”ì˜ ìˆ˜í‰ ë°˜ì§€ë¦„ì„ ë¦¬í„´í•œë‹¤.
+/// ë‚´ë¶€ì ìœ¼ë¡œëŠ” AABBë°”ìš´ë”©ë°•ìŠ¤ì˜ x ë˜ëŠ” yê°’ì„ ë¦¬í„´í•œë‹¤.
+/// bSelectSmaller 1ì´ë©´ xì™€ y ì¤‘ ìž‘ì€ ê°’ì„, 0ì´ë©´ í° ê°’ì„ ë¦¬í„´í•œë‹¤.
 ZZ_SCRIPT
 float getVisibleRadius ( HNODE hVisible, int bSelectSmaller );
 
-// ºñÀúºíÀÇ ¼öÁ÷ ³ôÀÌ¸¦ ¸®ÅÏÇÑ´Ù.
-// ³»ºÎÀûÀ¸·Î´Â AABB¹Ù¿îµù¹Ú½ºÀÇ z °ªÀÇ µÎ ¹è¸¦ ¸®ÅÏÇÑ´Ù.
-// Âü°í: getModelHeight()
+// ë¹„ì €ë¸”ì˜ ìˆ˜ì§ ë†’ì´ë¥¼ ë¦¬í„´í•œë‹¤.
+// ë‚´ë¶€ì ìœ¼ë¡œëŠ” AABBë°”ìš´ë”©ë°•ìŠ¤ì˜ z ê°’ì˜ ë‘ ë°°ë¥¼ ë¦¬í„´í•œë‹¤.
+// ì°¸ê³ : getModelHeight()
 ZZ_SCRIPT
 float getVisibleHeight ( HNODE hVisible );
 
-// ¸ðµ¨ÀÇ Á¤¸é À§Ä¡¸¦ °è»êÇÏ¿© fPositionXYZ¿¡ ÀúÀåÇÑ´Ù.
-// Á¤¸é À§Ä¡¶õ ¸ðµ¨ÀÇ °æ°è±¸¿Í ÁøÇà¹æÇâº¤ÅÍ¿ÍÀÇ ±³Â÷ÁöÁ¡¿¡¼­ÀÇ ¿ùµå ÁÂÇ¥¸¦ ¸»ÇÑ´Ù.
-// ½ÇÆÐÇÏ¸é 0, ¼º°øÇÏ¸é 1À» ¸®ÅÏ
+// ëª¨ë¸ì˜ ì •ë©´ ìœ„ì¹˜ë¥¼ ê³„ì‚°í•˜ì—¬ fPositionXYZì— ì €ìž¥í•œë‹¤.
+// ì •ë©´ ìœ„ì¹˜ëž€ ëª¨ë¸ì˜ ê²½ê³„êµ¬ì™€ ì§„í–‰ë°©í–¥ë²¡í„°ì™€ì˜ êµì°¨ì§€ì ì—ì„œì˜ ì›”ë“œ ì¢Œí‘œë¥¼ ë§í•œë‹¤.
+// ì‹¤íŒ¨í•˜ë©´ 0, ì„±ê³µí•˜ë©´ 1ì„ ë¦¬í„´
 ZZ_DLL
 int getModelFront ( HNODE hModel, float fPositionXYZ_Out[3] );
 
-// getModelFront() ÀÇ ½ºÅ©¸³Æ® ¹öÀü
-// Ã¹¹øÂ° ½Ç¼ö¸®ÅÏ°ª : xÁÂÇ¥
-// µÎ¹øÂ° ½Ç¼ö¸®ÅÏ°ª : yÁÂÇ¥
-// ¼¼¹øÂ° ½Ç¼ö¸®ÅÏ°ª : zÁÂÇ¥
+// getModelFront() ì˜ ìŠ¤í¬ë¦½íŠ¸ ë²„ì „
+// ì²«ë²ˆì§¸ ì‹¤ìˆ˜ë¦¬í„´ê°’ : xì¢Œí‘œ
+// ë‘ë²ˆì§¸ ì‹¤ìˆ˜ë¦¬í„´ê°’ : yì¢Œí‘œ
+// ì„¸ë²ˆì§¸ ì‹¤ìˆ˜ë¦¬í„´ê°’ : zì¢Œí‘œ
 ZZ_SCRIPT
 int getModelFrontScript ( HNODE hModel );
 
-/// Ä«¸Þ¶ó¿¡ ÀÇÇØ °¡·ÁÁö´Â ¿ÀºêÁ§Æ®ÀÎÁö ÆÇº°
-/// Ä«¸Þ¶ó¿¡ °¡·ÁÁö¸é 1À» ¸®ÅÏ, ¾Æ´Ï¸é 0À» ¸®ÅÏ
+/// ì¹´ë©”ë¼ì— ì˜í•´ ê°€ë ¤ì§€ëŠ” ì˜¤ë¸Œì íŠ¸ì¸ì§€ íŒë³„
+/// ì¹´ë©”ë¼ì— ê°€ë ¤ì§€ë©´ 1ì„ ë¦¬í„´, ì•„ë‹ˆë©´ 0ì„ ë¦¬í„´
 ZZ_SCRIPT
 int getVisibleSeethruMode ( HNODE hVisible );
 
@@ -2411,13 +2411,13 @@ void beginProfiler ( void );
 ZZ_SCRIPT
 void endProfiler ( ZSTRING pProfilerName );
 
-/// ÄõÅÍ´Ï¿ÂÀ» ¸ðµ¨ ¹æÇâ°ªÀ¸·Î º¯È¯ÇÑ´Ù.
-/// @return setModelDirection()¿¡ »ç¿ëÇÒ ¼ö ÀÖ´Â È¸Àü°¢. ´ÜÀ§´Â degree.
+/// ì¿¼í„°ë‹ˆì˜¨ì„ ëª¨ë¸ ë°©í–¥ê°’ìœ¼ë¡œ ë³€í™˜í•œë‹¤.
+/// @return setModelDirection()ì— ì‚¬ìš©í•  ìˆ˜ ìžˆëŠ” íšŒì „ê°. ë‹¨ìœ„ëŠ” degree.
 ZZ_SCRIPT
 float quaternionToModelDirection ( float fQuatW, float fQuatX, float fQuatY, float fQuatZ );
 
-/// ÁöÇü ·Îµù Å×½ºÆ®¿ë ÀÎÅÍÆäÀÌ½º
-// iType : 0ÀÌ¸é Æò¸é, 1ÀÌ¸é ¿ïÅüºÒÅüÇÑ¸é(¾ÆÁ÷ ±¸Çö ¾ÈµÊ)
+/// ì§€í˜• ë¡œë”© í…ŒìŠ¤íŠ¸ìš© ì¸í„°íŽ˜ì´ìŠ¤
+// iType : 0ì´ë©´ í‰ë©´, 1ì´ë©´ ìš¸í‰ë¶ˆí‰í•œë©´(ì•„ì§ êµ¬í˜„ ì•ˆë¨)
 ZZ_SCRIPT
 HNODE loadTerrainBlockTest (
 	ZSTRING pTerrainBlockName,
@@ -2431,58 +2431,58 @@ HNODE loadTerrainBlockTest (
 	HNODE hLight
 );
 
-/// ¸Þ½Ã¿Í ÅØ½ºÃÄ¸¦ Á¡ÁøÀûÀ¸·Î(1) ¶Ç´Â Áï½Ã(0) ·ÎµùÇÒÁö ¿©ºÎ °áÁ¤
-/// µðÆúÆ® : 1(Á¡ÁøÀû)
-/// @iDelayedLoad : 0(Áï½Ã ·Îµù), 1(Áö¿¬ ·Îµù), 2(ÇöÀç Áö¿¬ ·ÎµùµÈ »óÅÂ¸¦ ÇÃ·¯½ÃÇÏ°í, ÇöÀç »óÅÂ À¯Áö)
-/// Á¡ÁøÀû·Îµù¸ðµå : ÀÏÁ¤ ÇÁ·¹ÀÓ°£°ÝÀ¸·Î ¸Þ½Ã¿Í ÅØ½ºÃÄ¸¦ ÆÄÀÏ¿¡¼­ ÀÐ´Â´Ù.
-/// Áï½Ã·Îµù¸ðµå : loadMesh() ¶Ç´Â loadColormapMaterial() µîÀÇ È£Ãâ½Ã Áï½Ã ÆÄÀÏÀ» ÀÐ´Â´Ù.
+/// ë©”ì‹œì™€ í…ìŠ¤ì³ë¥¼ ì ì§„ì ìœ¼ë¡œ(1) ë˜ëŠ” ì¦‰ì‹œ(0) ë¡œë”©í• ì§€ ì—¬ë¶€ ê²°ì •
+/// ë””í´íŠ¸ : 1(ì ì§„ì )
+/// @iDelayedLoad : 0(ì¦‰ì‹œ ë¡œë”©), 1(ì§€ì—° ë¡œë”©), 2(í˜„ìž¬ ì§€ì—° ë¡œë”©ëœ ìƒíƒœë¥¼ í”ŒëŸ¬ì‹œí•˜ê³ , í˜„ìž¬ ìƒíƒœ ìœ ì§€)
+/// ì ì§„ì ë¡œë”©ëª¨ë“œ : ì¼ì • í”„ë ˆìž„ê°„ê²©ìœ¼ë¡œ ë©”ì‹œì™€ í…ìŠ¤ì³ë¥¼ íŒŒì¼ì—ì„œ ì½ëŠ”ë‹¤.
+/// ì¦‰ì‹œë¡œë”©ëª¨ë“œ : loadMesh() ë˜ëŠ” loadColormapMaterial() ë“±ì˜ í˜¸ì¶œì‹œ ì¦‰ì‹œ íŒŒì¼ì„ ì½ëŠ”ë‹¤.
 ZZ_SCRIPT
 int setDelayedLoad ( int iDelayedLoad );
 
-/// ÅØ½ºÃÄ ·Îµù °­Á¦ Æ÷¸Ë ÁöÁ¤
-/// iFormat : 0(¿ø·¡ÅØ½ºÃÄÆ÷¸Ë, default), 1(16ºñÆ®), 2(¾ÐÃà)
+/// í…ìŠ¤ì³ ë¡œë”© ê°•ì œ í¬ë§· ì§€ì •
+/// iFormat : 0(ì›ëž˜í…ìŠ¤ì³í¬ë§·, default), 1(16ë¹„íŠ¸), 2(ì••ì¶•)
 ZZ_SCRIPT
 int setTextureLoadingFormat ( int iFormat );
 
-/// ÇÑ ¹öÅØ½º´ç ¿µÇâÁÖ´Â º»ÀÇ ÃÖ´ë °³¼ö ¼³Á¤
+/// í•œ ë²„í…ìŠ¤ë‹¹ ì˜í–¥ì£¼ëŠ” ë³¸ì˜ ìµœëŒ€ ê°œìˆ˜ ì„¤ì •
 /// iMaxBone : 1, 2, 4(default)
-/// ÇöÀç ¾ÆÁ÷ ±¸Çö ¾ÈµÊ(¼ÎÀÌ´õ lod ±¸Çö ÇÊ¿ä)
+/// í˜„ìž¬ ì•„ì§ êµ¬í˜„ ì•ˆë¨(ì…°ì´ë” lod êµ¬í˜„ í•„ìš”)
 ZZ_SCRIPT
 int setMaxSimultaneousBone ( int iMaxBone );
 
-/// ¿£ÁøÀÇ µð½ºÇÃ·¹ÀÌ ÄÃ¸®Æ¼ ´Ü°è ¼³Á¤
-/// 0(ÀÚµ¿¼³Á¤,default), 1(ÃÖ»ó±ÞÇ°Áú), 2, 3(Áß±Þ), 4, 5(ÃÖÇÏ±ÞÇ°Áú)
-/// ÁÖÀÇ : ÀÌ ÇÔ¼ö´Â ´Ù¸¥ set*() ¶Ç´Â use*() ÀÎÅÍÆäÀÌ½º ÇÔ¼öµéº¸´Ù ³ªÁß¿¡ »ç¿ëµÇ¾î¾ß ÇÑ´Ù.
+/// ì—”ì§„ì˜ ë””ìŠ¤í”Œë ˆì´ ì»¬ë¦¬í‹° ë‹¨ê³„ ì„¤ì •
+/// 0(ìžë™ì„¤ì •,default), 1(ìµœìƒê¸‰í’ˆì§ˆ), 2, 3(ì¤‘ê¸‰), 4, 5(ìµœí•˜ê¸‰í’ˆì§ˆ)
+/// ì£¼ì˜ : ì´ í•¨ìˆ˜ëŠ” ë‹¤ë¥¸ set*() ë˜ëŠ” use*() ì¸í„°íŽ˜ì´ìŠ¤ í•¨ìˆ˜ë“¤ë³´ë‹¤ ë‚˜ì¤‘ì— ì‚¬ìš©ë˜ì–´ì•¼ í•œë‹¤.
 ZZ_SCRIPT
 int setDisplayQualityLevel ( int iLevel );
 
-/// ÃÖ¼Ò ¹× ÃÖ´ë ÇÁ·¹ÀÓÀ² Á¦ÇÑ(µðÆúÆ®=[15,60])
+/// ìµœì†Œ ë° ìµœëŒ€ í”„ë ˆìž„ìœ¨ ì œí•œ(ë””í´íŠ¸=[15,60])
 ZZ_SCRIPT
 int setFramerateRange ( int iMinFramerate, int iMaxFramerate );
 
-/// ÆÄÀÏ °»½Å ½Ã°£ ºñ±³¿©ºÎ
+/// íŒŒì¼ ê°±ì‹  ì‹œê°„ ë¹„êµì—¬ë¶€
 ZZ_SCRIPT
 int useFileTimeStamp ( int bUse );
 
-/// ¸ð¼Ç º¸°£ ¿©ºÎ
+/// ëª¨ì…˜ ë³´ê°„ ì—¬ë¶€
 ZZ_SCRIPT
 int useMotionInterpolation ( int bUse );
 
-/// ¸ð¼Ç º¸°£ÀÌ Àû¿ëµÇ´Â ºñÁ®ºí°ú Ä«¸Þ¶ó °£ÀÇ ÃÖ´ë °Å¸®. ´ÜÀ§ ¹ÌÅÍ
-/// useMotionInterpolation()°¡ 0ÀÌ¶ó¸é Àû¿ë¾ÈµÊ.
-/// ±âº»°ª = 10 (¹ÌÅÍ)
+/// ëª¨ì…˜ ë³´ê°„ì´ ì ìš©ë˜ëŠ” ë¹„ì ¸ë¸”ê³¼ ì¹´ë©”ë¼ ê°„ì˜ ìµœëŒ€ ê±°ë¦¬. ë‹¨ìœ„ ë¯¸í„°
+/// useMotionInterpolation()ê°€ 0ì´ë¼ë©´ ì ìš©ì•ˆë¨.
+/// ê¸°ë³¸ê°’ = 10 (ë¯¸í„°)
 ZZ_SCRIPT
 int setMotionInterpolationRange ( float fDistanceFromCamera );
 
-/// Ç®½ºÅ©¸°½Ã ¼öÁ÷µ¿±â¿©ºÎ
-/// 1ÀÌ¸é ¼öÁ÷µ¿±âÇÔ. 0ÀÌ¸é ¾ÈÇÔ
+/// í’€ìŠ¤í¬ë¦°ì‹œ ìˆ˜ì§ë™ê¸°ì—¬ë¶€
+/// 1ì´ë©´ ìˆ˜ì§ë™ê¸°í•¨. 0ì´ë©´ ì•ˆí•¨
 ZZ_SCRIPT
 int useVSync ( int bUseVSync );
 
-/// ÀçÁúÀÇ Æ¯Á¤ ½ºÅ×ÀÌÁöÀÇ ¾îµå·¹½Ì ¸ðµå ¼³Á¤
-/// iStage : ÅØ½ºÃÄ ½ºÅ×ÀÌÁö ¹øÈ£(0ºÎÅÍ 4¹ø±îÁö)
+/// ìž¬ì§ˆì˜ íŠ¹ì • ìŠ¤í…Œì´ì§€ì˜ ì–´ë“œë ˆì‹± ëª¨ë“œ ì„¤ì •
+/// iStage : í…ìŠ¤ì³ ìŠ¤í…Œì´ì§€ ë²ˆí˜¸(0ë¶€í„° 4ë²ˆê¹Œì§€)
 /// iTextureAddress :
-//   ZZ_TADDRESS_WRAP = 1, (µðÆúÆ®°ª)
+//   ZZ_TADDRESS_WRAP = 1, (ë””í´íŠ¸ê°’)
 //   ZZ_TADDRESS_MIRROR = 2,
 //   ZZ_TADDRESS_CLAMP = 3,
 //   ZZ_TADDRESS_BORDER = 4,
@@ -2490,67 +2490,67 @@ int useVSync ( int bUseVSync );
 ZZ_SCRIPT
 int setMaterialTextureAddress ( HNODE hMaterial, int iStage, int iTextureAddress );
 
-/// ¶óÀÌÆÃÀÇ ¿µÇâÀ» ¹ÞÀ» °ÍÀÎÁöÀÇ ¿©ºÎ ¼³Á¤
+/// ë¼ì´íŒ…ì˜ ì˜í–¥ì„ ë°›ì„ ê²ƒì¸ì§€ì˜ ì—¬ë¶€ ì„¤ì •
 ZZ_SCRIPT
 int setMaterialUseLight ( HNODE hMaterial, int bUseLight );
 
-/// ¿£Áø µð¹ö±ë¿ë ¸Þ¼¼Áö Ãâ·Â ¿©ºÎ
+/// ì—”ì§„ ë””ë²„ê¹…ìš© ë©”ì„¸ì§€ ì¶œë ¥ ì—¬ë¶€
 ZZ_SCRIPT
 int useDebugDisplay ( int bUseDebugDisplay );
 
-/// µðÆúÆ®°ª °¢°¢ 300
+/// ë””í´íŠ¸ê°’ ê°ê° 300
 ZZ_SCRIPT
 int setLazyBufferSize ( int iTextureSize, int iNormalMeshSize, int iTerrainMeshSize, int iOceanMeshSize );
 
 
 //--------------------------------------------------------------------------------
-// ÅØ½ºÃÄ °ü·Ã
+// í…ìŠ¤ì³ ê´€ë ¨
 //--------------------------------------------------------------------------------
 
-/// ÅØ½ºÃÄ ·Îµù
-/// ÅØ½ºÃÄ Æ÷¸ËÀº ÅØ½ºÃÄ(.dds)ÀÇ ±âº» Æ÷¸ËÀ¸·Î »ý¼ºµÈ´Ù.
-/// @pTextureName ÅØ½ºÃÄ ¿ÀºêÁ§Æ®¸í(ÅØ½ºÃÄ °æ·Î¸í°ú ´Þ¶óµµ µÈ´Ù)
-/// @pTextureFileName ÅØ½ºÃÄ °æ·Î¸í
-/// @iMipLevels ¹Ó¸Ê·¹º§. -1 ÀÌ¸é ÆÄÀÏ(dds)¿¡ ÁöÁ¤µÈ ´ë·Î, 0ÀÌ¸é °¡´ÉÇÑÇÑ ¸¹ÀÌ »ý¼º. 1ÀÌ¸é ¹Ó¸Ê »ç¿ë ¾ÈÇÔ.
-/// @bUseFilter ÇÊÅÍ¸µ Àû¿ë ¿©ºÎ. 0ÀÌ¸é ÇÊÅÍ¸µ »ç¿ë ¾ÈÇÔ.
-/// @return ¼º°øÇÏ¸é ÅØ½ºÃÄ ÇÚµé, ½ÇÆÐÇÏ¸é 0
+/// í…ìŠ¤ì³ ë¡œë”©
+/// í…ìŠ¤ì³ í¬ë§·ì€ í…ìŠ¤ì³(.dds)ì˜ ê¸°ë³¸ í¬ë§·ìœ¼ë¡œ ìƒì„±ëœë‹¤.
+/// @pTextureName í…ìŠ¤ì³ ì˜¤ë¸Œì íŠ¸ëª…(í…ìŠ¤ì³ ê²½ë¡œëª…ê³¼ ë‹¬ë¼ë„ ëœë‹¤)
+/// @pTextureFileName í…ìŠ¤ì³ ê²½ë¡œëª…
+/// @iMipLevels ë°‰ë§µë ˆë²¨. -1 ì´ë©´ íŒŒì¼(dds)ì— ì§€ì •ëœ ëŒ€ë¡œ, 0ì´ë©´ ê°€ëŠ¥í•œí•œ ë§Žì´ ìƒì„±. 1ì´ë©´ ë°‰ë§µ ì‚¬ìš© ì•ˆí•¨.
+/// @bUseFilter í•„í„°ë§ ì ìš© ì—¬ë¶€. 0ì´ë©´ í•„í„°ë§ ì‚¬ìš© ì•ˆí•¨.
+/// @return ì„±ê³µí•˜ë©´ í…ìŠ¤ì³ í•¸ë“¤, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT
 HNODE loadTexture ( 	ZSTRING pTextureName, ZSTRING pTextureFileName, int iMipLevels, int bUseFilter );
 
-/// Pool À» ÁöÁ¤ÇÒ ¼ö ÀÖ´Â ÅØ½ºÃÄ ·Îµù
-/// ÅØ½ºÃÄ Æ÷¸ËÀº ÅØ½ºÃÄ(.dds)ÀÇ ±âº» Æ÷¸ËÀ¸·Î »ý¼ºµÈ´Ù.
-/// @pTextureName ÅØ½ºÃÄ ¿ÀºêÁ§Æ®¸í(ÅØ½ºÃÄ °æ·Î¸í°ú ´Þ¶óµµ µÈ´Ù)
-/// @pTextureFileName ÅØ½ºÃÄ °æ·Î¸í
-/// @iMipLevels ¹Ó¸Ê·¹º§. -1 ÀÌ¸é ÆÄÀÏ(dds)¿¡ ÁöÁ¤µÈ ´ë·Î, 0ÀÌ¸é °¡´ÉÇÑÇÑ ¸¹ÀÌ »ý¼º. 1ÀÌ¸é ¹Ó¸Ê »ç¿ë ¾ÈÇÔ.
-/// @bUseFilter ÇÊÅÍ¸µ Àû¿ë ¿©ºÎ. 0ÀÌ¸é ÇÊÅÍ¸µ »ç¿ë ¾ÈÇÔ.
-/// @iPoolType 0 : Default Pool(±×·¡ÇÈÄ«µå¿¡ »ý¼º), 1 : Managed Pool(DX°¡ °ü¸®), 2 : SysetmMem Pool(½Ã½ºÅÛ ¸Þ¸ð¸®¿¡ »ý¼º)
-/// @return ¼º°øÇÏ¸é ÅØ½ºÃÄ ÇÚµé, ½ÇÆÐÇÏ¸é 0
+/// Pool ì„ ì§€ì •í•  ìˆ˜ ìžˆëŠ” í…ìŠ¤ì³ ë¡œë”©
+/// í…ìŠ¤ì³ í¬ë§·ì€ í…ìŠ¤ì³(.dds)ì˜ ê¸°ë³¸ í¬ë§·ìœ¼ë¡œ ìƒì„±ëœë‹¤.
+/// @pTextureName í…ìŠ¤ì³ ì˜¤ë¸Œì íŠ¸ëª…(í…ìŠ¤ì³ ê²½ë¡œëª…ê³¼ ë‹¬ë¼ë„ ëœë‹¤)
+/// @pTextureFileName í…ìŠ¤ì³ ê²½ë¡œëª…
+/// @iMipLevels ë°‰ë§µë ˆë²¨. -1 ì´ë©´ íŒŒì¼(dds)ì— ì§€ì •ëœ ëŒ€ë¡œ, 0ì´ë©´ ê°€ëŠ¥í•œí•œ ë§Žì´ ìƒì„±. 1ì´ë©´ ë°‰ë§µ ì‚¬ìš© ì•ˆí•¨.
+/// @bUseFilter í•„í„°ë§ ì ìš© ì—¬ë¶€. 0ì´ë©´ í•„í„°ë§ ì‚¬ìš© ì•ˆí•¨.
+/// @iPoolType 0 : Default Pool(ê·¸ëž˜í”½ì¹´ë“œì— ìƒì„±), 1 : Managed Pool(DXê°€ ê´€ë¦¬), 2 : SysetmMem Pool(ì‹œìŠ¤í…œ ë©”ëª¨ë¦¬ì— ìƒì„±)
+/// @return ì„±ê³µí•˜ë©´ í…ìŠ¤ì³ í•¸ë“¤, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT
 HNODE loadTextureWithPool ( ZSTRING pTextureName, ZSTRING pTextureFileName, int iMipLevels, int bUseFilter, int iPoolType );
 
-/// ÅØ½ºÃÄ ÇØÁ¦
-/// @hTexture ÅØ½ºÃÄ ÇÚµé
-/// @return ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0
+/// í…ìŠ¤ì³ í•´ì œ
+/// @hTexture í…ìŠ¤ì³ í•¸ë“¤
+/// @return ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT
 int unloadTexture ( HNODE hTexture );
 
-/// ÅØ½ºÃÄÀÇ LPDIRECT3DTEXTURE9 ¸¦ ¾ò´Â´Ù.
-/// @hTexture ÅØ½ºÃÄ ÇÚµé
-/// @return ±× ÅØ½ºÃÄÀÇ LPDIRECT3DTEXTURE9 °ª. Ä³½ºÆÃÇØ¼­ »ç¿ëÇØ¾ß ÇÔ.
+/// í…ìŠ¤ì³ì˜ LPDIRECT3DTEXTURE9 ë¥¼ ì–»ëŠ”ë‹¤.
+/// @hTexture í…ìŠ¤ì³ í•¸ë“¤
+/// @return ê·¸ í…ìŠ¤ì³ì˜ LPDIRECT3DTEXTURE9 ê°’. ìºìŠ¤íŒ…í•´ì„œ ì‚¬ìš©í•´ì•¼ í•¨.
 ZZ_SCRIPT
 HNODE getTexturePointer ( HNODE hTexture );
 
 //--------------------------------------------------------------------------------
-// ÆùÆ® °ü·Ã
+// í°íŠ¸ ê´€ë ¨
 //--------------------------------------------------------------------------------
 
-/// ÆùÆ® °´Ã¼ »ý¼º
-/// @pFontIDName ÆùÆ® ÀÌ¸§. ÀÌ ÆùÆ®¸¦ Á¢±ÙÇÏ±â À§ÇØ »ç¿ëÇÏ´Â »ç¿ëÀÚ ÁöÁ¤ ÀÌ¸§
-/// @pFontFileName ÆùÆ® ÀÌ¸§(½ÇÁ¦ ½Ã½ºÅÛ ÆùÆ®¸í). ¿¹) "±¼¸²Ã¼"
-/// @iFontSize ÆùÆ® Å©±â.
-/// @iBold ÆùÆ® ±½±â. 1ÀÌ¸é bold.
-/// @iItalic ÀÌÅÅ¸¯ ¼Ó¼º ¿©ºÎ. 1ÀÌ¸é ÀÌÅÅ¸¯Ã¼.
-/// @iColorR/G/B/A ÆùÆ® »ö»ó(0-255). A°¡ 1ÀÌ¸é ¿ÏÀüºÒÅõ¸í. A°¡ 0ÀÌ¸é ¿ÏÀüÅõ¸í
+/// í°íŠ¸ ê°ì²´ ìƒì„±
+/// @pFontIDName í°íŠ¸ ì´ë¦„. ì´ í°íŠ¸ë¥¼ ì ‘ê·¼í•˜ê¸° ìœ„í•´ ì‚¬ìš©í•˜ëŠ” ì‚¬ìš©ìž ì§€ì • ì´ë¦„
+/// @pFontFileName í°íŠ¸ ì´ë¦„(ì‹¤ì œ ì‹œìŠ¤í…œ í°íŠ¸ëª…). ì˜ˆ) "êµ´ë¦¼ì²´"
+/// @iFontSize í°íŠ¸ í¬ê¸°.
+/// @iBold í°íŠ¸ êµµê¸°. 1ì´ë©´ bold.
+/// @iItalic ì´íƒ¤ë¦­ ì†ì„± ì—¬ë¶€. 1ì´ë©´ ì´íƒ¤ë¦­ì²´.
+/// @iColorR/G/B/A í°íŠ¸ ìƒ‰ìƒ(0-255). Aê°€ 1ì´ë©´ ì™„ì „ë¶ˆíˆ¬ëª…. Aê°€ 0ì´ë©´ ì™„ì „íˆ¬ëª…
 ZZ_SCRIPT
 HNODE loadFont (
 				ZSTRING pFontIDName,
@@ -2564,66 +2564,66 @@ HNODE loadFont (
 				int iColorA
 				);
 
-/// ÆùÆ® °´Ã¼ ÇØÁ¦
+/// í°íŠ¸ ê°ì²´ í•´ì œ
 ZZ_SCRIPT
 int unloadFont ( HNODE hFont );
 
-/// È­¸é¿¡ ÆùÆ®¸¦ ·»´õ¸µ
-/// @hFont ÆùÆ® ÇÚµé. 0ÀÌ¸é ½Ã½ºÅÛ ÆùÆ®.
+/// í™”ë©´ì— í°íŠ¸ë¥¼ ë Œë”ë§
+/// @hFont í°íŠ¸ í•¸ë“¤. 0ì´ë©´ ì‹œìŠ¤í…œ í°íŠ¸.
 ZZ_SCRIPT
 int drawFontScript ( HNODE hFont, int iX, int iY, ZSTRING pMessage );
 
-/// ±×·ÁÁú ÆùÆ® »ö»ó ¼³Á¤
-/// @iRed/iGreen/iBlue/iAlpha 0-255 »çÀÌÀÇ Á¤¼ö°ª
+/// ê·¸ë ¤ì§ˆ í°íŠ¸ ìƒ‰ìƒ ì„¤ì •
+/// @iRed/iGreen/iBlue/iAlpha 0-255 ì‚¬ì´ì˜ ì •ìˆ˜ê°’
 ZZ_SCRIPT
 int setFontColor ( HNODE hFont, int iRed, int iGreen, int iBlue, int iAlpha );
 
-/// ÇØ´ç ÆùÆ®¿¡ ´ëÇØ ¹®ÀÚ¿­ÀÇ ÇÈ¼¿ ´ÜÀ§ ³ôÀÌ/³ÐÀÌ¸¦ ¾ò´Â´Ù.
-/// @hFont ÆùÆ®ÇÚµé
-/// @return ¹®ÀÚ¿­ÀÇ ÀüÃ¼ ³ôÀÌ/³ÐÀÌ(ÇÈ¼¿ ´ÜÀ§). WIN32 ÀÇ SIZE¿Í È£È¯µÊ.
+/// í•´ë‹¹ í°íŠ¸ì— ëŒ€í•´ ë¬¸ìžì—´ì˜ í”½ì…€ ë‹¨ìœ„ ë†’ì´/ë„“ì´ë¥¼ ì–»ëŠ”ë‹¤.
+/// @hFont í°íŠ¸í•¸ë“¤
+/// @return ë¬¸ìžì—´ì˜ ì „ì²´ ë†’ì´/ë„“ì´(í”½ì…€ ë‹¨ìœ„). WIN32 ì˜ SIZEì™€ í˜¸í™˜ë¨.
 ZZ_DLL
 ZZ_SIZE getFontTextExtent ( HNODE hFont, ZSTRING pText );
 
-/// ÇØ´ç ÆùÆ®ÀÇ ÇÈ¼¿ ´ÜÀ§ ³ôÀÌ¸¦ ¾ò´Â´Ù.
-/// @hFont ÆùÆ®ÇÚµé
-/// @return ÇÈ¼¿ ´ÜÀ§ ³ôÀÌ
+/// í•´ë‹¹ í°íŠ¸ì˜ í”½ì…€ ë‹¨ìœ„ ë†’ì´ë¥¼ ì–»ëŠ”ë‹¤.
+/// @hFont í°íŠ¸í•¸ë“¤
+/// @return í”½ì…€ ë‹¨ìœ„ ë†’ì´
 ZZ_SCRIPT
 int getFontHeight ( HNODE hFont );
 
-/// ÇØ´ç ÆùÆ®¸¦ »ç¿ëÇÏ¿© ÅØ½ºÆ®¸¦ »ý¼ºÇÑ´Ù.
-/// drawFontXXX ¿Í ´Ù¸¥ Á¡Àº, ÇÑ¹ø¸¸ »ý¼ºÇÏ¸é, ´ÙÀ½ ÇÁ·¹ÀÓ¿¡ ´Ù½Ã ±×·ÁÁÖÁö ¾Ê¾Æµµ µÈ´Ù.
-/// unloadText ³ª unloadAllText ¸¦ È£ÃâÇÏÁö ¾ÊÀ¸¸é °è¼Ó È­¸é¿¡ ³²´Â´Ù.
-/// @return »ý¼ºµÈ ÅØ½ºÆ®ÀÇ ÇÚµé. 0ºÎÅÍ ½ÃÀÛÇÑ´Ù. 0µµ À¯È¿ÇÑ °ª.
+/// í•´ë‹¹ í°íŠ¸ë¥¼ ì‚¬ìš©í•˜ì—¬ í…ìŠ¤íŠ¸ë¥¼ ìƒì„±í•œë‹¤.
+/// drawFontXXX ì™€ ë‹¤ë¥¸ ì ì€, í•œë²ˆë§Œ ìƒì„±í•˜ë©´, ë‹¤ìŒ í”„ë ˆìž„ì— ë‹¤ì‹œ ê·¸ë ¤ì£¼ì§€ ì•Šì•„ë„ ëœë‹¤.
+/// unloadText ë‚˜ unloadAllText ë¥¼ í˜¸ì¶œí•˜ì§€ ì•Šìœ¼ë©´ ê³„ì† í™”ë©´ì— ë‚¨ëŠ”ë‹¤.
+/// @return ìƒì„±ëœ í…ìŠ¤íŠ¸ì˜ í•¸ë“¤. 0ë¶€í„° ì‹œìž‘í•œë‹¤. 0ë„ ìœ íš¨í•œ ê°’.
 ZZ_SCRIPT
 HNODE loadText ( HNODE hFont, int iX, int iY, ZSTRING pMessage );
 
-/// ÆùÆ®¸¦ »ç¿ëÇÏ´Â ÅØ½ºÆ®¸¦ »èÁ¦ÇÑ´Ù.
+/// í°íŠ¸ë¥¼ ì‚¬ìš©í•˜ëŠ” í…ìŠ¤íŠ¸ë¥¼ ì‚­ì œí•œë‹¤.
 ZZ_SCRIPT
 int unloadText ( HNODE hFont, HNODE hText );
 
-/// ÀÌ ÆùÆ®¸¦ »ç¿ëÇÏ´Â ¸ðµç ÅØ½ºÆ®¸¦ »èÁ¦ÇÑ´Ù.
+/// ì´ í°íŠ¸ë¥¼ ì‚¬ìš©í•˜ëŠ” ëª¨ë“  í…ìŠ¤íŠ¸ë¥¼ ì‚­ì œí•œë‹¤.
 ZZ_SCRIPT
 int unloadAllText ( HNODE hFont );
 
 //--------------------------------------------------------------------------------
-// ½ºÇÁ¶óÀÌÆ® °ü·Ã
+// ìŠ¤í”„ë¼ì´íŠ¸ ê´€ë ¨
 //--------------------------------------------------------------------------------
 
-/// ½ºÇÁ¶óÀÌÆ® Begin
-/// @iFlag ID3DXSPRITE ÀÇ Begin() ¸Þ¼ÒµåÀÇ ÆÄ¶ó¹ÌÅÍ¿Í µ¿ÀÏ
+/// ìŠ¤í”„ë¼ì´íŠ¸ Begin
+/// @iFlag ID3DXSPRITE ì˜ Begin() ë©”ì†Œë“œì˜ íŒŒë¼ë¯¸í„°ì™€ ë™ì¼
 ZZ_SCRIPT
 int beginSprite ( int iFlag ); // iFlag in ZZ_SPRITE_XXXXXX zz_renderer.h
 
-/// ½ºÇÁ¶óÀÌÆ® End
+/// ìŠ¤í”„ë¼ì´íŠ¸ End
 ZZ_SCRIPT
 int endSprite ( void );
 
-/// ½ºÇÁ¶óÀÌÆ®¸¦ ·»´õ¸µ. ID3DXSPRITE ÀÇ Draw() ¸Þ¼Òµå¿Í À¯»çÇÔ.
-/// @hTexture ÅØ½ºÃÄ °´Ã¼ÀÇ ÇÚµé. loadTexture() ·Î ¾òÀ» ¼ö ÀÖ´Ù.
-/// @pSrcRect ¿øº» »ç°¢Çü ¿µ¿ª. RECT ÀÇ Æ÷ÀÎÅÍ¸¦ Àü´ÞÇÏ¸é µÈ´Ù.
-/// @pCenter ½ºÇÁ¶óÀÌÆ®ÀÇ Áß¾Ó À§Ä¡. D3DVECTOR(¶Ç´Â D3DXVECTOR3) ÀÇ Æ÷ÀÎÅÍ¸¦ Àü´ÞÇÏ¸é µÈ´Ù.
-/// @pPosition ½ºÇÁ¶óÀÌÆ®°¡ ±×·ÁÁú ÁÂÇ¥. D3DVECTOR(¶Ç´Â D3DXVECTOR3) ÀÇ Æ÷ÀÎÅÍ¸¦ Àü´ÞÇÏ¸é µÈ´Ù.
-/// @Color ÅØ½ºÃÄ¿¡ °öÇØÁú »ö»ó. D3DCOLOR¿Í È£È¯µÊ.
+/// ìŠ¤í”„ë¼ì´íŠ¸ë¥¼ ë Œë”ë§. ID3DXSPRITE ì˜ Draw() ë©”ì†Œë“œì™€ ìœ ì‚¬í•¨.
+/// @hTexture í…ìŠ¤ì³ ê°ì²´ì˜ í•¸ë“¤. loadTexture() ë¡œ ì–»ì„ ìˆ˜ ìžˆë‹¤.
+/// @pSrcRect ì›ë³¸ ì‚¬ê°í˜• ì˜ì—­. RECT ì˜ í¬ì¸í„°ë¥¼ ì „ë‹¬í•˜ë©´ ëœë‹¤.
+/// @pCenter ìŠ¤í”„ë¼ì´íŠ¸ì˜ ì¤‘ì•™ ìœ„ì¹˜. D3DVECTOR(ë˜ëŠ” D3DXVECTOR3) ì˜ í¬ì¸í„°ë¥¼ ì „ë‹¬í•˜ë©´ ëœë‹¤.
+/// @pPosition ìŠ¤í”„ë¼ì´íŠ¸ê°€ ê·¸ë ¤ì§ˆ ì¢Œí‘œ. D3DVECTOR(ë˜ëŠ” D3DXVECTOR3) ì˜ í¬ì¸í„°ë¥¼ ì „ë‹¬í•˜ë©´ ëœë‹¤.
+/// @Color í…ìŠ¤ì³ì— ê³±í•´ì§ˆ ìƒ‰ìƒ. D3DCOLORì™€ í˜¸í™˜ë¨.
 ZZ_DLL
 int drawSprite ( HNODE hTexture, 
     const ZZ_RECT * pSrcRect,
@@ -2632,20 +2632,20 @@ int drawSprite ( HNODE hTexture,
     const ZZ_COLOR Color
 );
 
-/// ½ºÇÁ¶óÀÌÆ®¸¦ ÇÃ·¯½Ã
+/// ìŠ¤í”„ë¼ì´íŠ¸ë¥¼ í”ŒëŸ¬ì‹œ
 ZZ_SCRIPT
 int flushSprite ( void );
 
-/// ½ºÇÁ¶óÀÌÆ®ÀÇ º¯È¯Çà·Ä ¾ò±â
-/// @d3d_tm_4x4 ¾ò¾î¿Ã 4x4 Çà·Ä(D3DMATRIX¿Í µ¿ÀÏÇÑ ±¸Á¶)
+/// ìŠ¤í”„ë¼ì´íŠ¸ì˜ ë³€í™˜í–‰ë ¬ ì–»ê¸°
+/// @d3d_tm_4x4 ì–»ì–´ì˜¬ 4x4 í–‰ë ¬(D3DMATRIXì™€ ë™ì¼í•œ êµ¬ì¡°)
 /// ex)
 /// D3DXMATRIX m;
 /// getTransformSprite(m); // uses casting operator FLOAT* ();
 ZZ_DLL
 int getTransformSprite ( float * d3d_tm_4x4 );
 
-/// ½ºÇÁ¶óÀÌÆ®ÀÇ º¯È¯Çà·Ä ¼³Á¤
-/// @d3d_tm_4x4 ¼³Á¤ÇÒ 4x4 Çà·Ä(D3DMATRIX¿Í µ¿ÀÏÇÑ ±¸Á¶)
+/// ìŠ¤í”„ë¼ì´íŠ¸ì˜ ë³€í™˜í–‰ë ¬ ì„¤ì •
+/// @d3d_tm_4x4 ì„¤ì •í•  4x4 í–‰ë ¬(D3DMATRIXì™€ ë™ì¼í•œ êµ¬ì¡°)
 /// ex)
 /// D3DXMATRIX m;
 /// setTransformSprite(m); // uses casting operator CONST FLOAT* () const;
@@ -2654,61 +2654,61 @@ int setTransformSprite ( const float * d3d_tm_4x4 );
 
 
 //--------------------------------------------------------------------------------
-// file sytem °ü·Ã
+// file sytem ê´€ë ¨
 //--------------------------------------------------------------------------------
 
-/// ÆÄÀÏ ½Ã½ºÅÛ ÇÚµéÀ» ¼³Á¤
-/// @hVFS ÆÄÀÏ ½Ã½ºÅÛ ÇÚµé(OpenVFS()·Î ¾òÀº)
-/// @return ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0
+/// íŒŒì¼ ì‹œìŠ¤í…œ í•¸ë“¤ì„ ì„¤ì •
+/// @hVFS íŒŒì¼ ì‹œìŠ¤í…œ í•¸ë“¤(OpenVFS()ë¡œ ì–»ì€)
+/// @return ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT
 int setFileSytem ( HNODE hVFS );
 
-/// ÆÄÀÏ ½Ã½ºÅÛ ¿­±â
-/// @pIndexFileName ÀÎµ¦½º ÆÄÀÏ¸í
-/// @return ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0
+/// íŒŒì¼ ì‹œìŠ¤í…œ ì—´ê¸°
+/// @pIndexFileName ì¸ë±ìŠ¤ íŒŒì¼ëª…
+/// @return ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT
 int openFileSystem ( ZSTRING pIndexFileName );
 
-/// ÆÄÀÏ ½Ã½ºÅÛ ´Ý±â. openFileSystem() À¸·Î È£ÃâÇÑ ÆÄÀÏ ½Ã½ºÅÛ ´Ý±â.
-/// @return ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0
+/// íŒŒì¼ ì‹œìŠ¤í…œ ë‹«ê¸°. openFileSystem() ìœ¼ë¡œ í˜¸ì¶œí•œ íŒŒì¼ ì‹œìŠ¤í…œ ë‹«ê¸°.
+/// @return ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT
 int closeFileSystem ( void );
 
-/// ÆÄÀÏ ÀÐ±â¸ðµå·Î ¿­±â
-/// @pFilename ÆÄÀÏ ÀÌ¸§
-/// @return ÆÄÀÏ ÇÚµé, ½ÇÆÐÇÏ¸é 0
+/// íŒŒì¼ ì½ê¸°ëª¨ë“œë¡œ ì—´ê¸°
+/// @pFilename íŒŒì¼ ì´ë¦„
+/// @return íŒŒì¼ í•¸ë“¤, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT
 HNODE fileReadFrom ( ZSTRING pFilename );
 
-/// ÆÄÀÏÀÇ ÇÑ ³¹¸» ÀÐ±â
-/// @return ÀÐÀº ¹®ÀÚ¿­. ÆÄÀÏÀÇ ³¡ÀÌ¶ó¸é, ""À» ¸®ÅÏ. »çÀÌÁî°¡ 0ÀÎ ¹®ÀÚ¿­.
+/// íŒŒì¼ì˜ í•œ ë‚±ë§ ì½ê¸°
+/// @return ì½ì€ ë¬¸ìžì—´. íŒŒì¼ì˜ ëì´ë¼ë©´, ""ì„ ë¦¬í„´. ì‚¬ì´ì¦ˆê°€ 0ì¸ ë¬¸ìžì—´.
 ZZ_SCRIPT
 ZSTRING fileReadWord ( HNODE hFile );
 
-/// ÆÄÀÏ ´Ý±â
-/// @hFile ÆÄÀÏ ÇÚµé
-/// @return ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0
+/// íŒŒì¼ ë‹«ê¸°
+/// @hFile íŒŒì¼ í•¸ë“¤
+/// @return ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT
 int fileClose ( HNODE hFile );
 
-/// ¸ð¼Ç º¸°£ ½Ã°£ ÁöÁ¤
-/// ÀÌÀü ¸ð¼Ç°ú ÁöÁ¤µÈ ½Ã°£ °£°Ý¸¸Å­ º¸°£µÇ¾î ¾Ö´Ï¸ÞÀÌ¼ÇµÈ´Ù.
-/// @hMotion ¸ð¼Ç ÇÚµé
-/// @iMilliSeconds Áö¿¬ ½Ã°£. ´ÜÀ§) ¹Ð¸®¼¼ÄÁµå
-/// @return ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0
+/// ëª¨ì…˜ ë³´ê°„ ì‹œê°„ ì§€ì •
+/// ì´ì „ ëª¨ì…˜ê³¼ ì§€ì •ëœ ì‹œê°„ ê°„ê²©ë§Œí¼ ë³´ê°„ë˜ì–´ ì• ë‹ˆë©”ì´ì…˜ëœë‹¤.
+/// @hMotion ëª¨ì…˜ í•¸ë“¤
+/// @iMilliSeconds ì§€ì—° ì‹œê°„. ë‹¨ìœ„) ë°€ë¦¬ì„¸ì»¨ë“œ
+/// @return ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT
 int setMotionInterporationInterval ( HNODE hMotion, int iMilliSeconds );
 
-/// ÀÌÀüÀÇ ¿ùµå °ø°£ À§Ä¡¸¦ ÀúÀå
-/// @hVisible ºñÁ®ºí ³ëµå ÇÚµé
-/// @return ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0
+/// ì´ì „ì˜ ì›”ë“œ ê³µê°„ ìœ„ì¹˜ë¥¼ ì €ìž¥
+/// @hVisible ë¹„ì ¸ë¸” ë…¸ë“œ í•¸ë“¤
+/// @return ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT
 int savePrevPosition ( HNODE hVisible );
 
-/// ÀÌÀü ÇÁ·¹ÀÓÀÇ ¿ùµå °ø°£ À§Ä¡¸¦ ¾ò¾î¿È
-/// @hVisible ºñÁ®ºí ³ëµå ÇÚµé
-/// @fPositionXYZ ¾ò¾î¿Ã 3Â÷¿ø ÁÂÇ¥
-/// @return ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0
+/// ì´ì „ í”„ë ˆìž„ì˜ ì›”ë“œ ê³µê°„ ìœ„ì¹˜ë¥¼ ì–»ì–´ì˜´
+/// @hVisible ë¹„ì ¸ë¸” ë…¸ë“œ í•¸ë“¤
+/// @fPositionXYZ ì–»ì–´ì˜¬ 3ì°¨ì› ì¢Œí‘œ
+/// @return ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_DLL
 int getPrevPosition ( HNODE hVisible, float fPositionXYZ[3] );
 
@@ -2721,89 +2721,89 @@ float getPrevPositionY ( HNODE hVisible );
 ZZ_SCRIPT
 float getPrevPositionZ ( HNODE hVisible );
 
-/// ¸ðµ¨À» ÁÂ ¶Ç´Â ¿ì ¹æÇâÀ¸·Î fDistance °Å¸®¸¸Å­ ÀÌµ¿½ÃÅ² ¿ùµå À§Ä¡¸¦ ¾ò´Â´Ù.
-/// ÁÂ ¶Ç´Â ¿ì ¹æÇâÀº ShiftDirection¿¡ ÀÇÇØ °áÁ¤µÈ´Ù.
-/// @fDistance ÀÌµ¿µÉ °Å¸®. Ç×»ó ¾ç¼öÀÌ¾î¾ß ÇÔ.
-/// @fWorldPosOut ±¸ÇØÁú ¿ùµå ÁÂÇ¥
+/// ëª¨ë¸ì„ ì¢Œ ë˜ëŠ” ìš° ë°©í–¥ìœ¼ë¡œ fDistance ê±°ë¦¬ë§Œí¼ ì´ë™ì‹œí‚¨ ì›”ë“œ ìœ„ì¹˜ë¥¼ ì–»ëŠ”ë‹¤.
+/// ì¢Œ ë˜ëŠ” ìš° ë°©í–¥ì€ ShiftDirectionì— ì˜í•´ ê²°ì •ëœë‹¤.
+/// @fDistance ì´ë™ë  ê±°ë¦¬. í•­ìƒ ì–‘ìˆ˜ì´ì–´ì•¼ í•¨.
+/// @fWorldPosOut êµ¬í•´ì§ˆ ì›”ë“œ ì¢Œí‘œ
 ZZ_DLL
 int getModelShiftPosition ( HNODE hModel, float fCmPerSecond, float fWorldPosOut[3] );
 
-/// ¸ðµ¨ÀÇ ÀÌµ¿ ¼±È£ ¹æÇâÀ» ¹Ý´ë·Î ¼³Á¤ÇÑ´Ù.
-/// @iShiftLeftDirection 1ÀÌ¸é ¿ÞÂÊ, 0ÀÌ¸é ¿À¸¥ÂÊ
+/// ëª¨ë¸ì˜ ì´ë™ ì„ í˜¸ ë°©í–¥ì„ ë°˜ëŒ€ë¡œ ì„¤ì •í•œë‹¤.
+/// @iShiftLeftDirection 1ì´ë©´ ì™¼ìª½, 0ì´ë©´ ì˜¤ë¥¸ìª½
 ZZ_DLL
 int flipModelShiftDirection ( HNODE hModel );
 
-/// ºñÁ®ºí¿¡ Áß·ÂÀ» Àû¿ëÇÑ À§Ä¡¸¦ ¸®ÅÏÇÑ´Ù.
-/// ÇöÀç ¼Óµµ ¹× Áú·®Àº Àû¿ëµÇÁö ¾ÊÀ½.
+/// ë¹„ì ¸ë¸”ì— ì¤‘ë ¥ì„ ì ìš©í•œ ìœ„ì¹˜ë¥¼ ë¦¬í„´í•œë‹¤.
+/// í˜„ìž¬ ì†ë„ ë° ì§ˆëŸ‰ì€ ì ìš©ë˜ì§€ ì•ŠìŒ.
 ZZ_DLL
 float applyGravity ( HNODE hVis );
 
-/// ÇöÀç ¾À¿¡ µî·ÏµÈ ¸ðµç ¿ÀºêÁ§Æ®µé(ÁöÇü ¹× ¹Ù´Ù¿ÀºêÁ§Æ®´Â Á¦¿Ü)¿¡ ´ëÇØ,
-/// ÁöÁ¤ÇÑ 2Â÷¿ø Á¡¿¡ ÇØ´çÇÏ´Â °¡Àå ³ôÀº ³ôÀÌ ¾ò±â.
-/// ÁöÇüÀ» Æ÷ÇÔÇÏ¿© ¾À ¾ÈÀÇ ¸ðµç ¿ÀºêÁ§Æ®µéÀÇ ³ôÀÌ Áß¿¡ °¡Àå ³ôÀº °ÍÀ» ¼±ÅÃÇÑ´Ù.
-/// @fWorldX/Y ³ôÀÌ¸¦ ¾ò°íÀÚÇÏ´Â 2D ÁÂÇ¥
-/// @fDefaultHeight Ãæµ¹ÇÏ´Â ¿ÀºêÁ§Æ®°¡ ¾øÀ» ¶§ ¸®ÅÏÇÏ´Â ³ôÀÌ°ª. ÀÏ¹ÝÀûÀ¸·Î ÁöÇüÀÇ ³ôÀÌ·Î ÀÔ·Â.
-/// @return ÇØ´ç À§Ä¡ÀÇ ³ôÀÌ
+/// í˜„ìž¬ ì”¬ì— ë“±ë¡ëœ ëª¨ë“  ì˜¤ë¸Œì íŠ¸ë“¤(ì§€í˜• ë° ë°”ë‹¤ì˜¤ë¸Œì íŠ¸ëŠ” ì œì™¸)ì— ëŒ€í•´,
+/// ì§€ì •í•œ 2ì°¨ì› ì ì— í•´ë‹¹í•˜ëŠ” ê°€ìž¥ ë†’ì€ ë†’ì´ ì–»ê¸°.
+/// ì§€í˜•ì„ í¬í•¨í•˜ì—¬ ì”¬ ì•ˆì˜ ëª¨ë“  ì˜¤ë¸Œì íŠ¸ë“¤ì˜ ë†’ì´ ì¤‘ì— ê°€ìž¥ ë†’ì€ ê²ƒì„ ì„ íƒí•œë‹¤.
+/// @fWorldX/Y ë†’ì´ë¥¼ ì–»ê³ ìží•˜ëŠ” 2D ì¢Œí‘œ
+/// @fDefaultHeight ì¶©ëŒí•˜ëŠ” ì˜¤ë¸Œì íŠ¸ê°€ ì—†ì„ ë•Œ ë¦¬í„´í•˜ëŠ” ë†’ì´ê°’. ì¼ë°˜ì ìœ¼ë¡œ ì§€í˜•ì˜ ë†’ì´ë¡œ ìž…ë ¥.
+/// @return í•´ë‹¹ ìœ„ì¹˜ì˜ ë†’ì´
 ZZ_SCRIPT
 float getWorldObjectHeightInScene ( float fWorldX, float fWorldY, float fDefaultHeight );
 
 //--------------------------------------------------------------------------------
 // drawFontLater ()
 //--------------------------------------------------------------------------------
-/// ÁöÁ¤ÇÑ ¹®ÀÚ¿­À» ·»´õ¸µÀÇ Á¦ÀÏ ¸¶Áö¸· ºÎºÐ¿¡ ·»´õ¸µÇÏµµ·Ï ¿äÃ»ÇÑ´Ù.
-/// ÀÌ ¹®ÀÚ¿­Àº ·»´õ¸µµÈ µÚ¿¡ ¹Ù·Î »èÁ¦µÈ´Ù.
-/// ÀÌ ÀÎÅÍÆäÀÌ½º´Â drawFont()¿Í´Â ´Þ¸®, beginScene()/endScene() ³»¿¡ Á¸ÀçÇÏÁö ¾Ê¾Æµµ µÈ´Ù.
-/// @hFont loadFont()·ÎºÎÅÍ ¾òÀº ÇÚµé.
-/// @iX ½ºÅ©¸° xÁÂÇ¥. 0ºÎÅÍ ½ÃÀÛ.
-/// @iY ½ºÅ©¸° yÁÂÇ¥. 0ºÎÅÍ ½ÃÀÛ. ¾Æ·¡ ¹æÇâÀ¸·Î Áõ°¡.
-/// @pMsg Ãâ·ÂÇÒ ¸Þ¼¼Áö.
-/// @return 1ÀÌ¸é ¼º°ø. 0ÀÌ¸é ½ÇÆÐ.
+/// ì§€ì •í•œ ë¬¸ìžì—´ì„ ë Œë”ë§ì˜ ì œì¼ ë§ˆì§€ë§‰ ë¶€ë¶„ì— ë Œë”ë§í•˜ë„ë¡ ìš”ì²­í•œë‹¤.
+/// ì´ ë¬¸ìžì—´ì€ ë Œë”ë§ëœ ë’¤ì— ë°”ë¡œ ì‚­ì œëœë‹¤.
+/// ì´ ì¸í„°íŽ˜ì´ìŠ¤ëŠ” drawFont()ì™€ëŠ” ë‹¬ë¦¬, beginScene()/endScene() ë‚´ì— ì¡´ìž¬í•˜ì§€ ì•Šì•„ë„ ëœë‹¤.
+/// @hFont loadFont()ë¡œë¶€í„° ì–»ì€ í•¸ë“¤.
+/// @iX ìŠ¤í¬ë¦° xì¢Œí‘œ. 0ë¶€í„° ì‹œìž‘.
+/// @iY ìŠ¤í¬ë¦° yì¢Œí‘œ. 0ë¶€í„° ì‹œìž‘. ì•„ëž˜ ë°©í–¥ìœ¼ë¡œ ì¦ê°€.
+/// @pMsg ì¶œë ¥í•  ë©”ì„¸ì§€.
+/// @return 1ì´ë©´ ì„±ê³µ. 0ì´ë©´ ì‹¤íŒ¨.
 ZZ_SCRIPT
 int drawFontLater ( HNODE hFont, int iX, int iY, ZSTRING pMsg );
 
-/// pushFont()¿¡ Æ÷¸Ë ¹®ÀÚ¿­ÀÌ Àû¿ëµÈ ¹öÀü
+/// pushFont()ì— í¬ë§· ë¬¸ìžì—´ì´ ì ìš©ëœ ë²„ì „
 ZZ_DLL
 int drawFontLaterf ( HNODE hFont, int iX, int iY, const char * pMsgFormat, ... );
 
 
 //--------------------------------------------------------------------------------
-// 3d sound system °ü·Ã
+// 3d sound system ê´€ë ¨
 //--------------------------------------------------------------------------------
 
-/// »ç¿îµå ½Ã½ºÅÛ ÃÊ±âÈ­
-/// attachWindow() È£Ãâ ÈÄ¿¡ È£ÃâÇØ¾ß ÇÔ. (À©µµ¿ì ÇÚµéÀ» »ç¿ëÇÏ±â ¶§¹®)
+/// ì‚¬ìš´ë“œ ì‹œìŠ¤í…œ ì´ˆê¸°í™”
+/// attachWindow() í˜¸ì¶œ í›„ì— í˜¸ì¶œí•´ì•¼ í•¨. (ìœˆë„ìš° í•¸ë“¤ì„ ì‚¬ìš©í•˜ê¸° ë•Œë¬¸)
 ZZ_SCRIPT
 int initSoundSystem ( void );
 
-/// »ç¿îµå ½Ã½ºÅÛ ÇØÁ¦
-/// destZnzin() È£Ãâ Àü¿¡ È£ÃâÇØ¾ß ÇÔ.
-/// ÇöÀç ¾Æ¹«°Íµµ ¾ÈÇÔ.
+/// ì‚¬ìš´ë“œ ì‹œìŠ¤í…œ í•´ì œ
+/// destZnzin() í˜¸ì¶œ ì „ì— í˜¸ì¶œí•´ì•¼ í•¨.
+/// í˜„ìž¬ ì•„ë¬´ê²ƒë„ ì•ˆí•¨.
 ZZ_SCRIPT
 int destSoundSystem ( void );
 
-/// »ç¿îµå ½Ã½ºÅÛ ¾÷µ¥ÀÌÆ®
-/// ½ÇÁúÀûÀÎ ¸®½º³Ê À§Ä¡ °»½ÅÀÌ ¿©±â¿¡¼­ ÀÌ·ç¾îÁü.
+/// ì‚¬ìš´ë“œ ì‹œìŠ¤í…œ ì—…ë°ì´íŠ¸
+/// ì‹¤ì§ˆì ì¸ ë¦¬ìŠ¤ë„ˆ ìœ„ì¹˜ ê°±ì‹ ì´ ì—¬ê¸°ì—ì„œ ì´ë£¨ì–´ì§.
 ZZ_SCRIPT
 int updateSoundSystem ( void );
 
-/// »ç¿îµå ·Îµù
-/// @strSoundName »ç¿îµå °´Ã¼ ÀÌ¸§
-/// @strWaveFileName .WAV ÆÄÀÏ ÀÌ¸§
-/// @iNumBuffers ¹öÆÛ °³¼ö
+/// ì‚¬ìš´ë“œ ë¡œë”©
+/// @strSoundName ì‚¬ìš´ë“œ ê°ì²´ ì´ë¦„
+/// @strWaveFileName .WAV íŒŒì¼ ì´ë¦„
+/// @iNumBuffers ë²„í¼ ê°œìˆ˜
 ZZ_SCRIPT
 HNODE loadSound ( ZSTRING strSoundName, ZSTRING strWaveFileName, int iNumBuffers );
 
-/// »ç¿îµå ÇØÁ¦
+/// ì‚¬ìš´ë“œ í•´ì œ
 ZZ_SCRIPT
 int unloadSound ( HNODE hSound );
 
-/// »ç¿îµåÀÇ 3Â÷¿ø À§Ä¡ ÁöÁ¤.
-/// ¿ùµå °ø°£ ÁÂÇ¥¿Í µ¿ÀÏ
+/// ì‚¬ìš´ë“œì˜ 3ì°¨ì› ìœ„ì¹˜ ì§€ì •.
+/// ì›”ë“œ ê³µê°„ ì¢Œí‘œì™€ ë™ì¼
 ZZ_DLL
 int setSoundPosition ( HNODE hSound, float fPosition[3] );
 
-/// »ç¿îµå ÇÃ·¹ÀÌ
-/// @bLoop 1ÀÌ¸é ¹Ýº¹
+/// ì‚¬ìš´ë“œ í”Œë ˆì´
+/// @bLoop 1ì´ë©´ ë°˜ë³µ
 ZZ_SCRIPT
 int playSound ( HNODE hSound, int bLoop );
 
@@ -2816,18 +2816,18 @@ int getSoundState ( HNODE hSound );
 
 //--------------------------------------------------------------------------------
 
-/// µÎ º¤ÅÍ°£ »çÀÌ°¢À» ±¸ÇÑ´Ù.
-/// À½¼ö°¡ µÉ ¼ö ÀÖÀ½.
-/// @return »çÀÌ°¢. ´ÜÀ§. µµ(degree)
+/// ë‘ ë²¡í„°ê°„ ì‚¬ì´ê°ì„ êµ¬í•œë‹¤.
+/// ìŒìˆ˜ê°€ ë  ìˆ˜ ìžˆìŒ.
+/// @return ì‚¬ì´ê°. ë‹¨ìœ„. ë„(degree)
 ZZ_DLL
 float getVectorAngle ( float vVector1[3], float vVector2[3] );
 
-/// ÇÏ´Ã ÀçÁúÀ» »ý¼ºÇÑ´Ù.
-/// @pMaterialName : µî·ÏµÉ ÀçÁú ÀÌ¸§
-/// @hShader       : µî·ÏµÈ ½¦ÀÌ´õ ÇÚµé
-/// @pMapFileName1  : Ã¹¹øÂ° ÅØ½ºÃÄ ÆÄÀÏ °æ·Î ¹× ÀÌ¸§
-/// @pMapFileName2  : µÎ¹øÂ° ÅØ½ºÃÄ ÆÄÀÏ °æ·Î ¹× ÀÌ¸§
-/// @¸®ÅÏ°ª        : ¼º°øÇÏ¸é ÀçÁúÇÚµé, ½ÇÆÐÇÏ¸é 0
+/// í•˜ëŠ˜ ìž¬ì§ˆì„ ìƒì„±í•œë‹¤.
+/// @pMaterialName : ë“±ë¡ë  ìž¬ì§ˆ ì´ë¦„
+/// @hShader       : ë“±ë¡ëœ ì‰ì´ë” í•¸ë“¤
+/// @pMapFileName1  : ì²«ë²ˆì§¸ í…ìŠ¤ì³ íŒŒì¼ ê²½ë¡œ ë° ì´ë¦„
+/// @pMapFileName2  : ë‘ë²ˆì§¸ í…ìŠ¤ì³ íŒŒì¼ ê²½ë¡œ ë° ì´ë¦„
+/// @ë¦¬í„´ê°’        : ì„±ê³µí•˜ë©´ ìž¬ì§ˆí•¸ë“¤, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT 
 HNODE loadSkyMaterial (
 	ZSTRING pMaterialName,
@@ -2836,53 +2836,53 @@ HNODE loadSkyMaterial (
 	ZSTRING pMapFileName2
 );
 
-/// ÇÏ´Ã ÀçÁúÀÇ ¸ÖÆ¼ÅØ½ºÃÄ ºí·»µù ºñÀ²À» ¼³Á¤ÇÑ´Ù.
-/// @hMat ÀçÁú ÇÚµé
-/// @fBlendRatio ºí·»µù ºñÀ². 1ÀÌ¸é Ã¹¹øÂ° ÅØ½ºÃÄ°¡ 100%. 0ÀÌ¸é µÎ¹øÂ° ÅØ½ºÃÄ°¡ 100%ÀÓ.
-/// @return ¼º°øÇÏ¸é 1. ½ÇÆÐÇÏ¸é 0
+/// í•˜ëŠ˜ ìž¬ì§ˆì˜ ë©€í‹°í…ìŠ¤ì³ ë¸”ë Œë”© ë¹„ìœ¨ì„ ì„¤ì •í•œë‹¤.
+/// @hMat ìž¬ì§ˆ í•¸ë“¤
+/// @fBlendRatio ë¸”ë Œë”© ë¹„ìœ¨. 1ì´ë©´ ì²«ë²ˆì§¸ í…ìŠ¤ì³ê°€ 100%. 0ì´ë©´ ë‘ë²ˆì§¸ í…ìŠ¤ì³ê°€ 100%ìž„.
+/// @return ì„±ê³µí•˜ë©´ 1. ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_SCRIPT 
 int setSkyMaterialBlendRatio ( HNODE hMat, float fBlendRatio );
 
-/// ºñÁ®ºíÀÇ AABB¸¦ ¾ò´Â´Ù.
-/// @hVisible_In ºñÁ®ºí ÇÚµé
-/// @fMin_Out ¹Ù¿îµù ¹Ú½ºÀÇ ÃÖÀú ÁöÁ¡
-/// @fMax_Out ¹Ù¿îµù ¹Ú½ºÀÇ ÃÖ°í ÁöÁ¡
+/// ë¹„ì ¸ë¸”ì˜ AABBë¥¼ ì–»ëŠ”ë‹¤.
+/// @hVisible_In ë¹„ì ¸ë¸” í•¸ë“¤
+/// @fMin_Out ë°”ìš´ë”© ë°•ìŠ¤ì˜ ìµœì € ì§€ì 
+/// @fMax_Out ë°”ìš´ë”© ë°•ìŠ¤ì˜ ìµœê³  ì§€ì 
 ZZ_DLL
 int getVisibleAABB ( HNODE hVisible_In, float vMin_Out[3], float vMax_Out[3] );
 
-/// ºñÁ®ºí ³ëµåÀÇ ¹Ù¿îµù ±¸¸¦ ¾ò´Â´Ù.
-/// @hVisible_In ºñÁ®ºí ÇÚµé
-/// @vCenter_Out ¹Ù¿îµù ±¸ÀÇ Áß½ÉÁ¡
-/// @fRadius_Out ¹Ù¿îµù ±¸ÀÇ ¹ÝÁö¸§
+/// ë¹„ì ¸ë¸” ë…¸ë“œì˜ ë°”ìš´ë”© êµ¬ë¥¼ ì–»ëŠ”ë‹¤.
+/// @hVisible_In ë¹„ì ¸ë¸” í•¸ë“¤
+/// @vCenter_Out ë°”ìš´ë”© êµ¬ì˜ ì¤‘ì‹¬ì 
+/// @fRadius_Out ë°”ìš´ë”© êµ¬ì˜ ë°˜ì§€ë¦„
 ZZ_DLL
 int getVisibleSphere ( HNODE hVisible_In, float vCenter_Out[3], float * fRadius_Out );
 
-/// ¹ÝÁ÷¼± ´ë »ï°¢Çü ±³Â÷ ÆÇÁ¤. Ãæµ¹ ¹ý¼±µµ ±¸ÇØÁø´Ù.
-/// ÆÇÁ¤ÀÌ ¼º°øÇÏ´Â °æ¿ì¿¡¸¸, vContactPoint_Out ¿Í vContactNormal_Out °¡ °»½ÅµÈ´Ù.
+/// ë°˜ì§ì„  ëŒ€ ì‚¼ê°í˜• êµì°¨ íŒì •. ì¶©ëŒ ë²•ì„ ë„ êµ¬í•´ì§„ë‹¤.
+/// íŒì •ì´ ì„±ê³µí•˜ëŠ” ê²½ìš°ì—ë§Œ, vContactPoint_Out ì™€ vContactNormal_Out ê°€ ê°±ì‹ ëœë‹¤.
 ZZ_DLL
 int intersectRayNormal ( HNODE hVisible_In, float vRayOrigin_In[3], float vRayDirection_In[3], float vContactPoint_Out[3], float vContactNormal_Out[3] );
 
-/// ÇöÀç µî·ÏµÇ¾î ÀÖ´Â ¸ðµç ÅØ½ºÃÄµéÀÇ °æ·Î¸¦ ·Î±×ÆÄÀÏ¿¡ Ãâ·ÂÇÑ´Ù.
-/// @return ÅØ½ºÃÄµéÀÇ °³¼ö¸¦ ¸®ÅÏ
+/// í˜„ìž¬ ë“±ë¡ë˜ì–´ ìžˆëŠ” ëª¨ë“  í…ìŠ¤ì³ë“¤ì˜ ê²½ë¡œë¥¼ ë¡œê·¸íŒŒì¼ì— ì¶œë ¥í•œë‹¤.
+/// @return í…ìŠ¤ì³ë“¤ì˜ ê°œìˆ˜ë¥¼ ë¦¬í„´
 ZZ_SCRIPT
 int logTextures ( void );
 
-/// ¸ðµ¨ÀÇ ¹«°Ô Áß½É À§Ä¡¸¦ ¾ò´Â´Ù. (¿ùµå ÁÂÇ¥ Áß½É)
-/// @vCenterOfMass ¿ùµå »óÀÇ Áß½É À§Ä¡
-/// @return ¼º°øÇÏ¸é, 1, ½ÇÆÐÇÏ¸é 0
+/// ëª¨ë¸ì˜ ë¬´ê²Œ ì¤‘ì‹¬ ìœ„ì¹˜ë¥¼ ì–»ëŠ”ë‹¤. (ì›”ë“œ ì¢Œí‘œ ì¤‘ì‹¬)
+/// @vCenterOfMass ì›”ë“œ ìƒì˜ ì¤‘ì‹¬ ìœ„ì¹˜
+/// @return ì„±ê³µí•˜ë©´, 1, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_DLL
 int getModelCOMPositionWorld ( HNODE hModel, float vCenterOfMass[3] );
 
-/// ¸ðµ¨ÀÇ ¹«°Ô Áß½É À§Ä¡¸¦ ¾ò´Â´Ù. (·ÎÄÃ ÁÂÇ¥ Áß½É)
-/// @vCenterOfMass ¿ùµå »óÀÇ Áß½É À§Ä¡
-/// @return ¼º°øÇÏ¸é, 1, ½ÇÆÐÇÏ¸é 0
+/// ëª¨ë¸ì˜ ë¬´ê²Œ ì¤‘ì‹¬ ìœ„ì¹˜ë¥¼ ì–»ëŠ”ë‹¤. (ë¡œì»¬ ì¢Œí‘œ ì¤‘ì‹¬)
+/// @vCenterOfMass ì›”ë“œ ìƒì˜ ì¤‘ì‹¬ ìœ„ì¹˜
+/// @return ì„±ê³µí•˜ë©´, 1, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_DLL
 int getModelCOMPositionLocal ( HNODE hModel, float vCenterOfMass[3] );
 
-/// ºñÁ®ºíÀÇ ·»´õ¸µ ¿µ¿ªÀ» ¼³Á¤ÇÑ´Ù.
-/// @hVisible ¿µ¿ªÀ» ¼³Á¤ÇÒ ºñÁ®ºí ³ëµåÀÇ ÇÚµé
-/// @fDistanceFromCameraStart ·»´õ¸µÀÇ ½ÃÀÛ°Å¸®(Ä«¸Þ¶ó·ÎºÎÅÍÀÇ °Å¸®)
-/// @fDistanceFromCameraEnd ·»´õ¸µÀÌ ³¡°Å¸®(Ä«¸Þ¶ó·ÎºÎÅÍÀÇ °Å¸®)
+/// ë¹„ì ¸ë¸”ì˜ ë Œë”ë§ ì˜ì—­ì„ ì„¤ì •í•œë‹¤.
+/// @hVisible ì˜ì—­ì„ ì„¤ì •í•  ë¹„ì ¸ë¸” ë…¸ë“œì˜ í•¸ë“¤
+/// @fDistanceFromCameraStart ë Œë”ë§ì˜ ì‹œìž‘ê±°ë¦¬(ì¹´ë©”ë¼ë¡œë¶€í„°ì˜ ê±°ë¦¬)
+/// @fDistanceFromCameraEnd ë Œë”ë§ì´ ëê±°ë¦¬(ì¹´ë©”ë¼ë¡œë¶€í„°ì˜ ê±°ë¦¬)
 ZZ_SCRIPT
 int setVisibleRangeFromCamera ( HNODE hVisible, float fDistanceFromCameraStart, float fDistanceFromCameraEnd );
 
@@ -2895,27 +2895,27 @@ int popSpecialEffect ( void );
 ZZ_SCRIPT
 int clearSpecialEffect ( void );
 
-/// ÅØ½ºÃÄÀÇ °¡·Î ¼¼·Î »çÀÌÁî¸¦ ¾ò´Â´Ù.
-/// @hTexture ÅØ½ºÃÄ ÇÚµé
-/// @iWidth_Out ³ÐÀÌ
-/// @iHeight_Out ³ôÀÌ
-/// @return ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0
+/// í…ìŠ¤ì³ì˜ ê°€ë¡œ ì„¸ë¡œ ì‚¬ì´ì¦ˆë¥¼ ì–»ëŠ”ë‹¤.
+/// @hTexture í…ìŠ¤ì³ í•¸ë“¤
+/// @iWidth_Out ë„“ì´
+/// @iHeight_Out ë†’ì´
+/// @return ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0
 ZZ_DLL
 int getTextureSize ( HNODE hTexture, int& iWidth_Out, int& iHeight_Out );
 
-/// ¸ðµ¨ÀÇ ¹ý¼±º¤ÅÍ¸¦ ¼³Á¤ÇÑ´Ù. ÁöÁ¤µÈ ¹ý¼±º¤ÅÍ°¡ ¸ðµ¨ÀÇ zÃàÀÌ µÈ´Ù.
-/// @hModel ¸ðµ¨ ÇÚµé
-/// @vNormal ¹ý¼±º¤ÅÍ
-/// @retrurn ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0À» ¸®ÅÏ
+/// ëª¨ë¸ì˜ ë²•ì„ ë²¡í„°ë¥¼ ì„¤ì •í•œë‹¤. ì§€ì •ëœ ë²•ì„ ë²¡í„°ê°€ ëª¨ë¸ì˜ zì¶•ì´ ëœë‹¤.
+/// @hModel ëª¨ë¸ í•¸ë“¤
+/// @vNormal ë²•ì„ ë²¡í„°
+/// @retrurn ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0ì„ ë¦¬í„´
 ZZ_DLL
 int setModelNormal ( HNODE hModel, float vNormal[3] );
 
-/// Ä«¸Þ¶ó¸¦ ÁöÁ¤µÈ ½Ã°£µ¿¾È ÁöÁ¤µÈ ¹üÀ§³»¿¡¼­ ¹«ÀÛÀ§·Î ÀÌµ¿½ÃÅ²´Ù.
-/// @hCamera Ä«¸Þ¶ó ÇÚµé
-/// @vMin ¹üÀ§ ÁöÁ¤ ¹Ú½ºÀÇ ÃÖ¼Ò À§Ä¡(¿¹, -10, -10, -10)
-/// @vMax ¹üÀ§ ÁöÁ¤ ¹Ú½ºÀÇ ÃÖ´ë À§Ä¡(¿¹, 10, 10, 10)
-/// @iTimeMSEC ¹Ð¸®¼¼ÄÁµå ´ÜÀ§ÀÇ Áö¼Ó ½Ã°£. 
-/// @return ¼º°øÇÏ¸é 1, ½ÇÆÐÇÏ¸é 0À» ¸®ÅÏ
+/// ì¹´ë©”ë¼ë¥¼ ì§€ì •ëœ ì‹œê°„ë™ì•ˆ ì§€ì •ëœ ë²”ìœ„ë‚´ì—ì„œ ë¬´ìž‘ìœ„ë¡œ ì´ë™ì‹œí‚¨ë‹¤.
+/// @hCamera ì¹´ë©”ë¼ í•¸ë“¤
+/// @vMin ë²”ìœ„ ì§€ì • ë°•ìŠ¤ì˜ ìµœì†Œ ìœ„ì¹˜(ì˜ˆ, -10, -10, -10)
+/// @vMax ë²”ìœ„ ì§€ì • ë°•ìŠ¤ì˜ ìµœëŒ€ ìœ„ì¹˜(ì˜ˆ, 10, 10, 10)
+/// @iTimeMSEC ë°€ë¦¬ì„¸ì»¨ë“œ ë‹¨ìœ„ì˜ ì§€ì† ì‹œê°„. 
+/// @return ì„±ê³µí•˜ë©´ 1, ì‹¤íŒ¨í•˜ë©´ 0ì„ ë¦¬í„´
 ZZ_DLL
 int shakeCamera ( HNODE hCamera, float vMin[3], float vMax[3], int iTimeMSEC );
 
@@ -2934,7 +2934,7 @@ int setGravity ( float vGravityVector[3] );
 ZZ_SCRIPT
 int setGravityScript ( float fGravityX, float fGravityY, float fGravityZ );
 
-/// ¸ðµ¨ÀÇ ÃÊ±â ¸ð¼Ç À§Ä¡¸¦ ¾ò´Â´Ù. ¸ðµ¨ÁÂÇ¥°èÀÇ »ó´ëÁÂÇ¥ÀÓ.
+/// ëª¨ë¸ì˜ ì´ˆê¸° ëª¨ì…˜ ìœ„ì¹˜ë¥¼ ì–»ëŠ”ë‹¤. ëª¨ë¸ì¢Œí‘œê³„ì˜ ìƒëŒ€ì¢Œí‘œìž„.
 ZZ_DLL
 int getModelInitialCOMPosition ( HNODE hModel, float vPositionOut[3] );
 
@@ -2966,14 +2966,14 @@ int getMonitorRefreshRate ( void );
 ZZ_SCRIPT
 int dumpResourcesInViewstrum ( int bTerrain, int bOcean, int bOpaque, int bTransparent );
 
-/// ·Î±× ³»¿ëÀ» ¹®ÀÚ¿­·Î ¾ò¾î¿À±â.
-/// @iNumLatest ¾ò¾î¿Ã ·Î±× ¶óÀÎ °³¼ö. 0ÀÌ¸é ÀüÃ¼
-/// @return ·Î±× ¹®ÀÚ¿­.
-/// ÁÖÀÇ: ÇÑ¹ø ¾ò¾î¿À¸é ´ÙÀ½¹ø È£Ãâ½Ã¿¡´Â ÀÌÀü ³»¿ëÀº Á¦¿ÜµÈ´Ù.
+/// ë¡œê·¸ ë‚´ìš©ì„ ë¬¸ìžì—´ë¡œ ì–»ì–´ì˜¤ê¸°.
+/// @iNumLatest ì–»ì–´ì˜¬ ë¡œê·¸ ë¼ì¸ ê°œìˆ˜. 0ì´ë©´ ì „ì²´
+/// @return ë¡œê·¸ ë¬¸ìžì—´.
+/// ì£¼ì˜: í•œë²ˆ ì–»ì–´ì˜¤ë©´ ë‹¤ìŒë²ˆ í˜¸ì¶œì‹œì—ëŠ” ì´ì „ ë‚´ìš©ì€ ì œì™¸ëœë‹¤.
 ZZ_SCRIPT
 ZSTRING readLogString ( int iNumLatest, ZSTRING pStrLineBreakingMsg );
 
-/// HNODE Å¸ÀÔÀ» ¸®ÅÏÇÔ
+/// HNODE íƒ€ìž…ì„ ë¦¬í„´í•¨
 ZZ_SCRIPT
 HNODE returnHNODE ( HNODE hNode );
 
@@ -2987,26 +2987,26 @@ HNODE returnHNODE ( HNODE hNode );
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
 // drawFont()
-// : ÆùÆ®¸¦ ·»´õ¸µ.
+// : í°íŠ¸ë¥¼ ë Œë”ë§.
 //--------------------------------------------------------------------------------
-/// @hFont loadFont() ·ÎºÎÅÍ ¾òÀº ÇÚµé.
-/// @bUseSprite ½ºÇÁ¶óÀÌÆ® »ç¿ë ¿©ºÎ. 1ÀÌ¸é, ½ºÇÁ¶óÀÌÆ®ÀÇ beginSprite()/endSprite() ºí·Ï ¾È¿¡¼­ È£ÃâµÇ¾î¾ß ÇÑ´Ù.
-/// @iX ½ºÅ©¸° xÁÂÇ¥. 0ºÎÅÍ ½ÃÀÛ.
-/// @iY ½ºÅ©¸° yÁÂÇ¥. 0ºÎÅÍ ½ÃÀÛ. ¾Æ·¡ ¹æÇâÀ¸·Î Áõ°¡.
-/// @pMsg Ãâ·ÂÇÒ ¸Þ¼¼Áö.
-/// @return 1ÀÌ¸é ¼º°ø, 0ÀÌ¸é ½ÇÆÐ.
+/// @hFont loadFont() ë¡œë¶€í„° ì–»ì€ í•¸ë“¤.
+/// @bUseSprite ìŠ¤í”„ë¼ì´íŠ¸ ì‚¬ìš© ì—¬ë¶€. 1ì´ë©´, ìŠ¤í”„ë¼ì´íŠ¸ì˜ beginSprite()/endSprite() ë¸”ë¡ ì•ˆì—ì„œ í˜¸ì¶œë˜ì–´ì•¼ í•œë‹¤.
+/// @iX ìŠ¤í¬ë¦° xì¢Œí‘œ. 0ë¶€í„° ì‹œìž‘.
+/// @iY ìŠ¤í¬ë¦° yì¢Œí‘œ. 0ë¶€í„° ì‹œìž‘. ì•„ëž˜ ë°©í–¥ìœ¼ë¡œ ì¦ê°€.
+/// @pMsg ì¶œë ¥í•  ë©”ì„¸ì§€.
+/// @return 1ì´ë©´ ì„±ê³µ, 0ì´ë©´ ì‹¤íŒ¨.
 ZZ_DLL
 int drawFont ( HNODE hFont, int bUseSprite, int iX, int iY, const char * pMsg);
 
-/// @Color D3DCOLOR ¿Í µ¿ÀÏÇÑ Å¸ÀÔ
+/// @Color D3DCOLOR ì™€ ë™ì¼í•œ íƒ€ìž…
 ZZ_DLL
 int drawFont ( HNODE hFont, int bUseSprite, int iX, int iY, ZZ_COLOR Color, const char * pMsg);
 
-/// @pRect ID3DXFONT ÀÇ DrawText() ¸Þ¼ÒµåÀÇ RECT¿Í µ¿ÀÏ
+/// @pRect ID3DXFONT ì˜ DrawText() ë©”ì†Œë“œì˜ RECTì™€ ë™ì¼
 ZZ_DLL
 int drawFont ( HNODE hFont, int bUseSprite, ZZ_RECT * pRect, const char * pMsg);
 
-/// @dwFormat ID3DXFONT ÀÇ DrawText() ¸Þ¼ÒµåÀÇ Format°ú µ¿ÀÏ
+/// @dwFormat ID3DXFONT ì˜ DrawText() ë©”ì†Œë“œì˜ Formatê³¼ ë™ì¼
 ZZ_DLL
 int drawFont ( HNODE hFont, int bUseSprite, ZZ_RECT * pRect, ZZ_DWORD dwFormat, const char * pMsg);
 
@@ -3015,7 +3015,7 @@ int drawFont ( HNODE hFont, int bUseSprite, ZZ_RECT * pRect, ZZ_COLOR Color, ZZ_
 
 //--------------------------------------------------------------------------------
 // drawFontf()
-// : drawFont()¿¡ Æ÷¸Ë ¹®ÀÚ¿­ÀÌ Àû¿ëµÈ ¹öÀü
+// : drawFont()ì— í¬ë§· ë¬¸ìžì—´ì´ ì ìš©ëœ ë²„ì „
 //--------------------------------------------------------------------------------
 ZZ_DLL
 int drawFontf ( HNODE hFont, int bUseSprite, int iX, int iY, const char * pMsgFormat, ... );

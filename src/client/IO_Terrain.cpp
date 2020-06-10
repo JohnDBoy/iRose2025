@@ -98,7 +98,7 @@ CQuadPatchManager::~CQuadPatchManager(void)
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief  Top node¿¡¼­ QuadTree±¸Á¶ ÃÊ±âÈ­ ½ÃÀÛ 
+/// @brief  Top nodeì—ì„œ QuadTreeêµ¬ì¡° ì´ˆê¸°í™” ì‹œì‘ 
 //----------------------------------------------------------------------------------------------------
 void CQuadPatchManager::InitializeQuadPatch()
 {
@@ -108,7 +108,7 @@ void CQuadPatchManager::InitializeQuadPatch()
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief  CQuadPatchManagerÀÇ QuadTree±¸Á¶ÀÇ ÃÊ±âÈ­ 
+/// @brief  CQuadPatchManagerì˜ QuadTreeêµ¬ì¡°ì˜ ì´ˆê¸°í™” 
 //----------------------------------------------------------------------------------------------------
 void CQuadPatchManager::InputQuadPatchElement(short index, short level,int iquad_size, short nMapX, short nMapY) 
 {
@@ -138,8 +138,8 @@ void CQuadPatchManager::InputQuadPatchElement(short index, short level,int iquad
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief QuadTree±¸Á¶¿¡ CMAP* ÀÇ Á¤º¸°ªÀ» ÀÔ·Â 
-///        ½ÇÁ¦ ¸ÊÀÇ ÁÂÇ¥¸¦ º¸°í °¢ ³ëµåµéÀÇ ¹Ù¿îµù¹Ú½ºÀÇ ÁÂ·á¸¦ ½ÇÁ¦ ¿ùµå ÁÂÇ¥·Î º¯È¯.
+/// @brief QuadTreeêµ¬ì¡°ì— CMAP* ì˜ ì •ë³´ê°’ì„ ì…ë ¥ 
+///        ì‹¤ì œ ë§µì˜ ì¢Œí‘œë¥¼ ë³´ê³  ê° ë…¸ë“œë“¤ì˜ ë°”ìš´ë”©ë°•ìŠ¤ì˜ ì¢Œë£Œë¥¼ ì‹¤ì œ ì›”ë“œ ì¢Œí‘œë¡œ ë³€í™˜.
 //----------------------------------------------------------------------------------------------------
 void CQuadPatchManager::LoadQuadPatch(CMAP *pMap)
 {
@@ -166,7 +166,7 @@ void CQuadPatchManager::LoadQuadPatch(CMAP *pMap)
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief   Top node¿¡¼­ View Frsutum CullingÀ» ½ÃÀÛ 
+/// @brief   Top nodeì—ì„œ View Frsutum Cullingì„ ì‹œì‘ 
 //----------------------------------------------------------------------------------------------------
 
 void CQuadPatchManager::CalculateViewFrustumCulling()
@@ -180,7 +180,7 @@ void CQuadPatchManager::CalculateViewFrustumCulling()
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief  QuadTreeÀÇ View Frsutum Culling 
+/// @brief  QuadTreeì˜ View Frsutum Culling 
 //----------------------------------------------------------------------------------------------------
 void CQuadPatchManager::CalculateQuadPatchCulling(short index)
 {
@@ -221,7 +221,7 @@ void CQuadPatchManager::CalculateQuadPatchCulling(short index)
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief  View Frsutum¾ÈÂÊÀÇ Patch¸¦ ¾òÀ½ 
+/// @brief  View Frsutumì•ˆìª½ì˜ Patchë¥¼ ì–»ìŒ 
 //----------------------------------------------------------------------------------------------------
 void CQuadPatchManager::InsertMemoQuadPatch(short index)
 {
@@ -243,7 +243,7 @@ void CQuadPatchManager::InsertMemoQuadPatch(short index)
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief  QuadTreeÀÇ Bottom node¸¦ Ã³¸®
+/// @brief  QuadTreeì˜ Bottom nodeë¥¼ ì²˜ë¦¬
 //----------------------------------------------------------------------------------------------------
 void CQuadPatchManager::CalculateBottomNode(short index)
 {
@@ -275,7 +275,7 @@ void CQuadPatchManager::CalculateBottomNode(short index)
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief  AABB BoxÀÇ View Frsutum Culing 
+/// @brief  AABB Boxì˜ View Frsutum Culing 
 //----------------------------------------------------------------------------------------------------
 short CQuadPatchManager::ViewCullingFunc(aabbBox* box)
 {
@@ -298,7 +298,7 @@ short CQuadPatchManager::ViewCullingFunc(aabbBox* box)
 
 	
 	if (((buffer_vector[0]*buffer_vector2[0]+buffer_vector[1]*buffer_vector2[1]+buffer_vector[2]*buffer_vector2[2])+m_ViewFrsutumEq[i][3]) > 0) 
-        return 2;     //  View Frsutum ¹Ù±ù¿¡ ÀÖ´Â °æ¿ì
+        return 2;     //  View Frsutum ë°”ê¹¥ì— ìˆëŠ” ê²½ìš°
    } 
 
    
@@ -314,10 +314,10 @@ short CQuadPatchManager::ViewCullingFunc(aabbBox* box)
 
 	
 	if (((buffer_vector[0]*buffer_vector2[0]+buffer_vector[1]*buffer_vector2[1]+buffer_vector[2]*buffer_vector2[2])+m_ViewFrsutumEq[i][3]) > 0) 
-        return 1;            //  View Frsutum¿¡ °ÉÃÄ ÀÖ´Â °æ¿ì  
+        return 1;            //  View Frsutumì— ê±¸ì³ ìˆëŠ” ê²½ìš°  
    } 
 
- return 0;                  //  View Frsutum ¾ÈÂÊ¿¡ ÀÖ´Â °æ¿ì  
+ return 0;                  //  View Frsutum ì•ˆìª½ì— ìˆëŠ” ê²½ìš°  
 }  
 
 short CQuadPatchManager::ViewCullingFunc2(D3DVECTOR *min,D3DVECTOR *max)
@@ -340,7 +340,7 @@ short CQuadPatchManager::ViewCullingFunc2(D3DVECTOR *min,D3DVECTOR *max)
 
 	
 	if (((buffer_vector[0]*buffer_vector2[0]+buffer_vector[1]*buffer_vector2[1]+buffer_vector[2]*buffer_vector2[2])+m_ViewFrsutumEq[i][3]) > 0) 
-        return 2;     //  View Frsutum ¹Ù±ù¿¡ ÀÖ´Â °æ¿ì
+        return 2;     //  View Frsutum ë°”ê¹¥ì— ìˆëŠ” ê²½ìš°
    } 
 
    
@@ -356,10 +356,10 @@ short CQuadPatchManager::ViewCullingFunc2(D3DVECTOR *min,D3DVECTOR *max)
 
 	
 	if (((buffer_vector[0]*buffer_vector2[0]+buffer_vector[1]*buffer_vector2[1]+buffer_vector[2]*buffer_vector2[2])+m_ViewFrsutumEq[i][3]) > 0) 
-        return 1;            //  View Frsutum¿¡ °ÉÃÄ ÀÖ´Â °æ¿ì  
+        return 1;            //  View Frsutumì— ê±¸ì³ ìˆëŠ” ê²½ìš°  
    } 
 
- return 0;                  //  View Frsutum ¾ÈÂÊ¿¡ ÀÖ´Â °æ¿ì  
+ return 0;                  //  View Frsutum ì•ˆìª½ì— ìˆëŠ” ê²½ìš°  
 }  
 
 
@@ -704,7 +704,7 @@ void CMAP_PATCH::SetMATERIAL (short nTileNO)
 bool CMAP_PATCH::Register (short nWorldX, short nWorldY)
 {	
 	///
-	/// ÇÏ´Ã ¿¬Ãâµî¿¡¼­ ÁöÇüºí¶ôÀº ·Îµå¸¦ ÇÏÁö ¾Ê¾Æ¾ß ÇÒ ¸ğµå¿¡¼­
+	/// í•˜ëŠ˜ ì—°ì¶œë“±ì—ì„œ ì§€í˜•ë¸”ë½ì€ ë¡œë“œë¥¼ í•˜ì§€ ì•Šì•„ì•¼ í•  ëª¨ë“œì—ì„œ
 	///
 	if( !g_GameDATA.m_bJustObjectLoadMode )
 	{
@@ -716,7 +716,7 @@ bool CMAP_PATCH::Register (short nWorldX, short nWorldY)
 		_ASSERT( hDnMat );
 		_ASSERT( hUpMat );
 
-		/// ²ËÂù Å¸ÀÏÀÌ¶ó¸é À­Å¸ÀÏÀº »©ÁØ´Ù.
+		/// ê½‰ì°¬ íƒ€ì¼ì´ë¼ë©´ ìœ—íƒ€ì¼ì€ ë¹¼ì¤€ë‹¤.
 		///if( hDnMat == hUpMat )
 		///	hUpMat = 0;
 
@@ -766,12 +766,12 @@ bool CMAP_PATCH::RegisterToNZIN (void)
 }
 
 /// 04/4/25
-/// ÆĞÄ¡¿¡ ÀÌÆåÆ®¸¦ µî·ÏÇÒ¶§ ¸®½ºÆ®¿¡ Ãß°¡ÇÏÁö ¾Ê¾ÒÀ½
-/// ±×·±µ¥ Áö¿ï¶§´Â ÀÌÆåÆ® ¸®½ºÆ®¿¡¼­ Áö¿öÁÖ±â¸¦ ¹Ù·¨À½
-/// ±×·¡¼­ ´Ù¸¥ Á¸À¸·Î ÀÌµ¿ÈÄ¿¡ ÀÌÆåÆ®µéÀÌ ³²¾ÒÀ½..
+/// íŒ¨ì¹˜ì— ì´í™íŠ¸ë¥¼ ë“±ë¡í• ë•Œ ë¦¬ìŠ¤íŠ¸ì— ì¶”ê°€í•˜ì§€ ì•Šì•˜ìŒ
+/// ê·¸ëŸ°ë° ì§€ìš¸ë•ŒëŠ” ì´í™íŠ¸ ë¦¬ìŠ¤íŠ¸ì—ì„œ ì§€ì›Œì£¼ê¸°ë¥¼ ë°”ë¬ìŒ
+/// ê·¸ë˜ì„œ ë‹¤ë¥¸ ì¡´ìœ¼ë¡œ ì´ë™í›„ì— ì´í™íŠ¸ë“¤ì´ ë‚¨ì•˜ìŒ..
 /// !!! 
-/// @bug m_bIsRegistered´Â insertToScene ÇÒ¶§ ¼¼ÆÃµÈ´Ù. ±×·¯³ª ¿ÀºêÁ§Æ® ¸®½ºÆ®¶ó´øÁö
-///      ±âÅ¸ ¿ÀºêÁ§Æ®´Â ¸Ê ·Îµù½Ã µî·ÏµÈ´Ù. °á±¹ Â¦ÀÌ ¾Ê¸Â´Ù.
+/// @bug m_bIsRegisteredëŠ” insertToScene í• ë•Œ ì„¸íŒ…ëœë‹¤. ê·¸ëŸ¬ë‚˜ ì˜¤ë¸Œì íŠ¸ ë¦¬ìŠ¤íŠ¸ë¼ë˜ì§€
+///      ê¸°íƒ€ ì˜¤ë¸Œì íŠ¸ëŠ” ë§µ ë¡œë”©ì‹œ ë“±ë¡ëœë‹¤. ê²°êµ­ ì§ì´ ì•Šë§ë‹¤.
 bool CMAP_PATCH::UnregisterFromNZIN (void)
 {
 	if( m_bIsRegistered )
@@ -779,7 +779,7 @@ bool CMAP_PATCH::UnregisterFromNZIN (void)
 		this->RemoveFromScene ();	// UnregisterFromNZIN
 
 		///
-		/// ÇÏ´Ã ¿¬Ãâµî¿¡¼­ ÁöÇüºí¶ôÀº ·Îµå¸¦ ÇÏÁö ¾Ê¾Æ¾ß ÇÒ ¸ğµå¿¡¼­
+		/// í•˜ëŠ˜ ì—°ì¶œë“±ì—ì„œ ì§€í˜•ë¸”ë½ì€ ë¡œë“œë¥¼ í•˜ì§€ ì•Šì•„ì•¼ í•  ëª¨ë“œì—ì„œ
 		///
 		if( !g_GameDATA.m_bJustObjectLoadMode )
 		{
@@ -792,7 +792,7 @@ bool CMAP_PATCH::UnregisterFromNZIN (void)
 		}
 	}
 	
-	///if (!m_bIsRegistered) return true; // Ãß°¡µÈ ÄÚµå
+	///if (!m_bIsRegistered) return true; // ì¶”ê°€ëœ ì½”ë“œ
 
 	classDLLNODE< tagMAPEFT > *pEftNode;
 
@@ -848,7 +848,7 @@ void CMAP_PATCH::InsertToScene (void)
 		RegisterToNZIN ();
 
 		///
-		/// ÇÏ´Ã ¿¬Ãâµî¿¡¼­ ÁöÇüºí¶ôÀº ·Îµå¸¦ ÇÏÁö ¾Ê¾Æ¾ß ÇÒ ¸ğµå¿¡¼­
+		/// í•˜ëŠ˜ ì—°ì¶œë“±ì—ì„œ ì§€í˜•ë¸”ë½ì€ ë¡œë“œë¥¼ í•˜ì§€ ì•Šì•„ì•¼ í•  ëª¨ë“œì—ì„œ
 		///
 		if( !g_GameDATA.m_bJustObjectLoadMode )
 		{
@@ -893,16 +893,16 @@ void CMAP_PATCH::InsertToScene (void)
 }
 
 /// 04/4/25
-/// ÆĞÄ¡¿¡ ÀÌÆåÆ®¸¦ µî·ÏÇÒ¶§ ¸®½ºÆ®¿¡ Ãß°¡ÇÏÁö ¾Ê¾ÒÀ½
-/// ±×·±µ¥ Áö¿ï¶§´Â ÀÌÆåÆ® ¸®½ºÆ®¿¡¼­ Áö¿öÁÖ±â¸¦ ¹Ù·¨À½
-/// ±×·¡¼­ ´Ù¸¥ Á¸À¸·Î ÀÌµ¿ÈÄ¿¡ ÀÌÆåÆ®µéÀÌ ³²¾ÒÀ½..
-/// 04/4/26 ÀÌ°Ç m_pEffect->RemoveFromScene(); Çß¾î¾ß Çß´Âµ¥ Áö¿ü¾ú±º.. ±×·¡¼­.. UnRegister ÇÒ¶§ assert¿¡ °É·È´Ù.
+/// íŒ¨ì¹˜ì— ì´í™íŠ¸ë¥¼ ë“±ë¡í• ë•Œ ë¦¬ìŠ¤íŠ¸ì— ì¶”ê°€í•˜ì§€ ì•Šì•˜ìŒ
+/// ê·¸ëŸ°ë° ì§€ìš¸ë•ŒëŠ” ì´í™íŠ¸ ë¦¬ìŠ¤íŠ¸ì—ì„œ ì§€ì›Œì£¼ê¸°ë¥¼ ë°”ë¬ìŒ
+/// ê·¸ë˜ì„œ ë‹¤ë¥¸ ì¡´ìœ¼ë¡œ ì´ë™í›„ì— ì´í™íŠ¸ë“¤ì´ ë‚¨ì•˜ìŒ..
+/// 04/4/26 ì´ê±´ m_pEffect->RemoveFromScene(); í–ˆì–´ì•¼ í–ˆëŠ”ë° ì§€ì› ì—ˆêµ°.. ê·¸ë˜ì„œ.. UnRegister í• ë•Œ assertì— ê±¸ë ¸ë‹¤.
 void CMAP_PATCH::RemoveFromScene (void)
 {	
 	if ( m_bIsVisible ) 
 	{
 		///
-		/// ÇÏ´Ã ¿¬Ãâµî¿¡¼­ ÁöÇüºí¶ôÀº ·Îµå¸¦ ÇÏÁö ¾Ê¾Æ¾ß ÇÒ ¸ğµå¿¡¼­
+		/// í•˜ëŠ˜ ì—°ì¶œë“±ì—ì„œ ì§€í˜•ë¸”ë½ì€ ë¡œë“œë¥¼ í•˜ì§€ ì•Šì•„ì•¼ í•  ëª¨ë“œì—ì„œ
 		///
 		if( !g_GameDATA.m_bJustObjectLoadMode )
 		{
@@ -941,7 +941,7 @@ void CMAP_PATCH::RemoveFromScene (void)
 
 
 //-------------------------------------------------------------------------------------------------
-/// @todo »ç¿îµå À¯È¿°Å¸®¿¡ µû¸¥ Ã³¸®...
+/// @todo ì‚¬ìš´ë“œ ìœ íš¨ê±°ë¦¬ì— ë”°ë¥¸ ì²˜ë¦¬...
 void CMAP_PATCH::PlaySOUND ()
 {
 	classDLLNODE< tagMAPSND > *pSndNode;
@@ -961,7 +961,7 @@ void CMAP_PATCH::PlaySOUND ()
 			const float fMaxStart = 200.0f;
 			const float fMaxEnd = 50000.0f;
 			const float fMinStart = 100.0f;
-			float fMinDistance, fMaxDistance = 100.0f * pSndNode->DATA.m_uiRange; // ´ÜÀ§: ÇöÀç ¹ÌÅÍ
+			float fMinDistance, fMaxDistance = 100.0f * pSndNode->DATA.m_uiRange; // ë‹¨ìœ„: í˜„ì¬ ë¯¸í„°
 
 			if ( fMaxDistance < fMaxStart ) fMaxDistance = fMaxStart;
 			if ( fMaxDistance > fMaxEnd ) fMaxDistance = fMaxEnd;
@@ -993,7 +993,7 @@ bool CMAP_PATCH::MakeAABBFromObject( CGameOBJ *pObject, D3DVECTOR &Position, D3D
 
 	CMODEL<CFixedPART>* pModel = NULL;
 
-	/// °¢ Å¸ÀÔº°·Î ÇØ´ç ¸ğµ¨µ¥ÀÌÅÍ¸¦ ±â¹İÀ¸·Î ¹Ù¿îµù¹Ú½º Á¤º¸¸¦ ¾ò¾î¿Â´Ù.
+	/// ê° íƒ€ì…ë³„ë¡œ í•´ë‹¹ ëª¨ë¸ë°ì´í„°ë¥¼ ê¸°ë°˜ìœ¼ë¡œ ë°”ìš´ë”©ë°•ìŠ¤ ì •ë³´ë¥¼ ì–»ì–´ì˜¨ë‹¤.
 	switch( pObject->Get_TYPE() )
 	{
 		case OBJ_MORPH:
@@ -1054,9 +1054,9 @@ bool CMAP_PATCH::MakeAABBFromObject( CGameOBJ *pObject, D3DVECTOR &Position, D3D
 	}
 
 	
-	/// À§¿¡¼­ ±¸ÇØÁø ¿ÀºêÁ§Æ®ÀÇ ¹Ù¿îµù¹Ú½º Á¤º¸·Î ÆĞÄ¡ÀÇ ¹Ù¿îµù ¹Ú½º Á¤º¸¸¦ °»½Å..
+	/// ìœ„ì—ì„œ êµ¬í•´ì§„ ì˜¤ë¸Œì íŠ¸ì˜ ë°”ìš´ë”©ë°•ìŠ¤ ì •ë³´ë¡œ íŒ¨ì¹˜ì˜ ë°”ìš´ë”© ë°•ìŠ¤ ì •ë³´ë¥¼ ê°±ì‹ ..
 
-	/// ¸¸¾à ÆĞÄ¡ÀÇ ÃÊ±â ¹Ù¿îµù ¹Ú½º°¡ º¯°æµÈ´Ù¸é
+	/// ë§Œì•½ íŒ¨ì¹˜ì˜ ì´ˆê¸° ë°”ìš´ë”© ë°•ìŠ¤ê°€ ë³€ê²½ëœë‹¤ë©´
 	return true;
 }
 
@@ -1139,7 +1139,7 @@ CMAP::CMAP ()
 	m_nZoneMapXIDX = 0;
 	m_nZoneMapYIDX = 0;
 
-	// Ãß°¡µÈ ÄÚµå by zho
+	// ì¶”ê°€ëœ ì½”ë“œ by zho
 	m_nXPatchCnt = 0;
 	m_nYPatchCnt = 0;
 
@@ -1179,7 +1179,7 @@ void CMAP::AddSound (D3DVECTOR &Position, char *szSoundFile, unsigned int uiInte
 	nPatchX = (short)( Position.x - ( m_nZoneMapXIDX * nGRID_SIZE * GRID_COUNT_PER_MAP_AXIS ) ) / ( nGRID_SIZE*GRID_COUNT_PER_PATCH_AXIS );
 	nPatchY = (short)( Position.y - ( m_nZoneMapYIDX * nGRID_SIZE * GRID_COUNT_PER_MAP_AXIS ) ) / ( nGRID_SIZE*GRID_COUNT_PER_PATCH_AXIS );
 
-	// ÁöÇü È¿°ú »ç¿îµå....
+	// ì§€í˜• íš¨ê³¼ ì‚¬ìš´ë“œ....
 	tagMAPSND sMapSND;
 
 	sMapSND.m_HashKEY        = g_pSoundLIST->AddSoundFile( szSoundFile, 1 );
@@ -1192,8 +1192,8 @@ void CMAP::AddSound (D3DVECTOR &Position, char *szSoundFile, unsigned int uiInte
 }
 
 //-------------------------------------------------------------------------------------------------
-/// ¸Ê¿¡¼± 31_31¿¡ ÀÇ 1,1 ¿¡ µî·ÏµÇ¾ú´ø ÆĞÄ¡¶óµµ ¿©±â¼­ ½ÇÁ¦ ¿ÀºêÁ§Æ® À§Ä¡·Î.. °ÔÀÓ ÁÂÇ¥°è·Î º¯È¯ÈÄÀÇ
-/// ÆĞÄ¡¿¡ »õ·Î µî·ÏÇÑ´Ù.( »õ·Î¿î ÁÂÇ¥Ãà ±¸¼º°ú ¿ÀºêÁ§Æ® ¹èÄ¡¿ÍÀÇ ºñ¹ĞÀÌ ¿©±â¿¡.. »ó´çÈ÷ º¹ÀâÇÏ´Ù. )
+/// ë§µì—ì„  31_31ì— ì˜ 1,1 ì— ë“±ë¡ë˜ì—ˆë˜ íŒ¨ì¹˜ë¼ë„ ì—¬ê¸°ì„œ ì‹¤ì œ ì˜¤ë¸Œì íŠ¸ ìœ„ì¹˜ë¡œ.. ê²Œì„ ì¢Œí‘œê³„ë¡œ ë³€í™˜í›„ì˜
+/// íŒ¨ì¹˜ì— ìƒˆë¡œ ë“±ë¡í•œë‹¤.( ìƒˆë¡œìš´ ì¢Œí‘œì¶• êµ¬ì„±ê³¼ ì˜¤ë¸Œì íŠ¸ ë°°ì¹˜ì™€ì˜ ë¹„ë°€ì´ ì—¬ê¸°ì—.. ìƒë‹¹íˆ ë³µì¡í•˜ë‹¤. )
 bool CMAP::AddObject ( int iObjectIndex, D3DXVECTOR3 &Position = D3DXVECTOR3( 0.0f, 0.0f, 0.0f ), 
 										D3DXQUATERNION &Rotate = D3DXQUATERNION( 1.0f, 1.0f, 1.0f, 1.0f ), 
 										D3DXVECTOR3 &Scale = D3DXVECTOR3( 1.0f, 1.0f, 1.0f )  )
@@ -1276,7 +1276,7 @@ bool CMAP::AddObject ( int iObjectIndex, D3DXVECTOR3 &Position = D3DXVECTOR3( 0.
 		
 		if( m_PATCH[ nPatchY ][ nPatchX ].AddObject( pObject, Position, Rotate, Scale ) )
 		{
-			/// ÆĞÄ¡ÀÇ ¹Ù¿îµù ¹Ú½º°¡ º¯°æµÇ¾ú´Ù.
+			/// íŒ¨ì¹˜ì˜ ë°”ìš´ë”© ë°•ìŠ¤ê°€ ë³€ê²½ë˜ì—ˆë‹¤.
 			if( std::find( m_PatchUpdateList.begin(), m_PatchUpdateList.end(), &m_PATCH[ nPatchY ][ nPatchX ] ) != m_PatchUpdateList.end() )
 				m_PatchUpdateList.push_back( &m_PATCH[ nPatchY ][ nPatchX ] );
 		}
@@ -1309,7 +1309,7 @@ void CMAP::MappingToZONE (short nXFrom3x3, short nYFrom3x3)
 }
 
 //-------------------------------------------------------------------------------------------------
-// ´Ü¼ø ÁöÇü ³ôÀÌ¸¦ ¾ò´Â´Ù.
+// ë‹¨ìˆœ ì§€í˜• ë†’ì´ë¥¼ ì–»ëŠ”ë‹¤.
 float CMAP::GetHEIGHT (float fWorldX, float fWorldY)
 {
 	float fHeights[4];
@@ -1323,7 +1323,7 @@ float CMAP::GetHEIGHT (float fWorldX, float fWorldY)
 	return (fInterpHorizTop * (1.0f-fWeightVert) + fInterpHorizBottom * fWeightVert);
 }
 
-/// ´Ü¼ø ÁöÇü ±â¿ï±â¸¦ ¾ò´Â´Ù.
+/// ë‹¨ìˆœ ì§€í˜• ê¸°ìš¸ê¸°ë¥¼ ì–»ëŠ”ë‹¤.
 float CMAP::GetSlope (float fWorldX, float fWorldY)
 {
 	float fHeights[4];
@@ -1367,8 +1367,8 @@ void CMAP::GetNormal (float fWorldX, float fWorldY, D3DXVECTOR3& vNormal)
    float fGridSize(fGRID_SIZE);
 
    GetHeightsByCoordinates( fWorldX, fWorldY, fHeights );
-   vNormal.x=(fHeights[0]-fHeights[1])/fGRID_SIZE;   // X¹æÇâÀ¸·Î Æí¹ÌºĞ (Z ¹æÇâ '+'±âÁØ)
-   vNormal.y=(fHeights[0]-fHeights[2])/fGRID_SIZE;   // Y¹æÇâÀ¸·Î Æí¹ÌºĞ (Z ¹æÇâ '+'±âÁØ)
+   vNormal.x=(fHeights[0]-fHeights[1])/fGRID_SIZE;   // Xë°©í–¥ìœ¼ë¡œ í¸ë¯¸ë¶„ (Z ë°©í–¥ '+'ê¸°ì¤€)
+   vNormal.y=(fHeights[0]-fHeights[2])/fGRID_SIZE;   // Yë°©í–¥ìœ¼ë¡œ í¸ë¯¸ë¶„ (Z ë°©í–¥ '+'ê¸°ì¤€)
    vNormal.z=1.0f;
 
    D3DXVec3Normalize( &vNormal, &D3DXVECTOR3(vNormal) );  // Unit Vector
@@ -1377,7 +1377,7 @@ void CMAP::GetNormal (float fWorldX, float fWorldY, D3DXVECTOR3& vNormal)
 //-------------------------------------------------------------------------------------------------
 void CMAP::ReadMapINFO( CFileSystem* pFileSystem, long lOffset)
 {
-	// ÀĞÀ» ÇÊ¿ä ¾ø´Ù.
+	// ì½ì„ í•„ìš” ì—†ë‹¤.
 	/*
 	fseek(fp, lOffset, SEEK_SET);
 
@@ -1455,7 +1455,7 @@ void CMAP::ReadObjINFO( CFileSystem* pFileSystem, long lOffset, int iLumpType)
 	D3DXQUATERNION	Rotate;
 	D3DVECTOR		Position, Scale;
 
-	Rotate.w = 1; Rotate.x = 0; Rotate.y = 0; Rotate.z = 0; // ÃÊ±âÈ­
+	Rotate.w = 1; Rotate.x = 0; Rotate.y = 0; Rotate.z = 0; // ì´ˆê¸°í™”
 
 	pFileSystem->ReadInt32( &iObjCNT );
 
@@ -1500,9 +1500,9 @@ void CMAP::ReadObjINFO( CFileSystem* pFileSystem, long lOffset, int iLumpType)
 		Position.x *= MAGNIFICATION_RATE;
 		Position.y *= MAGNIFICATION_RATE;
 
-		/// ¸ÊÁ¤º¸´Â 32,32( MAP_COUNT_PER_ZONE_AXIS, MAP_COUNT_PER_ZONE_AXIS ) ¿¡ ¿øÁ¡ÀÌ À§Ä¡ÇÑ´Ù.
-		/// ±×·¯³ª °ÔÀÓÀº 0,0 ÀÇ ¿ŞÂÊ ¾Æ·¡ ÄÚ³Ê°¡ ¿øÁ¡ÀÌ´Ù.
-		/// µû¶ó¼­ º¯È¯
+		/// ë§µì •ë³´ëŠ” 32,32( MAP_COUNT_PER_ZONE_AXIS, MAP_COUNT_PER_ZONE_AXIS ) ì— ì›ì ì´ ìœ„ì¹˜í•œë‹¤.
+		/// ê·¸ëŸ¬ë‚˜ ê²Œì„ì€ 0,0 ì˜ ì™¼ìª½ ì•„ë˜ ì½”ë„ˆê°€ ì›ì ì´ë‹¤.
+		/// ë”°ë¼ì„œ ë³€í™˜
 		int iOneMapWidth = ( nGRID_SIZE * GRID_COUNT_PER_PATCH_AXIS * PATCH_COUNT_PER_MAP_AXIS );
 		Position.x += ( MAP_COUNT_PER_ZONE_AXIS/2 * iOneMapWidth + (iOneMapWidth / 2) );
 		Position.y += ( MAP_COUNT_PER_ZONE_AXIS/2 * iOneMapWidth + (iOneMapWidth / 2) );
@@ -1800,7 +1800,7 @@ CMAP*CMAP::Load (char *szFileName, short nZoneMapXIDX, short nZoneMapYIDX)
 	CFileSystem* pFileSystem = (CVFSManager::GetSingleton()).GetFileSystem();
 	if( pFileSystem->OpenFile( szFullPathName ) == false )	
 	{	
-		/// ¿ø·¡ ¾øÀ» ¼öµµ ÀÖ´Ù.
+		/// ì›ë˜ ì—†ì„ ìˆ˜ë„ ìˆë‹¤.
 		//char *szStr = CStr::Printf ("File [%s] open error ", szFullPathName );
 		//g_pCApp->ErrorBOX(szStr, "ERROR", MB_OK);
 		return false;
@@ -1848,13 +1848,13 @@ CMAP*CMAP::Load (char *szFileName, short nZoneMapXIDX, short nZoneMapYIDX)
 	if( iWidth != VERTEX_COUNT_PER_MAP_AXIS )
 	{
 		iWidth = VERTEX_COUNT_PER_MAP_AXIS;
-		g_itMGR.OpenMsgBox( "À¯È¿ÇÏÁö ¾ÊÀº ¸Ê µ¥ÀÌÅÍ" );
+		g_itMGR.OpenMsgBox( "ìœ íš¨í•˜ì§€ ì•Šì€ ë§µ ë°ì´í„°" );
 	}
 
 	if( iHeight != VERTEX_COUNT_PER_MAP_AXIS )
 	{
 		iHeight = VERTEX_COUNT_PER_MAP_AXIS;
-		g_itMGR.OpenMsgBox( "À¯È¿ÇÏÁö ¾ÊÀº ¸Ê µ¥ÀÌÅÍ" );
+		g_itMGR.OpenMsgBox( "ìœ íš¨í•˜ì§€ ì•Šì€ ë§µ ë°ì´í„°" );
 	}
 
 	this->m_ppHeight = new float* [ VERTEX_COUNT_PER_MAP_AXIS ];
@@ -1940,13 +1940,13 @@ CMAP*CMAP::Load (char *szFileName, short nZoneMapXIDX, short nZoneMapYIDX)
 	if( iWidth != PATCH_COUNT_PER_MAP_AXIS )
 	{
 		iWidth = PATCH_COUNT_PER_MAP_AXIS;
-		g_itMGR.OpenMsgBox( "À¯È¿ÇÏÁö ¾ÊÀº ¸Ê µ¥ÀÌÅÍ" );
+		g_itMGR.OpenMsgBox( "ìœ íš¨í•˜ì§€ ì•Šì€ ë§µ ë°ì´í„°" );
 	}
 
 	if( iHeight != PATCH_COUNT_PER_MAP_AXIS )
 	{
 		iHeight = PATCH_COUNT_PER_MAP_AXIS;
-		g_itMGR.OpenMsgBox( "À¯È¿ÇÏÁö ¾ÊÀº ¸Ê µ¥ÀÌÅÍ" );
+		g_itMGR.OpenMsgBox( "ìœ íš¨í•˜ì§€ ì•Šì€ ë§µ ë°ì´í„°" );
 	}
 
 	for (iH=iHeight-1; iH>=0; iH--)
@@ -2067,7 +2067,7 @@ void CMAP::Free (void)
 
 void CMAP::ClearFromNZIN (void)
 {
-	if (this->IsEmpty()) return; // Ãß°¡µÈ ÄÚµå by zho
+	if (this->IsEmpty()) return; // ì¶”ê°€ëœ ì½”ë“œ by zho
 
 	LogString (LOG_DEBUG, "<<<<<<< Clear MAP :: %d, %d \n", m_nZoneMapXIDX, m_nZoneMapYIDX );
 
@@ -2165,7 +2165,7 @@ void CMAP::GetHeightsByCoordinates (float fWorldX, float fWorldY, float fHeights
 }
 
 ///
-/// ÇöÀç ¿ùµå À§Ä¡·Î ÇØ´ç ÆĞÄ¡¸¦ ±¸ÇÏ±â
+/// í˜„ì¬ ì›”ë“œ ìœ„ì¹˜ë¡œ í•´ë‹¹ íŒ¨ì¹˜ë¥¼ êµ¬í•˜ê¸°
 ///
 CMAP_PATCH*	CMAP::GetPatchFromWorld( float fWorldX, float fWorldY )
 {
@@ -2510,7 +2510,7 @@ bool CTERRAIN::LoadZONE(short nZoneNO,bool bPlayBGM )
 	g_DATA.FreeZoneData();
 	g_DATA.LoadZoneData( nZoneNO );
 
-	/// ¶óÀÌÆ®¸Ê ºí·£µù ¿ÀÆÛ·¹ÀÌ¼Ç ¼¼ÆÃ
+	/// ë¼ì´íŠ¸ë§µ ë¸”ëœë”© ì˜¤í¼ë ˆì´ì…˜ ì„¸íŒ…
 	int iBlendOP = SKY_LIGHTMAP_BLEND( ZONE_BG_IMAGE( nZoneNO ) );
 	::setLightmapBlendStyle( iBlendOP );
 
@@ -2590,7 +2590,7 @@ bool CTERRAIN::LoadZONE(short nZoneNO,bool bPlayBGM )
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief ¸ğµç Á¸ Á¤º¸ Á¦°Å..
+/// @brief ëª¨ë“  ì¡´ ì •ë³´ ì œê±°..
 //----------------------------------------------------------------------------------------------------
 
 void CTERRAIN::FreeZONE ()
@@ -2681,9 +2681,9 @@ CMAP_PATCH* CTERRAIN::GetPATCH(int iZonePatchX, int iZonePatchY)
 }
 
 
-/// ´Ü¼ø ÁöÇü ³ôÀÌ¸¸ °è»ê(¿ÀºêÁ§Æ® ³ôÀÌ´Â Á¦¿Ü)
-/// @pNotFound ÁöÇü ÆĞÄ¡¸¦ Ã£À» ¼ö ¾øÀ¸¸é false
-/// @return °è»êµÈ ³ôÀÌ. ÆĞÄ¡¸¦ ¸ø Ã£¾ÒÀ» ½Ã¿¡´Â 0
+/// ë‹¨ìˆœ ì§€í˜• ë†’ì´ë§Œ ê³„ì‚°(ì˜¤ë¸Œì íŠ¸ ë†’ì´ëŠ” ì œì™¸)
+/// @pNotFound ì§€í˜• íŒ¨ì¹˜ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìœ¼ë©´ false
+/// @return ê³„ì‚°ëœ ë†’ì´. íŒ¨ì¹˜ë¥¼ ëª» ì°¾ì•˜ì„ ì‹œì—ëŠ” 0
 float CTERRAIN::GetHeight (float fWorldX, float fWorldY, bool * pNotFound)
 {
 	CMAP *pMAP = GetMapPtrByWorldCoordinates( fWorldX, fWorldY );
@@ -2705,7 +2705,7 @@ float CTERRAIN::GetHeightTop (float fWorldX, float fWorldY, bool * pNotFound)
 
 	float fHeight = getWorldObjectHeightInScene( fWorldX, fWorldY, fTerrainHeight );
 
-	return (fHeight > fTerrainHeight) ? fHeight : fTerrainHeight; // ÁöÇü ³ôÀÌ¿Í ¿ÀºêÁ§Æ® ³ôÀÌ Áß ´õ ³ôÀº °Í ¼±ÅÃ
+	return (fHeight > fTerrainHeight) ? fHeight : fTerrainHeight; // ì§€í˜• ë†’ì´ì™€ ì˜¤ë¸Œì íŠ¸ ë†’ì´ ì¤‘ ë” ë†’ì€ ê²ƒ ì„ íƒ
 }
 
 CMAP* CTERRAIN::GetMapPtrByWorldCoordinates (float fWorldX, float fWorldY)
@@ -2777,9 +2777,9 @@ float CTERRAIN::Pick_POSITION_Test (D3DXVECTOR3 &PosPICK)
 }
 
 //----------------------------------------------------------------------------------------------------
-/// ¿ùµå¿¡¼­ ¿ÀºêÁ§Æ®¸¦ ¼±ÅÃÇÑ´Ù.
-///	m_CnstLIST ¿¡´Â Ä³¸¯ÅÍ¸¦ Á¦¿ÜÇÑ, °Ç¹°, ³ª¹«, Ç®, ¾ÆÀÌÅÛ µîÀÌ µé¾îÀÖ°í
-/// m_CharLIST ¿¡´Â Ä³¸¯ÅÍ µéÀÌ µé¾î ÀÖÁö..
+/// ì›”ë“œì—ì„œ ì˜¤ë¸Œì íŠ¸ë¥¼ ì„ íƒí•œë‹¤.
+///	m_CnstLIST ì—ëŠ” ìºë¦­í„°ë¥¼ ì œì™¸í•œ, ê±´ë¬¼, ë‚˜ë¬´, í’€, ì•„ì´í…œ ë“±ì´ ë“¤ì–´ìˆê³ 
+/// m_CharLIST ì—ëŠ” ìºë¦­í„° ë“¤ì´ ë“¤ì–´ ìˆì§€..
 //----------------------------------------------------------------------------------------------------
 
 short CTERRAIN::Pick_NearObject( D3DXVECTOR3 &PosPICK, float &fDistance )
@@ -2849,9 +2849,9 @@ short CTERRAIN::Pick_NearObject( D3DXVECTOR3 &PosPICK, float &fDistance )
 }
 
 //----------------------------------------------------------------------------------------------------
-/// ¿ùµå¿¡¼­ ¿ÀºêÁ§Æ®¸¦ ¼±ÅÃÇÑ´Ù.
-///	m_CnstLIST ¿¡´Â Ä³¸¯ÅÍ¸¦ Á¦¿ÜÇÑ, °Ç¹°, ³ª¹«, Ç®, ¾ÆÀÌÅÛ µîÀÌ µé¾îÀÖ°í
-/// m_CharLIST ¿¡´Â Ä³¸¯ÅÍ µéÀÌ µé¾î ÀÖÁö..
+/// ì›”ë“œì—ì„œ ì˜¤ë¸Œì íŠ¸ë¥¼ ì„ íƒí•œë‹¤.
+///	m_CnstLIST ì—ëŠ” ìºë¦­í„°ë¥¼ ì œì™¸í•œ, ê±´ë¬¼, ë‚˜ë¬´, í’€, ì•„ì´í…œ ë“±ì´ ë“¤ì–´ìˆê³ 
+/// m_CharLIST ì—ëŠ” ìºë¦­í„° ë“¤ì´ ë“¤ì–´ ìˆì§€..
 //----------------------------------------------------------------------------------------------------
 
 short CTERRAIN::Pick_OBJECT (D3DXVECTOR3 &PosPICK, float &fDistance)
@@ -2866,7 +2866,7 @@ short CTERRAIN::Pick_OBJECT (D3DXVECTOR3 &PosPICK, float &fDistance)
 	classDLLNODE< int > *pNODE;
 
 	//----------------------------------------------------------------------------------------------------
-	/// ¸ÕÀú Á¤Àû °´Ã¼µé..
+	/// ë¨¼ì € ì •ì  ê°ì²´ë“¤..
 	//----------------------------------------------------------------------------------------------------
 	pNODE = g_pObjMGR->m_CnstLIST.GetHeadNode ();
 	while( pNODE ) 
@@ -2894,7 +2894,7 @@ short CTERRAIN::Pick_OBJECT (D3DXVECTOR3 &PosPICK, float &fDistance)
 	}
 
 	//----------------------------------------------------------------------------------------------------
-	/// ¾ÆÀÌÅÛ °´Ã¼µé..
+	/// ì•„ì´í…œ ê°ì²´ë“¤..
 	//----------------------------------------------------------------------------------------------------
 	pNODE = g_pObjMGR->m_ItemLIST.GetHeadNode ();
 	while( pNODE ) 
@@ -2922,19 +2922,19 @@ short CTERRAIN::Pick_OBJECT (D3DXVECTOR3 &PosPICK, float &fDistance)
 	}
 
 	//----------------------------------------------------------------------------------------------------
-	// Ä³¸¯ÅÍµé..
+	// ìºë¦­í„°ë“¤..
 	//----------------------------------------------------------------------------------------------------
 	pNODE = g_pObjMGR->m_CharLIST.GetHeadNode ();
 	while( pNODE ) 
 	{
 
 //=====================================================================================
-//2005 6. 9  ÃÖÁ¾Áø	/ ¹ÚÁöÈ£		
+//2005 6. 9  ìµœì¢…ì§„	/ ë°•ì§€í˜¸		
 		CObjCHAR* pChar = (CObjCHAR*)(g_pObjMGR->m_pOBJECTS[ pNODE->DATA ]);
 		if(::getVisibility( pChar->GetZMODEL() ) == 0)
 		{	pNODE = g_pObjMGR->m_CharLIST.GetNextNode( pNODE );  continue; }
 
-//¹ÚÁöÈ£ :: Ä«Æ®´Â ÇÇÅ·À» ÇÏÁö¾Ê´Â´Ù. 
+//ë°•ì§€í˜¸ :: ì¹´íŠ¸ëŠ” í”¼í‚¹ì„ í•˜ì§€ì•ŠëŠ”ë‹¤. 
 		if(pChar->Get_TYPE() == OBJ_CART)
 		{	pNODE = g_pObjMGR->m_CharLIST.GetNextNode( pNODE );  continue; }
 //=====================================================================================
@@ -2944,7 +2944,7 @@ short CTERRAIN::Pick_OBJECT (D3DXVECTOR3 &PosPICK, float &fDistance)
 		{
 			if( g_pObjMGR->m_pOBJECTS[ pNODE->DATA ]->IsInViewFrustum() )
 			{
-				// ÀÚ±â ¾Æ¹ÙÅ¸´Â Å¬¸¯µÇÁö ¾Êµµ·Ï...
+				// ìê¸° ì•„ë°”íƒ€ëŠ” í´ë¦­ë˜ì§€ ì•Šë„ë¡...
 				if ( g_pObjMGR->m_pOBJECTS[ pNODE->DATA ]->IsIntersect( fCurDis ) ) 
 				{
 					PosPICK = g_pObjMGR->m_pOBJECTS[ pNODE->DATA ]->Get_PickPOSITION ();
@@ -2954,7 +2954,7 @@ short CTERRAIN::Pick_OBJECT (D3DXVECTOR3 &PosPICK, float &fDistance)
 					}
 				}
 
-				/// ÇöÀç ³»°¡ ¾Æ¹ÙÅ¸ ÀÏ°æ¿ì¿¡..
+				/// í˜„ì¬ ë‚´ê°€ ì•„ë°”íƒ€ ì¼ê²½ìš°ì—..
 				if( g_pObjMGR->m_pOBJECTS[ pNODE->DATA ]->IsA( OBJ_AVATAR ) )
 				{
 					CObjAVT* pAvt = (CObjAVT*)( g_pObjMGR->m_pOBJECTS[ pNODE->DATA ] );
@@ -2987,11 +2987,11 @@ CMAP*CTERRAIN::GetEmptyMAP ()
 			return m_pMapBUFFER[ nI ];
 	}
 
-	/// Dirty¸ÊÀ» ¹øÀú Á¤¸®ÈÄ¿¡..
+	/// Dirtyë§µì„ ë²ˆì € ì •ë¦¬í›„ì—..
 	FreeDirtyMAP();
 
-	/// ºñ¾îÀÖ´Â ¸ÊÀÌ ¾øÀ»°æ¿ì DirtyMapList¸¦ µÚÁø´Ù.
-	/// Á¦ÀÏ ¸ÕÀú Ãß°¡µÈ ³ëµå¸¦ ²¨³»¿Â´Ù. ( 
+	/// ë¹„ì–´ìˆëŠ” ë§µì´ ì—†ì„ê²½ìš° DirtyMapListë¥¼ ë’¤ì§„ë‹¤.
+	/// ì œì¼ ë¨¼ì € ì¶”ê°€ëœ ë…¸ë“œë¥¼ êº¼ë‚´ì˜¨ë‹¤. ( 
 	
 	if( m_DirtyMapList.empty() )
 		return NULL;
@@ -3062,7 +3062,7 @@ void CTERRAIN::SetMapPTR (short nZoneMapX, short nZoneMapY, CMAP* pMAP)
 
 //-------------------------------------------------------------------------------------------------
 ///
-/// ¾÷µ¥ÀÌÆ® ´ë»óÀÎ ¸ÊÀ» »«´Ù..
+/// ì—…ë°ì´íŠ¸ ëŒ€ìƒì¸ ë§µì„ ëº€ë‹¤..
 ///
 void CTERRAIN::SubMAP (WORD wUpdateFLAG)
 {
@@ -3084,21 +3084,21 @@ void CTERRAIN::SubMAP (WORD wUpdateFLAG)
 		
 				m_DirtyMapList.push_back( pMAP );
 
-				/// Á¡ÁøÀû ·Îµù ¸®½ºÆ®¿¡ µé¾îÀÖ´Ù¸é »©¶ó...
+				/// ì ì§„ì  ë¡œë”© ë¦¬ìŠ¤íŠ¸ì— ë“¤ì–´ìˆë‹¤ë©´ ë¹¼ë¼...
 				{
 					tagLOAD_ONE_MAP_DATA* pOneMapData = NULL;
 
 					std::list< tagLOAD_ONE_MAP_DATA* >::iterator begin = m_LoadOneMapData.begin();
 
 //					for( ; begin != m_LoadOneMapData.begin(); ++begin )
-					for( ; begin != m_LoadOneMapData.end();  )///<= 2004 / 2 / 2 : nAvy ¼öÁ¤
+					for( ; begin != m_LoadOneMapData.end();  )///<= 2004 / 2 / 2 : nAvy ìˆ˜ì •
 					{
 						pOneMapData = *begin;
 
 						short nZoneXIDX = pOneMapData->m_nCenterX + s_SecAdjPos[ pOneMapData->m_nUpdateIndex ].m_nX;
 						short nZoneYIDY = pOneMapData->m_nCenterY + s_SecAdjPos[ pOneMapData->m_nUpdateIndex ].m_nY;
 
-						/// Áö¿ö¾ß µÇ´Âµ¥ Á¡ÁøÀû ·Îµù ¸®½ºÆ®¿¡ ÀÖ´Ù¸é »«´Ù..
+						/// ì§€ì›Œì•¼ ë˜ëŠ”ë° ì ì§„ì  ë¡œë”© ë¦¬ìŠ¤íŠ¸ì— ìˆë‹¤ë©´ ëº€ë‹¤..
 						if( nZoneXIDX == nZoneMapXIDX && nZoneYIDY == nZoneMapYIDX )
 						{
 							begin = m_LoadOneMapData.erase( begin );
@@ -3106,8 +3106,8 @@ void CTERRAIN::SubMAP (WORD wUpdateFLAG)
 							delete pOneMapData;
 							pOneMapData = NULL;
 						}
-						else				///<= 2004 / 2/ 2 : nAvy Ãß°¡
-						{					///if( --begin == end() )ÀÏ°æ¿ì erase ÇÏ°í ++beginÇÏ¸é ºÎÀûÀıÇÑ iter°¡ µÈ´Ù. 
+						else				///<= 2004 / 2/ 2 : nAvy ì¶”ê°€
+						{					///if( --begin == end() )ì¼ê²½ìš° erase í•˜ê³  ++beginí•˜ë©´ ë¶€ì ì ˆí•œ iterê°€ ëœë‹¤. 
 							++begin;		///
 						}					///
 					}									
@@ -3121,7 +3121,7 @@ void CTERRAIN::SubMAP (WORD wUpdateFLAG)
 }
 
 ///
-/// ÀÌ¹Ì ·ÎµùÇØ¾ßµÉ ¸®½ºÆ®¿¡ ÀÖ´Â°¡?
+/// ì´ë¯¸ ë¡œë”©í•´ì•¼ë  ë¦¬ìŠ¤íŠ¸ì— ìˆëŠ”ê°€?
 ///
 tagLOAD_ONE_MAP_DATA* CTERRAIN::GetLodingMapFromList( short nCenterMapXIDX, short nCenterMapYIDX, WORD wUpdateIndex )
 {
@@ -3139,7 +3139,7 @@ tagLOAD_ONE_MAP_DATA* CTERRAIN::GetLodingMapFromList( short nCenterMapXIDX, shor
 		short nZoneX = pOneMapData->m_nCenterX + s_SecAdjPos[ pOneMapData->m_nUpdateIndex ].m_nX;
 		short nZoneY = pOneMapData->m_nCenterY + s_SecAdjPos[ pOneMapData->m_nUpdateIndex ].m_nY;
 
-		/// ÀÌ¹Ì ¸®½ºÆ®¿¡ ÀÖ´Ù¸é..
+		/// ì´ë¯¸ ë¦¬ìŠ¤íŠ¸ì— ìˆë‹¤ë©´..
 		if( nZoneX == nZoneMapXIDX && nZoneY == nZoneMapYIDX )
 			return pOneMapData;
 	}
@@ -3148,7 +3148,7 @@ tagLOAD_ONE_MAP_DATA* CTERRAIN::GetLodingMapFromList( short nCenterMapXIDX, shor
 }
 
 ///
-/// ÇÑ¹ø¿¡ ÇÏ³ªÀÇ ¸ÊÃß°¡..
+/// í•œë²ˆì— í•˜ë‚˜ì˜ ë§µì¶”ê°€..
 ///
 bool CTERRAIN::AddOneMap(short nCenterMapXIDX,short nCenterMapYIDX,WORD wUpdateIndex)
 {
@@ -3168,7 +3168,7 @@ bool CTERRAIN::AddOneMap(short nCenterMapXIDX,short nCenterMapYIDX,WORD wUpdateI
 																nZoneMapXIDX, nZoneMapYIDX );
 
 		pMAP = this->FindLoadedMAP (nZoneMapXIDX, nZoneMapYIDX);
-		/// ÀÌ¹Ì ·ÎµåµÈ ¸ÊÀÌ¶ó¸é..
+		/// ì´ë¯¸ ë¡œë“œëœ ë§µì´ë¼ë©´..
 		if ( pMAP ) 
 		{
 			this->SetMapPTR(nZoneMapXIDX, nZoneMapYIDX, pMAP );
@@ -3182,7 +3182,7 @@ bool CTERRAIN::AddOneMap(short nCenterMapXIDX,short nCenterMapYIDX,WORD wUpdateI
 				{
 					this->SetMapPTR(nZoneMapXIDX, nZoneMapYIDX, pMAP->Load( szMapFile, nZoneMapXIDX, nZoneMapYIDX) );					
 				} else {
-					// ¸Ê¾ø´Ù.
+					// ë§µì—†ë‹¤.
 					LogString (LOG_DEBUG, "Map not found ... \n" );
 				}
 			}else
@@ -3196,7 +3196,7 @@ bool CTERRAIN::AddOneMap(short nCenterMapXIDX,short nCenterMapYIDX,WORD wUpdateI
 }
 
 ///
-/// ¾÷µ¥ÀÌÆ® ´ë»óÀÎ ¸ÊÀ» ´õÇÑ´Ù..
+/// ì—…ë°ì´íŠ¸ ëŒ€ìƒì¸ ë§µì„ ë”í•œë‹¤..
 ///
 bool CTERRAIN::AddMAP (short nCenterMapXIDX, short nCenterMapYIDX, WORD wUpdateFLAG, bool bAllUpdate, bool bImmediateLoad )
 {
@@ -3209,7 +3209,7 @@ bool CTERRAIN::AddMAP (short nCenterMapXIDX, short nCenterMapYIDX, WORD wUpdateF
 		tagLOAD_ONE_MAP_DATA* pOneMapData = NULL;
 		for (nI=0; s_AddSecIdx[ wUpdateFLAG ][ nI ]>=0; nI++) 
 		{			
-			/// ÀÌ¹Ì ±× ¸ÊÀ» ·ÎµùÇØ¾ßÇÒ ¸®½ºÆ®¿¡ ³Ö¾ú´Ù¸é ±× µ¥ÀÌÅÍ¸¦ °»½ÅÇÏ°í ¸®ÅÏ..
+			/// ì´ë¯¸ ê·¸ ë§µì„ ë¡œë”©í•´ì•¼í•  ë¦¬ìŠ¤íŠ¸ì— ë„£ì—ˆë‹¤ë©´ ê·¸ ë°ì´í„°ë¥¼ ê°±ì‹ í•˜ê³  ë¦¬í„´..
 			tagLOAD_ONE_MAP_DATA* pOneMapData = GetLodingMapFromList( nCenterMapXIDX, nCenterMapYIDX, s_AddSecIdx[ wUpdateFLAG ][ nI ] );
 			if( pOneMapData )
 			{				
@@ -3240,7 +3240,7 @@ bool CTERRAIN::AddMAP (short nCenterMapXIDX, short nCenterMapYIDX, WORD wUpdateF
 			}
 		}
 	}else
-	/// ´ÙÀÌ·ºÆ® ·Îµù
+	/// ë‹¤ì´ë ‰íŠ¸ ë¡œë”©
 	{	
 
 		for (nI=0; s_AddSecIdx[ wUpdateFLAG ][ nI ]>=0; nI++) {
@@ -3253,7 +3253,7 @@ bool CTERRAIN::AddMAP (short nCenterMapXIDX, short nCenterMapYIDX, WORD wUpdateF
 				LogString ( LOG_DEBUG, "AddMAP: (%d, %d) --> ( %d, %d ) \n", s_SecAdjPos[ s_AddSecIdx[ wUpdateFLAG ][ nI ] ].m_nX, s_SecAdjPos[ s_AddSecIdx[ wUpdateFLAG ][ nI ] ].m_nY, nZoneMapXIDX, nZoneMapYIDX);
 
 				pMAP = this->FindLoadedMAP (nZoneMapXIDX, nZoneMapYIDX);
-				/// ÀÌ¹Ì ·ÎµåµÈ ¸ÊÀÌ¶ó¸é..
+				/// ì´ë¯¸ ë¡œë“œëœ ë§µì´ë¼ë©´..
 				if ( pMAP ) {
 					this->SetMapPTR(nZoneMapXIDX, nZoneMapYIDX, pMAP );
 				} else {
@@ -3266,7 +3266,7 @@ bool CTERRAIN::AddMAP (short nCenterMapXIDX, short nCenterMapYIDX, WORD wUpdateF
 							if ( !bAllUpdate )
 								return false;
 						} else {
-							// ¸Ê¾ø´Ù.
+							// ë§µì—†ë‹¤.
 							LogString (LOG_DEBUG, "Map not found ... \n" );
 						}
 					}
@@ -3313,8 +3313,8 @@ void CTERRAIN::Clear_VisiblePatch (void)
 /// CTERRAIN::
 /// @param fWorldX
 /// @param fWorldY
-/// @brief pOneMapData->m_bImmediateLoad ¿¡ µû¶ó setDelayedLoad ÇÔ¼ö¸¦ ¼³Á¤ÇÑ´Ù.( 04/4/29 )
-///			¸ÅÇÁ·¹ÀÓ Ä«¸Ş¶óÀÇ À§Ä¡¿¡ µû¶ó ¸ÊÀ» °»½ÅÇÒÁö¸¦ °áÁ¤ÇÑ´Ù.
+/// @brief pOneMapData->m_bImmediateLoad ì— ë”°ë¼ setDelayedLoad í•¨ìˆ˜ë¥¼ ì„¤ì •í•œë‹¤.( 04/4/29 )
+///			ë§¤í”„ë ˆì„ ì¹´ë©”ë¼ì˜ ìœ„ì¹˜ì— ë”°ë¼ ë§µì„ ê°±ì‹ í• ì§€ë¥¼ ê²°ì •í•œë‹¤.
 //-------------------------------------------------------------------------------------------------
 
 void CTERRAIN::SetCenterPosition (float fWorldX, float fWorldY)
@@ -3322,13 +3322,13 @@ void CTERRAIN::SetCenterPosition (float fWorldX, float fWorldY)
 	static int iCheckFrameCount = 0;
 	iCheckFrameCount++;
 
-	///// ÆĞÄ¡ Àç±¸¼º	
+	///// íŒ¨ì¹˜ ì¬êµ¬ì„±	
 	bool	   bPatchOrganizing =false;	
 
 	FreeDirtyMAP ();
 
 	//----------------------------------------------------------------------------------------------------	
-	/// @brief Delayed load °¡ ¼¼ÆÃµÇ¾úÀ»°æ¿ì.. ¸Ê ·Îµù Å¥°¡ ºñ¾î ÀÖÁö ¾Ê´Ù¸é.. ¸ÕÀú ±×¸ÊÀ» ÀĞ´Â´Ù.
+	/// @brief Delayed load ê°€ ì„¸íŒ…ë˜ì—ˆì„ê²½ìš°.. ë§µ ë¡œë”© íê°€ ë¹„ì–´ ìˆì§€ ì•Šë‹¤ë©´.. ë¨¼ì € ê·¸ë§µì„ ì½ëŠ”ë‹¤.
 	//----------------------------------------------------------------------------------------------------
 	if( !m_LoadOneMapData.empty() && (( iCheckFrameCount % 5 ) == 0))
 	{
@@ -3352,7 +3352,7 @@ void CTERRAIN::SetCenterPosition (float fWorldX, float fWorldY)
 		delete pOneMapData;
 		pOneMapData = NULL;		
 
-		/// ÆĞÄ¡ Àç±¸¼º
+		/// íŒ¨ì¹˜ ì¬êµ¬ì„±
 		bPatchOrganizing = true;
 	}	
 
@@ -3428,23 +3428,23 @@ void CTERRAIN::SetCenterPosition (float fWorldX, float fWorldY)
 		AddMAP( nZoneMapX, nZoneMapY, wUpdateFLAG, true, false );		
 		m_WideTerrain.AddRoughMap( nZoneMapX, nZoneMapY, wUpdateFLAG );
 
-		/// ÆĞÄ¡ Àç±¸¼º
+		/// íŒ¨ì¹˜ ì¬êµ¬ì„±
 		bPatchOrganizing = true;
 	}		
 
 ///*	----------------------------------------------------------------------------------------------------------
 	
-	/// ÆĞÄ¡ Àç±¸¼º
+	/// íŒ¨ì¹˜ ì¬êµ¬ì„±
 	//if( bPatchOrganizing )
 	//{
-	//	/// ÇöÀç À§Ä¡¸¦ ±â¹İÀ¸·Î Àç±¸¼ºµÈ ¸Êµé¿¡ ±â¹İÇØ¼­ ÆĞÄ¡Ç®À» Àç±¸¼ºÇÑ´Ù.
+	//	/// í˜„ì¬ ìœ„ì¹˜ë¥¼ ê¸°ë°˜ìœ¼ë¡œ ì¬êµ¬ì„±ëœ ë§µë“¤ì— ê¸°ë°˜í•´ì„œ íŒ¨ì¹˜í’€ì„ ì¬êµ¬ì„±í•œë‹¤.
 	//	ReOrginazationPatch( nZoneMapX, nZoneMapY );		
 	//}
 	//
 	//	
 	//Update_VisiblePatch( nMappingX, nMappingY );	
 	
-// ÀÏ´Ü Á¦¿Ü	   
+// ì¼ë‹¨ ì œì™¸	   
 //*/   -----------------------------------------------------------------------------------------------------------    
 
 	
@@ -3460,7 +3460,7 @@ void CTERRAIN::SetCenterPosition (float fWorldX, float fWorldY)
 /*	  D3DXVECTOR3 vec(0.0f,0.0f,0.0f);
 	  Pick_POSITION_Test(vec);  */               //test 12_15
 	}
-		/// ¿£Áø¿¡ µî·ÏµÉ ÆĞÄ¡ ¾÷µ¥ÀÌÆ®
+		/// ì—”ì§„ì— ë“±ë¡ë  íŒ¨ì¹˜ ì—…ë°ì´íŠ¸
 	
 
 //	m_PatchManager.DrawCollisionCylinder();
@@ -3505,7 +3505,7 @@ void CTERRAIN::SetCenterPosition (float fWorldX, float fWorldY)
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief ÇöÀç À§Ä¡¸¦ ±â¹İÀ¸·Î Àç±¸¼ºµÈ ¸Êµé¿¡ ±â¹İÇØ¼­ ÆĞÄ¡Ç®À» Àç±¸¼ºÇÑ´Ù.
+/// @brief í˜„ì¬ ìœ„ì¹˜ë¥¼ ê¸°ë°˜ìœ¼ë¡œ ì¬êµ¬ì„±ëœ ë§µë“¤ì— ê¸°ë°˜í•´ì„œ íŒ¨ì¹˜í’€ì„ ì¬êµ¬ì„±í•œë‹¤.
 //----------------------------------------------------------------------------------------------------
 
 void CTERRAIN::ReOrginazationPatch( short nZoneMapX, short nZoneMapY )
@@ -3551,7 +3551,7 @@ void CTERRAIN::ReOrginazationPatch( short nZoneMapX, short nZoneMapY )
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief ÇöÀç À§Ä¡¿¡ ±â¹İÇØ¼­ ¿£Áø¿¡ µî·ÏµÈ ÆĞÄ¡µéÀ» °»½ÅÇÑ´Ù.
+/// @brief í˜„ì¬ ìœ„ì¹˜ì— ê¸°ë°˜í•´ì„œ ì—”ì§„ì— ë“±ë¡ëœ íŒ¨ì¹˜ë“¤ì„ ê°±ì‹ í•œë‹¤.
 //----------------------------------------------------------------------------------------------------
 
 void CTERRAIN::Update_VisiblePatch( short nMappingX, short nMappingY )
@@ -3563,7 +3563,7 @@ void CTERRAIN::Update_VisiblePatch( short nMappingX, short nMappingY )
 
 
 ///
-/// ÇöÀç ¿ùµå À§Ä¡·Î ÇØ´ç ÆĞÄ¡¸¦ ±¸ÇÏ±â
+/// í˜„ì¬ ì›”ë“œ ìœ„ì¹˜ë¡œ í•´ë‹¹ íŒ¨ì¹˜ë¥¼ êµ¬í•˜ê¸°
 ///
 CMAP_PATCH*	CTERRAIN::GetPatchFromWorld( float fWorldX, float fWorldY )
 {

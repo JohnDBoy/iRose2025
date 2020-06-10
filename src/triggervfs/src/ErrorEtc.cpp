@@ -4,7 +4,7 @@
 #include <stdarg.h>
 
 /***********************************************************************************
- * OuputDebugString Printf ¹öÁ¯
+ * OuputDebugString Printf ë²„ì ¼
  */
 void ODS (char *fmt, ...)
 {

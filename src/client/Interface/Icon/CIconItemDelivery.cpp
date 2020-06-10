@@ -40,7 +40,7 @@ unsigned CIconItemDelivery::Process( unsigned uiMsg, WPARAM wParam, LPARAM lPara
 	return 0;
 }
 
-/// ¼±ÅÃµÈ ¾ÆÀÌÄÜ¿¡ ´ëÇØ¼­ Å×µÎ¸® ÀÌ¹ÌÁö¸¦ ´õ ±×·ÁÁØ´Ù.
+/// ì„ íƒëœ ì•„ì´ì½˜ì— ëŒ€í•´ì„œ í…Œë‘ë¦¬ ì´ë¯¸ì§€ë¥¼ ë” ê·¸ë ¤ì¤€ë‹¤.
 void CIconItemDelivery::Draw()
 {
 	CIconItem::Draw();

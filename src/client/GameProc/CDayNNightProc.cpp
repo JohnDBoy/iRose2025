@@ -31,7 +31,7 @@ D3DXCOLOR s_FogColor[ MAX_FOG_COLOR ] = { D3DXCOLOR( 100, 100, 100, 255 ),
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief Àü¿ª°ø°£ ÇÔ¼ö.. ( Äù½ºÆ®µî¿¡¼­ »ç¿ëÇÏ±â À§ÇØ¼­ ÇÊ¿ä )
+/// @brief ì „ì—­ê³µê°„ í•¨ìˆ˜.. ( í€˜ìŠ¤íŠ¸ë“±ì—ì„œ ì‚¬ìš©í•˜ê¸° ìœ„í•´ì„œ í•„ìš” )
 //----------------------------------------------------------------------------------------------------
 
 DWORD Get_WorldPassTIME()
@@ -42,7 +42,7 @@ DWORD Get_WorldPassTIME()
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief Àü¿ª°ø°£ ÇÔ¼ö.. ( Äù½ºÆ®µî¿¡¼­ »ç¿ëÇÏ±â À§ÇØ¼­ ÇÊ¿ä )
+/// @brief ì „ì—­ê³µê°„ í•¨ìˆ˜.. ( í€˜ìŠ¤íŠ¸ë“±ì—ì„œ ì‚¬ìš©í•˜ê¸° ìœ„í•´ì„œ í•„ìš” )
 //----------------------------------------------------------------------------------------------------
 
 short Get_WorldTIME ()
@@ -62,7 +62,7 @@ short Get_WorldTIME ()
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief °Ç¹°ÀÇ ÀÌÆåÆ®µéÀ» ¹ã³·¿¡ µû¶ó º¸¿©Áá´Ù..»ç¶óÁ³´Ù ½ÃÅ°±â À§ÇØ¼­
+/// @brief ê±´ë¬¼ì˜ ì´íŽ™íŠ¸ë“¤ì„ ë°¤ë‚®ì— ë”°ë¼ ë³´ì—¬ì¤¬ë‹¤..ì‚¬ë¼ì¡Œë‹¤ ì‹œí‚¤ê¸° ìœ„í•´ì„œ
 //----------------------------------------------------------------------------------------------------
 
 void ShowDayNNight( CEffect* pEffect )
@@ -102,7 +102,7 @@ CDayNNightProc::CDayNNightProc()
 {
 	m_fTimeRateValue = 0.0f;
 
-	/// ¹ã³· º¯È­ ÁøÇàÀ» À§ÇÑ ½Ã°£º¯¼öµé
+	/// ë°¤ë‚® ë³€í™” ì§„í–‰ì„ ìœ„í•œ ì‹œê°„ë³€ìˆ˜ë“¤
 	m_dwStartTime = 0;
 	m_iCurrentState = DN_DAY;
 	m_iChangeStep = 0;
@@ -131,7 +131,7 @@ void CDayNNightProc::ResetDayEnviTick()
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief ÇÏÃ÷·Â ³â
+/// @brief í•˜ì¸ ë ¥ ë…„
 //----------------------------------------------------------------------------------------------------
 
 int CDayNNightProc::GetHeartsYear()
@@ -141,7 +141,7 @@ int CDayNNightProc::GetHeartsYear()
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief ÇÏÃ÷·Â ¿ù
+/// @brief í•˜ì¸ ë ¥ ì›”
 //----------------------------------------------------------------------------------------------------
 
 int	CDayNNightProc::GetHeartsMonth()
@@ -153,7 +153,7 @@ int	CDayNNightProc::GetHeartsMonth()
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief ÇÏÃ÷·Â ÀÏ
+/// @brief í•˜ì¸ ë ¥ ì¼
 //----------------------------------------------------------------------------------------------------
 
 int	CDayNNightProc::GetHeartsDay()
@@ -193,13 +193,13 @@ void CDayNNightProc::SetWorldTime( int iZoneNO, DWORD dwWorldTime )
 	m_dwElapsedWorldTime = 0;
 
 
-	Log_String( LOG_NORMAL, "¿ùµåÅ¸ÀÓ[%d]\n", dwWorldTime );
-	Log_String( LOG_NORMAL, "Á¸Å¸ÀÓ[%d]\n", m_dwZoneTime );
+	Log_String( LOG_NORMAL, "ì›”ë“œíƒ€ìž„[%d]\n", dwWorldTime );
+	Log_String( LOG_NORMAL, "ì¡´íƒ€ìž„[%d]\n", m_dwZoneTime );
 
 	
 	GetCurrentTimeState();
 
-	/// ÃÊ±â È¯°æ ¼³Á¤..	
+	/// ì´ˆê¸° í™˜ê²½ ì„¤ì •..	
 	switch( m_iCurrentTimeState )
 	{
 		case TIME_DN_MORNING:
@@ -238,21 +238,21 @@ void CDayNNightProc::SetWorldTime( int iZoneNO, DWORD dwWorldTime )
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief ÇöÀç ½Ã°£»óÅÂ( »óÅÂ½Ã°£.. ) À» ±¸ÇÑ´Ù.
+/// @brief í˜„ìž¬ ì‹œê°„ìƒíƒœ( ìƒíƒœì‹œê°„.. ) ì„ êµ¬í•œë‹¤.
 //----------------------------------------------------------------------------------------------------
 
 int CDayNNightProc::GetCurrentTimeState()
 {
-	if( m_dwZoneTime > ZONE_NIGHT_TIME( m_iZoneNO ) )			/// ¹ã
+	if( m_dwZoneTime > ZONE_NIGHT_TIME( m_iZoneNO ) )			/// ë°¤
 	{
 		m_iCurrentTimeState = TIME_DN_NIGHT;
-	}else if( m_dwZoneTime > ZONE_EVENING_TIME( m_iZoneNO ) )	/// Àú³á
+	}else if( m_dwZoneTime > ZONE_EVENING_TIME( m_iZoneNO ) )	/// ì €ë…
 	{
 		m_iCurrentTimeState = TIME_DN_EVENING;
-	}else if( m_dwZoneTime > ZONE_DAY_TIME( m_iZoneNO ) )		/// ³·
+	}else if( m_dwZoneTime > ZONE_DAY_TIME( m_iZoneNO ) )		/// ë‚®
 	{
 		m_iCurrentTimeState = TIME_DN_DAY;
-	}else if( m_dwZoneTime > ZONE_MORNING_TIME( m_iZoneNO ) )	/// ¾ÆÄ§
+	}else if( m_dwZoneTime > ZONE_MORNING_TIME( m_iZoneNO ) )	/// ì•„ì¹¨
 	{
 		m_iCurrentTimeState = TIME_DN_MORNING;
 	}
@@ -274,7 +274,7 @@ bool CDayNNightProc::CheckUpdateEnvironment()
 
 	bool bChangeState = false;
 	
-	/// ¹ã¿¡¼­ ³·À¸·Î º¯È­
+	/// ë°¤ì—ì„œ ë‚®ìœ¼ë¡œ ë³€í™”
 	if( iPrevState != m_iCurrentTimeState )
 	{
 		switch( m_iCurrentTimeState )
@@ -309,7 +309,7 @@ bool CDayNNightProc::CheckUpdateEnvironment()
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief ¹ã³·º¯È­ ·¡ÆÛ..
+/// @brief ë°¤ë‚®ë³€í™” ëž˜í¼..
 //----------------------------------------------------------------------------------------------------
 
 void CDayNNightProc::SetGlobalIllumination( float fBlendRatio )
@@ -351,7 +351,7 @@ void CDayNNightProc::SetGlobalIllumination( float fBlendRatio )
 	::setFogColor( fFogR, fFogG, fFogB );
 
 	/// Readability is best property.. !!
-	/// ÈÄ¹ÝºÎ ÁøÇà
+	/// í›„ë°˜ë¶€ ì§„í–‰
 	if( m_dwElapsedTime > ( m_iChangeStep * m_iDAYENVIR_TICK ) / 2 )
 	{
 		switch( m_iCurrentState )
@@ -436,20 +436,20 @@ void CDayNNightProc::SetGlobalIllumination( float fBlendRatio )
 
 	fBlendRatio *= 2.0f;
 
-	/// ¹è°æ
+	/// ë°°ê²½
 	::setLight( findNode("light_01"), 
 				"diffuse", 
 				( BGPreColor.r * ( 1.0f - fBlendRatio ) ) + ( ( BGCurrentColor.r * fBlendRatio ) ),
 				( BGPreColor.g * ( 1.0f - fBlendRatio ) ) + ( ( BGCurrentColor.g * fBlendRatio ) ),
 				( BGPreColor.b * ( 1.0f - fBlendRatio ) ) + ( ( BGCurrentColor.b * fBlendRatio ) ) );
 
-	/// Ä³¸¯ÅÍ	
+	/// ìºë¦­í„°	
 	::setLight( findNode("light_02"), 
 				"ambient", 
 				( CharAPreColor.r * ( 1.0f - fBlendRatio ) ) + ( ( CharACurrentColor.r * fBlendRatio ) ),
 				( CharAPreColor.g * ( 1.0f - fBlendRatio ) ) + ( ( CharACurrentColor.g * fBlendRatio ) ),
 				( CharAPreColor.b * ( 1.0f - fBlendRatio ) ) + ( ( CharACurrentColor.b * fBlendRatio ) ) );
-	/// Ä³¸¯ÅÍ	
+	/// ìºë¦­í„°	
 	::setLight( findNode("light_02"), 
 				"diffuse", 
 				( CharDPreColor.r * ( 1.0f - fBlendRatio ) ) + ( ( CharDCurrentColor.r * fBlendRatio ) ),
@@ -460,7 +460,7 @@ void CDayNNightProc::SetGlobalIllumination( float fBlendRatio )
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief STBÁ¤º¸·Î ºÎÅÍ RGB°ª ±¸ÇÔ
+/// @brief STBì •ë³´ë¡œ ë¶€í„° RGBê°’ êµ¬í•¨
 //----------------------------------------------------------------------------------------------------
 
 D3DXCOLOR CDayNNightProc::GetColorStringFromSTB( int iType, int iState )
@@ -485,7 +485,7 @@ D3DXCOLOR CDayNNightProc::GetColorStringFromSTB( int iType, int iState )
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief ¹ã,³· ±¸º°ÇÏ´Â ÀÌÆåÆ® °ü¸®
+/// @brief ë°¤,ë‚® êµ¬ë³„í•˜ëŠ” ì´íŽ™íŠ¸ ê´€ë¦¬
 //----------------------------------------------------------------------------------------------------
 
 bool CDayNNightProc::PushEffect( CEffect* pEffect )
@@ -493,7 +493,7 @@ bool CDayNNightProc::PushEffect( CEffect* pEffect )
 	if( pEffect == NULL )
 		return false;
 
-	/// ÀÌ¹Ì µé¾î°¡ ÀÖ´Â ÀÌÆåÆ® ÀÌ´Ù.
+	/// ì´ë¯¸ ë“¤ì–´ê°€ ìžˆëŠ” ì´íŽ™íŠ¸ ì´ë‹¤.
 	if( std::find( m_EffectList.begin(), m_EffectList.end(), pEffect ) != m_EffectList.end() )
 		return false;
 
@@ -508,7 +508,7 @@ bool CDayNNightProc::PushEffect( CEffect* pEffect )
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief ¸®½ºÆ®·Î ºÎÅÍ ÀÌÆåÆ® Á¦°Å
+/// @brief ë¦¬ìŠ¤íŠ¸ë¡œ ë¶€í„° ì´íŽ™íŠ¸ ì œê±°
 //----------------------------------------------------------------------------------------------------
 
 void CDayNNightProc::DeleteEffectFromList( CEffect* pEffect )
@@ -519,20 +519,20 @@ void CDayNNightProc::DeleteEffectFromList( CEffect* pEffect )
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief º¯È­ ½ÃÀÛ
+/// @brief ë³€í™” ì‹œìž‘
 //----------------------------------------------------------------------------------------------------
 
 void CDayNNightProc::Start( int iCurrentSkyNO, int iCurrentState, int iChangeStep )
 {
-	m_iChangeStep = iChangeStep;							/// º¯È­½Ã°£( ÃÊ )
-	m_fChangeValue = (iChangeStep == 0)?1.0f:1.0f/(float)iChangeStep;				/// ÃÊ´ç º¯È­·®( float )
+	m_iChangeStep = iChangeStep;							/// ë³€í™”ì‹œê°„( ì´ˆ )
+	m_fChangeValue = (iChangeStep == 0)?1.0f:1.0f/(float)iChangeStep;				/// ì´ˆë‹¹ ë³€í™”ëŸ‰( float )
 
 	m_dwStartTime = g_GameDATA.GetGameTime();
 	m_iCurrentState = iCurrentState;	
 	m_iCurrentSkyNO = iCurrentSkyNO;
 	m_dwElapsedTime = 0;		
 
-	/// ÇöÀç »óÅÂ°¡ ¹ãÀÌ¶ó¸é
+	/// í˜„ìž¬ ìƒíƒœê°€ ë°¤ì´ë¼ë©´
 	if( m_iCurrentState == DN_NIGHT )
 	{
 		for_each( m_EffectList.begin(), m_EffectList.end(), ShowDayNNight );
@@ -545,16 +545,16 @@ void CDayNNightProc::Start( int iCurrentSkyNO, int iCurrentState, int iChangeSte
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief º¯È­ ÁøÇà
+/// @brief ë³€í™” ì§„í–‰
 //----------------------------------------------------------------------------------------------------
 
 void CDayNNightProc::Proc()
 {
 	DWORD dwCurrentTime = g_GameDATA.GetGameTime();
 
-	/// zone time Áõ°¡..	
+	/// zone time ì¦ê°€..	
 	DWORD dwTempTime = ( dwCurrentTime - m_dwStartWorldTime ) - m_dwElapsedWorldTime;
-	if( dwTempTime > m_iDAYENVIR_TICK )			/// 10 ÃÊ¸¶´Ù 1¾¿ Áõ°¡.
+	if( dwTempTime > m_iDAYENVIR_TICK )			/// 10 ì´ˆë§ˆë‹¤ 1ì”© ì¦ê°€.
 	{
 		m_dwElapsedWorldTime += ( dwTempTime - dwTempTime%m_iDAYENVIR_TICK );
 
@@ -563,7 +563,7 @@ void CDayNNightProc::Proc()
 		if( m_dwZoneTime >= m_iZoneTimeCycle )
 			m_dwZoneTime = 0;
 
-		/// ½Ã°£¿¡ µû¸¥ È¯°æÀ» °»½ÅÇØ¾ßµÈ´Ù¸é..
+		/// ì‹œê°„ì— ë”°ë¥¸ í™˜ê²½ì„ ê°±ì‹ í•´ì•¼ëœë‹¤ë©´..
 		if( CheckUpdateEnvironment() )
 		{
 			m_dwAddiditionalTime = 0;
@@ -594,7 +594,7 @@ void CDayNNightProc::Proc()
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief ¸ðµç ÀÌÆåÆ®¸¦ °­Á¦·Î º¸ÀÌ°Ô ÇÏ°Å³ª °¨Ãã
+/// @brief ëª¨ë“  ì´íŽ™íŠ¸ë¥¼ ê°•ì œë¡œ ë³´ì´ê²Œ í•˜ê±°ë‚˜ ê°ì¶¤
 //----------------------------------------------------------------------------------------------------
 
 void CDayNNightProc::ShowAllEffect( bool bShow )

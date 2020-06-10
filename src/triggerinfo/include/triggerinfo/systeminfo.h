@@ -1,6 +1,6 @@
 //----------------------------------------------------------------------------
 // File: systeminfo.h
-// ÀÌ¸§¸¸ º¯Çü ¿øº»Àº sysinfo.h - DxDiagReport_2003 ¼Ö·ç¼Ç Âü°í.
+// ì´ë¦„ë§Œ ë³€í˜• ì›ë³¸ì€ sysinfo.h - DxDiagReport_2003 ì†”ë£¨ì…˜ ì°¸ê³ .
 // Desc: 
 //
 // Copyright (c) Microsoft Corp. All rights reserved.

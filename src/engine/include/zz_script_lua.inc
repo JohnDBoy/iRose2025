@@ -2,7 +2,7 @@
 // 이 파일은 zz_script_lua.lua 스크립트에 의해 자동생성된 코드입니다.
 //
 // 직접 수정하지 마십시오.
-// 생성시간: 12/09/08 21:15:18
+// 생성시간: Wed Jun 10 14:27:03 2020
 //--------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------
@@ -6178,21 +6178,6 @@ int zz_lua_useGlow (lua_State * L)
 }
 
 //--------------------------------------------------------------------------------
-// useSSAO
-//--------------------------------------------------------------------------------
-int zz_lua_useSSAO (lua_State * L)
-{
-	int param_index = 1;
-	const char where[] = "useSSAO";
-	int return_num = 0;
-
-	int bUse = get_param_int( L, param_index, where );
-	useSSAO( bUse  );
-
-	return return_num;
-}
-
-//--------------------------------------------------------------------------------
 // useGravity
 //--------------------------------------------------------------------------------
 int zz_lua_useGravity (lua_State * L)
@@ -6333,6 +6318,21 @@ int zz_lua_useRefreshCull (lua_State * L)
 	int bRefresh = get_param_int( L, param_index, where );
 
 	set_param_int( L, return_num, useRefreshCull( bRefresh ) );
+
+	return return_num;
+}
+
+//--------------------------------------------------------------------------------
+// useSSAO
+//--------------------------------------------------------------------------------
+int zz_lua_useSSAO (lua_State * L)
+{
+	int param_index = 1;
+	const char where[] = "useSSAO";
+	int return_num = 0;
+
+	int bUse = get_param_int( L, param_index, where );
+	useSSAO( bUse  );
 
 	return return_num;
 }
@@ -6836,7 +6836,6 @@ void register_api_interfaces (lua_State * L)
 	lua_register( L, "useFog", zz_lua_useFog );
 	lua_register( L, "useFullSceneGlow", zz_lua_useFullSceneGlow );
 	lua_register( L, "useGlow", zz_lua_useGlow );
-	lua_register( L, "useSSAO", zz_lua_useSSAO );
 	lua_register( L, "useGravity", zz_lua_useGravity );
 	lua_register( L, "useHardwareVertexProcessing", zz_lua_useHardwareVertexProcessing );
 	lua_register( L, "useLightmap", zz_lua_useLightmap );
@@ -6846,6 +6845,7 @@ void register_api_interfaces (lua_State * L)
 	lua_register( L, "usePixelShader", zz_lua_usePixelShader );
 	lua_register( L, "usePolygonSorting", zz_lua_usePolygonSorting );
 	lua_register( L, "useRefreshCull", zz_lua_useRefreshCull );
+	lua_register( L, "useSSAO", zz_lua_useSSAO );
 	lua_register( L, "useShadowmap", zz_lua_useShadowmap );
 	lua_register( L, "useTerrainLOD", zz_lua_useTerrainLOD );
 	lua_register( L, "useVSync", zz_lua_useVSync );

@@ -84,7 +84,7 @@ public :
 
 	void ReleaseOnly (LPCPACKET pCPacket)
 	{
-		// ¹«Á¶°Ç ÇØÁ¦...
+		// ë¬´ì¡°ê±´ í•´ì œ...
 		//if ( pCPacket->GetRefCnt() <= 0 ) 
 		{
 			this->Pool_Free( pCPacket );
@@ -156,7 +156,7 @@ public :
 	inline void	 InitData (LPIODATANODE pData)
 	{	
         ::ZeroMemory (&pData->DATA.m_Overlapped, sizeof(OVERLAPPED));
-		// 2003. 11. 12 ¹Ýµå½Ã 0À¸·Î ÃÊ±âÈ­ !!!, »©¸Ô¾î¼­ Recv_Start¿¡¼­ ±âÁ¸ÀÇ ¾²·¹±â ÆÐÅ¶ µÚ¿¡ Ãß°¡·Î ¹Þ¾ÆÁ³´Ù.
+		// 2003. 11. 12 ë°˜ë“œì‹œ 0ìœ¼ë¡œ ì´ˆê¸°í™” !!!, ë¹¼ë¨¹ì–´ì„œ Recv_Startì—ì„œ ê¸°ì¡´ì˜ ì“°ë ˆê¸° íŒ¨í‚· ë’¤ì— ì¶”ê°€ë¡œ ë°›ì•„ì¡Œë‹¤.
 		pData->DATA.m_dwIOBytes = 0;
 
 		pData->DATA.m_pNODE		   = pData;

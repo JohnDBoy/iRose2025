@@ -173,7 +173,7 @@ bool classODBC::ReigsterDsnIfNone (char *szDSN, char *szDBName, char *szServerIP
 		return false;
 
 
-	// ¼³Ä¡µÈ dns °Ë»ö...
+	// ì„¤ì¹˜ëœ dns ê²€ìƒ‰...
 	char szFindDSN[ MAX_PATH ];
 	bool bFindDSN=false;
 	if ( this->FirstDSN( szFindDSN, MAX_PATH ) ) {
@@ -186,7 +186,7 @@ bool classODBC::ReigsterDsnIfNone (char *szDSN, char *szDBName, char *szServerIP
 	}
 
 	if ( !bFindDSN ) {
-		// ODBC ¼³Ä¡...
+		// ODBC ì„¤ì¹˜...
 		bFindDSN = this->RegisterDSN( szDSN, szDBName, szServerIP, szUser );
 	}
 
@@ -274,7 +274,7 @@ bool classODBC::BindPARAM (short nParamIDX, BYTE *pData, unsigned int uiDataSize
 					SQL_BINARY,				//SQL_LONGVARBINARY,// SQLSMALLINT		ParameterType,
 					(SQLUINTEGER) uiDataSize,					// SQLUINTEGER		ColumnSize,
 					0,											// SQLSMALLINT		DecimalDigits,
-					(SQLPOINTER) nParamIDX,						// SQLPOINTER		ParameterValuePtr, º¯¼ö ´ë½Å 32ºñÆ®ÀÇ ÀÓÀÇ°ªÀ» ÁöÁ¤-> BLOB ID
+					(SQLPOINTER) nParamIDX,						// SQLPOINTER		ParameterValuePtr, ë³€ìˆ˜ ëŒ€ì‹  32ë¹„íŠ¸ì˜ ìž„ì˜ê°’ì„ ì§€ì •-> BLOB ID
 					0,											// SQLINTEGER		BufferLength,
 					&m_pBindPARAM[ nParamIDX ].m_StrLen_or_Ind	// SQLINTEGER *     StrLen_or_IndPtr);
 					);
@@ -308,7 +308,7 @@ bool classODBC::SetParameter(short nParamIDX, BYTE *pData, UINT uiDataSize, shor
 					nParamType,									// SQLSMALLINT		ParameterType,
 					(SQLUINTEGER) uiDataSize,					// SQLUINTEGER		ColumnSize,
 					0,											// SQLSMALLINT		DecimalDigits,
-					(SQLPOINTER) nParamIDX,						// SQLPOINTER		ParameterValuePtr, º¯¼ö ´ë½Å 32ºñÆ®ÀÇ ÀÓÀÇ°ªÀ» ÁöÁ¤-> BLOB ID
+					(SQLPOINTER) nParamIDX,						// SQLPOINTER		ParameterValuePtr, ë³€ìˆ˜ ëŒ€ì‹  32ë¹„íŠ¸ì˜ ìž„ì˜ê°’ì„ ì§€ì •-> BLOB ID
 					0,											// SQLINTEGER		BufferLength,
 					&m_pBindPARAM[ nParamIDX ].m_StrLen_or_Ind	// SQLINTEGER *     StrLen_or_IndPtr);
 					);
@@ -338,7 +338,7 @@ bool classODBC::SetParam_long ( short nParamIDX, long &lOutResult, long &cbLen )
 					SQL_INTEGER,					// SQLSMALLINT		ParameterType,
 					0,//sizeof( long ),					// SQLUINTEGER		ColumnSize,
 					0,								// SQLSMALLINT		DecimalDigits,
-					&lOutResult,					// SQLPOINTER		ParameterValuePtr, º¯¼ö ´ë½Å 32ºñÆ®ÀÇ ÀÓÀÇ°ªÀ» ÁöÁ¤-> BLOB ID
+					&lOutResult,					// SQLPOINTER		ParameterValuePtr, ë³€ìˆ˜ ëŒ€ì‹  32ë¹„íŠ¸ì˜ ìž„ì˜ê°’ì„ ì§€ì •-> BLOB ID
 					0,								// SQLINTEGER		BufferLength,
 					&cbLen							// SQLINTEGER *     StrLen_or_IndPtr);
 					);
@@ -368,7 +368,7 @@ bool classODBC::BindRESULT ()
 {
 	::SQLNumResultCols (m_hSTMT1, &m_nResultColCnt);
 	if ( 0 == m_nResultColCnt ) {
-		// 0 ÀÎ°æ¿ì´Â select¹® ÀÌ¿ÜÀÇ ´Ù¸¥ ¸í·ÉÀ» ½ÇÇàÇÑ °æ¿ì·Î ¹ÙÀÎµùÇÒ ÇÊ¿ä¾ø´Ù.
+		// 0 ì¸ê²½ìš°ëŠ” selectë¬¸ ì´ì™¸ì˜ ë‹¤ë¥¸ ëª…ë ¹ì„ ì‹¤í–‰í•œ ê²½ìš°ë¡œ ë°”ì¸ë”©í•  í•„ìš”ì—†ë‹¤.
 		//this->Clear ();
 		return false;
 	}
@@ -509,10 +509,10 @@ bool classODBC::QuerySQLBuffer ( /* bool bBindResult */ )
 		m_RetCode = ::SQLParamData(m_hSTMT1, &pBLOB_ID);
 		while ( m_RetCode == SQL_NEED_DATA ) {
 			/*
-			SQL_NEED_DATA ¸®ÅÏµÇ¸é ½ÇÇàÁß¿¡ µ¥ÀÌÅÍ¸¦ °ø±ÞÇØ ÁÖ¾î¾ß ÇÑ´Ù.
-			±×Àü¿¡ ¾î¶² ÇÊµå¿¡ ´ëÇÑ Å×ÀÌÅÍ¸¦ ¿ä±¸ÇÏ´ÂÁö¸¦ Á¶»çÇØ¾ß ÇÏ´Âµ¥ SQLParamDataÇÔ¼ö¸¦ »ç¿ëÇÑ´Ù.
-			SQLParamData(SQLHSTMT StatementHandle, SQLPOINTER *ValuePtrPtr); <-- 2¹øÂ° °ª¿¡ BLOB ID°¡ ¿Â´Ù.
-			SQLPutData·Î ½ÇÁ¦ µ¥ÀÌÅ¸¸¦ º¸³»ÁØ´Ù.
+			SQL_NEED_DATA ë¦¬í„´ë˜ë©´ ì‹¤í–‰ì¤‘ì— ë°ì´í„°ë¥¼ ê³µê¸‰í•´ ì£¼ì–´ì•¼ í•œë‹¤.
+			ê·¸ì „ì— ì–´ë–¤ í•„ë“œì— ëŒ€í•œ í…Œì´í„°ë¥¼ ìš”êµ¬í•˜ëŠ”ì§€ë¥¼ ì¡°ì‚¬í•´ì•¼ í•˜ëŠ”ë° SQLParamDataí•¨ìˆ˜ë¥¼ ì‚¬ìš©í•œë‹¤.
+			SQLParamData(SQLHSTMT StatementHandle, SQLPOINTER *ValuePtrPtr); <-- 2ë²ˆì§¸ ê°’ì— BLOB IDê°€ ì˜¨ë‹¤.
+			SQLPutDataë¡œ ì‹¤ì œ ë°ì´íƒ€ë¥¼ ë³´ë‚´ì¤€ë‹¤.
 			*/
 			iParamNo = (int)pBLOB_ID;
 			if ( iParamNo >= m_nBindParamCNT ) {
@@ -599,10 +599,10 @@ int classODBC::ExecSQLBuffer ()
 		m_RetCode = ::SQLParamData(m_hSTMT1, &pBLOB_ID);
 		while ( m_RetCode == SQL_NEED_DATA ) {
 			/*
-			SQL_NEED_DATA ¸®ÅÏµÇ¸é ½ÇÇàÁß¿¡ µ¥ÀÌÅÍ¸¦ °ø±ÞÇØ ÁÖ¾î¾ß ÇÑ´Ù.
-			±×Àü¿¡ ¾î¶² ÇÊµå¿¡ ´ëÇÑ Å×ÀÌÅÍ¸¦ ¿ä±¸ÇÏ´ÂÁö¸¦ Á¶»çÇØ¾ß ÇÏ´Âµ¥ SQLParamDataÇÔ¼ö¸¦ »ç¿ëÇÑ´Ù.
-			SQLParamData(SQLHSTMT StatementHandle, SQLPOINTER *ValuePtrPtr); <-- 2¹øÂ° °ª¿¡ BLOB ID°¡ ¿Â´Ù.
-			SQLPutData·Î ½ÇÁ¦ µ¥ÀÌÅ¸¸¦ º¸³»ÁØ´Ù.
+			SQL_NEED_DATA ë¦¬í„´ë˜ë©´ ì‹¤í–‰ì¤‘ì— ë°ì´í„°ë¥¼ ê³µê¸‰í•´ ì£¼ì–´ì•¼ í•œë‹¤.
+			ê·¸ì „ì— ì–´ë–¤ í•„ë“œì— ëŒ€í•œ í…Œì´í„°ë¥¼ ìš”êµ¬í•˜ëŠ”ì§€ë¥¼ ì¡°ì‚¬í•´ì•¼ í•˜ëŠ”ë° SQLParamDataí•¨ìˆ˜ë¥¼ ì‚¬ìš©í•œë‹¤.
+			SQLParamData(SQLHSTMT StatementHandle, SQLPOINTER *ValuePtrPtr); <-- 2ë²ˆì§¸ ê°’ì— BLOB IDê°€ ì˜¨ë‹¤.
+			SQLPutDataë¡œ ì‹¤ì œ ë°ì´íƒ€ë¥¼ ë³´ë‚´ì¤€ë‹¤.
 			*/
 			iParamNo = (int)pBLOB_ID;
 			for (uiPtr=0; uiPtr<m_pBindPARAM[ iParamNo ].m_uiDataSize; uiPtr+=MAX_ODBC_COLUMN_LEN) {
@@ -619,7 +619,7 @@ int classODBC::ExecSQLBuffer ()
 		return -1;
 	}
 
-	// Update, Delete, Insert¸í·É½Ã ¿µÇâ¹ÞÀº ·¹ÄÚµå °¹¼ö¸¦ ±¸ÇØ¿Â´Ù.
+	// Update, Delete, Insertëª…ë ¹ì‹œ ì˜í–¥ë°›ì€ ë ˆì½”ë“œ ê°¯ìˆ˜ë¥¼ êµ¬í•´ì˜¨ë‹¤.
 	m_RetCode = ::SQLRowCount (m_hSTMT1, &m_iResultRowCnt);
 	if ( (m_RetCode != SQL_SUCCESS) && (m_RetCode != SQL_SUCCESS_WITH_INFO) ) {
 		:: OutputDebugString( this->GetERROR() );
@@ -740,7 +740,7 @@ char* classODBC::GetStrPTR (WORD wColumnIDX, bool bSetSpaceToNULL)
 	} else {
 		for (unsigned short wC=m_pColumn[ wColumnIDX ].m_ColumnSize-1; wC > 1; wC--) {
 			if ( m_pColumn[ wColumnIDX ].m_String[ wC ] != ' ' ) {
-				// µÚÂÊ °ø¹éÀº ¸ðµÎ Â©¶ó ¹ö¸²...
+				// ë’¤ìª½ ê³µë°±ì€ ëª¨ë‘ ì§¤ë¼ ë²„ë¦¼...
 				m_pColumn[ wColumnIDX ].m_String[ wC+1 ] = NULL;
 				break;
 			}
@@ -820,10 +820,10 @@ DWORD classODBC::MakeQuery (char *szCommand, ...)
 				char *pStr = va_arg(va, char*);
 				iStrLen = strlen(pStr);
 
-				*pBuff ++ = ' ';	// °ø¹éÀ» ¾Õ¿¡ ³Ö´Â´Ù.
+				*pBuff ++ = ' ';	// ê³µë°±ì„ ì•žì— ë„£ëŠ”ë‹¤.
 				::CopyMemory (pBuff, pStr, iStrLen);
 				pBuff += iStrLen;
-				*pBuff ++ = ' ';	// °ø¹éÀ» µÚ¿¡ ³Ö´Â´Ù.
+				*pBuff ++ = ' ';	// ê³µë°±ì„ ë’¤ì— ë„£ëŠ”ë‹¤.
 				break;
 			}
 			case MQ_PARAM_INT	:
@@ -1057,53 +1057,53 @@ CString CDSNCollection::GetNextDSNName()
 
 
 
-  Á¦¾îÆÇÀÇ ODBC¼³Á¤ÇÏ´Â °ÍÀ» 
-ÇÁ·Î±×·¥À¸·Î ÇÏ´Â ¹æ¹ýÀÔ´Ï´Ù..
-DB °ü·ÃÇØ¼­ ¸¹ÀÌ »ç¿ëÇÏ¸®¶ó »ý°¢ ÇÕ´Ï´Ù..
-(¿©±â Ã£¾Æ ºÁµµ ¾ø±æ·¡.. )
+  ì œì–´íŒì˜ ODBCì„¤ì •í•˜ëŠ” ê²ƒì„ 
+í”„ë¡œê·¸ëž¨ìœ¼ë¡œ í•˜ëŠ” ë°©ë²•ìž…ë‹ˆë‹¤..
+DB ê´€ë ¨í•´ì„œ ë§Žì´ ì‚¬ìš©í•˜ë¦¬ë¼ ìƒê° í•©ë‹ˆë‹¤..
+(ì—¬ê¸° ì°¾ì•„ ë´ë„ ì—†ê¸¸ëž˜.. )
 
-ÀÏ´Ü »ç¿ëÇÏ´Â ÇÔ¼ö´Â SQLConfigDataSource()ÀÔ´Ï´Ù..
-¾Æ·¡¿¡´Â MS-Access ÆÄÀÏÀ» µî·ÏÇÏ´Â ¿¹Á¦ ÀÔ´Ï´Ù..
+ì¼ë‹¨ ì‚¬ìš©í•˜ëŠ” í•¨ìˆ˜ëŠ” SQLConfigDataSource()ìž…ë‹ˆë‹¤..
+ì•„ëž˜ì—ëŠ” MS-Access íŒŒì¼ì„ ë“±ë¡í•˜ëŠ” ì˜ˆì œ ìž…ë‹ˆë‹¤..
 
 
-    CHAR szDriver[] = "Microsoft Access Driver (*.mdb)"; // ÀÌ°Å ÀÌ¸§ Á¤È®ÇØ¾ß ÇÔ.
-    CString path = "c:\\temp"; // ÆÄÀÏÀÇ °æ·Î
+    CHAR szDriver[] = "Microsoft Access Driver (*.mdb)"; // ì´ê±° ì´ë¦„ ì •í™•í•´ì•¼ í•¨.
+    CString path = "c:\\temp"; // íŒŒì¼ì˜ ê²½ë¡œ
     CString Attribute;
 
-    Attribute = "DSN=DB_P;" // ¼Ó¼º°ªµé..
-        "DESCRIPTION= DB_P;" // DSN ÀÌ¸§ ODBC¿¡ ÀÌÀÌ¸§À¸·Î ¼³Á¤µÊ
-        "FileType = Access;" // ÆÄÀÏ Å¸ÀÔ.
-        "DataDirectory=C:\\temp\\DB;" // µ¥ÀÌÅÍ °æ·Î
+    Attribute = "DSN=DB_P;" // ì†ì„±ê°’ë“¤..
+        "DESCRIPTION= DB_P;" // DSN ì´ë¦„ ODBCì— ì´ì´ë¦„ìœ¼ë¡œ ì„¤ì •ë¨
+        "FileType = Access;" // íŒŒì¼ íƒ€ìž….
+        "DataDirectory=C:\\temp\\DB;" // ë°ì´í„° ê²½ë¡œ
         "DBQ="c:\\DB\\DB_P.mdb;" 
         "MaxScanRows=20";
     if( !SQLConfigDataSource(NULL, ODBC_ADD_DSN, szDriver, Attribute))
-        AfxMessageBox("µ¥ÀÌÅÍ ¿øº» ¼Ò½º(DSN) ¼³Á¤¿¡ ¹®Á¦°¡ ÀÖ½À´Ï´Ù.");]
+        AfxMessageBox("ë°ì´í„° ì›ë³¸ ì†ŒìŠ¤(DSN) ì„¤ì •ì— ë¬¸ì œê°€ ìžˆìŠµë‹ˆë‹¤.");]
 
-À§¿¡¼­ µÎ¹øÂ° ÀÎÀÚ ODBC_ADD_DSN Àº µî·ÏÇÏ´Â °ÍÀÌ°í, 
-ODBC_REMOVE_DSNÀº µî·ÏÀ» ÇØÁ¦ÇÏ´Â °ÍÀÔ´Ï´Ù..
+ìœ„ì—ì„œ ë‘ë²ˆì§¸ ì¸ìž ODBC_ADD_DSN ì€ ë“±ë¡í•˜ëŠ” ê²ƒì´ê³ , 
+ODBC_REMOVE_DSNì€ ë“±ë¡ì„ í•´ì œí•˜ëŠ” ê²ƒìž…ë‹ˆë‹¤..
 
-Âü°í·Î ÀÌÇÔ¼ö¸¦ »ç¿ëÇÒ¶§ ÇÊ¿äÇÑ Çì´õ¿Í ¶óÀÌºê·¯¸®..
-Çì´õ : #include <odbcinst.h>
+ì°¸ê³ ë¡œ ì´í•¨ìˆ˜ë¥¼ ì‚¬ìš©í• ë•Œ í•„ìš”í•œ í—¤ë”ì™€ ë¼ì´ë¸ŒëŸ¬ë¦¬..
+í—¤ë” : #include <odbcinst.h>
 
-±×·³~~
-¶óÀÌºê·¯¸® : odbccp32.lib 
-
-
+ê·¸ëŸ¼~~
+ë¼ì´ë¸ŒëŸ¬ë¦¬ : odbccp32.lib 
 
 
 
 
 
-ÀÔ·ÂÄ¡
+
+
+ìž…ë ¥ì¹˜
 ===============
-DNS ÀÌ¸§=> m_dns
+DNS ì´ë¦„=> m_dns
 ID => m_id
 PASS => m_pass
-SERVER ÀÌ¸§ => m_ip
-DATABASEÀÌ¸§ => m_dbname
+SERVER ì´ë¦„ => m_ip
+DATABASEì´ë¦„ => m_dbname
 
 ============
-Ã³¸® ºÎºÐ
+ì²˜ë¦¬ ë¶€ë¶„
 =======
 {
 	DWORD dwRet;
@@ -1115,7 +1115,7 @@ DATABASEÀÌ¸§ => m_dbname
 	if (::RegOpenKeyEx (HKEY_LOCAL_MACHINE, _T("Software\\ODBC\\ODBCINST.INI\\SQL Server"), 0, 
 		KEY_READ, &hKey) != ERROR_SUCCESS)
     {
-			AfxMessageBox("MSSQL Server ODBC µå¶óÀÌ¹ö µî·ÏÀº º°µµ·Î ÇÏ¼Å¾ß ÇÕ´Ï´Ù.");
+			AfxMessageBox("MSSQL Server ODBC ë“œë¼ì´ë²„ ë“±ë¡ì€ ë³„ë„ë¡œ í•˜ì…”ì•¼ í•©ë‹ˆë‹¤.");
              return; 
 	}
 
@@ -1147,9 +1147,9 @@ DATABASEÀÌ¸§ => m_dbname
 }
 ========
 
-MS-SQL ¼­¹öÀÌ¿ëÇÏ´Â °æ¿ì, ODBC µî·ÏÀÌ ÇÊ¿äÇÒ¶§ ½á¸ÔÀ» ¼ö ÀÖ´Â ÄÚµå ÀÔ´Ï´Ù.
-ÀÌ°ÍÀº ¼öµ¿À¸·Î ODBC µî·ÏÇØÁÖ´Â °Í°ú ºñ½ÁÇÑ È¿°í¸¦ ³» ÁÖ´Â °ÍÀÌÁö¸¸, Á¶±Ý ´õ º¸¿ÏÀÌ ÇÊ¿äÇÕ´Ï´Ù.
-µ¿ÀÛÀº REG ¿¡ µî·ÏÇØÁÖ´Â °ÍÀÎµ¥,ÀÌÄÚµåÀÇ Æ¯Â¡Àº SQL µå¶óÀÌ¹öÀÇ ÆÐ½º¸¦ ÀÐ¾î¼­ ¼ÂÆÃ ÇØ ÁÖ´Â °ÍÀÔ´Ï´Ù.
+MS-SQL ì„œë²„ì´ìš©í•˜ëŠ” ê²½ìš°, ODBC ë“±ë¡ì´ í•„ìš”í• ë•Œ ì¨ë¨¹ì„ ìˆ˜ ìžˆëŠ” ì½”ë“œ ìž…ë‹ˆë‹¤.
+ì´ê²ƒì€ ìˆ˜ë™ìœ¼ë¡œ ODBC ë“±ë¡í•´ì£¼ëŠ” ê²ƒê³¼ ë¹„ìŠ·í•œ íš¨ê³ ë¥¼ ë‚´ ì£¼ëŠ” ê²ƒì´ì§€ë§Œ, ì¡°ê¸ˆ ë” ë³´ì™„ì´ í•„ìš”í•©ë‹ˆë‹¤.
+ë™ìž‘ì€ REG ì— ë“±ë¡í•´ì£¼ëŠ” ê²ƒì¸ë°,ì´ì½”ë“œì˜ íŠ¹ì§•ì€ SQL ë“œë¼ì´ë²„ì˜ íŒ¨ìŠ¤ë¥¼ ì½ì–´ì„œ ì…‹íŒ… í•´ ì£¼ëŠ” ê²ƒìž…ë‹ˆë‹¤.
 
-Á¦°æ¿ì, ODBC ÀÇ DNS ¼Â¾÷À» ÇÁ·Î±×·¥ ÀûÀ¸·Î Ã³¸®ÇÏ±â À§ÇØ¼­ ¸¸µç ÄÚµå ÀÔ´Ï´Ù.
+ì œê²½ìš°, ODBC ì˜ DNS ì…‹ì—…ì„ í”„ë¡œê·¸ëž¨ ì ìœ¼ë¡œ ì²˜ë¦¬í•˜ê¸° ìœ„í•´ì„œ ë§Œë“  ì½”ë“œ ìž…ë‹ˆë‹¤.
 */

@@ -47,7 +47,7 @@ bool IP_LIST::Insert( t_HASHKEY HashKEY, SOCKET hSocket, DWORD dwCurTIME, char *
 
 	pConnIP = m_ListIP.GetHeadNode ();
 	while( pConnIP ) {
-		// 15ÃÊ ÀÌ»ó µÈ°Íµé ¸ðµÎ »èÁ¦..
+		// 15ì´ˆ ì´ìƒ ëœê²ƒë“¤ ëª¨ë‘ ì‚­ì œ..
 		if ( dwCurTIME - pConnIP->DATA.m_dwConnSECOND >= 15 ) {
 			pDelIP  = pConnIP;
 			pConnIP = m_ListIP.GetNextNode( pConnIP );

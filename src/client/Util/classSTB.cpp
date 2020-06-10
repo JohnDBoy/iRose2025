@@ -91,17 +91,17 @@ bool classSTB::Open(char *szFileName, long lFilePtr)
          u.cValue[ 2 ] == 'B' ) {
         iVersion = u.cValue[ 3 ] - '0';
 
-	    // ¿­, ÁÙ µ¥ÀÌÅ¸ ¸öÃ¼°¡ µé¾îÀÖ´Â°÷...
+	    // ì—´, ì¤„ ë°ì´íƒ€ ëª¸ì²´ê°€ ë“¤ì–´ìˆëŠ”ê³³...
         fread (&u.lValue, 1, sizeof(long), m_fp);
     }
 
-    // ¿­ °¹¼ö, ÁÙ °¹¼ö
+    // ì—´ ê°¯ìˆ˜, ì¤„ ê°¯ìˆ˜
     fread( &m_iRowCount, 1, sizeof(int), m_fp);
     fread( &m_iColCount, 1, sizeof(int), m_fp);
 
 	m_lFP += u.lValue;
 
-	// ÁÙ³ôÀÌ.
+	// ì¤„ë†’ì´.
 	fseek( m_fp, sizeof(int),	SEEK_CUR);
 
     switch ( iVersion ) {
@@ -113,14 +113,14 @@ bool classSTB::Open(char *szFileName, long lFilePtr)
 			break;
     }
 	
-	// ¿­ ÀÌ¸§..
+	// ì—´ ì´ë¦„..
 	short nI, nLen;
 	for (nI=0; nI<m_iColCount; nI++) {
 		fread( &nLen,	sizeof(short),	1,	m_fp);
 		fseek( m_fp,	nLen, SEEK_CUR);
 	}
 	
-	// µ¥ÀÌÅ¸ ÀÌ¸§.
+	// ë°ì´íƒ€ ì´ë¦„.
 	m_RowNAME = new CStrVAR[ m_iRowCount ];
 	char *pStr = CStr::GetString ();
 

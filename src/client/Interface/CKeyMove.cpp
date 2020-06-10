@@ -35,10 +35,10 @@ CKeyMove::~CKeyMove()
 #define CAMERA_MOVE_SPEED 22 // default 10
 void CKeyMove::Proc()
 {	
-	/// Á¦·ÃÁß¿¡´Â Ä¿¼­Å°·Î ÀÌµ¿ºÒ°¡ 2004.12.14
+	/// ì œë ¨ì¤‘ì—ëŠ” ì»¤ì„œí‚¤ë¡œ ì´ë™ë¶ˆê°€ 2004.12.14
 	if( g_itMGR.IsDlgOpened( DLG_TYPE_UPGRADE ) )
 		return;
-	///IME Candidate Window °¡ ¶° ÀÖÀ»°æ¿ì¿¡´Â ¹«½ÃÇÑ´Ù.
+	///IME Candidate Window ê°€ ë–  ìžˆì„ê²½ìš°ì—ëŠ” ë¬´ì‹œí•œë‹¤.
 	if( it_IsVisibleImeCandidateWindow() )
 		return;
 
@@ -83,7 +83,7 @@ void CKeyMove::Proc()
 	if( m_bRightKeyDown )
 		g_pCamera->Add_YAW( CAMERA_MOVE_SPEED/2 );
 
-	/// ÃÔ¿µ ¸ðµå.
+	/// ì´¬ì˜ ëª¨ë“œ.
 	if( g_GameDATA.m_bFilmingMode )
 	{
 		if( m_bUpKeyDown )

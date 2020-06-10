@@ -1,7 +1,7 @@
 /**
  * \ingroup SHO_GS
  * \file	CObjCHAR.h
- * \brief	avatar/mob/npcµî ÄÉ¸¯ÅÍÀÇ ±âº» Å¬·¡½º·Î ÄÉ¸¯ÅÍ Ã³¸®
+ * \brief	avatar/mob/npcë“± ì¼€ë¦­í„°ì˜ ê¸°ë³¸ í´ë˜ìŠ¤ë¡œ ì¼€ë¦­í„° ì²˜ë¦¬
  */
 #ifndef __CObjCHAR_H
 #define __CObjCHAR_H
@@ -44,8 +44,8 @@ class CGuild;
  * \ingroup SHO_GS_LIB
  * \class	CObjCHAR
  * \author	wookSang.Jo
- * \brief	ÄÉ¸¯ÅÍ µ¥ÀÌÅÍ °ü¸®¹× Ã³¸®ÇÏ´Â Å¬·¡½º
- *			ÀÎ°øÁö´É Ã³¸® Å¬·¡½ºÀÎ CObjAI¸¦ »ó¼Ó¹ŞÀ½
+ * \brief	ì¼€ë¦­í„° ë°ì´í„° ê´€ë¦¬ë° ì²˜ë¦¬í•˜ëŠ” í´ë˜ìŠ¤
+ *			ì¸ê³µì§€ëŠ¥ ì²˜ë¦¬ í´ë˜ìŠ¤ì¸ CObjAIë¥¼ ìƒì†ë°›ìŒ
  */
 class CObjCHAR : public CObjAI
 {
@@ -100,8 +100,8 @@ public :
 	virtual ~CObjCHAR ();
 
 	union {
-		short	m_nCharIdx;		// NPC, MOB ¹øÈ£
-		short	m_nCharRACE;	// ¾Æ¹ÙÅ¸: ÀÎ°£ ³²ÀÚ0, ÀÎ°£ ¿©ÀÚ 1, ...
+		short	m_nCharIdx;		// NPC, MOB ë²ˆí˜¸
+		short	m_nCharRACE;	// ì•„ë°”íƒ€: ì¸ê°„ ë‚¨ì0, ì¸ê°„ ì—¬ì 1, ...
 	} ;
 	float		m_fScale;
 
@@ -173,7 +173,7 @@ public :
 	virtual int		GetOri_MaxMP()=0;
 
 	virtual	short	GetOri_WalkSPEED()=0;
-	virtual short	GetOri_RunSPEED()=0;			// Áö¼Ó »óÅÂ¸¦ Á¦¿ÜÇÑ ÆĞ½Ãºê ½ºÅ³, ¾ÆÀÌÅÛ Ãß°¡ Æ÷ÇÔµÈ °á°ú...
+	virtual short	GetOri_RunSPEED()=0;			// ì§€ì† ìƒíƒœë¥¼ ì œì™¸í•œ íŒ¨ì‹œë¸Œ ìŠ¤í‚¬, ì•„ì´í…œ ì¶”ê°€ í¬í•¨ëœ ê²°ê³¼...
 	virtual short	GetOri_ATKSPEED()=0;
 	virtual int		GetOri_ATK ()=0;
 	virtual int		GetOri_DEF ()=0;
@@ -205,7 +205,7 @@ public :
 	virtual bool	Chk_ShotITEM (BYTE btShotCnt)						{	return true;	}
 	virtual bool	Dec_ShotITEM (BYTE btShotCnt)						{	return true;	}
 
-	virtual WORD	Get_ATTRIBUTE ()									{	return 0;		}	// ¹«¼Ó¼º
+	virtual WORD	Get_ATTRIBUTE ()									{	return 0;		}	// ë¬´ì†ì„±
 
 	virtual void	Stamp_AttackTIME ()									{	/* nop */		}
 
@@ -215,7 +215,7 @@ public :
 	virtual void	UpdateCartGuest ()									{	/* nop */		}
 	// <<<< virtual function ----------------------------------------------------------------------
 
-	/// ½ºÅ³¿¡¼­ ´É·ÂÄ¡¸¦ ¹Ù·Î Àû¿ë...
+	/// ìŠ¤í‚¬ì—ì„œ ëŠ¥ë ¥ì¹˜ë¥¼ ë°”ë¡œ ì ìš©...
 	bool		Skill_IsPassFilter( CObjCHAR *pTarget, short nSkillIDX );
 	//BYTE		Skill_IncAbilityValue( short nSkillIDX );
 	void		Skill_ChangeIngSTATUS (CObjCHAR *pTarget);
@@ -240,11 +240,11 @@ public :
 		return ( nR > 200 ) ? nR : 200.f;
 	}
 
-	int		Get_ATK ()				{	int iR = GetOri_ATK()+m_IngSTATUS.Adj_APOWER();			return (iR>10) ? iR : 10;	}	// °ø°İ·Â
-    int		Get_DEF ()				{	int iR = GetOri_DEF()+m_IngSTATUS.Adj_DPOWER();			return (iR>10) ? iR : 10;	}	// ¹æ¾î·Â
-    int		Get_RES ()				{	int iR = GetOri_RES()+m_IngSTATUS.Adj_RES();			return (iR>10) ? iR : 10;	}	// Ç×¸¶·Â
+	int		Get_ATK ()				{	int iR = GetOri_ATK()+m_IngSTATUS.Adj_APOWER();			return (iR>10) ? iR : 10;	}	// ê³µê²©ë ¥
+    int		Get_DEF ()				{	int iR = GetOri_DEF()+m_IngSTATUS.Adj_DPOWER();			return (iR>10) ? iR : 10;	}	// ë°©ì–´ë ¥
+    int		Get_RES ()				{	int iR = GetOri_RES()+m_IngSTATUS.Adj_RES();			return (iR>10) ? iR : 10;	}	// í•­ë§ˆë ¥
     int		Get_HIT ()				{	int iR = GetOri_HIT()+m_IngSTATUS.Adj_HIT();			return (iR>10) ? iR : 10;	}
-    int		Get_AVOID ()			{	int iR = GetOri_AVOID()+m_IngSTATUS.Adj_AVOID();		return (iR>10) ? iR : 10;	}	// È¸ÇÇ·Â
+    int		Get_AVOID ()			{	int iR = GetOri_AVOID()+m_IngSTATUS.Adj_AVOID();		return (iR>10) ? iR : 10;	}	// íšŒí”¼ë ¥
 	int		Get_CRITICAL()			{	int iR = GetOri_CRITICAL()+m_IngSTATUS.Adj_CRITICAL();	return (iR>10) ? iR : 10;	}
 
 	int		Get_MaxHP()				{	return ( GetOri_MaxHP() + m_IngSTATUS.Inc_MAX_HP() );	}
@@ -269,7 +269,7 @@ public :	// virtual function inherit from CAI_OBJ
 
 	void	Add_DAMAGE ( WORD wDamage )
 	{
-		// ÀÚ»ì ¸í·É
+		// ìì‚´ ëª…ë ¹
 		if ( this->Get_HP() >= MAX_DAMAGE ) {
 			this->Set_HP( 1 );
 			wDamage = MAX_DAMAGE;

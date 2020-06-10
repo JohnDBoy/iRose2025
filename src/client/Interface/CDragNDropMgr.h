@@ -8,14 +8,14 @@ class CDragItem;
 class CTObject;
 
 /**
-* µå·¡±×Nµå¶ø °ü¸®ÀÚ
-*	: µå·¡±× ½ÃÀÛ, µå·¡±×½Ã Draw, µå·¡±×ÁßÀÎ°¡?, ¸¶¿ì½º¹öÆ° ¾÷½Ã µå¶øÃ³¸®¸¦ ÇÑ´Ù.
-*		- µå·¡±×Nµå¶øÀº CIcon¸¸ µÇ¸ç CSlot, CIconDialog, CMenuDlg¿¡¼­ ½ÃÀÛµÈ´Ù.
-*		- CDragItemÀº µå¶øµÉ¼ö ÀÖ´Â Target¹× µå¶ø‰çÀ»¶§ÀÇ TCommand¸¦ °¡Áö°í ÀÖ´Ù°¡ ÇØ´ç Target¿¡ µå¶øµÇ¾úÀ»¶§ TCommand¸¦ ½ÇÇàÇÑ´Ù.
-*		- TargetÀº Ground, All, °¢ ÀÎÅÍÆäÀÌ½º ´ÙÀÌ¾ó·Î±×ÀÌ´Ù
+* ë“œë˜ê·¸Në“œë ê´€ë¦¬ì
+*	: ë“œë˜ê·¸ ì‹œì‘, ë“œë˜ê·¸ì‹œ Draw, ë“œë˜ê·¸ì¤‘ì¸ê°€?, ë§ˆìš°ìŠ¤ë²„íŠ¼ ì—…ì‹œ ë“œëì²˜ë¦¬ë¥¼ í•œë‹¤.
+*		- ë“œë˜ê·¸Në“œëì€ CIconë§Œ ë˜ë©° CSlot, CIconDialog, CMenuDlgì—ì„œ ì‹œì‘ëœë‹¤.
+*		- CDragItemì€ ë“œëë ìˆ˜ ìˆëŠ” Targetë° ë“œë ç‘›ë»‘ã±?TCommandë¥¼ ê°€ì§€ê³  ìˆë‹¤ê°€ í•´ë‹¹ Targetì— ë“œëë˜ì—ˆì„ë•Œ TCommandë¥¼ ì‹¤í–‰í•œë‹¤.
+*		- Targetì€ Ground, All, ê° ì¸í„°í˜ì´ìŠ¤ ë‹¤ì´ì–¼ë¡œê·¸ì´ë‹¤
 *
 *
-* @Author		ÃÖÁ¾Áø
+* @Author		ìµœì¢…ì§„
 * @Date			2005/9/5
 *
 */
@@ -28,14 +28,14 @@ public:
 
 	static CDragNDropMgr&	GetInstance();
 
-	virtual void Update( CObservable* pObservable, CTObject* pObj );	/// µå·¡±×ÁßÀÎ ¾ÆÀÌÄÜÀÇ Data°¡ º¯°æ½Ã Ã³¸®( ½ºÅ³, ¾ÆÀÌÅÛµî )
+	virtual void Update( CObservable* pObservable, CTObject* pObj );	/// ë“œë˜ê·¸ì¤‘ì¸ ì•„ì´ì½˜ì˜ Dataê°€ ë³€ê²½ì‹œ ì²˜ë¦¬( ìŠ¤í‚¬, ì•„ì´í…œë“± )
 
-	void Draw( POINT ptMouse );				/// µå·¡±× ÁßÀÎ CIconÀ» ±×¸°´Ù.
-	void DragStart( CDragItem* pItem );		/// µå·¡±× ½ÃÀÛ
-	void DragEnd( int iTargetType );		/// µå¶ø
-	bool IsDraging();						/// µå·¡±× ÁßÀÎ°¡?
+	void Draw( POINT ptMouse );				/// ë“œë˜ê·¸ ì¤‘ì¸ CIconì„ ê·¸ë¦°ë‹¤.
+	void DragStart( CDragItem* pItem );		/// ë“œë˜ê·¸ ì‹œì‘
+	void DragEnd( int iTargetType );		/// ë“œë
+	bool IsDraging();						/// ë“œë˜ê·¸ ì¤‘ì¸ê°€?
 
 private:
-	CDragItem*	m_pItem;					/// µå·¡±× ÁßÀÎ CIcon ÀÇ Æ÷ÀÎÅÍ ÀÓ½Ã ÀúÀå
+	CDragItem*	m_pItem;					/// ë“œë˜ê·¸ ì¤‘ì¸ CIcon ì˜ í¬ì¸í„° ì„ì‹œ ì €ì¥
 };
 #endif

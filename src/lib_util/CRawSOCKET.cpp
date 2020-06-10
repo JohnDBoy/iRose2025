@@ -252,7 +252,7 @@ int CRawSOCKET::SendTo (const void* lpBuf, int nBufLen, UINT nHostPort, LPCTSTR 
 	{
 		sockAddr.sin_addr.s_addr = inet_addr(lpszHostAddress);
 
-		if ( sockAddr.sin_addr.s_addr == INADDR_NONE )	// URL ¿Ã∏È ...
+		if ( sockAddr.sin_addr.s_addr == INADDR_NONE )	// URL Ïù¥Î©¥ ...
 		{
 			LPHOSTENT lphost;
 			lphost = gethostbyname( lpszHostAddress );

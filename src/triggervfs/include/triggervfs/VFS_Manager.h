@@ -8,158 +8,158 @@
 #include "VFS.h"
 
 
-/// ÆÄÀÏÇì´õ¿¡ ÀÖ´Â Á¤º¸¸¦ ¿©±â¿¡ ÀĞ¾î µéÀÎ´Ù
+/// íŒŒì¼í—¤ë”ì— ìˆëŠ” ì •ë³´ë¥¼ ì—¬ê¸°ì— ì½ì–´ ë“¤ì¸ë‹¤
 struct VEntry 
 {	
-	std::string		sVFSName;			/// vfsÆÄÀÏ¸í
-	long			lStartOfEntry;		/// ÀÎµ¦½º ½ÃÀÛ
-	CVFS *			pVFS;				/// CVFS ÀÎ½ºÅÏ½º
+	std::string		sVFSName;			/// vfsíŒŒì¼ëª…
+	long			lStartOfEntry;		/// ì¸ë±ìŠ¤ ì‹œì‘
+	CVFS *			pVFS;				/// CVFS ì¸ìŠ¤í„´ìŠ¤
 };
 
-/// ÆÄÀÏ Çì´õ¿¡ ÀÖ´Â VEntry ÇÏ³ªÀÇ Å©±â
+/// íŒŒì¼ í—¤ë”ì— ìˆëŠ” VEntry í•˜ë‚˜ì˜ í¬ê¸°
 #define		SIZE_VENTRY_EXCEPTSTRING (sizeof (long) + sizeof (short))
 
 
 /**********************************************************************************************
- * ¿©·¯°³ÀÇ vfsÆÄÀÏÀ» °ü¸®ÇÒ ¼ö ÀÖ´Â Container Class
+ * ì—¬ëŸ¬ê°œì˜ vfsíŒŒì¼ì„ ê´€ë¦¬í•  ìˆ˜ ìˆëŠ” Container Class
  */
 class CVFS_Manager 
 {
 private:
-	std::string					m_sIdxFileName;		/// ÀÎµ¦½º ÆÄÀÏ¸í
-	std::string					m_sBasePath;		/// ÀÎµ¦½º ÆÄÀÏÀÌ ÀÖ´Â Æú´õ °æ·Î
-	std::vector<VEntry *>		m_vecVFS;			/// ¿©±â¿¡ °¢°¢ÀÇ vfs instance ¸¦ ÀúÀå
-	FILE *						m_fpIDX;			/// Index File ÇÚµé
-	DWORD						m_dwNumOfEntry;		/// VEntryÀÇ °¹¼ö = ¹­À½ ÆÄÀÏÀÇ °¹¼ö
-	WORD						m_wStdVersion[ 2 ];	/// ±âÁØ ¹öÁ¯À» ÀúÀå
-	WORD						m_wCurVersion[ 2 ];	/// ÇöÀç ¹öÁ¯
-	std::string					m_strIdxOpenMode;	/// IndexÆÄÀÏÀÇ ¿ÀÇÂ¸ğµå
+	std::string					m_sIdxFileName;		/// ì¸ë±ìŠ¤ íŒŒì¼ëª…
+	std::string					m_sBasePath;		/// ì¸ë±ìŠ¤ íŒŒì¼ì´ ìˆëŠ” í´ë” ê²½ë¡œ
+	std::vector<VEntry *>		m_vecVFS;			/// ì—¬ê¸°ì— ê°ê°ì˜ vfs instance ë¥¼ ì €ì¥
+	FILE *						m_fpIDX;			/// Index File í•¸ë“¤
+	DWORD						m_dwNumOfEntry;		/// VEntryì˜ ê°¯ìˆ˜ = ë¬¶ìŒ íŒŒì¼ì˜ ê°¯ìˆ˜
+	WORD						m_wStdVersion[ 2 ];	/// ê¸°ì¤€ ë²„ì ¼ì„ ì €ì¥
+	WORD						m_wCurVersion[ 2 ];	/// í˜„ì¬ ë²„ì ¼
+	std::string					m_strIdxOpenMode;	/// IndexíŒŒì¼ì˜ ì˜¤í”ˆëª¨ë“œ
 
 
 private:
-	/// ºó ÀÎµ¦½º ÆÄÀÏÀ» ÇÏ³ª ¸¸µç´Ù
+	/// ë¹ˆ ì¸ë±ìŠ¤ íŒŒì¼ì„ í•˜ë‚˜ ë§Œë“ ë‹¤
 	bool __WriteBlankIndexFile (void);
 
-	/// VEntry Table À» ÀĞ´Â´Ù
+	/// VEntry Table ì„ ì½ëŠ”ë‹¤
 	bool __ReadVEntry (void);
-	/// ÇöÀç File Offset¿¡ VEntry¸¦ ±â·ÏÇÑ´Ù
+	/// í˜„ì¬ File Offsetì— VEntryë¥¼ ê¸°ë¡í•œë‹¤
 	void __WriteVEntry (VEntry * pVE);
 
-	/// pack¾È¿¡ ÀÖ´Â ÆÄÀÏ ÀÌ¸§ VEntry¸¦ Ã£´Â´Ù
+	/// packì•ˆì— ìˆëŠ” íŒŒì¼ ì´ë¦„ VEntryë¥¼ ì°¾ëŠ”ë‹¤
 	VEntry *	__FindVEntryWithFile (const char *FileName);
 	
-	/// VFSÆÄÀÏ¿¡ ´ëÇÑ ¿£Æ®¸®°¡ Á¸ÀçÇÏ´Â °Ë»öÇÑ´Ù. VfsÆÄÀÏÀÇ Á¸Àç À¯¹«¸¦ °Ë»çÇÒ¶§ »ç¿ëÇØµµ µÊ
+	/// VFSíŒŒì¼ì— ëŒ€í•œ ì—”íŠ¸ë¦¬ê°€ ì¡´ì¬í•˜ëŠ” ê²€ìƒ‰í•œë‹¤. VfsíŒŒì¼ì˜ ì¡´ì¬ ìœ ë¬´ë¥¼ ê²€ì‚¬í• ë•Œ ì‚¬ìš©í•´ë„ ë¨
 	VEntry *	__FindEntry (const char *FileName);
 	long		__FindEntryIndex (const char *FileName);
-	/// ÆÄÀÏ¿¡ ¾²±â À§ÇÑ VEntryÀÇ Å©±â
+	/// íŒŒì¼ì— ì“°ê¸° ìœ„í•œ VEntryì˜ í¬ê¸°
 	long		__SizeOfVEntry (VEntry *VE);
-	/// Entry¸¦ ½ºµhÇÑ´Ù
+	/// Entryë¥¼ ìŠ¤?í•œë‹¤
 	void		__SkipVEntry (VEntry *VE);
-	/// ÆÄÀÏ Çì´õ¸¦ ¾´´Ù
+	/// íŒŒì¼ í—¤ë”ë¥¼ ì“´ë‹¤
 	void		__WriteIndexHeader (char * Version, DWORD dwNum);
-	/// PackÆÄÀÏ¾ÈÀÇ ÆÄÀÏÀÌ¸§À¸·Î VEntryÀÇ ÀÎµ¦½º¸¦ Ã£´Â´Ù
+	/// PackíŒŒì¼ì•ˆì˜ íŒŒì¼ì´ë¦„ìœ¼ë¡œ VEntryì˜ ì¸ë±ìŠ¤ë¥¼ ì°¾ëŠ”ë‹¤
 	DWORD		__FindEntryIndexWithFile (const char *FileName);
-	// Memory Mapped IO¸¦ Å×½ºÆ® ÇÑ´Ù
+	// Memory Mapped IOë¥¼ í…ŒìŠ¤íŠ¸ í•œë‹¤
 	bool		__TestMapIO (const char * szFileName);
-	/// ÀÎµ¦½º ÆÄÀÏÀ» fflushÇÑ´Ù.
+	/// ì¸ë±ìŠ¤ íŒŒì¼ì„ fflushí•œë‹¤.
 	void		__FlushIdxFile (void);
-	/// ¿ÀÇÂ ¸ğµå¸¦ Ã¼Å©ÇÑ´Ù
+	/// ì˜¤í”ˆ ëª¨ë“œë¥¼ ì²´í¬í•œë‹¤
 	void		__CheckOpenMode ( const char * InputMode, char ModifiedMode[ 16 ] );
 
 public:
 	CVFS_Manager ();
 	~CVFS_Manager ();
 
-	/// ÀÎµ¦½º ÆÄÀÏÀ» ¿ÀÇÂÇÑ´Ù
+	/// ì¸ë±ìŠ¤ íŒŒì¼ì„ ì˜¤í”ˆí•œë‹¤
 	bool Open (const char *IndexFile, const char * Mode);
 
-	/// vfs ÆÄÀÏÀ» Ãß°¡ÇÑ´Ù
+	/// vfs íŒŒì¼ì„ ì¶”ê°€í•œë‹¤
 	bool AddVFS (const char *VfsName);
-	/// VFS¸¦ Á¦°ÅÇÑ´Ù
+	/// VFSë¥¼ ì œê±°í•œë‹¤
 	bool RemoveVFS (const char *VfsName);
 
-	/// ÀÎµ¦½º ÆÄÀÏÀ» ´İ´Â´Ù
+	/// ì¸ë±ìŠ¤ íŒŒì¼ì„ ë‹«ëŠ”ë‹¤
 	void Close (void);
 
-	/// vfs¿¡ ÆÄÀÏÀ» Ãß°¡ÇÑ´Ù
+	/// vfsì— íŒŒì¼ì„ ì¶”ê°€í•œë‹¤
 	short AddFile (const char *VfsName, const char *File, const char * TargetName, 
 		DWORD dwVersion, DWORD dwCrc, BYTE btEncType = 0, BYTE btCompres = 0, 
 		bool bUseDel = true);
 
-	/// PackÆÄÀÏ¿¡ Ã£¾Æ¼­, ÆÄÀÏÀ» ÇÑ°³ Á¦°ÅÇÑ´Ù. 
+	/// PackíŒŒì¼ì— ì°¾ì•„ì„œ, íŒŒì¼ì„ í•œê°œ ì œê±°í•œë‹¤. 
 	short RemoveFile (const char *File);
 
-	/// ÆÄÀÏ ¿©·¯°³ Á¦°ÅÇÏ°í. ±×³É ºó°ø°£À¸·Î ³²°ÜµÎ±â
+	/// íŒŒì¼ ì—¬ëŸ¬ê°œ ì œê±°í•˜ê³ . ê·¸ëƒ¥ ë¹ˆê³µê°„ìœ¼ë¡œ ë‚¨ê²¨ë‘ê¸°
 	bool RemoveFiles (const char *VfsName, const char **Files, int iNum);
 
-	/// vfsÆÄÀÏ¿¡¼­ ÆÄÀÏÀ» ¿ÀÇÂÇÑ´Ù
+	/// vfsíŒŒì¼ì—ì„œ íŒŒì¼ì„ ì˜¤í”ˆí•œë‹¤
 	VFileHandle * OpenFile (const char *FileName);
-	/// OpenFile·Î ¿ÀÇÂÇÑ ÆÄÀÏÀ» ´İ´Â´Ù
+	/// OpenFileë¡œ ì˜¤í”ˆí•œ íŒŒì¼ì„ ë‹«ëŠ”ë‹¤
 	void CloseFile (VFileHandle *pVFH);
 
-	/// ÆÄÀÏÀÌ¸§À» °¡Á®¿Â´Ù
+	/// íŒŒì¼ì´ë¦„ì„ ê°€ì ¸ì˜¨ë‹¤
 	DWORD GetFileNames (const char *VfsName, char **pFiles, DWORD nFiles, int nMaxPath);
-	/// ÆÄÀÏ°¹¼ö¸¦ ¾Ë¾Æ³½´Ù
+	/// íŒŒì¼ê°¯ìˆ˜ë¥¼ ì•Œì•„ë‚¸ë‹¤
 	DWORD GetFileCount (const char *VfsName);
-	/// ÀÎµ¦½º ÆÄÀÏ¾È¿¡ ÀÖ´Â ÆÄÀÏÀÇ ÃÑ°¹¼ö¸¦ ¾Ë¾Æ³½´Ù.
+	/// ì¸ë±ìŠ¤ íŒŒì¼ì•ˆì— ìˆëŠ” íŒŒì¼ì˜ ì´ê°¯ìˆ˜ë¥¼ ì•Œì•„ë‚¸ë‹¤.
 	DWORD GetFileTotCount (void);
-	/// ºó°ø°£ÀÇ Å©±â¸¦ Á¶»çÇÑ´Ù.
+	/// ë¹ˆê³µê°„ì˜ í¬ê¸°ë¥¼ ì¡°ì‚¬í•œë‹¤.
 	DWORD GetSizeOfBlankArea (void);
 
-	/// ÀÌ indexÆÄÀÏ¿¡¼­ °ü¸®µÇ´Â ¹­À½ ÆÄÀÏÀÇ °¹¼ö¸¦ ¾Ë¾Æ³½´Ù
+	/// ì´ indexíŒŒì¼ì—ì„œ ê´€ë¦¬ë˜ëŠ” ë¬¶ìŒ íŒŒì¼ì˜ ê°¯ìˆ˜ë¥¼ ì•Œì•„ë‚¸ë‹¤
 	DWORD GetVFSCount (void);
-	/// VFSÆÄÀÏÀÌ¸§À» °¡Á®¿Â´Ù
+	/// VFSíŒŒì¼ì´ë¦„ì„ ê°€ì ¸ì˜¨ë‹¤
 	DWORD GetVfsNames (char **ppFiles, DWORD dwMax, short dwMaxPath);
-	/// »èÁ¦µÇ¾úÁö¸¸ ºí·ÏÀº ³²¾ÆÀÖ´Â ¿£Æ®¸®ÀÇ °¹¼ö¸¦ ¸®ÅÏ
+	/// ì‚­ì œë˜ì—ˆì§€ë§Œ ë¸”ë¡ì€ ë‚¨ì•„ìˆëŠ” ì—”íŠ¸ë¦¬ì˜ ê°¯ìˆ˜ë¥¼ ë¦¬í„´
 	DWORD GetDelCnt (const char *VfsName);
-	/// ÆÄÀÏ¿£Æ®¸® Å×ÀÌºíÀÇ ½ÃÀÛ¿ÀÇÁ¼ÂÀ» ¾÷µ¥ÀÌÆ®ÇÑ´Ù
+	/// íŒŒì¼ì—”íŠ¸ë¦¬ í…Œì´ë¸”ì˜ ì‹œì‘ì˜¤í”„ì…‹ì„ ì—…ë°ì´íŠ¸í•œë‹¤
 	DWORD GetFileCntWithHole (const char *VfsName);
 	
-	/// °ø¹éÀ» Áö¿î´Ù
+	/// ê³µë°±ì„ ì§€ìš´ë‹¤
 	bool ClearBlank (const char * VfsName);
-	/// ¸ğµç PackÆÄÀÏÀÇ °ø¹éÀ» Á¤¸®ÇÑ´Ù
+	/// ëª¨ë“  PackíŒŒì¼ì˜ ê³µë°±ì„ ì •ë¦¬í•œë‹¤
 	bool ClearBlankAll (VCALLBACK_CLEARBLANKALL CallBackProc);
 	
-	/// ÆÄÀÏ Å©±â¸¦ ¾Ë¾Æ³½´Ù
+	/// íŒŒì¼ í¬ê¸°ë¥¼ ì•Œì•„ë‚¸ë‹¤
 	long GetFileLength (const char *FileName);
 	
-	/// ¹­À½ ÆÄÀÏÀÌ ÀÎµ¦½ºÆÄÀÏ¾È¿¡ ÀÖ´ÂÁö È®ÀÎÇÑ´Ù
+	/// ë¬¶ìŒ íŒŒì¼ì´ ì¸ë±ìŠ¤íŒŒì¼ì•ˆì— ìˆëŠ”ì§€ í™•ì¸í•œë‹¤
 	bool VfsExists (const char *VfsName);
 	
-	/// ÆÄÀÏÁ¸ÀçÇÏ´ÂÁö °Ë»ç
+	/// íŒŒì¼ì¡´ì¬í•˜ëŠ”ì§€ ê²€ì‚¬
 	bool FileExists (const char * FileName);
-	/// PackÆÄÀÏ¾È¿¡¼­¸¸ ÆÄÀÏÁ¸ÀçÇÏ´ÂÁö °Ë»ç
+	/// PackíŒŒì¼ì•ˆì—ì„œë§Œ íŒŒì¼ì¡´ì¬í•˜ëŠ”ì§€ ê²€ì‚¬
 	bool FileExistsInVfs (const char * FileName);
 	
-	// ÆÄÀÏ¿¡ ´ëÇÑ Á¤º¸¸¦ ¾Ë¾Æ³¿, bCalCrc = true ÀÌ¸é CVFS_Manager::GetFileInfo ¿¡¼­
-	// ½ÇÁ¦ µ¥ÀÌÅÍ·Î °è»êÀ» ÇÑ´Ù. 
+	// íŒŒì¼ì— ëŒ€í•œ ì •ë³´ë¥¼ ì•Œì•„ëƒ„, bCalCrc = true ì´ë©´ CVFS_Manager::GetFileInfo ì—ì„œ
+	// ì‹¤ì œ ë°ì´í„°ë¡œ ê³„ì‚°ì„ í•œë‹¤. 
 	void GetFileInfo (const char * FileName, VFileInfo * pFileInfo, bool bCalCrc);
-	/// ÆÄÀÏ¿¡ ´ëÇÑ Á¤º¸¸¦ °»½ÅÇÔ
+	/// íŒŒì¼ì— ëŒ€í•œ ì •ë³´ë¥¼ ê°±ì‹ í•¨
 	bool SetFileInfo (const char * FileName, VFileInfo * pFileInfo);
 
 	
-	/// ±âÁØ ¹öÁ¯À» ¾Ë¾Æ³¿
+	/// ê¸°ì¤€ ë²„ì ¼ì„ ì•Œì•„ëƒ„
 	DWORD GetStdVersion (void);
-	/// ¹öÁ¯ Á¤º¸¸¦ ±â·ÏÇÑ´Ù
+	/// ë²„ì ¼ ì •ë³´ë¥¼ ê¸°ë¡í•œë‹¤
 	void SetStdVersion (DWORD dwVersion);
 	void SetStdVersion (WORD wHiVer, WORD wLoVer);
 
-	/// Àû¿ëµÈ ¹öÁ¯ ¾Ë¾Æ³¿
+	/// ì ìš©ëœ ë²„ì ¼ ì•Œì•„ëƒ„
 	DWORD GetCurVersion (void);
-	/// Àû¿ëµÈ ¹öÁ¯ ±â·ÏÇÔ
+	/// ì ìš©ëœ ë²„ì ¼ ê¸°ë¡í•¨
 	void SetCurVersion (DWORD dwVersion);
 	void SetCurVersion (WORD wHiVer, WORD wLoVer);
 
-	// FileName ÀÌ ÀÎµ¦½ºµ¥ÀÌÅÍ¿Í ½ÇÁ¦ µ¥ÀÌÅÍ°¡ ÀÏÄ¡ÇÏ´ÂÁö Ã¼Å©ÇÑ´Ù
+	// FileName ì´ ì¸ë±ìŠ¤ë°ì´í„°ì™€ ì‹¤ì œ ë°ì´í„°ê°€ ì¼ì¹˜í•˜ëŠ”ì§€ ì²´í¬í•œë‹¤
 	short __stdcall TestFile ( const char * FileName);
 
-	// VFS ÀÌ¸§À¸·Î VFS Entry¸¦ Á¶»çÇÑ´Ù
+	// VFS ì´ë¦„ìœ¼ë¡œ VFS Entryë¥¼ ì¡°ì‚¬í•œë‹¤
 	VEntry * CVFS_Manager::GetVEntry ( const char * VfsName );
-	// ÆÄÀÏ ÀÌ¸§À¸·Î VFS ¿£Æ®¸®¸¦ Á¶»çÇÑ´Ù
+	// íŒŒì¼ ì´ë¦„ìœ¼ë¡œ VFS ì—”íŠ¸ë¦¬ë¥¼ ì¡°ì‚¬í•œë‹¤
 	VEntry * CVFS_Manager::GetVEntryWF ( const char * FileName );
 	bool GetVfsInfo (const char * VfsName, VfsInfo * VI );
 	
-	// VFS µ¥ÀÌÅÍ¸¦ ÀĞ¾î¼­ Crc¸¦ °è»êÇÑ´Ù
+	// VFS ë°ì´í„°ë¥¼ ì½ì–´ì„œ Crcë¥¼ ê³„ì‚°í•œë‹¤
 	DWORD ComputeCrc ( const char * FileName);
 };
 

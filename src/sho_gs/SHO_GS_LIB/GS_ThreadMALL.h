@@ -1,7 +1,7 @@
 /**
  * \ingroup SHO_GS
  * \file	GS_ThreadMALL.h
- * \brief	È¨ÆäÀÌÁö ¼îÇÎ¸ô¿¡¼­ ±¸ÀÔÇÑ ¾ÆÀÌÅÛÀÌ µé¾îÀÖ´Â µðºñ¿Í ¿¬°á,Åë½Å
+ * \brief	í™ˆíŽ˜ì´ì§€ ì‡¼í•‘ëª°ì—ì„œ êµ¬ìž…í•œ ì•„ì´í…œì´ ë“¤ì–´ìžˆëŠ” ë””ë¹„ì™€ ì—°ê²°,í†µì‹ 
  */
 #ifndef	__GS_THREAD_MALL_H
 #define	__GS_THREAD_MALL_H
@@ -12,8 +12,8 @@
  * \ingroup SHO_GS_LIB
  * \class	GS_CThreadMALL
  * \author	wookSang.Jo
- * \brief	¼îÇÎ¸ô µðºñ¿Í ¿¬°áµÇ´Â ¾²·¡µå Å¬·¡½º
- *			µðºñ¿¬°á¹× Ã³¸® Å¬·¡½ºÀÎ CSqlTHREAD¸¦ »ó¼Ó ¹ÞÀ½
+ * \brief	ì‡¼í•‘ëª° ë””ë¹„ì™€ ì—°ê²°ë˜ëŠ” ì“°ëž˜ë“œ í´ëž˜ìŠ¤
+ *			ë””ë¹„ì—°ê²°ë° ì²˜ë¦¬ í´ëž˜ìŠ¤ì¸ CSqlTHREADë¥¼ ìƒì† ë°›ìŒ
  */
 class GS_CThreadMALL : public CSqlTHREAD
 {

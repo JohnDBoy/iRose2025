@@ -28,7 +28,7 @@ void CTutorialEventUtility::Release()
 	m_TblNotifyButtonEvent.Free();
 }
 
-/// ¾Ë¸² ¹öÆ° ÀÌº¥Æ®¸¦ »ı¼ºÇÑ´Ù.
+/// ì•Œë¦¼ ë²„íŠ¼ ì´ë²¤íŠ¸ë¥¼ ìƒì„±í•œë‹¤.
 bool CTutorialEventUtility::CreateNotifyEventButton( int iEventIdx )
 {
 	if( iEventIdx <= 0 )
@@ -44,7 +44,7 @@ bool CTutorialEventUtility::CreateNotifyEventButton( int iEventIdx )
 }
 
 //-------------------------------------------------------------------------------------------
-/// EventButton.STB¿¡ ¼³Á¤µÈ ¾Ë¸² ¹öÆ° ÀÌº¥Æ®¸¦ ½ÇÇàÇÑ´Ù.
+/// EventButton.STBì— ì„¤ì •ëœ ì•Œë¦¼ ë²„íŠ¼ ì´ë²¤íŠ¸ë¥¼ ì‹¤í–‰í•œë‹¤.
 //-------------------------------------------------------------------------------------------
 bool CTutorialEventUtility::ExecNotifyEvent( int iEventIdx )
 {

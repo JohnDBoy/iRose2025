@@ -7,12 +7,12 @@ const eING_TYPE c_AB2IS[] = {
 	ING_NULL,			//	0,
 	ING_NULL,			//	1,
 	ING_NULL,			//	2,
-	ING_NULL,			//	AT_BIRTHSTONE = 3,	// Åº»ý¼º
-	ING_NULL,			//	AT_CLASS = 4,		// Á÷¾÷
-	ING_NULL,			//	AT_UNION = 5,		// ¼Ò¼Ó
-	ING_NULL,			//	AT_RANK = 6,		// °è±Þ
-	ING_NULL,			//	AT_FAME = 7,		// ¸í¼º
-	ING_NULL,			//	AT_FACE = 8,		// ¾ó±¼¸ð¾ç
+	ING_NULL,			//	AT_BIRTHSTONE = 3,	// íƒ„ìƒì„±
+	ING_NULL,			//	AT_CLASS = 4,		// ì§ì—…
+	ING_NULL,			//	AT_UNION = 5,		// ì†Œì†
+	ING_NULL,			//	AT_RANK = 6,		// ê³„ê¸‰
+	ING_NULL,			//	AT_FAME = 7,		// ëª…ì„±
+	ING_NULL,			//	AT_FACE = 8,		// ì–¼êµ´ëª¨ì–‘
 	ING_NULL,			//	AT_HAIR,
 	ING_NULL,			//	AT_STR = 1ING_NULL,
 	ING_NULL,			//	AT_DEX,
@@ -44,7 +44,7 @@ const eING_TYPE c_AB2IS[] = {
 	ING_NULL,			//  AT_BODY_SIZE,
 	ING_NULL,			//  AT_SKILLPOINT = 37,
 
-	ING_INC_MAX_HP,		//  AT_MAX_HP=38,		// 2004. 2. 3 Ãß°¡ 
+	ING_INC_MAX_HP,		//  AT_MAX_HP=38,		// 2004. 2. 3 ì¶”ê°€ 
 	ING_INC_MAX_MP,		//  AT_MAX_MP,
 } ;
 inline eING_TYPE GetIngStatusTYPE(int iAbilityType)
@@ -62,11 +62,11 @@ class CIngSTATUS
 private :
 	DWORD	m_dwIngStatusFLAG;
 
-	DWORD	m_dwAccTIME;						// ´©Àû ½Ã°£
-	short	m_nTICKs    [ ING_MAX_STATUS ];		// ³²Àº ½Ã°£
-	short	m_nIngSKILL [ ING_MAX_STATUS ];		// Àû¿ëµÈ ½ºÅ³¹øÈ£
-	short	m_nIngSTBIdx[ ING_MAX_STATUS ];		// Áßº¹ Àû¿ë½Ã ºñ±³À§ÇØ¼­...
-	short	m_nAdjVALUE [ ING_MAX_STATUS ];		// Àû¿ëµÈ ¼öÄ¡
+	DWORD	m_dwAccTIME;						// ëˆ„ì  ì‹œê°„
+	short	m_nTICKs    [ ING_MAX_STATUS ];		// ë‚¨ì€ ì‹œê°„
+	short	m_nIngSKILL [ ING_MAX_STATUS ];		// ì ìš©ëœ ìŠ¤í‚¬ë²ˆí˜¸
+	short	m_nIngSTBIdx[ ING_MAX_STATUS ];		// ì¤‘ë³µ ì ìš©ì‹œ ë¹„êµìœ„í•´ì„œ...
+	short	m_nAdjVALUE [ ING_MAX_STATUS ];		// ì ìš©ëœ ìˆ˜ì¹˜
 
 	DWORD	Proc_ING_HP( CObjCHAR *pCharOBJ );
 	DWORD	Proc_ING_MP( CObjCHAR *pCharOBJ );

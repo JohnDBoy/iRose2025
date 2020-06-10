@@ -4,10 +4,10 @@
 
 
 /**
-* Å¬¶óÀÌ¾ğÆ®ÀÇ »óÅÂÅ¬·¡½ºÀÇ º£ÀÌ½ºÅ¬·¡½º
-*	- Ã³À½ µ¥ÀÌÅ¸ ·Îµù°ú È­¸é Ãâ·ÂÀ» thread·Î ±¸ÇöÇÏ·Á°í ½ÃµµÇÏ¿© ¸ÖÆ¼ ¾²·¹µå ÄÚµå°¡ ÁÖ¼®Ã³¸®µÇ¾î ÀÖ´Ù( µ¥ÀÌÅ¸ ·Îµù°ú DirectXÀÇ ¹®Á¦·Î Æ÷±â )
+* í´ë¼ì´ì–¸íŠ¸ì˜ ìƒíƒœí´ë˜ìŠ¤ì˜ ë² ì´ìŠ¤í´ë˜ìŠ¤
+*	- ì²˜ìŒ ë°ì´íƒ€ ë¡œë”©ê³¼ í™”ë©´ ì¶œë ¥ì„ threadë¡œ êµ¬í˜„í•˜ë ¤ê³  ì‹œë„í•˜ì—¬ ë©€í‹° ì“°ë ˆë“œ ì½”ë“œê°€ ì£¼ì„ì²˜ë¦¬ë˜ì–´ ìˆë‹¤( ë°ì´íƒ€ ë¡œë”©ê³¼ DirectXì˜ ë¬¸ì œë¡œ í¬ê¸° )
 *
-* @Author		ÃÖÁ¾Áø
+* @Author		ìµœì¢…ì§„
 * @Date			2005/9/15
 */
 class CGameState
@@ -20,8 +20,8 @@ public:
 	virtual int Enter( int iPrevStateID ) = 0;
 	virtual int Leave( int iNextStateID ) = 0;
 	
-	///CGameÀÇ Msg Queue¿¡ ³Ö±â Àü¿¡ Áï½Ã Ã³¸®ÇØ¾ßÇÒ Msg¸¦ Ã³¸®ÇÏ´Â Method
-	///°¢ State´Â Method¸¦ OverridingÇÏ¿© Ã³¸®ÇØ¾ßÇÒ Message¸¦ Ã³¸®ÇÑ´Ù
+	///CGameì˜ Msg Queueì— ë„£ê¸° ì „ì— ì¦‰ì‹œ ì²˜ë¦¬í•´ì•¼í•  Msgë¥¼ ì²˜ë¦¬í•˜ëŠ” Method
+	///ê° StateëŠ” Methodë¥¼ Overridingí•˜ì—¬ ì²˜ë¦¬í•´ì•¼í•  Messageë¥¼ ì²˜ë¦¬í•œë‹¤
 	virtual int ProcWndMsgInstant( unsigned uiMsg, WPARAM wParam, LPARAM lParam );
 
 	virtual void ServerDisconnected();

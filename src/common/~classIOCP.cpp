@@ -33,7 +33,7 @@ classIOCP::classIOCP ()
 
 	m_dwWorkerThreadCnt = this->GetWorkerThreadCount ();
 
-    //----------------------- i/o complete Æ÷Æ® »ı¼º.
+    //----------------------- i/o complete í¬íŠ¸ ìƒì„±.
     m_hIOCP = ::CreateIoCompletionPort(
                 INVALID_HANDLE_VALUE,
                 NULL,					// No prior port

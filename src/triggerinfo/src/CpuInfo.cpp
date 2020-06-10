@@ -1220,7 +1220,7 @@ bool _cdecl CPUInfo::RetrieveClassicalCPUIdentity ()
 						case 3: STORE_CLASSICAL_NAME ("P24T OverDrive"); break;
 						case 4: STORE_CLASSICAL_NAME ("P55C"); break;
 						case 7: STORE_CLASSICAL_NAME ("P54C"); break;
-						case 8: STORE_CLASSICAL_NAME ("P55C (0.25µm)"); break;
+						case 8: STORE_CLASSICAL_NAME ("P55C (0.25¬µm)"); break;
 						default: STORE_CLASSICAL_NAME ("Unknown Pentium?family"); return false;
 					}
 					break;
@@ -1228,13 +1228,13 @@ bool _cdecl CPUInfo::RetrieveClassicalCPUIdentity ()
 					switch (ChipID.Model) {
 						case 0: STORE_CLASSICAL_NAME ("P6 A-Step"); break;
 						case 1: STORE_CLASSICAL_NAME ("P6"); break;
-						case 3: STORE_CLASSICAL_NAME ("Pentium?II (0.28 µm)"); break;
-						case 5: STORE_CLASSICAL_NAME ("Pentium?II (0.25 µm)"); break;
+						case 3: STORE_CLASSICAL_NAME ("Pentium?II (0.28 ¬µm)"); break;
+						case 5: STORE_CLASSICAL_NAME ("Pentium?II (0.25 ¬µm)"); break;
 						case 6: STORE_CLASSICAL_NAME ("Pentium?II With On-Die L2 Cache"); break;
-						case 7: STORE_CLASSICAL_NAME ("Pentium?III (0.25 µm)"); break;
-						case 8: STORE_CLASSICAL_NAME ("Pentium?III (0.18 µm) With 256 KB On-Die L2 Cache "); break;
-						case 0xa: STORE_CLASSICAL_NAME ("Pentium?III (0.18 µm) With 1 Or 2 MB On-Die L2 Cache "); break;
-						case 0xb: STORE_CLASSICAL_NAME ("Pentium?III (0.13 µm) With 256 Or 512 KB On-Die L2 Cache "); break;
+						case 7: STORE_CLASSICAL_NAME ("Pentium?III (0.25 ¬µm)"); break;
+						case 8: STORE_CLASSICAL_NAME ("Pentium?III (0.18 ¬µm) With 256 KB On-Die L2 Cache "); break;
+						case 0xa: STORE_CLASSICAL_NAME ("Pentium?III (0.18 ¬µm) With 1 Or 2 MB On-Die L2 Cache "); break;
+						case 0xb: STORE_CLASSICAL_NAME ("Pentium?III (0.13 ¬µm) With 256 Or 512 KB On-Die L2 Cache "); break;
 						default: STORE_CLASSICAL_NAME ("Unknown P6 family"); return false;
 					}
 					break;
@@ -1246,9 +1246,9 @@ bool _cdecl CPUInfo::RetrieveClassicalCPUIdentity ()
 					switch (ChipID.ExtendedFamily) {
 						case 0:
 							switch (ChipID.Model) {
-								case 0: STORE_CLASSICAL_NAME ("Pentium?IV (0.18 µm)"); break;
-								case 1: STORE_CLASSICAL_NAME ("Pentium?IV (0.18 µm)"); break;
-								case 2: STORE_CLASSICAL_NAME ("Pentium?IV (0.13 µm)"); break;
+								case 0: STORE_CLASSICAL_NAME ("Pentium?IV (0.18 ¬µm)"); break;
+								case 1: STORE_CLASSICAL_NAME ("Pentium?IV (0.18 ¬µm)"); break;
+								case 2: STORE_CLASSICAL_NAME ("Pentium?IV (0.13 ¬µm)"); break;
 								default: STORE_CLASSICAL_NAME ("Unknown Pentium 4 family"); return false;
 							}
 							break;
@@ -1283,18 +1283,18 @@ bool _cdecl CPUInfo::RetrieveClassicalCPUIdentity ()
 						case 1: STORE_CLASSICAL_NAME ("5k86 (PR120, PR133)"); break;
 						case 2: STORE_CLASSICAL_NAME ("5k86 (PR166)"); break;
 						case 3: STORE_CLASSICAL_NAME ("5k86 (PR200)"); break;
-						case 6: STORE_CLASSICAL_NAME ("K6 (0.30 µm)"); break;
-						case 7: STORE_CLASSICAL_NAME ("K6 (0.25 µm)"); break;
+						case 6: STORE_CLASSICAL_NAME ("K6 (0.30 ¬µm)"); break;
+						case 7: STORE_CLASSICAL_NAME ("K6 (0.25 ¬µm)"); break;
 						case 8: STORE_CLASSICAL_NAME ("K6-2"); break;
 						case 9: STORE_CLASSICAL_NAME ("K6-III"); break;
-						case 0xd: STORE_CLASSICAL_NAME ("K6-2+ or K6-III+ (0.18 µm)"); break;
+						case 0xd: STORE_CLASSICAL_NAME ("K6-2+ or K6-III+ (0.18 ¬µm)"); break;
 						default: STORE_CLASSICAL_NAME ("Unknown 80586 family"); return false;
 					}
 					break;
 				case 6:
 					switch (ChipID.Model) {
-						case 1: STORE_CLASSICAL_NAME ("Athlon?(0.25 µm)"); break;
-						case 2: STORE_CLASSICAL_NAME ("Athlon?(0.18 µm)"); break;
+						case 1: STORE_CLASSICAL_NAME ("Athlon?(0.25 ¬µm)"); break;
+						case 2: STORE_CLASSICAL_NAME ("Athlon?(0.18 ¬µm)"); break;
 						case 3: STORE_CLASSICAL_NAME ("Duron?(SF core)"); break;
 						case 4: STORE_CLASSICAL_NAME ("Athlon?(Thunderbird core)"); break;
 						case 6: STORE_CLASSICAL_NAME ("Athlon?(Palomino core)"); break;
@@ -1331,8 +1331,8 @@ bool _cdecl CPUInfo::RetrieveClassicalCPUIdentity ()
 			switch (ChipID.Family) {	
 				case 5:
 					switch (ChipID.Model) {
-						case 0: STORE_CLASSICAL_NAME ("mP6 (0.25 µm)"); break;
-						case 2: STORE_CLASSICAL_NAME ("mP6 (0.18 µm)"); break;
+						case 0: STORE_CLASSICAL_NAME ("mP6 (0.25 ¬µm)"); break;
+						case 2: STORE_CLASSICAL_NAME ("mP6 (0.18 ¬µm)"); break;
 						default: STORE_CLASSICAL_NAME ("Unknown Rise family"); return false;
 					}
 					break;
@@ -1545,7 +1545,7 @@ void CPUSpeed::DelayOverhead (unsigned int uiMS)
 
 /**********************************************
  * 
- * CPU Speed ∞ËªÍ - ∞ËªÍ πÊΩƒ
+ * CPU Speed ¬∞√®¬ª√™ - ¬∞√®¬ª√™ ¬π√¶¬Ω√Ñ
  *
  */
 unsigned long ProcSpeedCalc (void)
@@ -1601,7 +1601,7 @@ unsigned long ProcSpeedCalc (void)
 
 /**********************************************
  * 
- * CPU Speed ∞ËªÍ - ∑π¡ˆΩ∫∆Æ∏Æø°º≠ ∞°¡ˆ∞Ì ø».
+ * CPU Speed ¬∞√®¬ª√™ - ¬∑¬π√Å√∂¬Ω¬∫√Ü¬Æ¬∏¬Æ¬ø¬°¬º¬≠ ¬∞¬°√Å√∂¬∞√≠ ¬ø√à.
  *
  */
 unsigned long GetCpuNormSpeed(int clocks)

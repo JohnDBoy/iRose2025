@@ -1,7 +1,7 @@
 /**
  * \ingroup SHO_GS
  * \file	Object.h
- * \brief	¼­¹ö¿¡ »ı¼ºµÈ ÀüÃ¼ °´Ã¼ °ü¸®
+ * \brief	ì„œë²„ì— ìƒì„±ëœ ì „ì²´ ê°ì²´ ê´€ë¦¬
  */
 #ifndef __CObject_H
 #define __CObject_H
@@ -15,7 +15,7 @@
  * \ingroup SHO_GS_LIB
  * \class	CObjMNG
  * \author	wookSang.Jo
- * \brief	¼­¹ö¿¡ Á¸Á¦ÇÏ´Â ¸ğµç °´Ã¼¸¦ °ü¸®ÇÏ´Â Å¬·¡½º
+ * \brief	ì„œë²„ì— ì¡´ì œí•˜ëŠ” ëª¨ë“  ê°ì²´ë¥¼ ê´€ë¦¬í•˜ëŠ” í´ë˜ìŠ¤
  */
 class CObjMNG : public CSyncIdxARRAY < CGameOBJ* > {
 public :

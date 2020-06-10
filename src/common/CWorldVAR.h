@@ -11,13 +11,13 @@
 #define	WORLD_VAR_DAY			3
 #define	WORLD_VAR_TIME			4
 
-#define	WORLD_VAR_PRICES		11		// ¼¼°è ¹°°¡
-#define	WORLD_VAR_EXP			12		// ¼­¹ö °æÇèÄ¡
-#define	WORLD_VAR_DROP_I		13		// ¼­¹ö µå·Ó È®·ü
-#define	WORLD_VAR_DROP_M		14		// ¼­¹ö µå·Ó ¸Ó´Ï
-#define	WORLD_VAR_QST_REWARD	15		// ¼­¹ö Äù½ºÆ® º¸»ó
-#define	WORLD_VAR_PRODUCT		16		// ¼­¹ö Á¦Á¶ ¼º°ø·ü
-#define	WORLD_VAR_STAMINA		17		// ¼­¹ö ½ºÅ×¹Ì³Ê	
+#define	WORLD_VAR_PRICES		11		// ì„¸ê³„ ë¬¼ê°€
+#define	WORLD_VAR_EXP			12		// ì„œë²„ ê²½í—˜ì¹˜
+#define	WORLD_VAR_DROP_I		13		// ì„œë²„ ë“œë¡­ í™•ë¥ 
+#define	WORLD_VAR_DROP_M		14		// ì„œë²„ ë“œë¡­ ë¨¸ë‹ˆ
+#define	WORLD_VAR_QST_REWARD	15		// ì„œë²„ í€˜ìŠ¤íŠ¸ ë³´ìƒ
+#define	WORLD_VAR_PRODUCT		16		// ì„œë²„ ì œì¡° ì„±ê³µë¥ 
+#define	WORLD_VAR_STAMINA		17		// ì„œë²„ ìŠ¤í…Œë¯¸ë„ˆ	
 
 struct tagWorldVAR {
 	union {
@@ -96,7 +96,7 @@ public :
 		m_nWorldVAR[ nVarIDX ] = nValue;
 	}
 
-	// ¿ùµå ¼­¹ö¿¡¼­¸¸ »ó¼Ó¹ŞÀÚ~~~
+	// ì›”ë“œ ì„œë²„ì—ì„œë§Œ ìƒì†ë°›ì~~~
 	virtual bool Save_WorldVAR ()	{	return true;	}
 } ;
 

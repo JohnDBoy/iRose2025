@@ -33,7 +33,7 @@
 #define	SP_M_LOGInOut	"{call gs_M_LogInOut(%I64d, \'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\')}"
 
 #ifdef	__NEW_LOG_2005_05
-	// gs_M_ChangeABILITY( °èÁ¤, Ä³¸¯ÅÍ, ½ºÅÈÅ¸ÀÔ, ¼Ò¸ğÆ÷ÀÎÆ®, IP, À§Ä¡, XÁÂÇ¥, YÁÂÇ¥ ) 
+	// gs_M_ChangeABILITY( ê³„ì •, ìºë¦­í„°, ìŠ¤íƒ¯íƒ€ì…, ì†Œëª¨í¬ì¸íŠ¸, IP, ìœ„ì¹˜, Xì¢Œí‘œ, Yì¢Œí‘œ ) 
 	#define SP_M_CHAGEABILITY "{call AddChangeAbility(%d, \'%s\', \'%s\', %d, %d, \'%s\', \'%s\', %d, %d)}"
 #endif
 
@@ -60,25 +60,25 @@
 #define	NEWLOG_QUEST_RECV		0
 #define	NEWLOG_QUEST_DONE		1
 #define	NEWLOG_QUEST_GIVEUP		2
-#define	NEWLOG_QUEST_HASH_DONE	3			// ´Ü¼ø Å¬¶óÀÌ¾ğÆ® ¿äÃ»¿¡ ÀÇÇØ ¼öÇàµÇ´Â Æ®¸®°Å...
+#define	NEWLOG_QUEST_HASH_DONE	3			// ë‹¨ìˆœ í´ë¼ì´ì–¸íŠ¸ ìš”ì²­ì— ì˜í•´ ìˆ˜í–‰ë˜ëŠ” íŠ¸ë¦¬ê±°...
 
 
 #define	NEWLOG_UPGRADE_FAILED			1
 #define	NEWLOG_UPGRADE_SUC_WITH_SKILL	2
 #define	NEWLOG_UPGRADE_SUC_FROM_NPC		3
 
-#define	NEWLOG_CLAN_CREATE_START		0	// : Å¬·£ »ı¼º ½ÃÀÛ
-#define	NEWLOG_CLAN_CREATE_SUCCESS		1	// : Å¬·£ »ı¼º ¼º°ø
-#define	NEWLOG_CLAN_CREATE_FAILED		2	// : Å¬·£ »ı¼º ½ÇÆĞ
-#define	NEWLOG_CLAN_DESTROYED			3	// : Å¬·£ ÇØÃ¼
-#define	NEWLOG_CLAN_ADD_SKILL_DONE		4	// Å¬·£ ½ºÅ³ Ãß°¡ ¿Ï·á
-#define	NEWLOG_CLAN_DEL_SKILL			5	// Å¬·£ ½ºÅ³ »èÁ¦
+#define	NEWLOG_CLAN_CREATE_START		0	// : í´ëœ ìƒì„± ì‹œì‘
+#define	NEWLOG_CLAN_CREATE_SUCCESS		1	// : í´ëœ ìƒì„± ì„±ê³µ
+#define	NEWLOG_CLAN_CREATE_FAILED		2	// : í´ëœ ìƒì„± ì‹¤íŒ¨
+#define	NEWLOG_CLAN_DESTROYED			3	// : í´ëœ í•´ì²´
+#define	NEWLOG_CLAN_ADD_SKILL_DONE		4	// í´ëœ ìŠ¤í‚¬ ì¶”ê°€ ì™„ë£Œ
+#define	NEWLOG_CLAN_DEL_SKILL			5	// í´ëœ ìŠ¤í‚¬ ì‚­ì œ
 
-#define	NEWLOG_CLAN_JOIN_MEMBER			6	// Å¬·£ °¡ÀÔ
-#define	NEWLOG_CLAN_QUIT_MEMBER			7	// Å¬·£ Å»Åğ
-#define	NEWLOG_CLAN_KICK_MEMBER			8	// Å¬·£ °­Åğ
-#define	NEWLOG_CLAN_CHANGE_MASTER		9	// Å¬·£Â¯ À§ÀÓ
-#define	NEWLOG_CLAN_CHANGE_POSITION		10	// Å¬·£Á÷À§ º¯°æ
+#define	NEWLOG_CLAN_JOIN_MEMBER			6	// í´ëœ ê°€ì…
+#define	NEWLOG_CLAN_QUIT_MEMBER			7	// í´ëœ íƒˆí‡´
+#define	NEWLOG_CLAN_KICK_MEMBER			8	// í´ëœ ê°•í‡´
+#define	NEWLOG_CLAN_CHANGE_MASTER		9	// í´ëœì§± ìœ„ì„
+#define	NEWLOG_CLAN_CHANGE_POSITION		10	// í´ëœì§ìœ„ ë³€ê²½
 
 #define	NEWLOG_UNION_JOIN				0
 #define	NEWLOG_UNION_CHANGE				1
@@ -271,10 +271,10 @@
 
 	/*
 	[Success] Column
-		0 : Å¬·£ »ı¼º ½ÃÀÛ
-		1 : Å¬·£ »ı¼º ¼º°ø
-		2 : Å¬·£ »ı¼º ½ÇÆĞ
-		3 : Å¬·£ ÇØÃ¼
+		0 : í´ëœ ìƒì„± ì‹œì‘
+		1 : í´ëœ ìƒì„± ì„±ê³µ
+		2 : í´ëœ ìƒì„± ì‹¤íŒ¨
+		3 : í´ëœ í•´ì²´
 	[AddClanLog]
 		@CharName nvarchar(32),
 		@ClanName nvarchar(20),
@@ -317,7 +317,7 @@ class CClan;
  * \ingroup SHO_GS_LIB
  * \class	CThreadLOG
  * \author	wookSang.Jo
- * \brief	°ÔÀÓ ·Î±×¸¦ µğºñ¿¡ ±â·ÏÇÏ´Â ¾²·¡µå Å¬·¡½º
+ * \brief	ê²Œì„ ë¡œê·¸ë¥¼ ë””ë¹„ì— ê¸°ë¡í•˜ëŠ” ì“°ë˜ë“œ í´ë˜ìŠ¤
  */
 class CThreadLOG : public CSqlTHREAD
 {
@@ -359,17 +359,17 @@ public :
 	void Send_gsv_LOG_SQL();
 
 
-	// ½Ã½ºÅÛ ¿À·ù...
+	// ì‹œìŠ¤í…œ ì˜¤ë¥˜...
 	bool When_ERROR ( classUSER *pUSER, char *szFile, int iLine, char *szDesc );
 	bool When_SysERR ( char *szFile, int iLine, char *szDesc );
 
-	// ·Î±×ÀÎ/¾Æ¿ô
+	// ë¡œê·¸ì¸/ì•„ì›ƒ
 	//bool When_LogIN  ( classUSER *pUSER );
 	//bool When_LogOUT ( classUSER *pUSER );
 
-	// ÄÉ¸¯ »ı¼º/»èÁ¦
+	// ì¼€ë¦­ ìƒì„±/ì‚­ì œ
 #ifdef	__NEW_LOG
-	// @param:: btDelOrNew: 0:»ı¼º, 1:»èÁ¦
+	// @param:: btDelOrNew: 0:ìƒì„±, 1:ì‚­ì œ
 	bool When_CharacterLOG ( classUSER *pSourAVT, char *szCharNAME, BYTE btDelOrNew );
 #else
 	bool When_CreateCHAR ( classUSER *pSourAVT, char *szCharNAME );
@@ -378,10 +378,10 @@ public :
 
 	//bool When_DieBY( CObjCHAR *pKillOBJ, classUSER *pDeadAVT );
 
-	// ·¹º§¾÷
+	// ë ˆë²¨ì—…
 	//bool When_LevelUP ( classUSER *pSourAVT, int iGetEXP );
 
-	// Ä¡Æ® °ü·Ã
+	// ì¹˜íŠ¸ ê´€ë ¨
 	//bool When_CheatCODE		( classUSER *pSourAVT,	char *szCode );
 
 	bool When_ws_CLAN ( char *szName, char *szIP, char *szLogType, CClan *pClan, BYTE btSucType, int iSkillNo=0, int iNewPos=0 );

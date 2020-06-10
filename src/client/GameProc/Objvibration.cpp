@@ -64,7 +64,7 @@ void CObjvibration::StartVibration()
 	if( m_pObjCHAR == NULL )
 		return;
 
-	/// ÀÌ¹Ì ¶³°í ÀÖ´Âµ¥ ¶Ç¸Â´Â´Ù¸é..
+	/// ì´ë¯¸ ë–¨ê³  ìˆëŠ”ë° ë˜ë§ëŠ”ë‹¤ë©´..
 	if( m_bActivated )
 	{
 		return;

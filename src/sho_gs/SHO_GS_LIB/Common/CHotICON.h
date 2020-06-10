@@ -1,14 +1,14 @@
 /**
  * \ingroup SHO_GS
  * \file	CHotICON.h
- * \brief	´ÜÃà ¾ÆÀÌÄÜ º¸°ü
+ * \brief	ë‹¨ì¶• ì•„ì´ì½˜ ë³´ê´€
  */
 #ifndef	__CHOTICON_H
 #define	__CHOTICON_H
 #pragma warning (disable:4201)
 //-------------------------------------------------------------------------------------------------
 
-/// ÃÖ´ë ´ÜÃà ¾ÆÀÌÄÜ µî·Ï °¡´É °¹¼ö
+/// ìµœëŒ€ ë‹¨ì¶• ì•„ì´ì½˜ ë“±ë¡ ê°€ëŠ¥ ê°¯ìˆ˜
 #define	MAX_HOT_ICONS		48
 #ifdef _PA
 	#define	MAX_ICONS_PAGES		6
@@ -40,7 +40,7 @@ union tagHotICON {
  * \ingroup SHO_GS_LIB
  * \class	CHotICONS
  * \author	wookSang.Jo
- * \brief	»ç¿ëÀÚ°¡ ÁöÁ¤ÇÑ Å¬¶óÀÌ¾ğÆ®ÀÇ ´ÜÃà ¾ÆÀÌÄÜ °ü¸® Å¬·¡½º
+ * \brief	ì‚¬ìš©ìê°€ ì§€ì •í•œ í´ë¼ì´ì–¸íŠ¸ì˜ ë‹¨ì¶• ì•„ì´ì½˜ ê´€ë¦¬ í´ë˜ìŠ¤
  */
 class CHotICONS {
 public :

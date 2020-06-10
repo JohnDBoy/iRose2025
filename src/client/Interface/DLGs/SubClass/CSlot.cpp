@@ -111,7 +111,7 @@ unsigned int CSlot::Process( UINT uiMsg,WPARAM wParam,LPARAM lParam )
 		}
 	case WM_LBUTTONDBLCLK:
 		{
-			///�������̶� Ŀ�ǵ� ������ �ȵ� �󽽷��� ó���ȵȰ����� �Ѵ�.
+			///영역안이라도 커맨드 실행이 안된 빈슬롯은 처리안된것으로 한다.
 			if( CWinCtrl::IsInside( pt.x, pt.y ) )
 			{
 				if( m_pIcon )

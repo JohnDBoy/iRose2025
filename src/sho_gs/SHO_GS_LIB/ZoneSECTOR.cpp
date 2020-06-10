@@ -116,13 +116,13 @@ void CNormalSECTOR::SendAddUserPacket( classUSER *pUSER, classPACKET *pCPacket )
 
 	classDLLNODE< CGameOBJ* > *pNode;
     for (pNode=m_ObjLIST.GetHeadNode(); pNode; pNode=m_ObjLIST.GetNextNode( pNode ) ) {
-        // ±âÁ¸ »ç¿ëÀÚ¿¡°Ô pUSERÁ¤º¸ Àü¼Û.
+        // ê¸°ì¡´ ì‚¬ìš©ìžì—ê²Œ pUSERì •ë³´ ì „ì†¡.
         pNode->DATA->SendPacket( pCPacket );
 
-        // pUSER¿¡°Ô ±âÁ¸ »ç¿ëÀÚ Á¤º¸ Àü¼Û.
+        // pUSERì—ê²Œ ê¸°ì¡´ ì‚¬ìš©ìž ì •ë³´ ì „ì†¡.
         pNewPacket = Packet_AllocNLock ();
 
-		// ¾ÆÀÌÅÛÀÏ °æ¿ì ¾ÆÀÌÅÛ ¿À³ÊÀÇ Object index °¡ ¹Ù²ð¼ö ÀÖÀ¸¹Ç·Î...
+		// ì•„ì´í…œì¼ ê²½ìš° ì•„ì´í…œ ì˜¤ë„ˆì˜ Object index ê°€ ë°”ë€”ìˆ˜ ìžˆìœ¼ë¯€ë¡œ...
 		pNode->DATA->Update_OwnerObjIDX( pUSER );
         if ( pNode->DATA->Make_gsv_ADD_OBJECT( pNewPacket ) )
             pUSER->SendPacket( pNewPacket );
@@ -143,14 +143,14 @@ void CNormalSECTOR::SendSubUserPacket( classUSER *pUSER, classPACKET *pCPacket )
 
 	this->LockSector ();
 
-    // pUSER¿¡°Ô ±âÁ¸ »ç¿ëÀÚ¸¦...
+    // pUSERì—ê²Œ ê¸°ì¡´ ì‚¬ìš©ìžë¥¼...
     pNewPacket = Packet_AllocNLock ();
 	pNewPacket->m_HEADER.m_wType = GSV_SUB_OBJECT;
-	pNewPacket->m_HEADER.m_nSize = sizeof( t_PACKETHEADER );			// ¹Ýµå½Ã sizeof( t_PACKETHEADER )·Î...
+	pNewPacket->m_HEADER.m_nSize = sizeof( t_PACKETHEADER );			// ë°˜ë“œì‹œ sizeof( t_PACKETHEADER )ë¡œ...
 
 	classDLLNODE< CGameOBJ* > *pNode;
     for (pNode=m_ObjLIST.GetHeadNode(); pNode; pNode=m_ObjLIST.GetNextNode( pNode ) ) {
-        // ±âÁ¸ »ç¿ëÀÚ¿¡°Ô pUSER¸¦...
+        // ê¸°ì¡´ ì‚¬ìš©ìžì—ê²Œ pUSERë¥¼...
         pNode->DATA->SendPacket( pCPacket );
 
         pNewPacket->m_gsv_SUB_OBJECT.m_wObjectIDX[ iLeftCnt++ ] = pNode->DATA->Get_INDEX ();
@@ -164,7 +164,7 @@ void CNormalSECTOR::SendSubUserPacket( classUSER *pUSER, classPACKET *pCPacket )
 
             pNewPacket = Packet_AllocNLock ();
             pNewPacket->m_HEADER.m_wType = GSV_SUB_OBJECT;
-            pNewPacket->m_HEADER.m_nSize = sizeof( t_PACKETHEADER );			// ¹Ýµå½Ã sizeof( t_PACKETHEADER )·Î...
+            pNewPacket->m_HEADER.m_nSize = sizeof( t_PACKETHEADER );			// ë°˜ë“œì‹œ sizeof( t_PACKETHEADER )ë¡œ...
         }
 	}
 
@@ -240,7 +240,7 @@ void CAgitSECTOR::SendPacketToSECTOR( classPACKET *pCPacket, CGameOBJ *pObjSENDE
 			if ( pNode->DATA->IsUSER() ) {
 				pDestUser = (classUSER*)pNode->DATA;
 				if ( dwClanID == pDestUser->GetClanID() ) {
-					// °°Àº Å¬·£ÀÌ¸é...
+					// ê°™ì€ í´ëžœì´ë©´...
 					pNode->DATA->SendPacket( pCPacket );
 				}
 			}
@@ -252,7 +252,7 @@ void CAgitSECTOR::SendPacketToSECTOR( classPACKET *pCPacket, CGameOBJ *pObjSENDE
 		}
 	} else
 	if ( pObjSENDER->IsUSER() ) {
-		// 2005.3.30 ¾ÆÁöÆ®¿¡¼­ Å¬·£ ¸¶½ºÅÍ¿¡ ÀÇÇØ °­ÅðµÈ À¯Àú~~~ °­Á¦·Î ¿öÇÁ~~
+		// 2005.3.30 ì•„ì§€íŠ¸ì—ì„œ í´ëžœ ë§ˆìŠ¤í„°ì— ì˜í•´ ê°•í‡´ëœ ìœ ì €~~~ ê°•ì œë¡œ ì›Œí”„~~
 		classUSER *pSourUser = (classUSER*)pObjSENDER;
 		if ( pSourUser->m_bInAGIT ) {
 			pSourUser->m_bInAGIT = false;
@@ -260,7 +260,7 @@ void CAgitSECTOR::SendPacketToSECTOR( classPACKET *pCPacket, CGameOBJ *pObjSENDE
 			short nZoneNO   = pSourUser->m_nReviveZoneNO;
 			tPOINTF	PosWARP = pSourUser->m_PosREVIVE;
 
-			PosWARP.x += ( RANDOM(1001) - 500 );	// ·£´ý 5¹ÌÅÍ..
+			PosWARP.x += ( RANDOM(1001) - 500 );	// ëžœë¤ 5ë¯¸í„°..
 			PosWARP.y += ( RANDOM(1001) - 500 );
 
 			pSourUser->Send_gsv_RELAY_REQ( RELAY_TYPE_RECALL, nZoneNO, PosWARP );
@@ -298,9 +298,9 @@ void CAgitSECTOR::SendAddUserPacket( classUSER *pUSER, classPACKET *pCPacket )
 
 	classDLLNODE< CGameOBJ* > *pNode;
     for (pNode=m_ObjLIST.GetHeadNode(); pNode; pNode=m_ObjLIST.GetNextNode( pNode ) ) {
-        // ±âÁ¸ »ç¿ëÀÚ¿¡°Ô pUSERÁ¤º¸ Àü¼Û.
+        // ê¸°ì¡´ ì‚¬ìš©ìžì—ê²Œ pUSERì •ë³´ ì „ì†¡.
 		if ( pNode->DATA->IsUSER() ) {
-			// °°Àº Å¬·£ÀÏ°æ¿ì¿¡¸¸ Àü¼Û...
+			// ê°™ì€ í´ëžœì¼ê²½ìš°ì—ë§Œ ì „ì†¡...
 			pDestUser = (classUSER*)pNode->DATA;
 			if ( pDestUser->GetClanID() != pUSER->GetClanID() )
 				continue;
@@ -315,10 +315,10 @@ void CAgitSECTOR::SendAddUserPacket( classUSER *pUSER, classPACKET *pCPacket )
 
         pNode->DATA->SendPacket( pCPacket );
 
-        // pUSER¿¡°Ô ±âÁ¸ »ç¿ëÀÚ Á¤º¸ Àü¼Û.
+        // pUSERì—ê²Œ ê¸°ì¡´ ì‚¬ìš©ìž ì •ë³´ ì „ì†¡.
         pNewPacket = Packet_AllocNLock ();
 
-		// ¾ÆÀÌÅÛÀÏ °æ¿ì ¾ÆÀÌÅÛ ¿À³ÊÀÇ Object index °¡ ¹Ù²ð¼ö ÀÖÀ¸¹Ç·Î...
+		// ì•„ì´í…œì¼ ê²½ìš° ì•„ì´í…œ ì˜¤ë„ˆì˜ Object index ê°€ ë°”ë€”ìˆ˜ ìžˆìœ¼ë¯€ë¡œ...
 		pNode->DATA->Update_OwnerObjIDX( pUSER );
         if ( pNode->DATA->Make_gsv_ADD_OBJECT( pNewPacket ) )
             pUSER->SendPacket( pNewPacket );
@@ -339,19 +339,19 @@ void CAgitSECTOR::SendSubUserPacket( classUSER *pUSER, classPACKET *pCPacket )
 
 	this->LockSector ();
 
-    // pUSER¿¡°Ô ±âÁ¸ »ç¿ëÀÚ¸¦...
+    // pUSERì—ê²Œ ê¸°ì¡´ ì‚¬ìš©ìžë¥¼...
     pNewPacket = Packet_AllocNLock ();
 	pNewPacket->m_HEADER.m_wType = GSV_SUB_OBJECT;
-	pNewPacket->m_HEADER.m_nSize = sizeof( t_PACKETHEADER );			// ¹Ýµå½Ã sizeof( t_PACKETHEADER )·Î...
+	pNewPacket->m_HEADER.m_nSize = sizeof( t_PACKETHEADER );			// ë°˜ë“œì‹œ sizeof( t_PACKETHEADER )ë¡œ...
 
 	classUSER *pDestUser;
 	classDLLNODE< CGameOBJ* > *pNode;
     for (pNode=m_ObjLIST.GetHeadNode(); pNode; pNode=m_ObjLIST.GetNextNode( pNode ) ) {
-        // ±âÁ¸ »ç¿ëÀÚ¿¡°Ô pUSER¸¦...
+        // ê¸°ì¡´ ì‚¬ìš©ìžì—ê²Œ pUSERë¥¼...
 		if ( !pNode->DATA->IsUSER() )
 			continue;
 
-		// °°Àº Å¬·£ÀÏ°æ¿ì¿¡¸¸ Àü¼Û...
+		// ê°™ì€ í´ëžœì¼ê²½ìš°ì—ë§Œ ì „ì†¡...
 		pDestUser = (classUSER*)pNode->DATA;
 		if ( pDestUser->GetClanID() != pUSER->GetClanID() )
 			continue;
@@ -369,7 +369,7 @@ void CAgitSECTOR::SendSubUserPacket( classUSER *pUSER, classPACKET *pCPacket )
 
             pNewPacket = Packet_AllocNLock ();
             pNewPacket->m_HEADER.m_wType = GSV_SUB_OBJECT;
-            pNewPacket->m_HEADER.m_nSize = sizeof( t_PACKETHEADER );			// ¹Ýµå½Ã sizeof( t_PACKETHEADER )·Î...
+            pNewPacket->m_HEADER.m_nSize = sizeof( t_PACKETHEADER );			// ë°˜ë“œì‹œ sizeof( t_PACKETHEADER )ë¡œ...
         }
 	}
 

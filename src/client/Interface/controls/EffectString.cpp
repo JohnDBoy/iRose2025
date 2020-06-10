@@ -45,10 +45,10 @@ bool CEffectString::SetString( int font, char* message, POINT draw_position, int
 }
 
 /**
-* Fade In/Out ±â´ÉÀÇ ±ÛÀÚ»ö±ò º¯È­´Â ÇöÀç ¾Æ¿ô¶óÀÎÆùÆ®¿¡ Àû¿ë½Ã ±×¸²ÀÚ°¡ ³²°Ô µÇ¾î¼­ ¾ÈµÊ , ÁÖ¼®Ã³¸®ÇÔ
-* ÃßÈÄ¿¡ ¿£Áø¿¡¼­ ±×¸²ÀÚÀÇ »ö±ò±îÁö ¹Ù²Ü¼ö ÀÖµµ·Ï ¼öÁ¤µÇ¸é Àû¿ë
+* Fade In/Out ê¸°ëŠ¥ì˜ ê¸€ììƒ‰ê¹” ë³€í™”ëŠ” í˜„ì¬ ì•„ì›ƒë¼ì¸í°íŠ¸ì— ì ìš©ì‹œ ê·¸ë¦¼ìê°€ ë‚¨ê²Œ ë˜ì–´ì„œ ì•ˆë¨ , ì£¼ì„ì²˜ë¦¬í•¨
+* ì¶”í›„ì— ì—”ì§„ì—ì„œ ê·¸ë¦¼ìì˜ ìƒ‰ê¹”ê¹Œì§€ ë°”ê¿€ìˆ˜ ìˆë„ë¡ ìˆ˜ì •ë˜ë©´ ì ìš©
 *
-* @Author		ÃÖÁ¾Áø
+* @Author		ìµœì¢…ì§„
 * @Date			2005/9/6
 */
 int	CEffectString::Update()
@@ -62,9 +62,9 @@ int	CEffectString::Update()
 	DWORD run_time = curr_time - m_time_set;
 	DWORD change_alpha_time = 2000;
 
-	//if( run_time < change_alpha_time )///½ÃÀÛÇÑÁö 1ÃÊ ÀÌ³»¶ó¸é
+	//if( run_time < change_alpha_time )///ì‹œì‘í•œì§€ 1ì´ˆ ì´ë‚´ë¼ë©´
 	//	m_color_alpha = (BYTE)( 0xff * run_time / change_alpha_time );
-	//else if( m_time_display - run_time < change_alpha_time ) ///³¡³ª±â ±îÁö 1ÃÊÀÌ³»¶ó¸é )
+	//else if( m_time_display - run_time < change_alpha_time ) ///ëë‚˜ê¸° ê¹Œì§€ 1ì´ˆì´ë‚´ë¼ë©´ )
 	//	m_color_alpha = (BYTE)( 0xff * ( m_time_display - run_time ) / change_alpha_time );
 	//else
 		m_color_alpha = 0xff;

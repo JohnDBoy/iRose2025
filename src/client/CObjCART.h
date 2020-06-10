@@ -48,7 +48,7 @@ protected:
 	CCharMODEL				m_CharMODEL;
 
 //------------------------------------------------------------------------------------
-//¹ÚÁöÈ£:: ÆÄÃ÷ ¼öÁ¤ 
+//ë°•ì§€í˜¸:: íŒŒì¸  ìˆ˜ì • 
 #if defined(_GBC)
 	union 
 	{
@@ -56,7 +56,7 @@ protected:
 
 		struct 
 		{
-			// ¼ø¼­´Â t_CharPART¿¡ µû¶ó¼­...			
+			// ìˆœì„œëŠ” t_CharPARTì— ë”°ë¼ì„œ...			
 			short			m_nBodyIDX;
 			short			m_nEngineIDX;
 			short			m_nLegIDX;
@@ -73,7 +73,7 @@ protected:
 
 		struct 
 		{
-			// ¼ø¼­´Â t_CharPART¿¡ µû¶ó¼­...			
+			// ìˆœì„œëŠ” t_CharPARTì— ë”°ë¼ì„œ...			
 			short			m_nBodyIDX;
 			short			m_nEngineIDX;
 			short			m_nLegIDX;
@@ -108,14 +108,14 @@ public:
 	int							GetPetParts( int iPartIDX ){ return m_nPartItemIDX[ iPartIDX ] ;}
 
 	///
-	/// Ä«Æ®¿¡ ÀÌÆåÆ® ¼³Á¤
+	/// ì¹´íŠ¸ì— ì´íŽ™íŠ¸ ì„¤ì •
 	///
 	void						SetEffect();
 	void						SetPartEffect( int iPart );
 	void						SetEffectByMoveState( bool bShow = true );
 
 	///
-	/// Ä«Æ®¿¡ »ç¿îµå ¼³Á¤
+	/// ì¹´íŠ¸ì— ì‚¬ìš´ë“œ ì„¤ì •
 	///
 	void						PlaySound( int iCurrentState );
 	void						PlayPartSound( int iPart, int iCurrentState  );
@@ -173,9 +173,9 @@ public:
 	/*override*/int				Get_L_WEAPON ()						{	return 0;				}
 	
 
-	/// ÃÖ´ë »ý¸í·Â
+	/// ìµœëŒ€ ìƒëª…ë ¥
 	/*override*/int				Get_MaxHP()							{	return m_pObjParent->Get_MaxHP(); }
-	/// ÃÖ´ë ¸¶³ª
+	/// ìµœëŒ€ ë§ˆë‚˜
 	/*override*/int				Get_MaxMP()							{	return m_pObjParent->Get_MaxMP(); }
 
 	/*override*/virtual int		Def_AttackRange()					{	return 0; }
@@ -211,10 +211,10 @@ public:
 
 	
 	//----------------------------------------------------------------------------------------------------	
-	/// @brief Ä«Æ®°è¿­Àº LIST_PAT ¿¡¼­ °ø°Ý°ü·Ã µ¥ÀÌÅÍ´Â ¾ò¾î¿Â´Ù.
-	///        Move Speed µîÀº ÆêÀ» Å¿´Ù´Â °¡Á¤ÇÏ¿¡ °è»êÀÌ ºÎ¸ð¿¡°Ô °è»êÀÌ µÈ´Ù. °á±¹ ºÎ¸ðÀÇ ½ºÇÇµå¸¦ ÀÌ¿ëÇÏ¸éµÈ´Ù.
-	///			ÀÌ´Â ºÎ¸ðÀÇ SpeedUpdate ¸¦ ÇÒ¶§ Æê Å¾½Â¿©ºÎ°¡ °í·ÁµÇ¾î¼­ °è»êµÇ±â ¶§¹®ÀÌ´Ù.
-	///			±×·¯³ª Attack Speed µûÀ§´Â Æ²¸®´Ù. ÀÌ´Â Å×ÀÌºí¿¡¼­ ¾ò¾î¿Í¾ßÇÑ´Ù.( ¾Æ¹ÙÅ¸´Â ¹«±â¿¡ ÀÇÁ¸ÇÏ°í ±âÅ¸µîµî..
+	/// @brief ì¹´íŠ¸ê³„ì—´ì€ LIST_PAT ì—ì„œ ê³µê²©ê´€ë ¨ ë°ì´í„°ëŠ” ì–»ì–´ì˜¨ë‹¤.
+	///        Move Speed ë“±ì€ íŽ«ì„ íƒ“ë‹¤ëŠ” ê°€ì •í•˜ì— ê³„ì‚°ì´ ë¶€ëª¨ì—ê²Œ ê³„ì‚°ì´ ëœë‹¤. ê²°êµ­ ë¶€ëª¨ì˜ ìŠ¤í”¼ë“œë¥¼ ì´ìš©í•˜ë©´ëœë‹¤.
+	///			ì´ëŠ” ë¶€ëª¨ì˜ SpeedUpdate ë¥¼ í• ë•Œ íŽ« íƒ‘ìŠ¹ì—¬ë¶€ê°€ ê³ ë ¤ë˜ì–´ì„œ ê³„ì‚°ë˜ê¸° ë•Œë¬¸ì´ë‹¤.
+	///			ê·¸ëŸ¬ë‚˜ Attack Speed ë”°ìœ„ëŠ” í‹€ë¦¬ë‹¤. ì´ëŠ” í…Œì´ë¸”ì—ì„œ ì–»ì–´ì™€ì•¼í•œë‹¤.( ì•„ë°”íƒ€ëŠ” ë¬´ê¸°ì— ì˜ì¡´í•˜ê³  ê¸°íƒ€ë“±ë“±..
 	//----------------------------------------------------------------------------------------------------
 
 	/*override*/ virtual float				Get_MoveSPEED ();
@@ -240,12 +240,12 @@ public:
 	int		GetRideAniPos();
 	
 	virtual bool	Create( CObjCHAR* pParent, int iCartType, D3DVECTOR &Position );
-	/// Ãæµ¹¿¡ ÇÊ¿äÇÑ À§Ä¡Á¤º¸¸¦ º¹»çÇÑ´Ù.
+	/// ì¶©ëŒì— í•„ìš”í•œ ìœ„ì¹˜ì •ë³´ë¥¼ ë³µì‚¬í•œë‹¤.
 	void	CopyCollisionInformation( bool bRiding = true );
 	
 //------------------------------------------------------------------------------
-//¹ÚÁöÈ£::...
-	CObjCHAR*				m_pRideUser;				//2ÀÎ½Â Å¾½ÂÀÚ 
+//ë°•ì§€í˜¸::...
+	CObjCHAR*				m_pRideUser;				//2ì¸ìŠ¹ íƒ‘ìŠ¹ìž 
 
 	bool Create(CObjCHAR* pTarget);
 	void SetCartPartVisible(float fv);	

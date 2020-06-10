@@ -20,23 +20,23 @@ private:
 	/// Direct3D Object
 	static IDirect3D9 *			s_pID3D;
 	
-	/// ¿¡·¯¸Ş½ÃÁö¸¦ ÀúÀåÇÒ ½ºÆ®¸µº¯¼ö
+	/// ì—ëŸ¬ë©”ì‹œì§€ë¥¼ ì €ì¥í•  ìŠ¤íŠ¸ë§ë³€ìˆ˜
 	std::string					m_strErr;
 	
 private:
-	/// ¿¡·¯¸¦ Á¶»çÇÑ´Ù
+	/// ì—ëŸ¬ë¥¼ ì¡°ì‚¬í•œë‹¤
 	bool __CheckError (HRESULT hr);
 	string ConvertDriverVersion (D3DADAPTER_IDENTIFIER9 *);
 
 public :
-	/// µğÆúÆ® »ı¼ºÀÚ
+	/// ë””í´íŠ¸ ìƒì„±ì
 	CD3D9 ();
 	~CD3D9();
-	/// ´ÙÀÌ·ºÆ®X¸¦ ÃÊ±âÈ­ÇÏ°í Device¸¦ »ı¼ºÇÔ
+	/// ë‹¤ì´ë ‰íŠ¸Xë¥¼ ì´ˆê¸°í™”í•˜ê³  Deviceë¥¼ ìƒì„±í•¨
 	BOOL Init (void);
 
 
-	/// »ı¼ºÇÑ ¿ÀºêÁ§Æ®¸¦ ¸ğµÎ ÇØÁ¦ÇÔ
+	/// ìƒì„±í•œ ì˜¤ë¸Œì íŠ¸ë¥¼ ëª¨ë‘ í•´ì œí•¨
 	void Release (void);	
 	void DestroyDisplayInfo( vector<DisplayInfo*>& vDisplayInfo );
 
@@ -52,13 +52,13 @@ public :
 	IDxDiagProvider*  m_pDxDiagProvider;
     IDxDiagContainer* m_pDxDiagRoot;
 
-	/// ½Ã½ºÅÛ Á¤º¸.
+	/// ì‹œìŠ¤í…œ ì •ë³´.
 	HRESULT CD3D9::GetSystemInfo( SystemInformation** ppSysInfo );
 
-	/// µğ½ºÇÃ·¹ÀÌ Á¤º¸.
+	/// ë””ìŠ¤í”Œë ˆì´ ì •ë³´.
 	HRESULT GetDisplayInfo( vector<DisplayInfo*>& vDisplayInfo );
 
-	/// Á¤º¸ º¯È¯
+	/// ì •ë³´ ë³€í™˜
 	HRESULT GetIntValue( IDxDiagContainer* pObject, WCHAR* wstrName, LONG* pnValue );
 	HRESULT GetBoolValue( IDxDiagContainer* pObject, WCHAR* wstrName, BOOL* pbValue );
 	HRESULT GetInt64Value( IDxDiagContainer* pObject, WCHAR* wstrName, ULONGLONG* pullValue );

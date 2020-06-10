@@ -62,7 +62,7 @@ CUseItemDelay	g_UseSkillDelay,
 //}
 
 
-//»ı¼ºÀÚ 
+//ìƒì„±ì 
 CUseItemDelay::CUseItemDelay()
 {
 
@@ -70,7 +70,7 @@ CUseItemDelay::CUseItemDelay()
 
 }
 
-//¼Ò¸êÀÚ 
+//ì†Œë©¸ì 
 CUseItemDelay::~CUseItemDelay()
 {
 
@@ -78,7 +78,7 @@ CUseItemDelay::~CUseItemDelay()
 
 }
 
-//ÀÚ¿ø ÇØÁ¦ 
+//ìì› í•´ì œ 
 void CUseItemDelay::Release(void)
 {
 

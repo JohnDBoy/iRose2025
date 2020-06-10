@@ -35,17 +35,17 @@ inline bool Check_QuestOP( BYTE btOP, dType1 iLeft, dType2 iRight)
 {
 	bool bResult;
 	switch( btOP ) {
-		case 0 :	// °°´Ù
+		case 0 :	// ê°™ë‹¤
 			bResult = ( iLeft == iRight );	break;
-		case 1 :	// Å©´Ù
+		case 1 :	// í¬ë‹¤
 			bResult = ( iLeft >  iRight );	break;
-		case 2 :	// Å©°Å³ª °°´Ù
+		case 2 :	// í¬ê±°ë‚˜ ê°™ë‹¤
 			bResult = ( iLeft >= iRight );	break;
-		case 3 :	// ÀÛ´Ù
+		case 3 :	// ì‘ë‹¤
 			bResult = ( iLeft <  iRight );	break;
-		case 4 :	// ÀÛ°Å³ª °°´Ù.
+		case 4 :	// ì‘ê±°ë‚˜ ê°™ë‹¤.
 			bResult = ( iLeft <= iRight );	break;
-		case 10 :	// °°Áö ¾Ê´Ù.
+		case 10 :	// ê°™ì§€ ì•Šë‹¤.
 			bResult = ( iLeft != iRight );	break;
 		default :
 			{
@@ -62,7 +62,7 @@ inline bool Check_QuestOP( BYTE btOP, dType1 iLeft, dType2 iRight)
 	if ( !bResult ) 
 	{
 		char *szOP[] = { "==", ">", ">=", "<", "<=" };
-		char *szMsg = CStr::Printf ("		[QST] ºñ±³¿¬»ê ½ÇÆĞ ==> %d %s %d", 
+		char *szMsg = CStr::Printf ("		[QST] ë¹„êµì—°ì‚° ì‹¤íŒ¨ ==> %d %s %d", 
 							(int)iLeft, szOP[ btOP ], (int)iRight );
 
 		//--------------------------------------------------------------------------------
@@ -164,7 +164,7 @@ inline bool Check_QuestVAR (tQST_PARAM *pPARAM, STR_QUEST_DATA *pDATA)
 	#ifndef	__SERVER
 	if ( !pPARAM->m_pQUEST ) 
 	{
-		char *szMsg = CStr::Printf ("	[QST] µ¥ÀÌÅ¸¿À·ù !!! :: Äù½ºÆ® º¯¼ö Á¶È¸½Ã %s ¿¡¼­ ¼±ÅÃµÈ Äù½ºÆ® ¾øÀ½", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
+		char *szMsg = CStr::Printf ("	[QST] ë°ì´íƒ€ì˜¤ë¥˜ !!! :: í€˜ìŠ¤íŠ¸ ë³€ìˆ˜ ì¡°íšŒì‹œ %s ì—ì„œ ì„ íƒëœ í€˜ìŠ¤íŠ¸ ì—†ìŒ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
 
 		//--------------------------------------------------------------------------------
 		LOGERR( "Check_QuestVAR ERROR[ %s ] ", szMsg );
@@ -180,11 +180,11 @@ inline bool Check_UserVAR (tQST_PARAM *pPARAM, STR_ABIL_DATA *pDATA)
 {
 	if ( AT_CLASS == pDATA->iType ) 
 	{
-		// Á÷¾÷À» Á¶È¸ :: Äù½ºÆ® Åø¿¡¼­ Àß¸øµÈ µ¥ÀÌÅ¸°¡ ÀÔ·Â µÉ¼ö ÀÖÀ¸¹Ç·Î...
+		// ì§ì—…ì„ ì¡°íšŒ :: í€˜ìŠ¤íŠ¸ íˆ´ì—ì„œ ì˜ëª»ëœ ë°ì´íƒ€ê°€ ì…ë ¥ ë ìˆ˜ ìˆìœ¼ë¯€ë¡œ...
 		if ( pDATA->iValue < 0 || pDATA->iValue >= g_TblClass.m_nDataCnt ) 
 		{
 		#ifndef	__SERVER
-			char *szMsg = CStr::Printf ("	[QST] µ¥ÀÌÅ¸¿À·ù !!! : %s¿¡¼­  %d ÀÇ Á÷¾÷ ¹øÈ£´Â ¾øÀ½", pPARAM->m_pCurrentTRIGGER->m_Name.Get(), pDATA->iValue );
+			char *szMsg = CStr::Printf ("	[QST] ë°ì´íƒ€ì˜¤ë¥˜ !!! : %sì—ì„œ  %d ì˜ ì§ì—… ë²ˆí˜¸ëŠ” ì—†ìŒ", pPARAM->m_pCurrentTRIGGER->m_Name.Get(), pDATA->iValue );
 
 			//--------------------------------------------------------------------------------
 			LOGOUT( "Check_UserVAR ERROR[ %s ]  ", szMsg );
@@ -209,7 +209,7 @@ static bool Check_QuestITEM (tQST_PARAM *pPARAM, STR_ITEM_DATA *pDATA)
 
 	if ( pDATA->iWhere >= EQUIP_IDX_FACE_ITEM && pDATA->iWhere < MAX_EQUIP_IDX ) 
 	{
-		// ÀåÂø Àåºñ Ã¼Å©...
+		// ì¥ì°© ì¥ë¹„ ì²´í¬...
 		pFindITEM = pPARAM->m_pOWNER->Quest_FindEquipITEM( pDATA->iWhere );
 		if ( pFindITEM && pFindITEM->GetHEADER() == sITEM.GetHEADER() )
 		{
@@ -220,12 +220,12 @@ static bool Check_QuestITEM (tQST_PARAM *pPARAM, STR_ITEM_DATA *pDATA)
 			if( pFindITEM )
 			{
 				//--------------------------------------------------------------------------------
-				LOGWAR( "Check_QuestITEM FAILED[ ÀåÂø Àåºñ Ã¼Å©: %d ]", pFindITEM->GetItemNO() );
+				LOGWAR( "Check_QuestITEM FAILED[ ì¥ì°© ì¥ë¹„ ì²´í¬: %d ]", pFindITEM->GetItemNO() );
 				//--------------------------------------------------------------------------------
 			}else
 			{
 				//--------------------------------------------------------------------------------
-				LOGWAR( "Check_QuestITEM FAILED[ ÀåÂø Àåºñ Ã¼Å© : pFINEITEM is NULL: Ã¼Å©ÇÏ°íÀÚÇÏ´Â ¾ÆÀÌÅÛÀÔ·ÂÀÌ ÀÌ»óÇÏ±º. ]" );
+				LOGWAR( "Check_QuestITEM FAILED[ ì¥ì°© ì¥ë¹„ ì²´í¬ : pFINEITEM is NULL: ì²´í¬í•˜ê³ ìí•˜ëŠ” ì•„ì´í…œì…ë ¥ì´ ì´ìƒí•˜êµ°. ]" );
 				//--------------------------------------------------------------------------------
 			}
 #endif
@@ -234,14 +234,14 @@ static bool Check_QuestITEM (tQST_PARAM *pPARAM, STR_ITEM_DATA *pDATA)
 	if ( ITEM_TYPE_QUEST == sITEM.GetTYPE() ) 
 	{
 		if ( NULL == pPARAM->m_pQUEST ) 
-		{	// Àß¸øµÈ Äù½ºÆ® µ¥ÀÌÅ¸·Î ÀÎÇØ¼­...
+		{	// ì˜ëª»ëœ í€˜ìŠ¤íŠ¸ ë°ì´íƒ€ë¡œ ì¸í•´ì„œ...
 #ifndef	__SERVER
 			if ( !pPARAM->m_pQUEST ) 
 			{
-				char *szMsg = CStr::Printf ("	[QST] µ¥ÀÌÅ¸¿À·ù !!! :: Äù½ºÆ® ¾ÆÀÌÅÛ ºñ±³½Ã %s ¿¡¼­ ¼±ÅÃµÈ Äù½ºÆ® ¾øÀ½", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
+				char *szMsg = CStr::Printf ("	[QST] ë°ì´íƒ€ì˜¤ë¥˜ !!! :: í€˜ìŠ¤íŠ¸ ì•„ì´í…œ ë¹„êµì‹œ %s ì—ì„œ ì„ íƒëœ í€˜ìŠ¤íŠ¸ ì—†ìŒ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
 
 				//--------------------------------------------------------------------------------
-				DUMPERR( szMsg )( "Check_QuestITEM ERROR[ µ¥ÀÌÅÍ ¿À·ù, ´ıÇÁµ¥ÀÌÅÍ ÂüÁ¶ ]" );
+				DUMPERR( szMsg )( "Check_QuestITEM ERROR[ ë°ì´í„° ì˜¤ë¥˜, ë¤í”„ë°ì´í„° ì°¸ì¡° ]" );
 				//--------------------------------------------------------------------------------
 
 				g_itMGR.OpenMsgBox( szMsg );
@@ -250,28 +250,28 @@ static bool Check_QuestITEM (tQST_PARAM *pPARAM, STR_ITEM_DATA *pDATA)
 			return false;
 		}
 
-		// Äù½ºÆ® ÀÎº¥Åä¸® Ã¼Å©...
+		// í€˜ìŠ¤íŠ¸ ì¸ë²¤í† ë¦¬ ì²´í¬...
 		pFindITEM = pPARAM->m_pQUEST->GetSameITEM( sITEM.GetHEADER() );
 		if ( pFindITEM ) 
 		{
 			return ::Check_QuestOP( pDATA->btOp, pFindITEM->GetQuantity(), (UINT)pDATA->iRequestCnt );
 		} else {
-			// ¾ÆÀÌÅÛÀÌ ¾øÀ»¶§´Â 0°³ ÇÏ°í ºñ±³...
+			// ì•„ì´í…œì´ ì—†ì„ë•ŒëŠ” 0ê°œ í•˜ê³  ë¹„êµ...
 			return ::Check_QuestOP( pDATA->btOp, (UINT)0, (UINT)pDATA->iRequestCnt );
 		}
 	} else {
-		// ÀÏ¹İ ÀÎº¥Åä¸®¿¡¼­ ºñ±³...
+		// ì¼ë°˜ ì¸ë²¤í† ë¦¬ì—ì„œ ë¹„êµ...
 		pFindITEM = pPARAM->m_pOWNER->Quest_FindITEM( sITEM );
 		if ( pFindITEM )
 		{
 			if ( pFindITEM->IsEnableDupCNT() ) {
 				return ::Check_QuestOP( pDATA->btOp, pFindITEM->GetQuantity(), (UINT)pDATA->iRequestCnt );
 			} else {
-				// Áßº¹°¹¼ö Àû¿ë¾ÈµÇ´Â ¾ÆÀÌÅÛÀº 1°³·Î..
+				// ì¤‘ë³µê°¯ìˆ˜ ì ìš©ì•ˆë˜ëŠ” ì•„ì´í…œì€ 1ê°œë¡œ..
 				return ::Check_QuestOP( pDATA->btOp, (UINT)1, (UINT)pDATA->iRequestCnt );
 			}
 		} else {
-			// ¾ÆÀÌÅÛÀÌ ¾øÀ»¶§´Â 0°³ ÇÏ°í ºñ±³...
+			// ì•„ì´í…œì´ ì—†ì„ë•ŒëŠ” 0ê°œ í•˜ê³  ë¹„êµ...
 			return ::Check_QuestOP( pDATA->btOp, (UINT)0, (UINT)pDATA->iRequestCnt );
 		}
 	}
@@ -287,7 +287,7 @@ static bool QST_Set_ObjVAR (CObjVAR *pObjVAR, tagValueQST *pVALUE)
 	{
 #ifndef	__SERVER
 		//--------------------------------------------------------------------------------
-		LOGERR( "QST_Set_ObjVAR ERROR[ µ¥ÀÌÅÍ ¿À·ù : pVALUE->nVarNo < 0 || pVALUE->nVarNo >= MAX_OBJ_VAR_CNT ]" );
+		LOGERR( "QST_Set_ObjVAR ERROR[ ë°ì´í„° ì˜¤ë¥˜ : pVALUE->nVarNo < 0 || pVALUE->nVarNo >= MAX_OBJ_VAR_CNT ]" );
 		//--------------------------------------------------------------------------------
 #endif
 		return false;
@@ -296,13 +296,13 @@ static bool QST_Set_ObjVAR (CObjVAR *pObjVAR, tagValueQST *pVALUE)
 	int iValue = pObjVAR->Get_ObjVAR( (BYTE)pVALUE->nVarNo );
 	switch( pVALUE->btOp ) 
 	{
-		case 5 :	// °ª¹Ù²Ş
+		case 5 :	// ê°’ë°”ê¿ˆ
 			pObjVAR->Set_ObjVAR( (BYTE)pVALUE->nVarNo, pVALUE->iValue );
 			break;
-		case 6 :	// Áõ°¡(ÁÖ¾îÁø ¸¸Å­)
+		case 6 :	// ì¦ê°€(ì£¼ì–´ì§„ ë§Œí¼)
 			pObjVAR->Set_ObjVAR( (BYTE)pVALUE->nVarNo, iValue + pVALUE->iValue );
 			break;
-		case 7 :	// °¨¼Ò
+		case 7 :	// ê°ì†Œ
 			pObjVAR->Set_ObjVAR( (BYTE)pVALUE->nVarNo, iValue - pVALUE->iValue );
 			break;
 	}
@@ -319,10 +319,10 @@ static bool Set_QuestVAR (tQST_PARAM *pPARAM, STR_QUEST_DATA *pDATA)
 	{
 	#ifndef	__SERVER
 		if ( !pPARAM->m_pQUEST ) {
-			char *szMsg = CStr::Printf ("	[QST] µ¥ÀÌÅ¸¿À·ù !!! :: Äù½ºÆ® º¯¼ö ¼³Á¤½Ã %s ¿¡¼­ ¼±ÅÃµÈ Äù½ºÆ® ¾øÀ½", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
+			char *szMsg = CStr::Printf ("	[QST] ë°ì´íƒ€ì˜¤ë¥˜ !!! :: í€˜ìŠ¤íŠ¸ ë³€ìˆ˜ ì„¤ì •ì‹œ %s ì—ì„œ ì„ íƒëœ í€˜ìŠ¤íŠ¸ ì—†ìŒ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
 
 			//--------------------------------------------------------------------------------
-			DUMPERR( szMsg )( "Set_QuestVAR ERROR[ µ¥ÀÌÅÍ ¿À·ù : ´ıÇÁ ÂüÁ¶ ]" );
+			DUMPERR( szMsg )( "Set_QuestVAR ERROR[ ë°ì´í„° ì˜¤ë¥˜ : ë¤í”„ ì°¸ì¡° ]" );
 			//--------------------------------------------------------------------------------
 
 			g_itMGR.OpenMsgBox( szMsg );
@@ -332,19 +332,19 @@ static bool Set_QuestVAR (tQST_PARAM *pPARAM, STR_QUEST_DATA *pDATA)
 	}
 
 	switch( pDATA->btOp ) {
-		case 5 :	// °ª¹Ù²Ş
+		case 5 :	// ê°’ë°”ê¿ˆ
 			::Set_QuestVAR( pPARAM, pDATA, pDATA->nValue );
 			break;
-		case 6 :	// Áõ°¡(ÁÖ¾îÁø ¸¸Å­)
+		case 6 :	// ì¦ê°€(ì£¼ì–´ì§„ ë§Œí¼)
 			::Set_QuestVAR( pPARAM, pDATA, iValue + pDATA->nValue );
 			break;
-		case 7 :	// °¨¼Ò
+		case 7 :	// ê°ì†Œ
 			::Set_QuestVAR( pPARAM, pDATA, iValue - pDATA->nValue );
 			break;
-		case 8 :	// ½ºÀ§Ä¡ Off
+		case 8 :	// ìŠ¤ìœ„ì¹˜ Off
 			::Set_QuestVAR( pPARAM, pDATA, 0 );
 			break;
-		case 9 :	// ½ºÀ§Ä¡ On
+		case 9 :	// ìŠ¤ìœ„ì¹˜ On
 			::Set_QuestVAR( pPARAM, pDATA, 1 );
 			break;
 	}
@@ -354,13 +354,13 @@ static bool Set_QuestVAR (tQST_PARAM *pPARAM, STR_QUEST_DATA *pDATA)
 //-------------------------------------------------------------------------------------------------
 bool F_QSTCOND000 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM )
 {
-// * ÇöÀç Äù½ºÆ®¸¦ ¼öÇàÁßÀÎ°¡
+// * í˜„ì¬ í€˜ìŠ¤íŠ¸ë¥¼ ìˆ˜í–‰ì¤‘ì¸ê°€
 	BYTE btQuestSLOT = pPARAM->m_pOWNER->Quest_GetRegistered( pCOND->m_Cond000.iQuestSN );
 	if ( btQuestSLOT >= QUEST_PER_PLAYER )
 	{
 #ifndef	__SERVER
 		//--------------------------------------------------------------------------------
-		LOGERR( "[ %s ] _QSTCOND000[ ÇöÀç Äù½ºÆ®¸¦ ¼öÇàÁßÀÎ°¡ ] ERROR[ btQuestSLOT >= QUEST_PER_PLAYER ]", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
+		LOGERR( "[ %s ] _QSTCOND000[ í˜„ì¬ í€˜ìŠ¤íŠ¸ë¥¼ ìˆ˜í–‰ì¤‘ì¸ê°€ ] ERROR[ btQuestSLOT >= QUEST_PER_PLAYER ]", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
 		//--------------------------------------------------------------------------------
 #endif
 		return false;
@@ -372,11 +372,11 @@ bool F_QSTCOND000 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM )
 	if ( NULL == pPARAM->m_pQUEST ) 
 	{
 #ifndef	__SERVER
-		char *szMsg = CStr::Printf ("	[QST] %s¿¡¼­ µ¥ÀÌÅ¸¿À·ù[ Á¶°ÇÅ¸ÀÔ:%d ] !!! :: ¼±ÅÃµÈ Äù½ºÆ® ¾øÀ½", 
+		char *szMsg = CStr::Printf ("	[QST] %sì—ì„œ ë°ì´íƒ€ì˜¤ë¥˜[ ì¡°ê±´íƒ€ì…:%d ] !!! :: ì„ íƒëœ í€˜ìŠ¤íŠ¸ ì—†ìŒ", 
 					pPARAM->m_pCurrentTRIGGER->m_Name.Get(), pCOND->iType );
 
 		//--------------------------------------------------------------------------------
-		DUMPERR( szMsg )( "_QSTCOND000[ ÇöÀç Äù½ºÆ®¸¦ ¼öÇàÁßÀÎ°¡ ] ERROR[ µ¥ÀÌÅÍ ¿À·ù : ´ıÇÁ ÂüÁ¶ ]" );
+		DUMPERR( szMsg )( "_QSTCOND000[ í˜„ì¬ í€˜ìŠ¤íŠ¸ë¥¼ ìˆ˜í–‰ì¤‘ì¸ê°€ ] ERROR[ ë°ì´í„° ì˜¤ë¥˜ : ë¤í”„ ì°¸ì¡° ]" );
 		//--------------------------------------------------------------------------------
 
 #endif
@@ -387,7 +387,7 @@ bool F_QSTCOND000 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM )
 } 
 bool F_QSTCOND001 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )		
 {	
-// * Äù½ºÆ® µ¥ÀÌÅÍ Ã¼Å©
+// * í€˜ìŠ¤íŠ¸ ë°ì´í„° ì²´í¬
 	for (int iL=0; iL<pCOND->m_Cond001.iDataCnt; iL++) 
 	{
 		if ( !::Check_QuestVAR(pPARAM, &pCOND->m_Cond001.CheckData[ iL ] ) ) 
@@ -396,7 +396,7 @@ bool F_QSTCOND001 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )
 
 #ifndef	__SERVER
 			//--------------------------------------------------------------------------------
-			LOGWAR( "[ %s ] F_QSTCOND001[ Äù½ºÆ® µ¥ÀÌÅÍ Ã¼Å© ] FAILED ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
+			LOGWAR( "[ %s ] F_QSTCOND001[ í€˜ìŠ¤íŠ¸ ë°ì´í„° ì²´í¬ ] FAILED ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
 			//--------------------------------------------------------------------------------
 #endif
 
@@ -408,7 +408,7 @@ bool F_QSTCOND001 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )
 } 
 bool F_QSTCOND002 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )
 {	
-// * Äù½ºÆ® ÁøÇà º¯¼ö Ã¼Å©
+// * í€˜ìŠ¤íŠ¸ ì§„í–‰ ë³€ìˆ˜ ì²´í¬
 	for (int iL=0; iL<pCOND->m_Cond002.iDataCnt; iL++) 
 	{
 		if ( !::Check_QuestVAR(pPARAM, &pCOND->m_Cond002.CheckData[ iL ] ) ) 
@@ -417,7 +417,7 @@ bool F_QSTCOND002 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )
 
 #ifndef	__SERVER
 			//--------------------------------------------------------------------------------
-			LOGWAR( "[ %s ] F_QSTCOND002[ Äù½ºÆ® ÁøÇà º¯¼ö Ã¼Å© ] FAILED ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
+			LOGWAR( "[ %s ] F_QSTCOND002[ í€˜ìŠ¤íŠ¸ ì§„í–‰ ë³€ìˆ˜ ì²´í¬ ] FAILED ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
 			//--------------------------------------------------------------------------------
 #endif
 
@@ -429,7 +429,7 @@ bool F_QSTCOND002 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )
 } 
 bool F_QSTCOND003 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )
 {	
-// * ´É·ÂÄ¡ Ã¼Å©
+// * ëŠ¥ë ¥ì¹˜ ì²´í¬
 	for (int iL=0; iL<pCOND->m_Cond003.iDataCnt; iL++) 
 	{
 		if ( !::Check_UserVAR( pPARAM, &pCOND->m_Cond003.CheckData[ iL ] ) ) 
@@ -438,7 +438,7 @@ bool F_QSTCOND003 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )
 	
 #ifndef	__SERVER
 			//--------------------------------------------------------------------------------
-			LOGWAR( "[ %s ] F_QSTCOND003[ ´É·ÂÄ¡ Ã¼Å© ] FAILED ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
+			LOGWAR( "[ %s ] F_QSTCOND003[ ëŠ¥ë ¥ì¹˜ ì²´í¬ ] FAILED ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
 			//--------------------------------------------------------------------------------
 #endif
 			return false;
@@ -449,7 +449,7 @@ bool F_QSTCOND003 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )
 } 
 bool F_QSTCOND004 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )
 {
-// * ¼ÒÁö/ÀåÂø ¾ÆÀÌÅÛ Ã¼Å©
+// * ì†Œì§€/ì¥ì°© ì•„ì´í…œ ì²´í¬
 	for (int iL=0; iL<pCOND->m_Cond004.iDataCnt; iL++) 
 	{
 		if ( !::Check_QuestITEM( pPARAM, &pCOND->m_Cond004.CheckData[ iL ] ) ) 
@@ -458,7 +458,7 @@ bool F_QSTCOND004 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )
 
 #ifndef	__SERVER
 			//--------------------------------------------------------------------------------
-			LOGWAR( "[ %s ] F_QSTCOND004[ ¼ÒÁö/ÀåÂø ¾ÆÀÌÅÛ Ã¼Å© ] FAILED ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
+			LOGWAR( "[ %s ] F_QSTCOND004[ ì†Œì§€/ì¥ì°© ì•„ì´í…œ ì²´í¬ ] FAILED ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
 			//--------------------------------------------------------------------------------
 #endif
 
@@ -470,14 +470,14 @@ bool F_QSTCOND004 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )
 } 
 bool F_QSTCOND005 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )
 {	
-// * ÆÄÆ¼ Ã¼Å©
+// * íŒŒí‹° ì²´í¬
 	if ( pCOND->m_Cond005.btIsLeader ) 
 	{
 		if ( !pPARAM->m_pOWNER->Quest_IsPartyLEADER () )
 		{
 #ifndef	__SERVER
 			//--------------------------------------------------------------------------------
-			LOGWAR( "[ %s ] F_QSTCOND005[ ÆÄÆ¼ Ã¼Å© ] FAILED ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
+			LOGWAR( "[ %s ] F_QSTCOND005[ íŒŒí‹° ì²´í¬ ] FAILED ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
 			//--------------------------------------------------------------------------------
 #endif
 			return false;
@@ -490,7 +490,7 @@ bool F_QSTCOND005 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )
 #ifndef	__SERVER
 		char *szMsg = CStr::Printf ("pPARAM->m_pOWNER->Quest_GetPartyLEVEL() >= pCOND->m_Cond005.iLevel" );
 		//--------------------------------------------------------------------------------
-		DUMPWAR( szMsg ) ( "[ %s ] F_QSTCOND005[ ÆÄÆ¼ Ã¼Å© ] FAILED[ ´ıÇÁ ÂüÁ¶ ] ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
+		DUMPWAR( szMsg ) ( "[ %s ] F_QSTCOND005[ íŒŒí‹° ì²´í¬ ] FAILED[ ë¤í”„ ì°¸ì¡° ] ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
 		//--------------------------------------------------------------------------------
 #endif
 
@@ -500,17 +500,17 @@ bool F_QSTCOND006 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )
 {	
 	if ( !pPARAM->m_pOWNER ) {
 #ifndef	__SERVER
-		_ASSERT( 0 );	// µ¥ÀÌÅ¸ Àß¸ø ¸¸µç°Å...
+		_ASSERT( 0 );	// ë°ì´íƒ€ ì˜ëª» ë§Œë“ ê±°...
 #endif
 		return false;
 	}
 
-// * À§Ä¡ Ã¼Å©
+// * ìœ„ì¹˜ ì²´í¬
 	if ( pPARAM->m_pOWNER->Quest_GetZoneNO() != pCOND->m_Cond006.iZoneSN )
 	{
 #ifndef	__SERVER
 		//--------------------------------------------------------------------------------
-		LOGWAR( "[ %s ] F_QSTCOND006[ À§Ä¡ Ã¼Å© ] FAILED ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
+		LOGWAR( "[ %s ] F_QSTCOND006[ ìœ„ì¹˜ ì²´í¬ ] FAILED ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
 		//--------------------------------------------------------------------------------
 #endif
 		return false;
@@ -522,7 +522,7 @@ bool F_QSTCOND006 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )
 #ifndef	__SERVER
 		char *szMsg = CStr::Printf ( "pPARAM->m_pOWNER->Quest_DistanceFrom( pCOND->m_Cond006.iX, pCOND->m_Cond006.iY, pCOND->m_Cond006.iZ ) <= pCOND->m_Cond006.iRadius" );
 		//--------------------------------------------------------------------------------
-		DUMPWAR( szMsg ) ( "[ %s ] F_QSTCOND006[ À§Ä¡ Ã¼Å© ] FAILED[ ´ıÇÁ ÂüÁ¶ ] ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
+		DUMPWAR( szMsg ) ( "[ %s ] F_QSTCOND006[ ìœ„ì¹˜ ì²´í¬ ] FAILED[ ë¤í”„ ì°¸ì¡° ] ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
 		//--------------------------------------------------------------------------------
 #endif
 
@@ -532,14 +532,14 @@ bool F_QSTCOND006 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )
 bool F_QSTCOND007 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )
 {	
 /*
- * ¿ùµå ½Ã°¢ Ã¼Å©
+ * ì›”ë“œ ì‹œê° ì²´í¬
 struct STR_COND_007
 {
 	unsigned int	uiSize;
 	int				iType;
 
 	unsigned long	ulTime;			/// 
-	unsigned long	ulEndTime;		/// ¸ÅÀÏ 0½Ã¸¦ ±âÁØÀ¸·Î ¿ùµå½Ã°¢ÀÌ ulTimeÀÌ»ó ulEndTimeÀÌÇÏÀÎ°¡ ?
+	unsigned long	ulEndTime;		/// ë§¤ì¼ 0ì‹œë¥¼ ê¸°ì¤€ìœ¼ë¡œ ì›”ë“œì‹œê°ì´ ulTimeì´ìƒ ulEndTimeì´í•˜ì¸ê°€ ?
 };
 */
 	WORD wWorldTIME = (WORD) ::Get_WorldTIME ();
@@ -550,7 +550,7 @@ struct STR_COND_007
 
 #ifndef	__SERVER
 	//--------------------------------------------------------------------------------
-	LOGWAR( "[ %s ] F_QSTCOND007[ ¿ùµå ½Ã°¢ Ã¼Å© ] FAILED ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
+	LOGWAR( "[ %s ] F_QSTCOND007[ ì›”ë“œ ì‹œê° ì²´í¬ ] FAILED ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
 	//--------------------------------------------------------------------------------
 #endif
 
@@ -560,21 +560,21 @@ struct STR_COND_007
 bool F_QSTCOND008 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )
 {	
 /*
- * µî·ÏÄù½ºÆ® ¼öÇà ÀÜ¿©½Ã°£ Ã¼Å©
+ * ë“±ë¡í€˜ìŠ¤íŠ¸ ìˆ˜í–‰ ì”ì—¬ì‹œê°„ ì²´í¬
 struct STR_COND_008
 {
 	unsigned int	uiSize;
 	int				iType;
 
-	unsigned long	ulTime;			/// Ã¼Å©ÇÒ °ª (ulTime Op Äù½ºÆ®µî·Ï½Ã°£)
-	BYTE			btOp;			/// ulTime¿¡ ´ëÇÑ ºñ±³¹æ¹ı. 0 = °°´Ù, 1 = Å©´Ù, 2 = Å©°Å³ª °°´Ù. 3=ÀÛ´Ù, 4=ÀÛ°Å³ª °°´Ù.
+	unsigned long	ulTime;			/// ì²´í¬í•  ê°’ (ulTime Op í€˜ìŠ¤íŠ¸ë“±ë¡ì‹œê°„)
+	BYTE			btOp;			/// ulTimeì— ëŒ€í•œ ë¹„êµë°©ë²•. 0 = ê°™ë‹¤, 1 = í¬ë‹¤, 2 = í¬ê±°ë‚˜ ê°™ë‹¤. 3=ì‘ë‹¤, 4=ì‘ê±°ë‚˜ ê°™ë‹¤.
 };
 */
-	if ( NULL == pPARAM->m_pQUEST )	// Àß¸øµÈ Äù½ºÆ® µ¥ÀÌÅ¸·Î ÀÎÇØ¼­...
+	if ( NULL == pPARAM->m_pQUEST )	// ì˜ëª»ëœ í€˜ìŠ¤íŠ¸ ë°ì´íƒ€ë¡œ ì¸í•´ì„œ...
 	{
 #ifndef	__SERVER
 		//--------------------------------------------------------------------------------
-		LOGERR( "[ %s ] F_QSTCOND008[ µî·ÏÄù½ºÆ® ¼öÇà ÀÜ¿©½Ã°£ Ã¼Å© ] ERROR[ Àß¸øµÈ µ¥ÀÌÅÍ ] ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
+		LOGERR( "[ %s ] F_QSTCOND008[ ë“±ë¡í€˜ìŠ¤íŠ¸ ìˆ˜í–‰ ì”ì—¬ì‹œê°„ ì²´í¬ ] ERROR[ ì˜ëª»ëœ ë°ì´í„° ] ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
 		//--------------------------------------------------------------------------------
 #endif
 		return false;
@@ -586,15 +586,15 @@ struct STR_COND_008
 bool F_QSTCOND009 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )
 {
 /*
-/// ½ºÅ³À» º¸À¯ÇÏ°í ÀÖ´ÂÁö Ã¼Å©
+/// ìŠ¤í‚¬ì„ ë³´ìœ í•˜ê³  ìˆëŠ”ì§€ ì²´í¬
 struct STR_COND_009
 {
 	unsigned int	uiSize;
 	int				iType;
 
 	int				iSkillSN1;
-	int				iSkillSN2;	/// iSkillSN1 ~ iSkillSN2 ¹ø ½ºÅ³À» °¡Áö°í ÀÖ´Â°¡/¾ø´Â°¡ ?
-	BYTE			btOp;		/// 0 = ¾ø´ÂÁö Ã¼Å©, 1 = ÀÖ´ÂÁö Ã¼Å©
+	int				iSkillSN2;	/// iSkillSN1 ~ iSkillSN2 ë²ˆ ìŠ¤í‚¬ì„ ê°€ì§€ê³  ìˆëŠ”ê°€/ì—†ëŠ”ê°€ ?
+	BYTE			btOp;		/// 0 = ì—†ëŠ”ì§€ ì²´í¬, 1 = ìˆëŠ”ì§€ ì²´í¬
 } ;
 */
 	short nI, nT, nTab1, nTab2;
@@ -604,7 +604,7 @@ struct STR_COND_009
 
 	if ( 0 == pCOND->m_Cond009.btOp ) 
 	{
-		// ¾ø´ÂÁö Ã¼Å©
+		// ì—†ëŠ”ì§€ ì²´í¬
 		for (nT=nTab1; nT<=nTab2; nT++) 
 		{
 			for (nI=0; nI<MAX_LEARNED_SKILL_PER_PAGE; nI++) 
@@ -614,7 +614,7 @@ struct STR_COND_009
 				{
 #ifndef	__SERVER
 					//--------------------------------------------------------------------------------
-					LOGWAR( "[ %s ] F_QSTCOND009[ ½ºÅ³À» º¸À¯ÇÏ°í ÀÖ´ÂÁö Ã¼Å© ] FAILED[ ½ºÅ³ ¾øÀ½ ] ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
+					LOGWAR( "[ %s ] F_QSTCOND009[ ìŠ¤í‚¬ì„ ë³´ìœ í•˜ê³  ìˆëŠ”ì§€ ì²´í¬ ] FAILED[ ìŠ¤í‚¬ ì—†ìŒ ] ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
 					//--------------------------------------------------------------------------------
 #endif
 					return false;
@@ -624,7 +624,7 @@ struct STR_COND_009
 		return true;
 	}
 
-	// ÀÖ´ÂÁö Ã¼Å©...
+	// ìˆëŠ”ì§€ ì²´í¬...
 	for (nT=nTab1; nT<=nTab2; nT++) 
 	{
 		for (nI=0; nI<MAX_LEARNED_SKILL_PER_PAGE; nI++) 
@@ -639,7 +639,7 @@ struct STR_COND_009
 
 #ifndef	__SERVER
 	//--------------------------------------------------------------------------------
-	LOGWAR( "[ %s ] F_QSTCOND009[ ½ºÅ³À» º¸À¯ÇÏ°í ÀÖ´ÂÁö Ã¼Å© ] FAILED[ ½ºÅ³ ¾øÀ½ ] ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
+	LOGWAR( "[ %s ] F_QSTCOND009[ ìŠ¤í‚¬ì„ ë³´ìœ í•˜ê³  ìˆëŠ”ì§€ ì²´í¬ ] FAILED[ ìŠ¤í‚¬ ì—†ìŒ ] ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
 	//--------------------------------------------------------------------------------
 #endif
 
@@ -648,7 +648,7 @@ struct STR_COND_009
 bool F_QSTCOND010 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )
 {
 #ifndef	__SERVER
-	// ·»´ı È®·üÀº Å¬¶óÀÎ¼­¸¸ Ã¼Å©...
+	// ë Œë¤ í™•ë¥ ì€ í´ë¼ì¸ì„œë§Œ ì²´í¬...
 	int iRand = rand() % 101;
 
 	if ( iRand < pCOND->m_Cond010.btLowPcnt ||
@@ -664,7 +664,7 @@ bool F_QSTCOND010 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )
 bool F_QSTCOND011 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )	
 {	
 /*
-/// NPC º¯¼ö °ª Ã¼Å©
+/// NPC ë³€ìˆ˜ ê°’ ì²´í¬
 typedef struct	tagValue
 {
 	unsigned int	uiSize;
@@ -672,10 +672,10 @@ typedef struct	tagValue
 
 	BYTE			btWho;	// 0:NPC, 1:EventOBJ
 
-	short			nVarNo;	// º¯¼ö ¹øÈ£ : 0 ~ , Á¸ÀÇ °æÁ¦µ¥ÀÌÅÍ º¯¼ö
-	int				iValue;	// ºñ±³ÇÒ µ¥ÀÌÅÍ°ª (iTypeÀÇ ´É·ÂÄ¡ Op iValue)
-	BYTE			btOp;	// iValue°ª¿¡ ´ëÇÑ ºñ±³¹æ¹ı. 0 = °°´Ù, 1 = Å©´Ù, 2 = Å©°Å³ª °°´Ù. 3=ÀÛ´Ù, 4=ÀÛ°Å³ª °°´Ù.
-							// (¾×¼ÇÂÊ) 5 = °ª¹Ù²Ş, 6 = Áõ°¡, 7 = °¨¼Ò
+	short			nVarNo;	// ë³€ìˆ˜ ë²ˆí˜¸ : 0 ~ , ì¡´ì˜ ê²½ì œë°ì´í„° ë³€ìˆ˜
+	int				iValue;	// ë¹„êµí•  ë°ì´í„°ê°’ (iTypeì˜ ëŠ¥ë ¥ì¹˜ Op iValue)
+	BYTE			btOp;	// iValueê°’ì— ëŒ€í•œ ë¹„êµë°©ë²•. 0 = ê°™ë‹¤, 1 = í¬ë‹¤, 2 = í¬ê±°ë‚˜ ê°™ë‹¤. 3=ì‘ë‹¤, 4=ì‘ê±°ë‚˜ ê°™ë‹¤.
+							// (ì•¡ì…˜ìª½) 5 = ê°’ë°”ê¿ˆ, 6 = ì¦ê°€, 7 = ê°ì†Œ
 } STR_COND_011, STR_REWD_011;
 */
 #ifdef	__SERVER
@@ -706,7 +706,7 @@ typedef struct	tagValue
 bool F_QSTCOND012 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )	
 {
 /*
-/// ÀÌº¥Æ® °´Ã¼ ¼±ÅÃ
+/// ì´ë²¤íŠ¸ ê°ì²´ ì„ íƒ
 struct STR_COND_012
 {
 	unsigned int	uiSize;
@@ -730,13 +730,13 @@ struct STR_COND_012
 bool F_QSTCOND013 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )	
 {
 /*
-/// NPC ¼±ÅÃ
+/// NPC ì„ íƒ
 struct STR_COND_013
 {
 	unsigned int	uiSize;
 	int				iType;
 
-	int				iNpcNo; /// ¼±ÅÃÇÒ NPC ¹øÈ£
+	int				iNpcNo; /// ì„ íƒí•  NPC ë²ˆí˜¸
 };
 */
 #ifndef	__SERVER
@@ -750,14 +750,14 @@ struct STR_COND_013
 bool F_QSTCOND014 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )	
 {
 /*
-/// Switch Ã¼Å©
+/// Switch ì²´í¬
 struct STR_COND_014
 {
 	unsigned int	uiSize;
 	int				iType;
 
 	short			nSN; // 0 ~ 255
-	BYTE			btOp; // 0 = OffÀÎÁö Ã¼Å©, 1 = OnÀÎÁö Ã¼Å©
+	BYTE			btOp; // 0 = Offì¸ì§€ ì²´í¬, 1 = Onì¸ì§€ ì²´í¬
 };
 */
 	if ( !pPARAM->m_pOWNER ) {
@@ -771,15 +771,15 @@ struct STR_COND_014
 bool F_QSTCOND015 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )
 {
 /*
-/// ÆÄÆ¼ÀÎ¿ø Ã¼Å©. 
+/// íŒŒí‹°ì¸ì› ì²´í¬. 
 struct STR_COND_015
 {
 	unsigned int	uiSize;
 	int				iType;
 
 	short			nNumber1;
-	short			nNumber2; // nNumber1 <= ÆÄÆ¼¿ø¼ö <= nNumber2 ÀÌ¸é true
-							  // ºñÆÄÆ¼Ã¼Å©´Â 0 <= ÆÄÆ¼¿ù¼ö <= 0 ÀÌ true ÀÎ°ÍÀ¸·Î ÆÇ´Ü
+	short			nNumber2; // nNumber1 <= íŒŒí‹°ì›ìˆ˜ <= nNumber2 ì´ë©´ true
+							  // ë¹„íŒŒí‹°ì²´í¬ëŠ” 0 <= íŒŒí‹°ì›”ìˆ˜ <= 0 ì´ true ì¸ê²ƒìœ¼ë¡œ íŒë‹¨
 };
 */
 	if ( !pPARAM->m_pOWNER )
@@ -791,16 +791,16 @@ struct STR_COND_015
 bool F_QSTCOND016 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )
 {
 /*
-/// Á¸½Ã°¢ Ã¼Å©
+/// ì¡´ì‹œê° ì²´í¬
 struct STR_COND_016
 {
 	unsigned int	uiSize;
 	int				iType;
 
-	BYTE			btWho;	/// 0=ÇöÀç ¼±ÅÃµÈ NPC, 1=Á¶°Ç¿¡¼­ ÁöÁ¤µÈ Event, 2=»ç¿ëÀÚ
+	BYTE			btWho;	/// 0=í˜„ì¬ ì„ íƒëœ NPC, 1=ì¡°ê±´ì—ì„œ ì§€ì •ëœ Event, 2=ì‚¬ìš©ì
 
 	unsigned long	ulTime;		//
-	unsigned long	ulEndTime;	// ulTime <= ÇöÀç Á¸½Ã°¢ <= ulEndTime ÀÌ¸é true
+	unsigned long	ulEndTime;	// ulTime <= í˜„ì¬ ì¡´ì‹œê° <= ulEndTime ì´ë©´ true
 };
 */
 	unsigned int uiZoneTIME;
@@ -828,7 +828,7 @@ struct STR_COND_016
 bool F_QSTCOND017 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )
 {
 /*
-/// NPC º¯¼ö ºñ±³. (NPC1ÀÇ Aº¯¼ö OP NPC2ÀÇ Cº¯¼ö)
+/// NPC ë³€ìˆ˜ ë¹„êµ. (NPC1ì˜ Aë³€ìˆ˜ OP NPC2ì˜ Cë³€ìˆ˜)
 struct STR_COND_017
 {
 	unsigned int	uiSize;
@@ -836,7 +836,7 @@ struct STR_COND_017
 
 	STR_NPCVAR		NpcVar1;			
 	STR_NPCVAR		NpcVar2;			
-	BYTE			btOp; // µ¿ÀÏ .  <NpcVar1.nVarNoÀÇ °ª> btOp <NpcVar2.nVarNoÀÇ °ª>
+	BYTE			btOp; // ë™ì¼ .  <NpcVar1.nVarNoì˜ ê°’> btOp <NpcVar2.nVarNoì˜ ê°’>
 */
 #ifdef	__SERVER
 	CObjVAR *pNpc = g_pZoneLIST->Get_NpcVAR( pCOND->m_Cond017.NpcVar1.iNpcNo );
@@ -859,19 +859,19 @@ struct STR_COND_017
 bool F_QSTCOND018 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )
 {
 /*
-/// ³¯Â¥ + ½Ã°¢ Ã¼Å©
+/// ë‚ ì§œ + ì‹œê° ì²´í¬
 struct STR_COND_018
 {
 	unsigned int	uiSize;
 	int				iType;
 
-	BYTE			btDate;		// ³¯Â¥. (1 ~ 31)
+	BYTE			btDate;		// ë‚ ì§œ. (1 ~ 31)
 
-	BYTE			btHour1;	// ½Ã (1 ~ 24)
-	BYTE			btMin1;		// ºĞ (1 ~ 60)
-	BYTE			btHour2;	// ½Ã
-	BYTE			btMin2;		// ºĞ
-	//  ÇöÀçÀÇ ³¯Â¥°¡ btDate ÀÌ°í, btHour1½Ã btMin1ºĞ  <= ÇöÀç ½Ã°¢ <= btHour1½Ã btMin1ºĞ ÀÌ¸é true
+	BYTE			btHour1;	// ì‹œ (1 ~ 24)
+	BYTE			btMin1;		// ë¶„ (1 ~ 60)
+	BYTE			btHour2;	// ì‹œ
+	BYTE			btMin2;		// ë¶„
+	//  í˜„ì¬ì˜ ë‚ ì§œê°€ btDate ì´ê³ , btHour1ì‹œ btMin1ë¶„  <= í˜„ì¬ ì‹œê° <= btHour1ì‹œ btMin1ë¶„ ì´ë©´ true
 };
 */
 #ifdef	__SERVER
@@ -897,19 +897,19 @@ struct STR_COND_018
 bool F_QSTCOND019 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )
 {
 /*
-/// ¿äÀÏ + ½Ã°¢ Ã¼Å©
+/// ìš”ì¼ + ì‹œê° ì²´í¬
 struct STR_COND_019
 {
 	unsigned int	uiSize;
 	int				iType;
 
-	BYTE			btWeekDay;	// ¿äÀÏ (0 ~ 6)
+	BYTE			btWeekDay;	// ìš”ì¼ (0 ~ 6)
 
-	BYTE			btHour1;	// ½Ã
-	BYTE			btMin1;		// ºĞ
+	BYTE			btHour1;	// ì‹œ
+	BYTE			btMin1;		// ë¶„
 	BYTE			btHour2;	
 	BYTE			btMin2;		
-	//  ÇöÀçÀÇ ¿äÀÏÀÌ btWeekDay ÀÌ°í, btHour1½Ã btMin1ºĞ  <= ÇöÀç ½Ã°¢ <= btHour1½Ã btMin1ºĞ ÀÌ¸é true
+	//  í˜„ì¬ì˜ ìš”ì¼ì´ btWeekDay ì´ê³ , btHour1ì‹œ btMin1ë¶„  <= í˜„ì¬ ì‹œê° <= btHour1ì‹œ btMin1ë¶„ ì´ë©´ true
 };
 */
 #ifdef	__SERVER
@@ -956,19 +956,19 @@ bool F_QSTCOND022 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )
 
 //-------------------------------------------------------------------------------------
 //
-// Å¬·£ °ü·Ã
+// í´ëœ ê´€ë ¨
 //
 //-------------------------------------------------------------------------------------
 
 bool F_QSTCOND023 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )
 {
-	// Å¬·£¿¡ °¡ÀÔ Ã¼Å© - Ãß°¡ µ¥ÀÌÅÍ ¾øÀ½
+	// í´ëœì— ê°€ì… ì²´í¬ - ì¶”ê°€ ë°ì´í„° ì—†ìŒ
 	//struct STR_COND_023
 	//{
 	//	unsigned int	uiSize;
 	//	int				iType;
 
-	//	BYTE			btReg;	// 0:ºñ°¡ÀÔÀÚÀÌ¸é true, 1:°¡ÀÔÀÚÀÌ¸é true
+	//	BYTE			btReg;	// 0:ë¹„ê°€ì…ìì´ë©´ true, 1:ê°€ì…ìì´ë©´ true
 	//};
 
 	if ( !pPARAM->m_pOWNER )
@@ -979,11 +979,11 @@ bool F_QSTCOND023 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )
 
 	switch( pCOND->m_Cond023.btReg )
 	{
-	case 0:///ºñ°¡ÀÔÀÚÀÎ°¡?
+	case 0:///ë¹„ê°€ì…ìì¸ê°€?
 		if( pUser->GetClanID() )
 			return false;
 		return true;
-	case 1:///°¡ÀÔÀÚÀÎ°¡?
+	case 1:///ê°€ì…ìì¸ê°€?
 		if( pUser->GetClanID() )
 			return true;
 		return false;
@@ -998,14 +998,14 @@ bool F_QSTCOND023 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )
 
 bool F_QSTCOND024 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )
 {
-	// Å¬·£ Á÷À§ Ã¼Å©
+	// í´ëœ ì§ìœ„ ì²´í¬
 	//struct STR_COND_024
 	//{
 	//	unsigned int	uiSize;
 	//	int				iType;
 
-	//	short			nPOS;	// Á÷À§ ¹øÈ£
-	//	BYTE			btOP;	// 0 = °°´Ù, 1 = Å©´Ù, 2 = Å©°Å³ª °°´Ù. 3=ÀÛ´Ù, 4=ÀÛ°Å³ª °°´Ù.
+	//	short			nPOS;	// ì§ìœ„ ë²ˆí˜¸
+	//	BYTE			btOP;	// 0 = ê°™ë‹¤, 1 = í¬ë‹¤, 2 = í¬ê±°ë‚˜ ê°™ë‹¤. 3=ì‘ë‹¤, 4=ì‘ê±°ë‚˜ ê°™ë‹¤.
 	//};
 
 	if ( !pPARAM->m_pOWNER )
@@ -1020,14 +1020,14 @@ bool F_QSTCOND024 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )
 
 bool F_QSTCOND025 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )
 {
-	// Å¬·£ °³ÀÎ ±â¿©µµ Ã¼Å©
+	// í´ëœ ê°œì¸ ê¸°ì—¬ë„ ì²´í¬
 	//struct STR_COND_025
 	//{
 	//	unsigned int	uiSize;
 	//	int				iType;
 
-	//	short			nCONT;	// ±â¿©µµ
-	//	BYTE			btOP;	// 0 = °°´Ù, 1 = Å©´Ù, 2 = Å©°Å³ª °°´Ù. 3=ÀÛ´Ù, 4=ÀÛ°Å³ª °°´Ù.
+	//	short			nCONT;	// ê¸°ì—¬ë„
+	//	BYTE			btOP;	// 0 = ê°™ë‹¤, 1 = í¬ë‹¤, 2 = í¬ê±°ë‚˜ ê°™ë‹¤. 3=ì‘ë‹¤, 4=ì‘ê±°ë‚˜ ê°™ë‹¤.
 	//};
 
 	if ( !pPARAM->m_pOWNER )
@@ -1042,14 +1042,14 @@ bool F_QSTCOND025 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )
 
 bool F_QSTCOND026 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )
 {
-	// µî±Ş Ã¼Å©
+	// ë“±ê¸‰ ì²´í¬
 	//struct STR_COND_026
 	//{
 	//	unsigned int	uiSize;
 	//	int				iType;
 
-	//	short			nGRD;	// Å¬·£ µî±Ş
-	//	BYTE			btOP;	// 0 = °°´Ù, 1 = Å©´Ù, 2 = Å©°Å³ª °°´Ù. 3=ÀÛ´Ù, 4=ÀÛ°Å³ª °°´Ù.
+	//	short			nGRD;	// í´ëœ ë“±ê¸‰
+	//	BYTE			btOP;	// 0 = ê°™ë‹¤, 1 = í¬ë‹¤, 2 = í¬ê±°ë‚˜ ê°™ë‹¤. 3=ì‘ë‹¤, 4=ì‘ê±°ë‚˜ ê°™ë‹¤.
 	//};
 
 	if ( !pPARAM->m_pOWNER )
@@ -1063,14 +1063,14 @@ bool F_QSTCOND026 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )
 
 bool F_QSTCOND027 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )
 {
-	// Á¡¼ö Ã¼Å©
+	// ì ìˆ˜ ì²´í¬
 	//struct STR_COND_027
 	//{
 	//	unsigned int	uiSize;
 	//	int				iType;
 
-	//	short			nPOINT;	// Å¬·£ Á¡¼ö
-	//	BYTE			btOP;	// 0 = °°´Ù, 1 = Å©´Ù, 2 = Å©°Å³ª °°´Ù. 3=ÀÛ´Ù, 4=ÀÛ°Å³ª °°´Ù.
+	//	short			nPOINT;	// í´ëœ ì ìˆ˜
+	//	BYTE			btOP;	// 0 = ê°™ë‹¤, 1 = í¬ë‹¤, 2 = í¬ê±°ë‚˜ ê°™ë‹¤. 3=ì‘ë‹¤, 4=ì‘ê±°ë‚˜ ê°™ë‹¤.
 	//};
 
 	if ( !pPARAM->m_pOWNER )
@@ -1084,14 +1084,14 @@ bool F_QSTCOND027 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )
 
 bool F_QSTCOND028 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )
 {
-	// ¸Ó´Ï Ã¼Å©
+	// ë¨¸ë‹ˆ ì²´í¬
 	//struct STR_COND_028
 	//{
 	//	unsigned int	uiSize;
 	//	int				iType;
 
-	//	int				iMONEY;	// Å¬·£ ¸Ó´Ï
-	//	BYTE			btOP;	// 0 = °°´Ù, 1 = Å©´Ù, 2 = Å©°Å³ª °°´Ù. 3=ÀÛ´Ù, 4=ÀÛ°Å³ª °°´Ù.
+	//	int				iMONEY;	// í´ëœ ë¨¸ë‹ˆ
+	//	BYTE			btOP;	// 0 = ê°™ë‹¤, 1 = í¬ë‹¤, 2 = í¬ê±°ë‚˜ ê°™ë‹¤. 3=ì‘ë‹¤, 4=ì‘ê±°ë‚˜ ê°™ë‹¤.
 	//};
 
 	if ( !pPARAM->m_pOWNER )
@@ -1104,14 +1104,14 @@ bool F_QSTCOND028 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )
 
 bool F_QSTCOND029 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )
 {
-	// ÀÎ¿ø Ã¼Å©
+	// ì¸ì› ì²´í¬
 	//struct STR_COND_029
 	//{
 	//	unsigned int	uiSize;
 	//	int				iType;
 
-	//	short			nMemberCNT;	// Å¬·£ ÀÎ¿ø
-	//	BYTE			btOP;	// 0 = °°´Ù, 1 = Å©´Ù, 2 = Å©°Å³ª °°´Ù. 3=ÀÛ´Ù, 4=ÀÛ°Å³ª °°´Ù.
+	//	short			nMemberCNT;	// í´ëœ ì¸ì›
+	//	BYTE			btOP;	// 0 = ê°™ë‹¤, 1 = í¬ë‹¤, 2 = í¬ê±°ë‚˜ ê°™ë‹¤. 3=ì‘ë‹¤, 4=ì‘ê±°ë‚˜ ê°™ë‹¤.
 	//};
 
 	if ( !pPARAM->m_pOWNER )
@@ -1126,15 +1126,15 @@ bool F_QSTCOND029 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )
 
 bool F_QSTCOND030 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )
 {
-	// ½ºÅ³ Ã¼Å©
+	// ìŠ¤í‚¬ ì²´í¬
 	//struct STR_COND_030
 	//{
 	//	unsigned int	uiSize;
 	//	int				iType;
 
 	//	short			nSkill1;
-	//	short			nSkill2; // nSkill1 ~ nSkill2 ÀÇ ½ºÅ³ÀÌ ÀÖ´ÂÁö/¾ø´ÂÁö Ã¼Å©
-	//	BYTE			btOP;	// 0: ¾ø´Â°¡ ?  1: ÀÖ´Â°¡ ?
+	//	short			nSkill2; // nSkill1 ~ nSkill2 ì˜ ìŠ¤í‚¬ì´ ìˆëŠ”ì§€/ì—†ëŠ”ì§€ ì²´í¬
+	//	BYTE			btOP;	// 0: ì—†ëŠ”ê°€ ?  1: ìˆëŠ”ê°€ ?
 	//};
 
 	if ( !pPARAM->m_pOWNER )
@@ -1157,7 +1157,7 @@ bool F_QSTCOND030 ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM  )
 		iSkill2 = Temp;
 	}
 
-	/// iSkill1 ºÎÅÍ iSkill2 »çÀÌÀÇ ½ºÅ³ÀÌ ÀÖ´Ù¸é..
+	/// iSkill1 ë¶€í„° iSkill2 ì‚¬ì´ì˜ ìŠ¤í‚¬ì´ ìˆë‹¤ë©´..
     for( int i = iSkill1 ; i <= iSkill2 ; i++ )
 	{
 		CSkill* pSkill = pSkillSlot->GetSkillBySkillIDX( i );
@@ -1201,24 +1201,24 @@ bool F_QUEST_REWD_NULL ( uniQstENTITY *pCOND, tQST_PARAM *pPARAM, bool bDoReward
 //-------------------------------------------------------------------------------------------------
 bool F_QSTREWD000 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 {
-	if ( !bDoReward )	// 05.05.21 icarus:: º¸»ó¸ñ·Ï ÀÛ¼º ºÒÇÊ¿ä...
+	if ( !bDoReward )	// 05.05.21 icarus:: ë³´ìƒëª©ë¡ ì‘ì„± ë¶ˆí•„ìš”...
 		return true;
 
-/// Äù½ºÆ® µî·Ï/»èÁ¦ ¿äÃ»
+/// í€˜ìŠ¤íŠ¸ ë“±ë¡/ì‚­ì œ ìš”ì²­
 	switch( pREWD->m_Rewd000.btOp ) 
 	{
-		case 0 :	// »èÁ¦.
+		case 0 :	// ì‚­ì œ.
 	
 			#ifdef	__SERVER
-				/// Äù½ºÆ®¿¡ÀÇÇØ ÀÚµ¿ »èÁ¦µÇ´Â °ÍÀÎµ¥... ³²°Ü ¸»¾î??
+				/// í€˜ìŠ¤íŠ¸ì—ì˜í•´ ìë™ ì‚­ì œë˜ëŠ” ê²ƒì¸ë°... ë‚¨ê²¨ ë§ì–´??
 			#endif
 
-			if ( NULL == pPARAM->m_pQUEST )	// Àß¸øµÈ Äù½ºÆ® µ¥ÀÌÅ¸·Î ÀÎÇØ¼­...
+			if ( NULL == pPARAM->m_pQUEST )	// ì˜ëª»ëœ í€˜ìŠ¤íŠ¸ ë°ì´íƒ€ë¡œ ì¸í•´ì„œ...
 			{
 
 #ifndef	__SERVER
 			//--------------------------------------------------------------------------------
-			LOGWAR( "[ %s ] F_QSTREWD000[ Äù½ºÆ® »èÁ¦ ¿äÃ» ] FAILED[ Àß¸øµÈ Äù½ºÆ® µ¥ÀÌÅ¸ ] ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
+			LOGWAR( "[ %s ] F_QSTREWD000[ í€˜ìŠ¤íŠ¸ ì‚­ì œ ìš”ì²­ ] FAILED[ ì˜ëª»ëœ í€˜ìŠ¤íŠ¸ ë°ì´íƒ€ ] ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
 			//--------------------------------------------------------------------------------
 #endif
 				return false;
@@ -1226,7 +1226,7 @@ bool F_QSTREWD000 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 
 /*#ifndef __SERVER			
 			g_itMGR.AppendChatMsg( CStr::Printf( 
-										"%s ¿Ï·áÇÏ¿´½À´Ï´Ù", 
+										"%s ì™„ë£Œí•˜ì˜€ìŠµë‹ˆë‹¤", 
 										CStringManager::GetSingleton().GetQuestName( pREWD->m_Rewd000.iQuestSN ) 
 										) , 
 									IT_MGR::CHAT_TYPE_QUEST
@@ -1235,17 +1235,17 @@ bool F_QSTREWD000 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 			pPARAM->m_pQUEST->Init ();	// pREWD->m_Rewd000.iQuestSN;
 			break;
 
-		case 1 :	// µî·Ï.
+		case 1 :	// ë“±ë¡.
 			{
 				short nSlotNO = pPARAM->m_pOWNER->Quest_Append( pREWD->m_Rewd000.iQuestSN );
 				#ifdef	__SERVER
 				if ( nSlotNO >= 0 ) 
 				{
-					// Äù½ºÆ® µî·Ï ·Î±×...
+					// í€˜ìŠ¤íŠ¸ ë“±ë¡ ë¡œê·¸...
 					// g_pSockLOG->When_RecvQUEST( pPARAM->m_pOWNER, pREWD->m_Rewd000.iQuestSN );
 
 					if ( NULL == pPARAM->m_pQUEST ) {
-						// ÇöÀç ¼±ÅÃµÈ Äù½ºÆ®°¡ ¾øÀ¸¸é ÇöÀç Äù½ºÆ®¸¦ ÀÌ°ÍÀ¸·Î °­Á¦ ¼³Á¤ ???
+						// í˜„ì¬ ì„ íƒëœ í€˜ìŠ¤íŠ¸ê°€ ì—†ìœ¼ë©´ í˜„ì¬ í€˜ìŠ¤íŠ¸ë¥¼ ì´ê²ƒìœ¼ë¡œ ê°•ì œ ì„¤ì • ???
 						pPARAM->m_btQuestSLOT = (BYTE)nSlotNO;
 						pPARAM->m_pQUEST = &pPARAM->m_pOWNER->m_Quests.m_QUEST[ nSlotNO ];
 					}
@@ -1259,13 +1259,13 @@ bool F_QSTREWD000 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 				break;
 			}
 
-		case 2 :	// º¯°æ(µ¥ÀÌÅÍ À¯Áö)
-			if ( NULL == pPARAM->m_pQUEST )	// Àß¸øµÈ Äù½ºÆ® µ¥ÀÌÅ¸·Î ÀÎÇØ¼­...
+		case 2 :	// ë³€ê²½(ë°ì´í„° ìœ ì§€)
+			if ( NULL == pPARAM->m_pQUEST )	// ì˜ëª»ëœ í€˜ìŠ¤íŠ¸ ë°ì´íƒ€ë¡œ ì¸í•´ì„œ...
 			{
 
 #ifndef	__SERVER
 			//--------------------------------------------------------------------------------
-			LOGWAR( "[ %s ] F_QSTREWD000[ Äù½ºÆ® º¯°æÀ¯Áö ¿äÃ» ] FAILED[ Àß¸øµÈ Äù½ºÆ® µ¥ÀÌÅ¸ ] ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
+			LOGWAR( "[ %s ] F_QSTREWD000[ í€˜ìŠ¤íŠ¸ ë³€ê²½ìœ ì§€ ìš”ì²­ ] FAILED[ ì˜ëª»ëœ í€˜ìŠ¤íŠ¸ ë°ì´íƒ€ ] ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
 			//--------------------------------------------------------------------------------
 #endif
 				return false;
@@ -1279,13 +1279,13 @@ bool F_QSTREWD000 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 
 			break;
 
-		case 3 :	// 3 = º¯°æ/ÃÖ±âÈ­
-			if ( NULL == pPARAM->m_pQUEST )	// Àß¸øµÈ Äù½ºÆ® µ¥ÀÌÅ¸·Î ÀÎÇØ¼­...
+		case 3 :	// 3 = ë³€ê²½/ìµœê¸°í™”
+			if ( NULL == pPARAM->m_pQUEST )	// ì˜ëª»ëœ í€˜ìŠ¤íŠ¸ ë°ì´íƒ€ë¡œ ì¸í•´ì„œ...
 			{
 
 #ifndef	__SERVER
 			//--------------------------------------------------------------------------------
-			LOGWAR( "[ %s ] F_QSTREWD000[ Äù½ºÆ® º¯°æ/ÃÖ±âÈ­ ¿äÃ» ] FAILED[ Àß¸øµÈ Äù½ºÆ® µ¥ÀÌÅ¸ ] ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
+			LOGWAR( "[ %s ] F_QSTREWD000[ í€˜ìŠ¤íŠ¸ ë³€ê²½/ìµœê¸°í™” ìš”ì²­ ] FAILED[ ì˜ëª»ëœ í€˜ìŠ¤íŠ¸ ë°ì´íƒ€ ] ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
 			//--------------------------------------------------------------------------------
 #endif
 				return false;
@@ -1300,7 +1300,7 @@ bool F_QSTREWD000 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 
 			break;
 
-		case 4 :	// 4 = ¼±ÅÃ.
+		case 4 :	// 4 = ì„ íƒ.
 		{
 			BYTE btQuestSLOT = pPARAM->m_pOWNER->Quest_GetRegistered( pREWD->m_Rewd000.iQuestSN );
 			if ( btQuestSLOT >= QUEST_PER_PLAYER )
@@ -1308,7 +1308,7 @@ bool F_QSTREWD000 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 
 #ifndef	__SERVER
 			//--------------------------------------------------------------------------------
-			LOGWAR( "[ %s ] F_QSTREWD000[ Äù½ºÆ® ¼±ÅÃ ] FAILED[ btQuestSLOT >= QUEST_PER_PLAYER ] ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
+			LOGWAR( "[ %s ] F_QSTREWD000[ í€˜ìŠ¤íŠ¸ ì„ íƒ ] FAILED[ btQuestSLOT >= QUEST_PER_PLAYER ] ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
 			//--------------------------------------------------------------------------------
 #endif
 				return false;
@@ -1326,12 +1326,12 @@ bool F_QSTREWD000 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 bool F_QSTREWD001 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 {	
 	if ( !bDoReward )	{
-		// 05.05.21 icarus:: º¸»ó¸ñ·Ï ÀÛ¼º ÇÊ¿ä...
-		#pragma message ( "TODO:: Äù½ºÆ® º¸»ó ¸ñ·Ï ÀÛ¼ºÇÒ°÷.." __FILE__ )
+		// 05.05.21 icarus:: ë³´ìƒëª©ë¡ ì‘ì„± í•„ìš”...
+		#pragma message ( "TODO:: í€˜ìŠ¤íŠ¸ ë³´ìƒ ëª©ë¡ ì‘ì„±í• ê³³.." __FILE__ )
 		return true;
 	}
 
-	/// Äù½ºÆ®Àü¿ë ¾ÆÀÌÅÛ ÁÖ±â/»¯±â (ÀÏ¹İ ¾ÆÀÌÅÛµµ ÀÌ°Å »ç¿ëÇØµµ µÊ)
+	/// í€˜ìŠ¤íŠ¸ì „ìš© ì•„ì´í…œ ì£¼ê¸°/ëºê¸° (ì¼ë°˜ ì•„ì´í…œë„ ì´ê±° ì‚¬ìš©í•´ë„ ë¨)
 	tagITEM sITEM;
 
 	sITEM.Init( pREWD->m_Rewd001.uiItemSN, pREWD->m_Rewd001.nDupCNT );
@@ -1339,7 +1339,7 @@ bool F_QSTREWD001 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 	{
 #ifndef	__SERVER
 			//--------------------------------------------------------------------------------
-			LOGWAR( "[ %s ] F_QSTREWD001[ Äù½ºÆ®Àü¿ë ¾ÆÀÌÅÛ ÁÖ±â/»¯±â ] FAILED[ 0 == sITEM.GetHEADER() ] ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
+			LOGWAR( "[ %s ] F_QSTREWD001[ í€˜ìŠ¤íŠ¸ì „ìš© ì•„ì´í…œ ì£¼ê¸°/ëºê¸° ] FAILED[ 0 == sITEM.GetHEADER() ] ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
 			//--------------------------------------------------------------------------------
 #endif
 		return false;
@@ -1350,12 +1350,12 @@ bool F_QSTREWD001 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 		case 0 :	
 		{
 			if ( sITEM.GetTYPE() == ITEM_TYPE_QUEST ) {
-				// »©¾Ñ±â - Äù½ºÆ® ÀÎº¥Åä¸®
+				// ë¹¼ì•—ê¸° - í€˜ìŠ¤íŠ¸ ì¸ë²¤í† ë¦¬
 				if ( NULL == pPARAM->m_pQUEST )
 				{
 #ifndef	__SERVER
 			//--------------------------------------------------------------------------------
-			LOGWAR( "[ %s ] F_QSTREWD001[ Äù½ºÆ®Àü¿ë ¾ÆÀÌÅÛ »©¾Ñ±â ] FAILED[ NULL == pPARAM->m_pQUEST ] ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
+			LOGWAR( "[ %s ] F_QSTREWD001[ í€˜ìŠ¤íŠ¸ì „ìš© ì•„ì´í…œ ë¹¼ì•—ê¸° ] FAILED[ NULL == pPARAM->m_pQUEST ] ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
 			//--------------------------------------------------------------------------------
 #endif
             		return false;
@@ -1364,11 +1364,11 @@ bool F_QSTREWD001 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 				return pPARAM->m_pQUEST->SubITEM( sITEM );
 			}
 
-			// ÀÏ¹İ ÀÎº¥Åä¸®¿¡¼­ ¾ÆÀÌÅÛ »èÁ¦, ÀåÂø ¾ÆÀÌÅÛÀº »¯Áö ¸øÇÔ...
+			// ì¼ë°˜ ì¸ë²¤í† ë¦¬ì—ì„œ ì•„ì´í…œ ì‚­ì œ, ì¥ì°© ì•„ì´í…œì€ ëºì§€ ëª»í•¨...
 			return pPARAM->m_pOWNER->Quest_SubITEM( sITEM );
 		}
-		case 1 :	// ÁÖ±â
-			// btPartyOpt;	/// 0 = ÆÄÆ¼¿ø Àû¿ë ¾ÈÇÔ, 1 = ÆÄÆ¼¿ø Àû¿ë
+		case 1 :	// ì£¼ê¸°
+			// btPartyOpt;	/// 0 = íŒŒí‹°ì› ì ìš© ì•ˆí•¨, 1 = íŒŒí‹°ì› ì ìš©
 			pPARAM->m_pOWNER->Reward_ITEM( sITEM, pREWD->m_Rewd001.btPartyOpt, pPARAM->m_btQuestSLOT );
 			return true;
 	}
@@ -1377,10 +1377,10 @@ bool F_QSTREWD001 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 } 
 bool F_QSTREWD002 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 {	
-	if ( !bDoReward )	// 05.05.21 icarus:: º¸»ó¸ñ·Ï ÀÛ¼º ºÒÇÊ¿ä...
+	if ( !bDoReward )	// 05.05.21 icarus:: ë³´ìƒëª©ë¡ ì‘ì„± ë¶ˆí•„ìš”...
 		return true;
 
-	/// Äù½ºÆ® º¯¼ö°ª/½ºÀ§Ä¡°ª º¯°æ
+	/// í€˜ìŠ¤íŠ¸ ë³€ìˆ˜ê°’/ìŠ¤ìœ„ì¹˜ê°’ ë³€ê²½
 	for (int iL=0; iL<pREWD->m_Rewd002.iDataCnt; iL++) 
 	{
 		if ( !::Set_QuestVAR( pPARAM, &pREWD->m_Rewd002.CheckData[ iL ] ) ) 
@@ -1388,7 +1388,7 @@ bool F_QSTREWD002 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 
 #ifndef	__SERVER
 			//--------------------------------------------------------------------------------
-			LOGWAR( "[ %s ] F_QSTREWD002[ Äù½ºÆ® º¯¼ö°ª/½ºÀ§Ä¡°ª º¯°æ ] FAILED[ Set_QuestVAR ½ÇÆĞ ]", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
+			LOGWAR( "[ %s ] F_QSTREWD002[ í€˜ìŠ¤íŠ¸ ë³€ìˆ˜ê°’/ìŠ¤ìœ„ì¹˜ê°’ ë³€ê²½ ] FAILED[ Set_QuestVAR ì‹¤íŒ¨ ]", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
 			//--------------------------------------------------------------------------------
 #endif
 
@@ -1402,29 +1402,29 @@ bool F_QSTREWD002 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 bool F_QSTREWD003 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 {	
 	if ( !bDoReward ) {
-		// 05.05.21 icarus:: º¸»ó¸ñ·Ï ÀÛ¼º ÇÊ¿ä...
-		#pragma message ( "TODO:: Äù½ºÆ® º¸»ó ¸ñ·Ï ÀÛ¼ºÇÒ°÷.." __FILE__ )
+		// 05.05.21 icarus:: ë³´ìƒëª©ë¡ ì‘ì„± í•„ìš”...
+		#pragma message ( "TODO:: í€˜ìŠ¤íŠ¸ ë³´ìƒ ëª©ë¡ ì‘ì„±í• ê³³.." __FILE__ )
 		return true;
 	}
 
-	/// Ä³¸¯ÅÍ ´É·ÂÄ¡ º¯°æ
+	/// ìºë¦­í„° ëŠ¥ë ¥ì¹˜ ë³€ê²½
 	for (int iL=0; iL<pREWD->m_Rewd003.iDataCnt; iL++) 
 	{
 		switch( pREWD->m_Rewd003.CheckData[ iL ].btOp ) 
 		{
-			case 5 :	// °ª¹Ù²Ş
+			case 5 :	// ê°’ë°”ê¿ˆ
 				pPARAM->m_pOWNER->Reward_ABILITY( 1, 
 						pREWD->m_Rewd003.CheckData[ iL ].iType, 
 						pREWD->m_Rewd003.CheckData[ iL ].iValue, 
 						pREWD->m_Rewd003.btPartyOpt );
 				break;
-			case 6 :	// Áõ°¡(ÁÖ¾îÁø ¸¸Å­)
+			case 6 :	// ì¦ê°€(ì£¼ì–´ì§„ ë§Œí¼)
 				pPARAM->m_pOWNER->Reward_ABILITY( 0, 
 						pREWD->m_Rewd003.CheckData[ iL ].iType, 
 						pREWD->m_Rewd003.CheckData[ iL ].iValue, 
 						pREWD->m_Rewd003.btPartyOpt );
 				break;
-			case 7 :	// °¨¼Ò
+			case 7 :	// ê°ì†Œ
 				pPARAM->m_pOWNER->Reward_ABILITY( 0, 
 						pREWD->m_Rewd003.CheckData[ iL ].iType, 
 					   -pREWD->m_Rewd003.CheckData[ iL ].iValue, 
@@ -1437,10 +1437,10 @@ bool F_QSTREWD003 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 
 bool F_QSTREWD004 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 {	
-	if ( !bDoReward )	// 05.05.21 icarus:: º¸»ó¸ñ·Ï ÀÛ¼º ºÒÇÊ¿ä...
+	if ( !bDoReward )	// 05.05.21 icarus:: ë³´ìƒëª©ë¡ ì‘ì„± ë¶ˆí•„ìš”...
 		return true;
 
-	/// Ä³¸¯ÅÍ ÁøÇàº¯¼ö°ª º¯°æ
+	/// ìºë¦­í„° ì§„í–‰ë³€ìˆ˜ê°’ ë³€ê²½
 	for (int iL=0; iL<pREWD->m_Rewd004.iDataCnt; iL++) 
 	{
 		if ( !::Set_QuestVAR( pPARAM, &pREWD->m_Rewd004.CheckData[ iL ] ) ) 
@@ -1448,7 +1448,7 @@ bool F_QSTREWD004 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 
 #ifndef	__SERVER
 			//--------------------------------------------------------------------------------
-			LOGWAR( "[ %s ] F_QSTREWD004[ Ä³¸¯ÅÍ ÁøÇàº¯¼ö°ª º¯°æ ] FAILED[ Set_QuestVAR ½ÇÆĞ ] ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
+			LOGWAR( "[ %s ] F_QSTREWD004[ ìºë¦­í„° ì§„í–‰ë³€ìˆ˜ê°’ ë³€ê²½ ] FAILED[ Set_QuestVAR ì‹¤íŒ¨ ] ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
 			//--------------------------------------------------------------------------------
 #endif
 			pPARAM->m_nErrSTEP = iL;
@@ -1461,25 +1461,25 @@ bool F_QSTREWD004 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 bool F_QSTREWD005 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 {	
 /*
-/// º¸»ó
+/// ë³´ìƒ
 struct STR_REWD_005
 {
 	unsigned int	uiSize;
 	int				iType;
 
-	BYTE			btTarget;	/// 0 = °æÇèÄ¡, 1 = µ· , 2 = ¾ÆÀÌÅÛ
-	BYTE			btEquation;	/// »çÀü¿¡ ¾à¼ÓµÈ °è»ê½Ä
-	int				iValue;		/// ±âÁØ°ª
-	int				iItemSN;	/// ´ë»ó ¾ÆÀÌÅÛ
-	BYTE			btPartyOpt;	/// 0 = ÆÄÆ¼¿ø Àû¿ë ¾ÈÇÔ, 1 = ÆÄÆ¼¿ø Àû¿ë
+	BYTE			btTarget;	/// 0 = ê²½í—˜ì¹˜, 1 = ëˆ , 2 = ì•„ì´í…œ
+	BYTE			btEquation;	/// ì‚¬ì „ì— ì•½ì†ëœ ê³„ì‚°ì‹
+	int				iValue;		/// ê¸°ì¤€ê°’
+	int				iItemSN;	/// ëŒ€ìƒ ì•„ì´í…œ
+	BYTE			btPartyOpt;	/// 0 = íŒŒí‹°ì› ì ìš© ì•ˆí•¨, 1 = íŒŒí‹°ì› ì ìš©
 } ;
 */
 	if ( !bDoReward ) {
-		// 05.05.21 icarus:: º¸»ó¸ñ·Ï ÀÛ¼º ÇÊ¿ä...
-		#pragma message ( "TODO:: Äù½ºÆ® º¸»ó ¸ñ·Ï ÀÛ¼ºÇÒ°÷.." __FILE__ )
+		// 05.05.21 icarus:: ë³´ìƒëª©ë¡ ì‘ì„± í•„ìš”...
+		#pragma message ( "TODO:: í€˜ìŠ¤íŠ¸ ë³´ìƒ ëª©ë¡ ì‘ì„±í• ê³³.." __FILE__ )
 		return true;
 	}
-	// °æÇèÄ¡ º¸»ó
+	// ê²½í—˜ì¹˜ ë³´ìƒ
 	if ( 0 == pREWD->m_Rewd005.btTarget ) 
 	{
 		return pPARAM->m_pOWNER->Reward_CalEXP( 
@@ -1487,7 +1487,7 @@ struct STR_REWD_005
 			pREWD->m_Rewd005.iValue,
 			pREWD->m_Rewd005.btPartyOpt );
 	} else
-	// µ· º¸»ó
+	// ëˆ ë³´ìƒ
 	if ( 1 == pREWD->m_Rewd005.btTarget ) 
 	{
 		if ( NULL == pPARAM->m_pQUEST )
@@ -1495,7 +1495,7 @@ struct STR_REWD_005
 
 #ifndef	__SERVER
 			//--------------------------------------------------------------------------------
-			LOGWAR( "[ %s ] F_QSTREWD005[ µ· º¸»ó ] FAILED[ NULL == pPARAM->m_pQUEST ] ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
+			LOGWAR( "[ %s ] F_QSTREWD005[ ëˆ ë³´ìƒ ] FAILED[ NULL == pPARAM->m_pQUEST ] ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
 			//--------------------------------------------------------------------------------
 #endif
 			return false;
@@ -1512,13 +1512,13 @@ struct STR_REWD_005
 
 #ifndef	__SERVER
 			//--------------------------------------------------------------------------------
-			LOGWAR( "[ %s ] F_QSTREWD005[ µ· º¸»ó ] FAILED[ Reward_CalMONEY FAILED ] ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
+			LOGWAR( "[ %s ] F_QSTREWD005[ ëˆ ë³´ìƒ ] FAILED[ Reward_CalMONEY FAILED ] ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
 			//--------------------------------------------------------------------------------
 #endif
 
 		return false;
 	} else
-	// ¾ÆÀÌÅÛ º¸»ó
+	// ì•„ì´í…œ ë³´ìƒ
 	if ( 2 == pREWD->m_Rewd005.btTarget ) 
 	{
 		return pPARAM->m_pOWNER->Reward_CalITEM( 
@@ -1532,7 +1532,7 @@ struct STR_REWD_005
 	
 #ifndef	__SERVER
 			//--------------------------------------------------------------------------------
-			LOGWAR( "[ %s ] F_QSTREWD005[ ¾ÆÀÌÅÛ º¸»ó ] FAILED[ Reward_CalITEM FAILED ] ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
+			LOGWAR( "[ %s ] F_QSTREWD005[ ì•„ì´í…œ ë³´ìƒ ] FAILED[ Reward_CalITEM FAILED ] ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
 			//--------------------------------------------------------------------------------
 #endif
 
@@ -1542,18 +1542,18 @@ struct STR_REWD_005
 bool F_QSTREWD006 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 {
 	if ( !bDoReward ) {
-		// 05.05.21 icarus:: º¸»ó¸ñ·Ï ÀÛ¼º ÇÊ¿ä...
-		#pragma message ( "TODO:: Äù½ºÆ® º¸»ó ¸ñ·Ï ÀÛ¼ºÇÒ°÷.." __FILE__ )
+		// 05.05.21 icarus:: ë³´ìƒëª©ë¡ ì‘ì„± í•„ìš”...
+		#pragma message ( "TODO:: í€˜ìŠ¤íŠ¸ ë³´ìƒ ëª©ë¡ ì‘ì„±í• ê³³.." __FILE__ )
 		return true;
 	}
 
 #ifndef	__SERVER
 	//--------------------------------------------------------------------------------
-	LOGOUT( "[ %s ] F_QSTREWD006[ Ä³¸¯ÅÍ Hp, Mp È¸º¹ ]", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
+	LOGOUT( "[ %s ] F_QSTREWD006[ ìºë¦­í„° Hp, Mp íšŒë³µ ]", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
 	//--------------------------------------------------------------------------------
 #endif
 
-/// Ä³¸¯ÅÍ Hp, Mp È¸º¹
+/// ìºë¦­í„° Hp, Mp íšŒë³µ
 	int iAdjHP = pPARAM->m_pOWNER->GetCur_MaxHP() * pREWD->m_Rewd006.iPercentOfHP / 100;
 	int iAdjMP = pPARAM->m_pOWNER->GetCur_MaxMP() * pREWD->m_Rewd006.iPercentOfMP / 100;
 
@@ -1568,17 +1568,17 @@ bool F_QSTREWD006 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 
 bool F_QSTREWD009 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 {	
-	//if ( !bDoReward )	// 05.05.21 icarus:: º¸»ó¸ñ·Ï ÀÛ¼º ºÒÇÊ¿ä...
+	//if ( !bDoReward )	// 05.05.21 icarus:: ë³´ìƒëª©ë¡ ì‘ì„± ë¶ˆí•„ìš”...
 	//	return true;
 /*
-/// *** ¸î¹ø Ã¼Å©·Î ÀÌµ¿ ==> º¯¼ö¸í º¯°æ, shNameLen Ãß°¡
+/// *** ëª‡ë²ˆ ì²´í¬ë¡œ ì´ë™ ==> ë³€ìˆ˜ëª… ë³€ê²½, shNameLen ì¶”ê°€
 struct STR_REWD_009
 {
 	unsigned int	uiSize;
 	int				iType;
 
 	short			shNameLen;
-	char			szNextTriggerSN[ 1 ];	/// ÇöÀç ÆĞÅÏ¿¡¼­ iNextTriggerSN(Oº£ÀÌ½º)¹øÂ° ÀÌµ¿ÇØ¼­ Æ®¸®°ÅÃ¼Å©
+	char			szNextTriggerSN[ 1 ];	/// í˜„ì¬ íŒ¨í„´ì—ì„œ iNextTriggerSN(Oë² ì´ìŠ¤)ë²ˆì§¸ ì´ë™í•´ì„œ íŠ¸ë¦¬ê±°ì²´í¬
 };
 */
 	pPARAM->m_HashNextTRIGGER = ::StrToHashKey( pREWD->m_Rewd009.szNextTriggerSN );
@@ -1587,8 +1587,8 @@ struct STR_REWD_009
 bool F_QSTREWD010 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 {
 	if ( !bDoReward ) {
-		// 05.05.21 icarus:: º¸»ó¸ñ·Ï ÀÛ¼º ºÒÇÊ¿ä...
-		#pragma message ( "TODO:: Äù½ºÆ® º¸»ó ¸ñ·Ï ÀÛ¼ºÇÒ°÷.." __FILE__ )
+		// 05.05.21 icarus:: ë³´ìƒëª©ë¡ ì‘ì„± ë¶ˆí•„ìš”...
+		#pragma message ( "TODO:: í€˜ìŠ¤íŠ¸ ë³´ìƒ ëª©ë¡ ì‘ì„±í• ê³³.." __FILE__ )
 		return true;
 	}
 
@@ -1610,7 +1610,7 @@ bool F_QSTREWD010 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 bool F_QSTREWD011 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )	
 {	
 /*
-/// NPC º¯¼ö °ª Ã¼Å©
+/// NPC ë³€ìˆ˜ ê°’ ì²´í¬
 typedef struct	tagValue
 {
 	unsigned int	uiSize;
@@ -1618,10 +1618,10 @@ typedef struct	tagValue
 
 	BYTE			btWho;	// 0:NPC, 1:EventOBJ
 
-	short			nVarNo;	// º¯¼ö ¹øÈ£ : 0 ~ , Á¸ÀÇ °æÁ¦µ¥ÀÌÅÍ º¯¼ö
-	int				iValue;	// ºñ±³ÇÒ µ¥ÀÌÅÍ°ª (iTypeÀÇ ´É·ÂÄ¡ Op iValue)
-	BYTE			btOp;	// iValue°ª¿¡ ´ëÇÑ ºñ±³¹æ¹ı. 0 = °°´Ù, 1 = Å©´Ù, 2 = Å©°Å³ª °°´Ù. 3=ÀÛ´Ù, 4=ÀÛ°Å³ª °°´Ù.
-							// (¾×¼ÇÂÊ) 5 = °ª¹Ù²Ş, 6 = Áõ°¡, 7 = °¨¼Ò
+	short			nVarNo;	// ë³€ìˆ˜ ë²ˆí˜¸ : 0 ~ , ì¡´ì˜ ê²½ì œë°ì´í„° ë³€ìˆ˜
+	int				iValue;	// ë¹„êµí•  ë°ì´í„°ê°’ (iTypeì˜ ëŠ¥ë ¥ì¹˜ Op iValue)
+	BYTE			btOp;	// iValueê°’ì— ëŒ€í•œ ë¹„êµë°©ë²•. 0 = ê°™ë‹¤, 1 = í¬ë‹¤, 2 = í¬ê±°ë‚˜ ê°™ë‹¤. 3=ì‘ë‹¤, 4=ì‘ê±°ë‚˜ ê°™ë‹¤.
+							// (ì•¡ì…˜ìª½) 5 = ê°’ë°”ê¿ˆ, 6 = ì¦ê°€, 7 = ê°ì†Œ
 } STR_COND_011, STR_REWD_011;
 */
 #ifdef	__SERVER
@@ -1629,7 +1629,7 @@ typedef struct	tagValue
 		// evnet object
 		if ( NULL == pPARAM->m_pEventVAR ) {
 		#ifndef	__SERVER
-			char *szMsg = CStr::Printf ("	[QST] µ¥ÀÌÅ¸¿À·ù !!! :: Event °´Ã¼ º¯¼ö ¼³Á¤½Ã %s ¿¡¼­ ¼±ÅÃµÈ Event°´Ã¼ ¾øÀ½", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
+			char *szMsg = CStr::Printf ("	[QST] ë°ì´íƒ€ì˜¤ë¥˜ !!! :: Event ê°ì²´ ë³€ìˆ˜ ì„¤ì •ì‹œ %s ì—ì„œ ì„ íƒëœ Eventê°ì²´ ì—†ìŒ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
 			g_itMGR.OpenMsgBox( szMsg );
 		#endif
 			return false;
@@ -1642,7 +1642,7 @@ typedef struct	tagValue
 		// npc
 		if ( NULL == pPARAM->m_pNpcVAR ) {
 		#ifndef	__SERVER
-			char *szMsg = CStr::Printf ("	[QST] µ¥ÀÌÅ¸¿À·ù !!! :: NPC º¯¼ö ¼³Á¤½Ã %s ¿¡¼­ ¼±ÅÃµÈ NPC ¾øÀ½", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
+			char *szMsg = CStr::Printf ("	[QST] ë°ì´íƒ€ì˜¤ë¥˜ !!! :: NPC ë³€ìˆ˜ ì„¤ì •ì‹œ %s ì—ì„œ ì„ íƒëœ NPC ì—†ìŒ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
 
 			g_itMGR.OpenMsgBox( szMsg );
 		#endif
@@ -1664,9 +1664,9 @@ struct STR_REWD_012
 	unsigned int	uiSize;
 	int				iType;
 
-	BYTE		btMsgType;		/// 0 = ÇöÀçÇÊµå, 1 = ÇöÀçÁ¸, 2=ÀüÃ¼¿ùµå
-	short		nMsgLength;		/// ´ë»çÀÇ ±æÀÌ NULLÆ÷ÇÔ
-	char		szMsg[ 1 ];		/// ´ë»ç
+	BYTE		btMsgType;		/// 0 = í˜„ì¬í•„ë“œ, 1 = í˜„ì¬ì¡´, 2=ì „ì²´ì›”ë“œ
+	short		nMsgLength;		/// ëŒ€ì‚¬ì˜ ê¸¸ì´ NULLí¬í•¨
+	char		szMsg[ 1 ];		/// ëŒ€ì‚¬
 };
 */
 #ifdef	__SERVER
@@ -1690,7 +1690,7 @@ struct STR_REWD_012
 bool F_QSTREWD013 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )	
 {
 /*
-/// ‘pÃÊ ÈÄ¿¡ ¾î¶² Æ®¸®°Å ¼öÇà
+/// Â‘pì´ˆ í›„ì— ì–´ë–¤ íŠ¸ë¦¬ê±° ìˆ˜í–‰
 struct STR_REWD_013
 {
 	unsigned int	uiSize;
@@ -1698,9 +1698,9 @@ struct STR_REWD_013
 
 	BYTE			btWho;	// 0:NPC, 1:EventOBJ
 
-	int				iSec; /// ¸îÃÊÈÄ¿¡.
+	int				iSec; /// ëª‡ì´ˆí›„ì—.
 	short			nNameLength;
-	char			szTriggerName[ 1 ]; /// Æ®¸®°Å¸í NULLÆ÷ÇÔ
+	char			szTriggerName[ 1 ]; /// íŠ¸ë¦¬ê±°ëª… NULLí¬í•¨
 };
 */
 #ifdef	__SERVER
@@ -1708,7 +1708,7 @@ struct STR_REWD_013
 		// evnet object
 		if ( NULL == pPARAM->m_pEventVAR ) {
 		#ifndef	__SERVER
-			char *szMsg = CStr::Printf ("	[QST] µ¥ÀÌÅ¸¿À·ù !!! :: Event °´Ã¼ º¯¼ö ¼³Á¤½Ã %s ¿¡¼­ ¼±ÅÃµÈ Event°´Ã¼ ¾øÀ½", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
+			char *szMsg = CStr::Printf ("	[QST] ë°ì´íƒ€ì˜¤ë¥˜ !!! :: Event ê°ì²´ ë³€ìˆ˜ ì„¤ì •ì‹œ %s ì—ì„œ ì„ íƒëœ Eventê°ì²´ ì—†ìŒ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
 			g_itMGR.OpenMsgBox( szMsg );
 		#endif
 			return false;
@@ -1721,7 +1721,7 @@ struct STR_REWD_013
 		// npc
 		if ( NULL == pPARAM->m_pNpcVAR ) {
 		#ifndef	__SERVER
-			char *szMsg = CStr::Printf ("	[QST] µ¥ÀÌÅ¸¿À·ù !!! :: NPC º¯¼ö ¼³Á¤½Ã %s ¿¡¼­ ¼±ÅÃµÈ NPC ¾øÀ½", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
+			char *szMsg = CStr::Printf ("	[QST] ë°ì´íƒ€ì˜¤ë¥˜ !!! :: NPC ë³€ìˆ˜ ì„¤ì •ì‹œ %s ì—ì„œ ì„ íƒëœ NPC ì—†ìŒ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
 			g_itMGR.OpenMsgBox( szMsg );
 		#endif
 			return false;
@@ -1738,37 +1738,37 @@ struct STR_REWD_013
 bool F_QSTREWD014 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 {
 	if ( !bDoReward ) {
-		// 05.05.21 icarus:: º¸»ó¸ñ·Ï ÀÛ¼º ºÒÇÊ¿ä...
-		#pragma message ( "TODO:: Äù½ºÆ® º¸»ó ¸ñ·Ï ÀÛ¼ºÇÒ°÷.." __FILE__ )
+		// 05.05.21 icarus:: ë³´ìƒëª©ë¡ ì‘ì„± ë¶ˆí•„ìš”...
+		#pragma message ( "TODO:: í€˜ìŠ¤íŠ¸ ë³´ìƒ ëª©ë¡ ì‘ì„±í• ê³³.." __FILE__ )
 		return true;
 	}
-/// ½ºÅ³¸¦ ÁÖ°Å³ª »èÁ¦ÇÑ´Ù
+/// ìŠ¤í‚¬ë¥¼ ì£¼ê±°ë‚˜ ì‚­ì œí•œë‹¤
 /*
 struct STR_REWD_014
 {
 	unsigned int	uiSize;
 	int				iType;
 
-	BYTE			btOp;		// 0 - »¯´Â´Ù , 1 - ÁØ´Ù
-	int				iSkillNo;	// ½ºÅ³¹øÈ£
+	BYTE			btOp;		// 0 - ëºëŠ”ë‹¤ , 1 - ì¤€ë‹¤
+	int				iSkillNo;	// ìŠ¤í‚¬ë²ˆí˜¸
 };
 */
 	if ( !pPARAM->m_pOWNER )
 		return false;
 
 	if ( pREWD->m_Rewd014.btOp ) {
-		// ÁØ´Ù.
+		// ì¤€ë‹¤.
 		return pPARAM->m_pOWNER->Add_SkillNSend( pREWD->m_Rewd014.iSkillNo );
 	}
 	
-	// »¯´Â´Ù.
+	// ëºëŠ”ë‹¤.
 	return pPARAM->m_pOWNER->Sub_SkillNSend( pREWD->m_Rewd014.iSkillNo );
 }
 
 
 bool F_QSTREWD015 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 {
-	if ( !bDoReward )	// 05.05.21 icarus:: º¸»ó¸ñ·Ï ÀÛ¼º ºÒÇÊ¿ä...
+	if ( !bDoReward )	// 05.05.21 icarus:: ë³´ìƒëª©ë¡ ì‘ì„± ë¶ˆí•„ìš”...
 		return true;
 /*
 /// Switch Off On
@@ -1777,7 +1777,7 @@ struct STR_REWD_015
 	unsigned int	uiSize;
 	int				iType;
 
-	short			nSN;	// ½ºÀ§Ä¡ ¹øÈ£ 0 ~ 512
+	short			nSN;	// ìŠ¤ìœ„ì¹˜ ë²ˆí˜¸ 0 ~ 512
 	BYTE			btOp;	// 0 = Off , 1 = On
 };
 */
@@ -1791,17 +1791,17 @@ struct STR_REWD_015
 }
 bool F_QSTREWD016 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 {
-	if ( !bDoReward )	// 05.05.21 icarus:: º¸»ó¸ñ·Ï ÀÛ¼º ºÒÇÊ¿ä...
+	if ( !bDoReward )	// 05.05.21 icarus:: ë³´ìƒëª©ë¡ ì‘ì„± ë¶ˆí•„ìš”...
 		return true;
 /*
-/// ±×·ìº° Switch Clear
+/// ê·¸ë£¹ë³„ Switch Clear
 //#define		TYPE_REWD_016
 struct STR_REWD_016
 {
 	unsigned int	uiSize;
 	int				iType;
 
-	short			nGroupSN;	// ½ºÀ§Ä¡ ¹øÈ£ 0 ~ 512 / 32
+	short			nGroupSN;	// ìŠ¤ìœ„ì¹˜ ë²ˆí˜¸ 0 ~ 512 / 32
 };
 */
 	if ( !pPARAM->m_pOWNER ) {
@@ -1815,10 +1815,10 @@ struct STR_REWD_016
 }
 bool F_QSTREWD017 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 {
-	if ( !bDoReward )	// 05.05.21 icarus:: º¸»ó¸ñ·Ï ÀÛ¼º ºÒÇÊ¿ä...
+	if ( !bDoReward )	// 05.05.21 icarus:: ë³´ìƒëª©ë¡ ì‘ì„± ë¶ˆí•„ìš”...
 		return true;
 
-/// ÀüÃ¼ Switch Clear
+/// ì „ì²´ Switch Clear
 	if ( !pPARAM->m_pOWNER ) {
 		_ASSERT( 0 );
 		return false;
@@ -1831,7 +1831,7 @@ bool F_QSTREWD017 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 bool F_QSTREWD018 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 {
 /*
-/// NPC º¯¼ö Ãâ·Â
+/// NPC ë³€ìˆ˜ ì¶œë ¥
 struct STR_REWD_018
 {
 	unsigned int	uiSize;
@@ -1840,10 +1840,10 @@ struct STR_REWD_018
 	short			nFormatLength;
 	short			nCnt;
 	BYTE			Data[ 1 ];
-	/* Data ¾È¿¡´Â NullÀ» Æ÷ÇÔÇÑ char szFormat[ nFormatLength ] + STR_NPCVAR NpcVars[ 1 ]
-		Data Å©±â = nFormatLength + nCnt * sizeof (STR_NPCVAR) */
-	/* szFormat[ nFormatLength ]. NULLÆ÷ÇÔ. printfÀÇ Æ÷¸Ë¹®ÀÚ¿­°ú µ¿ÀÏ.
-		"xxxx %d xxxx %d xxx "¿¡¼­ %d°¡ nCnt¸¸Å­ ÀÖÀ½. 
+	/* Data ì•ˆì—ëŠ” Nullì„ í¬í•¨í•œ char szFormat[ nFormatLength ] + STR_NPCVAR NpcVars[ 1 ]
+		Data í¬ê¸° = nFormatLength + nCnt * sizeof (STR_NPCVAR) */
+	/* szFormat[ nFormatLength ]. NULLí¬í•¨. printfì˜ í¬ë§·ë¬¸ìì—´ê³¼ ë™ì¼.
+		"xxxx %d xxxx %d xxx "ì—ì„œ %dê°€ nCntë§Œí¼ ìˆìŒ. 
 	*/
 #ifdef	__SERVER
 	CObjVAR *pNpc;
@@ -1864,7 +1864,7 @@ struct STR_REWD_018
 	vsprintf( szResult, (const char*)pREWD->m_Rewd018.Data, va );
 	va_end(va);
 
-	// Á¸ °øÁö....
+	// ì¡´ ê³µì§€....
 	if ( pPARAM->m_nCurZoneNO )
 		g_pZoneLIST->Send_gsv_ANNOUNCE_CHAT(  pPARAM->m_nCurZoneNO, szResult, "SERVER" );
 	else
@@ -1877,7 +1877,7 @@ struct STR_REWD_018
 }
 bool F_QSTREWD019 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 {
-/// Æ¯Á¤ ÆÀ¹øÈ£¸¦ °¡Áø ¾Æ¹ÙÅ¸¿¡°Ô Æ®¸®°Å ½ÇÇà
+/// íŠ¹ì • íŒ€ë²ˆí˜¸ë¥¼ ê°€ì§„ ì•„ë°”íƒ€ì—ê²Œ íŠ¸ë¦¬ê±° ì‹¤í–‰
 /*
 struct STR_REWD_019
 {
@@ -1887,7 +1887,7 @@ struct STR_REWD_019
 	short			nZoneNo;
 	short			nTeamNo;
 	short			nTriggerLength;
-	char			TriggerName[ 1 ]; // char Trigger[ nTriggerLength ], NULL Æ÷ÇÔ
+	char			TriggerName[ 1 ]; // char Trigger[ nTriggerLength ], NULL í¬í•¨
 };
 */
 #ifdef	__SERVER
@@ -1899,14 +1899,14 @@ struct STR_REWD_019
 
 bool F_QSTREWD020 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 {
-	/// ÆÀ¹øÈ£ ºÎ¿© (PVP Á¸) - Æ®¸®°Å¸¦ ¹ßµ¿½ÃÅ² ºĞ²² ÆÀ¹øÈ£ ºÎ¿©
+	/// íŒ€ë²ˆí˜¸ ë¶€ì—¬ (PVP ì¡´) - íŠ¸ë¦¬ê±°ë¥¼ ë°œë™ì‹œí‚¨ ë¶„ê»˜ íŒ€ë²ˆí˜¸ ë¶€ì—¬
 	return true;
 }
 bool F_QSTREWD021 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 {
-	if ( !bDoReward )	// 05.05.21 icarus:: º¸»ó¸ñ·Ï ÀÛ¼º ºÒÇÊ¿ä...
+	if ( !bDoReward )	// 05.05.21 icarus:: ë³´ìƒëª©ë¡ ì‘ì„± ë¶ˆí•„ìš”...
 		return true;
-	/// ÇöÀçÁ¸ÀÇ ºÎÈ° À§Ä¡ ÁöÁ¤ (PVP Á¸) 
+	/// í˜„ì¬ì¡´ì˜ ë¶€í™œ ìœ„ì¹˜ ì§€ì • (PVP ì¡´) 
 	if ( !pPARAM->m_pOWNER )
 		return false;
 	///return pPARAM->m_pOWNER->Set_RevivePOS( pREWD->m_Rewd021.nX * 100, pREWD->m_Rewd021.nY * 100 );
@@ -1917,12 +1917,12 @@ bool F_QSTREWD021 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 
 bool F_QSTREWD023 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 {
-	if ( !bDoReward ) {	// 05.05.21 icarus:: º¸»ó¸ñ·Ï ÀÛ¼º ÇÊ¿ä...
-		#pragma message ( "TODO:: Äù½ºÆ® º¸»ó ¸ñ·Ï ÀÛ¼ºÇÒ°÷.." __FILE__ )
+	if ( !bDoReward ) {	// 05.05.21 icarus:: ë³´ìƒëª©ë¡ ì‘ì„± í•„ìš”...
+		#pragma message ( "TODO:: í€˜ìŠ¤íŠ¸ ë³´ìƒ ëª©ë¡ ì‘ì„±í• ê³³.." __FILE__ )
 		return true;
 	}
 /*
-// Å¬·£ µî±Ş ÇÑ´Ü°è Áõ°¡ - Ãß°¡ µ¥ÀÌÅÍ ¾øÀ½
+// í´ëœ ë“±ê¸‰ í•œë‹¨ê³„ ì¦ê°€ - ì¶”ê°€ ë°ì´í„° ì—†ìŒ
 struct STR_REWD_023
 {
 	unsigned int	uiSize;
@@ -1934,30 +1934,30 @@ struct STR_REWD_023
 bool F_QSTREWD024 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 {
 	if ( !bDoReward ) {
-		// 05.05.21 icarus:: º¸»ó¸ñ·Ï ÀÛ¼º ºÒÇÊ¿ä...
-		#pragma message ( "TODO:: Äù½ºÆ® º¸»ó ¸ñ·Ï ÀÛ¼ºÇÒ°÷.." __FILE__ )
+		// 05.05.21 icarus:: ë³´ìƒëª©ë¡ ì‘ì„± ë¶ˆí•„ìš”...
+		#pragma message ( "TODO:: í€˜ìŠ¤íŠ¸ ë³´ìƒ ëª©ë¡ ì‘ì„±í• ê³³.." __FILE__ )
 		return true;
 	}
 /*
-// ¸Ó´Ï °¨¼Ò / Áõ°¡ 
+// ë¨¸ë‹ˆ ê°ì†Œ / ì¦ê°€ 
 struct STR_REWD_024
 {
 	unsigned int	uiSize;
 	int				iType;
 
 	int				iMONEY; // 
-	BYTE			btOP;	// 5 = °ª¹Ù²Ş, 6 = Áõ°¡(ÁÖ¾îÁø ¸¸Å­), 7 = °¨¼Ò(ÁÖ¾îÁø ¸¸Å­)
+	BYTE			btOP;	// 5 = ê°’ë°”ê¿ˆ, 6 = ì¦ê°€(ì£¼ì–´ì§„ ë§Œí¼), 7 = ê°ì†Œ(ì£¼ì–´ì§„ ë§Œí¼)
 } ;
 */
 	//if ( pPARAM->m_pOWNER && pPARAM->m_pOWNER->Is_ClanMASTER() ) {
 	//	switch( pREWD->m_Rewd024.btOP ) {
-	//		case 5	:	// °ª¹Ù²Ş
+	//		case 5	:	// ê°’ë°”ê¿ˆ
 	//			pPARAM->m_pOWNER->SetClanMONEY( pREWD->m_Rewd024.iMONEY );
 	//			break;
-	//		case 6	:	// Áõ°¡(ÁÖ¾îÁø ¸¸Å­)
+	//		case 6	:	// ì¦ê°€(ì£¼ì–´ì§„ ë§Œí¼)
 	//			pPARAM->m_pOWNER->AddClanMONEY( pREWD->m_Rewd024.iMONEY );
 	//			break;
-	//		case 7	:	// °¨¼Ò(ÁÖ¾îÁø ¸¸Å­)
+	//		case 7	:	// ê°ì†Œ(ì£¼ì–´ì§„ ë§Œí¼)
 	//			pPARAM->m_pOWNER->AddClanMONEY( -1 * pREWD->m_Rewd024.iMONEY );
 	//			break;
 	//		default :
@@ -1972,30 +1972,30 @@ struct STR_REWD_024
 bool F_QSTREWD025 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 {
 	if ( !bDoReward ) {
-		// 05.05.21 icarus:: º¸»ó¸ñ·Ï ÀÛ¼º ÇÊ¿ä...
-		#pragma message ( "TODO:: Äù½ºÆ® º¸»ó ¸ñ·Ï ÀÛ¼ºÇÒ°÷.." __FILE__ )
+		// 05.05.21 icarus:: ë³´ìƒëª©ë¡ ì‘ì„± í•„ìš”...
+		#pragma message ( "TODO:: í€˜ìŠ¤íŠ¸ ë³´ìƒ ëª©ë¡ ì‘ì„±í• ê³³.." __FILE__ )
 		return true;
 	}
 /*
-// Á¡¼ö °¨¼Ò/ Áõ°¡
+// ì ìˆ˜ ê°ì†Œ/ ì¦ê°€
 struct STR_REWD_025
 {
 	unsigned int	uiSize;
 	int				iType;
 
 	short			nPOINT;
-	BYTE			btOP;	// 5 = °ª¹Ù²Ş, 6 = Áõ°¡(ÁÖ¾îÁø ¸¸Å­), 7 = °¨¼Ò(ÁÖ¾îÁø ¸¸Å­)
+	BYTE			btOP;	// 5 = ê°’ë°”ê¿ˆ, 6 = ì¦ê°€(ì£¼ì–´ì§„ ë§Œí¼), 7 = ê°ì†Œ(ì£¼ì–´ì§„ ë§Œí¼)
 } ;
 */
 	//if ( pPARAM->m_pOWNER && pPARAM->m_pOWNER->GetClanID() ) {
 	//	switch( pREWD->m_Rewd025.btOP ) {
-	//		case 5	:	// °ª¹Ù²Ş
+	//		case 5	:	// ê°’ë°”ê¿ˆ
 	//			pPARAM->m_pOWNER->SetClanSCORE( pREWD->m_Rewd025.nPOINT );
 	//			break;
-	//		case 6	:	// Áõ°¡(ÁÖ¾îÁø ¸¸Å­)
+	//		case 6	:	// ì¦ê°€(ì£¼ì–´ì§„ ë§Œí¼)
 	//			pPARAM->m_pOWNER->AddClanSCORE( pREWD->m_Rewd025.nPOINT );
 	//			break;
-	//		case 7	:	// °¨¼Ò(ÁÖ¾îÁø ¸¸Å­)
+	//		case 7	:	// ê°ì†Œ(ì£¼ì–´ì§„ ë§Œí¼)
 	//			pPARAM->m_pOWNER->AddClanSCORE( -1 * pREWD->m_Rewd025.nPOINT );
 	//			break;
 	//		default :
@@ -2010,19 +2010,19 @@ struct STR_REWD_025
 bool F_QSTREWD026 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 {
 	if ( !bDoReward ) {
-		// 05.05.21 icarus:: º¸»ó¸ñ·Ï ÀÛ¼º ºÒÇÊ¿ä...
-		#pragma message ( "TODO:: Äù½ºÆ® º¸»ó ¸ñ·Ï ÀÛ¼ºÇÒ°÷.." __FILE__ )
+		// 05.05.21 icarus:: ë³´ìƒëª©ë¡ ì‘ì„± ë¶ˆí•„ìš”...
+		#pragma message ( "TODO:: í€˜ìŠ¤íŠ¸ ë³´ìƒ ëª©ë¡ ì‘ì„±í• ê³³.." __FILE__ )
 		return true;
 	}
 /*
-// ½ºÅ³ ½Àµæ / »èÁ¦
+// ìŠ¤í‚¬ ìŠµë“ / ì‚­ì œ
 struct STR_REWD_026
 {
 	unsigned int	uiSize;
 	int				iType;
 
-	short			nSkillNo;	// ½ºÅ³¹øÈ£
-	BYTE			btOP;		// 0: »èÁ¦, 1: ½Àµæ
+	short			nSkillNo;	// ìŠ¤í‚¬ë²ˆí˜¸
+	BYTE			btOP;		// 0: ì‚­ì œ, 1: ìŠµë“
 } ;
 */
 	//if ( pPARAM->m_pOWNER && pPARAM->m_pOWNER->GetClanID() ) {
@@ -2038,30 +2038,30 @@ struct STR_REWD_026
 bool F_QSTREWD027 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 {
 	if ( !bDoReward ) {
-		// 05.05.21 icarus:: º¸»ó¸ñ·Ï ÀÛ¼º ºÒÇÊ¿ä...
-		#pragma message ( "TODO:: Äù½ºÆ® º¸»ó ¸ñ·Ï ÀÛ¼ºÇÒ°÷.." __FILE__ )
+		// 05.05.21 icarus:: ë³´ìƒëª©ë¡ ì‘ì„± ë¶ˆí•„ìš”...
+		#pragma message ( "TODO:: í€˜ìŠ¤íŠ¸ ë³´ìƒ ëª©ë¡ ì‘ì„±í• ê³³.." __FILE__ )
 		return true;
 	}
 /*
-// ±â¿©µµ °¨¼Ò / Áõ°¡
+// ê¸°ì—¬ë„ ê°ì†Œ / ì¦ê°€
 struct STR_REWD_027
 {
 	unsigned int	uiSize;
 	int				iType;
 
-	short			nCONT; // ±â¿©µµ
-	BYTE			btOP;	// 5 = °ª¹Ù²Ş, 6 = Áõ°¡(ÁÖ¾îÁø ¸¸Å­), 7 = °¨¼Ò(ÁÖ¾îÁø ¸¸Å­)
+	short			nCONT; // ê¸°ì—¬ë„
+	BYTE			btOP;	// 5 = ê°’ë°”ê¿ˆ, 6 = ì¦ê°€(ì£¼ì–´ì§„ ë§Œí¼), 7 = ê°ì†Œ(ì£¼ì–´ì§„ ë§Œí¼)
 } ;
 */
 	//if ( pPARAM->m_pOWNER && pPARAM->m_pOWNER->GetClanID() ) {
 	//	switch( pREWD->m_Rewd027.btOP ) {
-	//		case 5	:	// °ª¹Ù²Ş
+	//		case 5	:	// ê°’ë°”ê¿ˆ
 	//			pPARAM->m_pOWNER->SetClanSCORE( pREWD->m_Rewd027.nCONT );
 	//			break;
-	//		case 6	:	// Áõ°¡(ÁÖ¾îÁø ¸¸Å­)
+	//		case 6	:	// ì¦ê°€(ì£¼ì–´ì§„ ë§Œí¼)
 	//			pPARAM->m_pOWNER->AddClanSCORE( pREWD->m_Rewd027.nCONT );
 	//			break;
-	//		case 7	:	// °¨¼Ò(ÁÖ¾îÁø ¸¸Å­)
+	//		case 7	:	// ê°ì†Œ(ì£¼ì–´ì§„ ë§Œí¼)
 	//			pPARAM->m_pOWNER->AddClanSCORE( -1 * pREWD->m_Rewd027.nCONT );
 	//			break;
 
@@ -2077,11 +2077,11 @@ struct STR_REWD_027
 
 
 //--------------------------------------------------------------------------------------
-/// ½ºÅ©¸³Æ® ½ÇÇà. ( Å¬¶óÀÌ¾ğÆ®¿¡¸¸ Àû¿ë )
+/// ìŠ¤í¬ë¦½íŠ¸ ì‹¤í–‰. ( í´ë¼ì´ì–¸íŠ¸ì—ë§Œ ì ìš© )
 //--------------------------------------------------------------------------------------
 bool F_QSTREWD029 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 {
-	if ( !bDoReward )	// 05.05.21 icarus:: º¸»ó¸ñ·Ï ÀÛ¼º ºÒÇÊ¿ä...
+	if ( !bDoReward )	// 05.05.21 icarus:: ë³´ìƒëª©ë¡ ì‘ì„± ë¶ˆí•„ìš”...
 		return true;
 
 	if ( !pPARAM->m_pOWNER )
@@ -2092,8 +2092,8 @@ bool F_QSTREWD029 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 	//	unsigned int	uiSize;
 	//	int				iType;
 
-	//	short	nLength; // ½ºÅ©¸³Æ®¸íÀÇ ±æÀÌ ( NULL Æ÷ÇÔ )
-	//	char	szSrciptName[ 1 ]; // ½ºÅ©¸³Æ®¸í
+	//	short	nLength; // ìŠ¤í¬ë¦½íŠ¸ëª…ì˜ ê¸¸ì´ ( NULL í¬í•¨ )
+	//	char	szSrciptName[ 1 ]; // ìŠ¤í¬ë¦½íŠ¸ëª…
 	//} ;
 
 	CSystemProcScript::GetSingleton().CallLuaFunction( pREWD->m_Rewd029.szSrciptName, ZZ_PARAM_INT, g_pAVATAR->Get_INDEX(), ZZ_PARAM_END );
@@ -2102,8 +2102,8 @@ bool F_QSTREWD029 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 }
 bool F_QSTREWD030 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 {
-	if ( !bDoReward ) {	// 05.05.21 icarus:: º¸»ó¸ñ·Ï ÀÛ¼º ÇÊ¿ä...
-		#pragma message ( "TODO:: Äù½ºÆ® º¸»ó ¸ñ·Ï ÀÛ¼ºÇÒ°÷.." __FILE__ )
+	if ( !bDoReward ) {	// 05.05.21 icarus:: ë³´ìƒëª©ë¡ ì‘ì„± í•„ìš”...
+		#pragma message ( "TODO:: í€˜ìŠ¤íŠ¸ ë³´ìƒ ëª©ë¡ ì‘ì„±í• ê³³.." __FILE__ )
 		return true;
 	}
 
@@ -2124,19 +2124,19 @@ bool F_QSTREWD030 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 bool F_QSTREWD031 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 {
 	if ( !bDoReward ) {
-		// 05.05.21 icarus:: º¸»ó¸ñ·Ï ÀÛ¼º ºÒÇÊ¿ä...
-		#pragma message ( "TODO:: Äù½ºÆ® º¸»ó ¸ñ·Ï ÀÛ¼ºÇÒ°÷.." __FILE__ )
+		// 05.05.21 icarus:: ë³´ìƒëª©ë¡ ì‘ì„± ë¶ˆí•„ìš”...
+		#pragma message ( "TODO:: í€˜ìŠ¤íŠ¸ ë³´ìƒ ëª©ë¡ ì‘ì„±í• ê³³.." __FILE__ )
 		return true;
 	}
-/*	/// ¸ó½ºÅÍ »ç³É º¯¼ö Áõ°¡
+/*	/// ëª¬ìŠ¤í„° ì‚¬ëƒ¥ ë³€ìˆ˜ ì¦ê°€
 	struct STR_REWD_031
 	{
 		unsigned int	uiSize;
 		int				iType;
 
-		int				iMonsterSN;		/// ¼ÒÈ¯ÇÒ ¸ó½ºÅÍ ¹øÈ£
-		int				iCompareValue;	// ºñ±³ ¼öÄ¡
-		STR_QUEST_DATA	Var;			// º¯¼ö Á¤º¸
+		int				iMonsterSN;		/// ì†Œí™˜í•  ëª¬ìŠ¤í„° ë²ˆí˜¸
+		int				iCompareValue;	// ë¹„êµ ìˆ˜ì¹˜
+		STR_QUEST_DATA	Var;			// ë³€ìˆ˜ ì •ë³´
 	};
 */
 
@@ -2145,11 +2145,11 @@ bool F_QSTREWD031 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 bool F_QSTREWD032 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 {
 	if ( !bDoReward ) {
-		// 05.05.21 icarus:: º¸»ó¸ñ·Ï ÀÛ¼º ºÒÇÊ¿ä...
-		#pragma message ( "TODO:: Äù½ºÆ® º¸»ó ¸ñ·Ï ÀÛ¼ºÇÒ°÷.." __FILE__ )
+		// 05.05.21 icarus:: ë³´ìƒëª©ë¡ ì‘ì„± ë¶ˆí•„ìš”...
+		#pragma message ( "TODO:: í€˜ìŠ¤íŠ¸ ë³´ìƒ ëª©ë¡ ì‘ì„±í• ê³³.." __FILE__ )
 		return true;
 	}
-/*	/// Äù½ºÆ® ¾ÆÀÌÅÛ È¹µæ Á¤º¸
+/*	/// í€˜ìŠ¤íŠ¸ ì•„ì´í…œ íšë“ ì •ë³´
 	struct STR_REWD_032
 	{
 		unsigned int	uiSize;
@@ -2157,7 +2157,7 @@ bool F_QSTREWD032 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 
 		unsigned int	uiItemSN;
 		int				iCompareValue;
-		BYTE			btPartyOpt;		// 0 = ÆÄÆ¼ Àû¿ë ¾È µÊ, ÆÄÆ¼ Àû¿ëµÊ
+		BYTE			btPartyOpt;		// 0 = íŒŒí‹° ì ìš© ì•ˆ ë¨, íŒŒí‹° ì ìš©ë¨
 	};
 */
 	return true;
@@ -2165,17 +2165,17 @@ bool F_QSTREWD032 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 bool F_QSTREWD033 ( uniQstENTITY *pREWD, tQST_PARAM *pPARAM, bool bDoReward )
 {
 	if ( !bDoReward ) {	
-		// 05.05.21 icarus:: º¸»ó¸ñ·Ï ÀÛ¼º ºÒÇÊ¿ä...
-		#pragma message ( "TODO:: Äù½ºÆ® º¸»ó ¸ñ·Ï ÀÛ¼ºÇÒ°÷.." __FILE__ )
+		// 05.05.21 icarus:: ë³´ìƒëª©ë¡ ì‘ì„± ë¶ˆí•„ìš”...
+		#pragma message ( "TODO:: í€˜ìŠ¤íŠ¸ ë³´ìƒ ëª©ë¡ ì‘ì„±í• ê³³.." __FILE__ )
 		return true;
 	}
-/*	/// ¼±ÅÃº¸»ó Æ®¸®°Å Á¤º¸
+/*	/// ì„ íƒë³´ìƒ íŠ¸ë¦¬ê±° ì •ë³´
 	struct STR_REWD_033
 	{
 		unsigned int	uiSize;
 		int				iType;
 
-		short			nNextRewardSplitter;	// -1 ÀÌ¸é º¸»óÆ®¸®°ÅÀÇ ³¡ÀÓ
+		short			nNextRewardSplitter;	// -1 ì´ë©´ ë³´ìƒíŠ¸ë¦¬ê±°ì˜ ëì„
 	};
 */
 	return true;
@@ -2216,14 +2216,14 @@ struct tagF_QstCOND {
 	F_QSTCOND021,
 	F_QSTCOND022,
 
-	F_QSTCOND023,			/// Å¬·£°ü·Ã
-	F_QSTCOND024,			/// Å¬·£°ü·Ã
-	F_QSTCOND025,			/// Å¬·£°ü·Ã
-	F_QSTCOND026,			/// Å¬·£°ü·Ã
-	F_QSTCOND027,			/// Å¬·£°ü·Ã
-	F_QSTCOND028,			/// Å¬·£°ü·Ã
-	F_QSTCOND029,			/// Å¬·£°ü·Ã
-	F_QSTCOND030,			/// Å¬·£°ü·Ã
+	F_QSTCOND023,			/// í´ëœê´€ë ¨
+	F_QSTCOND024,			/// í´ëœê´€ë ¨
+	F_QSTCOND025,			/// í´ëœê´€ë ¨
+	F_QSTCOND026,			/// í´ëœê´€ë ¨
+	F_QSTCOND027,			/// í´ëœê´€ë ¨
+	F_QSTCOND028,			/// í´ëœê´€ë ¨
+	F_QSTCOND029,			/// í´ëœê´€ë ¨
+	F_QSTCOND030,			/// í´ëœê´€ë ¨
 
 	F_QUEST_COND_NULL,
 	F_QUEST_COND_NULL,
@@ -2254,8 +2254,8 @@ struct tagF_QstREWD {
 	F_QSTREWD004,
 	F_QSTREWD005,
 	F_QSTREWD006,
-	F_QUEST_REWD_NULL,	// ¿öÇÁ..
-	F_QUEST_REWD_NULL,	// ¸÷¼ÒÈ¯
+	F_QUEST_REWD_NULL,	// ì›Œí”„..
+	F_QUEST_REWD_NULL,	// ëª¹ì†Œí™˜
 	F_QSTREWD009,
 	F_QSTREWD010,
 
@@ -2273,19 +2273,19 @@ struct tagF_QstREWD {
 	F_QSTREWD020,
 	F_QSTREWD021,
 
-	F_QUEST_REWD_NULL,	// 22	ÇöÀçÁ¸ÀÇ ¸®Á¨ Á¶ÀÛ.
-	F_QSTREWD023,		// 23	Å¬·£ µî±Ş ÇÑ´Ü°è Áõ°¡ 
-	F_QSTREWD024,		// 24	Å¬·£ ¸Ó´Ï °¨¼Ò / Áõ°¡ 
-	F_QSTREWD025,		// 25	Å¬·£ Á¡¼ö °¨¼Ò/ Áõ°¡
-	F_QSTREWD026,		// 26	½ºÅ³ ½Àµæ / »èÁ¦
-	F_QSTREWD027,		// 27	±â¿©µµ °¨¼Ò / Áõ°¡
-	F_QUEST_REWD_NULL,		// 28	Å¬·£¿ø ¿öÇÁ
+	F_QUEST_REWD_NULL,	// 22	í˜„ì¬ì¡´ì˜ ë¦¬ì   ì¡°ì‘.
+	F_QSTREWD023,		// 23	í´ëœ ë“±ê¸‰ í•œë‹¨ê³„ ì¦ê°€ 
+	F_QSTREWD024,		// 24	í´ëœ ë¨¸ë‹ˆ ê°ì†Œ / ì¦ê°€ 
+	F_QSTREWD025,		// 25	í´ëœ ì ìˆ˜ ê°ì†Œ/ ì¦ê°€
+	F_QSTREWD026,		// 26	ìŠ¤í‚¬ ìŠµë“ / ì‚­ì œ
+	F_QSTREWD027,		// 27	ê¸°ì—¬ë„ ê°ì†Œ / ì¦ê°€
+	F_QUEST_REWD_NULL,		// 28	í´ëœì› ì›Œí”„
 	F_QSTREWD029,		// 29
 	F_QSTREWD030,
 
-	F_QSTREWD031,	/// ¸ó½ºÅÍ »ç³É º¯¼ö Áõ°¡
-	F_QSTREWD032,	/// Äù½ºÆ® ¾ÆÀÌÅÛ È¹µæ Á¤º¸
-	F_QSTREWD033,	/// ¼±ÅÃº¸»ó Æ®¸®°Å Á¤º¸
+	F_QSTREWD031,	/// ëª¬ìŠ¤í„° ì‚¬ëƒ¥ ë³€ìˆ˜ ì¦ê°€
+	F_QSTREWD032,	/// í€˜ìŠ¤íŠ¸ ì•„ì´í…œ íšë“ ì •ë³´
+	F_QSTREWD033,	/// ì„ íƒë³´ìƒ íŠ¸ë¦¬ê±° ì •ë³´
 
 	F_QUEST_REWD_NULL,
 	F_QUEST_REWD_NULL,
@@ -2470,11 +2470,11 @@ eQST_RESULT CQuestDATA::CheckQUEST( CUserDATA *pUSER, t_HASHKEY HashQuest, bool 
 {
 #ifndef	__SERVER
 	//--------------------------------------------------------------------------------
-	LOGERR( "===Æ®¸®°Å ¼öÇà===" );
+	LOGERR( "===íŠ¸ë¦¬ê±° ìˆ˜í–‰===" );
 	//--------------------------------------------------------------------------------
 #else
 	if ( !this->m_bEnable ) {
-		// Äù½ºÆ® µ¥ÀÌÅ¸ Á¡°ËÁß...
+		// í€˜ìŠ¤íŠ¸ ë°ì´íƒ€ ì ê²€ì¤‘...
 		return QST_RESULT_STOPPED;
 	}
 	::InterlockedIncrement( &this->m_lRefCnt );
@@ -2490,11 +2490,11 @@ eQST_RESULT CQuestDATA::CheckQUEST( CUserDATA *pUSER, t_HASHKEY HashQuest, bool 
 	pTrigger = pHashNode ? pHashNode->m_DATA : NULL;
 
 #ifndef	__SERVER
-	/// Æ®¸®°Å ¾øÀ½
+	/// íŠ¸ë¦¬ê±° ì—†ìŒ
 	if( pTrigger == NULL )
 	{
 		//--------------------------------------------------------------------------------
-		LOGERR( "Æ®¸®°Å ¾øÀ½ " );
+		LOGERR( "íŠ¸ë¦¬ê±° ì—†ìŒ " );
 		//--------------------------------------------------------------------------------
 		return QST_RESULT_INVALID;
 	}
@@ -2522,7 +2522,7 @@ eQST_RESULT CQuestDATA::CheckQUEST( CUserDATA *pUSER, t_HASHKEY HashQuest, bool 
 
 #ifndef	__SERVER
 			//----------------------------------------------------------------------------------------------------
-			/// ºäÀ×µÈ ¼­¹ö·Î ºÎÅÍ ¹ŞÀº º¸»ó³»¿ë ½ÇÇà
+			/// ë·°ì‰ëœ ì„œë²„ë¡œ ë¶€í„° ë°›ì€ ë³´ìƒë‚´ìš© ì‹¤í–‰
 			//----------------------------------------------------------------------------------------------------
 			g_QuestRewardQueue.ApplyReward();
 #endif
@@ -2545,7 +2545,7 @@ eQST_RESULT CQuestDATA::CheckQUEST( CUserDATA *pUSER, t_HASHKEY HashQuest, bool 
 
 #ifndef	__SERVER
 	//--------------------------------------------------------------------------------
-	LOGERR( "===Æ®¸®°Å ¼öÇà ³¡===" );
+	LOGERR( "===íŠ¸ë¦¬ê±° ìˆ˜í–‰ ë===" );
 	//--------------------------------------------------------------------------------
 #endif
 
@@ -2556,7 +2556,7 @@ eQST_RESULT CQuestDATA::CheckQUEST( CUserDATA *pUSER, t_HASHKEY HashQuest, bool 
 //-------------------------------------------------------------------------------------------------
 void CQuestTRIGGER::Init_COND( uniQstENTITY *pCOND )
 {
-	// ·Îµù½Ã µ¥ÀÌÅ¸ ¼öÁ¤ÇÒ°Íµé...
+	// ë¡œë”©ì‹œ ë°ì´íƒ€ ìˆ˜ì •í• ê²ƒë“¤...
 	switch( pCOND->iType ) {
 		case 12 :	// F_QSTCOND012
 		{
@@ -2571,7 +2571,7 @@ void CQuestTRIGGER::Init_COND( uniQstENTITY *pCOND )
 }
 void CQuestTRIGGER::Init_REWD( uniQstENTITY *pREWD )
 {
-	// ·Îµù½Ã µ¥ÀÌÅ¸ ¼öÁ¤ÇÒ°Íµé...
+	// ë¡œë”©ì‹œ ë°ì´íƒ€ ìˆ˜ì •í• ê²ƒë“¤...
 	switch( pREWD->iType ) {
 		case 13 :	// STR_REWD_013
 		{
@@ -2609,7 +2609,7 @@ bool CQuestTRIGGER::Client_Load ( CFileSystem* pFileSystem )
 	unsigned int uiC;
 	for(uiC=0; uiC<m_uiCondCNT; uiC++) 
 	{
-		// Á¶°Ç µ¥ÀÌÅÍ¸¦ ÀĞ¾î¿È
+		// ì¡°ê±´ ë°ì´í„°ë¥¼ ì½ì–´ì˜´
 		pFileSystem->ReadUInt32( &Header.uiSize );
 		pFileSystem->ReadInt32( &Header.iType );
 
@@ -2626,7 +2626,7 @@ bool CQuestTRIGGER::Client_Load ( CFileSystem* pFileSystem )
 
 	for(uiC=0; uiC<m_uiRewdCNT; uiC++) 
 	{
-		// Çàµ¿ µ¥ÀÌÅÍ¸¦ ÀĞ¾î¿È
+		// í–‰ë™ ë°ì´í„°ë¥¼ ì½ì–´ì˜´
 		pFileSystem->ReadUInt32( &Header.uiSize );
 		pFileSystem->ReadInt32( &Header.iType );
 
@@ -2662,7 +2662,7 @@ bool CQuestTRIGGER::Load (FILE *fpIN)
 	StrHeader Header;
 	unsigned int uiC;
 	for(uiC=0; uiC<m_uiCondCNT; uiC++) {
-		// Á¶°Ç µ¥ÀÌÅÍ¸¦ ÀĞ¾î¿È
+		// ì¡°ê±´ ë°ì´í„°ë¥¼ ì½ì–´ì˜´
 		fread( &Header.uiSize,	1,	sizeof(UINT),	fpIN);
 		fread( &Header.iType, 	1,	sizeof(int),	fpIN);
 
@@ -2677,7 +2677,7 @@ bool CQuestTRIGGER::Load (FILE *fpIN)
 	}
 
 	for(uiC=0; uiC<m_uiRewdCNT; uiC++) {
-		// Çàµ¿ µ¥ÀÌÅÍ¸¦ ÀĞ¾î¿È
+		// í–‰ë™ ë°ì´í„°ë¥¼ ì½ì–´ì˜´
 		fread( &Header.uiSize,	1,	sizeof(UINT),	fpIN);
 		fread( &Header.iType, 	1,	sizeof(int),	fpIN);
 
@@ -2718,19 +2718,19 @@ bool CQuestTRIGGER::Proc( tQST_PARAM *pPARAM, bool bDoReward )
 		for (uiC=0; uiC<m_uiCondCNT; uiC++) {
 			if ( !g_fpQstCOND[ m_ppCondition[uiC]->iType ].fpCheck( m_ppCondition[ uiC ], pPARAM) ) {
 				#ifndef	__SERVER
-					/// ·£´ı Ã¼Å©ÇÏ´Â ºÎºĞµéÀº ¼­¹ö·ÎºÎÅÍ ¹ŞÀº°Ç ´Ù½Ã Ã¼Å©ÇÏÁö ¾Ê´Â´Ù.
+					/// ëœë¤ ì²´í¬í•˜ëŠ” ë¶€ë¶„ë“¤ì€ ì„œë²„ë¡œë¶€í„° ë°›ì€ê±´ ë‹¤ì‹œ ì²´í¬í•˜ì§€ ì•ŠëŠ”ë‹¤.
 					if( bDoReward && ( m_ppCondition[uiC]->iType == 10 ) )
 						continue;
 
 					char *szMsg;
 					if ( pPARAM->m_nErrSTEP >= 0 ) {
-						szMsg = CStr::Printf ("	[QST] %s¿¡¼­ %d¹øÂ° Á¶°Çµ¥ÀÌÅ¸( Á¶°ÇÅ¸ÀÔ:%d ) Áß %d¹øÂ° Á¶°Ç ¸¸Á· ¸øÇÔ", pPARAM->m_pCurrentTRIGGER->m_Name.Get(), uiC, m_ppCondition[uiC]->iType, pPARAM->m_nErrSTEP );					
+						szMsg = CStr::Printf ("	[QST] %sì—ì„œ %dë²ˆì§¸ ì¡°ê±´ë°ì´íƒ€( ì¡°ê±´íƒ€ì…:%d ) ì¤‘ %dë²ˆì§¸ ì¡°ê±´ ë§Œì¡± ëª»í•¨", pPARAM->m_pCurrentTRIGGER->m_Name.Get(), uiC, m_ppCondition[uiC]->iType, pPARAM->m_nErrSTEP );					
 					} else {
-						szMsg = CStr::Printf ("	[QST] %s¿¡¼­ %d¹øÂ° Á¶°Çµ¥ÀÌÅ¸( Á¶°ÇÅ¸ÀÔ:%d ) Á¶°Ç ¸¸Á· ¸øÇÔ", pPARAM->m_pCurrentTRIGGER->m_Name.Get(), uiC, m_ppCondition[uiC]->iType );					
+						szMsg = CStr::Printf ("	[QST] %sì—ì„œ %dë²ˆì§¸ ì¡°ê±´ë°ì´íƒ€( ì¡°ê±´íƒ€ì…:%d ) ì¡°ê±´ ë§Œì¡± ëª»í•¨", pPARAM->m_pCurrentTRIGGER->m_Name.Get(), uiC, m_ppCondition[uiC]->iType );					
 					}
 
 					//--------------------------------------------------------------------------------
-					DUMPWAR( szMsg )( "!!!Á¶°Ç¸¸Á· ¸øÇÔ!!! ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
+					DUMPWAR( szMsg )( "!!!ì¡°ê±´ë§Œì¡± ëª»í•¨!!! ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
 					//--------------------------------------------------------------------------------
 				#endif
 				// pPARAM->m_pErrENTITY = m_ppCondition[ uiC ];
@@ -2738,11 +2738,11 @@ bool CQuestTRIGGER::Proc( tQST_PARAM *pPARAM, bool bDoReward )
 			}
 		}
 #ifndef	__SERVER
-		// Å¬¶óÀÌ¾ğÆ®¿¡¼­´Â bDoReward = false »óÅÂ·Î Á¶°Ç¸¸ Ã¼Å©ÇÏ°í
-		// Á¶°ÇÀÌ trueÀÏ°æ¿ì ¼­¹ö¿¡ º¸»ó ¿äÃ» ÆĞÅ¶À» º¸³½´Ù.
-		// ¼­¹ö¿¡¼­ Á¶°Ç Ã¼Å©ÈÄ º¸»ó Á¶°ÇÀÌ ¸¸Á·ÇÏ¸é º¸»óÈÄ 
-		// º¸»ó ÇÏ¶ó´Â ÆĞÅ¶À» º¸³»¹Ç·Î ±×¶§ bDoReward = true·Î º» ÇÔ¼ö¸¦ È£ÃâÇÑ´Ù.
-		//if ( !bDoReward ) 05.05.21 icarus:: º¸»ó¾øÀÌ Ã¼Å©¸¸ ÇÒ°æ¿ì È­¸é¿¡ Ãâ·ÂÇÒ º¸»ó ¸ñ·ÏÀ» ÀÛ¼ºÇÑ´Ù...
+		// í´ë¼ì´ì–¸íŠ¸ì—ì„œëŠ” bDoReward = false ìƒíƒœë¡œ ì¡°ê±´ë§Œ ì²´í¬í•˜ê³ 
+		// ì¡°ê±´ì´ trueì¼ê²½ìš° ì„œë²„ì— ë³´ìƒ ìš”ì²­ íŒ¨í‚·ì„ ë³´ë‚¸ë‹¤.
+		// ì„œë²„ì—ì„œ ì¡°ê±´ ì²´í¬í›„ ë³´ìƒ ì¡°ê±´ì´ ë§Œì¡±í•˜ë©´ ë³´ìƒí›„ 
+		// ë³´ìƒ í•˜ë¼ëŠ” íŒ¨í‚·ì„ ë³´ë‚´ë¯€ë¡œ ê·¸ë•Œ bDoReward = trueë¡œ ë³¸ í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•œë‹¤.
+		//if ( !bDoReward ) 05.05.21 icarus:: ë³´ìƒì—†ì´ ì²´í¬ë§Œ í• ê²½ìš° í™”ë©´ì— ì¶œë ¥í•  ë³´ìƒ ëª©ë¡ì„ ì‘ì„±í•œë‹¤...
 		//	return true;
 	}
 #endif
@@ -2753,12 +2753,12 @@ bool CQuestTRIGGER::Proc( tQST_PARAM *pPARAM, bool bDoReward )
 			#ifndef	__SERVER
 				char *szMsg;
 				if ( pPARAM->m_nErrSTEP >= 0 ) {
-					szMsg = CStr::Printf ("	[QST] %s¿¡¼­ %d¹øÂ° º¸»óµ¥ÀÌÅ¸( Á¶°ÇÅ¸ÀÔ:%d ) Áß %d¹øÂ° Á¶°Ç ¸¸Á· ¸øÇÔ", pPARAM->m_pCurrentTRIGGER->m_Name.Get(), uiC, m_ppReward[uiC]->iType, pPARAM->m_nErrSTEP );					
+					szMsg = CStr::Printf ("	[QST] %sì—ì„œ %dë²ˆì§¸ ë³´ìƒë°ì´íƒ€( ì¡°ê±´íƒ€ì…:%d ) ì¤‘ %dë²ˆì§¸ ì¡°ê±´ ë§Œì¡± ëª»í•¨", pPARAM->m_pCurrentTRIGGER->m_Name.Get(), uiC, m_ppReward[uiC]->iType, pPARAM->m_nErrSTEP );					
 				} else {
-					szMsg = CStr::Printf ("	[QST] %s¿¡¼­ %d¹øÂ° º¸»óµ¥ÀÌÅ¸( Á¶°ÇÅ¸ÀÔ:%d ) Á¶°Ç ¸¸Á· ¸øÇÔ", pPARAM->m_pCurrentTRIGGER->m_Name.Get(), uiC, m_ppReward[uiC]->iType );				
+					szMsg = CStr::Printf ("	[QST] %sì—ì„œ %dë²ˆì§¸ ë³´ìƒë°ì´íƒ€( ì¡°ê±´íƒ€ì…:%d ) ì¡°ê±´ ë§Œì¡± ëª»í•¨", pPARAM->m_pCurrentTRIGGER->m_Name.Get(), uiC, m_ppReward[uiC]->iType );				
 				}
 				//--------------------------------------------------------------------------------
-				DUMPWAR( szMsg )( "!!!Á¶°Ç¸¸Á· ¸øÇÔ!!! ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
+				DUMPWAR( szMsg )( "!!!ì¡°ê±´ë§Œì¡± ëª»í•¨!!! ", pPARAM->m_pCurrentTRIGGER->m_Name.Get() );
 				//--------------------------------------------------------------------------------
 			#endif
 			return false;

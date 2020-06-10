@@ -37,13 +37,13 @@ void CClanMarkView::Draw( CObjCHAR* pObjChar /*, const POINT& ptDraw*/ , const D
 			g_DrawImpl.Draw( vDrawPos.x, vDrawPos.y, vDrawPos.z, IMAGE_RES_CLANBACK,   pObjChar->GetClanMarkBack() );
 			g_DrawImpl.Draw( vDrawPos.x, vDrawPos.y, vDrawPos.z, IMAGE_RES_CLANCENTER,   pObjChar->GetClanMarkCenter() );
 		}
-		else///À¯Àúµî·Ï ÀÌ¹ÌÁö »ç¿ë½Ã
+		else///ìœ ì €ë“±ë¡ ì´ë¯¸ì§€ ì‚¬ìš©ì‹œ
 		{
 			CClanMarkUserDefined* pUserDefinedClanMark = pObjChar->GetUserDefinedClanMark();
 			
 			if( pUserDefinedClanMark == NULL) 
 			{
-				/// Å¬·£¸¶Å© Á¤º¸¸¦ °¡Áö°í ÀÖÁö ¾Ê´Ù¸é °ü¸®ÀÚ¿¡°Ô ¿äÃ»À» ÇÑ´Ù.
+				/// í´ëžœë§ˆí¬ ì •ë³´ë¥¼ ê°€ì§€ê³  ìžˆì§€ ì•Šë‹¤ë©´ ê´€ë¦¬ìžì—ê²Œ ìš”ì²­ì„ í•œë‹¤.
 				std::string file_name;
 				CClanMarkUserDefined::GetClanMarkFileName( CGame::GetInstance().GetSelectedServerID(), pObjChar->GetClanID(), file_name );
 				pUserDefinedClanMark = CClanMarkManager::GetSingleton().GetClanMark( file_name.c_str(), pObjChar->GetClanMarkCenter(), pObjChar->GetClanID());

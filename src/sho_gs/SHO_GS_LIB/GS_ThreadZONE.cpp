@@ -101,7 +101,7 @@ void CZoneTHREAD::Execute()
 						this->ThreadID, this->ThreadID, this->Get_ZoneNO(), m_ObjWAIT.GetNodeCount() + m_ObjLIST.GetNodeCount() );
 
     if ( !m_Timer.Start() ) {
-        // Ä«¿îÅÍ°¡ µ¿ÀÛ ¾ÈÇÏ´Â ½Ã½ºÅÛÀÌ´Ù
+        // ì¹´ìš´í„°ê°€ ë™ì‘ ì•ˆí•˜ëŠ” ì‹œìŠ¤í…œì´ë‹¤
         ::MessageBox (NULL, "Not support hpc system", "Timer ERROR !!!", MB_OK);
         this->Terminate ();
     } else
@@ -117,7 +117,7 @@ void CZoneTHREAD::Execute()
     while( !this->Terminated ) {
         dwCurTIME  = m_Timer.Reset ();
 
-        //---------- ¸®Á¨ ¿µ¿ª Ã³¸®...
+        //---------- ë¦¬ì   ì˜ì—­ ì²˜ë¦¬...
 		if ( m_bEnableREGEN ) {
 			pRegenNODE = m_RegenLIST.GetHeadNode ();
 			while( pRegenNODE ) {
@@ -126,7 +126,7 @@ void CZoneTHREAD::Execute()
 			}
 		}
 
-		// Á×À»¶§ ¼ÒÈ¯µÈ ¸÷À» ÀÏÁ¤½Ã°£ÈÄ¿¡ ¸®Á¨½ÃÅ°µµ·Ï...
+		// ì£½ì„ë•Œ ì†Œí™˜ëœ ëª¹ì„ ì¼ì •ì‹œê°„í›„ì— ë¦¬ì  ì‹œí‚¤ë„ë¡...
 		m_csZoneMobCALLED.Lock ();
 		pMobNODE = m_MobCALLED.GetHeadNode ();
 		while( pMobNODE ) {
@@ -139,7 +139,7 @@ void CZoneTHREAD::Execute()
 		}
 		m_csZoneMobCALLED.Unlock ();
 
-		//---------- @ÁÖÀÇ!! ¸®Á¨ º¸´Ù µÚ¿¡ ¿Í¾ß µÈ´Ù.. Á¸¿¡ µé¾î¿Ã ´ë±âÀÚ¸¦ ¸ñ·Ï¿¡ Ãß°¡...
+		//---------- @ì£¼ì˜!! ë¦¬ì   ë³´ë‹¤ ë’¤ì— ì™€ì•¼ ëœë‹¤.. ì¡´ì— ë“¤ì–´ì˜¬ ëŒ€ê¸°ìë¥¼ ëª©ë¡ì— ì¶”ê°€...
 		m_csZoneObjWAIT.Lock ();
 		pObjNODE = m_ObjWAIT.GetHeadNode ();
 		while( pObjNODE ) {
@@ -150,12 +150,12 @@ void CZoneTHREAD::Execute()
 		}
 		m_csZoneObjWAIT.Unlock ();
 
-		//---------- °æÁ¦ µ¥ÀÌÅ¸ Ã³¸®...
+		//---------- ê²½ì œ ë°ì´íƒ€ ì²˜ë¦¬...
 		if ( m_Economy.Proc ( dwCurTIME ) ) {
 			this->Send_EconomyDATA ();
 		}
 
-		//---------- ÀüÃ¼ Àü¼Û ÆĞÅ¶...
+		//---------- ì „ì²´ ì „ì†¡ íŒ¨í‚·...
 		m_csPacketLIST.Lock ();
 		if ( m_ToSendPacketLIST.GetNodeCount() ) {
 			m_SendingPacketLIST.AppendNodeList( &m_ToSendPacketLIST );
@@ -163,7 +163,7 @@ void CZoneTHREAD::Execute()
 		}
 		m_csPacketLIST.Unlock ();
 
-		//---------- ½ÇÁ¦ Á¸ÀÇ ¿ÜÀûÀÌ Ã³¸®°¡ ³¡³µÀ¸¸é ÇÁ·¹ÀÓ´ë±â...
+		//---------- ì‹¤ì œ ì¡´ì˜ ì™¸ì ì´ ì²˜ë¦¬ê°€ ëë‚¬ìœ¼ë©´ í”„ë ˆì„ëŒ€ê¸°...
         dwPassTIME = m_Timer.GetValue();
 		// dwWorldPassTIME += dwPassTIME;
         if ( dwPassTIME < _DELAY_PER_FRAME ) {
@@ -189,7 +189,7 @@ void CZoneTHREAD::Execute()
 					this->Dec_UserCNT ();
 
 					//if ( ( (classUSER*)pDelOBJ )->GetPARTY() ) {
-					//	// ºñÁ¤»ó Á¾·á...
+					//	// ë¹„ì •ìƒ ì¢…ë£Œ...
 					//	( (classUSER*)pDelOBJ )->m_pPartyBUFF->OnDisconnect( (classUSER*)pDelOBJ );
 					//}
 
@@ -200,7 +200,7 @@ void CZoneTHREAD::Execute()
                     SAFE_DELETE( pDelOBJ );
 				}
             } else {
-				// Á¸ ÀüÃ¼¿¡ Àü¼ÛÇÒ ÆĞÅ¶ÀÌ ÀÖÀ¸¸é...
+				// ì¡´ ì „ì²´ì— ì „ì†¡í•  íŒ¨í‚·ì´ ìˆìœ¼ë©´...
 				pPacketNODE = m_SendingPacketLIST.GetHeadNode ();
 				while( pPacketNODE ) {
 					pObjNODE->DATA->SendPacket( pPacketNODE->DATA );
@@ -212,14 +212,14 @@ void CZoneTHREAD::Execute()
         }
 
 
-		//---------- Á¸¿¡ ¼öÇàµÉ Æ®¸®°Å...
+		//---------- ì¡´ì— ìˆ˜í–‰ë  íŠ¸ë¦¬ê±°...
 		if ( m_TriggerLIST.GetNodeCount() )
 			this->Proc_ZoneTRIGGER ();
 
 
 		pPacketNODE = m_SendingPacketLIST.GetHeadNode ();
 		while( pPacketNODE ) {
-			// iRefCNT¸¸ °¨¼Ò ½ÃÄÑ »èÁ¦°¡´ÉÇÏ¸é »èÁ¦ ÇÑ´Ù.
+			// iRefCNTë§Œ ê°ì†Œ ì‹œì¼œ ì‚­ì œê°€ëŠ¥í•˜ë©´ ì‚­ì œ í•œë‹¤.
 			::Packet_DecRefCount( pPacketNODE->DATA );
 
 			m_SendingPacketLIST.DeleteHead ();
@@ -243,15 +243,15 @@ void CZoneTHREAD::DeleteZoneOBJ ()
 	CGameOBJ *pDelOBJ;
     classDLLNODE< CGameOBJ* > *pObjNODE, *pNextNODE;
 
-	// ¾²·¹µå Á¾·á½Ã...
-	// Á¸ÀÇ ¸ğµç °´Ã¼¸¦ »èÁ¦ÇÑ´Ù.
+	// ì“°ë ˆë“œ ì¢…ë£Œì‹œ...
+	// ì¡´ì˜ ëª¨ë“  ê°ì²´ë¥¼ ì‚­ì œí•œë‹¤.
 	for (pObjNODE=m_ObjLIST.GetHeadNode(); pObjNODE;  ) {
 		pNextNODE = m_ObjLIST.GetNextNode( pObjNODE );
 
 		pDelOBJ  = pObjNODE->DATA;
 		this->Sub_DIRECT( pDelOBJ );		// CZoneTHREAD::Execute
         if ( pDelOBJ->IsUSER() ) {
-			g_pUserLIST->DeleteUSER( (classUSER*)pDelOBJ, LOGOUT_MODE_LEFT );		// Á¸ ¾²·¹µå Á¾·á½Ã...
+			g_pUserLIST->DeleteUSER( (classUSER*)pDelOBJ, LOGOUT_MODE_LEFT );		// ì¡´ ì“°ë ˆë“œ ì¢…ë£Œì‹œ...
         } else {
             SAFE_DELETE( pDelOBJ );
 		}
@@ -259,7 +259,7 @@ void CZoneTHREAD::DeleteZoneOBJ ()
 		pObjNODE = pNextNODE;
 	}
 
-	// Á¸¿¡ Âü°¡ÇÏ±âÀ§ÇØ ´ë±âÁßÀÎ °´Ã¼ »èÁ¦...
+	// ì¡´ì— ì°¸ê°€í•˜ê¸°ìœ„í•´ ëŒ€ê¸°ì¤‘ì¸ ê°ì²´ ì‚­ì œ...
 	m_csZoneObjWAIT.Lock ();
 	pObjNODE = m_ObjWAIT.GetHeadNode ();
 	while( pObjNODE ) {
@@ -272,9 +272,9 @@ void CZoneTHREAD::DeleteZoneOBJ ()
 		pDelOBJ->SetZONE( NULL );
 
         if ( pDelOBJ->IsUSER() ) {
-			// Á¸¿¡¼­ ºüÁø »ç¿ëÀÚ ¸®½ºÆ®¿¡ µî·Ï...
-			g_pUserLIST->Add_NullZONE( &pDelOBJ->m_ZoneNODE );	// Á¸ ¾²·¹µå Á¾·á½Ã...
-			g_pUserLIST->DeleteUSER( (classUSER*)pDelOBJ, LOGOUT_MODE_LEFT );		// Á¸ ¾²·¹µå Á¾·á½Ã...
+			// ì¡´ì—ì„œ ë¹ ì§„ ì‚¬ìš©ì ë¦¬ìŠ¤íŠ¸ì— ë“±ë¡...
+			g_pUserLIST->Add_NullZONE( &pDelOBJ->m_ZoneNODE );	// ì¡´ ì“°ë ˆë“œ ì¢…ë£Œì‹œ...
+			g_pUserLIST->DeleteUSER( (classUSER*)pDelOBJ, LOGOUT_MODE_LEFT );		// ì¡´ ì“°ë ˆë“œ ì¢…ë£Œì‹œ...
         } else {
             SAFE_DELETE( pDelOBJ );
 		}
@@ -284,7 +284,7 @@ void CZoneTHREAD::DeleteZoneOBJ ()
 	m_csZoneObjWAIT.Unlock ();
 
 
-	// ¸®Á¨ Æ÷ÀÎÆ®´Â Á¸ °´Á¦º¸´Ù µÚ¿¡ »èÁ¦µÇ¾ß ÇÑ´Ù.
+	// ë¦¬ì   í¬ì¸íŠ¸ëŠ” ì¡´ ê°ì œë³´ë‹¤ ë’¤ì— ì‚­ì œë˜ì•¼ í•œë‹¤.
     classDLLNODE< CRegenPOINT* > *pRegenNODE;
     while( pRegenNODE = m_RegenLIST.GetHeadNode() ) {
         SAFE_DELETE( pRegenNODE->DATA );
@@ -308,8 +308,8 @@ void CZoneTHREAD::Proc_ZoneTRIGGER ()
 			while( pObjNODE ) {
 				if ( pObjNODE->DATA->IsUSER() ) {
 					if ( 0 == pQstNODE->DATA.m_nTeamNO || ((classUSER*)pObjNODE->DATA)->Get_TeamNO() == pQstNODE->DATA.m_nTeamNO ) {
-						// Æ®¸®°Å ½ÇÇà.
-						// Äù½ºÆ®¿¡¼­ ¿öÇÁ ÇÒ°æ¿ì »ç¿ëÀÚ¿¡°Ô ÆĞÅ¶ º¸³»¼­ ¿öÇÁ ¿äÃ»ÇÏµµ·Ï µÇ¾î ÀÖ´Ù~~
+						// íŠ¸ë¦¬ê±° ì‹¤í–‰.
+						// í€˜ìŠ¤íŠ¸ì—ì„œ ì›Œí”„ í• ê²½ìš° ì‚¬ìš©ìì—ê²Œ íŒ¨í‚· ë³´ë‚´ì„œ ì›Œí”„ ìš”ì²­í•˜ë„ë¡ ë˜ì–´ ìˆë‹¤~~
 						((classUSER*)pObjNODE->DATA)->Do_QuestTRIGGER( pQstNODE->DATA.m_TriggerHASH );
 					}
 				}
@@ -382,9 +382,9 @@ bool CZoneTHREAD::SendShout (CGameOBJ *pGameOBJ, classPACKET *pCPacket, int iTea
 	}
 
 	/*
-	// ÀÌ ÇÔ¼ö°¡ È£ÃâµÇ´Â °÷Àº ¸ŞÀÎ ¾²·¹µå´Ù !!!
-	// ¿©±â¼­ ÆĞÅ¶À» lockÇÏ°í ¾²·¹µå¾È¿¡¼­ unlockÇÏ´Â°ÍÀº ¹¹ÇÏ´Â Â¢ ???
-	// ÇÒ´ç¸¸ ¹Ş°í lockÀº zone thread¾È¿¡¼­ ÇÏÀÚ !!!
+	// ì´ í•¨ìˆ˜ê°€ í˜¸ì¶œë˜ëŠ” ê³³ì€ ë©”ì¸ ì“°ë ˆë“œë‹¤ !!!
+	// ì—¬ê¸°ì„œ íŒ¨í‚·ì„ lockí•˜ê³  ì“°ë ˆë“œì•ˆì—ì„œ unlockí•˜ëŠ”ê²ƒì€ ë­í•˜ëŠ” ì§– ???
+	// í• ë‹¹ë§Œ ë°›ê³  lockì€ zone threadì•ˆì—ì„œ í•˜ì !!!
 	classSLLNODE< classPACKET* > *pNewNODE;
 
 	pNewNODE = new classSLLNODE< classPACKET* >;
@@ -410,9 +410,9 @@ bool CZoneTHREAD::SendShout (CGameOBJ *pGameOBJ, classPACKET *pCPacket, int iTea
 //-------------------------------------------------------------------------------------------------
 bool CZoneTHREAD::SendPacketToZONE (t_PACKET *pSendPacket)
 {
-	// ÀÌ ÇÔ¼ö°¡ È£ÃâµÇ´Â °÷Àº ¸ŞÀÎ ¾²·¹µå´Ù !!!
-	// ¿©±â¼­ ÆĞÅ¶À» lockÇÏ°í ¾²·¹µå¾È¿¡¼­ unlockÇÏ´Â°ÍÀº ¹¹ÇÏ´Â Â¢ ???
-	// ÇÒ´ç¸¸ ¹Ş°í lockÀº zone thread¾È¿¡¼­ ÇÏÀÚ !!!
+	// ì´ í•¨ìˆ˜ê°€ í˜¸ì¶œë˜ëŠ” ê³³ì€ ë©”ì¸ ì“°ë ˆë“œë‹¤ !!!
+	// ì—¬ê¸°ì„œ íŒ¨í‚·ì„ lockí•˜ê³  ì“°ë ˆë“œì•ˆì—ì„œ unlockí•˜ëŠ”ê²ƒì€ ë­í•˜ëŠ” ì§– ???
+	// í• ë‹¹ë§Œ ë°›ê³  lockì€ zone threadì•ˆì—ì„œ í•˜ì !!!
 	classSLLNODE< classPACKET* > *pNewNODE;
 
 	pNewNODE = new classSLLNODE< classPACKET* >;
@@ -423,8 +423,8 @@ bool CZoneTHREAD::SendPacketToZONE (t_PACKET *pSendPacket)
 	pNewNODE->DATA->SetRefCnt( 1 );
 
 	assert( pNewNODE->DATA->GetRefCnt() == 1 );
-	// ÆĞÅ¶¿¡ lockÀº °ÉÁö ¾Ê°í iRefCNT¸¸ Áõ°¡ ½ÃÄÑ 
-	// µµÁß¿¡ ÆĞÅ¶ÀÌ Àü¼ÛµÇ¾îµµ Ç®¸®Áö ¾Ê°Ô ÇÑ´Ù.
+	// íŒ¨í‚·ì— lockì€ ê±¸ì§€ ì•Šê³  iRefCNTë§Œ ì¦ê°€ ì‹œì¼œ 
+	// ë„ì¤‘ì— íŒ¨í‚·ì´ ì „ì†¡ë˜ì–´ë„ í’€ë¦¬ì§€ ì•Šê²Œ í•œë‹¤.
 	// pNewNODE->DATA->m_iRefCnt ++;
 
 	::CopyMemory( pNewNODE->DATA->m_pDATA, pSendPacket->m_pDATA, pSendPacket->m_HEADER.m_nSize );
@@ -531,7 +531,7 @@ bool CZoneTHREAD::Add_DIRECT( CGameOBJ *pObj )
 		return false;
 	}
 
-	// ¼­¹ö objectindex¸¦ ³Ñ°Ü¾ß ÇÑ´Ù...
+	// ì„œë²„ objectindexë¥¼ ë„˜ê²¨ì•¼ í•œë‹¤...
 	pObj->Send_gsv_JOIN_ZONE( this );
 
 
@@ -543,7 +543,7 @@ bool CZoneTHREAD::Add_DIRECT( CGameOBJ *pObj )
 }
 
 //-------------------------------------------------------------------------------------------------
-// Ãß°¡ °´Ã¼¸¦ ´ë±âÀÚ ¸ñ·Ï¿¡ ³Ö¾î¼­ °ü¸®...
+// ì¶”ê°€ ê°ì²´ë¥¼ ëŒ€ê¸°ì ëª©ë¡ì— ë„£ì–´ì„œ ê´€ë¦¬...
 bool CZoneTHREAD::Add_OBJECT( CGameOBJ *pObj )
 {
 	assert( pObj->Get_INDEX() == 0 );
@@ -560,17 +560,17 @@ bool CZoneTHREAD::Add_OBJECT( CGameOBJ *pObj )
 		return false;
 	}
 
-	// ÁÖÀÇ !!! Send_gsv_JOIN_ZONEº¸´Ù ¾Õ¼­¾ß ÇÑ´Ù.
+	// ì£¼ì˜ !!! Send_gsv_JOIN_ZONEë³´ë‹¤ ì•ì„œì•¼ í•œë‹¤.
 	pObj->SetZONE( this );
 	if ( pObj->IsUSER() ) {
-		// Á¸¿¡¼­ ºüÁø »ç¿ëÀÚ ¸®½ºÆ®¿¡¼­ »èÁ¦...
+		// ì¡´ì—ì„œ ë¹ ì§„ ì‚¬ìš©ì ë¦¬ìŠ¤íŠ¸ì—ì„œ ì‚­ì œ...
 		g_pUserLIST->Sub_NullZONE( &pObj->m_ZoneNODE );	// CZoneTHREAD::Add_OBJECT
 	}
 
-	// ¼­¹ö objectindex¸¦ ³Ñ°Ü¾ß ÇÑ´Ù...
+	// ì„œë²„ objectindexë¥¼ ë„˜ê²¨ì•¼ í•œë‹¤...
 	pObj->Send_gsv_JOIN_ZONE ( this );
 
-	// ´ë±âÀÚ ¸®½ºÆ®¿¡ µî·Ï...
+	// ëŒ€ê¸°ì ë¦¬ìŠ¤íŠ¸ì— ë“±ë¡...
 	m_csZoneObjWAIT.Lock ();
 	{
 		m_ObjWAIT.AppendNode( &pObj->m_ZoneNODE );
@@ -581,7 +581,7 @@ bool CZoneTHREAD::Add_OBJECT( CGameOBJ *pObj )
 }
 
 //-------------------------------------------------------------------------------------------------
-// ** CZoneTHREAD ¸ŞÀÎ ·çÇÁ¿¡¼­ Å»Ãâ ÇÏµµ·Ï ÇÑ´Ù. 
+// ** CZoneTHREAD ë©”ì¸ ë£¨í”„ì—ì„œ íƒˆì¶œ í•˜ë„ë¡ í•œë‹¤. 
 void CZoneTHREAD::Sub_DIRECT( CGameOBJ *pObj, bool bSubFromREGEN )
 {
     if ( pObj->IsA( OBJ_MOB ) ) {
@@ -589,7 +589,7 @@ void CZoneTHREAD::Sub_DIRECT( CGameOBJ *pObj, bool bSubFromREGEN )
 			((CObjMOB*)pObj)->m_pRegenPOINT->SubLiveCNT ();
     }
 
-	pObj->Set_TargetObjIDX( 0 );	// CCharOBJ°æ¿ì ¿¡¸¸ ÇØ´ç.
+	pObj->Set_TargetObjIDX( 0 );	// CCharOBJê²½ìš° ì—ë§Œ í•´ë‹¹.
 
 	this->SubObjectFromSector( pObj, SECTOR_UPDATE_ALL );
 
@@ -645,7 +645,7 @@ CObjMOB *CZoneTHREAD::RegenMOB( float fCenterX, float fCenterY, int iRange, int 
 			return NULL;
 		}
 
-		// ¿©±â¼± ÇÏÁö ¸»ÀÚ... ÀÌÇÔ¼ö°¡ È£ÃâµÇ´Â °÷ÀÇ À§Ä¡°¡ User RecvPakcetÀÌ¶ó ¾îÂ¾Áö ºÒ¾È..
+		// ì—¬ê¸°ì„  í•˜ì§€ ë§ì... ì´í•¨ìˆ˜ê°€ í˜¸ì¶œë˜ëŠ” ê³³ì˜ ìœ„ì¹˜ê°€ User RecvPakcetì´ë¼ ì–´ì©ì§€ ë¶ˆì•ˆ..
 		// pNewOBJ->Do_CreatedAI ();
 	}
 	return pNewOBJ;
@@ -667,7 +667,7 @@ CObjMOB *CZoneTHREAD::RegenCharacter( float fCenterX, float fCenterY, int iRange
 		m_csZoneMobCALLED.Lock ();
 		{
 			pNewNODE = m_MobCALLED.AllocNAppend();
-			// 3ÃÊ µô·¹ÀÌ
+			// 3ì´ˆ ë”œë ˆì´
 			pNewNODE->DATA.m_dwActionTIME = this->GetTimeGetTIME() + 3 * 1000;
 			pNewNODE->DATA.m_fCenterX = fCenterX;
 			pNewNODE->DATA.m_fCenterY = fCenterY;
@@ -758,7 +758,7 @@ bool CZoneTHREAD::AddObjectToSector (CGameOBJ *pObj, BYTE btUpdateFLAG)
 		return false;
 
     if ( pObj->Make_gsv_ADD_OBJECT( pCPacket ) ) {
-        // pObjectÃß°¡ ÆĞÅ¶ Àü¼Û.
+        // pObjectì¶”ê°€ íŒ¨í‚· ì „ì†¡.
         int iL, iSecX, iSecY;
         for (iL=0; s_AddSecIdx[ btUpdateFLAG ][ iL ]>=0; iL++) {
             iSecX = pObj->m_PosSECTOR.x + s_SecAdjPos[ s_AddSecIdx[ btUpdateFLAG ][ iL ] ].x;
@@ -823,7 +823,7 @@ bool CZoneTHREAD::UpdateSECTOR( CObjCHAR *pCHAR )
 	POINTS	PosADJUST;
 	BYTE	btUpdateFLAG=0;
 
-	// ¼½ÅÍ ±×·ì °»½Å - ¼¾ÅÍ ¼½ÅÍ °»½Å.
+	// ì„¹í„° ê·¸ë£¹ ê°±ì‹  - ì„¼í„° ì„¹í„° ê°±ì‹ .
 	if ( (int)pCHAR->m_PosCUR.x - pCHAR->m_pGroupSECTOR->m_iCenterX < -(this->m_iSectorLIMIT) ) {
 		btUpdateFLAG |= SECTOR_UPDATE_LEFT;
 		PosADJUST.x = pCHAR->m_PosSECTOR.x - 1;
@@ -853,7 +853,7 @@ bool CZoneTHREAD::UpdateSECTOR( CObjCHAR *pCHAR )
 			return false;
 		}
 
-		// ¼¾ÅÍ ¼½ÅÍ¸¦ ¹Ù²Û´Ù. - ±×·ìÀ» ¹Ù²Û´Ù.
+		// ì„¼í„° ì„¹í„°ë¥¼ ë°”ê¾¼ë‹¤. - ê·¸ë£¹ì„ ë°”ê¾¼ë‹¤.
 		this->SubObjectFromSector (pCHAR, btUpdateFLAG);				// classZONE::SetMapPos
 
 		pCHAR->m_PosSECTOR = PosADJUST;
@@ -1023,7 +1023,7 @@ short CZoneTHREAD::CallRegenPointMOB( short nIndex )
 					pMOB = (CObjMOB*)pObjNODE->DATA;
 					if ( pMOB->Get_HP() > 0 ) {
 						if ( ( (CObjMOB*)pObjNODE->DATA )->m_pRegenPOINT == pRegenNODE->DATA ) {
-							// ¼ÒÈ¯..
+							// ì†Œí™˜..
 							this->Sub_DIRECT( pMOB, false );
 							pMOB->m_PosCUR.x = pRegenNODE->DATA->m_fXPos;
 							pMOB->m_PosCUR.y = pRegenNODE->DATA->m_fYPos;

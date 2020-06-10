@@ -9,7 +9,7 @@ const char * _LtbPath [] = { LANGSTB_AI_NAME , LANGSTB_QST_NAME , LANGSTB_CON_NA
 
 
 
-// Áö¿ï¶§´Â NULL À» szStr¿¡ Àü´Þ.
+// ì§€ìš¸ë•ŒëŠ” NULL ì„ szStrì— ì „ë‹¬.
 void tagStrTblDATA::Set(const WCHAR *szStr, short nLen)
 {
 	if ( m_pStr ) {
@@ -192,7 +192,7 @@ bool AStringTable::Load (const char *szFileName)
 	return false;
 }
 
-// ÆÄÀÏ¿¡¼­ ÀÐÁö ¾Ê°í ¸Þ¸ð¸®¿¡¼­ °¡Á®¿È.
+// íŒŒì¼ì—ì„œ ì½ì§€ ì•Šê³  ë©”ëª¨ë¦¬ì—ì„œ ê°€ì ¸ì˜´.
 WCHAR * AStringTable::GetWString (WORD wColIDX, WORD wRowIDX)
 {
 	if ( wRowIDX >= m_iRowCNT || wColIDX >= m_iColCNT )

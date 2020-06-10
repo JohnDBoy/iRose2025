@@ -12,10 +12,10 @@ struct tagBaseITEM;
 
 
 /**
-* ÇÑ±¹¿¡¼­ÀÇ ¸¶ÀÏ¸®Áö ¾ÆÀÌÅÛ Ã¢°í( ¸ô¾ÆÀÌÅÛ Ã¢°í) ¿ë ´ÙÀÌ¾ó·Î±×
+* í•œêµ­ì—ì„œì˜ ë§ˆì¼ë¦¬ì§€ ì•„ì´í…œ ì°½ê³ ( ëª°ì•„ì´í…œ ì°½ê³ ) ìš© ë‹¤ì´ì–¼ë¡œê·¸
 *
-* @Warning		¼±¹°ÇÒ ´ë»óÀÇ ÀÌ¸§À» ¼­¹ö·Î º¸³» ÀÖ´ÂÁö Ã¼Å©ÇØ¼­ ÀÖ´Ù´Â ÆÐÅ¶À» ¹Þ°í º¸³¾°ÍÀÎ°¡¸¦ À¯Àú¿¡°Ô ´Ù½Ã ¹°¾îº¸´Â ±¸Á¶ÀÌ´Ù.
-* @Author		ÃÖÁ¾Áø
+* @Warning		ì„ ë¬¼í•  ëŒ€ìƒì˜ ì´ë¦„ì„ ì„œë²„ë¡œ ë³´ë‚´ ìžˆëŠ”ì§€ ì²´í¬í•´ì„œ ìžˆë‹¤ëŠ” íŒ¨í‚·ì„ ë°›ê³  ë³´ë‚¼ê²ƒì¸ê°€ë¥¼ ìœ ì €ì—ê²Œ ë‹¤ì‹œ ë¬¼ì–´ë³´ëŠ” êµ¬ì¡°ì´ë‹¤.
+* @Author		ìµœì¢…ì§„
 * @Date			2005/9/14
 */
 class CDeliveryStoreDlg : public CTDialog
@@ -50,7 +50,7 @@ private:
 	CSlot						m_Slots[c_deliverystore_slot_count];
 	int							m_emptyslot;
 
-	std::string					m_receiver_name;						/// ´Ù¸¥ À¯Àú¿¡°Ô 
+	std::string					m_receiver_name;						/// ë‹¤ë¥¸ ìœ ì €ì—ê²Œ 
 	short						m_npc_client_object_index;
 };
 

@@ -19,14 +19,14 @@ CSysInfo::CSysInfo ()
 
 	if(D3dInfo.Init())
 	{
-	D3dInfo.GetDisplayInfo (&m_mapVideo); // map Çü
-	D3dInfo.GetDisplayInfo(m_DisplayInfo); // vector Çü - dxdiag ±â¹İ.
+	D3dInfo.GetDisplayInfo (&m_mapVideo); // map í˜•
+	D3dInfo.GetDisplayInfo(m_DisplayInfo); // vector í˜• - dxdiag ê¸°ë°˜.
 	D3dInfo.GetSystemInfo(&m_SystemInfo);
 	D3dInfo.Release (); 
 	}
 
-	m_system = m_SystemInfo;	// ½Ã½ºÅÛ Á¤º¸
-    m_display1 = *(m_DisplayInfo[0]); // 1¹ø µğ½ºÇÃ·¹ÀÌ
+	m_system = m_SystemInfo;	// ì‹œìŠ¤í…œ ì •ë³´
+    m_display1 = *(m_DisplayInfo[0]); // 1ë²ˆ ë””ìŠ¤í”Œë ˆì´
 }
 
 CSysInfo::~CSysInfo ()
@@ -37,7 +37,7 @@ void CSysInfo::GetOSInfo (void)
 {
 	m_mapOS.clear ();
 
-	m_mapOS[ "Language" ] = (string)m_system->m_szLanguagesEnglish; // ÇöÀç ¾ğ¾î.
+	m_mapOS[ "Language" ] = (string)m_system->m_szLanguagesEnglish; // í˜„ì¬ ì–¸ì–´.
 
 	OSVERSIONINFOEX osvi;
 	BOOL bOsVersionInfoEx;
@@ -221,7 +221,7 @@ void CSysInfo::GetOSInfo (void)
 void CSysInfo::GetCpuInfo (void)
 {
 //=======================================================================================================	
-// 2005. 06. 15 kjhpower    dxdiag¿¡¼­ Á¤º¸¸¦ ¾ò¾î¿À´Â °ü°è·Î ÁÖ¼® Ã³¸®.	
+// 2005. 06. 15 kjhpower    dxdiagì—ì„œ ì •ë³´ë¥¼ ì–»ì–´ì˜¤ëŠ” ê´€ê³„ë¡œ ì£¼ì„ ì²˜ë¦¬.	
 //=======================================================================================================
 	/*****************************************
 	 * CPU Speed
@@ -240,29 +240,29 @@ void CSysInfo::GetCpuInfo (void)
 	//CPUInfo CpuInfo;
 	//m_mapCPU[ "vendor" ] = CpuInfo.GetVendorString ();
 	
-	m_mapCPU[ "CPUInfo" ] = m_system->m_szProcessorEnglish; // cpu Á¤º¸.
+	m_mapCPU[ "CPUInfo" ] = m_system->m_szProcessorEnglish; // cpu ì •ë³´.
 }
 
 void CSysInfo::GetVideoInfo (void)
 {
 //=======================================================================================================	
-// 2005. 06. 15 kjhpower    dxdiag¿¡¼­ Á¤º¸¸¦ ¾ò¾î¿À´Â °ü°è·Î ÁÖ¼® Ã³¸®.	
+// 2005. 06. 15 kjhpower    dxdiagì—ì„œ ì •ë³´ë¥¼ ì–»ì–´ì˜¤ëŠ” ê´€ê³„ë¡œ ì£¼ì„ ì²˜ë¦¬.	
 //=======================================================================================================
 //	std::string strDxVersion = GetDxVersion ();
 //	string directxversion = (string)m_system->m_szDirectXVersionEnglish;
 //	m_mapVideo[ "DirectX Version" ] = strDxVersion + "(" + directxversion + ")";
 
-	m_mapVideo[ "GraphicCardMemory" ] = (string)m_display1.m_szDisplayMemoryLocalized; // ±×·¡ÇÈÄ«µå ¸Ş¸ğ¸® Á¤º¸.
-	m_mapVideo[ "DisplayMode" ] = (string)m_display1.m_szDisplayModeLocalized; // ÇöÀç µğ½ºÇÃ·¹ÀÌ Á¤º¸.
-	m_mapVideo[ "DirectX Version" ] = (string)m_system->m_szDirectXVersionLongEnglish; // ´ÙÀÌ·ºÆ® X ¹öÁ¯ Á¤º¸.
+	m_mapVideo[ "GraphicCardMemory" ] = (string)m_display1.m_szDisplayMemoryLocalized; // ê·¸ë˜í”½ì¹´ë“œ ë©”ëª¨ë¦¬ ì •ë³´.
+	m_mapVideo[ "DisplayMode" ] = (string)m_display1.m_szDisplayModeLocalized; // í˜„ì¬ ë””ìŠ¤í”Œë ˆì´ ì •ë³´.
+	m_mapVideo[ "DirectX Version" ] = (string)m_system->m_szDirectXVersionLongEnglish; // ë‹¤ì´ë ‰íŠ¸ X ë²„ì ¼ ì •ë³´.
 }
 
 bool CSysInfo::GetDXInfo (void)
 {
-//	std::string strDxVersion = GetDxVersion (); // <-- 2005.06.15 kjhpower ¼öÁ¤ ÀÌÀü¿¡ ÁÖ¼®Ã³¸®µÇÀÖ¾úÀ½.
+//	std::string strDxVersion = GetDxVersion (); // <-- 2005.06.15 kjhpower ìˆ˜ì • ì´ì „ì— ì£¼ì„ì²˜ë¦¬ë˜ìˆì—ˆìŒ.
 
 //=======================================================================================================	
-// 2005. 06. 15 kjhpower    dxdiag¿¡¼­ Á¤º¸¸¦ ¾ò¾î¿À´Â °ü°è·Î ÁÖ¼® Ã³¸®.	
+// 2005. 06. 15 kjhpower    dxdiagì—ì„œ ì •ë³´ë¥¼ ì–»ì–´ì˜¤ëŠ” ê´€ê³„ë¡œ ì£¼ì„ ì²˜ë¦¬.	
 //=======================================================================================================
 /*	
 	DWORD version_n;
@@ -304,7 +304,7 @@ bool IsRightDisk (const char * szName)
 
 void CSysInfo::GetDiskInfo (void)
 {
-	// µå¶óÀÌºê¸íÀ» °¡Áö°í ¿È
+	// ë“œë¼ì´ë¸Œëª…ì„ ê°€ì§€ê³  ì˜´
 	int		curdrive;
 	char	path[ _MAX_PATH ];
 	
@@ -394,7 +394,7 @@ void CSysInfo::GetMemInfo (void)
 
 	GlobalMemoryStatus (&stat);
 
-	// ¹°¸® ¸Ş¸ğ¸®
+	// ë¬¼ë¦¬ ë©”ëª¨ë¦¬
 	sprintf (buff, "%ld MB"
 			, stat.dwTotalPhys / DIV
 			);
@@ -406,7 +406,7 @@ void CSysInfo::GetMemInfo (void)
 	m_mapMem[ "Free Phys Memory" ] = buff;
 
 
-	// ÆäÀÌÁö ÆÄÀÏ
+	// í˜ì´ì§€ íŒŒì¼
 	sprintf (buff, "%ld MB"
 			, stat.dwTotalPageFile / DIV
 			);
@@ -418,7 +418,7 @@ void CSysInfo::GetMemInfo (void)
 	m_mapMem[ "Free Page File" ] = buff;
 
 
-	// °¡»ó ¸Ş¸ğ¸®
+	// ê°€ìƒ ë©”ëª¨ë¦¬
 	sprintf (buff, "%ld MB"
 			, stat.dwTotalVirtual / DIV
 			);

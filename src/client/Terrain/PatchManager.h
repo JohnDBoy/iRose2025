@@ -11,13 +11,13 @@ class CMAP;
 
 //----------------------------------------------------------------------------------------------------
 /// class CPatchManager
-/// ��ġ�� ������ ���.. �����մϴ�.
+/// 패치를 엔진에 등록.. 관리합니다.
 //----------------------------------------------------------------------------------------------------
 
 class CPatchManager
 {
 private:
-	CMAP_PATCH*						m_ppPATCH[ 3*PATCH_COUNT_PER_MAP_AXIS ][ 3*PATCH_COUNT_PER_MAP_AXIS ];	// �� 3���
+	CMAP_PATCH*						m_ppPATCH[ 3*PATCH_COUNT_PER_MAP_AXIS ][ 3*PATCH_COUNT_PER_MAP_AXIS ];	// 맵 3장분
     
     CMAP_PATCH*                     m_ppSubPATCH[ PATCH_COUNT_PER_MAP_AXIS*PATCH_COUNT_PER_MAP_AXIS*9*2 ];    //  
 	short                           m_nSubPATCH; 
@@ -33,10 +33,10 @@ private:
 	
 //	CQuadPatchManager*              m_pBufferQuadPatch; 
 	
-	classDLLIST< CMAP_PATCH* >		m_PatchLIST;	// ȭ�鿡 ������ ��ġ����Ʈ...
+	classDLLIST< CMAP_PATCH* >		m_PatchLIST;	// 화면에 보여질 패치리스트...
 
 	//----------------------------------------------------------------------------------------------------	
-	/// @brief ��ȿ��ġ �˻縦 ���� üũ ������ ī��Ʈ
+	/// @brief 유효패치 검사를 위한 체크 프레임 카운트
 	//----------------------------------------------------------------------------------------------------
 	WORD							m_wViewFRAME;
     float                           m_ViewFrsutumEq[6][4];

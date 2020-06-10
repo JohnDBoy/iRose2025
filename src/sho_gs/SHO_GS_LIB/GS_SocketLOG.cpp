@@ -12,23 +12,23 @@ enum e_LogTYPE {
 	GSLOG_LOGIN=0,
 	GSLOG_LOGOUT,
 
-	GSLOG_DEADBY,		// Á×À½
+	GSLOG_DEADBY,		// ì£½ìŒ
 
-	GSLOG_PICK,			// ¾ÆÀÌÅÛÀ» ÁÝ±â
-	GSLOG_DROP,			// ¾ÆÀÌÅÛÀ» ¹Ù´Ú¿¡ ¶³±À
-	GSLOG_DELETED,		// ÇÊµå ¾ÆÀÌÅÛÀÌ »ç¶óÁü
+	GSLOG_PICK,			// ì•„ì´í…œì„ ì¤ê¸°
+	GSLOG_DROP,			// ì•„ì´í…œì„ ë°”ë‹¥ì— ë–¨êµ¼
+	GSLOG_DELETED,		// í•„ë“œ ì•„ì´í…œì´ ì‚¬ë¼ì§
 
-	GSLOG_CREATED,		// ¾ÆÀÌÅÛ Á¦ÀÛÇØ¼­ »ý¼ºµÊ.
-	GSLOG_DESTROYED,	// ¾ÆÀÌÅÛ Á¦ÀÛ½Ã ½ÇÆÐÇØ¼­ ¼Ò¸êµÊ.
+	GSLOG_CREATED,		// ì•„ì´í…œ ì œìž‘í•´ì„œ ìƒì„±ë¨.
+	GSLOG_DESTROYED,	// ì•„ì´í…œ ì œìž‘ì‹œ ì‹¤íŒ¨í•´ì„œ ì†Œë©¸ë¨.
 
-	GSLOG_SELL,			// ¾ÆÀÌÅÛÀ» ÆÇ¸Å
-	GSLOG_USE,			// ¾ÆÀÌÅÛÀ» »ç¿ëÇØ¼­ ¼Ò¸êµÊ
+	GSLOG_SELL,			// ì•„ì´í…œì„ íŒë§¤
+	GSLOG_USE,			// ì•„ì´í…œì„ ì‚¬ìš©í•´ì„œ ì†Œë©¸ë¨
 
-	GSLOG_GIVE,			// ¾ÆÀÌÅÛÀ» °Ç³×ÁÜ
-	GSLOG_RECV,			// ¾ÆÀÌÅÛÀ» ¹ÞÀ½
+	GSLOG_GIVE,			// ì•„ì´í…œì„ ê±´ë„¤ì¤Œ
+	GSLOG_RECV,			// ì•„ì´í…œì„ ë°›ìŒ
 
-	GSLOG_DEPOSIT,		// Ã¢°í¿¡ º¸°ü
-	GSLOG_WITHDRAW,		// Ã¢°í¿¡¼­ Ã£À½
+	GSLOG_DEPOSIT,		// ì°½ê³ ì— ë³´ê´€
+	GSLOG_WITHDRAW,		// ì°½ê³ ì—ì„œ ì°¾ìŒ
 } ;
 */
 
@@ -45,7 +45,7 @@ bool GS_logSOCKET::When_ERROR ( classUSER *pUSER, char *szFile, int iLine, char 
 	*/
 	m_csSQL.Lock ();
 	{
-		// ½Ã°£, ÄÉ¸¯, µ¿ÀÛ, À§Ä¡, IP
+		// ì‹œê°„, ì¼€ë¦­, ë™ìž‘, ìœ„ì¹˜, IP
 		this->m_QuerySTR.Printf("INSERT tblGS_ERROR ( dateREG, txtIP, txtACCOUNT, txtCHAR, txtFILE, intLINE, txtDESC ) VALUES( \'%s\',\'%s\',\'%s\',\'%s\',\'%s\',%d,\'%s\' );",
 				this->GetCurDateTimeSTR(),
 				pUSER->Get_IP(),
@@ -76,7 +76,7 @@ bool GS_logSOCKET::When_LogIN ( classUSER *pUSER )
 */
 	m_csSQL.Lock ();
 	{
-		// ½Ã°£, ÄÉ¸¯, µ¿ÀÛ, À§Ä¡, IP
+		// ì‹œê°„, ì¼€ë¦­, ë™ìž‘, ìœ„ì¹˜, IP
 		this->m_QuerySTR.Printf("INSERT tblGS_LOG ( dateREG, txtSUBJECT, txtOBJECT, txtSBJIP, txtACTION, txtLOC ) VALUES( \'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\' );",
 				this->GetCurDateTimeSTR(),
 				pUSER->Get_NAME(),
@@ -184,9 +184,9 @@ char *GS_logSOCKET::MakeItemDESC( CStrVAR *pStrVAR, tagITEM *pITEM, bool bCreate
 	#define	CHECK_ITEM_PRICE	1000
 	#define	CHECK_ITEM_MONEY	100000
 	if ( pITEM->IsEquipITEM() ) {
-		// Àåºñ
-		if ( pITEM->IsCreated() ||	// Á¦Á¶µÈ ¾ÆÀÌÅÛÀÌ³Ä ???
-			 ITEM_BASE_PRICE( pITEM->GetTYPE(), pITEM->GetItemNO() ) >= CHECK_ITEM_PRICE )	// ºñ½Ñ ÀÏ¹Ý Àåºñ.
+		// ìž¥ë¹„
+		if ( pITEM->IsCreated() ||	// ì œì¡°ëœ ì•„ì´í…œì´ëƒ ???
+			 ITEM_BASE_PRICE( pITEM->GetTYPE(), pITEM->GetItemNO() ) >= CHECK_ITEM_PRICE )	// ë¹„ì‹¼ ì¼ë°˜ ìž¥ë¹„.
 		{
 			pStrVAR->Printf("[%d:%d]%s, G:%d,D:%d,L:%d, O:%d/%s S:%d:, A:%d", 
 					pITEM->GetTYPE(), pITEM->GetItemNO(), 
@@ -200,17 +200,17 @@ char *GS_logSOCKET::MakeItemDESC( CStrVAR *pStrVAR, tagITEM *pITEM, bool bCreate
 			return NULL;
 	} else 
 	if ( ITEM_TYPE_MONEY == pITEM->GetTYPE() ) {
-		// µ·
+		// ëˆ
 		if ( pITEM->GetMoney() < CHECK_ITEM_MONEY )
 			return NULL;
 
-		pStrVAR->Printf("µ· : %d¿ø", pITEM->GetMoney() );
+		pStrVAR->Printf("ëˆ : %dì›", pITEM->GetMoney() );
 	} else {
-		// ¼Ò¸ð/±âÅ¸
+		// ì†Œëª¨/ê¸°íƒ€
 		if ( pITEM->GetQuantity() < 10 )
 			return NULL;
 
-		pStrVAR->Printf("[%d:%d]%s : %d°³", pITEM->GetTYPE(), pITEM->GetItemNO(), ITEM_NAME( pITEM->GetTYPE(), pITEM->GetItemNO() ), pITEM->GetQuantity() );
+		pStrVAR->Printf("[%d:%d]%s : %dê°œ", pITEM->GetTYPE(), pITEM->GetItemNO(), ITEM_NAME( pITEM->GetTYPE(), pITEM->GetItemNO() ), pITEM->GetQuantity() );
 	}
 
 	return pStrVAR->Get();
@@ -269,7 +269,7 @@ bool GS_logSOCKET::When_DropITEM ( classUSER *pSourAVT, CObjITEM *pItemOBJ )
 }
 bool GS_logSOCKET::When_DeletedITEM ( CObjITEM *pItemOBJ )
 {
-	// »ç¿ëÀÚ°¡ ¹ö¸° ÇÊµå ¾ÆÀÌÅÛ »ç¶óÁü.
+	// ì‚¬ìš©ìžê°€ ë²„ë¦° í•„ë“œ ì•„ì´í…œ ì‚¬ë¼ì§.
 	assert( pItemOBJ->m_bDropperIsUSER );
 
 	m_csSQL.Lock ();
@@ -325,11 +325,11 @@ bool GS_logSOCKET::When_Sell2STORE ( classUSER *pSourAVT, tagITEM *pITEM, CObjCH
 //-------------------------------------------------------------------------------------------------
 bool GS_logSOCKET::When_P2PTRADE ( classUSER *pSourAVT, tagITEM *pITEM, classUSER *pDestAVT, DWORD dwTradeMoney )
 {
-	// pSour°¡ pITEMÀ» pDest¿¡°Ô dwTradeMoney¿¡ ÆÈ¾Ò´Ù.
+	// pSourê°€ pITEMì„ pDestì—ê²Œ dwTradeMoneyì— íŒ”ì•˜ë‹¤.
 	m_csSQL.Lock ();
 	{
 		if ( this->GetItemINFO( pITEM ) ) {
-			this->m_DescSTR.Printf("%s°¡ %I32u¿ø¿¡ ÆÇ¸Å", pSourAVT->Get_NAME(), dwTradeMoney );
+			this->m_DescSTR.Printf("%sê°€ %I32uì›ì— íŒë§¤", pSourAVT->Get_NAME(), dwTradeMoney );
 
 			this->m_QuerySTR.Printf("INSERT tblGS_LOG ( dateREG, txtSUBJECT, txtSBJIP, txtACTION, txtLOC, txtITEM, txtOBJECT, txtOBJIP, txtDESC ) VALUES( \'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\' );",
 					this->GetCurDateTimeSTR(),
@@ -358,7 +358,7 @@ bool GS_logSOCKET::When_P2PTRADE ( classUSER *pSourAVT, tagITEM *pITEM, classUSE
 //-------------------------------------------------------------------------------------------------
 bool GS_logSOCKET::When_GiveITEM ( classUSER *pSourAVT, tagITEM *pITEM, classUSER *pDestAVT )
 {
-	// pSour°¡ pDest¿¡°Ô Áá´Ù.
+	// pSourê°€ pDestì—ê²Œ ì¤¬ë‹¤.
 	m_csSQL.Lock ();
 	{
 		if ( this->GetItemINFO( pITEM ) ) {
@@ -386,7 +386,7 @@ bool GS_logSOCKET::When_GiveITEM ( classUSER *pSourAVT, tagITEM *pITEM, classUSE
 //-------------------------------------------------------------------------------------------------
 bool GS_logSOCKET::When_RecvITEM ( classUSER *pSourAVT, tagITEM *pITEM, classUSER *pDestAVT )
 {
-	// pSour°¡ pDest·Î ºÎÅÍ ¹Þ¾Ò´Ù.
+	// pSourê°€ pDestë¡œ ë¶€í„° ë°›ì•˜ë‹¤.
 /*
 	m_csSQL.Lock ();
 	{
@@ -462,7 +462,7 @@ bool GS_logSOCKET::When_WithDRAW ( classUSER *pSourAVT, tagITEM *pITEM )
 }
 
 //-------------------------------------------------------------------------------------------------
-// Á¦Á¶½Ã »ý¼ºµÈ ¾ÆÀÌÅÛ
+// ì œì¡°ì‹œ ìƒì„±ëœ ì•„ì´í…œ
 bool GS_logSOCKET::When_CreatedITEM ( classUSER *pSourAVT, tagITEM *pITEM )
 {
 	m_csSQL.Lock ();
@@ -487,7 +487,7 @@ bool GS_logSOCKET::When_CreatedITEM ( classUSER *pSourAVT, tagITEM *pITEM )
 }
 
 //-------------------------------------------------------------------------------------------------
-// Á¦Á¶½Ã ¼Ò¸ðµÈ ¾ÆÀÌÅÛ
+// ì œì¡°ì‹œ ì†Œëª¨ëœ ì•„ì´í…œ
 bool GS_logSOCKET::When_DestroyedITEM ( classUSER *pSourAVT, tagITEM *pITEM )
 {
 	m_csSQL.Lock ();
@@ -536,7 +536,7 @@ bool GS_logSOCKET::When_DieBY ( CObjCHAR *pKillOBJ, classUSER *pDeadAVT )
 }
 
 //-------------------------------------------------------------------------------------------------
-// ·¹º§¾÷
+// ë ˆë²¨ì—…
 bool GS_logSOCKET::When_LevelUP ( classUSER *pSourAVT, int iGetEXP  )
 {
 	// LogString(LOG_NORMAL, ">>> %s LEVEL UP to %d,  CurEXP: %d, GetEXP: %d\n", pSourAVT->Get_NAME(), pSourAVT->Get_LEVEL(), pSourAVT->m_GrowAbility.m_lEXP, iGetEXP);
@@ -563,7 +563,7 @@ bool GS_logSOCKET::When_LevelUP ( classUSER *pSourAVT, int iGetEXP  )
 }
 
 //-------------------------------------------------------------------------------------------------
-// ½ºÅ³...
+// ìŠ¤í‚¬...
 bool GS_logSOCKET::When_LearnSKILL ( classUSER *pSourAVT, short nSkillIDX )
 {
 	m_csSQL.Lock ();
@@ -611,7 +611,7 @@ bool GS_logSOCKET::When_LevelUpSKILL ( classUSER *pSourAVT,	short nSkillIDX )
 
 
 //-------------------------------------------------------------------------------------------------
-// Äù½ºÆ®...
+// í€˜ìŠ¤íŠ¸...
 bool GS_logSOCKET::When_RecvQUEST ( classUSER *pSourAVT, int iQuestIDX )
 {
 	m_csSQL.Lock ();
@@ -725,7 +725,7 @@ bool GS_logSOCKET::When_UngemmingITEM	( classUSER *pSourAVT,	tagITEM *pEquipITEM
 				pEquipITEM->HasSocket(), pEquipITEM->IsAppraisal() );
 
 		if ( NULL == pJewelITEM ) {
-			// ºÐ¸® ½ÇÆÐ ..º¸¼® »èÁ¦µÊ.
+			// ë¶„ë¦¬ ì‹¤íŒ¨ ..ë³´ì„ ì‚­ì œë¨.
 			m_DescSTR.Printf("Failed, Jewel item cleared");
 		} else {
 			m_DescSTR.Printf("[%d:%d]%s", pJewelITEM->GetTYPE(), pJewelITEM->GetItemNO(), ITEM_NAME( pJewelITEM->GetTYPE(), pJewelITEM->GetItemNO() ) );

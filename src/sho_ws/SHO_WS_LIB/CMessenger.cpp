@@ -6,29 +6,29 @@
 
 //-------------------------------------------------------------------------------------------------
 /*
-1. ·Î±×¿Â½Ã
-	. ³»°¡ µî·Ï½ÃÅ² ÄÉ¸¯ÀÌ Á¢¼ÓµÇ¾î ÀÖ´Â°¡ ???
+1. ë¡œê·¸ì˜¨ì‹œ
+	. ë‚´ê°€ ë“±ë¡ì‹œí‚¨ ì¼€ë¦­ì´ ì ‘ì†ë˜ì–´ ìžˆëŠ”ê°€ ???
 		. YES
-			. ³ª¸¦ Ä£±¸·Î µî·ÏÇÏ°í ÀÖ´Â°¡ ?
+			. ë‚˜ë¥¼ ì¹œêµ¬ë¡œ ë“±ë¡í•˜ê³  ìžˆëŠ”ê°€ ?
 				. YES
-					. Ä£±¸¸¦ online¸ðµå·Î
+					. ì¹œêµ¬ë¥¼ onlineëª¨ë“œë¡œ
 				. NO
-					. ³ÑÀÌ ³ª¸¦ Ä£±¸¿¡¼­ »èÁ¦Çß´Ù.
-					. Ä£±¸¸¦ online¸ðµå·Î ??
-					. ³ªÀÇ Ä£±¸¸®½ºÆ®¿¡¼­ ³ÑÀ» »èÁ¦ ??
-					. Ä£±¸ Á¤º¸¸¦ Àü¼Û ¾ÈÇÑ´Ù°í Åëº¸ ??
+					. ë„˜ì´ ë‚˜ë¥¼ ì¹œêµ¬ì—ì„œ ì‚­ì œí–ˆë‹¤.
+					. ì¹œêµ¬ë¥¼ onlineëª¨ë“œë¡œ ??
+					. ë‚˜ì˜ ì¹œêµ¬ë¦¬ìŠ¤íŠ¸ì—ì„œ ë„˜ì„ ì‚­ì œ ??
+					. ì¹œêµ¬ ì •ë³´ë¥¼ ì „ì†¡ ì•ˆí•œë‹¤ê³  í†µë³´ ??
 		. NO
-			. Ä£±¸´Â offline¸ðµå´Ù...
+			. ì¹œêµ¬ëŠ” offlineëª¨ë“œë‹¤...
 
 
-	. ³ª¸¦ µî·Ï ½ÃÅ² ÄÉ¸¯ÀÌ Á¢¼ÓµÇ¾î ÀÖ´Â°¡ ??? 
-		. Á¢¼ÓµÇ¾î ÀÖÀ¸¸é =>
-			. ³ª¸¦ Ä£±¸·Î µî·ÏÇÏ°í ÀÖ´Â°¡ ?
+	. ë‚˜ë¥¼ ë“±ë¡ ì‹œí‚¨ ì¼€ë¦­ì´ ì ‘ì†ë˜ì–´ ìžˆëŠ”ê°€ ??? 
+		. ì ‘ì†ë˜ì–´ ìžˆìœ¼ë©´ =>
+			. ë‚˜ë¥¼ ì¹œêµ¬ë¡œ ë“±ë¡í•˜ê³  ìžˆëŠ”ê°€ ?
 				. YES
-					. ³»°¡ online¸ðµå·Î µÈ°ÍÀ» Åëº¸.
+					. ë‚´ê°€ onlineëª¨ë“œë¡œ ëœê²ƒì„ í†µë³´.
 				. NO
-					. Ä£±¸³ÑÀÌ ³ª¸¦ Ä£±¸ ¸ñ·Ï¿¡¼­ Á¦¿ÜÇß´Ù.
-					  => ³ª¸¦ µî·Ï½ÃÅ² ¸®½ºÆ®¿¡¼­ Ä£±¸³ÑÀ» »èÁ¦
+					. ì¹œêµ¬ë„˜ì´ ë‚˜ë¥¼ ì¹œêµ¬ ëª©ë¡ì—ì„œ ì œì™¸í–ˆë‹¤.
+					  => ë‚˜ë¥¼ ë“±ë¡ì‹œí‚¨ ë¦¬ìŠ¤íŠ¸ì—ì„œ ì¹œêµ¬ë„˜ì„ ì‚­ì œ
 */
 
 /*
@@ -47,10 +47,10 @@
 */
 void CMessenger::When_LogIN (int iCount, BYTE *pLIST)
 {
-	// 1. ³»°¡ µî·ÏÇÑ Ä£±¸ÀÇ Á¢¼Ó »óÅÂ ¾òÀ½...
-	// 2. ³»°¡ µî·ÏÇÑ Ä£±¸°¡ ³ª¸¦ Ä£±¸·Î °®°í ÀÖ³Ä ?
-	//		YES: ÀÚ½Å¿¡°Ô Ä£±¸ »óÅÂ Àü¼Û, Ä£±¸¿¡°Ô ³ªÀÇ »óÅÂ Àü¼Û
-	//		NO : ³ªÀÇ ¸ñ·Ï¿¡¼­ Ä£±¸ »èÁ¦? ³ªÇÑÅ×¸¸ ¾Ë·Á? ³ªÇÑÅ×µµ ¾È¾Ë·Á?
+	// 1. ë‚´ê°€ ë“±ë¡í•œ ì¹œêµ¬ì˜ ì ‘ì† ìƒíƒœ ì–»ìŒ...
+	// 2. ë‚´ê°€ ë“±ë¡í•œ ì¹œêµ¬ê°€ ë‚˜ë¥¼ ì¹œêµ¬ë¡œ ê°–ê³  ìžˆëƒ ?
+	//		YES: ìžì‹ ì—ê²Œ ì¹œêµ¬ ìƒíƒœ ì „ì†¡, ì¹œêµ¬ì—ê²Œ ë‚˜ì˜ ìƒíƒœ ì „ì†¡
+	//		NO : ë‚˜ì˜ ëª©ë¡ì—ì„œ ì¹œêµ¬ ì‚­ì œ? ë‚˜í•œí…Œë§Œ ì•Œë ¤? ë‚˜í•œí…Œë„ ì•ˆì•Œë ¤?
 	char *pName;
 	int iNameLEN;
 	CWS_Client *pClient;
@@ -61,7 +61,7 @@ void CMessenger::When_LogIN (int iCount, BYTE *pLIST)
 
 		pClient = g_pListCLIENT->Find_CHAR( pName );
 		if ( pClient ) {
-			// online Á¢¼Ó»óÅÂ...
+			// online ì ‘ì†ìƒíƒœ...
 			this->When_APPEND (0, pClient->m_iSocketIDX, pName, pClient->m_HashAVATAR);
 		} else {
 			// offline 
@@ -75,9 +75,9 @@ void CMessenger::When_LogIN (int iCount, BYTE *pLIST)
 
 //-------------------------------------------------------------------------------------------------
 /*
-2. ·Î±×¾Æ¿ô½Ã
-	. ³ª¸¦ µî·Ï½ÃÅ°°í ÀÖ´Â Ä£±¸¸®½ºÆ® Á¶È¸..
-		. ³ªÀÇ »óÅÂ¸¦ offlineÀ¸·Î...
+2. ë¡œê·¸ì•„ì›ƒì‹œ
+	. ë‚˜ë¥¼ ë“±ë¡ì‹œí‚¤ê³  ìžˆëŠ” ì¹œêµ¬ë¦¬ìŠ¤íŠ¸ ì¡°íšŒ..
+		. ë‚˜ì˜ ìƒíƒœë¥¼ offlineìœ¼ë¡œ...
 */
 void CMessenger::When_LogOUT ()
 {
@@ -100,9 +100,9 @@ void CMessenger::When_LogOUT ()
 
 //-------------------------------------------------------------------------------------------------
 /*
-3. Ä£±¸µî·Ï½Ã : Ä£±¸´Â ¹Ýµå½Ã ¿Â¶óÀÎ »óÅÂ¿©¾ß ÇÑ´Ù.
-	. ³ªÀÇ Ä£±¸¸ñ·Ï¿¡ Ãß°¡
-	. Ä£±¸ÀÚ½ÅÀ» µî·Ï½ÃÅ² ÄÉ¸¯ ¸®½ºÆ®¿¡ ³ª¸¦ Ãß°¡.
+3. ì¹œêµ¬ë“±ë¡ì‹œ : ì¹œêµ¬ëŠ” ë°˜ë“œì‹œ ì˜¨ë¼ì¸ ìƒíƒœì—¬ì•¼ í•œë‹¤.
+	. ë‚˜ì˜ ì¹œêµ¬ëª©ë¡ì— ì¶”ê°€
+	. ì¹œêµ¬ìžì‹ ì„ ë“±ë¡ì‹œí‚¨ ì¼€ë¦­ ë¦¬ìŠ¤íŠ¸ì— ë‚˜ë¥¼ ì¶”ê°€.
 */
 void CMessenger::When_APPEND (BYTE btStatus, int iSocketIDX, char *szName, t_HASHKEY HashName)
 {
@@ -122,13 +122,13 @@ void CMessenger::When_APPEND (BYTE btStatus, int iSocketIDX, char *szName, t_HAS
 
 //-------------------------------------------------------------------------------------------------
 /*
-4. Ä£±¸»èÁ¦½Ã : 
-	. ³ªÀÇ Ä£±¸¸ñ·Ï¿¡¼­ »èÁ¦
-	. »èÁ¦ ´ë»óÀÌ ¿Â¶óÀÎÀÌ¸é
+4. ì¹œêµ¬ì‚­ì œì‹œ : 
+	. ë‚˜ì˜ ì¹œêµ¬ëª©ë¡ì—ì„œ ì‚­ì œ
+	. ì‚­ì œ ëŒ€ìƒì´ ì˜¨ë¼ì¸ì´ë©´
 		. YES
-			. »èÁ¦´ë»óÀÇ ÀÚ½ÅÀ» µî·ÏÇÑ ¸ñ·Ï ¸®½ºÆ®¿¡¼­ ³ª¸¦ »èÁ¦.
+			. ì‚­ì œëŒ€ìƒì˜ ìžì‹ ì„ ë“±ë¡í•œ ëª©ë¡ ë¦¬ìŠ¤íŠ¸ì—ì„œ ë‚˜ë¥¼ ì‚­ì œ.
 		. NO
-			. ¹«½Ã? or DB¿¡¼­ ÀÐ¾î¼­ ¾÷µ¥ÀÌÆ®?
+			. ë¬´ì‹œ? or DBì—ì„œ ì½ì–´ì„œ ì—…ë°ì´íŠ¸?
 */
 void CMessenger::When_DELETE (t_HASHKEY HashName, char *szName)
 {

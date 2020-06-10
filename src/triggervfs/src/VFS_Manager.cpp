@@ -27,7 +27,7 @@ CVFS_Manager::CVFS_Manager ()
 	m_fpIDX			= NULL;
 	m_sIdxFileName	= "";
 	// strcpy ((char *)m_wStdVersion, VERSION_STR);	
-	m_wStdVersion[ 0 ] = VERSION_DEF_WDVALUE; /// ¹öÁ¯À» ÃÊ±âÈ­
+	m_wStdVersion[ 0 ] = VERSION_DEF_WDVALUE; /// ë²„ì ¼ì„ ì´ˆê¸°í™”
 	m_wStdVersion[ 1 ] = VERSION_DEF_WDVALUE;
 	m_wCurVersion[ 0 ] = VERSION_DEF_WDVALUE;
 	m_wCurVersion[ 1 ] = VERSION_DEF_WDVALUE;
@@ -48,7 +48,7 @@ CVFS_Manager::~CVFS_Manager ()
 
 
 /******************************************************************************************
- * ºó index ÆÄÀÏ¸¦ À§ÇÑ ÆÄÀÏ Çì´õ¸¦ ¸¸µç´Ù
+ * ë¹ˆ index íŒŒì¼ë¥¼ ìœ„í•œ íŒŒì¼ í—¤ë”ë¥¼ ë§Œë“ ë‹¤
  */
 bool CVFS_Manager::__WriteBlankIndexFile (void)
 {
@@ -63,9 +63,9 @@ bool CVFS_Manager::__WriteBlankIndexFile (void)
 		m_wCurVersion[ 1 ] = VERSION_DEF_WDVALUE;
 
 		fseek (m_fpIDX, 0, SEEK_SET);
-		fwrite (m_wStdVersion	, sizeof (WORD)	, 2, m_fpIDX);	/// ±âÁØ ÆÄÀÏ ¹öÁ¯À» ¾´´Ù
-		fwrite (m_wCurVersion	, sizeof (WORD)	, 2, m_fpIDX);	/// ÇöÀç ÆÄÀÏ ¹öÁ¯À» ¾´´Ù
-		fwrite (&m_dwNumOfEntry	, sizeof (DWORD), 1, m_fpIDX);	/// VEntryÀÇ °¹¼ö = 0 À» ÆÄÀÏ¿¡ Writing
+		fwrite (m_wStdVersion	, sizeof (WORD)	, 2, m_fpIDX);	/// ê¸°ì¤€ íŒŒì¼ ë²„ì ¼ì„ ì“´ë‹¤
+		fwrite (m_wCurVersion	, sizeof (WORD)	, 2, m_fpIDX);	/// í˜„ì¬ íŒŒì¼ ë²„ì ¼ì„ ì“´ë‹¤
+		fwrite (&m_dwNumOfEntry	, sizeof (DWORD), 1, m_fpIDX);	/// VEntryì˜ ê°¯ìˆ˜ = 0 ì„ íŒŒì¼ì— Writing
 
 		return ( fflush (m_fpIDX) == 0 );
 	}
@@ -75,7 +75,7 @@ bool CVFS_Manager::__WriteBlankIndexFile (void)
 
 
 /******************************************************************************************
- * Index File Header¸¦ ÀĞ´Â´Ù
+ * Index File Headerë¥¼ ì½ëŠ”ë‹¤
  */
 bool CVFS_Manager::__ReadVEntry (void)
 {
@@ -83,10 +83,10 @@ bool CVFS_Manager::__ReadVEntry (void)
 	VEntry *pVE = NULL;
 	short sLength = 0;
 
-	fseek (m_fpIDX, 0, SEEK_SET);									/// Á¦ÀÏ ¾ÕÂÊÀ¸·Î ÀÌµ¿
-	fread ((void *)m_wStdVersion	, sizeof (WORD)	, 2, m_fpIDX);	/// ±âÁØ ¹öÁ¯À» ÀĞ´Â´Ù
-	fread ((void *)m_wCurVersion	, sizeof (WORD)	, 2, m_fpIDX);	/// ÇöÀç ¹öÁ¯À» ÀĞ´Â´Ù
-	fread ((void *)&m_dwNumOfEntry	, sizeof (DWORD), 1, m_fpIDX);	/// VEntryÀÇ °¹¼ö ÀĞ´Â´Ù
+	fseek (m_fpIDX, 0, SEEK_SET);									/// ì œì¼ ì•ìª½ìœ¼ë¡œ ì´ë™
+	fread ((void *)m_wStdVersion	, sizeof (WORD)	, 2, m_fpIDX);	/// ê¸°ì¤€ ë²„ì ¼ì„ ì½ëŠ”ë‹¤
+	fread ((void *)m_wCurVersion	, sizeof (WORD)	, 2, m_fpIDX);	/// í˜„ì¬ ë²„ì ¼ì„ ì½ëŠ”ë‹¤
+	fread ((void *)&m_dwNumOfEntry	, sizeof (DWORD), 1, m_fpIDX);	/// VEntryì˜ ê°¯ìˆ˜ ì½ëŠ”ë‹¤
 
 	for(DWORD i = 0; i < m_dwNumOfEntry; i++)
 	{
@@ -95,18 +95,18 @@ bool CVFS_Manager::__ReadVEntry (void)
 			fread ((void *)&sLength, sizeof (short), 1, m_fpIDX);
 			if((buff = new char[ sLength ]))
 			{
-				/// ÆÄÀÏ¸íÀ» ÀĞ´Â´Ù
+				/// íŒŒì¼ëª…ì„ ì½ëŠ”ë‹¤
 				ZeroMemory (buff, sLength);
-				fread ((void *)buff, sizeof (char), sLength, m_fpIDX);	/// sLength = µÚ¿¡ NULL±îÁö Æ÷ÇÔÇÑ °¹¼ö
+				fread ((void *)buff, sizeof (char), sLength, m_fpIDX);	/// sLength = ë’¤ì— NULLê¹Œì§€ í¬í•¨í•œ ê°¯ìˆ˜
 				pVE->sVFSName = buff;
 			
-				delete [] buff; /// ==>  ¿ø·¡´Â ÇØÁ¦ÇØ ÁÖ¾î¾ß ÇÏÁö¸¸ ÇØÁ¦ ÇÏÁö ¾Ê´Â´Ù. stringÀº heapÀÏ °æ¿ì ±×³É »ç¿ëÇÏ´Â °Í °°´Ù.
+				delete [] buff; /// ==>  ì›ë˜ëŠ” í•´ì œí•´ ì£¼ì–´ì•¼ í•˜ì§€ë§Œ í•´ì œ í•˜ì§€ ì•ŠëŠ”ë‹¤. stringì€ heapì¼ ê²½ìš° ê·¸ëƒ¥ ì‚¬ìš©í•˜ëŠ” ê²ƒ ê°™ë‹¤.
 
-				/// ÀÎµ¦½ºÀÇ ½ÃÀÛ ¿ÀÇÁ¼ÂÀ» ÀĞ´Â´Ù
+				/// ì¸ë±ìŠ¤ì˜ ì‹œì‘ ì˜¤í”„ì…‹ì„ ì½ëŠ”ë‹¤
 				// fread ((void *)&pVE->dwNum,			sizeof (DWORD)	, 1, m_fpIDX);
 				fread ((void *)&pVE->lStartOfEntry, sizeof (long)	, 1, m_fpIDX);
 
-				/// CVFSÀÎ½ºÅÏ½º¸¦ ¸¸µé°í ÇØ´ç ¿£Æ®¸®¿Í vfsÆÄÀÏÀ» ¿ÀÇÂÇÑ´Ù
+				/// CVFSì¸ìŠ¤í„´ìŠ¤ë¥¼ ë§Œë“¤ê³  í•´ë‹¹ ì—”íŠ¸ë¦¬ì™€ vfsíŒŒì¼ì„ ì˜¤í”ˆí•œë‹¤
 				long lCurPos = ftell (m_fpIDX);
 				pVE->pVFS = new CVFS ();
 				if(pVE->pVFS)
@@ -119,7 +119,7 @@ bool CVFS_Manager::__ReadVEntry (void)
 							, m_strIdxOpenMode.c_str ()
 							);
 
-					if(bPackOpened) /// ¼º°øÇÏ¸é Vector¿¡ Áı¾î³Ó°í
+					if(bPackOpened) /// ì„±ê³µí•˜ë©´ Vectorì— ì§‘ì–´ë„›ê³ 
 						m_vecVFS.push_back (pVE); 
 					else if( pVE->sVFSName != "ROOT.VFS" )
 						return false;
@@ -215,18 +215,18 @@ void CVFS_Manager::__CheckOpenMode ( const char * InputMode, char ModifiedMode[ 
 
 
 /******************************************************************************************
- * Index ÆÄÀÏÀ» ¿ÀÇÂÇÑ´Ù
- * @param IndexFile ¿­ ÀÎµ¦½º ÆÄÀÏ¸í
- * @param Mode ¼Ó¼º. "r" ÀĞ±â Àü¿ë, "w" ¾²±âÀü¿ë(»ç¿ë¸øÇÔ), "w+" »ı¼º + ¾²±â + ÀĞ±â, 
- *                   "r+" ÀĞ±â + ¾²±â(»ı¼º ¸øÇÔ)
+ * Index íŒŒì¼ì„ ì˜¤í”ˆí•œë‹¤
+ * @param IndexFile ì—´ ì¸ë±ìŠ¤ íŒŒì¼ëª…
+ * @param Mode ì†ì„±. "r" ì½ê¸° ì „ìš©, "w" ì“°ê¸°ì „ìš©(ì‚¬ìš©ëª»í•¨), "w+" ìƒì„± + ì“°ê¸° + ì½ê¸°, 
+ *                   "r+" ì½ê¸° + ì“°ê¸°(ìƒì„± ëª»í•¨)
  */
 bool CVFS_Manager::Open (const char *IndexFile, const char * __Mode)
 {
 	m_sIdxFileName = IndexFile;
-	m_sBasePath = GetDirectory (m_sIdxFileName.c_str ()); /// "\"¹®ÀÚ±îÁö Æ÷ÇÔ
-    /// Binary Mode·Î ¸¸µç´Ù
+	m_sBasePath = GetDirectory (m_sIdxFileName.c_str ()); /// "\"ë¬¸ìê¹Œì§€ í¬í•¨
+    /// Binary Modeë¡œ ë§Œë“ ë‹¤
 	_fmode = _O_BINARY;
-	/// ¾²±â ¸ğµå·Î ¿ÀÇÂÇßÀ» °æ¿ì
+	/// ì“°ê¸° ëª¨ë“œë¡œ ì˜¤í”ˆí–ˆì„ ê²½ìš°
 
 	char Mode[ 16 ];
 	__CheckOpenMode ( __Mode, Mode );
@@ -236,16 +236,16 @@ bool CVFS_Manager::Open (const char *IndexFile, const char * __Mode)
 	if(strcmp (Mode, "w+") == 0)
 	{
 		CFileMode::CheckMode (IndexFile, CFileMode::MODE_READWRITE, true) ;
-		if( (m_fpIDX = fopen (IndexFile, Mode)) )	/// "w+"·Î ¿­¾î¾ß ¿£Æ®¸®´Â Ç×»ó ¼öÁ¤µÊ
+		if( (m_fpIDX = fopen (IndexFile, Mode)) )	/// "w+"ë¡œ ì—´ì–´ì•¼ ì—”íŠ¸ë¦¬ëŠ” í•­ìƒ ìˆ˜ì •ë¨
 		{
 			m_vecVFS.clear ();
 
-			return __WriteBlankIndexFile (); // ±×³É ºó Ventry¸¦ ÇÏ³ª ¸¸µç´Ù
+			return __WriteBlankIndexFile (); // ê·¸ëƒ¥ ë¹ˆ Ventryë¥¼ í•˜ë‚˜ ë§Œë“ ë‹¤
 		}
 	}
 	else if(strcmp (Mode, "mr") == 0 || strcmp (Mode, "mr+") == 0 )
 	{
-		/// ÀĞ±â ÆÛ¹Ì¼ÇÀ» °Ë»çÇÏ°í ¾øÀ¸¸é ÀĞ±â·Î ¹Ù²Û´Ù
+		/// ì½ê¸° í¼ë¯¸ì…˜ì„ ê²€ì‚¬í•˜ê³  ì—†ìœ¼ë©´ ì½ê¸°ë¡œ ë°”ê¾¼ë‹¤
 		CFileMode::CheckMode (IndexFile, CFileMode::MODE_READ, true) ;
 
 		if( CFileMode::CheckMode (IndexFile, CFileMode::MODE_EXISTS)  
@@ -269,7 +269,7 @@ bool CVFS_Manager::Open (const char *IndexFile, const char * __Mode)
 		if( !CFileMode::CheckMode (IndexFile, CFileMode::MODE_EXISTS) )
 			return false;
 
-		/// ÀĞ±â ÆÛ¹Ì¼ÇÀ» °Ë»çÇÏ°í ¾øÀ¸¸é ÀĞ±â·Î ¹Ù²Û´Ù
+		/// ì½ê¸° í¼ë¯¸ì…˜ì„ ê²€ì‚¬í•˜ê³  ì—†ìœ¼ë©´ ì½ê¸°ë¡œ ë°”ê¾¼ë‹¤
 		CFileMode::CheckMode (IndexFile, CFileMode::MODE_READ, true) ;
 
 		if( (m_fpIDX = fopen (IndexFile, Mode)) )
@@ -284,7 +284,7 @@ bool CVFS_Manager::Open (const char *IndexFile, const char * __Mode)
 
 
 /******************************************************************************************
- * IndexÆÄÀÏ°ú VFSÆÄÀÏÀ» ´İ´Â´Ù
+ * IndexíŒŒì¼ê³¼ VFSíŒŒì¼ì„ ë‹«ëŠ”ë‹¤
  */
 void CVFS_Manager::Close (void)
 {
@@ -312,7 +312,7 @@ void CVFS_Manager::Close (void)
 
 
 /******************************************************************************************
- * VEntry¸¦ ¾´´Ù
+ * VEntryë¥¼ ì“´ë‹¤
  */
 void CVFS_Manager::__WriteVEntry (VEntry * pVE)
 {
@@ -325,7 +325,7 @@ void CVFS_Manager::__WriteVEntry (VEntry * pVE)
 
 
 /******************************************************************************************
- * ÆÄÀÏ¿¡ ¾²±â À§ÇÑ VEntryÀÇ Å©±â
+ * íŒŒì¼ì— ì“°ê¸° ìœ„í•œ VEntryì˜ í¬ê¸°
  */
 long CVFS_Manager::__SizeOfVEntry (VEntry *VE)
 {
@@ -334,64 +334,64 @@ long CVFS_Manager::__SizeOfVEntry (VEntry *VE)
 
 
 /******************************************************************************************
- * VEntry¸¦ ½ºµhÇÑ´Ù
+ * VEntryë¥¼ ìŠ¤?í•œë‹¤
  */
 void CVFS_Manager::__SkipVEntry (VEntry *VE)
 {
-	/// ½ºµhÇÒ »çÀÌÁî¸¦ °è»êÇÑ´Ù
+	/// ìŠ¤?í•  ì‚¬ì´ì¦ˆë¥¼ ê³„ì‚°í•œë‹¤
 	long lSkipSize = (long)VE->sVFSName.size () + 1 + SIZE_VENTRY_EXCEPTSTRING;
 	fseek (m_fpIDX, lSkipSize, SEEK_CUR);
 }
 
 
 /******************************************************************************************
- * VFSÆÄÀÏÀ» Ãß°¡ÇÑ´Ù
- * @param VfsName ´ë¹®ÀÚ·Î º¯È¯ÇØ¼­ »ç¿ë *** ³ªÁß¿¡ °íÄ¥°Í
+ * VFSíŒŒì¼ì„ ì¶”ê°€í•œë‹¤
+ * @param VfsName ëŒ€ë¬¸ìë¡œ ë³€í™˜í•´ì„œ ì‚¬ìš© *** ë‚˜ì¤‘ì— ê³ ì¹ ê²ƒ
  */
 bool CVFS_Manager::AddVFS (const char *VfsName)
 {
-	long		lSize = 0;		/// ÆÄÀÏ »çÀÌÁî
-	long		lVET_Size = 0;	/// ÇöÀç VEntry TableÀÇ Å©±â
-	long		lNewSize = 0;	/// »õ·Î¿î ÆÄÀÏ »çÀÌÁî
-	VEntry *	pVE = NULL;		/// Ãß°¡ÇÒ VEntry
+	long		lSize = 0;		/// íŒŒì¼ ì‚¬ì´ì¦ˆ
+	long		lVET_Size = 0;	/// í˜„ì¬ VEntry Tableì˜ í¬ê¸°
+	long		lNewSize = 0;	/// ìƒˆë¡œìš´ íŒŒì¼ ì‚¬ì´ì¦ˆ
+	VEntry *	pVE = NULL;		/// ì¶”ê°€í•  VEntry
 	std::vector<VEntry *>::iterator iv;
 	char		uprVfsName[ 1024 ];
 
 	if(VfsName == NULL) 
 		return false;
 	if(VfsExists (VfsName)) 
-		return false;	/// ÀÌ¹Ì °°Àº Vfs ÀÌ¸§ÀÌ Á¸ÀçÇÏ´Â °æ¿ì false ¸®ÅÏ
+		return false;	/// ì´ë¯¸ ê°™ì€ Vfs ì´ë¦„ì´ ì¡´ì¬í•˜ëŠ” ê²½ìš° false ë¦¬í„´
 
 	__ConvertPath (VfsName, uprVfsName);
 
 	if((pVE = new VEntry))
 	{
 		lSize = __vfseek (m_fpIDX, 0, SEEK_END);
-		/// VEntry¸¦ ¸¸µç´Ù
-		pVE->sVFSName		= uprVfsName;							/// vfsÆÄÀÏ¸í. ´ë¹®ÀÚ·Î º¯È¯ÇØ¼­ Áı¾î ³Ö´Â´Ù
-		pVE->lStartOfEntry	= lSize + __SizeOfVEntry (pVE);			/// »õ·Î Ãß°¡µÇ´Â ¿£Æ®¸®Å×ÀÌºí ½ÃÀÛ¿ÀÇÁ¼Â
+		/// VEntryë¥¼ ë§Œë“ ë‹¤
+		pVE->sVFSName		= uprVfsName;							/// vfsíŒŒì¼ëª…. ëŒ€ë¬¸ìë¡œ ë³€í™˜í•´ì„œ ì§‘ì–´ ë„£ëŠ”ë‹¤
+		pVE->lStartOfEntry	= lSize + __SizeOfVEntry (pVE);			/// ìƒˆë¡œ ì¶”ê°€ë˜ëŠ” ì—”íŠ¸ë¦¬í…Œì´ë¸” ì‹œì‘ì˜¤í”„ì…‹
 
-		/// ÀÎµ¦½ºÆÄÀÏÀÇ ÀüÃ¼ Å©±â
+		/// ì¸ë±ìŠ¤íŒŒì¼ì˜ ì „ì²´ í¬ê¸°
 		lSize = ::__vfseek (m_fpIDX, 0, SEEK_END);
-		/// VEntryµµ ¼öÁ¤ÇØ¾ß ÇÏ±â ¶§¹®¿¡ ±× ¾ÕÂÊÀ¸·Î ÀÌµ¿ÇÑ´Ù
+		/// VEntryë„ ìˆ˜ì •í•´ì•¼ í•˜ê¸° ë•Œë¬¸ì— ê·¸ ì•ìª½ìœ¼ë¡œ ì´ë™í•œë‹¤
 		fseek (m_fpIDX, SIZEOF_VFILEHEADER, SEEK_SET);
 		lVET_Size = SIZEOF_VFILEHEADER;
-		/// VEntry¸¦ Ãß°¡ÇÏ±â À§ÇÑ À§Ä¡±îÁö °Å¸®¸¦ °è»ê
+		/// VEntryë¥¼ ì¶”ê°€í•˜ê¸° ìœ„í•œ ìœ„ì¹˜ê¹Œì§€ ê±°ë¦¬ë¥¼ ê³„ì‚°
 		iv = m_vecVFS.begin ();
-		/// ¾ÕÂÊ¿¡ VEntry¸¦ ¼öÁ¤ÇÏ°í °¢ CVFSÀÎ½ºÅÏ½ºµµ ¼öÁ¤ÇÑ´Ù
+		/// ì•ìª½ì— VEntryë¥¼ ìˆ˜ì •í•˜ê³  ê° CVFSì¸ìŠ¤í„´ìŠ¤ë„ ìˆ˜ì •í•œë‹¤
 		for(; iv != m_vecVFS.end (); iv++) 
 		{ 
 			(*iv)->lStartOfEntry += __SizeOfVEntry (pVE);
 			lVET_Size += __SizeOfVEntry (*iv); 
 			__WriteVEntry (*iv);
-			(*iv)->pVFS->SetStartOfEntry ((*iv)->lStartOfEntry);		/// CVFS¾È¿¡µµ ¼öÁ¤ÇØ ÁÖ¾î¾ß ÇÑ´Ù
+			(*iv)->pVFS->SetStartOfEntry ((*iv)->lStartOfEntry);		/// CVFSì•ˆì—ë„ ìˆ˜ì •í•´ ì£¼ì–´ì•¼ í•œë‹¤
 		}
-		long lInsertedPos = ftell (m_fpIDX);							/// VEntry¸¦ Ãß°¡ÇÒ À§Ä¡
-		::__MakeFileHole (lInsertedPos, __SizeOfVEntry (pVE), m_fpIDX, true);	/// Ãß°¡ÇÏ±â À§ÇÑ °ø°£À» ¸¸µç´Ù
-		fseek (m_fpIDX, lInsertedPos, SEEK_SET);						/// ÆÄÀÏÇì´õ VEntry ¾µ À§Ä¡·Î ÀÌµ¿
-		__WriteVEntry (pVE);											/// ÆÄÀÏ¿¡ Write
+		long lInsertedPos = ftell (m_fpIDX);							/// VEntryë¥¼ ì¶”ê°€í•  ìœ„ì¹˜
+		::__MakeFileHole (lInsertedPos, __SizeOfVEntry (pVE), m_fpIDX, true);	/// ì¶”ê°€í•˜ê¸° ìœ„í•œ ê³µê°„ì„ ë§Œë“ ë‹¤
+		fseek (m_fpIDX, lInsertedPos, SEEK_SET);						/// íŒŒì¼í—¤ë” VEntry ì“¸ ìœ„ì¹˜ë¡œ ì´ë™
+		__WriteVEntry (pVE);											/// íŒŒì¼ì— Write
 		fflush (m_fpIDX);
-		/// VFSÀÎ½ºÅÏ½º¸¦ ¸¸µç´Ù
+		/// VFSì¸ìŠ¤í„´ìŠ¤ë¥¼ ë§Œë“ ë‹¤
 		if((pVE->pVFS = new CVFS))
 		{ 
 			if((pVE->pVFS->Open (m_fpIDX, pVE->lStartOfEntry, pVE->sVFSName.c_str (), m_sBasePath.c_str (), "w+")))
@@ -421,45 +421,45 @@ bool CVFS_Manager::AddVFS (const char *VfsName)
 
 
 /******************************************************************************************
- * RemoveVFS : VFS¸¦ Á¦°ÅÇÑ´Ù
- * @param VfsName Á¦°ÅÇÒ vfsÆÄÀÏ ÀÌ¸§
+ * RemoveVFS : VFSë¥¼ ì œê±°í•œë‹¤
+ * @param VfsName ì œê±°í•  vfsíŒŒì¼ ì´ë¦„
  */
 bool CVFS_Manager::RemoveVFS (const char *VfsName)
 {
 	DWORD		iDelIndex = -1;
 	VEntry *	pVE = NULL;
-	long		lDelSize = 0;	/// ¾ø¾îÁö´Â ¿µ¿ªÀÇ Å©±â
+	long		lDelSize = 0;	/// ì—†ì–´ì§€ëŠ” ì˜ì—­ì˜ í¬ê¸°
 	std::vector<VEntry *>::iterator iv;
 
 	fseek (m_fpIDX, SIZEOF_VFILEHEADER, SEEK_SET);
 	if((iDelIndex = __FindEntryIndex (VfsName)) >= 0)
 	{
 		pVE = *(m_vecVFS.begin () + iDelIndex);
-		lDelSize = __SizeOfVEntry (pVE);										/// ¾ÕÂÊ¿¡´Â ÀÌ¸¸Å­¸¸ »© ÁÖ¸é µÈ´Ù
+		lDelSize = __SizeOfVEntry (pVE);										/// ì•ìª½ì—ëŠ” ì´ë§Œí¼ë§Œ ë¹¼ ì£¼ë©´ ëœë‹¤
 		for(; iv != m_vecVFS.begin () + iDelIndex; iv++)
 		{
 			(*iv)->lStartOfEntry -= lDelSize;
 			(*iv)->pVFS->SetStartOfEntry ((*iv)->lStartOfEntry);
 			__WriteVEntry (*iv);
 		}
-		/// Áö¿öÁú ¿µ¿ªÀº µ¤¾î¾²±âÇÑ´Ù
-		lDelSize += pVE->pVFS->SizeOfEntryTable ();								/// µŞÂÊÀº Àú¸¸Å­¾¿ ¶¯°Ü¾ßÇÑ´Ù
-		pVE->pVFS->Close ();													/// CVFS¸¦ ´İ´Â´Ù
-		delete pVE->pVFS;														/// CVFS ÀÎ½ºÅÏ½º¸¦ ÇØÁ¦ÇÑ´Ù
-		delete pVE;																/// ÆÄÀÏ¿£Æ®¸® ¸Ş¸ğ¸®¿¡¼­ »èÁ¦
-		/// Áö¿öÁö´Ï±î ÇÑ¹ø ´õ ÀüÁø
+		/// ì§€ì›Œì§ˆ ì˜ì—­ì€ ë®ì–´ì“°ê¸°í•œë‹¤
+		lDelSize += pVE->pVFS->SizeOfEntryTable ();								/// ë’·ìª½ì€ ì €ë§Œí¼ì”© ë•¡ê²¨ì•¼í•œë‹¤
+		pVE->pVFS->Close ();													/// CVFSë¥¼ ë‹«ëŠ”ë‹¤
+		delete pVE->pVFS;														/// CVFS ì¸ìŠ¤í„´ìŠ¤ë¥¼ í•´ì œí•œë‹¤
+		delete pVE;																/// íŒŒì¼ì—”íŠ¸ë¦¬ ë©”ëª¨ë¦¬ì—ì„œ ì‚­ì œ
+		/// ì§€ì›Œì§€ë‹ˆê¹Œ í•œë²ˆ ë” ì „ì§„
 		iv++;
-		/// µÚ¿¡ ÀÖ´Â VEntryµµ °»½ÅÇÑ´Ù
+		/// ë’¤ì— ìˆëŠ” VEntryë„ ê°±ì‹ í•œë‹¤
 		for(; iv != m_vecVFS.end (); iv++)
 		{
 			(*iv)->lStartOfEntry -= __SizeOfVEntry (pVE);
 			(*iv)->pVFS->SetStartOfEntry ((*iv)->lStartOfEntry);
 			__WriteVEntry (*iv);
 		}
-		m_vecVFS.erase (m_vecVFS.begin () + iDelIndex);							/// º¤ÅÍ¿¡¼­ Áö¿î´Ù
-		m_dwNumOfEntry--;														/// °¹¼ö¸¦ ÇÏ³ª ÁÙÀÎ´Ù
-		__WriteIndexHeader (VERSION_STR, m_dwNumOfEntry);						/// IndexÆÄÀÏÀÇ Çì´õ¸¦ ´Ù½Ã ¾´´Ù
-		::__ftruncate (::__vfseek (m_fpIDX, 0, SEEK_END) - lDelSize, m_fpIDX);	/// IndexÆÄÀÏÀÇ Å©±â¸¦ Á¶Á¤ÇÑ´Ù
+		m_vecVFS.erase (m_vecVFS.begin () + iDelIndex);							/// ë²¡í„°ì—ì„œ ì§€ìš´ë‹¤
+		m_dwNumOfEntry--;														/// ê°¯ìˆ˜ë¥¼ í•˜ë‚˜ ì¤„ì¸ë‹¤
+		__WriteIndexHeader (VERSION_STR, m_dwNumOfEntry);						/// IndexíŒŒì¼ì˜ í—¤ë”ë¥¼ ë‹¤ì‹œ ì“´ë‹¤
+		::__ftruncate (::__vfseek (m_fpIDX, 0, SEEK_END) - lDelSize, m_fpIDX);	/// IndexíŒŒì¼ì˜ í¬ê¸°ë¥¼ ì¡°ì •í•œë‹¤
 	}
 
 	return false;
@@ -467,23 +467,23 @@ bool CVFS_Manager::RemoveVFS (const char *VfsName)
 
 
 /******************************************************************************************
- * ÆÄÀÏ Çì´õ¸¦ ¾´´Ù
+ * íŒŒì¼ í—¤ë”ë¥¼ ì“´ë‹¤
  */
 void CVFS_Manager::__WriteIndexHeader (char * Version, DWORD dwNum)
 {
 	DWORD dwStdVersion;
 	dwStdVersion = atoi (Version);
 	fseek (m_fpIDX, 0, SEEK_SET);
-	fwrite ((void *)&dwStdVersion, sizeof (WORD), 2, m_fpIDX);		/// ±âÁØ ¹öÁ¯
-	fwrite ((void *)m_wCurVersion, sizeof (WORD), 2, m_fpIDX);	/// ÇöÀç ¹öÁ¯
-	fwrite ((void *)&dwNum,  sizeof (DWORD), 1, m_fpIDX);		/// VentryÀÇ °¹¼ö
+	fwrite ((void *)&dwStdVersion, sizeof (WORD), 2, m_fpIDX);		/// ê¸°ì¤€ ë²„ì ¼
+	fwrite ((void *)m_wCurVersion, sizeof (WORD), 2, m_fpIDX);	/// í˜„ì¬ ë²„ì ¼
+	fwrite ((void *)&dwNum,  sizeof (DWORD), 1, m_fpIDX);		/// Ventryì˜ ê°¯ìˆ˜
 	fflush (m_fpIDX);
 }
 
 
 /******************************************************************************************
- * VFSÆÄÀÏ¿¡ ´ëÇÑ ¿£Æ®¸®°¡ Á¸ÀçÇÏ´Â °Ë»öÇÑ´Ù
- * @param FileName Ã£À» VFSÆÄÀÏ¸í
+ * VFSíŒŒì¼ì— ëŒ€í•œ ì—”íŠ¸ë¦¬ê°€ ì¡´ì¬í•˜ëŠ” ê²€ìƒ‰í•œë‹¤
+ * @param FileName ì°¾ì„ VFSíŒŒì¼ëª…
  */
 VEntry * CVFS_Manager::__FindEntry (const char *FileName)
 {
@@ -491,7 +491,7 @@ VEntry * CVFS_Manager::__FindEntry (const char *FileName)
 
 	for(; iv != m_vecVFS.end (); iv++)
 	{
-		/// ÆÄÀÏ ÀÌ¸§ÀÌ °°À¸¸é VEntry * ¸¦ ¸®ÅÏ
+		/// íŒŒì¼ ì´ë¦„ì´ ê°™ìœ¼ë©´ VEntry * ë¥¼ ë¦¬í„´
 		if((*iv)->sVFSName == FileName) 
 			return *iv;
 	}
@@ -501,8 +501,8 @@ VEntry * CVFS_Manager::__FindEntry (const char *FileName)
 
 
 /******************************************************************************************
- * VFSÆÄÀÏ¿¡ ´ëÇÑ ¿£Æ®¸®°¡ Á¸ÀçÇÏ´Â °Ë»öÇÏ°í ÀÎµ¦½º¸¦ ¸®ÅÏ. Çì´õ¿¡ ÀÖ´Â ¿£Æ®¸®Á¤º¸¸¦ Á¤º¸¸¦ À¯¿ë
- * @param FileName Ã£À» VFSÆÄÀÏ¸í
+ * VFSíŒŒì¼ì— ëŒ€í•œ ì—”íŠ¸ë¦¬ê°€ ì¡´ì¬í•˜ëŠ” ê²€ìƒ‰í•˜ê³  ì¸ë±ìŠ¤ë¥¼ ë¦¬í„´. í—¤ë”ì— ìˆëŠ” ì—”íŠ¸ë¦¬ì •ë³´ë¥¼ ì •ë³´ë¥¼ ìœ ìš©
+ * @param FileName ì°¾ì„ VFSíŒŒì¼ëª…
  */
 DWORD CVFS_Manager::__FindEntryIndexWithFile (const char *FileName)
 {
@@ -511,7 +511,7 @@ DWORD CVFS_Manager::__FindEntryIndexWithFile (const char *FileName)
 
 	for(; iv != m_vecVFS.end (); iv++)
 	{
-		/// ÆÄÀÏ ÀÌ¸§ÀÌ °°À¸¸é VEntry * ¸¦ ¸®ÅÏ
+		/// íŒŒì¼ ì´ë¦„ì´ ê°™ìœ¼ë©´ VEntry * ë¥¼ ë¦¬í„´
 		if((*iv)->pVFS->FileExists (FileName))
 			return dwRet;
 
@@ -523,8 +523,8 @@ DWORD CVFS_Manager::__FindEntryIndexWithFile (const char *FileName)
 
 
 /******************************************************************************************
- * VFSÆÄÀÏ¿¡ ´ëÇÑ ¿£Æ®¸®°¡ Á¸ÀçÇÏ´Â °Ë»öÇÏ°í ÀÎµ¦½º¸¦ ¸®ÅÏ. Çì´õ¿¡ ÀÖ´Â ¿£Æ®¸®Á¤º¸¸¦ Á¤º¸¸¦ À¯¿ë
- * @param FileName Ã£À» VFSÆÄÀÏ¸í
+ * VFSíŒŒì¼ì— ëŒ€í•œ ì—”íŠ¸ë¦¬ê°€ ì¡´ì¬í•˜ëŠ” ê²€ìƒ‰í•˜ê³  ì¸ë±ìŠ¤ë¥¼ ë¦¬í„´. í—¤ë”ì— ìˆëŠ” ì—”íŠ¸ë¦¬ì •ë³´ë¥¼ ì •ë³´ë¥¼ ìœ ìš©
+ * @param FileName ì°¾ì„ VFSíŒŒì¼ëª…
  */
 long CVFS_Manager::__FindEntryIndex (const char *FileName)
 {
@@ -533,7 +533,7 @@ long CVFS_Manager::__FindEntryIndex (const char *FileName)
 	std::vector<VEntry *>::iterator iv = m_vecVFS.begin ();
 	for(; iv != m_vecVFS.end (); iv++)
 	{
-		/// ÆÄÀÏ ÀÌ¸§ÀÌ °°À¸¸é VEntry * ¸¦ ¸®ÅÏ
+		/// íŒŒì¼ ì´ë¦„ì´ ê°™ìœ¼ë©´ VEntry * ë¥¼ ë¦¬í„´
 		if((*iv)->sVFSName == FileName) { return dwRet; }
 		dwRet++;
 	}
@@ -543,9 +543,9 @@ long CVFS_Manager::__FindEntryIndex (const char *FileName)
 
 
 /******************************************************************************************
- * vfs¿¡ ÆÄÀÏÀ» Ãß°¡ÇÑ´Ù
- * @param dwNum			Ãß°¡µÉ ÆÄÀÏÀÇ °¹¼ö
- * @param TargetName	ÀÌ ÀÌ¸§À¸·Î µî·ÏµÈ´Ù. 
+ * vfsì— íŒŒì¼ì„ ì¶”ê°€í•œë‹¤
+ * @param dwNum			ì¶”ê°€ë  íŒŒì¼ì˜ ê°¯ìˆ˜
+ * @param TargetName	ì´ ì´ë¦„ìœ¼ë¡œ ë“±ë¡ëœë‹¤. 
  */
 short CVFS_Manager::AddFile (const char *VfsName
 							, const char *FileName
@@ -562,37 +562,37 @@ short CVFS_Manager::AddFile (const char *VfsName
 	char uprVfsName[ 1024 ];
 	char uprTargetName[ 1024 ];
 	
-	/// °æ·Î¸¦ ´ë¹®ÀÚ , ¾ÕµÚ °ø¹éÁ¦°Å
+	/// ê²½ë¡œë¥¼ ëŒ€ë¬¸ì , ì•ë’¤ ê³µë°±ì œê±°
 	__ConvertPath (VfsName, uprVfsName);
 	__ConvertPath (TargetName, uprTargetName);
 
 	
-	/// VfsName¿¡ ÇØ´çÇÏ´Â ¿£Æ®¸®°¡ Á¸ÀçÇÏ¸é Ãß°¡ÇÑ´Ù
+	/// VfsNameì— í•´ë‹¹í•˜ëŠ” ì—”íŠ¸ë¦¬ê°€ ì¡´ì¬í•˜ë©´ ì¶”ê°€í•œë‹¤
 	if((pVE = __FindEntry (uprVfsName))) 
 	{ 
-		lOldSize = pVE->pVFS->SizeOfEntryTable ();						/// ÀÌÀü ÆÄÀÏ¿£Æ®¸® TableÀÇ Å©±â
+		lOldSize = pVE->pVFS->SizeOfEntryTable ();						/// ì´ì „ íŒŒì¼ì—”íŠ¸ë¦¬ Tableì˜ í¬ê¸°
 		short nAddResult = pVE->pVFS->AddFile (FileName
 								, uprTargetName
 								, dwVersion
 								, dwCrc
 								, btEncType
 								, btCompres
-								, bUseDel);		/// ÆÄÀÏÀ» Ãß°¡ÇÑ´Ù
+								, bUseDel);		/// íŒŒì¼ì„ ì¶”ê°€í•œë‹¤
 
 		if(nAddResult != VADDFILE_SUCCESS)						
 			return nAddResult;
 
-		lNewSize = pVE->pVFS->SizeOfEntryTable ();						/// Ãß°¡ÇÏ°í ³ª¼­ ÆÄÀÏ¿£Æ®¸® Å×ÀÌºíÀÇ Å©±â
-		/// VEntry Å×ÀÌºí °»½ÅÀº ¿©±â¼­ ÇØ¾ß ÇÑ´Ù
+		lNewSize = pVE->pVFS->SizeOfEntryTable ();						/// ì¶”ê°€í•˜ê³  ë‚˜ì„œ íŒŒì¼ì—”íŠ¸ë¦¬ í…Œì´ë¸”ì˜ í¬ê¸°
+		/// VEntry í…Œì´ë¸” ê°±ì‹ ì€ ì—¬ê¸°ì„œ í•´ì•¼ í•œë‹¤
 		int iIndex = __FindEntryIndex (uprVfsName);
-		/// VEntry TableÀ» ¼öÁ¤ÇÏ±â File Indicator¸¦ Table¾ÕÂÊÀ¸·Î ÀÌµ¿½ÃÅ²´Ù. 
+		/// VEntry Tableì„ ìˆ˜ì •í•˜ê¸° File Indicatorë¥¼ Tableì•ìª½ìœ¼ë¡œ ì´ë™ì‹œí‚¨ë‹¤. 
 		fseek (m_fpIDX, SIZEOF_VFILEHEADER, SEEK_SET);
-		/// ¾ÕÂÊ¿¡´Â º¯°æÇÒ ²¨ ¾øÀ½. 
+		/// ì•ìª½ì—ëŠ” ë³€ê²½í•  êº¼ ì—†ìŒ. 
 		for(iv = m_vecVFS.begin (); iv <= m_vecVFS.begin () + iIndex; iv++)
 		{
 			__SkipVEntry (*iv);
 		}
-		/// µÚÂÊÀº VEntry¿¡ ÇØ´çÇÏ´Â ¿£Æ®¸®Å×ÀÌºíÀÇ ¿ÀÇÁ¼ÂÀº ¹Ğ·Á³­´Ù
+		/// ë’¤ìª½ì€ VEntryì— í•´ë‹¹í•˜ëŠ” ì—”íŠ¸ë¦¬í…Œì´ë¸”ì˜ ì˜¤í”„ì…‹ì€ ë°€ë ¤ë‚œë‹¤
 		for(; iv != m_vecVFS.end (); iv++)
 		{
 			(*iv)->lStartOfEntry += lNewSize - lOldSize;
@@ -610,7 +610,7 @@ short CVFS_Manager::AddFile (const char *VfsName
 
 
 /******************************************************************************************
- * pack¾È¿¡ ÀÖ´Â ÆÄÀÏÀÌ¸§À¸·Î VEntry¸¦ Ã£´Â´Ù
+ * packì•ˆì— ìˆëŠ” íŒŒì¼ì´ë¦„ìœ¼ë¡œ VEntryë¥¼ ì°¾ëŠ”ë‹¤
  */
 VEntry * CVFS_Manager::__FindVEntryWithFile (const char *FileName)
 {
@@ -619,7 +619,7 @@ VEntry * CVFS_Manager::__FindVEntryWithFile (const char *FileName)
 	std::vector<VEntry *>::iterator iv = m_vecVFS.begin ();
 	for(; iv != m_vecVFS.end (); iv++)
 	{
-		/// ÆÄÀÏ ÀÌ¸§ÀÌ °°À¸¸é VEntry * ¸¦ ¸®ÅÏ
+		/// íŒŒì¼ ì´ë¦„ì´ ê°™ìœ¼ë©´ VEntry * ë¥¼ ë¦¬í„´
 		if((*iv)->pVFS->FileExists (FileName))
 		{  
 			return *iv;
@@ -631,9 +631,9 @@ VEntry * CVFS_Manager::__FindVEntryWithFile (const char *FileName)
 
 
 /******************************************************************************************
- * PackÆÄÀÏ¿¡ Ã£¾Æ¼­, ÆÄÀÏÀ» ÇÑ°³ Á¦°ÅÇÑ´Ù.
- * @param File	pack ÆÄÀÏ¾ÈÀÇ ÆÄÀÏ ÀÌ¸§
- * @return VRMVFILE_XXXXX , ¼º°øÇÏ¸é VRMVFILE_SUCCESS¸¦ ¸®ÅÏ
+ * PackíŒŒì¼ì— ì°¾ì•„ì„œ, íŒŒì¼ì„ í•œê°œ ì œê±°í•œë‹¤.
+ * @param File	pack íŒŒì¼ì•ˆì˜ íŒŒì¼ ì´ë¦„
+ * @return VRMVFILE_XXXXX , ì„±ê³µí•˜ë©´ VRMVFILE_SUCCESSë¥¼ ë¦¬í„´
  */
 short CVFS_Manager::RemoveFile (const char *FileName)
 {
@@ -645,12 +645,12 @@ short CVFS_Manager::RemoveFile (const char *FileName)
 	DWORD		iIndex = -1;
 	short		i = 0;
 	
-	/// Å¸°ÙÀÌ¸§À» ¿Ã¹Ù¸¥ °æ·Î·Î ¹Ù²Û´Ù
+	/// íƒ€ê²Ÿì´ë¦„ì„ ì˜¬ë°”ë¥¸ ê²½ë¡œë¡œ ë°”ê¾¼ë‹¤
 	__ConvertPath (FileName, uprTargetName);
 
 	szNEW = uprTargetName;
 
-	/// ¿£Æ®¸®¸¦ Ã£¾Æ¼­ ÀÖÀ¸¸é Áö¿î´Ù
+	/// ì—”íŠ¸ë¦¬ë¥¼ ì°¾ì•„ì„œ ìˆìœ¼ë©´ ì§€ìš´ë‹¤
 	pVE = __FindVEntryWithFile (uprTargetName);
 	if(pVE)
 	{
@@ -672,10 +672,10 @@ short CVFS_Manager::RemoveFile (const char *FileName)
 				for(; i < (signed)m_dwNumOfEntry; i++)
 				{
 					std::vector<VEntry *>::iterator iv = m_vecVFS.begin () + i;
-					if(iv != m_vecVFS.end ())	/// vfsÆÄÀÏÀÌ ¾ø´Â °æ¿ì. vfsÆÄÀÏÀÇ °¹¼ö¿Í ÆÄÀÏ¿¡ ±â·ÏµÈ °¹¼ö°¡ ´Ù¸¦ °æ¿ì
+					if(iv != m_vecVFS.end ())	/// vfsíŒŒì¼ì´ ì—†ëŠ” ê²½ìš°. vfsíŒŒì¼ì˜ ê°¯ìˆ˜ì™€ íŒŒì¼ì— ê¸°ë¡ëœ ê°¯ìˆ˜ê°€ ë‹¤ë¥¼ ê²½ìš°
 					{
 						VEntry * pVEtoModify = *iv;
-						/// VEntryÀÇ ¿£Æ®¸®Å×ÀÌºíÀÇ Start OffsetÀ» ¼öÁ¤ÇÏ°í ´Ù½Ã¾´´Ù
+						/// VEntryì˜ ì—”íŠ¸ë¦¬í…Œì´ë¸”ì˜ Start Offsetì„ ìˆ˜ì •í•˜ê³  ë‹¤ì‹œì“´ë‹¤
 						pVEtoModify->lStartOfEntry -= (lOldSize - lNewSize);
 						__WriteVEntry (pVEtoModify);
 					}
@@ -686,16 +686,16 @@ short CVFS_Manager::RemoveFile (const char *FileName)
 				return VRMVFILE_SUCCESS;
 			}
 			
-			return bRet; // ÀÖ´Âµ¥ »èÁ¦ ¸ø ÇÏ¸é false ¸®ÅÏ
+			return bRet; // ìˆëŠ”ë° ì‚­ì œ ëª» í•˜ë©´ false ë¦¬í„´
 		}
 	}
 
-	return VRMVFILE_INVALIDVFS; // ¾ø´Â ÆÄÀÏÀ» »èÁ¦ ½ÃµµÇßÀ» °æ¿ì true¸¦ ¸®ÅÏ
+	return VRMVFILE_INVALIDVFS; // ì—†ëŠ” íŒŒì¼ì„ ì‚­ì œ ì‹œë„í–ˆì„ ê²½ìš° trueë¥¼ ë¦¬í„´
 }
 
 
 /******************************************************************************************
- * ÆÄÀÏ ¿©·¯°³ Á¦°ÅÇÏ°í. ±×³É ºó°ø°£À¸·Î ³²°ÜµÎ±â
+ * íŒŒì¼ ì—¬ëŸ¬ê°œ ì œê±°í•˜ê³ . ê·¸ëƒ¥ ë¹ˆê³µê°„ìœ¼ë¡œ ë‚¨ê²¨ë‘ê¸°
  */
 bool CVFS_Manager::RemoveFiles (const char *VfsName, const char **Files, int iNum)
 {
@@ -704,7 +704,7 @@ bool CVFS_Manager::RemoveFiles (const char *VfsName, const char **Files, int iNu
 	DWORD		iIndex = -1;
 	short		i = 0;
 
-	/// ¿£Æ®¸®¸¦ Ã£¾Æ¼­ ÀÖÀ¸¸é Áö¿î´Ù
+	/// ì—”íŠ¸ë¦¬ë¥¼ ì°¾ì•„ì„œ ìˆìœ¼ë©´ ì§€ìš´ë‹¤
 	if((pVE = __FindEntry (VfsName)) && (iIndex = __FindEntryIndex (VfsName)) >= 0)
 	{
 		lOldSize = pVE->pVFS->SizeOfEntryTable ();
@@ -717,7 +717,7 @@ bool CVFS_Manager::RemoveFiles (const char *VfsName, const char **Files, int iNu
 
 			for(; i < (signed)m_dwNumOfEntry; i++)
 			{
-				/// VEntryÀÇ ¿£Æ®¸®Å×ÀÌºíÀÇ Start OffsetÀ» ¼öÁ¤ÇÏ°í ´Ù½Ã¾´´Ù
+				/// VEntryì˜ ì—”íŠ¸ë¦¬í…Œì´ë¸”ì˜ Start Offsetì„ ìˆ˜ì •í•˜ê³  ë‹¤ì‹œì“´ë‹¤
 				(*(m_vecVFS.begin () + i))->lStartOfEntry -= (lOldSize - lNewSize);
 				__WriteVEntry (*(m_vecVFS.begin () + i));
 			}
@@ -730,7 +730,7 @@ bool CVFS_Manager::RemoveFiles (const char *VfsName, const char **Files, int iNu
 }
 
 
-/// ÀÎµ¦½º ÆÄÀÏÀ» fflushÇÑ´Ù.
+/// ì¸ë±ìŠ¤ íŒŒì¼ì„ fflushí•œë‹¤.
 void CVFS_Manager::__FlushIdxFile (void)
 {
 	if(m_fpIDX)
@@ -739,8 +739,8 @@ void CVFS_Manager::__FlushIdxFile (void)
 
 
 /******************************************************************************************
- * vfsÆÄÀÏ¿¡¼­ ÆÄÀÏÀ» ¿ÀÇÂÇÑ´Ù
- * ´Ù¸¥ µğ·ºÅä¸®¿¡¼­ ÀÎµ¦½º¸¦ ¿­¾î ¹ö¸®¸é ¹®Á¦ ¹ß»ıÇÒ ¼ö ÀÖ´Ù. ==> ¼öÁ¤
+ * vfsíŒŒì¼ì—ì„œ íŒŒì¼ì„ ì˜¤í”ˆí•œë‹¤
+ * ë‹¤ë¥¸ ë””ë ‰í† ë¦¬ì—ì„œ ì¸ë±ìŠ¤ë¥¼ ì—´ì–´ ë²„ë¦¬ë©´ ë¬¸ì œ ë°œìƒí•  ìˆ˜ ìˆë‹¤. ==> ìˆ˜ì •
  */
 VFileHandle * CVFS_Manager::OpenFile (const char *FileName)
 {
@@ -750,7 +750,7 @@ VFileHandle * CVFS_Manager::OpenFile (const char *FileName)
 	if(FileName == NULL) { return NULL; }
 
 	
-	if( FileExistsInVfs( FileName ) ) // vfs ¾È¿¡ ÀÖÀ¸¸é ±×°É ¸ÕÀú open ÇÑ´Ù. ±×¸®°í ¿ÜºÎ ÆÄÀÏ·Î Á¸Àç ¿©ºÎ °Ë»ö
+	if( FileExistsInVfs( FileName ) ) // vfs ì•ˆì— ìˆìœ¼ë©´ ê·¸ê±¸ ë¨¼ì € open í•œë‹¤. ê·¸ë¦¬ê³  ì™¸ë¶€ íŒŒì¼ë¡œ ì¡´ì¬ ì—¬ë¶€ ê²€ìƒ‰
 	{
 		char rightName[1024];
 		::__ConvertPath (FileName, rightName);
@@ -774,7 +774,7 @@ VFileHandle * CVFS_Manager::OpenFile (const char *FileName)
 				pVF->lStartOff		= 0;
 				pVF->lEndOff		= __vfseek (pVF->fp, 0, SEEK_END);
 				pVF->sFileName		= FileName;
-				pVF->btFileType		= 1;									/// ¹Û¿¡ ÀÖ´Â ÆÄÀÏÀÏ °æ¿ì 1
+				pVF->btFileType		= 1;									/// ë°–ì— ìˆëŠ” íŒŒì¼ì¼ ê²½ìš° 1
 				pVF->hVFS			= NULL;
 				pVF->pData			= NULL;
 
@@ -785,25 +785,25 @@ VFileHandle * CVFS_Manager::OpenFile (const char *FileName)
 		}
 	}
 
-	return NULL; /// ¹ß°ßÇÏÁö ¸øÇÏ¸é pVF¿¡NULLÀÌ ¸®ÅÏ
+	return NULL; /// ë°œê²¬í•˜ì§€ ëª»í•˜ë©´ pVFì—NULLì´ ë¦¬í„´
 }
 
 
 /******************************************************************************************
- * OpenFile·Î ¿ÀÇÂÇÑ ÆÄÀÏÀ» ´İ´Â´Ù
- * ÇöÀç´Â ´Ü¼øÈ÷ ¸Ş¸ğ¸®¸¦ ÇØÁ¦ÇÏ´Â ±â´É¸¸...
+ * OpenFileë¡œ ì˜¤í”ˆí•œ íŒŒì¼ì„ ë‹«ëŠ”ë‹¤
+ * í˜„ì¬ëŠ” ë‹¨ìˆœíˆ ë©”ëª¨ë¦¬ë¥¼ í•´ì œí•˜ëŠ” ê¸°ëŠ¥ë§Œ...
  */
 void CVFS_Manager::CloseFile (VFileHandle *pVFH)
 {
-	/// VCloseFileÀ» È£ÃâÇÒ °æ¿ì VCloseFile¾È¿¡ ÀÏ¹İ ÆÄÀÏÀÎÁö È®ÀÎÇÏ°í ´İ´Â´Ù
+	/// VCloseFileì„ í˜¸ì¶œí•  ê²½ìš° VCloseFileì•ˆì— ì¼ë°˜ íŒŒì¼ì¸ì§€ í™•ì¸í•˜ê³  ë‹«ëŠ”ë‹¤
 	if(pVFH->btFileType) { fclose (pVFH->fp); }
-	/// Áö±İÀº ´Ü¼øÈ÷ ¸Ş¸ğ¸®¸¦ ÇØÁ¦ÇÏ´Â ±â´É¸¸ ³Ö´Â´Ù
+	/// ì§€ê¸ˆì€ ë‹¨ìˆœíˆ ë©”ëª¨ë¦¬ë¥¼ í•´ì œí•˜ëŠ” ê¸°ëŠ¥ë§Œ ë„£ëŠ”ë‹¤
 	delete pVFH;
 }
 
 
 /******************************************************************************************
- * VFS ÆÄÀÏ¿¡¼­ ÆÄÀÏÀÌ¸§À» °Ë»öÇÑ´Ù
+ * VFS íŒŒì¼ì—ì„œ íŒŒì¼ì´ë¦„ì„ ê²€ìƒ‰í•œë‹¤
  */
 DWORD CVFS_Manager::GetFileNames (const char *VfsName, char **pFiles, DWORD nFiles, int nMaxPath)
 {
@@ -815,43 +815,43 @@ DWORD CVFS_Manager::GetFileNames (const char *VfsName, char **pFiles, DWORD nFil
 
 
 /******************************************************************************************
- * ÆÄÀÏ Å©±â¸¦ ¾Ë¾Æ³½´Ù
- * @return ÆÄÀÏÀ» ¹ß°ßÇÏÁö ¸øÇÏ¸é 0À» ¸®ÅÏÇÑ´Ù. (½ÇÁ¦ ÆÄÀÏÀÇ Å©±â°¡ 0ÀÎ °æ¿ìµµ)
+ * íŒŒì¼ í¬ê¸°ë¥¼ ì•Œì•„ë‚¸ë‹¤
+ * @return íŒŒì¼ì„ ë°œê²¬í•˜ì§€ ëª»í•˜ë©´ 0ì„ ë¦¬í„´í•œë‹¤. (ì‹¤ì œ íŒŒì¼ì˜ í¬ê¸°ê°€ 0ì¸ ê²½ìš°ë„)
  */
 long CVFS_Manager::GetFileLength (const char *FileName)
 {
 	VFileHandle * pVF	= NULL;
 	long lFileSize		= 0;
 
-	/// ¹Û¿¡ Á¸ÀçÇÏ´Â ÆÄÀÏÀÏ °æ¿ì¿¡µµ ÆÄÀÏ Å©±â¸¦ ¸®ÅÏÇÑ´Ù.
+	/// ë°–ì— ì¡´ì¬í•˜ëŠ” íŒŒì¼ì¼ ê²½ìš°ì—ë„ íŒŒì¼ í¬ê¸°ë¥¼ ë¦¬í„´í•œë‹¤.
 	struct _stat file_stat;	
 	if (_stat(FileName, &file_stat) == 0) 
 		lFileSize = (long)file_stat.st_size;
 	else
 	{
 		std::vector<VEntry *>::iterator iv = m_vecVFS.begin ();
-		/// ÀÎµ¦½º ÆÄÀÏ¾È¿¡ ¸¹Áö ¾ÊÀº vfsÆÄÀÏÀÌ ÀÖÀ¸¹Ç·Î ±×³É for loop·Î ÇØµµ ¹«¹æÇÏ¸®¶ó »ı°¢µÊ
+		/// ì¸ë±ìŠ¤ íŒŒì¼ì•ˆì— ë§ì§€ ì•Šì€ vfsíŒŒì¼ì´ ìˆìœ¼ë¯€ë¡œ ê·¸ëƒ¥ for loopë¡œ í•´ë„ ë¬´ë°©í•˜ë¦¬ë¼ ìƒê°ë¨
 		for(; iv != m_vecVFS.end (); iv++)
 		{
 			lFileSize = (*iv)->pVFS->GetFileLength (FileName);	
-			if(lFileSize >= 0) /// ¹ß°ßÇÏ¸é Å©±â¸¦ ¸®ÅÏ. ¸ÊÀ» ÀÌ¿ëÇØ¼­ Ã£¾Æ¼­ Å©±â ¾Ë¾Æ³¿
+			if(lFileSize >= 0) /// ë°œê²¬í•˜ë©´ í¬ê¸°ë¥¼ ë¦¬í„´. ë§µì„ ì´ìš©í•´ì„œ ì°¾ì•„ì„œ í¬ê¸° ì•Œì•„ëƒ„
 				break;
 		}
 	}
 
-	return lFileSize; /// ¹ß°ßÇÏÁö ¸øÇÏ¸é -1À» ¸®ÅÏ
+	return lFileSize; /// ë°œê²¬í•˜ì§€ ëª»í•˜ë©´ -1ì„ ë¦¬í„´
 }
 
 
 /******************************************************************************************
- * ÆÄÀÏ°¹¼ö¸¦ ¾Ë¾Æ³½´Ù
+ * íŒŒì¼ê°¯ìˆ˜ë¥¼ ì•Œì•„ë‚¸ë‹¤
  */
 DWORD CVFS_Manager::GetFileCount (const char *VfsName)
 {
 	VEntry * pVE = NULL;
-	if(pVE = __FindEntry (VfsName))			/// ÆÄÀÏÀ» °Ë»öÇØ¼­ ÀÖÀ¸¸é
+	if(pVE = __FindEntry (VfsName))			/// íŒŒì¼ì„ ê²€ìƒ‰í•´ì„œ ìˆìœ¼ë©´
 	{
-		return pVE->pVFS->GetFileCount ();	/// °¹¼ö¸¦ ¸®ÅÏ
+		return pVE->pVFS->GetFileCount ();	/// ê°¯ìˆ˜ë¥¼ ë¦¬í„´
 	}
 
 	return 0;
@@ -859,7 +859,7 @@ DWORD CVFS_Manager::GetFileCount (const char *VfsName)
 
 
 /******************************************************************************************
- * ÀÎµ¦½ºÆÄÀÏ¾È¿¡ ÀÖ´Â ÆÄÀÏÀÇ ÃÑ°¹¼ö¸¦ ¾Ë¾Æ³½´Ù.
+ * ì¸ë±ìŠ¤íŒŒì¼ì•ˆì— ìˆëŠ” íŒŒì¼ì˜ ì´ê°¯ìˆ˜ë¥¼ ì•Œì•„ë‚¸ë‹¤.
  */
 DWORD CVFS_Manager::GetFileTotCount (void)
 {
@@ -870,7 +870,7 @@ DWORD CVFS_Manager::GetFileTotCount (void)
 	int iCnt = 0;
 	for(; iv != m_vecVFS.end (); iv++)
 	{
-		if(*iv) /// iterator¿¡ ÀûÇÕÇÑ °ªÀÌ µé¾î°¡ ÀÖ´Ù°í »ı°¢Áö ¸»°Í.
+		if(*iv) /// iteratorì— ì í•©í•œ ê°’ì´ ë“¤ì–´ê°€ ìˆë‹¤ê³  ìƒê°ì§€ ë§ê²ƒ.
 		{
 			iCnt += (*iv)->pVFS->GetFileCount ();
 		}
@@ -881,7 +881,7 @@ DWORD CVFS_Manager::GetFileTotCount (void)
 
 
 /******************************************************************************************
- * ÀÌ ÀÎµ¦½ºÆÄÀÏ¿¡ ÀÖ´Â ¹­À½ ÆÄÀÏÀÇ °¹¼ö¸¦ Á¶»çÇÑ´Ù
+ * ì´ ì¸ë±ìŠ¤íŒŒì¼ì— ìˆëŠ” ë¬¶ìŒ íŒŒì¼ì˜ ê°¯ìˆ˜ë¥¼ ì¡°ì‚¬í•œë‹¤
  */
 DWORD CVFS_Manager::GetVFSCount (void)
 {
@@ -890,10 +890,10 @@ DWORD CVFS_Manager::GetVFSCount (void)
 
 
 /******************************************************************************************
- * GetVfsNames : Index File¾È¿¡ ÀÖ´Â ¹­À½ ÆÄÀÏÀÇ ÀÌ¸§À» Á¶»çÇÔ
- * @param ppFiles ÆÄÀÏÀÌ¸§À» ÀúÀåÇÒ ¹öÆÛ
- * @param dwNum ppFiles¿¡ ÀúÀåÇÒ ½ºÆ®¸µ°¹¼ö
- * @param dwMaxPath ½ºÆ®¸µÀÇ ÃÖ°í ±æÀÌ
+ * GetVfsNames : Index Fileì•ˆì— ìˆëŠ” ë¬¶ìŒ íŒŒì¼ì˜ ì´ë¦„ì„ ì¡°ì‚¬í•¨
+ * @param ppFiles íŒŒì¼ì´ë¦„ì„ ì €ì¥í•  ë²„í¼
+ * @param dwNum ppFilesì— ì €ì¥í•  ìŠ¤íŠ¸ë§ê°¯ìˆ˜
+ * @param dwMaxPath ìŠ¤íŠ¸ë§ì˜ ìµœê³  ê¸¸ì´
  */
 DWORD CVFS_Manager::GetVfsNames (char **ppFiles, DWORD dwNum, short dwMaxPath)
 {
@@ -912,15 +912,15 @@ DWORD CVFS_Manager::GetVfsNames (char **ppFiles, DWORD dwNum, short dwMaxPath)
 
 
 /******************************************************************************************
- * Pack ÆÄÀÏ¿¡¼­ Áö¿öÁ³À¸³ª ¾ÆÁ÷ Á¤¸®µÇÁö ¾ÊÀº ÆÄÀÏÀÇ °¹¼ö¸¦ Á¶»çÇÑ´Ù
+ * Pack íŒŒì¼ì—ì„œ ì§€ì›Œì¡Œìœ¼ë‚˜ ì•„ì§ ì •ë¦¬ë˜ì§€ ì•Šì€ íŒŒì¼ì˜ ê°¯ìˆ˜ë¥¼ ì¡°ì‚¬í•œë‹¤
  */
 DWORD CVFS_Manager::GetDelCnt (const char *VfsName)
 {
 	VEntry * pVE = NULL;
 
-	if(pVE = __FindEntry (VfsName))			/// ÆÄÀÏÀ» °Ë»öÇØ¼­ ÀÖÀ¸¸é
+	if(pVE = __FindEntry (VfsName))			/// íŒŒì¼ì„ ê²€ìƒ‰í•´ì„œ ìˆìœ¼ë©´
 	{
-		return pVE->pVFS->GetDelCnt ();		/// °¹¼ö¸¦ ¸®ÅÏ
+		return pVE->pVFS->GetDelCnt ();		/// ê°¯ìˆ˜ë¥¼ ë¦¬í„´
 	}
 
 	return 0;
@@ -934,16 +934,16 @@ DWORD CVFS_Manager::GetFileCntWithHole (const char *VfsName)
 {
 	VEntry * pVE = NULL;
 
-	if(pVE = __FindEntry (VfsName))					/// ÆÄÀÏÀ» °Ë»öÇØ¼­ ÀÖÀ¸¸é
+	if(pVE = __FindEntry (VfsName))					/// íŒŒì¼ì„ ê²€ìƒ‰í•´ì„œ ìˆìœ¼ë©´
 	{
-		return pVE->pVFS->GetFileCntWithHole ();	/// °¹¼ö¸¦ ¸®ÅÏ
+		return pVE->pVFS->GetFileCntWithHole ();	/// ê°¯ìˆ˜ë¥¼ ë¦¬í„´
 	}
 
 	return 0;
 }
 
 
-/// °ø¹éÀ» Áö¿î´Ù
+/// ê³µë°±ì„ ì§€ìš´ë‹¤
 bool CVFS_Manager::ClearBlank (const char * VfsName )
 {
 	long		lOldSize = 0 , lNewSize = 0;
@@ -952,34 +952,34 @@ bool CVFS_Manager::ClearBlank (const char * VfsName )
 	std::vector<VEntry *>::iterator iv;
 	long		lFileSize = 0;
 
-	if(pVE = __FindEntry (VfsName))						/// ÆÄÀÏÀ» °Ë»öÇØ¼­ ÀÖÀ¸¸é
+	if(pVE = __FindEntry (VfsName))						/// íŒŒì¼ì„ ê²€ìƒ‰í•´ì„œ ìˆìœ¼ë©´
 	{
-		lFileSize = __vfseek (m_fpIDX, 0, SEEK_END);	/// ÆÄÀÏ Å©±â
-		lOldSize = pVE->pVFS->SizeOfEntryTable ();		/// Å×ÀÌºí Å©±â º¯È­·Î Å©±âº¯È­¸¦ ¾Ë¾Æ³½´Ù
+		lFileSize = __vfseek (m_fpIDX, 0, SEEK_END);	/// íŒŒì¼ í¬ê¸°
+		lOldSize = pVE->pVFS->SizeOfEntryTable ();		/// í…Œì´ë¸” í¬ê¸° ë³€í™”ë¡œ í¬ê¸°ë³€í™”ë¥¼ ì•Œì•„ë‚¸ë‹¤
 		if(pVE->pVFS->ClearBlank ())
 		{
 			lNewSize = pVE->pVFS->SizeOfEntryTable ();
-			/// µŞºÎºĞÀ» ´ç±ä´Ù
+			/// ë’·ë¶€ë¶„ì„ ë‹¹ê¸´ë‹¤
 			::__MoveFileBlock (pVE->lStartOfEntry + lOldSize
 				, lFileSize - (pVE->lStartOfEntry + lOldSize)
 				, pVE->lStartOfEntry + lNewSize, 1000000, m_fpIDX, false);
 
 			fflush (m_fpIDX);
-			/// ÆÄÀÏÅ©±â¸¦ Á¶Á¤ÇÑ´Ù
+			/// íŒŒì¼í¬ê¸°ë¥¼ ì¡°ì •í•œë‹¤
 			::__ftruncate (lFileSize - (lOldSize - lNewSize), m_fpIDX);
 
 			iIndex = __FindEntryIndex (VfsName);
 			iv = m_vecVFS.begin ();
-			/// VEntry TableÀ» ¼öÁ¤ÇÏ±â À§ÇØ ¾ÕÂÊÀ¸·Î ÀÌµ¿ÇÑ´Ù
+			/// VEntry Tableì„ ìˆ˜ì •í•˜ê¸° ìœ„í•´ ì•ìª½ìœ¼ë¡œ ì´ë™í•œë‹¤
 			fseek (m_fpIDX, SIZEOF_VFILEHEADER, SEEK_SET);
-			/// ÀÌÀü±îÁö´Â ±×³É ½ºµh
+			/// ì´ì „ê¹Œì§€ëŠ” ê·¸ëƒ¥ ìŠ¤?
 			for(; iv <= m_vecVFS.begin () + iIndex; iv++)
 			{
 				__SkipVEntry (*iv);
 			}
-			/// ¿©±â´Â °Ç³Ê¶Ù°í
-			/// iv++;   /// <== »èÁ¦°¡ ¾Æ´Ï±â ¶§¹®¿¡ °Ç³Ê ¶Ù¸é ¾È µÊ
-			/// µŞÂÊºÎÅÍ ´Ù½Ã »èÁ¦µÈ ¸¸Å­ »«´Ù
+			/// ì—¬ê¸°ëŠ” ê±´ë„ˆë›°ê³ 
+			/// iv++;   /// <== ì‚­ì œê°€ ì•„ë‹ˆê¸° ë•Œë¬¸ì— ê±´ë„ˆ ë›°ë©´ ì•ˆ ë¨
+			/// ë’·ìª½ë¶€í„° ë‹¤ì‹œ ì‚­ì œëœ ë§Œí¼ ëº€ë‹¤
 			for(; iv != m_vecVFS.end (); iv++)
 			{
 				(*iv)->lStartOfEntry -= lOldSize - lNewSize;
@@ -995,7 +995,7 @@ bool CVFS_Manager::ClearBlank (const char * VfsName )
 }
 
 
-/// ¸ğµç PackÆÄÀÏÀÇ °ø¹éÀ» Áö¿î´Ù
+/// ëª¨ë“  PackíŒŒì¼ì˜ ê³µë°±ì„ ì§€ìš´ë‹¤
 bool CVFS_Manager::ClearBlankAll (VCALLBACK_CLEARBLANKALL CallBackProc)
 {
 
@@ -1031,34 +1031,34 @@ bool CVFS_Manager::ClearBlankAll (VCALLBACK_CLEARBLANKALL CallBackProc)
 	{
 		VfsName = (*il)->sVFSName.c_str ();
 
-		if(pVE = __FindEntry (VfsName))						/// ÆÄÀÏÀ» °Ë»öÇØ¼­ ÀÖÀ¸¸é
+		if(pVE = __FindEntry (VfsName))						/// íŒŒì¼ì„ ê²€ìƒ‰í•´ì„œ ìˆìœ¼ë©´
 		{
-			lFileSize = __vfseek (m_fpIDX, 0, SEEK_END);	/// ÆÄÀÏ Å©±â
-			lOldSize = pVE->pVFS->SizeOfEntryTable ();		/// Å×ÀÌºí Å©±â º¯È­·Î Å©±âº¯È­¸¦ ¾Ë¾Æ³½´Ù
+			lFileSize = __vfseek (m_fpIDX, 0, SEEK_END);	/// íŒŒì¼ í¬ê¸°
+			lOldSize = pVE->pVFS->SizeOfEntryTable ();		/// í…Œì´ë¸” í¬ê¸° ë³€í™”ë¡œ í¬ê¸°ë³€í™”ë¥¼ ì•Œì•„ë‚¸ë‹¤
 			if(pVE->pVFS->ClearBlank ())
 			{
 				lNewSize = pVE->pVFS->SizeOfEntryTable ();
-				/// µŞºÎºĞÀ» ´ç±ä´Ù
+				/// ë’·ë¶€ë¶„ì„ ë‹¹ê¸´ë‹¤
 				::__MoveFileBlock (pVE->lStartOfEntry + lOldSize
 					, lFileSize - (pVE->lStartOfEntry + lOldSize)
 					, pVE->lStartOfEntry + lNewSize, 1000000, m_fpIDX, false);
 				CBlankInfo::DoStep ();
 				fflush (m_fpIDX);
-				/// ÆÄÀÏÅ©±â¸¦ Á¶Á¤ÇÑ´Ù
+				/// íŒŒì¼í¬ê¸°ë¥¼ ì¡°ì •í•œë‹¤
 				::__ftruncate (lFileSize - (lOldSize - lNewSize), m_fpIDX);
 
 				iIndex = __FindEntryIndex (VfsName);
 				iv = m_vecVFS.begin ();
-				/// VEntry TableÀ» ¼öÁ¤ÇÏ±â À§ÇØ ¾ÕÂÊÀ¸·Î ÀÌµ¿ÇÑ´Ù
+				/// VEntry Tableì„ ìˆ˜ì •í•˜ê¸° ìœ„í•´ ì•ìª½ìœ¼ë¡œ ì´ë™í•œë‹¤
 				fseek (m_fpIDX, SIZEOF_VFILEHEADER, SEEK_SET);
-				/// ÀÌÀü±îÁö´Â ±×³É ½ºµh
+				/// ì´ì „ê¹Œì§€ëŠ” ê·¸ëƒ¥ ìŠ¤?
 				for(; iv <= m_vecVFS.begin () + iIndex; iv++)
 				{
 					__SkipVEntry (*iv);
 				}
-				/// ¿©±â´Â °Ç³Ê¶Ù°í
-				/// iv++;   /// <== »èÁ¦°¡ ¾Æ´Ï±â ¶§¹®¿¡ °Ç³Ê ¶Ù¸é ¾È µÊ
-				/// µŞÂÊºÎÅÍ ´Ù½Ã »èÁ¦µÈ ¸¸Å­ »«´Ù
+				/// ì—¬ê¸°ëŠ” ê±´ë„ˆë›°ê³ 
+				/// iv++;   /// <== ì‚­ì œê°€ ì•„ë‹ˆê¸° ë•Œë¬¸ì— ê±´ë„ˆ ë›°ë©´ ì•ˆ ë¨
+				/// ë’·ìª½ë¶€í„° ë‹¤ì‹œ ì‚­ì œëœ ë§Œí¼ ëº€ë‹¤
 				for(; iv != m_vecVFS.end (); iv++)
 				{
 					(*iv)->lStartOfEntry -= lOldSize - lNewSize;
@@ -1086,12 +1086,12 @@ bool CVFS_Manager::ClearBlankAll (VCALLBACK_CLEARBLANKALL CallBackProc)
 
 
 /****************************************************************************************
- * Vfs NameÀÌ Á¸ÀçÇÏ´ÂÁö Á¶»çÇÑ´Ù
+ * Vfs Nameì´ ì¡´ì¬í•˜ëŠ”ì§€ ì¡°ì‚¬í•œë‹¤
  */
 bool CVFS_Manager::VfsExists (const char *VfsName)
 {
 	char uprVfsName[ 1024 ];
-	__ConvertPath (VfsName, uprVfsName); /// ´ë¹®ÀÚ·Î º¯È¯ÇØ¼­ °Ë»ö
+	__ConvertPath (VfsName, uprVfsName); /// ëŒ€ë¬¸ìë¡œ ë³€í™˜í•´ì„œ ê²€ìƒ‰
 
 	std::vector<VEntry *>::iterator iv = m_vecVFS.begin ();
 	for(;iv != m_vecVFS.end (); iv++)
@@ -1105,24 +1105,24 @@ bool CVFS_Manager::VfsExists (const char *VfsName)
 
 
 /*********************************************************************************
- * ÆÄÀÏÁ¸ÀçÇÏ´ÂÁö °Ë»ç
- * ÁÖÀÇ : ¹Ù±ù¿¡ ÀÖ´Â ÆÄÀÏ ¸ÕÀú °Ë»ç. ±×¸®°í, PackÆÄÀÏ °Ë»ç
- * PackÆÄÀÏÀÇ °¹¼ö´Â ±×¸® ¸¹Áö ¾Ê±â ¶§¹®¿¡ ¹«½ÄÇÏ°Ô for loop¸¦ µ¹¸°´Ù
+ * íŒŒì¼ì¡´ì¬í•˜ëŠ”ì§€ ê²€ì‚¬
+ * ì£¼ì˜ : ë°”ê¹¥ì— ìˆëŠ” íŒŒì¼ ë¨¼ì € ê²€ì‚¬. ê·¸ë¦¬ê³ , PackíŒŒì¼ ê²€ì‚¬
+ * PackíŒŒì¼ì˜ ê°¯ìˆ˜ëŠ” ê·¸ë¦¬ ë§ì§€ ì•Šê¸° ë•Œë¬¸ì— ë¬´ì‹í•˜ê²Œ for loopë¥¼ ëŒë¦°ë‹¤
  */
 bool CVFS_Manager::FileExists (const char * FileName)
 {
 	std::vector<VEntry *>::iterator iv;
 	char uprFileName[ 1024 ];
 
-	/// FileNameÀÌ NULLÀÌ¸é ¹Ù·Î false¸¦ ¸®ÅÏ
+	/// FileNameì´ NULLì´ë©´ ë°”ë¡œ falseë¥¼ ë¦¬í„´
 	if(FileName == NULL) 
 		return false;
 
-	/// ¹Û¿¡ Á¸ÀçÇÏ´Â ÆÄÀÏÀÏ °æ¿ì¿¡µµ true¸¦ ¸®ÅÏÇÑ´Ù
+	/// ë°–ì— ì¡´ì¬í•˜ëŠ” íŒŒì¼ì¼ ê²½ìš°ì—ë„ trueë¥¼ ë¦¬í„´í•œë‹¤
 	if(_access (FileName, 0) == 0) 
 		return true;
 
-	__ConvertPath (FileName, uprFileName); /// PackÆÄÀÏ³»¸¦ °Ë»çÇÒ¶§´Â ´ë¹®ÀÚ ÆÄÀÏ ÀÌ¸§À» »ç¿ëÇØ¾ß ÇÑ´Ù
+	__ConvertPath (FileName, uprFileName); /// PackíŒŒì¼ë‚´ë¥¼ ê²€ì‚¬í• ë•ŒëŠ” ëŒ€ë¬¸ì íŒŒì¼ ì´ë¦„ì„ ì‚¬ìš©í•´ì•¼ í•œë‹¤
 
 	iv = m_vecVFS.begin ();
 
@@ -1142,13 +1142,13 @@ bool CVFS_Manager::FileExists (const char * FileName)
 	return false;
 }
 
-/// PackÆÄÀÏ¾È¿¡¼­¸¸ ÆÄÀÏÁ¸ÀçÇÏ´ÂÁö °Ë»ç
+/// PackíŒŒì¼ì•ˆì—ì„œë§Œ íŒŒì¼ì¡´ì¬í•˜ëŠ”ì§€ ê²€ì‚¬
 bool CVFS_Manager::FileExistsInVfs (const char * FileName)
 {
 	std::vector<VEntry *>::iterator iv;
 	char uprFileName[ 1024 ];
 	
-	__ConvertPath (FileName, uprFileName); /// PackÆÄÀÏ³»¸¦ °Ë»çÇÒ¶§´Â ´ë¹®ÀÚ ÆÄÀÏ ÀÌ¸§À» »ç¿ëÇØ¾ß ÇÑ´Ù
+	__ConvertPath (FileName, uprFileName); /// PackíŒŒì¼ë‚´ë¥¼ ê²€ì‚¬í• ë•ŒëŠ” ëŒ€ë¬¸ì íŒŒì¼ ì´ë¦„ì„ ì‚¬ìš©í•´ì•¼ í•œë‹¤
 	
 	iv = m_vecVFS.begin ();
 	for(; iv != m_vecVFS.end (); iv++)
@@ -1161,7 +1161,7 @@ bool CVFS_Manager::FileExistsInVfs (const char * FileName)
 }
 
 /***********************************************************************************
- * ÆÄÀÏ¿¡ ´ëÇÑ Á¤º¸¸¦ ¾Ë¾Æ³½´Ù
+ * íŒŒì¼ì— ëŒ€í•œ ì •ë³´ë¥¼ ì•Œì•„ë‚¸ë‹¤
  */
 void CVFS_Manager::GetFileInfo (const char * FileName, VFileInfo * pFileInfo, bool bCalCrc)
 {
@@ -1186,7 +1186,7 @@ void CVFS_Manager::GetFileInfo (const char * FileName, VFileInfo * pFileInfo, bo
 
 
 /***********************************************************************************
- * ÆÄÀÏ¿¡ ´ëÇÑ Á¤º¸¸¦ ¾Ë¾Æ³½´Ù
+ * íŒŒì¼ì— ëŒ€í•œ ì •ë³´ë¥¼ ì•Œì•„ë‚¸ë‹¤
  */
 bool CVFS_Manager::SetFileInfo (const char * FileName, VFileInfo * pFileInfo)
 {
@@ -1205,7 +1205,7 @@ bool CVFS_Manager::SetFileInfo (const char * FileName, VFileInfo * pFileInfo)
 
 
 /***********************************************************************************
- * ÀÎµ¦½º ÆÄÀÏ¿¡ ´ëÇÑ ±âÁØ¹öÁ¯À» ¾Ë¾Æ³½´Ù
+ * ì¸ë±ìŠ¤ íŒŒì¼ì— ëŒ€í•œ ê¸°ì¤€ë²„ì ¼ì„ ì•Œì•„ë‚¸ë‹¤
  */
 DWORD CVFS_Manager::GetStdVersion (void)
 {
@@ -1219,7 +1219,7 @@ DWORD CVFS_Manager::GetStdVersion (void)
 
 
 /***********************************************************************************
- * ÀÎµ¦½º ÆÄÀÏ¿¡ ´ëÇÑ ±âÁØ¹öÁ¯À» ¼³Á¤ÇÑ´Ù
+ * ì¸ë±ìŠ¤ íŒŒì¼ì— ëŒ€í•œ ê¸°ì¤€ë²„ì ¼ì„ ì„¤ì •í•œë‹¤
  */
 void CVFS_Manager::SetStdVersion (DWORD dwVersion)
 {
@@ -1237,7 +1237,7 @@ void CVFS_Manager::SetStdVersion (WORD wHiVer, WORD wLoVer)
 
 
 /***********************************************************************************
- * Àû¿ëµÈ ¹öÁ¯ ¾Ë¾Æ³¿
+ * ì ìš©ëœ ë²„ì ¼ ì•Œì•„ëƒ„
  */
 DWORD CVFS_Manager::GetCurVersion (void)
 {
@@ -1251,7 +1251,7 @@ DWORD CVFS_Manager::GetCurVersion (void)
 
 
 /***********************************************************************************
- * Àû¿ëµÈ ¹öÁ¯ ±â·ÏÇÔ
+ * ì ìš©ëœ ë²„ì ¼ ê¸°ë¡í•¨
  */
 void CVFS_Manager::SetCurVersion (DWORD dwVersion)
 {
@@ -1269,8 +1269,8 @@ void CVFS_Manager::SetCurVersion (WORD wHiVer, WORD wLoVer)
 
 
 /***********************************************************************************
- * ºó°ø°£ÀÇ Å©±â¸¦ Á¶»çÇÑ´Ù.
- * ¸®ÅÏ : ¼º°øÀûÀ¸·Î Á¶»ç°¡ ³¡³ª¸é °ø¹éÀÇ Å©±â. PackÆÄÀÏÀÌ ÇÏ³ªµµ ¾øÀ¸µµ 0À» ¸®ÅÏ
+ * ë¹ˆê³µê°„ì˜ í¬ê¸°ë¥¼ ì¡°ì‚¬í•œë‹¤.
+ * ë¦¬í„´ : ì„±ê³µì ìœ¼ë¡œ ì¡°ì‚¬ê°€ ëë‚˜ë©´ ê³µë°±ì˜ í¬ê¸°. PackíŒŒì¼ì´ í•˜ë‚˜ë„ ì—†ìœ¼ë„ 0ì„ ë¦¬í„´
  */
 DWORD CVFS_Manager::GetSizeOfBlankArea (void)
 {
@@ -1281,7 +1281,7 @@ DWORD CVFS_Manager::GetSizeOfBlankArea (void)
 	int iSum = 0;
 	for(; iv != m_vecVFS.end (); iv++)
 	{
-		if(*iv) /// iterator¿¡ ÀûÇÕÇÑ °ªÀÌ µé¾î°¡ ÀÖ´Ù°í »ı°¢Áö ¸»°Í.
+		if(*iv) /// iteratorì— ì í•©í•œ ê°’ì´ ë“¤ì–´ê°€ ìˆë‹¤ê³  ìƒê°ì§€ ë§ê²ƒ.
 		{
 			///
 			VEntry * pVEntry = *iv;
@@ -1293,7 +1293,7 @@ DWORD CVFS_Manager::GetSizeOfBlankArea (void)
 }
 
 
-// FileName ÀÌ ÀÎµ¦½ºµ¥ÀÌÅÍ¿Í ½ÇÁ¦ µ¥ÀÌÅÍ°¡ ÀÏÄ¡ÇÏ´ÂÁö Ã¼Å©ÇÑ´Ù
+// FileName ì´ ì¸ë±ìŠ¤ë°ì´í„°ì™€ ì‹¤ì œ ë°ì´í„°ê°€ ì¼ì¹˜í•˜ëŠ”ì§€ ì²´í¬í•œë‹¤
 short CVFS_Manager::TestFile (const char * FileName)
 {
 
@@ -1305,7 +1305,7 @@ short CVFS_Manager::TestFile (const char * FileName)
 		if(pVF && pVEntry)
 		{
 			VfsInfo VfsRange ;
-			if(GetVfsInfo ( pVEntry->sVFSName.c_str (), &VfsRange) ) // GetVEntryWF ¼º°øÇß´Ù¸é GetVfsInfo µµ ¼º°øÇØ¾ß ÇÑ´Ù
+			if(GetVfsInfo ( pVEntry->sVFSName.c_str (), &VfsRange) ) // GetVEntryWF ì„±ê³µí–ˆë‹¤ë©´ GetVfsInfo ë„ ì„±ê³µí•´ì•¼ í•œë‹¤
 			{
 				if (pVF->lStartOff < VfsRange.lStartOff || pVF->lEndOff > VfsRange.lEndOff )
 				{
@@ -1378,10 +1378,10 @@ short CVFS_Manager::TestFile (const char * FileName)
 
 /***************************************************************
  *
- * VFS ¿¡ ´ëÇØ¼­ Á¶»çÇÑ´Ù
+ * VFS ì— ëŒ€í•´ì„œ ì¡°ì‚¬í•œë‹¤
  *
  */
-// Vfs ÆÄÀÏ ÀÌ¸§À¸·Î VFS Entry¸¦ Á¶»çÇÑ´Ù
+// Vfs íŒŒì¼ ì´ë¦„ìœ¼ë¡œ VFS Entryë¥¼ ì¡°ì‚¬í•œë‹¤
 VEntry * CVFS_Manager::GetVEntry ( const char * VfsName )
 {
 	std::vector<VEntry *>::iterator iv = m_vecVFS.begin ();
@@ -1396,7 +1396,7 @@ VEntry * CVFS_Manager::GetVEntry ( const char * VfsName )
 	return NULL;
 }
 
-// VFS ¾È¿¡ Á¸ÀçÇÏ´Â VFS Entry¸¦ °Ë»öÇÑ´Ù
+// VFS ì•ˆì— ì¡´ì¬í•˜ëŠ” VFS Entryë¥¼ ê²€ìƒ‰í•œë‹¤
 VEntry * CVFS_Manager::GetVEntryWF ( const char * FileName )
 {
 	std::vector<VEntry *>::iterator iv = m_vecVFS.begin ();
@@ -1430,7 +1430,7 @@ bool CVFS_Manager::GetVfsInfo (const char * VfsName, VfsInfo * VI )
 	return false;
 }
 
-// ¿ÜºÎ ÆÄÀÏµµ Æ÷ÇÔµÈ´Ù
+// ì™¸ë¶€ íŒŒì¼ë„ í¬í•¨ëœë‹¤
 DWORD CVFS_Manager::ComputeCrc ( const char * FileName)
 {
 	DWORD dwCrc = 0;

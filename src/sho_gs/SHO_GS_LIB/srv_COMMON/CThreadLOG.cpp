@@ -8,23 +8,23 @@ enum e_LogTYPE {
 	GSLOG_LOGIN=0,
 	GSLOG_LOGOUT,
 
-	GSLOG_DEADBY,		// Á×À½
+	GSLOG_DEADBY,		// ì£½ìŒ
 
-	GSLOG_PICK,			// ¾ÆÀÌÅÛÀ» ÁÝ±â
-	GSLOG_DROP,			// ¾ÆÀÌÅÛÀ» ¹Ù´Ú¿¡ ¶³±À
-	GSLOG_DELETED,		// ÇÊµå ¾ÆÀÌÅÛÀÌ »ç¶óÁü
+	GSLOG_PICK,			// ì•„ì´í…œì„ ì¤ê¸°
+	GSLOG_DROP,			// ì•„ì´í…œì„ ë°”ë‹¥ì— ë–¨êµ¼
+	GSLOG_DELETED,		// í•„ë“œ ì•„ì´í…œì´ ì‚¬ë¼ì§
 
-	GSLOG_CREATED,		// ¾ÆÀÌÅÛ Á¦ÀÛÇØ¼­ »ý¼ºµÊ.
-	GSLOG_DESTROYED,	// ¾ÆÀÌÅÛ Á¦ÀÛ½Ã ½ÇÆÐÇØ¼­ ¼Ò¸êµÊ.
+	GSLOG_CREATED,		// ì•„ì´í…œ ì œìž‘í•´ì„œ ìƒì„±ë¨.
+	GSLOG_DESTROYED,	// ì•„ì´í…œ ì œìž‘ì‹œ ì‹¤íŒ¨í•´ì„œ ì†Œë©¸ë¨.
 
-	GSLOG_SELL,			// ¾ÆÀÌÅÛÀ» ÆÇ¸Å
-	GSLOG_USE,			// ¾ÆÀÌÅÛÀ» »ç¿ëÇØ¼­ ¼Ò¸êµÊ
+	GSLOG_SELL,			// ì•„ì´í…œì„ íŒë§¤
+	GSLOG_USE,			// ì•„ì´í…œì„ ì‚¬ìš©í•´ì„œ ì†Œë©¸ë¨
 
-	GSLOG_GIVE,			// ¾ÆÀÌÅÛÀ» °Ç³×ÁÜ
-	GSLOG_RECV,			// ¾ÆÀÌÅÛÀ» ¹ÞÀ½
+	GSLOG_GIVE,			// ì•„ì´í…œì„ ê±´ë„¤ì¤Œ
+	GSLOG_RECV,			// ì•„ì´í…œì„ ë°›ìŒ
 
-	GSLOG_DEPOSIT,		// Ã¢°í¿¡ º¸°ü
-	GSLOG_WITHDRAW,		// Ã¢°í¿¡¼­ Ã£À½
+	GSLOG_DEPOSIT,		// ì°½ê³ ì— ë³´ê´€
+	GSLOG_WITHDRAW,		// ì°½ê³ ì—ì„œ ì°¾ìŒ
 } ;
 */
 
@@ -41,7 +41,7 @@ bool CThreadLOG::When_SysERR ( char *szFile, int iLine, char *szDesc )
 	*/
 	m_csSQL.Lock ();
 	{
-		// ½Ã°£, ÄÉ¸¯, µ¿ÀÛ, À§Ä¡, IP
+		// ì‹œê°„, ì¼€ë¦­, ë™ìž‘, ìœ„ì¹˜, IP
 		this->m_QuerySTR.Printf("INSERT tblGS_ERROR ( dateREG, txtIP, txtACCOUNT, txtCHAR, txtFILE, intLINE, txtDESC ) VALUES( \'%s\',\'%s\',\'%s\',\'%s\',\'%s\',%d,\'%s\' );",
 				this->GetCurDateTimeSTR(),
 				"SysERR",	// pUSER->Get_IP(),
@@ -73,7 +73,7 @@ bool CThreadLOG::When_ERROR ( classUSER *pUSER, char *szFile, int iLine, char *s
 	*/
 	m_csSQL.Lock ();
 	{
-		// ½Ã°£, ÄÉ¸¯, µ¿ÀÛ, À§Ä¡, IP
+		// ì‹œê°„, ì¼€ë¦­, ë™ìž‘, ìœ„ì¹˜, IP
 		this->m_QuerySTR.Printf("INSERT tblGS_ERROR ( dateREG, txtIP, txtACCOUNT, txtCHAR, txtFILE, intLINE, txtDESC ) VALUES( \'%s\',\'%s\',\'%s\',\'%s\',\'%s\',%d,\'%s\' );",
 				this->GetCurDateTimeSTR(),
 				pUSER->Get_IP(),
@@ -98,7 +98,7 @@ bool CThreadLOG::When_LogIN ( classUSER *pUSER )
 {
 	m_csSQL.Lock ();
 	{
-		// ½Ã°£, ÄÉ¸¯, µ¿ÀÛ, À§Ä¡, IP
+		// ì‹œê°„, ì¼€ë¦­, ë™ìž‘, ìœ„ì¹˜, IP
 		this->m_QuerySTR.Printf("INSERT tblGS_LOG ( dateREG, txtSUBJECT, txtOBJECT, txtSBJIP, txtACTION, txtLOC ) VALUES( \'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\' );",
 				this->GetCurDateTimeSTR(),
 				pUSER->Get_NAME(),
@@ -309,7 +309,7 @@ void CThreadLOG::Execute ()
 			}
 		}
 
-		// °ÔÀÓ ·Î±× ÀúÀå..
+		// ê²Œìž„ ë¡œê·¸ ì €ìž¥..
 		this->Proc_QuerySTRING ();
 	}
 

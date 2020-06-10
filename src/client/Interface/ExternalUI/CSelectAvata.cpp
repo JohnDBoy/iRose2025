@@ -80,7 +80,7 @@ UINT CSelectAvata::Process( UINT uiMsg, WPARAM wParam, LPARAM lParam )
 
 ///
 ///	Send select Avata request
-/// Ä³¸¯ÅÍ°¡ ¼±ÅÃµÇ°í ¼­¹ö¿¡ ¾Ë¸®±â Àü¿¡ Msg Queue¸¦ ¸ğµÎ Áö¿ö¼­ µÎ¹ø º¸³»¾îÁö´Â°ÍÀ» ¸·´Â´Ù. 2004 /6 /20
+/// ìºë¦­í„°ê°€ ì„ íƒë˜ê³  ì„œë²„ì— ì•Œë¦¬ê¸° ì „ì— Msg Queueë¥¼ ëª¨ë‘ ì§€ì›Œì„œ ë‘ë²ˆ ë³´ë‚´ì–´ì§€ëŠ”ê²ƒì„ ë§‰ëŠ”ë‹¤. 2004 /6 /20
 void CSelectAvata::SendSelectAvataReq( )
 {
 	CGameDataCreateAvatar& refData = CGameDataCreateAvatar::GetInstance();
@@ -219,7 +219,7 @@ void CSelectAvata::OnLButtonUp( unsigned iProcID )
 }
 
 
-/// ÇöÀç °ÔÀÓ ÇØ»óµµ¿¡ µû¸¥ ¹öÆ° À§Ä¡ ÀçÁ¶Á¤ xml¿¡ ÀÖ´Â x,yÁÂÇ¥´Â ¹«½ÃµÈ´Ù.
+/// í˜„ì¬ ê²Œì„ í•´ìƒë„ì— ë”°ë¥¸ ë²„íŠ¼ ìœ„ì¹˜ ì¬ì¡°ì • xmlì— ìˆëŠ” x,yì¢Œí‘œëŠ” ë¬´ì‹œëœë‹¤.
 void CSelectAvata::Show()
 {
 	CTDialog::Show();

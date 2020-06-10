@@ -31,17 +31,17 @@
 #define DS_TEXT_WIDTH	96
 #define DS_TEXT_HEIGHT	17
 
-#define DS_B_SX			24				/// ±¸ÀÔ ½½·Ô ½ÃÀÛÀ§Ä¡
+#define DS_B_SX			24				/// êµ¬ì… ìŠ¬ë¡¯ ì‹œì‘ìœ„ì¹˜
 #define DS_B_SY			64
-#define DS_S_SX			139				/// ÆÇ¸Å ½½·Ô ½ÃÀÛÀ§Ä¡
+#define DS_S_SX			139				/// íŒë§¤ ìŠ¬ë¡¯ ì‹œì‘ìœ„ì¹˜
 #define DS_S_SY			64
 
-#define DS_WIDTH		33				/// ½½·Ô °¡·Î Å©±â
-#define DS_HEIGHT		33				/// ½½·Ô ¼¼·Î Å©±â
+#define DS_WIDTH		33				/// ìŠ¬ë¡¯ ê°€ë¡œ í¬ê¸°
+#define DS_HEIGHT		33				/// ìŠ¬ë¡¯ ì„¸ë¡œ í¬ê¸°
 
-#define DS_COST_BX		48				/// ±¸ÀÔÃÑ¾×
+#define DS_COST_BX		48				/// êµ¬ì…ì´ì•¡
 #define DS_COST_BY		165			
-#define DS_COST_SX		163				/// ÆÇ¸ÅÃÑ¾×
+#define DS_COST_SX		163				/// íŒë§¤ì´ì•¡
 #define DS_COST_SY		165			
 
 #define DS_DIGIT_WIDTH	73
@@ -178,7 +178,7 @@ void CDealDLG::Update( CObservable* pObservable, CTObject* pObj )
 						}
 					}
 				}
-				assert( 0 && "Trade List¿¡ ¾ø´Â ¾ÆÀÌÅÛÀ» Áö¿ì·Á°í ÇÕ´Ï´Ù @CDealDlg::Update@EID_REMOVE_BUYITEM" );			
+				assert( 0 && "Trade Listì— ì—†ëŠ” ì•„ì´í…œì„ ì§€ìš°ë ¤ê³  í•©ë‹ˆë‹¤ @CDealDlg::Update@EID_REMOVE_BUYITEM" );			
 				break;
 			}
 		case CTEventDeal::EID_REMOVE_SELLITEM:
@@ -200,7 +200,7 @@ void CDealDLG::Update( CObservable* pObservable, CTObject* pObj )
 						}
 					}
 				}
-				assert( 0 && "Trade List¿¡ ¾ø´Â ¾ÆÀÌÅÛÀ» Áö¿ì·Á°í ÇÕ´Ï´Ù @CDealDlg::Update@EID_REMOVE_BUYITEM" );			
+				assert( 0 && "Trade Listì— ì—†ëŠ” ì•„ì´í…œì„ ì§€ìš°ë ¤ê³  í•©ë‹ˆë‹¤ @CDealDlg::Update@EID_REMOVE_BUYITEM" );			
 			
 
 				break;
@@ -256,7 +256,7 @@ void CDealDLG::Draw()
 	::setTransformSprite( mat );
 	
 	__int64	Price;
-	//ÃÑ±¸ÀÔ°¡ 
+	//ì´êµ¬ì…ê°€ 
 	Price = CDealData::GetInstance().GetTotal_BUY();
 
 	const int money_buffer_size = 64;
@@ -264,7 +264,7 @@ void CDealDLG::Draw()
 	CGameUtil::ConvertMoney2String( Price, money_buffer, money_buffer_size );
 	::drawFontf( g_GameDATA.m_hFONT[ FONT_NORMAL ], true, 39, 139, g_dwWHITE, "%s", money_buffer );
 	
-	//ÃÑÆÇ¸Å°¡ 
+	//ì´íŒë§¤ê°€ 
 	Price = CDealData::GetInstance().GetTotal_SELL();
 	CGameUtil::ConvertMoney2String( Price, money_buffer, money_buffer_size );
 	::drawFontf( g_GameDATA.m_hFONT[ FONT_NORMAL ], true, 39, 272, g_dwWHITE, "%s", money_buffer ); 

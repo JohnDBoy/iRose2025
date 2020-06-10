@@ -15,7 +15,7 @@
 #define IDC_VIEWINFO			109
 #define IDC_MYICON				2
 #define IDC_STATIC				-1
-// »õ °³Ã¼¿¡ ´ëÇÑ ´ÙÀ½ ±âº»°ªÀÔ´Ï´Ù.
+// ìƒˆ ê°œì²´ì— ëŒ€í•œ ë‹¤ìŒ ê¸°ë³¸ê°’ìž…ë‹ˆë‹¤.
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS

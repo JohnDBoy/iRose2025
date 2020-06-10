@@ -31,7 +31,7 @@ private:
 	bool Find_DupTABLE (int iValue, int iTableIDX, int iRange);
 	bool Find_DupINDEX (WORD wValue, int iRange);
 
-	// CRC °è»ê 
+	// CRC ê³„ì‚° 
 	static WORD CalTAG (WORD wCRC, BYTE btVALUE)
 	{
 		return CRC08(wCRC,btVALUE);

@@ -129,7 +129,7 @@ void CWideTerrain::SetZoneDir( char* pZoneDir )
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief ¡÷æÓ¡¯ ¿ßƒ°∑Œ ∏ ¿Ã∏ß¿ª ±∏«’¥œ¥Ÿ.
+/// @brief Ï£ºÏñ¥ÏßÑ ÏúÑÏπòÎ°ú ÎßµÏù¥Î¶ÑÏùÑ Íµ¨Ìï©ÎãàÎã§.
 //----------------------------------------------------------------------------------------------------
 
 char* CWideTerrain::GetMapFILE( short nMapX, short nMapY )
@@ -147,8 +147,8 @@ char* CWideTerrain::GetMapFILE( short nMapX, short nMapY )
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief «ˆ¿Á ∏  «Æø°º≠ ∫ÒæÓ¿÷¥¬ µ•¿Ã≈Õ ≥ÎµÂ∞° ¿÷¥¬¡ˆ √£¥¬¥Ÿ.
-///        æ¯¥Ÿ∏È ªı∑Œ ∏∏µÈæÓº≠ «Æø° ¡˝æÓ ≥÷æÓ∂Û( øπæ‡µ» ∞≥ºˆ∫∏¥Ÿ ∏πæ∆¡˙ ∞ÊøÏ∞⁄¡ˆ.. )
+/// @brief ÌòÑÏû¨ Îßµ ÌíÄÏóêÏÑú ÎπÑÏñ¥ÏûàÎäî Îç∞Ïù¥ÌÑ∞ ÎÖ∏ÎìúÍ∞Ä ÏûàÎäîÏßÄ Ï∞æÎäîÎã§.
+///        ÏóÜÎã§Î©¥ ÏÉàÎ°ú ÎßåÎì§Ïñ¥ÏÑú ÌíÄÏóê ÏßëÏñ¥ ÎÑ£Ïñ¥Îùº( ÏòàÏïΩÎêú Í∞úÏàòÎ≥¥Îã§ ÎßéÏïÑÏßà Í≤ΩÏö∞Í≤†ÏßÄ.. )
 //----------------------------------------------------------------------------------------------------
 
 ROUGHMAP_DATA*  CWideTerrain::GetEmptyRoughMap()
@@ -164,7 +164,7 @@ ROUGHMAP_DATA*  CWideTerrain::GetEmptyRoughMap()
 			return pMapData;		
 	}
 
-	/// «ˆ¿Á ∫ÒæÓ¿÷¥¬ ≥ÎµÂ∞° æ¯¥Ÿ∏È
+	/// ÌòÑÏû¨ ÎπÑÏñ¥ÏûàÎäî ÎÖ∏ÎìúÍ∞Ä ÏóÜÎã§Î©¥
 	pMapData = new ROUGHMAP_DATA;
 	pMapData->m_bLoaded = false;
 
@@ -175,7 +175,7 @@ ROUGHMAP_DATA*  CWideTerrain::GetEmptyRoughMap()
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief ¿ÃπÃ ∑ŒµÂµ» ∏ ¿Œ¡ˆ »Æ¿Œ«’¥œ¥Ÿ.
+/// @brief Ïù¥ÎØ∏ Î°úÎìúÎêú ÎßµÏù∏ÏßÄ ÌôïÏù∏Ìï©ÎãàÎã§.
 //----------------------------------------------------------------------------------------------------
 
 ROUGHMAP_DATA*	CWideTerrain::FindLoadedMAP( char* szMapFile )
@@ -203,7 +203,7 @@ ROUGHMAP_DATA*	CWideTerrain::FindLoadedMAP( char* szMapFile )
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief  ¿˚¿˝«— RoughMap ¿ª √ﬂ∞°«—¥Ÿ.
+/// @brief  Ï†ÅÏ†àÌïú RoughMap ÏùÑ Ï∂îÍ∞ÄÌïúÎã§.
 //----------------------------------------------------------------------------------------------------
 
 void CWideTerrain::AddRoughMap( short nCenterMapXIDX, short nCenterMapYIDX, WORD wUpdateFLAG )
@@ -232,7 +232,7 @@ void CWideTerrain::AddRoughMap( short nCenterMapXIDX, short nCenterMapYIDX, WORD
 			if ( szMapFile ) 
 			{
 				pMapData = this->FindLoadedMAP ( szMapFile );			
-				/// ∏ ¿Ã ∑ŒµÂµ«¡ˆ æ æ“¥Ÿ∏È..
+				/// ÎßµÏù¥ Î°úÎìúÎêòÏßÄ ÏïäÏïòÎã§Î©¥..
 				if ( pMapData == NULL ) 
 				{				
 					pMapData = this->GetEmptyRoughMap ();
@@ -262,7 +262,7 @@ void CWideTerrain::AddRoughMap( short nCenterMapXIDX, short nCenterMapYIDX, WORD
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief Expiredµ» ∏ µÈ¿ª ≥ª∏∞¥Ÿ.
+/// @brief ExpiredÎêú ÎßµÎì§ÏùÑ ÎÇ¥Î¶∞Îã§.
 //----------------------------------------------------------------------------------------------------
 
 void CWideTerrain::SubRoughMap( WORD wUpdateFLAG )

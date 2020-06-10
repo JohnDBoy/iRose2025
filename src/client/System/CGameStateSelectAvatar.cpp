@@ -38,7 +38,7 @@ int	CGameStateSelectAvatar::Update( bool bLostFocus )
 	// processing  ...
 	if ( !bLostFocus ) 
 	{
-		if ( !::beginScene() ) //  µğ¹ÙÀÌ½º°¡ ¼Õ½ÇµÈ »óÅÂ¶ó¸é 0À» ¸®ÅÏÇÏ¹Ç·Î, ¸ğµç ·»´õ¸µ ½ºÅµ
+		if ( !::beginScene() ) //  ë””ë°”ì´ìŠ¤ê°€ ì†ì‹¤ëœ ìƒíƒœë¼ë©´ 0ì„ ë¦¬í„´í•˜ë¯€ë¡œ, ëª¨ë“  ë Œë”ë§ ìŠ¤í‚µ
 		{
 			return 0;
 		}
@@ -52,7 +52,7 @@ int	CGameStateSelectAvatar::Update( bool bLostFocus )
 		/// Screen message display
 		g_UIMed.Draw();
 		/// UI display
-		///Ä«¸Ş¶ó ¸ğ¼ÇÀÌ ¸ØÃçÀÖÀ»°æ¿ì¿¡¸¸ º¸ÀÌ°Ô ÇÑ´Ù.
+		///ì¹´ë©”ë¼ ëª¨ì…˜ì´ ë©ˆì¶°ìˆì„ê²½ìš°ì—ë§Œ ë³´ì´ê²Œ í•œë‹¤.
 		if( getAnimatableState( g_pCamera->GetZHANDLE() ) == 0 )
 		{
 			g_EUILobby.Draw();
@@ -95,7 +95,7 @@ int CGameStateSelectAvatar::ProcMouseInput( UINT uiMsg, WPARAM wParam, LPARAM lP
 
 	if( g_EUILobby.MsgProc( uiMsg ,wParam, lParam) )
 		return 1;
-	/// ¾Æ¹ÙÅ¸ ¸ğµ¨¿¡ ´ëÇÑ ¸¶¿ì½º ¿À¹ö¹× LButtonDownÃ³¸®
+	/// ì•„ë°”íƒ€ ëª¨ë¸ì— ëŒ€í•œ ë§ˆìš°ìŠ¤ ì˜¤ë²„ë° LButtonDownì²˜ë¦¬
 
 	switch( uiMsg )
 	{
@@ -106,7 +106,7 @@ int CGameStateSelectAvatar::ProcMouseInput( UINT uiMsg, WPARAM wParam, LPARAM lP
 			{
 				const char* pszSelectedName = CGameDataCreateAvatar::GetInstance().GetSelectedAvatarName();
 				
-				///ÀÌÀü ¼±ÅÃµÇ¾îÁø ¾Æ¹ÙÅ¸¿Í °°Àº ¾Æ¹ÙÅ¸¶ó¸é ¹«½Ã
+				///ì´ì „ ì„ íƒë˜ì–´ì§„ ì•„ë°”íƒ€ì™€ ê°™ì€ ì•„ë°”íƒ€ë¼ë©´ ë¬´ì‹œ
 				if( pszSelectedName && strcmp( pszName, pszSelectedName ) == 0 )
 					break;
 

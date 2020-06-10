@@ -2,8 +2,8 @@
 /**
     @file       Arcfour.h
     @brief      Stream Cipher Encryption Algorithm "Arcfour" 
-    @author     ±è ´ë ¼º
-	@date       2005-08-10 ¿ÀÈÄ 3:12:07
+    @author     ê¹€ ëŒ€ ì„±
+	@date       2005-08-10 ì˜¤í›„ 3:12:07
 */
 //-------------------------------------------------------------------------------------------------
 
@@ -22,7 +22,7 @@
 class Arcfour
 {
 public:
-	// ÃÊ±âÈ­
+	// ì´ˆê¸°í™”
 	void init(const unsigned char *key, int key_len); 
 
 	// encryption
@@ -48,7 +48,7 @@ private:
 	ArcfourContext enc_ctx;		// encryption ArcfourContext
 	ArcfourContext dec_ctx;		// decryption ArcfourContext
 	
-	// ÃÊ±âÈ­
+	// ì´ˆê¸°í™”
 	void arcfour_init(ArcfourContext *ctx, const unsigned char *key, unsigned int key_len);
 
 	// arcfour_byte

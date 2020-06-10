@@ -128,7 +128,7 @@ void CWarningDlg::Show()
 		
 		
 
-		// ¸®½ºÆ® ¹Ú½º Ã³À½À¸·Î ÀÌµ¿.
+		// ë¦¬ìŠ¤íŠ¸ ë°•ìŠ¤ ì²˜ìŒìœ¼ë¡œ ì´ë™.
 		pListBox->SetValue( 0 );
 
 		pCtrl = Find( IID_LISTBOX_MESSAGE_SCROLLBAR );

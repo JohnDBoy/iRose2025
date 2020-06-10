@@ -1,4 +1,4 @@
-﻿
+
 #include "StdAfx.h"
 #include "QuickToolBAR.h"
 #include "../it_mgr.h"

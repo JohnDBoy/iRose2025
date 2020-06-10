@@ -17,7 +17,7 @@ CWS_Account::~CWS_Account ()
 
 	// assert( 0 == m_btLoginBIT );
 
-	//  ¿ùµå¼­¹ö¿¡¼­ Ã¤³Î¼­¹ö¿¡ Á¢¼ÓÇÏ±â Àü¿¡ Á¢¼Ó Á¾·áÇÒ¶§´Â m_pCLIENT¸¦ NULL·Î ¸¸µé¼ö ¾ø³×~~
+	//  ì›”ë“œì„œë²„ì—ì„œ ì±„ë„ì„œë²„ì— ì ‘ì†í•˜ê¸° ì „ì— ì ‘ì† ì¢…ë£Œí• ë•ŒëŠ” m_pCLIENTë¥¼ NULLë¡œ ë§Œë“¤ìˆ˜ ì—†ë„¤~~
 //	assert( NULL == m_pCLIENT );
 }
 

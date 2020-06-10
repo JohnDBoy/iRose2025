@@ -145,7 +145,7 @@ void CBankWindowDlg::Update( POINT ptMouse )
 
 	CTDialog::Update( ptMouse );
 
-	///ÀÌÇÏ ÅøÆÁ Ç¥½Ã
+	///ì´í•˜ íˆ´íŒ í‘œì‹œ
 	CTDialog* pDlg = CTDialog::GetProcessMouseOverDialog();
 	if( pDlg && pDlg != this )
 			return ;

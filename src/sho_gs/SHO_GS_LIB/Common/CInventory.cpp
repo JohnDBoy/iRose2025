@@ -11,16 +11,16 @@
 static t_EquipINDEX s_EquipIDX[] = {
 	EQUIP_IDX_NULL,					// Not Used
 
-	EQUIP_IDX_FACE_ITEM,			// ITEM_TYPE_FACE_ITEM = 1,		// 1	LIST_FACEITEM.stb	æÛ±º ¿ÂΩƒ	
+	EQUIP_IDX_FACE_ITEM,			// ITEM_TYPE_FACE_ITEM = 1,		// 1	LIST_FACEITEM.stb	ÏñºÍµ¥ Ïû•Ïãù	
 	EQUIP_IDX_HELMET,				// ITEM_TYPE_HELMET,			// 2	LIST_CAP.stb
 	EQUIP_IDX_ARMOR,				// ITEM_TYPE_ARMOR,				// 3	LIST_BODY.stb
 	EQUIP_IDX_GAUNTLET,				// ITEM_TYPE_GAUNTLET,			// 4	LIST_ARMS.stb
 	EQUIP_IDX_BOOTS,				// ITEM_TYPE_BOOTS,				// 5	LIST_FOOT.stb
 	EQUIP_IDX_KNAPSACK,				// ITEM_TYPE_KNAPSACK,				// 6	LIST_BACK.stb
 
-	EQUIP_IDX_NULL,					// ¿ÂΩ≈±∏ : ∏Ò∞…¿Ã π›¡ˆ
+	EQUIP_IDX_NULL,					// Ïû•Ïã†Íµ¨ : Î™©Í±∏Ïù¥ Î∞òÏßÄ
 
-	EQUIP_IDX_WEAPON_R,				// ITEM_TYPE_WEAPON,			// 8	LIST_WEAPON.stb		π´±‚
+	EQUIP_IDX_WEAPON_R,				// ITEM_TYPE_WEAPON,			// 8	LIST_WEAPON.stb		Î¨¥Í∏∞
 	EQUIP_IDX_WEAPON_L				// ITEM_TYPE_SUBWPN,			// 9	LIST_SUBWPN.stb
 } ;
 
@@ -54,20 +54,20 @@ enum t_InvTYPE {
 */
 	MAX_INV_TYPE,	//	Not used...
 
-	INV_WEAPON,		//	ITEM_TYPE_FACE = 1,				// 1	LIST_FACEITEM.stb	æÛ±º ¿ÂΩƒ	
+	INV_WEAPON,		//	ITEM_TYPE_FACE = 1,				// 1	LIST_FACEITEM.stb	ÏñºÍµ¥ Ïû•Ïãù	
 	INV_WEAPON,		//	ITEM_TYPE_HELMET,				// 2	LIST_CAP.stb
 	INV_WEAPON,		//	ITEM_TYPE_ARMOR,				// 3	LIST_BODY.stb
 	INV_WEAPON,		//	ITEM_TYPE_GAUNTLET,				// 4	LIST_ARMS.stb
 	INV_WEAPON,		//	ITEM_TYPE_BOOTS,				// 5	LIST_FOOT.stb
 	INV_WEAPON,		//	ITEM_TYPE_KNAPSACK,				// 6	LIST_BACK.stb
-	INV_WEAPON,		//	ITEM_TYPE_JEWEL,				// 7	LIST_JEWEL.stb		¿ÂΩ≈±∏ : ∏Ò∞…¿Ã π›¡ˆ
+	INV_WEAPON,		//	ITEM_TYPE_JEWEL,				// 7	LIST_JEWEL.stb		Ïû•Ïã†Íµ¨ : Î™©Í±∏Ïù¥ Î∞òÏßÄ
 
-	INV_WEAPON,		//	ITEM_TYPE_WEAPON,				// 8	LIST_WEAPON.stb		π´±‚
+	INV_WEAPON,		//	ITEM_TYPE_WEAPON,				// 8	LIST_WEAPON.stb		Î¨¥Í∏∞
 	INV_WEAPON,		//	ITEM_TYPE_SUBWPN,				// 9	LIST_SUBWPN.stb
 
-	INV_USE,		//	ITEM_TYPE_USE,					// 10	LIST_USEITEM.stb	º“∏
+	INV_USE,		//	ITEM_TYPE_USE,					// 10	LIST_USEITEM.stb	ÏÜåÎ™®
 
-	INV_ETC,		//	ITEM_TYPE_ETC = ITEM_TYPE_GEM,	// 11						±‚≈∏ : ∫∏ºÆ
+	INV_ETC,		//	ITEM_TYPE_ETC = ITEM_TYPE_GEM,	// 11						Í∏∞ÌÉÄ : Î≥¥ÏÑù
 	INV_ETC,		//	ITEM_TYPE_NATURAL,				// 12	LIST_NATURAL.stb
 	INV_ETC,		//	ITEM_TYPE_QUEST,				// 13	LIST_QUESTITEM.stb
 	INV_RIDING,		//	ITEM_TYPE_SPECIAL,				// 14	xxx
@@ -104,7 +104,7 @@ void CInventory::Clear ()
 #ifndef	__SERVER
 //-------------------------------------------------------------------------------------------------
 //
-/// ItemLIST ∏¶ ±‚π›¿∏∑Œ IndexLIST ∏¶ ∏∏µÁ¥Ÿ.
+/// ItemLIST Î•º Í∏∞Î∞òÏúºÎ°ú IndexLIST Î•º ÎßåÎì†Îã§.
 void CInventory::MakeItemIndexList()
 {
 	int i,j,iIndexListCount = 0;
@@ -116,7 +116,7 @@ void CInventory::MakeItemIndexList()
 
 	return;
 
-	/// ∞¢ æ∆¿Ã≈€ ≈∏¿‘ø° ¥Î«ÿ
+	/// Í∞Å ÏïÑÏù¥ÌÖú ÌÉÄÏûÖÏóê ÎåÄÌï¥
 	for( i = 0 ; i < MAX_INV_TYPE ; i++ )
 	{
 		iIndexListCount = 0;
@@ -124,7 +124,7 @@ void CInventory::MakeItemIndexList()
 		for( j = 0; j < INVENTORY_PAGE_SIZE; j++ )
 		{			
 			
-			/// π∫∞° ¿Ã¿Ã≈€¿Ã ¿÷¥Ÿ∏È
+			/// Î≠îÍ∞Ä Ïù¥Ïù¥ÌÖúÏù¥ ÏûàÎã§Î©¥
 			if( m_ItemPAGE[ i ][ j ].m_cType != 0 )
 			{				
 				m_btIndexPAGE[ i ][ iIndexListCount ] = ( MAX_EQUIP_IDX + i * INVENTORY_PAGE_SIZE ) + j;
@@ -134,14 +134,14 @@ void CInventory::MakeItemIndexList()
 	}
 }
 
-/// Ω«¡¶ æ∆¿Ã≈€ ¿Œµ¶Ω∫∑Œ ¬¸¡∂≈◊¿Ã∫Ì ¿Œµ¶Ω∫∏¶ ±∏«—¥Ÿ.
+/// Ïã§Ï†ú ÏïÑÏù¥ÌÖú Ïù∏Îç±Ïä§Î°ú Ï∞∏Ï°∞ÌÖåÏù¥Î∏î Ïù∏Îç±Ïä§Î•º Íµ¨ÌïúÎã§.
 short CInventory::GetLookupIndexFromRealIndex( short nRealIndex )
 {
 	int i,j;
 
 	return nRealIndex;
 
-	/// ∞¢ æ∆¿Ã≈€ ≈∏¿‘ø° ¥Î«ÿ
+	/// Í∞Å ÏïÑÏù¥ÌÖú ÌÉÄÏûÖÏóê ÎåÄÌï¥
 	for( i = 0 ; i < MAX_INV_TYPE ; i++ )
 	{
 		for( j = 0; j < INVENTORY_PAGE_SIZE; j++ )
@@ -157,7 +157,7 @@ short CInventory::GetLookupIndexFromRealIndex( short nRealIndex )
 
 
 //-------------------------------------------------------------------------------------------------
-/// Lookup Table ∏¶ ¬¸¡∂«ÿº≠ Ω«¡¶ æ∆¿Ã≈€¿ª æÚ¥¬¥Ÿ.
+/// Lookup Table Î•º Ï∞∏Ï°∞Ìï¥ÏÑú Ïã§Ï†ú ÏïÑÏù¥ÌÖúÏùÑ ÏñªÎäîÎã§.
 bool CInventory::IDX_GetITEM (short nLookUpIndexNO, tagITEM &OutITEM)
 {
 	_ASSERT( nLookUpIndexNO >= 0 && nLookUpIndexNO < INVENTORY_TOTAL_SIZE );
@@ -171,7 +171,7 @@ bool CInventory::IDX_GetITEM (short nLookUpIndexNO, tagITEM &OutITEM)
 	return false;
 }
 
-/// Lookup Table ∏¶ ¬¸¡∂«ÿº≠ Ω«¡¶ ¿Œµ¶Ω∫∏¶ æÚ±‚¿ß«— IDX_GetITEM «‘ºˆ∏¶ »£√‚«—¥Ÿ.
+/// Lookup Table Î•º Ï∞∏Ï°∞Ìï¥ÏÑú Ïã§Ï†ú Ïù∏Îç±Ïä§Î•º ÏñªÍ∏∞ÏúÑÌïú IDX_GetITEM Ìï®ÏàòÎ•º Ìò∏Ï∂úÌïúÎã§.
 bool CInventory::IDX_GetITEM (short nInvTYPE, short nPageIndexNO, tagITEM &OutITEM)
 {
 	_ASSERT( nInvTYPE >= 0 && nInvTYPE < MAX_EQUIP_IDX );
@@ -218,13 +218,13 @@ short CInventory::GetBodyPartByEquipSlot( short nEquipSlot )
 			break;		
 	}
 
-	/// ¿Â∫Ò æ∆¿Ã≈€¿Ã æ∆¥œ¥Ÿ.
+	/// Ïû•ÎπÑ ÏïÑÏù¥ÌÖúÏù¥ ÏïÑÎãàÎã§.
 	return nBodyPartIDX;
 }
 
 
 //-------------------------------------------------------------------------------------------------
-/// Real table ø°º≠ æ∆¿Ã≈€¿ª æÚ¥¬¥Ÿ.
+/// Real table ÏóêÏÑú ÏïÑÏù¥ÌÖúÏùÑ ÏñªÎäîÎã§.
 tagITEM CInventory::LST_GetITEM (short nListNO)
 {
 	_ASSERT( nListNO >= 0 && nListNO < INVENTORY_TOTAL_SIZE );
@@ -232,7 +232,7 @@ tagITEM CInventory::LST_GetITEM (short nListNO)
 	return m_ItemLIST[ nListNO ];
 }
 
-/// Real table ø°º≠ æ∆¿Ã≈€≈∏¿‘∞˙, ∆‰¿Ã¡ˆ π¯»£∑Œ( LST_GetITEM( real list no ) »£√‚ )æ∆¿Ã≈€¿ª æÚ¥¬¥Ÿ.
+/// Real table ÏóêÏÑú ÏïÑÏù¥ÌÖúÌÉÄÏûÖÍ≥º, ÌéòÏù¥ÏßÄ Î≤àÌò∏Î°ú( LST_GetITEM( real list no ) Ìò∏Ï∂ú )ÏïÑÏù¥ÌÖúÏùÑ ÏñªÎäîÎã§.
 tagITEM CInventory::LST_GetITEM (t_InvTYPE InvTYPE, short nPageListNO)
 {
 	_ASSERT( InvTYPE >= 0 && InvTYPE < MAX_EQUIP_IDX );
@@ -244,7 +244,7 @@ tagITEM CInventory::LST_GetITEM (t_InvTYPE InvTYPE, short nPageListNO)
 }
 
 //-------------------------------------------------------------------------------------------------
-/// Real table∞˙ Lookup table ø° ∞¢¿⁄¿« ¿Œµ¶Ω∫∑Œ æ∆¿Ã≈€ µÓ∑œ.
+/// Real tableÍ≥º Lookup table Ïóê Í∞ÅÏûêÏùò Ïù∏Îç±Ïä§Î°ú ÏïÑÏù¥ÌÖú Îì±Î°ù.
 bool CInventory::IDX_SetITEM ( short nIndexNO, short nListNO, tagITEM &sITEM )
 {
 #ifndef	__SERVER
@@ -296,7 +296,7 @@ short CInventory::GetWEIGHT (short nListNO)
 }
 
 //-------------------------------------------------------------------------------------------------
-// iItemNO == 03005 (π´ªÁºˆ∑√∫π) 
+// iItemNO == 03005 (Î¨¥ÏÇ¨ÏàòÎ†®Î≥µ) 
 void CInventory::SetInventory (short nListNO, int iItem, int iQuantity)
 {
 	if ( 0 == iItem )
@@ -332,7 +332,7 @@ short CInventory::AppendITEM (tagITEM &sITEM, short &nCurWeight)
 	}
 
 	if ( ITEM_TYPE_MONEY == sITEM.m_cType ) {
-		// µ∑¿Ã¥Ÿ..
+		// ÎèàÏù¥Îã§..
 		m_i64Money += sITEM.m_uiMoney;
 		return 0;
 	}
@@ -340,10 +340,10 @@ short CInventory::AppendITEM (tagITEM &sITEM, short &nCurWeight)
 	t_InvTYPE InvTYPE = m_InvTYPE[ sITEM.m_cType ];
 	if ( sITEM.IsEnableDupCNT() ) {
 		for (short nI=0; nI<INVENTORY_PAGE_SIZE; nI++) {
-			// ∞∞¿∫ ±‚≈∏ æ∆¿Ã≈€¿Ã∂Ûµµ æ∆¿Ã≈€ ≈∏¿‘¿Ã ∆≤∏∞∞ÕµÈ∑Œ ±∏º∫µ ...
+			// Í∞ôÏùÄ Í∏∞ÌÉÄ ÏïÑÏù¥ÌÖúÏù¥ÎùºÎèÑ ÏïÑÏù¥ÌÖú ÌÉÄÏûÖÏù¥ ÌãÄÎ¶∞Í≤ÉÎì§Î°ú Íµ¨ÏÑ±Îê®...
 			if ( this->m_ItemPAGE[ InvTYPE ][ nI ].GetHEADER() == sITEM.GetHEADER() ) {
 				if ( this->m_ItemPAGE[ InvTYPE ][ nI ].GetQuantity() + sITEM.GetQuantity() <= MAX_DUP_ITEM_QUANTITY ) {
-					// ¥ı«ﬂ¿ª ∞ÊøÏ √÷¥Î ∞πºˆ∞° ≥—æÓ ∞°∏È ªı Ω∫∑‘ø°¥Ÿ «“¥Á.
+					// ÎçîÌñàÏùÑ Í≤ΩÏö∞ ÏµúÎåÄ Í∞ØÏàòÍ∞Ä ÎÑòÏñ¥ Í∞ÄÎ©¥ ÏÉà Ïä§Î°ØÏóêÎã§ Ìï†Îãπ.
 					nCurWeight += ( ITEM_WEIGHT( sITEM.m_cType, sITEM.m_nItemNo ) * sITEM.GetQuantity() );
 
 					this->m_ItemPAGE[ InvTYPE ][ nI ].m_uiQuantity += sITEM.GetQuantity();
@@ -357,7 +357,7 @@ short CInventory::AppendITEM (tagITEM &sITEM, short &nCurWeight)
 		}
 	}
 
-	// ¡ﬂ∫πµ…ºˆ æ¯¥¬ ¿Â∫Òæ∆¿Ã≈€, PATæ∆¿Ã≈€ ¿Ã≥™ ∫∏¿Ø«— æ∆¿Ã≈€¡ﬂø° ∞∞¿∫ æ∆¿Ã≈€¿Ã æ¯¥¬ ∞ÊøÏ...∫ÛΩΩ∑‘ «“¥Á...
+	// Ï§ëÎ≥µÎê†Ïàò ÏóÜÎäî Ïû•ÎπÑÏïÑÏù¥ÌÖú, PATÏïÑÏù¥ÌÖú Ïù¥ÎÇò Î≥¥Ïú†Ìïú ÏïÑÏù¥ÌÖúÏ§ëÏóê Í∞ôÏùÄ ÏïÑÏù¥ÌÖúÏù¥ ÏóÜÎäî Í≤ΩÏö∞...ÎπàÏä¨Î°Ø Ìï†Îãπ...
 	short nInvIDX = GetEmptyInventory( InvTYPE );
 	if ( nInvIDX >= 0 ) {
 		AppendITEM ( nInvIDX, sITEM, nCurWeight );
@@ -369,12 +369,12 @@ short CInventory::AppendITEM (tagITEM &sITEM, short &nCurWeight)
 
 
 //-------------------------------------------------------------------------------------------------
-#ifndef	__SERVER	// º≠πˆø°º± ªÁøÎ æ»«‘.
+#ifndef	__SERVER	// ÏÑúÎ≤ÑÏóêÏÑ† ÏÇ¨Ïö© ÏïàÌï®.
 /// Client fucntion
 short CInventory::Add_CatchITEM (short nListRealNO, tagITEM &sITEM, short &nCurWeight)
 {
 	if ( ITEM_TYPE_MONEY == sITEM.m_cType ) {
-		// µ∑æ∆¿Ã≈€¿œ ∞ÊøÏ «ˆ¿Á µ∑∞˙ ¥ı«—¥Ÿ..
+		// ÎèàÏïÑÏù¥ÌÖúÏùº Í≤ΩÏö∞ ÌòÑÏû¨ ÎèàÍ≥º ÎçîÌïúÎã§..
 		m_i64Money += sITEM.m_iMoney;
 		return 0;
 	}
@@ -388,15 +388,15 @@ short CInventory::Add_CatchITEM (short nListRealNO, tagITEM &sITEM, short &nCurW
 	}
 
 	if ( m_ItemLIST[ nListRealNO ].GetTYPE() == sITEM.GetTYPE()  ) {
-		// ¥ı«‘...
+		// ÎçîÌï®...
 		m_ItemLIST[ nListRealNO ].m_iQuantity += sITEM.m_iQuantity;
 	} else {
-		// ±≥√º...
+		// ÍµêÏ≤¥...
 		m_ItemLIST[ nListRealNO ] = sITEM;
 	}
 	nCurWeight += this->GetWEIGHT( nListRealNO );
 
-	/// √ﬂ∞°µ» æ∆¿Ã≈€ø° ¥Î«— Loopup table ∞ªΩ≈
+	/// Ï∂îÍ∞ÄÎêú ÏïÑÏù¥ÌÖúÏóê ÎåÄÌïú Loopup table Í∞±Ïã†
 	MakeItemIndexList();	
 	g_pAVATAR->m_HotICONS.UpdateHotICON();
 
@@ -407,7 +407,7 @@ short CInventory::Add_CatchITEM (short nListRealNO, tagITEM &sITEM, short &nCurW
 
 //-------------------------------------------------------------------------------------------------
 /// Client & Server function
-/// Real table ø° æ∆¿Ã≈€¿ª √ﬂ∞°«œ∞Ì, Lookup table ∞ªΩ≈
+/// Real table Ïóê ÏïÑÏù¥ÌÖúÏùÑ Ï∂îÍ∞ÄÌïòÍ≥†, Lookup table Í∞±Ïã†
 short CInventory::AppendITEM (short nListRealNO, tagITEM &sITEM, short &nCurWeight)
 {
 	_ASSERT( sITEM.GetTYPE() );
@@ -417,7 +417,7 @@ short CInventory::AppendITEM (short nListRealNO, tagITEM &sITEM, short &nCurWeig
 	}
 
 	if ( ITEM_TYPE_MONEY == sITEM.m_cType ) {
-		// µ∑æ∆¿Ã≈€¿œ ∞ÊøÏ «ˆ¿Á µ∑∞˙ ¥ı«—¥Ÿ..
+		// ÎèàÏïÑÏù¥ÌÖúÏùº Í≤ΩÏö∞ ÌòÑÏû¨ ÎèàÍ≥º ÎçîÌïúÎã§..
 		m_i64Money += sITEM.m_uiMoney;
 		return 0;
 	}
@@ -426,7 +426,7 @@ short CInventory::AppendITEM (short nListRealNO, tagITEM &sITEM, short &nCurWeig
 		return -1;
 	}
 
-	// µ∑¿ª ¡¶ø‹«— æ∆¿Ã≈€¿∫ º≠πˆø°º≠ πﬁ¿∫ æ∆¿Ã≈€¿∏∑Œ ±≥√º...
+	// ÎèàÏùÑ Ï†úÏô∏Ìïú ÏïÑÏù¥ÌÖúÏùÄ ÏÑúÎ≤ÑÏóêÏÑú Î∞õÏùÄ ÏïÑÏù¥ÌÖúÏúºÎ°ú ÍµêÏ≤¥...
 	if ( m_ItemLIST[ nListRealNO ].m_dwITEM ) {
 		nCurWeight -= this->GetWEIGHT( nListRealNO );
 	}
@@ -435,8 +435,8 @@ short CInventory::AppendITEM (short nListRealNO, tagITEM &sITEM, short &nCurWeig
 	nCurWeight += this->GetWEIGHT( nListRealNO );
 
 
-#ifndef	__SERVER	// º≠πˆø°º± ªÁøÎ æ»«‘.
-	/// √ﬂ∞°µ» æ∆¿Ã≈€ø° ¥Î«— Loopup table ∞ªΩ≈
+#ifndef	__SERVER	// ÏÑúÎ≤ÑÏóêÏÑ† ÏÇ¨Ïö© ÏïàÌï®.
+	/// Ï∂îÍ∞ÄÎêú ÏïÑÏù¥ÌÖúÏóê ÎåÄÌïú Loopup table Í∞±Ïã†
 	MakeItemIndexList();	
 	g_pAVATAR->m_HotICONS.UpdateHotICON();
 #endif
@@ -446,12 +446,12 @@ short CInventory::AppendITEM (short nListRealNO, tagITEM &sITEM, short &nCurWeig
 	
 
 //-------------------------------------------------------------------------------------------------
-/// Real Index ∑Œ æ∆¿Ã≈€¿ª ΩΩ∑‘ø°º≠ ∫ÒøÓ¥Ÿ.
+/// Real Index Î°ú ÏïÑÏù¥ÌÖúÏùÑ Ïä¨Î°ØÏóêÏÑú ÎπÑÏö¥Îã§.
 void CInventory::DeleteITEM(WORD wListRealNO)
 {
 	m_ItemLIST[ wListRealNO ].Clear();
 
-#ifndef	__SERVER	// º≠πˆø°º± ªÁøÎ æ»«‘.
+#ifndef	__SERVER	// ÏÑúÎ≤ÑÏóêÏÑ† ÏÇ¨Ïö© ÏïàÌï®.
 	short nLookUpIndex = GetLookupIndexFromRealIndex( wListRealNO );
 	if( nLookUpIndex < 0 )
 	{
@@ -465,7 +465,7 @@ void CInventory::DeleteITEM(WORD wListRealNO)
 }
 
 //-------------------------------------------------------------------------------------------------
-// ¿Œ∫•≈‰∏Æø°º≠ sITEM¿ª ª´»ƒ nCurWEIGHT∏¶ ∞ªΩ≈«—¥Ÿ.
+// Ïù∏Î≤§ÌÜ†Î¶¨ÏóêÏÑú sITEMÏùÑ Î∫ÄÌõÑ nCurWEIGHTÎ•º Í∞±Ïã†ÌïúÎã§.
 void CInventory::SubtractITEM (short nListNO, tagITEM &sITEM, short &nCurWEIGHT)
 {
 	if ( ITEM_TYPE_MONEY == sITEM.m_cType ) {
@@ -478,13 +478,13 @@ void CInventory::SubtractITEM (short nListNO, tagITEM &sITEM, short &nCurWEIGHT)
 	}
 }
 /*
-// iQuantity∞πºˆ ∏∏≈≠ ¡¶∞≈ «—¥Ÿ.
+// iQuantityÍ∞ØÏàò ÎßåÌÅº Ï†úÍ±∞ ÌïúÎã§.
 void CInventory::SubtractITEM (short nListNO, int iQuantity, short &nCurWEIGHT)
 {
 	tagITEM SubITEM = m_ItemLIST[ nListNO ];
 
 	if ( SubITEM.IsEnableDupCNT() ) {
-		// ¡ﬂ∫πµ» ∞πºˆ∏¶ ∞Æ¥¬ æ∆¿Ã≈€¿Ã¥Ÿ.
+		// Ï§ëÎ≥µÎêú Í∞ØÏàòÎ•º Í∞ñÎäî ÏïÑÏù¥ÌÖúÏù¥Îã§.
 		SubITEM.m_iQuantity = iQuantity;
 	}
 	
@@ -505,7 +505,7 @@ short CInventory::FindITEM (tagITEM &sITEM)
 }
 
 //-------------------------------------------------------------------------------------------------
-/// @bug m_dwITEM == 0 ¿∏∑Œ∏∏ ¿Ã ΩΩ∑‘¿Ã ∫Òæ˙¥Ÿ∞Ì «“ºˆ ¿÷¥¬∞°?
+/// @bug m_dwITEM == 0 ÏúºÎ°úÎßå Ïù¥ Ïä¨Î°ØÏù¥ ÎπÑÏóàÎã§Í≥† Ìï†Ïàò ÏûàÎäîÍ∞Ä?
 short CInventory::GetEmptyInventory(short nInvPAGE)
 {
 	_ASSERT( nInvPAGE >= INV_WEAPON && nInvPAGE < MAX_INV_TYPE );

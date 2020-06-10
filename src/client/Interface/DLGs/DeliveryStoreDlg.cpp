@@ -90,7 +90,7 @@ void CDeliveryStoreDlg::Update( POINT ptMouse )
 
 	CGameOBJ* pObj = g_pObjMGR->Get_OBJECT( m_npc_client_object_index );
 
-	///NPC Object°¡ ¾ø°Å³ª ÀÖ´Âµ¥ °Å¸®°¡ ÀÏÁ¤ °Å¸® ÀÌ»óÀÌ¶ó¸é 
+	///NPC Objectê°€ ì—†ê±°ë‚˜ ìˆëŠ”ë° ê±°ë¦¬ê°€ ì¼ì • ê±°ë¦¬ ì´ìƒì´ë¼ë©´ 
 	if( pObj == NULL )
 		Hide();
 	else if( g_pAVATAR->Get_DISTANCE( pObj->Get_CurPOS() ) >= 1000 )
@@ -122,7 +122,7 @@ void CDeliveryStoreDlg::Hide()
 
 void CDeliveryStoreDlg::AddItem( tagBaseITEM* pItem, const char* pszFrom, const char* pszDesc, const char* pszTo )
 {
-	///ÇØ´ç ½½·ÔÀÇ ¾ÆÀÌÅÛ¹× ¾ÆÀÌÄÜ »ı¼º
+	///í•´ë‹¹ ìŠ¬ë¡¯ì˜ ì•„ì´í…œë° ì•„ì´ì½˜ ìƒì„±
 	assert( pItem );
 	assert( m_emptyslot < c_deliverystore_slot_count );
 	if( pItem && m_emptyslot < c_deliverystore_slot_count )
@@ -135,7 +135,7 @@ void CDeliveryStoreDlg::AddItem( tagBaseITEM* pItem, const char* pszFrom, const 
 
 void CDeliveryStoreDlg::SetItem( int slotindex, tagBaseITEM& Item )
 {
-	///ÇØ´ç ½½·ÔÀÇ ¾ÆÀÌÅÛ¾ÆÀÌÄÜ¹× ¾ÆÀÌÅÛ »èÁ¦
+	///í•´ë‹¹ ìŠ¬ë¡¯ì˜ ì•„ì´í…œì•„ì´ì½˜ë° ì•„ì´í…œ ì‚­ì œ
 	assert( slotindex >= 0 && slotindex < c_deliverystore_slot_count  );
 	if( slotindex >= 0 && slotindex < c_deliverystore_slot_count  )
 	{

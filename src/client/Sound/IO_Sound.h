@@ -41,7 +41,7 @@ struct tagSndFILE {
 	tagSndFILE ()	{	m_pSoundData=NULL,m_nMixCNT=1,m_nRefCNT=0;	}
 } ;
 
-#define USE_DEFAULT_3D_SOUND // 3d »ç¿îµå¸¦ µğÆúÆ®·Î ¼³Á¤ÇÏ·Á¸é
+#define USE_DEFAULT_3D_SOUND // 3d ì‚¬ìš´ë“œë¥¼ ë””í´íŠ¸ë¡œ ì„¤ì •í•˜ë ¤ë©´
 
 #define SOUND_DEFAULT_MAX_DISTANCE (5000.0f)
 #define SOUND_DEFAULT_MIN_DISTANCE (1000.0f)
@@ -84,7 +84,7 @@ public :
 
 	int	 GetPan ()		{	return m_iSoundPan;	}
 
-	// false°æ¿ì ÆÄÀÏÀ» Á÷Á¢ ·Îµå ÇØ¾ß ÇÑ´Ù.
+	// falseê²½ìš° íŒŒì¼ì„ ì§ì ‘ ë¡œë“œ í•´ì•¼ í•œë‹¤.
 	bool KEY_PlaySound (t_HASHKEY HashKEY);
 	bool KEY_PlaySound (t_HASHKEY HashKEY, int iVolume, int iPan=SOUND_PAN_CENTER);
 	bool KEY_PlaySound3D (t_HASHKEY HashKEY, const D3DXVECTOR3& posWorld, const D3DXVECTOR3 * velWorld = 0, float fMinDistance = SOUND_DEFAULT_MIN_DISTANCE, float fMaxDistance = SOUND_DEFAULT_MAX_DISTANCE);

@@ -8,7 +8,7 @@ CRoughMap::CRoughMap(void)
 {
 	m_hTerrainBlock		= NULL;
 	
-	/// ³ôÀÌ¸Ê Á¤º¸
+	/// ë†’ì´ë§µ ì •ë³´
 	iWidth				= 0;
 	iHeight				= 0;
 
@@ -35,7 +35,7 @@ void CRoughMap::SetDetailLevel( int iLevel )
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief ³ôÀÌ¸Ê°ú ¸ÅÇÎ ÅØ½ºÃÄ ·Îµå
+/// @brief ë†’ì´ë§µê³¼ ë§¤í•‘ í…ìŠ¤ì³ ë¡œë“œ
 //----------------------------------------------------------------------------------------------------
 
 bool CRoughMap::Load( char* szMapName, int iZoneMapX, int iZoneMapY )
@@ -52,7 +52,7 @@ bool CRoughMap::Load( char* szMapName, int iZoneMapX, int iZoneMapY )
 	CFileSystem* pFileSystem = (CVFSManager::GetSingleton()).GetFileSystem();
 	if( pFileSystem->OpenFile( szFullPathName ) == false )	
 	{	
-		/// ¿ø·¡ ¾øÀ» ¼öµµ ÀÖ´Ù.
+		/// ì›ë˜ ì—†ì„ ìˆ˜ë„ ìˆë‹¤.
 		//char *szStr = CStr::Printf ("File [%s] open error ", szFullPathName );
 		//g_pCApp->ErrorBOX(szStr, "ERROR", MB_OK);
 		return false;
@@ -77,13 +77,13 @@ bool CRoughMap::Load( char* szMapName, int iZoneMapX, int iZoneMapY )
 	if( iWidth != VERTEX_COUNT_PER_MAP_AXIS )
 	{
 		iWidth = VERTEX_COUNT_PER_MAP_AXIS;
-		g_itMGR.OpenMsgBox( "À¯È¿ÇÏÁö ¾ÊÀº ¸Ê µ¥ÀÌÅÍ" );
+		g_itMGR.OpenMsgBox( "ìœ íš¨í•˜ì§€ ì•Šì€ ë§µ ë°ì´í„°" );
 	}
 
 	if( iHeight != VERTEX_COUNT_PER_MAP_AXIS )
 	{
 		iHeight = VERTEX_COUNT_PER_MAP_AXIS;
-		g_itMGR.OpenMsgBox( "À¯È¿ÇÏÁö ¾ÊÀº ¸Ê µ¥ÀÌÅÍ" );
+		g_itMGR.OpenMsgBox( "ìœ íš¨í•˜ì§€ ì•Šì€ ë§µ ë°ì´í„°" );
 	}
 
 	m_pHeight = new float [ VERTEX_COUNT_PER_MAP_AXIS * VERTEX_COUNT_PER_MAP_AXIS ];
@@ -110,7 +110,7 @@ bool CRoughMap::Load( char* szMapName, int iZoneMapX, int iZoneMapY )
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief ¸Ê ÇÁ¸®
+/// @brief ë§µ í”„ë¦¬
 //----------------------------------------------------------------------------------------------------
 
 void CRoughMap::Free( )

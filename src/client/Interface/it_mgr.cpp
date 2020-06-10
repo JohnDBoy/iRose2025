@@ -291,7 +291,7 @@ bool IT_MGR::Init( )
 
 void IT_MGR::Free()
 {
-	///ÀÎÅÍÆäÀÌ½º °ü·Ã Profile¿¡ ÀúÀåµÉ Data¸¦ g_ClientStorage¿¡ ³Ö°í SaveÇÑ´Ù.
+	///ì¸í„°í˜ì´ìŠ¤ ê´€ë ¨ Profileì— ì €ì¥ë  Dataë¥¼ g_ClientStorageì— ë„£ê³  Saveí•œë‹¤.
 	CTDialog* pDlg = NULL;
 	list_dlgs_itor iter;
 
@@ -384,7 +384,7 @@ void IT_MGR::InitDLG()
 	CEventDialog* pEventDlg = new CEventDialog;
 	pEventDlg->Create( "DlgDialogEvent" );
 	AppendDlg( DLG_TYPE_EVENTDIALOG, pEventDlg, pEventDlg->GetControlID() );
-	///·ç³ªÇà¼ºÀÇ ÇÊµå ¿öÇÁÃ¢°°Àº Æ¯Á¤ Event¸¦ ¼±ÅÃÇÏ´Âµ¥ »ç¿ëµÇ´Â Ã¢
+	///ë£¨ë‚˜í–‰ì„±ì˜ í•„ë“œ ì›Œí”„ì°½ê°™ì€ íŠ¹ì • Eventë¥¼ ì„ íƒí•˜ëŠ”ë° ì‚¬ìš©ë˜ëŠ” ì°½
 	CSelectEventDlg* pSelectEventDlg = new CSelectEventDlg;
 	pSelectEventDlg->Create( "DlgSelectEvent" );
 	AppendDlg( DLG_TYPE_SELECTEVENT, pSelectEventDlg, pSelectEventDlg->GetControlID() );
@@ -472,33 +472,33 @@ void IT_MGR::InitDLG()
 	pRestartDLG->Create("DlgRestart");
 	AppendDlg( DLG_TYPE_RESTART, pRestartDLG , pRestartDLG->GetControlID() );
 
-	// ±âº»Ã¢ 
+	// ê¸°ë³¸ì°½ 
 	CMenuDlg* pMenuDlg = new CMenuDlg;
 	pMenuDlg->Create( "DlgMenu" );
 	AppendDlg( DLG_TYPE_MENU, pMenuDlg, pMenuDlg->GetControlID() );
 
 
-	// ½Ã½ºÅÛ ´ÙÀÌ¾Ë·Î±×
+	// ì‹œìŠ¤í…œ ë‹¤ì´ì•Œë¡œê·¸
 	CSystemDLG* pSystemDLG = new CSystemDLG;
 	pSystemDLG->Create("DlgSystem");
 	AppendDlg( DLG_TYPE_SYSTEM, pSystemDLG, pSystemDLG->GetControlID() );
 
 	
 	
-	// ¹Ì´Ï¸Ê ´ÙÀÌ¾Ë·Î±×
+	// ë¯¸ë‹ˆë§µ ë‹¤ì´ì•Œë¡œê·¸
 	CMinimapDLG* pMinimapDLG = new CMinimapDLG;
 	pMinimapDLG->Create("DlgMinimap");
 	AppendDlg( DLG_TYPE_MINIMAP, pMinimapDLG, pSystemDLG->GetControlID() );
 	
 	
-	//ÀÎº¥Åä¸® 
+	//ì¸ë²¤í† ë¦¬ 
 	//CInventoryDLG* pAvtInvDLG = new CInventoryDLG( DLG_TYPE_INVENTORY );
 	//pAvtInvDLG->Create("DlgInven");
 	//AppendDlg( DLG_TYPE_INVENTORY, pAvtInvDLG, pAvtInvDLG->GetControlID() );
 
 	
 
-	//»óÁ¡ 
+	//ìƒì  
 	CStoreDLG* pStoreDLG = new CStoreDLG( DLG_TYPE_STORE );
 	pStoreDLG->Create("DlgStore");
 	AppendDlg( DLG_TYPE_STORE, pStoreDLG , pStoreDLG->GetControlID() );
@@ -509,20 +509,20 @@ void IT_MGR::InitDLG()
 	AppendDlg( DLG_TYPE_DEAL, pDealDLG, pDealDLG->GetControlID() );
 
 
-	//Ä³¸¯ÅÍÃ¢ 
+	//ìºë¦­í„°ì°½ 
 
 	CCharacterDLG* pCharDLG = new CCharacterDLG( DLG_TYPE_CHAR );
 	pCharDLG->Create("DlgAvata");
 	AppendDlg( DLG_TYPE_CHAR, pCharDLG, pCharDLG->GetControlID() );
 
 	
-	// Å¸°Ù ¿ÀºêÁ§Æ® ´ÙÀÌ¾Ë·Î±×
+	// íƒ€ê²Ÿ ì˜¤ë¸Œì íŠ¸ ë‹¤ì´ì•Œë¡œê·¸
 	/*CTargetObjectDLG* pTargetObjectDLG = new CTargetObjectDLG;
 	pTargetObjectDLG->Create("DlgTarget");
 	AppendDlg( DLG_TYPE_TARGET_OBJECT, pTargetObjectDLG, pTargetObjectDLG->GetControlID() );*/
 
 
-	//Äü¹Ù 
+	//í€µë°” 
 	CQuickBAR* pQuickBAR = new CQuickBAR( DLG_TYPE_QUICKBAR );
 	pQuickBAR->Create("DlgQuickBar");
 	AppendDlg( DLG_TYPE_QUICKBAR, pQuickBAR, pQuickBAR->GetControlID() );
@@ -536,7 +536,7 @@ void IT_MGR::InitDLG()
 	pQuestDlg->Create("DlgQuest");
 	AppendDlg( DLG_TYPE_QUEST, pQuestDlg, pQuestDlg->GetControlID() );
 
-	//½ºÅ³Ã¢ 
+	//ìŠ¤í‚¬ì°½ 
 	CSkillDLG* pSkillDLG = new CSkillDLG( DLG_TYPE_SKILL );
 	pSkillDLG->Create("DlgSkill");
 	AppendDlg( DLG_TYPE_SKILL, pSkillDLG,pSkillDLG->GetControlID() );
@@ -551,7 +551,7 @@ void IT_MGR::InitDLG()
 	AppendDlg( DLG_TYPE_SYSTEMMSG, pSystemMsgDlg, pSystemMsgDlg->GetControlID() );
 
 
-	///¿É¼Ç ¼³Á¤ Ã¢
+	///ì˜µì…˜ ì„¤ì • ì°½
 	// <Option Dialog>
 	///*
 	COptionDlg* pOptionDlg = new COptionDlg;
@@ -561,13 +561,13 @@ void IT_MGR::InitDLG()
 	// </Option Dialog>
 
 
-	///¾ÆÀÌÅÛ ±³È¯ Ã¢
+	///ì•„ì´í…œ êµí™˜ ì°½
 	CExchangeDLG* pExchangeDlg = new CExchangeDLG( DLG_TYPE_EXCHANGE );
 	pExchangeDlg->Create( "DlgExchange");
 	AppendDlg( DLG_TYPE_EXCHANGE, pExchangeDlg, pExchangeDlg->GetControlID() );
 
 
-	///ÆÄÆ¼Ã¢
+	///íŒŒí‹°ì°½
 	CPartyDlg* pPartyDlg = new CPartyDlg;
 	pPartyDlg->Create("DlgParty");
 	AppendDlg( DLG_TYPE_PARTY, pPartyDlg, pPartyDlg->GetControlID() );
@@ -600,7 +600,7 @@ void IT_MGR::InitDLG()
 	//pPatDlg->Create("DlgPat");
 	//AppendDlg( DLG_TYPE_PAT, pPatDlg, pPatDlg->GetControlID());
 
-	// Ã¤ÆÃÃ¢ 
+	// ì±„íŒ…ì°½ 
 	CChatDLG* pChatDLG = new CChatDLG;
 	pChatDLG->Create("DlgChat");
 	AppendDlg( DLG_TYPE_CHAT, pChatDLG, pChatDLG->GetControlID() );
@@ -673,8 +673,8 @@ void IT_MGR::DrawDLGs( POINT ptMouse )
 {
 	g_HelpMgr.UpdateFrame();
 
-	/// ControlµéÀÌ ³»ºÎÀûÀ¸·Î Ã³¸®ÇÏ´Â º¯¼ö ÃÊ±âÈ­ 
-	/// Update½Ã MouseOverÃ³¸® º¯¼ö ÃÊ±âÈ­
+	/// Controlë“¤ì´ ë‚´ë¶€ì ìœ¼ë¡œ ì²˜ë¦¬í•˜ëŠ” ë³€ìˆ˜ ì´ˆê¸°í™” 
+	/// Updateì‹œ MouseOverì²˜ë¦¬ ë³€ìˆ˜ ì´ˆê¸°í™”
 	CWinCtrl::SetProcessMouseOver( false );
 	CWinCtrl::SetProcessMouseOverCtrl( NULL );
 	CTDialog::SetProcessMouseOverDialog( NULL );
@@ -749,7 +749,7 @@ CMinimapDLG* IT_MGR::GetMinimapDLG()
 
 
 
-/// °Å·¡Ã¢À» ¾ò¾î¿Â´Ù.
+/// ê±°ë˜ì°½ì„ ì–»ì–´ì˜¨ë‹¤.
 CExchangeDLG*	IT_MGR::GetExchangeDLG()
 {
 	CExchangeDLG* pDLG = (CExchangeDLG*)FindDlg( DLG_TYPE_EXCHANGE );
@@ -762,7 +762,7 @@ CExchangeDLG*	IT_MGR::GetExchangeDLG()
 ///
 bool IT_MGR::OpenMakeDlg( int iSkillSlotIdx )
 {
-	if( !IsDlgOpened( DLG_TYPE_MAKE ) )///Áßº¹µÇ¼­ ¿©´Â°ÍÀ» ¹æÁöÇÑ´Ù.
+	if( !IsDlgOpened( DLG_TYPE_MAKE ) )///ì¤‘ë³µë˜ì„œ ì—¬ëŠ”ê²ƒì„ ë°©ì§€í•œë‹¤.
 	{
 		CManufacture::GetInstance().SetSkillSlotIndex( iSkillSlotIdx );
 
@@ -808,10 +808,10 @@ bool IT_MGR::OpenQueryDLG(short nSX,short nSY,char* szQuery,short nMaxCharLen,in
 
 	switch( iEventDlgType )
 	{
-		/// NPC ´ëÈ­Ã¢
+		/// NPC ëŒ€í™”ì°½
 		case EVENT_DLG_NPC:
 			{
-				/// ÆÖÅ¾½Â½Ã´Â ¿­Áö ¾Ê´Â´Ù.
+				/// íŒ»íƒ‘ìŠ¹ì‹œëŠ” ì—´ì§€ ì•ŠëŠ”ë‹¤.
 				if( g_pAVATAR->GetPetMode() > 0 )
 					return true;
 
@@ -901,7 +901,7 @@ bool IT_MGR::QueryDLG_AppendExam(char* szExam,int iEventID,void (*fpExamEvent)(i
 
 void IT_MGR::CloseQueryDlg( )
 {
-	///Query°ü·Ã ´Ù ´İ¾Æ¹ö¸°´Ù.
+	///Queryê´€ë ¨ ë‹¤ ë‹«ì•„ë²„ë¦°ë‹¤.
 	CloseDialog( DLG_TYPE_DIALOG );
 	CloseDialog( DLG_TYPE_SELECTEVENT );
 	CloseDialog( DLG_TYPE_EVENTDIALOG );
@@ -909,7 +909,7 @@ void IT_MGR::CloseQueryDlg( )
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief CHotIconSlot Á¤º¸¸¦ ¹ÙÅÁÀ¸·Î QuickDlg ÀÇ ½½·ÔµéÀ» ¾÷µ¥ÀÌÆ®
+/// @brief CHotIconSlot ì •ë³´ë¥¼ ë°”íƒ•ìœ¼ë¡œ QuickDlg ì˜ ìŠ¬ë¡¯ë“¤ì„ ì—…ë°ì´íŠ¸
 //----------------------------------------------------------------------------------------------------
 
 void IT_MGR::UpdateQuickSlot()
@@ -957,7 +957,7 @@ short IT_MGR::GetItemInventoryTAB(tagITEM sItem)
 
 void IT_MGR::Close_store()
 {
-	// »óÁ¡ ´İ±â 
+	// ìƒì  ë‹«ê¸° 
 	CStoreDLG* pStore = (CStoreDLG*)FindDlg( DLG_TYPE_STORE );
 	if( pStore )
 	{
@@ -965,13 +965,13 @@ void IT_MGR::Close_store()
 		pStore->Hide();
 	}
 	
-	// °Å·¡Ã¢ ´İ±â 
+	// ê±°ë˜ì°½ ë‹«ê¸° 
 	CDealDLG* pDeal = (CDealDLG*)FindDlg( DLG_TYPE_DEAL );
 	
 	if( pDeal )
 		pDeal->Hide();
 
-	///¼ıÀÚÀÔ·Â±â°¡ ¶° ÀÖ´Ù¸é ´İ´Â´Ù.
+	///ìˆ«ìì…ë ¥ê¸°ê°€ ë–  ìˆë‹¤ë©´ ë‹«ëŠ”ë‹¤.
 	CTDialog* pDlg = g_itMGR.FindDlg( DLG_TYPE_N_INPUT );
 	if( pDlg && pDlg->IsVision() )
 		pDlg->Hide();
@@ -987,7 +987,7 @@ void IT_MGR::InsertDlg(short nDlgType, CTDialog* pDlg,  int iNextID , int iID )
 		{
 			pDlg->SetDialogType( nDlgType );
 			pDlg->SetControlID( iID );
-			m_Dlgs.insert( iter, pDlg );///ÇØ´ç Dialog¾ÕÀ¸·Î ³Ö´Â´Ù.
+			m_Dlgs.insert( iter, pDlg );///í•´ë‹¹ Dialogì•ìœ¼ë¡œ ë„£ëŠ”ë‹¤.
 			return;
 		}
 	}
@@ -1038,7 +1038,7 @@ int  IT_MGR::IsDlgOpened( int iDlgID )
 	return 0;
 }
 
-///CMsgBoxÀÇ °æ¿ì °°Àº TypeÀ¸·Î ¿©·¯°³°¡ ÀÖÀ»¼ö ÀÖ´Ù.
+///CMsgBoxì˜ ê²½ìš° ê°™ì€ Typeìœ¼ë¡œ ì—¬ëŸ¬ê°œê°€ ìˆì„ìˆ˜ ìˆë‹¤.
 void IT_MGR::MoveDlg2ListEnd( CTDialog* pDlg )
 {
 	list_dlgs_itor  itorDlgs;
@@ -1200,8 +1200,8 @@ void IT_MGR::AppendChatMsg( const char* pszMsg, int iType ,DWORD forceapply_colo
 //
 //	//switch( pRecvPacket->m_HEADER.m_wType )
 //	//{
-//	/////ÆÄÆ¼°¡ °á¼ºµÇ°Å³ª Á¶ÀÎµÇ¾úÀ»°æ¿ì ¼­¹ö¿¡¼­ ³»·Á¿Â´Ù.
-//	/////ÆÄÆ¼Ã¢À» ShowÇÏ´Â°÷Àº Ç×»ó ÀÌ°÷ÀÌ´Ù.
+//	/////íŒŒí‹°ê°€ ê²°ì„±ë˜ê±°ë‚˜ ì¡°ì¸ë˜ì—ˆì„ê²½ìš° ì„œë²„ì—ì„œ ë‚´ë ¤ì˜¨ë‹¤.
+//	/////íŒŒí‹°ì°½ì„ Showí•˜ëŠ”ê³³ì€ í•­ìƒ ì´ê³³ì´ë‹¤.
 //	//case GSV_PARTY_MEMBER:
 //	//	{
 //	//		break;
@@ -1234,7 +1234,7 @@ bool IT_MGR::AddTCommand( int iDlgID, CTCommand* pCmd )
 	if( pCmd == NULL )
 		return false;
 
-	//Áï½Ã ½ÇÇà Ä¿¸Çµå
+	//ì¦‰ì‹œ ì‹¤í–‰ ì»¤ë§¨ë“œ
 	if( iDlgID == 0 )
 	{
 		pCmd->Exec(NULL);
@@ -1244,7 +1244,7 @@ bool IT_MGR::AddTCommand( int iDlgID, CTCommand* pCmd )
 #endif
 	
 	}
-	else if( iDlgID == DLG_TYPE_MAX )///IT_MGR°í CommandQ¸¦ °¡Áö°Ô ¼öÁ¤µÈ´Ù. Q¿¡ ³Ö°íUpdate¿¡¼­ ½ÇÇà½ÃÅ°ÀÚ
+	else if( iDlgID == DLG_TYPE_MAX )///IT_MGRê³  CommandQë¥¼ ê°€ì§€ê²Œ ìˆ˜ì •ëœë‹¤. Qì— ë„£ê³ Updateì—ì„œ ì‹¤í–‰ì‹œí‚¤ì
 	{
 		m_CommandQ.Push_Back( pCmd );
 	}
@@ -1366,7 +1366,7 @@ void IT_MGR::InitInterfacePos()
 			pDlg->Show();
 
 #ifdef _NEWUI
-			pDlg->RefreshDlg();		//ÇØ»óµµ º¯°æ½Ã¿¡ Á¤ÇØÁø À§Ä¡·Î ÀÌµ¿ÇÏ°Ô ¸¸µå´Â ÇÔ¼ö.
+			pDlg->RefreshDlg();		//í•´ìƒë„ ë³€ê²½ì‹œì— ì •í•´ì§„ ìœ„ì¹˜ë¡œ ì´ë™í•˜ê²Œ ë§Œë“œëŠ” í•¨ìˆ˜.
 #endif
 			
 		}
@@ -1386,7 +1386,7 @@ void IT_MGR::CloseDialogAllExceptDefaultView()
 		if( !(*iter)->IsDefaultVisible() )
 		{
 			CloseDialog( (*iter)->GetDialogType() );
-			DelDialogIcon( (*iter)->GetDialogType() );///¾ÆÀÌÄÜÈ­ µÇ¾î ÀÖ´Â °Íµµ ´Ù Áö¿ìÀÚ.
+			DelDialogIcon( (*iter)->GetDialogType() );///ì•„ì´ì½˜í™” ë˜ì–´ ìˆëŠ” ê²ƒë„ ë‹¤ ì§€ìš°ì.
 		}
 	}
 }
@@ -1403,7 +1403,7 @@ void IT_MGR::SetInterfacePosBySavedData()
 
 		if( pDlg->GetCaption() )
 		{
-			if( pDlg->GetCaption() )///CaptionÀÌ ÀÖ°í Å¸°ÙÃ¢ÀÌ ¾Æ´Ò°æ¿ì¿¡¸¸ SaveµÈ PositionÀ» Àû¿ëÇÑ´Ù.
+			if( pDlg->GetCaption() )///Captionì´ ìˆê³  íƒ€ê²Ÿì°½ì´ ì•„ë‹ê²½ìš°ì—ë§Œ Saveëœ Positionì„ ì ìš©í•œë‹¤.
 			{
 				ptNew.x = g_ClientStorage.GetSavedDialogPosX( pDlg->GetDialogType());
 				ptNew.y = g_ClientStorage.GetSavedDialogPosY( pDlg->GetDialogType());
@@ -1418,7 +1418,7 @@ void IT_MGR::SetInterfacePosBySavedData()
 		//	pChatDlg->ChangeListType( g_ClientStorage.GetChatDlgType() );
 		//	if( g_ClientStorage.GetChatDlgType() == CChatDLG::LIST_TYPE_BIG )
 		//	{
-		//		///REMARK TEMP CODE:BigÀÏ°æ¿ì ChangeListType¿¡¼­ °­Á¦·Î -143À» ÇØÁØ´Ù.ÀÌ¸¦ ÀÓ½ÃÀûÀ¸·Î ¸·´Â ÄÚµå
+		//		///REMARK TEMP CODE:Bigì¼ê²½ìš° ChangeListTypeì—ì„œ ê°•ì œë¡œ -143ì„ í•´ì¤€ë‹¤.ì´ë¥¼ ì„ì‹œì ìœ¼ë¡œ ë§‰ëŠ” ì½”ë“œ
 		//		///
 		//		POINT pt = pChatDlg->GetPosition();
 		//		pt.y += 143;
@@ -1446,14 +1446,14 @@ void IT_MGR::ServerDisconnected()
 	assert( m_pCurrState );
 	if( m_pCurrState->GetID() == STATE_NORMAL )
 	{
-// 05. 10. 27 - ±èÁÖÇö
-// __SRVDISCONNECTRELOGIN(¼­¹öµğ½ºÄÁ³ØÆ®°¡ µÇ¾úÀ» °æ¿ì)¿¡ ·Î±×ÀÎÃ¢À¸·Î ÀÌµ¿ÇÒ°ÍÀÎ°¡
-// ¾Æ´Ï¸é... ÇÁ·Î±×·¥À» °­Á¾ÇÒ°ÍÀÎ°¡..
+// 05. 10. 27 - ê¹€ì£¼í˜„
+// __SRVDISCONNECTRELOGIN(ì„œë²„ë””ìŠ¤ì»¨ë„¥íŠ¸ê°€ ë˜ì—ˆì„ ê²½ìš°)ì— ë¡œê·¸ì¸ì°½ìœ¼ë¡œ ì´ë™í• ê²ƒì¸ê°€
+// ì•„ë‹ˆë©´... í”„ë¡œê·¸ë¨ì„ ê°•ì¢…í• ê²ƒì¸ê°€..
 
 #ifdef __SRVDISCONNECTRELOGIN
-		CTCommand* pCmd = new CTCmdReLogin; // ÀÌ°Ç Àç·Î±×ÀÎ
+		CTCommand* pCmd = new CTCmdReLogin; // ì´ê±´ ì¬ë¡œê·¸ì¸
 #else
-		CTCommand* pCmd = new CTCmdExit; // ÀÌ°Ç °­Á¾
+		CTCommand* pCmd = new CTCmdExit; // ì´ê±´ ê°•ì¢…
 #endif
 		OpenMsgBox("Server Disconnected",CMsgBox::BT_OK, true, 0, pCmd ,NULL);
 	}
@@ -1622,11 +1622,11 @@ void IT_MGR::OpenPrivateChatDlg( DWORD dwUserTag , BYTE btStatus, const char* ps
 //void IT_MGR::BeginRepairItem()
 //{
 //	OpenDialog( DLG_TYPE_ITEM );
-//	///Ä¿¼­ ¹Ù²Ş.. Ç×»ó ¹Ù²Û´Ù.
+//	///ì»¤ì„œ ë°”ê¿ˆ.. í•­ìƒ ë°”ê¾¼ë‹¤.
 //	//CGame::GetInstance().BeginRepairMode();
 //}
 
-///°°Àº TYPEÀÇ ¸Ş¼¼Áö ¹Ú½º°¡ ¶°ÀÖ´ÂÁö Ã¼Å©ÇÑ´Ù.
+///ê°™ì€ TYPEì˜ ë©”ì„¸ì§€ ë°•ìŠ¤ê°€ ë– ìˆëŠ”ì§€ ì²´í¬í•œë‹¤.
 bool IT_MGR::IsOpenedMsgBox( int iType )
 {
 	CMsgBox* pMsgBox = NULL;
@@ -1841,7 +1841,7 @@ void IT_MGR::ShowQuestStartMessage( int index )
 	//	SIZE  size = getFontTextExtent( g_GameDATA.m_hFONT[ FONT_OUTLINE_18_BOLD ], QUEST_NAME( index ) );
 	//	draw_width		= size.cx;
 	//	draw_position.x = g_pCApp->GetWIDTH() / 2 - size.cx / 2;
-	//	draw_position.y = 150;///ÀÏ´Ü °íÁ¤
+	//	draw_position.y = 150;///ì¼ë‹¨ ê³ ì •
 
 
 	//	CEffectString* child = new CEffectString;
@@ -1862,7 +1862,7 @@ void IT_MGR::ShowQuestStartMessage( int index )
 }
 
 //*-------------------------------------------------------------------------------------------/
-/// ÇöÀç Æ÷Ä¿½º¸¦ °¡Áö°í ÀÖ´Â ¿¡µğÆ®¹Ú½ºÀÇ Æ÷ÀÎÅÍ(CTEditBox)¸¦ ¸®ÅÏÇÑ´Ù.
+/// í˜„ì¬ í¬ì»¤ìŠ¤ë¥¼ ê°€ì§€ê³  ìˆëŠ” ì—ë””íŠ¸ë°•ìŠ¤ì˜ í¬ì¸í„°(CTEditBox)ë¥¼ ë¦¬í„´í•œë‹¤.
 //*-------------------------------------------------------------------------------------------/
 CTEditBox*	IT_MGR::GetFocusEditBox()
 {

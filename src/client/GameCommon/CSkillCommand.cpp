@@ -41,7 +41,7 @@ bool CBasicCommand::Execute()
 
 
 		
-	/// ±âº»¸í·É( ¾É±â, ¼­±â, °¨Á¤Ç¥Çöµî )ÀÏ °æ¿ì »çÁ¤°Å¸®¸¦ ¾î¶² ¸í·ÉÀÎÁö·Î ÆÇ´ÜÇÏ´Âµ¥ »ç¿ë
+	/// ê¸°ë³¸ëª…ë ¹( ì•‰ê¸°, ì„œê¸°, ê°ì •í‘œí˜„ë“± )ì¼ ê²½ìš° ì‚¬ì •ê±°ë¦¬ë¥¼ ì–´ë–¤ ëª…ë ¹ì¸ì§€ë¡œ íŒë‹¨í•˜ëŠ”ë° ì‚¬ìš©
 	switch( iBasicCommandType )
 	{		
 	case COMMON_COMMAND_SELFTARGET:
@@ -49,7 +49,7 @@ bool CBasicCommand::Execute()
 		break;
 	case COMMON_COMMAND_SIT:
 		{
-			/// ÆêÅ¾½Â¸ğµå¿¡¼±.. ±İÁö
+			/// í«íƒ‘ìŠ¹ëª¨ë“œì—ì„ .. ê¸ˆì§€
 			if( g_pAVATAR->GetPetMode() > 0 )
 				break;
 
@@ -60,18 +60,18 @@ bool CBasicCommand::Execute()
 			}
 
 			g_pNet->Send_cli_TOGGLE( TOGGLE_TYPE_SIT );
-			///¾É±â/¼­±â Åä±Û½Ã ¼­¹ö¿¡°Ô ³ªÀÇ HPÁ¤º¸¸¦ ¿äÃ»ÇÑ´Ù.
+			///ì•‰ê¸°/ì„œê¸° í† ê¸€ì‹œ ì„œë²„ì—ê²Œ ë‚˜ì˜ HPì •ë³´ë¥¼ ìš”ì²­í•œë‹¤.
 			g_pNet->Send_cli_HP_REQ( g_pAVATAR->Get_INDEX() );
 		}
 		break;
 	case COMMON_COMMAND_PICK_ITEM:
 		{
-			/// ÆêÅ¾½Â¸ğµå¿¡¼±.. ±İÁö
+			/// í«íƒ‘ìŠ¹ëª¨ë“œì—ì„ .. ê¸ˆì§€
 			//if( g_pAVATAR->GetPetMode() > 0 )
 			//	break;
 
 			//-------------------------------------------------------------------------------
-			/// ¾É±â »óÅÂ¿¡¼± ±İÁö..
+			/// ì•‰ê¸° ìƒíƒœì—ì„  ê¸ˆì§€..
 			//-------------------------------------------------------------------------------				
 			if( g_pAVATAR->Get_STATE() == CS_SIT )
 				break;
@@ -98,14 +98,14 @@ bool CBasicCommand::Execute()
 				{
 					pObj = reinterpret_cast< CGameOBJ* >( hUserData );
 	    
-					/// Item ÀÎÁö °Ë»ç..
+					/// Item ì¸ì§€ ê²€ì‚¬..
 					if( pObj->IsA( OBJ_ITEM ) )
 					{		
 						pTempItem = (CObjITEM*)pObj;
 						DWORD dwPassTIME = g_GameDATA.GetGameTime() - pTempItem->m_dwCreatedTIME;
 						if ( pTempItem->m_wOwnerServerObjIDX &&  (int)(pTempItem->m_wRemainTIME -  dwPassTIME) >  62 * 1000 ) 
 						{
-							// È¹µæ ±ÇÇÑÀÌ ÀÖ´ÂÁö Á¶»ç...
+							// íšë“ ê¶Œí•œì´ ìˆëŠ”ì§€ ì¡°ì‚¬...
 							if ( pTempItem->m_wOwnerServerObjIDX != g_pObjMGR->Get_ServerObjectIndex(  g_pAVATAR->m_nIndex ) ) 
 							{
 								//g_itMGR.AppendChatMsg( STR_NOTIFY_02, g_dwBLUE );
@@ -137,10 +137,10 @@ bool CBasicCommand::Execute()
 		}
 		break;
 
-	/// ¾ÉÀº »óÅÂ¿¡¼± Á¡ÇÁ ºÒ°¡
+	/// ì•‰ì€ ìƒíƒœì—ì„  ì í”„ ë¶ˆê°€
 	case COMMON_COMMAND_JUMP:
 		{
-			/// ÆêÅ¾½Â¸ğµå¿¡¼±.. ±İÁö
+			/// í«íƒ‘ìŠ¹ëª¨ë“œì—ì„ .. ê¸ˆì§€
 			if( g_pAVATAR->GetPetMode() > 0 )
 				break;
 
@@ -153,7 +153,7 @@ bool CBasicCommand::Execute()
 		break;
 	case COMMON_COMMAND_AIR_JUMP:
 		{
-			/// ÆêÅ¾½Â¸ğµå¿¡¼±.. ±İÁö
+			/// í«íƒ‘ìŠ¹ëª¨ë“œì—ì„ .. ê¸ˆì§€
 			if( g_pAVATAR->GetPetMode() > 0 )
 				break;
 
@@ -163,16 +163,16 @@ bool CBasicCommand::Execute()
 			///	AddMsgToChatWND( STR_ACTION_COMMAND_STOP_STATE_FAILED, g_dwRED, CChatDLG::CHAT_TYPE_SYSTEM );
 		}
 		break;
-	/// ¿ÀÅä Å¸°Ù..
+	/// ì˜¤í†  íƒ€ê²Ÿ..
 	case COMMON_COMMAND_AUTO_TARGET:
 		{
 		}
 		break;
-	/// ÀÏ¹İ °ø°İ
+	/// ì¼ë°˜ ê³µê²©
 	case COMMON_COMMAND_ATTACK:
 		{
 			//-------------------------------------------------------------------------------
-			/// ¾É±â »óÅÂ¶ó¸é.. ¼­±â ¸í·ÉÀ» ³¯·ÁÁØ´Ù.
+			/// ì•‰ê¸° ìƒíƒœë¼ë©´.. ì„œê¸° ëª…ë ¹ì„ ë‚ ë ¤ì¤€ë‹¤.
 			//-------------------------------------------------------------------------------
 			if( g_pAVATAR->Get_STATE() == CS_SIT )
 			{
@@ -187,7 +187,7 @@ bool CBasicCommand::Execute()
 
 			int iServerTarget = g_pAVATAR->Get_TargetIDX();
 			int iClientTarget = g_pObjMGR->Get_ClientObjectIndex( iServerTarget );
-			/// ÇöÀç ³»°¡ °ø°İÁßÀÎ³ğÀº ´Ù½Ã ÆĞÅ¶À» ³¯¸®Áö ¾Ê´Â´Ù.
+			/// í˜„ì¬ ë‚´ê°€ ê³µê²©ì¤‘ì¸ë†ˆì€ ë‹¤ì‹œ íŒ¨í‚·ì„ ë‚ ë¦¬ì§€ ì•ŠëŠ”ë‹¤.
 			if( g_pAVATAR->Get_COMMAND() == CMD_ATTACK && iClientTarget == iTargetObj )
 				break;				
 
@@ -197,12 +197,12 @@ bool CBasicCommand::Execute()
 				CObjMOB* pObjMOB = (CObjMOB*)pChar;
 				if( pObjMOB != NULL )
 				{
-					/// °ø°İºÒ°¡ NPC ´Â °ø°İ¸øÇÔ..
+					/// ê³µê²©ë¶ˆê°€ NPC ëŠ” ê³µê²©ëª»í•¨..
 					if( CUserInputState::IsEnemy( pObjMOB ) && ( NPC_CAN_TARGET( pObjMOB->Get_CharNO() ) != 1 ) ) 
 					{
 						//----------------------------------------------------------------------------------------------------
-						/// PAT¿¡ Å¸°í ÀÖ´Â µµÁß¿¡´Â ºÒ°¡
-						/// ±×·¯³ª Castle Gear Àº °¡´É
+						/// PATì— íƒ€ê³  ìˆëŠ” ë„ì¤‘ì—ëŠ” ë¶ˆê°€
+						/// ê·¸ëŸ¬ë‚˜ Castle Gear ì€ ê°€ëŠ¥
 						//----------------------------------------------------------------------------------------------------
 						int iPetMode = g_pAVATAR->GetPetMode();
 						if( iPetMode < 0 )
@@ -210,7 +210,7 @@ bool CBasicCommand::Execute()
 							g_pNet->Send_cli_ATTACK( iTargetObj );						
 						}else
 						{
-							/// Pet mode ÀÏ °æ¿ì¿¡´Â..
+							/// Pet mode ì¼ ê²½ìš°ì—ëŠ”..
 							if( g_pAVATAR->CanAttackPetMode() )
 							{
 								g_pNet->Send_cli_ATTACK( iTargetObj );
@@ -235,7 +235,7 @@ bool CBasicCommand::Execute()
 				g_itMGR.AppendChatMsg(STR_CANT_USE_DRIVESKILL, IT_MGR::CHAT_TYPE_SYSTEM );
 				return false;
 			}
-			/// ÇöÀç ÆêÅ¾½Â»óÅÂ¿¡¼­ ÆêÀÇ »óÅÂ¸¦ È®ÀÎ..
+			/// í˜„ì¬ í«íƒ‘ìŠ¹ìƒíƒœì—ì„œ í«ì˜ ìƒíƒœë¥¼ í™•ì¸..
 			if( g_pAVATAR->GetPetMode() >= 0 )
 			{
 				if( ( g_pAVATAR->GetPetState() != CS_STOP ) )
@@ -257,7 +257,7 @@ bool CBasicCommand::Execute()
 			}
 
 
-			//20050818 È«±Ù Ä«Æ® °ÔÀÌÁö°¡ 0ÀÏ¶§ Ä«Æ® µå¶óÀÌºê ½ºÅ³ »ç¿ë½Ã "Á¶°ÇÀÌ ¸ÂÁö ¾Ê¾Æ¼­ »ç¿ëÇÒ ¼ö ¾ø½À´Ï´Ù."
+			//20050818 í™ê·¼ ì¹´íŠ¸ ê²Œì´ì§€ê°€ 0ì¼ë•Œ ì¹´íŠ¸ ë“œë¼ì´ë¸Œ ìŠ¤í‚¬ ì‚¬ìš©ì‹œ "ì¡°ê±´ì´ ë§ì§€ ì•Šì•„ì„œ ì‚¬ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤."
 			if( g_pAVATAR->GetCur_PatHP() <= 0 )
 			{
 				g_itMGR.AppendChatMsg( STR_NOTIFY_06, IT_MGR::CHAT_TYPE_SYSTEM, D3DCOLOR_ARGB( 255, 206, 223, 136) );
@@ -267,18 +267,18 @@ bool CBasicCommand::Execute()
 		}
 		break;
 
-		//2ÀÎ½Â Ä«Æ®
-	case COMMON_COMMAND_BOARD_CART: //Ä«Æ® 2ÀÎ½Â¿¡ À¯Àú¸¦ ÅÂ¿ì°í ³»¸®°í ÇØÁÖ´Â ½ºÅ³.
+		//2ì¸ìŠ¹ ì¹´íŠ¸
+	case COMMON_COMMAND_BOARD_CART: //ì¹´íŠ¸ 2ì¸ìŠ¹ì— ìœ ì €ë¥¼ íƒœìš°ê³  ë‚´ë¦¬ê³  í•´ì£¼ëŠ” ìŠ¤í‚¬.
 		{
 			//Exception Proc.//
-			//º¸Á¶¼®¿¡ Ä³¸¯ÅÍ°¡ Á¸ÀçÇÏ¸é ÇÏÂ÷.
+			//ë³´ì¡°ì„ì— ìºë¦­í„°ê°€ ì¡´ì¬í•˜ë©´ í•˜ì°¨.
 			if( g_pAVATAR->IsRideUser() || g_pAVATAR->GetRideUserIndex() )
 			{
 				g_pNet->Send_cli_TOGGLE( TOGGLE_TYPE_DRIVE );
 				return false;
 			}
 
-			//¾Æ¹ÙÅ¸°¡ Ä«Æ®¿¡ Å¾½ÂÇÏ°í ÀÖ¾î¾ß ÇÔ.
+			//ì•„ë°”íƒ€ê°€ ì¹´íŠ¸ì— íƒ‘ìŠ¹í•˜ê³  ìˆì–´ì•¼ í•¨.
 			if( g_pAVATAR->GetPetMode() < 0 )
 			{
 				g_itMGR.AppendChatMsg(STR_MUST_BOARD_CART_ABLE_TO_USE, IT_MGR::CHAT_TYPE_SYSTEM, D3DCOLOR_ARGB( 255, 206, 223, 136) );
@@ -286,7 +286,7 @@ bool CBasicCommand::Execute()
 			}
 
 #ifdef _GBC
-			//º¸Á¶¼®ÀÌ ÀåÂøµÇ¾î ÀÖ¾î¾ß ÇÔ.
+			//ë³´ì¡°ì„ì´ ì¥ì°©ë˜ì–´ ìˆì–´ì•¼ í•¨.
 			if( g_pAVATAR->IsRideItem( RIDE_PART_ABIL ) == false )
 			{
 				g_itMGR.AppendChatMsg(STR_AFFIX_RUMBLE, IT_MGR::CHAT_TYPE_SYSTEM, D3DCOLOR_ARGB( 255, 206, 223, 136) );
@@ -298,14 +298,14 @@ bool CBasicCommand::Execute()
 			int iTargetObjClientIndex = g_UserInputSystem.GetCurrentTarget();
 			CObjAVT* pAVT = g_pObjMGR->Get_CharAVT( iTargetObjClientIndex, true );
 
-			// ÄÉ¸¯ÅÍ¸¦ ¼±ÅÃÇØ¾ß ÇÕ´Ï´Ù.
+			// ì¼€ë¦­í„°ë¥¼ ì„ íƒí•´ì•¼ í•©ë‹ˆë‹¤.
 			if( !pAVT )
 			{
 				g_itMGR.AppendChatMsg(STR_REQUEST_SELECT_CHARACTER, IT_MGR::CHAT_TYPE_SYSTEM, D3DCOLOR_ARGB( 255, 206, 223, 136) );				
 				return false;
 			}
 
-			// °Å¸®°¡ ³Ê¹« ¸Ø´Ï´Ù. (200 ÀÌÇÏ == 2¹ÌÅÍ)
+			// ê±°ë¦¬ê°€ ë„ˆë¬´ ë©ˆë‹ˆë‹¤. (200 ì´í•˜ == 2ë¯¸í„°)
 #ifdef _DEBUG
 			CStr::DebugString( "Dist: %f \n", g_pAVATAR->Get_DISTANCE( pAVT ) );
 			CStr::DebugString( "SKILL_SCOPE: %f \n", SKILL_SCOPE(pSkill->GetSkillIndex()) );			
@@ -317,14 +317,14 @@ bool CBasicCommand::Execute()
 				return false;
 			}
 
-			//Ä«Æ®¸¦ ÅÂ¿ï¼ö ¾ø´Â »óÅÂ ÀÔ´Ï´Ù. (»ó´ë¹æÀÌ Ä«Æ® Å¾½ÂÇÏ°í ÀÖÀ½.)
+			//ì¹´íŠ¸ë¥¼ íƒœìš¸ìˆ˜ ì—†ëŠ” ìƒíƒœ ì…ë‹ˆë‹¤. (ìƒëŒ€ë°©ì´ ì¹´íŠ¸ íƒ‘ìŠ¹í•˜ê³  ìˆìŒ.)
 			if( pAVT->GetPetMode() >= 0 )
 			{
 				g_itMGR.AppendChatMsg(STR_CANT_BOARD_CONDITION, IT_MGR::CHAT_TYPE_SYSTEM, D3DCOLOR_ARGB( 255, 206, 223, 136) );
 				return false;
 			}			
 
-			//³Ê¹« ¹«°Å¿ö¼­ ÅÂ¿ï ¼ö ¾ø½À´Ï´Ù.
+			//ë„ˆë¬´ ë¬´ê±°ì›Œì„œ íƒœìš¸ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 			if( pAVT->GetWeightRate() >= 100 )
 			{
 				g_itMGR.AppendChatMsg(STR_CANT_TOO_HEAVY, IT_MGR::CHAT_TYPE_SYSTEM, D3DCOLOR_ARGB( 255, 206, 223, 136) );
@@ -358,10 +358,10 @@ bool CBasicCommand::Execute()
 				{
 					if( CParty::GetInstance().HasParty() )
 					{
-						///ÆÄÆ¼ ÃÊ´ë
+						///íŒŒí‹° ì´ˆëŒ€
 						if( CParty::GetInstance().IsPartyLeader() )
 						{
-							///ÆÄÆ¼ Ç®
+							///íŒŒí‹° í’€
 							if( CParty::GetInstance().IsPartyFull() )
 								g_itMGR.AppendChatMsg(STR_PARTY_IS_FULL, IT_MGR::CHAT_TYPE_SYSTEM );
 							else
@@ -389,10 +389,10 @@ bool CBasicCommand::Execute()
 			int iTargetObjClientIndex = g_UserInputSystem.GetCurrentTarget();
 
 						
-			if( iTargetObjClientIndex != g_pAVATAR->Get_INDEX()	)				// Å¸°ÙÀÌ ÀÚ½ÅÀÏ °æ¿ì ¾ÈµÊ				
+			if( iTargetObjClientIndex != g_pAVATAR->Get_INDEX()	)				// íƒ€ê²Ÿì´ ìì‹ ì¼ ê²½ìš° ì•ˆë¨				
 			{
 				CObjAVT* pObjAVT = g_pObjMGR->Get_CharAVT( iTargetObjClientIndex , true );
-				if( pObjAVT && !pObjAVT->IsRideUser() ) //È«±Ù : º¸Á¶¼®¿¡ Åº ¾Æ¹ÙÅ¸¿¡°Ô °Å·¡ ±İÁö.
+				if( pObjAVT && !pObjAVT->IsRideUser() ) //í™ê·¼ : ë³´ì¡°ì„ì— íƒ„ ì•„ë°”íƒ€ì—ê²Œ ê±°ë˜ ê¸ˆì§€.
 				{
 					if( CExchange::GetInstance().SendCliTradeReq( g_pObjMGR->Get_ServerObjectIndex(iTargetObjClientIndex) ) )
 					{
@@ -431,7 +431,7 @@ CEmotionCommand::~CEmotionCommand()
 
 bool CEmotionCommand::Execute()
 {	
-	/// ±âº»¸í·ÉµéÀº Á¤Áö»óÅÂ¿¡¼­¸¸ µ¿ÀÛÇÑ´Ù.
+	/// ê¸°ë³¸ëª…ë ¹ë“¤ì€ ì •ì§€ìƒíƒœì—ì„œë§Œ ë™ì‘í•œë‹¤.
 	if( g_pAVATAR->Get_STATE() != CS_STOP && g_pAVATAR->Get_STATE() != CS_SIT )
 	{
 		g_itMGR.AppendChatMsg( STR_ACTION_COMMAND_STOP_STATE_FAILED, IT_MGR::CHAT_TYPE_SYSTEM);
@@ -444,11 +444,11 @@ bool CEmotionCommand::Execute()
 
 
 	/// 
-	/// !! 2005/01/10 ¼­¹ö¿¡ ¸ğ¼Ç º¯°æÀ» ¿äÃ»ÇÒ¶§¿¡´Â ¸ğ¼ÇÅ¸ÀÔ¹øÈ£¸¦ ¿äÃ»ÇÑ´Ù.
+	/// !! 2005/01/10 ì„œë²„ì— ëª¨ì…˜ ë³€ê²½ì„ ìš”ì²­í• ë•Œì—ëŠ” ëª¨ì…˜íƒ€ì…ë²ˆí˜¸ë¥¼ ìš”ì²­í•œë‹¤.
 	///
 
 
-	// ¿À¸¥¼Õ ¹«±â Á¾·ù¿¡µû¶ó...
+	// ì˜¤ë¥¸ì† ë¬´ê¸° ì¢…ë¥˜ì—ë”°ë¼...
 	//short nWeaponTYPE = WEAPON_MOTION_TYPE( g_pAVATAR->Get_R_WEAPON() );
 	int iActionType = SKILL_ANI_ACTION_TYPE( pSkill->GetSkillIndex() );
 
@@ -515,11 +515,11 @@ CSkillCommand::~CSkillCommand()
 {
 }
 
-/// Å¸°ÙÀÌ ÇÊ¿äÄ¡ ¾ÊÀº ½ºÅ³µé( ¼¿ÇÁ °ü·Ã )
+/// íƒ€ê²Ÿì´ í•„ìš”ì¹˜ ì•Šì€ ìŠ¤í‚¬ë“¤( ì…€í”„ ê´€ë ¨ )
 bool CSkillCommand::Execute()
 {	
 	//-------------------------------------------------------------------------------
-	/// ¾É±â »óÅÂ¿¡¼± ±İÁö..
+	/// ì•‰ê¸° ìƒíƒœì—ì„  ê¸ˆì§€..
 	//-------------------------------------------------------------------------------				
 	if( g_pAVATAR->Get_STATE() == CS_SIT )
 		return false;
@@ -533,7 +533,7 @@ bool CSkillCommand::Execute()
 	{
 		vPosTO = pObjCHAR->Get_CurPOS();
 	}
-	// È°¼º ½ºÅ³ ÀÛµ¿...
+	// í™œì„± ìŠ¤í‚¬ ì‘ë™...
 	g_SkillManager.FireSkill( m_iSlotNO, g_UserInputSystem.GetCurrentTarget(), vPosTO );
 	return true;
 }

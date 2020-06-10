@@ -14,7 +14,7 @@ CPatITEM::~CPatITEM ()
 
 
 //-------------------------------------------------------------------------------------------------
-// 2004/9/10ÀÏ nAvy(¼öÁ¤) - client´Â Desc¸¦ false·Î LoadÇÏ°í ÀÖ¾ú´Ù.
+// 2004/9/10ì¼ nAvy(ìˆ˜ì •) - clientëŠ” Descë¥¼ falseë¡œ Loadí•˜ê³  ìˆì—ˆë‹¤.
 bool CPatITEM::LoadPatITEM(const char *szFileName)
 {
 

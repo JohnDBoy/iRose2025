@@ -92,7 +92,7 @@ bool CZoneLIST::InitZoneLIST (char *szBaseDIR)
         }
 		m_pValidZONE[ nZ ] = true;
 
-		// ·ÎÄÃ·Î ½ÇÇàµÇ´Â Á¸ÀÎ°¡ ???
+		// ë¡œì»¬ë¡œ ì‹¤í–‰ë˜ëŠ” ì¡´ì¸ê°€ ???
 		if ( !CLIB_GameSRV::GetInstance()->IsLocalCheckedZONE(nZ) )
 			continue;
 
@@ -216,7 +216,7 @@ tagEVENTPOS *CZoneLIST::Add_EventPOS (t_HASHKEY HashKEY, short nZoneNO, char *sz
 /*
 	pEventPos = m_PosLIST.Search( HashKEY );
 	while( pEventPos ) {
-		// ºÎÈ° Æ÷Áö¼ÇÀº ¸ðµÎ °°Àº ÀÌ¸§ÀÌ´Ù.
+		// ë¶€í™œ í¬ì§€ì…˜ì€ ëª¨ë‘ ê°™ì€ ì´ë¦„ì´ë‹¤.
 		//_ASSERT( pEventPos->m_nZoneNO != nZoneNO );
 		pEventPos = m_PosLIST.SearchContinue( HashKEY );
 	}
@@ -316,7 +316,7 @@ void CZoneLIST::Send_gsv_ANNOUNCE_CHAT( short nZoneNO, char *szMessage, char *sz
 	if ( NULL == szMessage || NULL == m_ppThreadZONE[ nZoneNO ] )
 		return;
 
-	g_LOG.CS_ODS( 0xffff, "[%d/%s:Á¸°øÁö] %s\n", nZoneNO, m_ppThreadZONE[ nZoneNO ]->Get_NAME(), szMessage );
+	g_LOG.CS_ODS( 0xffff, "[%d/%s:ì¡´ê³µì§€] %s\n", nZoneNO, m_ppThreadZONE[ nZoneNO ]->Get_NAME(), szMessage );
 
 	t_PACKET *pPacket = (t_PACKET*)new char[ MAX_PACKET_SIZE ];
 
@@ -345,10 +345,10 @@ void CZoneLIST::Send_gsv_ANNOUNCE_CHAT( char *szMessage, char *szAccount )
 
 	Packet_AppendString( pPacket, szMessage );
 	if ( szAccount ) {
-		g_LOG.CS_ODS( 0xffff, "[ÀüÃ¼°øÁö:%s] %s\n", szAccount, szMessage );
+		g_LOG.CS_ODS( 0xffff, "[ì „ì²´ê³µì§€:%s] %s\n", szAccount, szMessage );
 		Packet_AppendString( pPacket, szAccount );
 	} else {
-		g_LOG.CS_ODS( 0xffff, "[ÀüÃ¼°øÁö] %s\n", szMessage );
+		g_LOG.CS_ODS( 0xffff, "[ì „ì²´ê³µì§€] %s\n", szMessage );
 	}
 	
 	this->Send_gsv_ANNOUNCE_CHAT( pPacket );

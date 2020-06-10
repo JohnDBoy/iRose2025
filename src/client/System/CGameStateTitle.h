@@ -3,9 +3,9 @@
 #include "cgamestate.h"
 
 /**
-* Å¬¶óÀÌ¾ğÆ® ½ÇÇàÈÄ ·Î±×ÀÎ »óÅÂ ÀÌÀü, Å¸ÀÌÆ²À» º¸¿©ÁÖ¸ç µ¥ÀÌÅ¸¸¦ ·ÎµùÇÏ´Â State Class
+* í´ë¼ì´ì–¸íŠ¸ ì‹¤í–‰í›„ ë¡œê·¸ì¸ ìƒíƒœ ì´ì „, íƒ€ì´í‹€ì„ ë³´ì—¬ì£¼ë©° ë°ì´íƒ€ë¥¼ ë¡œë”©í•˜ëŠ” State Class
 *
-* @Author	ÃÖÁ¾Áø
+* @Author	ìµœì¢…ì§„
 * @Date		2005/9/15
 */
 class CGameStateTitle :	public CGameState
@@ -30,7 +30,7 @@ protected:
 	void Draw();
 
 	///
-	/// system ¹è°æ¿¡ »ç¿ëµÉ Á¸¹øÈ£
+	/// system ë°°ê²½ì— ì‚¬ìš©ë  ì¡´ë²ˆí˜¸
 	///
 	static int	m_iBackGroundZone;
 	HNODE		m_hTitleTexture;

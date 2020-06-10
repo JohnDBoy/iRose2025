@@ -65,7 +65,7 @@ void iocpSOCKET::Free_SendIODATA (tagIO_DATA *pSendDATA)
 {
 //    g_LOG.CS_ODS( 0xffff, "<< Free_SendIODATA :: %d \n", pSendDATA->m_pNODE );
 
-	// ´Ù¸¥ »ç¿ëÀÚ¿¡°Ô Àü¼ÛÁß¿¡ ÀÖÀ»°æ¿ì LockPacketÀÌ °É·Á ÀÖ¾î ´ë±â»óÅÂ¿¡ ºüÁöµµ·Ï...
+	// ë‹¤ë¥¸ ì‚¬ìš©ìžì—ê²Œ ì „ì†¡ì¤‘ì— ìžˆì„ê²½ìš° LockPacketì´ ê±¸ë ¤ ìžˆì–´ ëŒ€ê¸°ìƒíƒœì— ë¹ ì§€ë„ë¡...
     Packet_DecRefCount( pSendDATA->m_pCPacket );
     delete pSendDATA->m_pNODE;
     // pSendDATA->m_pNODE = NULL;  <-- ERROR !!!  so can't use SAFE_DELETE( pSendDATA->m_pNODE );
@@ -133,7 +133,7 @@ void iocpSOCKET::Clear_LIST (void)
 }
 
 //-------------------------------------------------------------------------------------------------
-// pRecvNode¿¡ ÀÌ¾î ¹Þ±â.
+// pRecvNodeì— ì´ì–´ ë°›ê¸°.
 void iocpSOCKET::Recv_Continue (tagIO_DATA *pRecvDATA)
 {
     pRecvDATA->m_pCPacket->m_iRefCnt = 1;
@@ -158,7 +158,7 @@ void iocpSOCKET::Recv_Continue (tagIO_DATA *pRecvDATA)
 
 
 //-------------------------------------------------------------------------------------------------
-// »õ·Î ¹Þ±â.
+// ìƒˆë¡œ ë°›ê¸°.
 bool iocpSOCKET::Recv_Start (void)
 {
     classDLLNODE<tagIO_DATA> *pRecvNODE;
@@ -178,7 +178,7 @@ void iocpSOCKET::Recv_Complete (tagIO_DATA *pRecvDATA)
 {
     if ( pRecvDATA->m_dwIOBytes < sizeof(t_PACKETHEADER) ||
          (short)pRecvDATA->m_dwIOBytes < pRecvDATA->m_pCPacket->m_HEADER.m_nSize ) {
-        this->Recv_Continue( pRecvDATA );	// ÀÌ¾î ¹Þ±â.
+        this->Recv_Continue( pRecvDATA );	// ì´ì–´ ë°›ê¸°.
         return;
     } else
     if ( (short)pRecvDATA->m_dwIOBytes == pRecvDATA->m_pCPacket->m_HEADER.m_nSize ) {
@@ -190,7 +190,7 @@ void iocpSOCKET::Recv_Complete (tagIO_DATA *pRecvDATA)
         return;
     }
 
-    // ¹¶ÃÄ¿Â ÆÐÅ¶ ºÐ¸®.
+    // ë­‰ì³ì˜¨ íŒ¨í‚· ë¶„ë¦¬.
     t_PACKET *pPacket;
     short	  nRemainBytes;
 
@@ -199,11 +199,11 @@ void iocpSOCKET::Recv_Complete (tagIO_DATA *pRecvDATA)
     do {
         nRemainBytes -= pPacket->m_HEADER.m_nSize;
         if ( 0 == nRemainBytes ) {
-            // AddPacketToRecvList( pRecvNode );			// ¿Ï¼º ÆÐÅ¶ Ãß°¡
+            // AddPacketToRecvList( pRecvNode );			// ì™„ì„± íŒ¨í‚· ì¶”ê°€
             this->Recv_Done( pRecvDATA );
             this->Free_RecvIODATA( pRecvDATA );
 
-            this->Recv_Start ();						    // »õ·Î ¹Þ±â. :: RecvComplete
+            this->Recv_Start ();						    // ìƒˆë¡œ ë°›ê¸°. :: RecvComplete
             return;
         }
 
@@ -211,7 +211,7 @@ void iocpSOCKET::Recv_Complete (tagIO_DATA *pRecvDATA)
     } while ( nRemainBytes >= sizeof(t_PACKETHEADER) && nRemainBytes >= pPacket->m_HEADER.m_nSize ) ;
 
 
-    // ¸ðÀÚ¶õ ºÎºÐÀ» ´Ù½Ã ÀÐ¾îµéÀÏ µ¥ÀÌÅ¸ »ý¼º.
+    // ëª¨ìžëž€ ë¶€ë¶„ì„ ë‹¤ì‹œ ì½ì–´ë“¤ì¼ ë°ì´íƒ€ ìƒì„±.
     classDLLNODE<tagIO_DATA> *pNewNODE;
     pNewNODE = this->Alloc_RecvIODATA ();
     if ( NULL == pNewNODE )
@@ -219,18 +219,18 @@ void iocpSOCKET::Recv_Complete (tagIO_DATA *pRecvDATA)
     pNewNODE->DATA.m_dwIOBytes = nRemainBytes;
     ::CopyMemory (pNewNODE->DATA.m_pCPacket->m_pDATA, pPacket, nRemainBytes);
 
-    // ¾ÕºÎºÐÀÇ ¿Ï¼º ÆÐÅ¶µî·Ï.
+    // ì•žë¶€ë¶„ì˜ ì™„ì„± íŒ¨í‚·ë“±ë¡.
     pRecvDATA->m_dwIOBytes -= nRemainBytes;
     // AddPacketToRecvList( pRecvNode );
     this->Recv_Done( pRecvDATA );
     this->Free_RecvIODATA( pRecvDATA );
 
-    this->Recv_Continue( &pNewNODE->DATA );	    			// ÀÌ¾î ¹Þ±â.
+    this->Recv_Continue( &pNewNODE->DATA );	    			// ì´ì–´ ë°›ê¸°.
 }
 
 
 //-------------------------------------------------------------------------------------------------
-// pSendNode¿¡ ÀÌ¾î º¸³»±â.
+// pSendNodeì— ì´ì–´ ë³´ë‚´ê¸°.
 bool iocpSOCKET::Send_Continue (tagIO_DATA *pSendDATA)
 {
 //	Log_String ("     Send Continue[ %d:%d ] !!!\n", m_iIndex, pSendNode->DATA.m_pCPacket->m_iPoolIndex);
@@ -244,7 +244,7 @@ bool iocpSOCKET::Send_Continue (tagIO_DATA *pSendDATA)
         if ( ERROR_IO_PENDING != GetLastError () ) {
             DWORD dwCode = ::GetLastError ();
             
-            // Á¢¼Ó ÇØÁ¦~
+            // ì ‘ì† í•´ì œ~
             this->CloseSocket ();
             ;
             g_LOG.CS_ODS(0xffff, "$$$$$$$      ERROR[ %d:%s ] ::: WriteFile \n", dwCode, CUtil::GetLastErrorMsg( dwCode ));
@@ -302,9 +302,9 @@ void iocpSOCKET::Send_Complete (tagIO_DATA *pSendDATA)
             }
 #endif
 */
-            // ** ¾Æ·¡ ¶óÀÎ¿¡¼­ m_SendList¿¡¼­ pSendNode¸¦ »èÁ¦ÇÏ´Â °úÁ¤¿¡¼­
-            //    ¿À·ù°¡ ³­°ÍÀº pUSER°¡ ÀÌ¹Ì Á¢¼ÓÁ¾·áµÇ¾î ClearIOList() ÇÔ¼ö¸¦
-            //    ½ÇÇàÇÏ¿© m_SendList°¡ ÀÌ¹Ì ºñ¾îÀÖ±â ¶§¹®ÀÌ´Ù.
+            // ** ì•„ëž˜ ë¼ì¸ì—ì„œ m_SendListì—ì„œ pSendNodeë¥¼ ì‚­ì œí•˜ëŠ” ê³¼ì •ì—ì„œ
+            //    ì˜¤ë¥˜ê°€ ë‚œê²ƒì€ pUSERê°€ ì´ë¯¸ ì ‘ì†ì¢…ë£Œë˜ì–´ ClearIOList() í•¨ìˆ˜ë¥¼
+            //    ì‹¤í–‰í•˜ì—¬ m_SendListê°€ ì´ë¯¸ ë¹„ì–´ìžˆê¸° ë•Œë¬¸ì´ë‹¤.
             m_SendList.DeleteNode( pSendDATA->m_pNODE );
             this->Free_SendIODATA( pSendDATA );
 

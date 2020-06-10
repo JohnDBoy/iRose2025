@@ -69,8 +69,8 @@ void Free_DEVICE (void)
 	::destZnzin();  
 }
 //------------------------------------------------------------------------------------------------
-// 2005. 5. 6. Á¶È£µ¿
-// Áßº¹ ½ÇÇà Ã¼Å©¿ë ¼ÒÄÏ ÇØÁ¦
+// 2005. 5. 6. ì¡°í˜¸ë™
+// ì¤‘ë³µ ì‹¤í–‰ ì²´í¬ìš© ì†Œì¼“ í•´ì œ
 SOCKET listener;
 
 void CloseDuplicateAppSocket (void)
@@ -79,13 +79,13 @@ void CloseDuplicateAppSocket (void)
 	::WSACleanup();
 }
 
-// Áßº¹ ½ÇÇà Ã¼Å© : Æ¯Á¤ Æ÷Æ®°¡ Áßº¹ »ı¼º ¾ÈµÇ´Â Á¡À» ÀÌ¿ë.
+// ì¤‘ë³µ ì‹¤í–‰ ì²´í¬ : íŠ¹ì • í¬íŠ¸ê°€ ì¤‘ë³µ ìƒì„± ì•ˆë˜ëŠ” ì ì„ ì´ìš©.
 bool IsDuplicateApp (void)
 {
 	WSADATA wsadata;
 	::WSAStartup( MAKEWORD( 2, 2 ), &wsadata );
 
-	// socket »ı¼º
+	// socket ìƒì„±
 	listener = ::socket(AF_INET, SOCK_STREAM, 0);
 	// listening
 	sockaddr_in addr;
@@ -100,7 +100,7 @@ bool IsDuplicateApp (void)
 	if( result == SOCKET_ERROR )
 	{
 		CloseDuplicateAppSocket();
-		MessageBox(NULL, "ÀÌ¹Ì °ÔÀÓÀÌ ½ÇÇà ÁßÀÔ´Ï´Ù !", "¿¡·¯", MB_OK );
+		MessageBox(NULL, "ì´ë¯¸ ê²Œì„ì´ ì‹¤í–‰ ì¤‘ì…ë‹ˆë‹¤ !", "ì—ëŸ¬", MB_OK );
 		return TRUE;
 	}
 
@@ -156,30 +156,30 @@ int APIENTRY WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmd
 		return 0;
 
 	//-------------------------------------------------------------------------------
-	/// À©µµ¿ì »ı¼º½Ã ÇØ»óµµ¿¡ °üÇÑ Data°¡ ÇÊ¿äÇÏ¿© ÀÌ°÷¿¡¼­ ·ÎµåÇÑ´Ù.
+	/// ìœˆë„ìš° ìƒì„±ì‹œ í•´ìƒë„ì— ê´€í•œ Dataê°€ í•„ìš”í•˜ì—¬ ì´ê³³ì—ì„œ ë¡œë“œí•œë‹¤.
 	//-------------------------------------------------------------------------------	
 	g_TblResolution.Load2( "3DDATA\\STB\\RESOLUTION.STB",	false, false );
 	g_TblCamera.Load2( "3DDATA\\STB\\LIST_CAMERA.STB" ,false, false );
 
 	//-------------------------------------------------------------------------------
-	///Å¬¶óÀÌ¾ğÆ®¿¡ ÀúÀåµÈ Data¸¦ ·ÎµåÇÑ´Ù.
+	///í´ë¼ì´ì–¸íŠ¸ì— ì €ì¥ëœ Dataë¥¼ ë¡œë“œí•œë‹¤.
 	//-------------------------------------------------------------------------------
 	g_ClientStorage.Load();
 
 	//-------------------------------------------------------------------------------
-	///ÀÌÀü ¿É¼Ç¿¡¼­ Á¶Á¤µÈ ÇØ»óµµÀÇ ÀÎµ¦½º¸¦ °¡Á®¿Í¼­ g_TblResolutionÀ» ÂüÁ¶ÇÏ¿©
-	///ÇØ»óµµ¸¦ Á¶Á¤ÇÑ´Ù.
+	///ì´ì „ ì˜µì…˜ì—ì„œ ì¡°ì •ëœ í•´ìƒë„ì˜ ì¸ë±ìŠ¤ë¥¼ ê°€ì ¸ì™€ì„œ g_TblResolutionì„ ì°¸ì¡°í•˜ì—¬
+	///í•´ìƒë„ë¥¼ ì¡°ì •í•œë‹¤.
 	//-------------------------------------------------------------------------------	
-#pragma message("ÀúÀåµÈ ÇØ»óµµ¸¦ Å×½ºÆ®ÇØ¼­ ÇöÀç ½ÇÇà°¡´ÉÇÑÁö ÆÇ´ÜÇÏ°í ¾ÈµÇ¸é ¸Ş¼¼Áö ¹Ú½º ¶ç¿ì°í TriggerDetect¸¦ ½ÇÇà½ÃÅ²´Ù")
+#pragma message("ì €ì¥ëœ í•´ìƒë„ë¥¼ í…ŒìŠ¤íŠ¸í•´ì„œ í˜„ì¬ ì‹¤í–‰ê°€ëŠ¥í•œì§€ íŒë‹¨í•˜ê³  ì•ˆë˜ë©´ ë©”ì„¸ì§€ ë°•ìŠ¤ ë„ìš°ê³  TriggerDetectë¥¼ ì‹¤í–‰ì‹œí‚¨ë‹¤")
 	t_OptionResolution Resolution = g_ClientStorage.GetResolution();
-	/// ¹üÀ§°ª Ã¼Å© 
+	/// ë²”ìœ„ê°’ ì²´í¬ 
 	UINT iFullScreen = g_ClientStorage.GetVideoFullScreen();
 
 	g_pCApp->SetFullscreenMode( iFullScreen );
 	g_pCApp->CreateWND ("classCLIENT", "Tsuki Online [loading]", Resolution.iWidth, Resolution.iHeight,Resolution.iDepth, hInstance);
 
 #ifndef _DEBUG
-	// ½Ã½ºÅÛ Á¤º¸¸¦ ¸ğÀ½
+	// ì‹œìŠ¤í…œ ì •ë³´ë¥¼ ëª¨ìŒ
 	TI_ReadSysInfoFile ();
 #endif
 
@@ -194,11 +194,11 @@ int APIENTRY WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmd
 #ifndef singleclient
 		CGame::GetInstance().GameLoop();
 #else
-		///Áßº¹½ÇÇà¸·Àº ¹öÁ¯
+		///ì¤‘ë³µì‹¤í–‰ë§‰ì€ ë²„ì ¼
 		HANDLE  hMUTEX = NULL;
 		const char szMUTEX[] = "ROSEonline";
 
-		/// Áßº¹½ÇÇà Ã¼Å©...		2004. 9. 30 by icarus
+		/// ì¤‘ë³µì‹¤í–‰ ì²´í¬...		2004. 9. 30 by icarus
 #ifdef	_DEBUG
 		if ( !g_GameDATA.m_bCheckDupRUN ) 
 		{
@@ -216,9 +216,9 @@ int APIENTRY WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmd
 					::CloseHandle( hMUTEX );
 					break;
 				case ERROR_ALREADY_EXISTS :
-					// ÀÌ¹Ì ´Ù¸¥ Å¬¶óÀÌ¾ğÆ®°¡ ½ÇÇàÁßÀÌ´Ù..
+					// ì´ë¯¸ ë‹¤ë¥¸ í´ë¼ì´ì–¸íŠ¸ê°€ ì‹¤í–‰ì¤‘ì´ë‹¤..
 				default :
-					// ¹¹³Ä ???
+					// ë­ëƒ ???
 					break;
 			}				
 			/*	
@@ -230,7 +230,7 @@ int APIENTRY WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmd
 
 			::ReleaseMutex( hMUTEX );
 			::CloseHandle( hMUTEX );
-			} /// else ÀÌ¹Ì ´Ù¸¥ Å¬¶óÀÌ¾ğÆ®°¡ ½ÇÇàÁßÀÌ´Ù..
+			} /// else ì´ë¯¸ ë‹¤ë¥¸ í´ë¼ì´ì–¸íŠ¸ê°€ ì‹¤í–‰ì¤‘ì´ë‹¤..
 			*/
 		}
 #endif

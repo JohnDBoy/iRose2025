@@ -55,7 +55,7 @@ void CLS_Server::Inc_UserCNT ()
 
 	g_pListSERVER->m_iCurUserCNT ++;
 	if ( g_pListSERVER->m_iCurUserCNT > g_pListSERVER->m_iMaxUserCNT ) {
-		// ÃÖ´ë µ¿Á¢ °»½Å
+		// ìµœëŒ€ ë™ì ‘ ê°±ì‹ 
 		g_pListSERVER->m_iMaxUserCNT = g_pListSERVER->m_iCurUserCNT;
 	}
 
@@ -108,7 +108,7 @@ bool  CLS_Server::_Init (TCustomWinSocket *pSocket, DWORD dwSocketID)
                     "unknown",
                     "unknown",
                     stTime,         //
-                    "0",            // Á¢¼Ó ±ÇÇÑ
+                    "0",            // ì ‘ì† ê¶Œí•œ
                     NULL);
     m_pListITEM->Data = (void*) this;
 
@@ -125,7 +125,7 @@ void  CLS_Server::Free (void)
 
     BCB_Socket::_Free ();
     */
-    // ÀÌ ¼·¿¡ Á¢¼ÓÇß´ø ¸ðµç °èÁ¤À» »èÁ¦ÇÑ´Ù...
+    // ì´ ì„­ì— ì ‘ì†í–ˆë˜ ëª¨ë“  ê³„ì •ì„ ì‚­ì œí•œë‹¤...
     classDLLNODE< CLS_Account* > *pNODE;
     CLS_Account *pCAccount;
 
@@ -135,7 +135,7 @@ void  CLS_Server::Free (void)
     while( pNODE ) {
         pCAccount = pNODE->DATA;
 
-        // ¾Æ·¡ ¼ø¼­ Æ²¸®¸é »¶~~ !!!
+        // ì•„ëž˜ ìˆœì„œ í‹€ë¦¬ë©´ ë»‘~~ !!!
         m_AccountLIST.DeleteNode( pNODE );
         g_pThreadSQL->Add_LogOutUSER( pCAccount );
 
@@ -298,7 +298,7 @@ bool CLS_Server::Recv_wls_CHANNEL_LIST (t_PACKET *pPacket)
 	}
 	this->m_csLIST.Unlock ();
 
-	// Ã¤³Î °¹¼ö...
+	// ì±„ë„ ê°¯ìˆ˜...
 	this->LockSOCKET ();
 	if ( this->m_pSrvListITEM ) {
 		SHO_LS::GetInstance()->ExeAPI()->SetListItemINT( this->m_pSrvListITEM, LIST_COL_CHANNELS, pPacket->m_wls_CHANNEL_LIST.m_btChannelCNT );
@@ -327,11 +327,11 @@ bool CLS_Server::Send_wls_CONFIRM_ACCOUNT_REPLY (BYTE btResult, DWORD dwLSID, DW
 	pCPacket->m_wls_CONFIRM_ACCOUNT_REPLY.m_dwPayFLAG   = dwPayFLAG;
 	pCPacket->m_wls_CONFIRM_ACCOUNT_REPLY.m_btChannelNO = btChannelNO;
 /*
-	pCPacket->m_wls_CONFIRM_ACCOUNT_REPLY.m_bFirstZONE  = false;		// Á¸¼­¹ö¿¡¼­¸¸ »ç¿ëÇÔ...
-	pCPacket->m_wls_CONFIRM_ACCOUNT_REPLY.m_dwIngStatusFLAG = 0;		// Á¸¼­¹ö¿¡¼­¸¸ »ç¿ëÇÔ...
+	pCPacket->m_wls_CONFIRM_ACCOUNT_REPLY.m_bFirstZONE  = false;		// ì¡´ì„œë²„ì—ì„œë§Œ ì‚¬ìš©í•¨...
+	pCPacket->m_wls_CONFIRM_ACCOUNT_REPLY.m_dwIngStatusFLAG = 0;		// ì¡´ì„œë²„ì—ì„œë§Œ ì‚¬ìš©í•¨...
 
 #ifndef	__SKIP_WS_PARTY
-	pCPacket->m_wls_CONFIRM_ACCOUNT_REPLY.m_wPartyWSID  = 0;			// Á¸¼­¹ö¿¡¼­¸¸ »ç¿ëÇÔ...
+	pCPacket->m_wls_CONFIRM_ACCOUNT_REPLY.m_wPartyWSID  = 0;			// ì¡´ì„œë²„ì—ì„œë§Œ ì‚¬ìš©í•¨...
 #endif
 */
     if ( szAccount )
@@ -362,14 +362,14 @@ bool CLS_Server::Recv_zws_CONFIRM_ACCOUNT_REQ (t_PACKET *pPacket)
     pCAccount = g_pListWAIT->Remove_FromLIST( pPacket->m_zws_CONFIRM_ACCOUNT_REQ.m_dwServerID );
     if ( NULL == pCAccount ) {
 		LogString(0xffff, "LSID[ %d ] not found\n", pPacket->m_zws_CONFIRM_ACCOUNT_REQ.m_dwServerID );
-        // ¸øÃ£¾Ò´Ù...
+        // ëª»ì°¾ì•˜ë‹¤...
         return this->Send_wls_CONFIRM_ACCOUNT_REPLY( RESULT_CONFIRM_ACCOUNT_TIME_OUT,
                         pPacket->m_zws_CONFIRM_ACCOUNT_REQ.m_dwServerID,
                         pPacket->m_zws_CONFIRM_ACCOUNT_REQ.m_dwClientID, 0 );
     }
 
     if ( pCAccount->m_dwLSID != pPacket->m_zws_CONFIRM_ACCOUNT_REQ.m_dwServerID ) {
-        // ÀÌ»óÇÑ Çö»óÀÌ´Ù...
+        // ì´ìƒí•œ í˜„ìƒì´ë‹¤...
 		g_LOG.CS_ODS(0xffff, "??? Mismatch LSID  account: %s \n", pCAccount->m_Account.Get() );
 		g_pListWAIT->Mem_DEL( pCAccount );
 
@@ -388,7 +388,7 @@ bool CLS_Server::Recv_zws_CONFIRM_ACCOUNT_REQ (t_PACKET *pPacket)
 			szOriPass [ 32 ] = 0;
 			szRecvPass[ 32 ] = 0;
 
-            // ºñ¹Ð¹øÈ£ ¿À·ù !!! ÀÌ·± °æ¿ì°¡ ... ÇØÅ· ???
+            // ë¹„ë°€ë²ˆí˜¸ ì˜¤ë¥˜ !!! ì´ëŸ° ê²½ìš°ê°€ ... í•´í‚¹ ???
 			g_LOG.CS_ODS(0xffff, "??? Mismatch LS<->WS password, account: %sLSID:%d, %s, %s\n", 
 					pCAccount->m_Account.Get(),
 					pPacket->m_zws_CONFIRM_ACCOUNT_REQ.m_dwServerID,
@@ -403,8 +403,8 @@ bool CLS_Server::Recv_zws_CONFIRM_ACCOUNT_REQ (t_PACKET *pPacket)
 
     if ( g_pListJOIN->Search_ACCOUNT( pCAccount->m_Account.Get() ) ) {
 		g_LOG.CS_ODS(0xffff, "!!! Duplicated login account: %s \n", pCAccount->m_Account.Get() );
-        // ÀÌ¹Ì ·Î±×ÀÎµÈ ¾ÆµÚ´Ù...
-        // ´ë±â ¸ñ·Ï¿¡¼­ »èÁ¦...
+        // ì´ë¯¸ ë¡œê·¸ì¸ëœ ì•„ë’¤ë‹¤...
+        // ëŒ€ê¸° ëª©ë¡ì—ì„œ ì‚­ì œ...
 		g_pListWAIT->Mem_DEL( pCAccount );
 
         return this->Send_wls_CONFIRM_ACCOUNT_REPLY( RESULT_CONFIRM_ACCOUNT_ALREADY_LOGGEDIN,
@@ -439,8 +439,8 @@ bool CLS_Server::Recv_zws_CONFIRM_ACCOUNT_REQ (t_PACKET *pPacket)
 
 //-------------------------------------------------------------------------------------------------
 /*
-    ·Î±×ÀÎ ¼­¹ö°¡ »¸¾î¼­ ´Ù½Ã ½ÃÀÛµÉ°æ¿ì
-    °¢ °ÔÀÓ ¼­¹ö¿¡¼­ Á¢¼ÓµÇ¾î ÀÖ´Â »ç¿ëÀÚ ¸®½ºÆ®¸¦ º¸³»´Â ÆÐÅ¶ÀÌ´Ù...
+    ë¡œê·¸ì¸ ì„œë²„ê°€ ë»—ì–´ì„œ ë‹¤ì‹œ ì‹œìž‘ë ê²½ìš°
+    ê° ê²Œìž„ ì„œë²„ì—ì„œ ì ‘ì†ë˜ì–´ ìžˆëŠ” ì‚¬ìš©ìž ë¦¬ìŠ¤íŠ¸ë¥¼ ë³´ë‚´ëŠ” íŒ¨í‚·ì´ë‹¤...
 */
 bool CLS_Server::Recv_zws_ADD_ACCOUNT (t_PACKET *pPacket)
 {
@@ -454,8 +454,8 @@ bool CLS_Server::Recv_zws_ADD_ACCOUNT (t_PACKET *pPacket)
         CLS_Account *pCAccount = g_pListJOIN->Search_ACCOUNT( szAccount );
 
         if ( pCAccount ) {
-            // °ÔÀÓ ¼­¹ö¿¡´Â ³²¾Æ ÀÖ´Âµ¥ ¹ú½á Á¢¼ÓÇØ ¹ö·È³ª ??
-            // °ÔÀÓ ¼­¹ö¿¡ ÀÖ´Â »ç¿ëÀÚ¸¦ Â©¶ó¶ó !!!
+            // ê²Œìž„ ì„œë²„ì—ëŠ” ë‚¨ì•„ ìžˆëŠ”ë° ë²Œì¨ ì ‘ì†í•´ ë²„ë ¸ë‚˜ ??
+            // ê²Œìž„ ì„œë²„ì— ìžˆëŠ” ì‚¬ìš©ìžë¥¼ ì§¤ë¼ë¼ !!!
             if ( pCAccount->m_pWorldServer ) {
                 pCAccount->m_pWorldServer->Send_str_PACKET( WLS_KICK_ACCOUNT, szAccount );
             }
@@ -489,8 +489,8 @@ bool CLS_Server::Recv_zws_SUB_ACCOUNT( t_PACKET *pPacket )
         pCAccount->m_pWorldServer = NULL;
 		this->Dec_UserCNT();
 
-        // ¾Æ·¡ ¼ø¼­ Æ²¸®¸é »¶~~ !!!
-        m_AccountLIST.DeleteNode( pCAccount->m_pListNODE );	// »¶ :: °°Àº °èÁ¤¿¡ ´ëÇØ ¿©·¯¹ø È£ÃâµÇ´Âµí...
+        // ì•„ëž˜ ìˆœì„œ í‹€ë¦¬ë©´ ë»‘~~ !!!
+        m_AccountLIST.DeleteNode( pCAccount->m_pListNODE );	// ë»‘ :: ê°™ì€ ê³„ì •ì— ëŒ€í•´ ì—¬ëŸ¬ë²ˆ í˜¸ì¶œë˜ëŠ”ë“¯...
         g_pThreadSQL->Add_LogOutUSER( pCAccount );
 	} else {
 		LogString( 0xffff, "Recv_gsv_SUB_ACCOUNT:: Account[ %s ] not found in JOIN list\n", szAccount );
@@ -521,7 +521,7 @@ bool CLS_Server::Recv_wls_ACCOUNT_LIST( t_PACKET *pPacket )
 
 		pCAccount = g_pListJOIN->Search_ACCOUNT( szAccount );
 		if ( pCAccount ) {
-			// Áßº¹µÈ °èÁ¤ÀÌ ÀÖ³×~~~ ¿À·£µÈ ³Ñ Â©¶ó!!!
+			// ì¤‘ë³µëœ ê³„ì •ì´ ìžˆë„¤~~~ ì˜¤ëžœëœ ë„˜ ì§¤ë¼!!!
 			if ( pCAccount->m_dwLSID < pInfo->m_dwLSID && pCAccount->m_pWorldServer ) {
                 pCAccount->m_pWorldServer->Send_str_PACKET( WLS_KICK_ACCOUNT, szAccount );
 			} else 
@@ -529,7 +529,7 @@ bool CLS_Server::Recv_wls_ACCOUNT_LIST( t_PACKET *pPacket )
 	            this->Send_str_PACKET( WLS_KICK_ACCOUNT, szAccount );
 				continue;
 			} else {
-				// °°Àº³ÑÀÌ¾ß ???
+				// ê°™ì€ë„˜ì´ì•¼ ???
 				continue;
 			}
 		}
@@ -543,7 +543,7 @@ bool CLS_Server::Recv_wls_ACCOUNT_LIST( t_PACKET *pPacket )
 
 		if ( !g_pListJOIN->Insert_ACCOUNT( pCAccount, this ) ) {
 			g_pListJOIN->Mem_DEL( pCAccount );
-			// false¸é ¸Þ¸ð¸®°¡ ¾ø´Ù´Â°Í...
+			// falseë©´ ë©”ëª¨ë¦¬ê°€ ì—†ë‹¤ëŠ”ê²ƒ...
 			break;
 		}
 		m_AccountLIST.AppendNode( pCAccount->m_pListNODE );
@@ -557,8 +557,8 @@ bool CLS_Server::Recv_wls_ACCOUNT_LIST( t_PACKET *pPacket )
 bool CLS_Server::HandlePACKET (t_PACKETHEADER *pPacket )
 {
 /*
-    ÆÐÅ¶ µðÄÚµù...
-    ÆÐÅ¶ ÀÏ·Ã¹øÈ£, »çÀÌÁî, CRC, CheckSUMµîÀ¸·Î ÀûÇÕÆÐÅ¶ÀÎÁö ÆÇ´Ü.
+    íŒ¨í‚· ë””ì½”ë”©...
+    íŒ¨í‚· ì¼ë ¨ë²ˆí˜¸, ì‚¬ì´ì¦ˆ, CRC, CheckSUMë“±ìœ¼ë¡œ ì í•©íŒ¨í‚·ì¸ì§€ íŒë‹¨.
 */
 //    LogString (LOG_DEBUG, "        >> %d CLS_Server::HandlePACKET:: Type: 0x%x, Length: %d\n", this->m_iSocketIDX, pPacket->m_wType, pPacket->m_nSize);
 
@@ -649,16 +649,16 @@ void CLS_ListSERVER::Send_lsv_CHECK_ALIVE (void)
     pConnNODE = m_LIST.GetHeadNode ();
     while ( pConnNODE ) {
         if ( !pConnNODE->DATA->m_dwCheckSEC ) {
-            // Çö ¼­¹ö ip¿¡ »õ·Î¿î ¼­¹ö ¸®º×ÆÐÅ¶ Àü¼Û ???
+            // í˜„ ì„œë²„ ipì— ìƒˆë¡œìš´ ì„œë²„ ë¦¬ë¶“íŒ¨í‚· ì „ì†¡ ???
             
-            // ÀÌÀü ÆÐÅ¶¿¡ ´ëÇØ ÀÀ´äÀÌ ¾È¿Ô´Ù.
+            // ì´ì „ íŒ¨í‚·ì— ëŒ€í•´ ì‘ë‹µì´ ì•ˆì™”ë‹¤.
             /*
             classDLLNODE< CLS_Server > *pDelNODE;
             pDelNODE = pConnNODE;
             pConnNODE = m_LIST.GetNextNode (pConnNODE);
 
-            // ÀÌ¼­¹ö¿¡ ¹°¸° ¸ðµç »ç¿ëÀÚ Á¢¼Ó ²÷±â :: Disconnect È£ÃâÇÏ¸é ÀÚµ¿ »èÁ¦µÈ´Ù..
-            // this->Delete( pDelNODE );    <--- ÀÌ°É·Î »èÁ¦ÇÏ¸é ¼ÒÄÏÀº ²÷±âÁö ¾Ê³×±×·Á ¤Ñ,.¤Ñ
+            // ì´ì„œë²„ì— ë¬¼ë¦° ëª¨ë“  ì‚¬ìš©ìž ì ‘ì† ëŠê¸° :: Disconnect í˜¸ì¶œí•˜ë©´ ìžë™ ì‚­ì œëœë‹¤..
+            // this->Delete( pDelNODE );    <--- ì´ê±¸ë¡œ ì‚­ì œí•˜ë©´ ì†Œì¼“ì€ ëŠê¸°ì§€ ì•Šë„¤ê·¸ë ¤ ã…¡,.ã…¡
             pDelNODE->DATA.CloseSOCKET( 99 );
             */
 

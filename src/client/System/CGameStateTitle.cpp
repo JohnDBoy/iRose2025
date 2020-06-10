@@ -56,7 +56,7 @@ int CGameStateTitle::Enter( int iPrevStateID )
 
 
 	///
-	/// ¹è°æÀ¸·Î »ç¿ëÇÒ Á¸ ¹øÈ£¸¦ ¾ò¾î¿Â´Ù.
+	/// ë°°ê²½ìœ¼ë¡œ ì‚¬ìš©í•  ì¡´ ë²ˆí˜¸ë¥¼ ì–»ì–´ì˜¨ë‹¤.
 	///
 	m_iBackGroundZone = SC_GetBGZoneNO();
 	
@@ -76,7 +76,7 @@ int CGameStateTitle::Enter( int iPrevStateID )
 		tDone = false;
 		ResumeThread( m_hThread );
 	}
-	else///Thread »ý¼º ½ÇÆÐ½Ã ¸ÞÀÎ¾²·¹µå¿¡¼­ ·ÎµùÇÏ°í State¸¦ ¹Ù²Ù¾î ÁØ´Ù.
+	else///Thread ìƒì„± ì‹¤íŒ¨ì‹œ ë©”ì¸ì“°ë ˆë“œì—ì„œ ë¡œë”©í•˜ê³  Stateë¥¼ ë°”ê¾¸ì–´ ì¤€ë‹¤.
 #endif
 	{
 #ifndef __THREADED_LOADING
@@ -121,7 +121,7 @@ unsigned __stdcall CGameStateTitle::ThreadFunc( void* pArguments )
 	g_pTerrain->LoadZONE( CGameStateTitle::m_iBackGroundZone , false );
 
 	///
-	/// Ä«¸Þ¶ó ¸ð¼ÇÀº 32_32 ±âÁØÀ¸·Î ¸¸µé¾îÁ³´Ù.. ¸ð¼ÇÀû¿ëÀ» À§ÇØ¼­ º¸Á¤ÇÑ´Ù.
+	/// ì¹´ë©”ë¼ ëª¨ì…˜ì€ 32_32 ê¸°ì¤€ìœ¼ë¡œ ë§Œë“¤ì–´ì¡Œë‹¤.. ëª¨ì…˜ì ìš©ì„ ìœ„í•´ì„œ ë³´ì •í•œë‹¤.
 	///
 	D3DVECTOR PosENZIN;
 	PosENZIN.x = 520000.0f;
@@ -139,7 +139,7 @@ void CGameStateTitle::Draw()
 	::setClearColor( 1, 1, 1 );
 	if( g_pCApp->IsActive() )
 	{
-		if ( !::beginScene() ) //  µð¹ÙÀÌ½º°¡ ¼Õ½ÇµÈ »óÅÂ¶ó¸é 0À» ¸®ÅÏÇÏ¹Ç·Î, ¸ðµç ·»´õ¸µ ½ºÅµ
+		if ( !::beginScene() ) //  ë””ë°”ì´ìŠ¤ê°€ ì†ì‹¤ëœ ìƒíƒœë¼ë©´ 0ì„ ë¦¬í„´í•˜ë¯€ë¡œ, ëª¨ë“  ë Œë”ë§ ìŠ¤í‚µ
 		{
 			return;
 		}

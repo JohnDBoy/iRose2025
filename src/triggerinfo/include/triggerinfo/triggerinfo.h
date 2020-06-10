@@ -12,25 +12,25 @@
 
 #include <string>
 
-// system information À» ÀúÀåÇÏ´Â ÆÄÀÏ
+// system information ì„ ì €ì¥í•˜ëŠ” íŒŒì¼
 #define SYSINFO_FILE		"sysinfo.dat"
 #define SYSINFO_FILE_WEB	"sysinfow.dat"
-// adapter informationÀ» ÀúÀåÇÏ´Â ÆÄÀÏ
+// adapter informationì„ ì €ì¥í•˜ëŠ” íŒŒì¼
 #define ADPTINFO_FILE "sysadpt.dat"
 
 /********************************************************************
  * 
- * TI_GatherInfo - Á¤º¸¸¦ ¸ğÀº´Ù
- * hWnd			: D3D ¸¦ ÀÌ¿ëÇÏ±â À§ÇØ¼­
+ * TI_GatherInfo - ì •ë³´ë¥¼ ëª¨ì€ë‹¤
+ * hWnd			: D3D ë¥¼ ì´ìš©í•˜ê¸° ìœ„í•´ì„œ
  *
  */
 TRIGGERINFO_API const char * TI_GatherSysInfo (void);
 
 /********************************************************************
  * 
- * TI_GetInfo - ¾Ë¾Æ ³½ Á¤º¸¸¦ ¹®ÀÚ¿­ ¹öÆÛ¿¡ º¹»çÇÑ´Ù
- * buff			: ¿©±â¿¡ Ä«ÇÇ
- * iLength		: buffÀÇ Å©±â
+ * TI_GetInfo - ì•Œì•„ ë‚¸ ì •ë³´ë¥¼ ë¬¸ìì—´ ë²„í¼ì— ë³µì‚¬í•œë‹¤
+ * buff			: ì—¬ê¸°ì— ì¹´í”¼
+ * iLength		: buffì˜ í¬ê¸°
  *
  */
 TRIGGERINFO_API const char * TI_GetSysInfo (void);
@@ -39,16 +39,16 @@ TRIGGERINFO_API const char * TI_GetSysInfoForWeb (void);
 
 /********************************************************************
  * 
- * TI_SendHttpPostData - Post ¹æ½ÄÀ¸·Î µ¥ÀÌÅÍ¸¦ Àü¼ÛÇÑ´Ù. µ¥ÀÌÅÍ°¡ Å¬ °æ¿ì
- * szServerIP	: À¥¼­¹ö IP		¿¹) "218.55.179.114"
- * szPage		: ÆäÀÌÁö		¿¹) "/testaa/receive.php"
- * pData		: µ¥ÀÌÅÍ		¿¹) "v1=kkkkk&v2=rrrrrddd&v3=abcdefgh.."
+ * TI_SendHttpPostData - Post ë°©ì‹ìœ¼ë¡œ ë°ì´í„°ë¥¼ ì „ì†¡í•œë‹¤. ë°ì´í„°ê°€ í´ ê²½ìš°
+ * szServerIP	: ì›¹ì„œë²„ IP		ì˜ˆ) "218.55.179.114"
+ * szPage		: í˜ì´ì§€		ì˜ˆ) "/testaa/receive.php"
+ * pData		: ë°ì´í„°		ì˜ˆ) "v1=kkkkk&v2=rrrrrddd&v3=abcdefgh.."
  *
  */
 
 
 /******************************************************************
- * DectectµÇ¾î ÀÖ´Â Á¤º¸¸¦ ÀúÀåÇÏ°í ÀÖ´Â ÆÄÀÏ¿¡¼­ Á¤º¸¸¦ ÀĞ¾î¿Â´Ù
+ * Dectectë˜ì–´ ìˆëŠ” ì •ë³´ë¥¼ ì €ì¥í•˜ê³  ìˆëŠ” íŒŒì¼ì—ì„œ ì •ë³´ë¥¼ ì½ì–´ì˜¨ë‹¤
  */
 TRIGGERINFO_API const char * TI_ReadSysInfoFile (void);
 
@@ -57,8 +57,8 @@ TRIGGERINFO_API bool TI_SendHttpPostData (const char * szServerIP, const char * 
 
 /********************************************************************
  * 
- * TI_SendHttpQueryData - Äõ¸® ¹æ½ÄÀ¸·Î µ¥ÀÌÅÍ¸¦ Àü¼ÛÇÑ´Ù. µ¥ÀÌÅÍ°¡ ÀÛÀ» °æ¿ì
- * szURL	: À¥¼­¹ö IP		¿¹) "http:://218.55.179.114/aa.php?v1=kkkkk&v2=rrrrrddd&v3=abcdefgh.."
+ * TI_SendHttpQueryData - ì¿¼ë¦¬ ë°©ì‹ìœ¼ë¡œ ë°ì´í„°ë¥¼ ì „ì†¡í•œë‹¤. ë°ì´í„°ê°€ ì‘ì„ ê²½ìš°
+ * szURL	: ì›¹ì„œë²„ IP		ì˜ˆ) "http:://218.55.179.114/aa.php?v1=kkkkk&v2=rrrrrddd&v3=abcdefgh.."
  *
  */
 TRIGGERINFO_API bool TI_SendHttpQueryData (const char * szURL);
@@ -91,16 +91,16 @@ struct AdapterInformation
 };
 
 
-// Resolution Á¤º¸¸¦ ReleaseÇÑ´Ù
+// Resolution ì •ë³´ë¥¼ Releaseí•œë‹¤
 TRIGGERINFO_API void TI_ReleaseAdptInfo (void);
 
-// ÆÄÀÏ¿¡ ÀúÀåµÇ¾î ÀÖ´Â Á¤º¸¸¦ °¡Áö°í ¿Â´Ù.
+// íŒŒì¼ì— ì €ì¥ë˜ì–´ ìˆëŠ” ì •ë³´ë¥¼ ê°€ì§€ê³  ì˜¨ë‹¤.
 TRIGGERINFO_API AdapterInformation * TI_ReadAdptInfoFile (void);
 
-// ÇöÀç DectectµÇ¾î ÀÖ´Â Á¤º¸¸¦ °¡Áö°í ¿Â´Ù.
+// í˜„ì¬ Dectectë˜ì–´ ìˆëŠ” ì •ë³´ë¥¼ ê°€ì§€ê³  ì˜¨ë‹¤.
 TRIGGERINFO_API AdapterInformation * TI_GetAdptInfo (void);
 
-// Resolution °ü·Ã Á¤º¸¸¦ DectectÇÑ´Ù
+// Resolution ê´€ë ¨ ì •ë³´ë¥¼ Dectectí•œë‹¤
 TRIGGERINFO_API AdapterInformation * TI_GatherAdptInfo (void);
 
 TRIGGERINFO_API bool TI_DXInfo(void);

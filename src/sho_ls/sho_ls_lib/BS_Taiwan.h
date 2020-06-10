@@ -6,9 +6,9 @@
 #include "../../TwainSDK/SoftStarLoginClient_Interface.h"
 
 //#define	__TW_REAL_LOGIN
-#define	TB_CONNECTION_BROKEN	5		// Login Server¿¬°á Áß´Ü (Connection State Result)
-#define	TB_CONNECTION_FAILED	6		// Login Server¿¬°á ½ÇÆĞ (Connection State Result)
-#define	TB_CONNECTED			31		// Game Serverµî·Ï ¼º°ø (Connection State result)
+#define	TB_CONNECTION_BROKEN	5		// Login Serverì—°ê²° ì¤‘ë‹¨ (Connection State Result)
+#define	TB_CONNECTION_FAILED	6		// Login Serverì—°ê²° ì‹¤íŒ¨ (Connection State Result)
+#define	TB_CONNECTED			31		// Game Serverë“±ë¡ ì„±ê³µ (Connection State result)
 
 class CBS_Taiwan
 #ifndef	__SHO_LS_LIB
@@ -52,7 +52,7 @@ protected:
 	static CBS_Taiwan *m_pInstance;
 public :
 	int		m_iLastConnectResult;
-	int		m_iConnectResult;		// -1:openConnectionÈ£ÃâÈÄ ÀÀ´ä´ë±â »óÅÂ, -2:openConnectionÈ£Ãâ ÇØ¾ß ÇÑ´Ù.
+	int		m_iConnectResult;		// -1:openConnectioní˜¸ì¶œí›„ ì‘ë‹µëŒ€ê¸° ìƒíƒœ, -2:openConnectioní˜¸ì¶œ í•´ì•¼ í•œë‹¤.
 
 	static CBS_Taiwan *InitInstance (char *szServerIP, int iPortNo, int iServerID)
 	{

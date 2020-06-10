@@ -36,11 +36,11 @@ void CIocpTHREAD::Execute ()
 			lpNumberOfBytesTransferred, lpCompletionKey, and lpOverlapped. 
 			*/
 			if ( NULL != lpOverlapped ) {
-				// ¼ÒÄÏ Á¾·á
+				// ì†Œì¼“ ì¢…ë£Œ
 				DWORD dwErrCODE = ::GetLastError();
 				
 				//
-				// ErrorCode == 64 :: ÁöÁ¤µÈ ³×Æ®¿÷Å© ÀÌ¸§À» ´õÀÌ»ó »ç¿ëÇÒ¼ö ¾ø½À´Ï´Ù == Å¬¶óÀÌ¾ðÆ® ²÷¾îÁø »óÅÂ.
+				// ErrorCode == 64 :: ì§€ì •ëœ ë„¤íŠ¸ì›í¬ ì´ë¦„ì„ ë”ì´ìƒ ì‚¬ìš©í• ìˆ˜ ì—†ìŠµë‹ˆë‹¤ == í´ë¼ì´ì–¸íŠ¸ ëŠì–´ì§„ ìƒíƒœ.
 				//
 				/* if ( dwErrCODE != 64 ) {
 					LPVOID lpMsgBuf;
@@ -66,7 +66,7 @@ void CIocpTHREAD::Execute ()
 				continue;
 			}
 
-			// ½Ã½ºÅÛ ¿À·ù !!!
+			// ì‹œìŠ¤í…œ ì˜¤ë¥˜ !!!
             g_LOG.CS_ODS(0xffff, "* ERROR:: WorkerThread ID: %d(0x%x),  WorkerNO: %d : lpOverlapped == NULL \n", this->ThreadID, this->ThreadID, m_iThreadNO);
 			break;
 		}
@@ -111,10 +111,10 @@ void CIocpTHREAD::Free (void)
 	g_LOG.CS_ODS(0xffff, "<<< CIocpTHREAD::Free ThreadID: %d(0x%x),  WorkerNO: %d \n", this->ThreadID, this->ThreadID, m_iThreadNO);
 
 /*    
-    // ** ÁÖÀÇ !!!
-    // m_hIOCP¸¦ °øÀ¯ÇÏ´Â ´Ù¸¥ ¿öÅ©¾²·¹µå°¡ ::GetQueuedCompletionStatus¿¡¼­ ¸ÕÀú
-    // ½ÅÈ£¸¦ ¹Þ¾Æ¼­ Ã³¸®µÇ¾î Áú¼öÀÖ´Ù.
-    // º» ÇÔ¼ö°¡ È£ÃâµÇ¾î Áö´õ¶óµµ this ¾²·¹µå°¡ TerminateµÇÁø ¾Ê´Â´Ù..
+    // ** ì£¼ì˜ !!!
+    // m_hIOCPë¥¼ ê³µìœ í•˜ëŠ” ë‹¤ë¥¸ ì›Œí¬ì“°ë ˆë“œê°€ ::GetQueuedCompletionStatusì—ì„œ ë¨¼ì €
+    // ì‹ í˜¸ë¥¼ ë°›ì•„ì„œ ì²˜ë¦¬ë˜ì–´ ì§ˆìˆ˜ìžˆë‹¤.
+    // ë³¸ í•¨ìˆ˜ê°€ í˜¸ì¶œë˜ì–´ ì§€ë”ë¼ë„ this ì“°ë ˆë“œê°€ Terminateë˜ì§„ ì•ŠëŠ”ë‹¤..
     if ( 0 == ::PostQueuedCompletionStatus( m_hIOCP, -1, 0, NULL) )
     {
         Log_String( 0xffff, "ThreadWORKER::Free() PostQueuedCompletionStatus() return 0, LastERROR: %d(0x%x)", GetLastError(), GetLastError());
@@ -132,10 +132,10 @@ void CIocpTHREAD::Free (void)
 //void ThreadWORKER::STATUS_ReturnTRUE  (LPOVERLAPPED lpOverlapped, DWORD dwCompletionKey, DWORD dwBytesIO)
 //{
 //    if ( dwBytesIO == 0 ) {
-//        // ¼ÒÄÏ Á¾·á
+//        // ì†Œì¼“ ì¢…ë£Œ
 //        Log_String ("WorkerThread %d: [ %s ] dwBytesIO == 0, Close Socket () :: IONode->PoolIndex: %d \n", pParam->wThreadNO , (lpOverlapped->m_IOmode == ioREAD) ? "ioREAD" : "ioWRITE", pParam->wThreadNO, lpOverlapped->m_pPoolNode->DATA.m_iPoolIndex);
 //
-//        // ioWRITE ÀÏ°æ¿ì¿¡´Â pUSER->m_SendList¿¡ ³ëµå°¡ ÀÌ¹Ì µî·ÏµÇ¾î ÀÖ¾î SubUser()¿¡¼­ Ç®¸²À¸·Î ioREADÀÏ ¶§¸¸...
+//        // ioWRITE ì¼ê²½ìš°ì—ëŠ” pUSER->m_SendListì— ë…¸ë“œê°€ ì´ë¯¸ ë“±ë¡ë˜ì–´ ìžˆì–´ SubUser()ì—ì„œ í’€ë¦¼ìœ¼ë¡œ ioREADì¼ ë•Œë§Œ...
 //        if ( lpOverlapped->m_IOmode == ioREAD ) {
 //            g_pIO_DATA->ReleaseIONode ( lpOverlapped->m_pPoolNode );
 //        }
@@ -149,16 +149,16 @@ void CIocpTHREAD::Free (void)
 //        pUSER->UnlockUSER ();
 //    } else
 //    if ( pUSER->m_Socket != INVALID_SOCKET ) {
-//        // ** pUSERÀÇ ¼ÒÄÏÀÌ Á¾·áµÈ »óÅÂ¿¡¼­µµ ÀÌ°÷À¸·Î ¿Â´Ù ¤Ñ¤Ñ;
+//        // ** pUSERì˜ ì†Œì¼“ì´ ì¢…ë£Œëœ ìƒíƒœì—ì„œë„ ì´ê³³ìœ¼ë¡œ ì˜¨ë‹¤ ã…¡ã…¡;
 //
-//        // Á¤»ó Ã³¸® !!!
+//        // ì •ìƒ ì²˜ë¦¬ !!!
 //        lpOverlapped->m_dwIOBytes += dwBytesIO;
 //
 //        switch ( lpOverlapped->m_IOmode ) {
 //            case ioREAD :
 //                pUSER->Recv_Complete ( lpOverlapped->m_pPoolNode );
 //                break;
-//            case ioWRITE :	// º¸³»±â ¿Ï·á !!!
+//            case ioWRITE :	// ë³´ë‚´ê¸° ì™„ë£Œ !!!
 //                pUSER->Send_Complete ( lpOverlapped->m_pPoolNode );
 //                break;
 //        }
@@ -169,7 +169,7 @@ void CIocpTHREAD::Free (void)
 //{
 //    Log_String (0xffff, "WorkerThread %d: [ %s ] bResult == FALSE, Close Socket () :: IONode->PoolIndex: %d \n", m_iThreadNO, (lpOverlapped->m_IOmode == ioREAD) ? "ioREAD" : "ioWRITE", lpOverlapped->m_pPoolNode->DATA.m_iPoolIndex);
 //
-//    // ioWRITE ÀÏ°æ¿ì¿¡´Â pUSER->m_SendList¿¡ ³ëµå°¡ ÀÌ¹Ì µî·ÏµÇ¾î ÀÖ¾î SubUser()¿¡¼­ Ç®¸²À¸·Î ioREADÀÏ ¶§¸¸...
+//    // ioWRITE ì¼ê²½ìš°ì—ëŠ” pUSER->m_SendListì— ë…¸ë“œê°€ ì´ë¯¸ ë“±ë¡ë˜ì–´ ìžˆì–´ SubUser()ì—ì„œ í’€ë¦¼ìœ¼ë¡œ ioREADì¼ ë•Œë§Œ...
 //    if ( lpOverlapped->m_IOmode == ioREAD ) {
 //        g_pIO_DATA->ReleaseIONode ( lpOverlapped->m_pPoolNode );
 //    }

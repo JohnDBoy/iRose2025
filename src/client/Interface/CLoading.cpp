@@ -49,7 +49,7 @@ bool CLoading::LoadTexture( int iZoneNo, int iPlanetNO )
 	}else
 	{
 		//------------------------------------------------------------------------------
-		/// 2005/04/27 ¿©·¯°¡Áö ·ÎµùÀÌ¹ÌÁö¸¦ »óÈ²¿¡ ¸Â°Ô Ãâ·ÂÇÏµµ·Ï ¼öÁ¤
+		/// 2005/04/27 ì—¬ëŸ¬ê°€ì§€ ë¡œë”©ì´ë¯¸ì§€ë¥¼ ìƒí™©ì— ë§ê²Œ ì¶œë ¥í•˜ë„ë¡ ìˆ˜ì •
 		//------------------------------------------------------------------------------
 		m_hTexture = m_LoadingImageManager.GetLoadingImage( iZoneNo, iPlanetNO );
 		if( m_hTexture == 0 )
@@ -67,7 +67,7 @@ bool CLoading::LoadTexture( int iZoneNo, int iPlanetNO )
 #ifdef _DEBUG
 			g_pCApp->ErrorBOX( "Loading image load failed !!", "File open error" );
 #endif
-			//½ÇÆĞÇÑ ÀÌÀ¯¸¦ Àû¾îÁØ´Ù..
+			//ì‹¤íŒ¨í•œ ì´ìœ ë¥¼ ì ì–´ì¤€ë‹¤..
 			return false;
 	}    
 

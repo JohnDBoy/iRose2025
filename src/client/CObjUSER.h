@@ -69,16 +69,16 @@ public:
 	/// < Inherited from CAI_OBJ virtual functions
 	/// <
 
-	/*override*/int					Get_HP ()				{	return	GetCur_HP ();			}	// »ı¸í·Â
+	/*override*/int					Get_HP ()				{	return	GetCur_HP ();			}	// ìƒëª…ë ¥
 
 	/*override*/int					Get_LEVEL ()			{	return	GetCur_LEVEL ();		}
-	/*override*/int					Get_ATK ()				{	return	GetCur_ATK ();			}	// °ø°İ·Â
-	/*override*/int					Get_DEF ()				{	return	GetCur_DEF ();			}	// ¹æ¾î·Â
-	/*override*/int					Get_RES ()				{	return	GetCur_RES ();			}	// Ç×¸¶·Â
+	/*override*/int					Get_ATK ()				{	return	GetCur_ATK ();			}	// ê³µê²©ë ¥
+	/*override*/int					Get_DEF ()				{	return	GetCur_DEF ();			}	// ë°©ì–´ë ¥
+	/*override*/int					Get_RES ()				{	return	GetCur_RES ();			}	// í•­ë§ˆë ¥
 	/*override*/int					Get_HIT ()				{	return	GetCur_HIT ();			}
-	/*override*/int					Get_CHARM ()			{	return	GetCur_CHARM ();		}	// ¸Å·Â
-	/*override*/int					Get_AVOID ()			{	return	GetCur_AVOID ();		}	// È¸ÇÇ·Â
-	/*override*/int					Get_SENSE ()			{	return	GetCur_SENSE ();		}	// °¨°¢
+	/*override*/int					Get_CHARM ()			{	return	GetCur_CHARM ();		}	// ë§¤ë ¥
+	/*override*/int					Get_AVOID ()			{	return	GetCur_AVOID ();		}	// íšŒí”¼ë ¥
+	/*override*/int					Get_SENSE ()			{	return	GetCur_SENSE ();		}	// ê°ê°
 	/*override*/int					Get_CRITICAL()			{	return	GetCur_CRITICAL ();		}
 
 	/*override*/int					Get_TeamNO()			{	return	CObjAVT::Get_TeamNO();		}
@@ -99,7 +99,7 @@ public:
 	/*override*/int					Get_MaxHP ()			{	return	GetCur_MaxHP ();			}
 	/*override*/int					Get_MaxMP ()			{	return	GetCur_MaxMP ();			}
 	
-	/*override*/int					Get_CON ()				{	return	GetCur_CON ();			}	// ÁıÁß
+	/*override*/int					Get_CON ()				{	return	GetCur_CON ();			}	// ì§‘ì¤‘
 
 	/*override*/int					GetAdd_RecoverHP()		{	return this->m_btRecoverHP;		}
 	/*override*/int					GetAdd_RecoverMP()		{	return this->m_btRecoverMP;		}
@@ -120,7 +120,7 @@ public:
 	/// < Inherited from CObjCHAR virtual functions
 	/// <
 
-	/*override*/int					Get_INT ()				{	return	GetCur_INT ();			}	// Áö·Â
+	/*override*/int					Get_INT ()				{	return	GetCur_INT ();			}	// ì§€ë ¥
 
 	/*override*/int					Add_HP (int iValue)		{	return  AddCur_HP(iValue);		}
 	/*override*/int					Add_MP (int iValue)		{	return  AddCur_MP(iValue);		}
@@ -134,7 +134,7 @@ public:
 	/*override*/int					Get_BulletNO ();
 
 
-	/// Áö¼ÓÇüÀÇ º¯°æ¼öÄ¡ Àû¿ëÀ» À§ÇØ¼­ ÇöÀç Àû¿ëµÇ¾îÀÖ´Â ´É·Â¼öÄ¡( ÆĞ½Ãºê ½ºÅ³ Æ÷ÇÔ )
+	/// ì§€ì†í˜•ì˜ ë³€ê²½ìˆ˜ì¹˜ ì ìš©ì„ ìœ„í•´ì„œ í˜„ì¬ ì ìš©ë˜ì–´ìˆëŠ” ëŠ¥ë ¥ìˆ˜ì¹˜( íŒ¨ì‹œë¸Œ ìŠ¤í‚¬ í¬í•¨ )
 	/*override*/int					Get_DefaultAbilityValue( int iType ){ return GetCur_AbilityValue( iType ); }
 
 
@@ -174,7 +174,7 @@ private:
 
 public:
 
-	/// Áö¼Ó ½ºÅ³¿¡ ÀÇÇØ º¸Á¤µÈ °ªÀ» ¸®ÅÏÇÒ ÇÔ¼ö...
+	/// ì§€ì† ìŠ¤í‚¬ì— ì˜í•´ ë³´ì •ëœ ê°’ì„ ë¦¬í„´í•  í•¨ìˆ˜...
 	/*override*/ short				GetCur_RACE(){ return this->m_btRace; };
 	/*override*/ short				GetCur_ATK_SPD ()		{ return Get_nAttackSPEED();											}
 	/*override*/ float				GetCur_MOVE_SPEED ()	{ return Get_DefaultSPEED();	}
@@ -219,7 +219,7 @@ private:
 public:
 	int								GetCur_SummonMaxCapacity();
 	int								GetCur_SummonUsedCapacity(){ return m_iSummonMobCapacity; }
-	int								GetCur_SummonCNT(){ return m_SummonedMobList.size(); };			/// ÇöÀç Á¸¿¡ ¼ÒÈ¯µÇ¾î ÀÖ´Â NPC°¹¼ö(Á×À»¶§, Á¸ ¿öÇÁ½Ã 0À¸·Î ¸®¼ÂÇÔ)
+	int								GetCur_SummonCNT(){ return m_SummonedMobList.size(); };			/// í˜„ì¬ ì¡´ì— ì†Œí™˜ë˜ì–´ ìˆëŠ” NPCê°¯ìˆ˜(ì£½ì„ë•Œ, ì¡´ ì›Œí”„ì‹œ 0ìœ¼ë¡œ ë¦¬ì…‹í•¨)
 	void							ClearSummonedMob(){ m_SummonedMobList.clear(); m_iSummonMobCapacity = 0; }
 	void							AddSummonedMob( int iIndex, int iSkillIDX );
 	void							SubSummonedMob( int iIndex );
@@ -252,11 +252,11 @@ public:
 	void							Set_CHARM (int iValue)		{	SetDef_CHARM (iValue);				}
 	void							Set_SENSE (int iValue)		{	SetDef_SENSE (iValue);				}
 
-	int								Get_BIRTH()					{	return  GetCur_BIRTH();				}	// Åº»ı¼®
-	int								Get_RANK()					{	return	GetCur_RANK();				}	// °è±Ş
-	int								Get_UNION ()				{	return	GetCur_UNION ();			}	// ¼Ò¼Ó
-	int								Get_FAME ()					{	return	GetCur_FAME ();				}	// ¸í¼º
-	int								Get_JOB ()					{	return	GetCur_JOB ();				}	// Á÷¾÷
+	int								Get_BIRTH()					{	return  GetCur_BIRTH();				}	// íƒ„ìƒì„
+	int								Get_RANK()					{	return	GetCur_RANK();				}	// ê³„ê¸‰
+	int								Get_UNION ()				{	return	GetCur_UNION ();			}	// ì†Œì†
+	int								Get_FAME ()					{	return	GetCur_FAME ();				}	// ëª…ì„±
+	int								Get_JOB ()					{	return	GetCur_JOB ();				}	// ì§ì—…
 
 	int								Get_EXP ()					{	return	GetCur_EXP ();				}
 	int								Get_BonusPOINT ()			{	return	GetCur_BonusPOINT ();		}
@@ -265,14 +265,14 @@ public:
 	BYTE							Get_HeadSIZE()				{	return	GetCur_HeadSIZE();			}
 	BYTE							Get_BodySIZE()				{	return	GetCur_BodySIZE();			}
 
-	int								Get_STR ()					{	return	GetCur_STR ();				}	// ±Ù·Â
-	int								Get_DEX ()					{	return	GetCur_DEX ();				}	// ¹ÎÃ¸
+	int								Get_STR ()					{	return	GetCur_STR ();				}	// ê·¼ë ¥
+	int								Get_DEX ()					{	return	GetCur_DEX ();				}	// ë¯¼ì²©
 		
 	short							Get_MaxWEIGHT ()			{	return	GetCur_MaxWEIGHT ();	}
-	int								Get_MAG ()					{	return	GetCur_MAG ();				}	// ¸¶¹ı·Â
+	int								Get_MAG ()					{	return	GetCur_MAG ();				}	// ë§ˆë²•ë ¥
 
 	void							Set_MONEY (__int64 iMoney)	{	SetCur_MONEY(iMoney);				}
-	__int64							Get_MONEY ()				{	return	GetCur_MONEY();				}	// µ·
+	__int64							Get_MONEY ()				{	return	GetCur_MONEY();				}	// ëˆ
 	void							Add_MONEY (int iMoney)		{	Add_CurMONEY(iMoney);				}
 
 	short							Add_ITEM(short nListRealNO, tagITEM &sITEM);
@@ -287,7 +287,7 @@ public:
 	/// Update user states
 	//-------------------------------------------------------------------------------------------------
 	void							UpdateAbility();
-	void							UpdateModelData()			{ Update(); };	/// ¸ğµ¨ µ¥ÀÌÅÍ °»½Å..
+	void							UpdateModelData()			{ Update(); };	/// ëª¨ë¸ ë°ì´í„° ê°±ì‹ ..
 	void							UpdateInventory();
 
 	void							Init_DefaultValue (void);	
@@ -307,17 +307,17 @@ public:
 
 
 	//-------------------------------------------------------------------------------------------------
-	/// ÇöÀç ¼­¹ö¿¡ ¼³Á¤µÈ ºÎÈ° Á¸ ¹øÈ£.
+	/// í˜„ì¬ ì„œë²„ì— ì„¤ì •ëœ ë¶€í™œ ì¡´ ë²ˆí˜¸.
 	//-------------------------------------------------------------------------------------------------
 	short							m_nReviveZoneNO;
 
 
 	//----------------------------------------------------------------------------------------------------	
-	/// @brief ÇöÀç À¯Á®ÀÇ ÀÎÇ²¸í·ÉÀ» ¹Ş¾ÆµéÀÏ¼ö ÀÖ´Â°¡?
+	/// @brief í˜„ì¬ ìœ ì ¸ì˜ ì¸í’‹ëª…ë ¹ì„ ë°›ì•„ë“¤ì¼ìˆ˜ ìˆëŠ”ê°€?
 	//----------------------------------------------------------------------------------------------------	
 	bool							bCanUserInput()
 	{
-		/// ÇöÀç ½ºÅ³ ½ÃÀüÁß ¾Æ´Ï°í, ½ºÅ³ ¾×¼ÇÁßÀÌ ¾Æ´Ò¶§¸¸..
+		/// í˜„ì¬ ìŠ¤í‚¬ ì‹œì „ì¤‘ ì•„ë‹ˆê³ , ìŠ¤í‚¬ ì•¡ì…˜ì¤‘ì´ ì•„ë‹ë•Œë§Œ..
 		if( !(this->m_bCastingSTART) && ( this->m_nDoingSkillIDX == 0 ) )	
 			return true;
 		return false;
@@ -325,8 +325,8 @@ public:
 
 
 	//-------------------------------------------------------------------------------------------------
-	/// ÇöÀç Ä³¸¯ÅÍÀÇ »óÅÂÁ¤º¸¸¦ ¿£Áø¿¡¼­ ¾ò¾î¿Â´Ù.
-	/// È¸ÀüÁ¤º¸
+	/// í˜„ì¬ ìºë¦­í„°ì˜ ìƒíƒœì •ë³´ë¥¼ ì—”ì§„ì—ì„œ ì–»ì–´ì˜¨ë‹¤.
+	/// íšŒì „ì •ë³´
 	//-------------------------------------------------------------------------------------------------
 	float							GetDirection()						
 	{ 
@@ -338,7 +338,7 @@ public:
 
 
 	//-------------------------------------------------------------------------------------------------
-	/// ½½·Ô ÄÁÅ×ÀÌ³Ê
+	/// ìŠ¬ë¡¯ ì»¨í…Œì´ë„ˆ
 private:
 
 	CSkillSlot						m_SkillSlot;
@@ -349,7 +349,7 @@ public:
 	CSkillSlot*						GetSkillSlot()						{ return &m_SkillSlot; }
 	CItemSlot*						GetItemSlot()						{ return &m_ItemSlot; }
 	CHotIconSlot*					GetHotIconSlot()					{ return &m_HotIconSlot; }
-	/// »õ·Î¿î ½ºÅ³ Ãß°¡.
+	/// ìƒˆë¡œìš´ ìŠ¤í‚¬ ì¶”ê°€.
 	bool							AddNewSkill( int iSkillIDX, int iSkillSlotNO, int iSkillLevel = 0 ,bool bSubPOINT = false );
 	bool							Skill_LevelUp( int iSkillSlotNo, int iSkillIndex );
 	//-------------------------------------------------------------------------------------------------
@@ -358,16 +358,16 @@ public:
 
 
 	//-------------------------------------------------------------------------------------------------
-	///Bank( °èÁ¤Ã¢°í )°ü·Ã
+	///Bank( ê³„ì •ì°½ê³  )ê´€ë ¨
 	void							SetBankItem( int iIndex, tagITEM& Item );
 	void							InitBank();
-	///ÇöÀç È°¼ºÈ­µÈ ÃÑ¾ËÀÇ °¹¼ö¸¦ 1°¨¼Ò½ÃÅ²´Ù.
+	///í˜„ì¬ í™œì„±í™”ëœ ì´ì•Œì˜ ê°¯ìˆ˜ë¥¼ 1ê°ì†Œì‹œí‚¨ë‹¤.
 	void							SubActiveBulletQuantity();
 	//-------------------------------------------------------------------------------------------------
 
 
 	//-------------------------------------------------------------------------------------------------
-	/// ¸¶ÀÏ¸®Áö ¾ÆÀÌÅÛ¿¡ ÀÇÇØ¼­ Ä³¸¯ÅÍÀÇ ¼ºº°, ¾ó±¼¸ğ¾ç, ¸Ó¸®Ä«¶ôÀÇ º¯È­..
+	/// ë§ˆì¼ë¦¬ì§€ ì•„ì´í…œì— ì˜í•´ì„œ ìºë¦­í„°ì˜ ì„±ë³„, ì–¼êµ´ëª¨ì–‘, ë¨¸ë¦¬ì¹´ë½ì˜ ë³€í™”..
 	void							ChangeModelInfo( short nType, int iValue );
 	//-------------------------------------------------------------------------------------------------
 
@@ -375,8 +375,8 @@ public:
 
 
 	//-------------------------------------------------------------------------------------------------
-	/// PET °ü·Ã	
-	/// ÇöÀç ÆêÀÌ Á¶ÇÕÀÌ ´ÙµÇ¾î Å»¼ö ÀÖ´Â°¡?
+	/// PET ê´€ë ¨	
+	/// í˜„ì¬ í«ì´ ì¡°í•©ì´ ë‹¤ë˜ì–´ íƒˆìˆ˜ ìˆëŠ”ê°€?
 	bool							CanRidePET();
 	bool							IsRideItem(int iIndex_);
 	//-------------------------------------------------------------------------------------------------
@@ -386,8 +386,8 @@ public:
 	void SetCurrWeight( short nWeight );
 
 private:
-	DWORD	m_dwUniqueTag;	///ÀüÃ¼ ¿ùµå¿¡¼­ À¯´ÏÅ©ÇÑ ID(ÆÄÆ¼¿¡¼­ »ç¿ë)
-	int		m_iServerSavedMemoCount;///¼­¹ö¿¡ ÀúÀåµÇ¾î ÀÖ´Â ÂÊÁöÀÇ °³¼ö
+	DWORD	m_dwUniqueTag;	///ì „ì²´ ì›”ë“œì—ì„œ ìœ ë‹ˆí¬í•œ ID(íŒŒí‹°ì—ì„œ ì‚¬ìš©)
+	int		m_iServerSavedMemoCount;///ì„œë²„ì— ì €ì¥ë˜ì–´ ìˆëŠ” ìª½ì§€ì˜ ê°œìˆ˜
 public:
 	void	SetUniqueTag( DWORD dwUniqueTag );
 	DWORD   GetUniqueTag();
@@ -398,15 +398,15 @@ public:
 
 private:
 	bool	m_bWaitUpdateInventory;
-	/// ÀÎº¥Åä¸®ÀÇ ¾ÆÀÌÅÛ »óÅÂ°¡ ¿©·¯°³ º¯ÇÏ´Â ÁßÀÌ´Ù... 
-	/// ÀåÂø/Å»ÂøÀÇ °æ¿ì ¹«°Ô°ÔÀÌÁö °è»êÀÌ 2¹øµÇ¸é¼­ ¶Ù±â°¡->°È±â·Î º¯°æµÈ´Ù.
+	/// ì¸ë²¤í† ë¦¬ì˜ ì•„ì´í…œ ìƒíƒœê°€ ì—¬ëŸ¬ê°œ ë³€í•˜ëŠ” ì¤‘ì´ë‹¤... 
+	/// ì¥ì°©/íƒˆì°©ì˜ ê²½ìš° ë¬´ê²Œê²Œì´ì§€ ê³„ì‚°ì´ 2ë²ˆë˜ë©´ì„œ ë›°ê¸°ê°€->ê±·ê¸°ë¡œ ë³€ê²½ëœë‹¤.
 	/// default : false
 
 	DWORD	m_dwLastBattleTime;
 public:
 	void	SetWaitUpdateInventory( bool bWait );
 
-	/// ¼­¹ö¿¡°Ô ÀÎº¥Åä¸® º¯°æ°ü·Ã ÆĞÅ¶À» º¸³»±â Àü¿¡ º¯°æÈÄ ÀÎº¥Åä¸®¿¡ ´Ùµé¾î°¥¼ö ÀÖ´ÂÁö Ã¼Å©ÇÑ´Ù.
+	/// ì„œë²„ì—ê²Œ ì¸ë²¤í† ë¦¬ ë³€ê²½ê´€ë ¨ íŒ¨í‚·ì„ ë³´ë‚´ê¸° ì „ì— ë³€ê²½í›„ ì¸ë²¤í† ë¦¬ì— ë‹¤ë“¤ì–´ê°ˆìˆ˜ ìˆëŠ”ì§€ ì²´í¬í•œë‹¤.
 	bool	IsInventoryFull( std::list< tagITEM >& appendItems, std::list< pair<int,tagITEM> >& removeItems );
 	bool	IsInventoryFull( std::list< tagITEM >& appendItems );
 	void	SetBattleTime( DWORD dwTime );
@@ -414,16 +414,16 @@ public:
 
 
 	//-------------------------------------------------------------------------------------------------
-	// 05.05.19 icarus::  ¿Í¿ì ½ºÅ¸ÀÏÀÇ NPC Äù½ºÆ® ³ëÃâ ÀÛ¾÷...
+	// 05.05.19 icarus::  ì™€ìš° ìŠ¤íƒ€ì¼ì˜ NPC í€˜ìŠ¤íŠ¸ ë…¸ì¶œ ì‘ì—…...
 public:	
-	// ÀÚ½ÅÀÇ ¾Æ¹ÙÅ¸ÀÇ Äù½ºÆ®°¡ °»½ÅµÇ¾ú´ÂÁö ¿©ºÎ¸¦ ÆÇ´Ù.
-	// ±âº»°ª false, Á¸ °»½Å½Ã false·Î ¼³Á¤. Object Loop¿¡¼­ ¸¶Áö¸·¿¡ true·Î ¼³Á¤.
-	// ¼­¹ö¿¡¼­ Äù½ºÆ® °»½Å ÆĞÅ¶À» ¹ŞÀ¸¸é false·Î ¼³Á¤.
+	// ìì‹ ì˜ ì•„ë°”íƒ€ì˜ í€˜ìŠ¤íŠ¸ê°€ ê°±ì‹ ë˜ì—ˆëŠ”ì§€ ì—¬ë¶€ë¥¼ íŒë‹¤.
+	// ê¸°ë³¸ê°’ false, ì¡´ ê°±ì‹ ì‹œ falseë¡œ ì„¤ì •. Object Loopì—ì„œ ë§ˆì§€ë§‰ì— trueë¡œ ì„¤ì •.
+	// ì„œë²„ì—ì„œ í€˜ìŠ¤íŠ¸ ê°±ì‹  íŒ¨í‚·ì„ ë°›ìœ¼ë©´ falseë¡œ ì„¤ì •.
 	bool	m_bQuestUpdate;
 
 
 //------------------------------------------------------------------------------------
-/// ¾Æ·ç¾Æ ¹öÇÁ °É¸° »óÅÂ¿¡ ´ëÇÑ Ãß°¡ÀûÀÎ ´É·ÂÄ¡ º¯°æ °ü·Ã
+/// ì•„ë£¨ì•„ ë²„í”„ ê±¸ë¦° ìƒíƒœì— ëŒ€í•œ ì¶”ê°€ì ì¸ ëŠ¥ë ¥ì¹˜ ë³€ê²½ ê´€ë ¨
 ///
 //------------------------------------------------------------------------------------
 public:
@@ -437,7 +437,7 @@ protected:
 	int		m_AruaAddDefence;
 
 //------------------------------------------------------------------------------------
-/// Ä«Æ® °ü·Ã ¼öÁ¤/Ãß°¡ : 2005/7/26 - nAvy
+/// ì¹´íŠ¸ ê´€ë ¨ ìˆ˜ì •/ì¶”ê°€ : 2005/7/26 - nAvy
 //------------------------------------------------------------------------------------
 protected:
 	int		m_PatGuageMax;
@@ -456,7 +456,7 @@ protected:
 	void			Cal_PatAbility();
 
 //------------------------------------------------------------------------
-//¹ÚÁöÈ£::
+//ë°•ì§€í˜¸::
 public:
 	BOOL	m_PushskillIcon;
 	BOOL	m_PushUseItemIcon;

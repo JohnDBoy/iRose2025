@@ -13,7 +13,7 @@
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-// spin lock 4000À¸·Î ¼³Á¤...
+// spin lock 4000ìœ¼ë¡œ ì„¤ì •...
 IOCPSocketSERVER::IOCPSocketSERVER (char *szName, BYTE btMulCPU, char cAddCPU, bool bManageSocketVerify) 
 						: CCriticalSection( 4000 )
 {
@@ -79,7 +79,7 @@ bool IOCPSocketSERVER::Active (int iListenTCPPortNO, DWORD dwMaxSocketCount, int
 //-------------------------------------------------------------------------------------------------
 void IOCPSocketSERVER::ShutdownSOCKET ()
 {
-	// ¸ðµç ¼ÒÄÏ Á¾·á...
+	// ëª¨ë“  ì†Œì¼“ ì¢…ë£Œ...
 	if ( m_pSocketIDX ) {
 		for (DWORD dwI=0; dwI<m_dwMaxSocketCNT; dwI++)
 			this->Del_SOCKET( dwI );
@@ -102,7 +102,7 @@ void IOCPSocketSERVER::ShutdownACCEPT ()
 {
 	if ( m_pAcceptTHREAD ) {
 		m_pAcceptTHREAD->Free ();
-		// ShutdownACCEPT()¸¦ È£ÃâÇÑ ¾²·¹µå¿Í m_pAcceptTHREAD°¡ Æ²¸° ¾²·¡µå ÀÎµ¥.. Free¿¡¼­ Á¾·áµÇ±â Àü¿¡´Â ¸®ÅÏ ¾ÈµÊ
+		// ShutdownACCEPT()ë¥¼ í˜¸ì¶œí•œ ì“°ë ˆë“œì™€ m_pAcceptTHREADê°€ í‹€ë¦° ì“°ëž˜ë“œ ì¸ë°.. Freeì—ì„œ ì¢…ë£Œë˜ê¸° ì „ì—ëŠ” ë¦¬í„´ ì•ˆë¨
 		SAFE_DELETE( m_pAcceptTHREAD );
 	}
 }
@@ -162,7 +162,7 @@ void IOCPSocketSERVER::CloseIdleSCOKET (DWORD dwIdleMilliSec)
 		pNode = this->m_SocketLIST.GetHeadNode ();
 		while( pNode ) {
 			if ( pNode->m_VALUE->m_bVerified ) {
-				// °ËÁõµÈ Å¬¶óÀÌ¾ðÆ® ¼ÒÄÏÀÌ´Ù.
+				// ê²€ì¦ëœ í´ë¼ì´ì–¸íŠ¸ ì†Œì¼“ì´ë‹¤.
 				pNode->m_VALUE->m_pSockNODE = NULL;
 				pDelNode = pNode;
 				pNode = pDelNode->GetNext ();
@@ -170,7 +170,7 @@ void IOCPSocketSERVER::CloseIdleSCOKET (DWORD dwIdleMilliSec)
 				continue;
 			}
 			if ( dwCurTime - pNode->m_VALUE->m_dwConnTIME >= dwIdleMilliSec ) {
-				// Â©¶ó ??? ...
+				// ì§¤ë¼ ??? ...
 				// if ( pNode->m_VALUE->OnIdelCLOSE() ) 
 				{
 					g_LOG.CS_ODS( 0xffff, "Close Idle SOCK:: %s:%d=%d-%d, %s\n", this->GetServerNAME(), 
@@ -196,7 +196,7 @@ void IOCPSocketSERVER::CloseIdleSCOKET (DWORD dwIdleMilliSec)
 bool IOCPSocketSERVER::New_SOCKET( SOCKET hSocket, sockaddr_in &SockADDR )
 {
 	if ( m_RefuseIP.Find( SockADDR.sin_addr ) ) {
-		// Á¢±Ù °ÅºÎµÈ IP¿µ¿ªÀÌ´Ù.
+		// ì ‘ê·¼ ê±°ë¶€ëœ IPì˜ì—­ì´ë‹¤.
 		return false;
 	}
 
@@ -209,24 +209,24 @@ bool IOCPSocketSERVER::New_SOCKET( SOCKET hSocket, sockaddr_in &SockADDR )
 	if ( pBlockIP ) {
         // m_pBlockingIP->Update( pBlockIP, IP_BLOCK_TYPE_ACCEPT, 1 );
 		// if ( pBlockIP->m_dwBlockSECOND >= 0x0ff000000 ) {
-        //    pBlockIP->m_dwExpireTIME = 0;   // ¿µ±¸ Â÷´Ü !!!
+        //    pBlockIP->m_dwExpireTIME = 0;   // ì˜êµ¬ ì°¨ë‹¨ !!!
         //}
 		switch( pBlockIP->m_wAttackTYPE ) {
 			case IP_BLOCK_TYPE_ACCEPT :
 				if ( pBlockIP->m_dwBlockSECOND >= 5 ) {
-					pBlockIP->m_dwBlockSECOND = 5;			// ÃÖ´ë 5ÃÊ Â÷´Ü...
+					pBlockIP->m_dwBlockSECOND = 5;			// ìµœëŒ€ 5ì´ˆ ì°¨ë‹¨...
 				}
 				break;
 			case IP_BLOCK_TYPE_PACKET :
 				if ( pBlockIP->m_dwBlockSECOND >= 120 ) {
-					pBlockIP->m_dwBlockSECOND = 120;		// ÃÖ´ë 2ºÐ Â÷´Ü...
+					pBlockIP->m_dwBlockSECOND = 120;		// ìµœëŒ€ 2ë¶„ ì°¨ë‹¨...
 				}
 				break;
 		}
 		return false;
 	}
 
-	// Á¢¼Ó °ø°Ý ip Ã¼Å©...
+	// ì ‘ì† ê³µê²© ip ì²´í¬...
 	INT64 biTIME = classTIME::GetCurrentAbsMilliSecond ();
 	ULONG ulIP   = SockADDR.sin_addr.S_un.S_addr;
 
@@ -234,7 +234,7 @@ bool IOCPSocketSERVER::New_SOCKET( SOCKET hSocket, sockaddr_in &SockADDR )
 	pNode = m_AttackLIST.GetHeadNode();
 	int iFindCnt=0;
 	while( pNode ) {
-		if ( biTIME - pNode->m_VALUE.m_biTIME >= 50 ) {	// 0.5ÃÊ
+		if ( biTIME - pNode->m_VALUE.m_biTIME >= 50 ) {	// 0.5ì´ˆ
 			pNode = m_AttackLIST.DeleteHead ();
 			SAFE_DELETE( pNode );
 			pNode = m_AttackLIST.GetHeadNode();
@@ -276,12 +276,12 @@ bool IOCPSocketSERVER::New_SOCKET( SOCKET hSocket, sockaddr_in &SockADDR )
 	if ( !m_IOCP.LinkPort( (HANDLE)hSocket, iSocketIDX ) || 
 		 eRESULT_PACKET_OK != pSOCKET->Recv_Start () ) {
 		this->Lock ();
-			// @¹ö±× ¼öÁ¤ : 2004. 7. 16 iSocketIDX´ë½Å pSOCKET->m_iSocketIDX·Î »ç¿ëÇß´ø ½Ç¼ö°¡ ÀÖ¾úÀ½.
-			// ¾Æ¹Ì ¸Þ¸ð¸® Ç®ÀÌ Áßº¹ ÇØÁ¦µÇ´Â ¿øÀÎÀ¸·ç ÃßÁ¤µÊ...
+			// @ë²„ê·¸ ìˆ˜ì • : 2004. 7. 16 iSocketIDXëŒ€ì‹  pSOCKET->m_iSocketIDXë¡œ ì‚¬ìš©í–ˆë˜ ì‹¤ìˆ˜ê°€ ìžˆì—ˆìŒ.
+			// ì•„ë¯¸ ë©”ëª¨ë¦¬ í’€ì´ ì¤‘ë³µ í•´ì œë˜ëŠ” ì›ì¸ìœ¼ë£¨ ì¶”ì •ë¨...
 			m_pSocketIDX->DelData( iSocketIDX );
-			// lock ¿ÜºÎ¿¡ ÀÖ´ø°Å ¾ÈÀ¸·Î...
-			// ShutdownÇÔ¼öÈ£Ãâ½Ã¿¡¼­ Accept, Worker¾²·¹µå°¡ Á¾·áµÇ¾î Free..ÇÔ¼ö°¡ È£ÃâµÉ°æ¿ì
-			// ShutdownSocket°ú Ãæµ¹...
+			// lock ì™¸ë¶€ì— ìžˆë˜ê±° ì•ˆìœ¼ë¡œ...
+			// Shutdowní•¨ìˆ˜í˜¸ì¶œì‹œì—ì„œ Accept, Workerì“°ë ˆë“œê°€ ì¢…ë£Œë˜ì–´ Free..í•¨ìˆ˜ê°€ í˜¸ì¶œë ê²½ìš°
+			// ShutdownSocketê³¼ ì¶©ëŒ...
 			this->FreeClientSOCKET( pSOCKET );
 		this->Unlock ();
 
@@ -305,7 +305,7 @@ bool IOCPSocketSERVER::New_SOCKET( SOCKET hSocket, sockaddr_in &SockADDR )
 //-------------------------------------------------------------------------------------------------
 // IOCPSocketSERVER::ShutdownSOCKET()
 // IOCPSocketSERVER::On_FALSE()
-// IOCPSocketSERVER::On_TRUE() ¿¡¼­ È£ÃâµÊ
+// IOCPSocketSERVER::On_TRUE() ì—ì„œ í˜¸ì¶œë¨
 iocpSOCKET *IOCPSocketSERVER::Del_SOCKET( int iSocketIDX )
 {
 	iocpSOCKET *pSOCKET;
@@ -321,7 +321,7 @@ iocpSOCKET *IOCPSocketSERVER::Del_SOCKET( int iSocketIDX )
 			pSOCKET->m_iSocketIDX = 0;
 			pSOCKET->CloseSocket ();
 
-			// À§¿¡ ¼ÒÄÏ ¹öÆÛ¸¦ ¸ÕÀú 0À¸·ç ¸¸µé°í È£ÃâµÇ¾îÇÔ..¼ø¼­ ÁÖÀÇ !!!!
+			// ìœ„ì— ì†Œì¼“ ë²„í¼ë¥¼ ë¨¼ì € 0ìœ¼ë£¨ ë§Œë“¤ê³  í˜¸ì¶œë˜ì–´í•¨..ìˆœì„œ ì£¼ì˜ !!!!
 			this->ClosedClientSOCKET( pSOCKET );
 		}
 	this->Unlock ();
@@ -335,14 +335,14 @@ iocpSOCKET *IOCPSocketSERVER::Del_SOCKET( int iSocketIDX )
 }
 
 //-------------------------------------------------------------------------------------------------
-// ¼ÒÄÏ Á¾·á..
+// ì†Œì¼“ ì¢…ë£Œ..
 void IOCPSocketSERVER::On_FALSE (LPOVERLAPPED lpOverlapped, DWORD dwCompletionKey)
 {
     tagIO_DATA *pIOData = (tagIO_DATA*) lpOverlapped;
 
 	switch ( pIOData->m_IOmode ) {
 		case ioREAD :
-			// ioWRITE ÀÏ°æ¿ì¿¡´Â pUSER->m_SendList¿¡ ³ëµå°¡ ÀÌ¹Ì µî·ÏµÇ¾î ÀÖ¾î SubUser()¿¡¼­ Ç®¸²À¸·Î ioREADÀÏ ¶§¸¸...
+			// ioWRITE ì¼ê²½ìš°ì—ëŠ” pUSER->m_SendListì— ë…¸ë“œê°€ ì´ë¯¸ ë“±ë¡ë˜ì–´ ìžˆì–´ SubUser()ì—ì„œ í’€ë¦¼ìœ¼ë¡œ ioREADì¼ ë•Œë§Œ...
 			iocpSOCKET::Free_RecvIODATA( pIOData );
 			break;
 		case ioWRITE :
@@ -362,28 +362,28 @@ void IOCPSocketSERVER::On_TRUE  (LPOVERLAPPED lpOverlapped, DWORD dwCompletionKe
 
 	pSOCKET = this->GetSOCKET( dwCompletionKey );
 	if ( pSOCKET ) {
-		// ** pUSERÀÇ ¼ÒÄÏÀÌ Á¾·áµÈ »óÅÂ¿¡¼­µµ ÀÌ°÷À¸·Î ¿Â´Ù ¤Ñ¤Ñ;
+		// ** pUSERì˜ ì†Œì¼“ì´ ì¢…ë£Œëœ ìƒíƒœì—ì„œë„ ì´ê³³ìœ¼ë¡œ ì˜¨ë‹¤ ã…¡ã…¡;
 		pIOData->m_dwIOBytes += dwBytesIO;
 		switch ( pIOData->m_IOmode ) {
 			case ioREAD :
 				switch( pSOCKET->Recv_Complete( pIOData ) ) {
 					case eRESULT_PACKET_BLOCK :
-						// 30ÃÊ ºí·°...
+						// 30ì´ˆ ë¸”ëŸ­...
 						m_pBlockingIP->Insert (pSOCKET->m_HashKeyIP, pSOCKET->Get_IP(), IP_BLOCK_TYPE_PACKET, 30 );
 
 					case eRESULT_PACKET_DISCONNECT :
-						// Â©·¯¶ó !!!
+						// ì§¤ëŸ¬ë¼ !!!
 						this->Del_SOCKET( dwCompletionKey );
 						break;
 				}
 				//if ( !pSOCKET->Recv_Complete ( pIOData ) ) {
-				//	// Â©·¯¶ó !!!
+				//	// ì§¤ëŸ¬ë¼ !!!
 				//	this->Del_SOCKET( dwCompletionKey );
 				//}
 				break;
-			case ioWRITE :	// º¸³»±â ¿Ï·á !!!
+			case ioWRITE :	// ë³´ë‚´ê¸° ì™„ë£Œ !!!
 				if ( !pSOCKET->Send_Complete ( pIOData ) ) {
-					// Â©·¯¶ó !!!
+					// ì§¤ëŸ¬ë¼ !!!
 					this->Del_SOCKET( dwCompletionKey );
 				}
 				break;

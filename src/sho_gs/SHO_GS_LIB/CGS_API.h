@@ -6,7 +6,7 @@
  * file	CGS_API.h
  * class	EXE_GS_API
  * author	wookSang.Jo
- * brief	sho_gs_exe©м еК╫его╢б е╛╥║╫╨
+ * brief	sho_gs_exeЛ≥─ М├╣Л▀═М∙≤К┼■ М│╢К·≤Л┼╓
  */
 class EXE_GS_API
 {

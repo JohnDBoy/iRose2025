@@ -28,11 +28,11 @@ protected:
 	CCriticalSection			m_csSendQ;
 	CCriticalSection			m_csRecvQ;
 
-	classDLLIST<tagIO_DATA>		m_SendList;			// Client¿¡°Ô º¸³¾ µ¥ÀÌÅ¸ ¸®½ºÆ®.
-	bool						m_bWritable;		// WriteFile¿¡ º¸³¾¼ö ÀÖ³Ä ?
+	classDLLIST<tagIO_DATA>		m_SendList;			// Clientì—ê²Œ ë³´ë‚¼ ë°ì´íƒ€ ë¦¬ìŠ¤íŠ¸.
+	bool						m_bWritable;		// WriteFileì— ë³´ë‚¼ìˆ˜ ìˆëƒ ?
 
-	classDLLIST<tagIO_DATA>		m_RecvList;			// Client¿¡¼­ ¹ŞÀº µ¥ÀÌÅ¸ ¸®½ºÆ®.
-	DWORD		m_dwCheckTIME;						// ¸¶Áö¸· º¸³»±â ½ÃµµÇÑ ½Ã°£
+	classDLLIST<tagIO_DATA>		m_RecvList;			// Clientì—ì„œ ë°›ì€ ë°ì´íƒ€ ë¦¬ìŠ¤íŠ¸.
+	DWORD		m_dwCheckTIME;						// ë§ˆì§€ë§‰ ë³´ë‚´ê¸° ì‹œë„í•œ ì‹œê°„
 
 public :
     void		CloseSocket (void);
@@ -42,9 +42,9 @@ public :
     CStrVAR		m_IP;
 	t_HASHKEY	m_HashKeyIP;
 
-	bool		m_bVerified;						// ¸Â´Â Å¬¶óÀÌ¾ğÆ®¿¡¼­ Á¢¼ÓµÈ°Å³Ä ??
+	bool		m_bVerified;						// ë§ëŠ” í´ë¼ì´ì–¸íŠ¸ì—ì„œ ì ‘ì†ëœê±°ëƒ ??
 	CDLList<iocpSOCKET*>::tagNODE *m_pSockNODE;
-	DWORD		m_dwConnTIME;						// Á¢¼ÓµÈ ½Ã°£
+	DWORD		m_dwConnTIME;						// ì ‘ì†ëœ ì‹œê°„
 
     iocpSOCKET ();
     virtual ~iocpSOCKET ();

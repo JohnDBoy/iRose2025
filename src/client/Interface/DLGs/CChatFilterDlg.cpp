@@ -140,7 +140,7 @@ void CChatFilterDlg::Show()
 
 
 	}
-	///���� ä��â���� ���õ� ���� ���͸� �ɼ��� �����ͼ� üũ�ڽ��� �ʱ�ȭ �Ѵ�.
+	///현재 채팅창에서 선택된 탭의 필터링 옵션을 가져와서 체크박스를 초기화 한다.
 }
 
 unsigned CChatFilterDlg::Process( unsigned uiMsg, WPARAM wParam , LPARAM lParam )

@@ -17,23 +17,23 @@
 AS_gumSOCKET* AS_gumSOCKET::m_pInstance = NULL;
 
 /*
-	·Î±×ÀÎ½Ã ::
-		11¹øÀº ¼º°øÀÌ±¸¿©.
-		12 ~ ´Â ½ÇÆĞ¿¡ ´ëÇÑ ÀÌÀ¯ÀÔ´Ï´Ù¤Ó.
-			12´Â ¾ÆÀÌµğ³ª ÆĞ½º¿öµå°¡ Æ²·ÈÀ» °æ¿ì
-			13Àº °ÔÀÓÇÒ ±ÇÇÑÀÌ ¾ø´Â »ç¿ëÀÚ
-			14´Â °áÁ¦ÇÑ ½Ã°£À» ´Ù ½è°Å³ª Á¤¾×Á¦ÀÇ °æ¿ì ±â°£ÀÌ Áö³µÀ» °æ¿ì
-			15 ÀÌ¹Ì ·Î±×ÀÎ ÇÑ »ç¿ëÀÚÀÇ °æ¿ì..
-			18 ÀÏÀÏ »ç¿ë½Ã°£ (ÇÏ·ç¿¡ »ç¿ëÇÒ ¼ö ÀÖ´Â ½Ã°£)ÀÌ ³Ñ¾úÀ» ¶§ ¿À´Â ¸Ş½ÃÁö..
-			19 ÇÏ·ç¿¡ »ç¿ëÇÒ ¼ö ÀÖ´Â ±â°£(¿¹ 12½Ã ~ 2½Ã)¿¡¼­ ¹ş¾î ³µÀ» ¶§ ¿À´Â ¸Ş½ÃÁö..
+	ë¡œê·¸ì¸ì‹œ ::
+		11ë²ˆì€ ì„±ê³µì´êµ¬ì—¬.
+		12 ~ ëŠ” ì‹¤íŒ¨ì— ëŒ€í•œ ì´ìœ ì…ë‹ˆë‹¤ã…£.
+			12ëŠ” ì•„ì´ë””ë‚˜ íŒ¨ìŠ¤ì›Œë“œê°€ í‹€ë ¸ì„ ê²½ìš°
+			13ì€ ê²Œì„í•  ê¶Œí•œì´ ì—†ëŠ” ì‚¬ìš©ì
+			14ëŠ” ê²°ì œí•œ ì‹œê°„ì„ ë‹¤ ì¼ê±°ë‚˜ ì •ì•¡ì œì˜ ê²½ìš° ê¸°ê°„ì´ ì§€ë‚¬ì„ ê²½ìš°
+			15 ì´ë¯¸ ë¡œê·¸ì¸ í•œ ì‚¬ìš©ìì˜ ê²½ìš°..
+			18 ì¼ì¼ ì‚¬ìš©ì‹œê°„ (í•˜ë£¨ì— ì‚¬ìš©í•  ìˆ˜ ìˆëŠ” ì‹œê°„)ì´ ë„˜ì—ˆì„ ë•Œ ì˜¤ëŠ” ë©”ì‹œì§€..
+			19 í•˜ë£¨ì— ì‚¬ìš©í•  ìˆ˜ ìˆëŠ” ê¸°ê°„(ì˜ˆ 12ì‹œ ~ 2ì‹œ)ì—ì„œ ë²—ì–´ ë‚¬ì„ ë•Œ ì˜¤ëŠ” ë©”ì‹œì§€..
 
-	°æ°í¸Ş½ÃÁö´Â 50¹ø´ë..
-	²÷À¸¶ó´Â ½ÅÈ£´Â 60¹ø´ë.
+	ê²½ê³ ë©”ì‹œì§€ëŠ” 50ë²ˆëŒ€..
+	ëŠìœ¼ë¼ëŠ” ì‹ í˜¸ëŠ” 60ë²ˆëŒ€.
 
-	ÇÁ¸® ·Î±×ÀÎ ¿äÃ»½Ã GUMS¿¡¼­ ¿À´Â ¸Ş¼¼Áö´Â 111,112,113
-	»ç¿ëÀÚ ½Ã°£ ¸¸·á½Ã GUMS¿¡¼­ ¿À´Â ¸Ş¼¼Áö´Â 52, 62
+	í”„ë¦¬ ë¡œê·¸ì¸ ìš”ì²­ì‹œ GUMSì—ì„œ ì˜¤ëŠ” ë©”ì„¸ì§€ëŠ” 111,112,113
+	ì‚¬ìš©ì ì‹œê°„ ë§Œë£Œì‹œ GUMSì—ì„œ ì˜¤ëŠ” ë©”ì„¸ì§€ëŠ” 52, 62
 
-	³²Àº ½Ã°£¿ä±¸ : 40 ¿äÃ» -> ÀÀ´ä 41/42
+	ë‚¨ì€ ì‹œê°„ìš”êµ¬ : 40 ìš”ì²­ -> ì‘ë‹µ 41/42
 */
 
 //-------------------------------------------------------------------------------------------------
@@ -41,7 +41,7 @@ DWORD AS_gumSOCKET::GetPlayingFLAG( eGumsNATION eNation, int iPayType )
 {
 	DWORD dwPlayFlag = 0;
 	switch( eNation ) {
-		case GUMS_KOREA :	// ÇÑ±¹Àº...
+		case GUMS_KOREA :	// í•œêµ­ì€...
 			dwPlayFlag = PLAY_FLAG_KOREA_DEFAULT;
 			switch( iPayType ) {
 				case BILLING_MSG_PAY_FAP	:
@@ -50,8 +50,8 @@ DWORD AS_gumSOCKET::GetPlayingFLAG( eGumsNATION eNation, int iPayType )
 					break;
 			}
 			break;
-		case GUMS_JAPAN :	// ÀÏº»Àº...
-			// ÀÏº» iPayTypeÀº PLAY_FLAG¿Í °°´Ù !!!
+		case GUMS_JAPAN :	// ì¼ë³¸ì€...
+			// ì¼ë³¸ iPayTypeì€ PLAY_FLAGì™€ ê°™ë‹¤ !!!
 			dwPlayFlag = iPayType;
 			break;
 	} 
@@ -70,11 +70,11 @@ DWORD AS_gumSOCKET::GetPlayingFLAG( eGumsNATION eNation, int iPayType )
 	    if ( pClient && !strcmpi( szAccount, pClient->m_Account.Get() ) ) {
 			BYTE btType;
 			switch( eNation ) {
-				case GUMS_KOREA :	// ÇÑ±¹Àº...
+				case GUMS_KOREA :	// í•œêµ­ì€...
 					//pClient->m_dwPayFLAG = 0x01 << iPayType;
 					btType = RESULT_LOGIN_REPLY_KOREA_OK;
 					break;
-				case GUMS_JAPAN :	// ÀÏº»Àº...
+				case GUMS_JAPAN :	// ì¼ë³¸ì€...
 					btType = RESULT_LOGIN_REPLY_JAPAN_OK;
 					break;
 					
@@ -89,17 +89,17 @@ DWORD AS_gumSOCKET::GetPlayingFLAG( eGumsNATION eNation, int iPayType )
 	}
 	bool AS_gumSOCKET::RecvGums_LoginOnlyFREE(int iMsgTYPE, char *szAccount, char *szUserTAG)
 	{
-		// ÇÁ¸®¼· ·Î±×ÀÎ... ÇÁ¸®¼· ¸®½ºÆ®¸¸ Àü¼Û..
+		// í”„ë¦¬ì„­ ë¡œê·¸ì¸... í”„ë¦¬ì„­ ë¦¬ìŠ¤íŠ¸ë§Œ ì „ì†¡..
 		int iSocketIDX = atoi( szUserTAG );
 	    CLS_Client *pClient = (CLS_Client *)g_pListCLIENT->GetSOCKET( iSocketIDX );
 	    if ( pClient && !strcmpi( szAccount, pClient->m_Account.Get() ) ) {
 			BYTE btType;
 			eGumsNATION eNation = Gums_NATION( iMsgTYPE );
 			switch( eNation ) {
-				case GUMS_KOREA :	// ÇÑ±¹Àº...
+				case GUMS_KOREA :	// í•œêµ­ì€...
 					btType = RESULT_LOGIN_REPLY_KOREA_OK;
 					break;
-				case GUMS_JAPAN :	// ÀÏº»Àº...
+				case GUMS_JAPAN :	// ì¼ë³¸ì€...
 					btType = RESULT_LOGIN_REPLY_JAPAN_OK;
 					break;
 			} 
@@ -140,7 +140,7 @@ DWORD AS_gumSOCKET::GetPlayingFLAG( eGumsNATION eNation, int iPayType )
 		return true;	
 	}
 
-	// °ÔÀÓÇÒ ±ÇÇÑÀÌ ¾ø´Â »ç¿ëÀÚ
+	// ê²Œì„í•  ê¶Œí•œì´ ì—†ëŠ” ì‚¬ìš©ì
 	bool AS_gumSOCKET::RecvGums_LogInFailedNoRIGHT (int iMsgTYPE, char *szUserID, char *szUserTAG)		
 	{		
 		return g_pListACCOUNT->Gums_KickOutUSER( szUserID, BILLING_MSG_KICKOUT_NO_RIGHT );
@@ -158,7 +158,7 @@ DWORD AS_gumSOCKET::GetPlayingFLAG( eGumsNATION eNation, int iPayType )
 		return g_pListACCOUNT->Gums_KickOutUSER( szUserID, BILLING_MSG_KICKOUT_OUT_OF_IP );
 	}
 	bool AS_gumSOCKET::RecvGums_LogInFailedKickedUSER (int iMsgTYPE, char *szUserID)
-	{	// ±âÁ¸ »ç¿ëÀÚ Á¢¼ÓÀ» ²÷¾ú´Ù.
+	{	// ê¸°ì¡´ ì‚¬ìš©ì ì ‘ì†ì„ ëŠì—ˆë‹¤.
 		return g_pListACCOUNT->Gums_KickOutUSER( szUserID, BILLING_MSG_KICKOUT_EXIST_ACCOUNT );
 	}
 	bool AS_gumSOCKET::RecvGums_LogInFailedTimeEXPIRED (int iMsgTYPE, char *szUserID, char *szString )
@@ -167,12 +167,12 @@ DWORD AS_gumSOCKET::GetPlayingFLAG( eGumsNATION eNation, int iPayType )
 	}
 
 
-	// ÇÁ¸® ·Î±×ÀÎ ½ÇÆĞ
+	// í”„ë¦¬ ë¡œê·¸ì¸ ì‹¤íŒ¨
 	bool AS_gumSOCKET::RecvGums_PreLoginFAILED (int iMsgTYPE, char *szAccount)					{		return true;	}
 
 	bool AS_gumSOCKET::RecvGums_LoginSUC (eGumsNATION eNation, char *szAccount, char *szGumsPKET, char *szUserTAG, int iPayType)
 	{
-		//	±¹°¡¸¶´Ù iPayTypeÀÇ °ªÀÌ Æ²¸®´Ù...
+		//	êµ­ê°€ë§ˆë‹¤ iPayTypeì˜ ê°’ì´ í‹€ë¦¬ë‹¤...
 		DWORD dwPlayFlag = this->GetPlayingFLAG( eNation, iPayType );
 		WORD wMsgType;
 		switch( eNation ) {
@@ -194,7 +194,7 @@ DWORD AS_gumSOCKET::GetPlayingFLAG( eGumsNATION eNation, int iPayType )
 	}
 	bool AS_gumSOCKET::RecvGums_TimeALERT  (int iMsgTYPE, char *szAccount, char *szRemainMin)
 	{
-		// Ã¤³Î ¼·¿¡ ³²Àº ½Ã°£ º¸³¿...
+		// ì±„ë„ ì„­ì— ë‚¨ì€ ì‹œê°„ ë³´ëƒ„...
 		return g_pListACCOUNT->Gums_Message( BILLING_MSG_TYPE_TIME_ALERT, szAccount, szRemainMin );
 	}
 	bool AS_gumSOCKET::RecvGums_TimeALERT_EXT( int iMsgTYPE, char *szAccount, char *szRemainMin, DWORD dwWarnPlayFlag )
@@ -205,24 +205,24 @@ DWORD AS_gumSOCKET::GetPlayingFLAG( eGumsNATION eNation, int iPayType )
 	bool AS_gumSOCKET::RecvGums_SetExpireDATEorTIME( int iMsgTYPE, char *szAccount, char *szMsg )
 	{
 		if ( GUMS041_REPLY_EXPIRE_DAY == iMsgTYPE ) {
-			// Á¤¾× »ç¿ëÀÚÀÇ Á¾·áÀÏÀÚ¸¦ µ¹·ÁÁØ´Ù
+			// ì •ì•¡ ì‚¬ìš©ìì˜ ì¢…ë£Œì¼ìë¥¼ ëŒë ¤ì¤€ë‹¤
 			return g_pListACCOUNT->Gums_Message( BILLING_MSG_TYPE_SET_DATE, szAccount, szMsg );
 		} 
-		// Á¾·® »ç¿ëÀÚÀÇ ³²Àº ½Ã°£À» µ¹·ÁÁØ´Ù.
+		// ì¢…ëŸ‰ ì‚¬ìš©ìì˜ ë‚¨ì€ ì‹œê°„ì„ ëŒë ¤ì¤€ë‹¤.
 		return g_pListACCOUNT->Gums_Message( BILLING_MSG_TYPE_SET_TIME, szAccount, szMsg );
 	}
 	bool AS_gumSOCKET::RecvGums_SetExpireDATEorTIME_EXT( int iMsgTYPE, char *szAccount, char *szMsg )
 	{
 		if ( GUMS1041_REPLY_EXPIRE_DAY == iMsgTYPE ) {
-			// Á¤¾× »ç¿ëÀÚÀÇ Á¾·áÀÏÀÚ¸¦ µ¹·ÁÁØ´Ù
+			// ì •ì•¡ ì‚¬ìš©ìì˜ ì¢…ë£Œì¼ìë¥¼ ëŒë ¤ì¤€ë‹¤
 			return g_pListACCOUNT->Gums_Message_EXT( EXT_BILLING_MSG_TYPE_SET_DATE, szAccount, szMsg, 0 );
 		} 
-		// Á¾·® »ç¿ëÀÚÀÇ ³²Àº ½Ã°£À» µ¹·ÁÁØ´Ù.
+		// ì¢…ëŸ‰ ì‚¬ìš©ìì˜ ë‚¨ì€ ì‹œê°„ì„ ëŒë ¤ì¤€ë‹¤.
 		return g_pListACCOUNT->Gums_Message_EXT( EXT_BILLING_MSG_TYPE_SET_TIME, szAccount, szMsg, 0 );
 	}
 	
 
-	// »ç¿ë ±â°£ ¸¸·á
+	// ì‚¬ìš© ê¸°ê°„ ë§Œë£Œ
 	bool AS_gumSOCKET::RecvGums_TimeEXPIRED (int iMsgTYPE, char *szUserID, char *szString )
 	{
 		return g_pListACCOUNT->Gums_KickOutUSER( szUserID, BILLING_MSG_KICKOUT_TIME_EXPIRED );	// RecvGums_TimeEXPIRED
@@ -400,7 +400,7 @@ bool AS_gumSOCKET::Send_GumsPACKET (int iMsgType, char *szString, int iSeqNO, bo
 		pCPacket->m_HEADER.m_wType	= 0xffff;
 		pCPacket->m_HEADER.m_nSize	= sizeof( t_PACKETHEADER );
 		
-		pCPacket->AppendData( szGumHeader, (short)( strlen(szGumHeader) ) );	// ½ºÆ®¸µÀ¸·Î ºÙÀÌ¸é \0ÀÌ ºÙ¾î¼­ ¾ÈµÊ...	
+		pCPacket->AppendData( szGumHeader, (short)( strlen(szGumHeader) ) );	// ìŠ¤íŠ¸ë§ìœ¼ë¡œ ë¶™ì´ë©´ \0ì´ ë¶™ì–´ì„œ ì•ˆë¨...	
 	}
 //	m_csHEAD.Unlock ();
 
@@ -436,7 +436,7 @@ bool AS_gumSOCKET::Send_ServerKeepAliveMessage ()
 bool AS_gumSOCKET::Send_RequestLOGIN (bool bKickAlreadyLogin, int iGameID, char *szUserID, char *szPassword, char *szRealIP, char *szVirtualIP)
 {
 	char szGumBody[ 256 ];
-	// ·Î±×ÀÎ ¿äÃ» GUMPHeader#MsgType/Disconnected/GameId/UserID/CpID/UserPwd/UserRealIp/UserVirtualIp/
+	// ë¡œê·¸ì¸ ìš”ì²­ GUMPHeader#MsgType/Disconnected/GameId/UserID/CpID/UserPwd/UserRealIp/UserVirtualIp/
 	sprintf( szGumBody, "%d\t%d\t%s\t%d\t%s\t%s\t%s\t", bKickAlreadyLogin,
 					iGameID, szUserID, m_iCpID, szPassword, szRealIP, szVirtualIP ? szVirtualIP : szRealIP);
 	return this->Send_GumsPACKET( GUMS010_REQ_LOGIN, szGumBody );
@@ -445,7 +445,7 @@ bool AS_gumSOCKET::Send_RequestLOGIN (bool bKickAlreadyLogin, int iGameID, char 
 bool AS_gumSOCKET::Send_RequestLOGOUT (int iGameID, char *szUserID)
 {
 	char szGumBody[ 256 ];
-	// ·Î±×¾Æ¿ô ¿äÃ» GUMPHeader#MsgType/GameId/UserID/CpID/
+	// ë¡œê·¸ì•„ì›ƒ ìš”ì²­ GUMPHeader#MsgType/GameId/UserID/CpID/
 	sprintf( szGumBody, "%d\t%s\t%d\t", iGameID, szUserID, m_iCpID );
 	return this->Send_GumsPACKET( GUMS020_REQ_LOGOUT, szGumBody );
 }
@@ -504,19 +504,19 @@ int AS_gumSOCKET::GetPayType( char *szPayType )
 DWORD AS_gumSOCKET::GetPayFlag( char *szPayType )
 {
 /*
-	0	Free Play 	Ä³¸¯ÀÛ¼º, Ã¤ÆÃ
-	1	Entry	¹èÆ², º£ÀÌ½Ä ÇÊµå
-	2	Community	Ä£±¸¸ñ·Ï, Ã¤ÆÃ¹æ
-	3	Trade	°Å·¡, »óÁ¡
-	4	Stock Space	¹ğÅ©
-	5	Extra Stock	Ãß°¡¹ğÅ© ½ºÆäÀÌ½º
-	6	Starship Pass	Çà¼º°£ ÀÌµ¿
-	7	Dungeon Adventure	´øÁ¯ ÇÊµå
-	8	Extra Character	ÀÛ¼º°¡´É Ä³¸¯ Ãß°¡
+	0	Free Play 	ìºë¦­ì‘ì„±, ì±„íŒ…
+	1	Entry	ë°°í‹€, ë² ì´ì‹ í•„ë“œ
+	2	Community	ì¹œêµ¬ëª©ë¡, ì±„íŒ…ë°©
+	3	Trade	ê±°ë˜, ìƒì 
+	4	Stock Space	ë±…í¬
+	5	Extra Stock	ì¶”ê°€ë±…í¬ ìŠ¤í˜ì´ìŠ¤
+	6	Starship Pass	í–‰ì„±ê°„ ì´ë™
+	7	Dungeon Adventure	ë˜ì ¼ í•„ë“œ
+	8	Extra Character	ì‘ì„±ê°€ëŠ¥ ìºë¦­ ì¶”ê°€
 */
 	DWORD dwPayFlag = 0;
 	
-	// Free Play Åë°ú~
+	// Free Play í†µê³¼~
 	for (short nI=1; nI<9 && szPayType[ nI ]; nI++) {
 		if ( '0' != szPayType[ nI ] ) {
 			// dwPayFlag |= ( 1 << (8-1+nI) );
@@ -561,13 +561,13 @@ void AS_gumSOCKET::Recv_GumsPACKET (char *szString, int iStrLen)
 	int iMsgTYPE = atoi( pMsgType );
 
 	if ( GUMS100_REPLY_INIT_SUCCESS == iMsgTYPE ) {
-		// GUMS ÃÊ±âÈ­ ¼º°ø ÀÀ´ä
+		// GUMS ì´ˆê¸°í™” ì„±ê³µ ì‘ë‹µ
 		this->m_bGumsINIT = true;
 
 		g_LOG.CS_ODS( 0xffff, "Recved GUM Intialized MSG[ Type:%d,  %s ]\n", iMsgTYPE, szString );
 #ifndef	__SHO_LS_LIB
-		// °èÁ¤ ¼­¹öÀÏ°æ¿ì.... GUMS°¡ ³»·Á°¬´Ù°¡ ´Ù½Ã ¿Ã¶ó¿Â »óÈ²ÀÏ¼ö ÀÖÀ¸´Ï±î...
-		// ±âÁ¸ °èÁ¤¸®½ºÆ®¸¦ ¸ğµÎ ´Ù½Ã ·Î±ä½ÃÅ²´Ù...
+		// ê³„ì • ì„œë²„ì¼ê²½ìš°.... GUMSê°€ ë‚´ë ¤ê°”ë‹¤ê°€ ë‹¤ì‹œ ì˜¬ë¼ì˜¨ ìƒí™©ì¼ìˆ˜ ìˆìœ¼ë‹ˆê¹Œ...
+		// ê¸°ì¡´ ê³„ì •ë¦¬ìŠ¤íŠ¸ë¥¼ ëª¨ë‘ ë‹¤ì‹œ ë¡œê¸´ì‹œí‚¨ë‹¤...
 		g_pListACCOUNT->Gums_Connected ();
 #endif
 		return;
@@ -609,13 +609,13 @@ void AS_gumSOCKET::Recv_GumsPACKET (char *szString, int iStrLen)
 				{
 					int iPayType = ( NULL == pLast ) ? BILLING_MSG_PAY_FU : GetPayType( pLast );
 					switch( iPayType ) {
-						case BILLING_MSG_PAY_FU	 :	// FU	·Î±×ÀÎ µÈ »ç¿ëÀÚ´Â ¹«·á ¾ÆÀÌµğ »ç¿ëÀÚÀÓÀ» ³ªÅ¸³½´Ù.
-						case BILLING_MSG_PAY_FA  :	// FA	·Î±×ÀÎ µÈ »ç¿ëÀÚ´Â °³ÀÎÁ¤¾× »ç¿ëÀÚÀÓÀ» ³ªÅ¸³½´Ù.
-						case BILLING_MSG_PAY_FAP :	// FAP	·Î±×ÀÎ µÈ »ç¿ëÀÚ´Â °³ÀÎÁ¤¾× »ç¿ëÀÚ(ÇÃ·¹Æ¼³Ñ)ÀÓÀ» ³ªÅ¸³½´Ù.
-						case BILLING_MSG_PAY_FQ	 :	// FQ	·Î±×ÀÎ µÈ »ç¿ëÀÚ´Â °³ÀÎÁ¤·® »ç¿ëÀÚÀÓÀ» ³ªÅ¸³½´Ù.
-						case BILLING_MSG_PAY_GU  :	// GU	·Î±×ÀÎ µÈ »ç¿ëÀÚ´Â °ÔÀÓ¹æ »ç¿ëÀÚÀÓÀ» ³ªÅ¸³½´Ù.
-						case BILLING_MSG_PAY_GQ  :	// GQ	°ÔÀÓ¹æ¿¡¼­ ·Î±×ÀÎÀ» ½ÃµµÇÏ¿´À¸³ª °ÔÀÓ¹æÀÇ °ú±İ±â°£(½Ã°£)ÀÌ ¸¸·áµÇ¾î °³ÀÎÁ¤·®À¸·Î ·Î±×ÀÎ µÇ¾úÀ½À» ³ªÅ¸³½´Ù.
-						case BILLING_MSG_PAY_IQ  :	// IQ	°ÔÀÓ¹æ¿¡¼­ ·Î±×ÀÎÀ» ½ÃµµÇÏ¿´À¸³ª ÀÌ¹Ì °è¾àµÈ IP ¼ıÀÚ¸¦ ¸ğµÎ »ç¿ëÇÏ°í ÀÖ¾î °³ÀÎÁ¤·®À¸·Î ·Î±×ÀÎ µÇ¾úÀ½À» ³ªÅ¸³½´Ù.
+						case BILLING_MSG_PAY_FU	 :	// FU	ë¡œê·¸ì¸ ëœ ì‚¬ìš©ìëŠ” ë¬´ë£Œ ì•„ì´ë”” ì‚¬ìš©ìì„ì„ ë‚˜íƒ€ë‚¸ë‹¤.
+						case BILLING_MSG_PAY_FA  :	// FA	ë¡œê·¸ì¸ ëœ ì‚¬ìš©ìëŠ” ê°œì¸ì •ì•¡ ì‚¬ìš©ìì„ì„ ë‚˜íƒ€ë‚¸ë‹¤.
+						case BILLING_MSG_PAY_FAP :	// FAP	ë¡œê·¸ì¸ ëœ ì‚¬ìš©ìëŠ” ê°œì¸ì •ì•¡ ì‚¬ìš©ì(í”Œë ˆí‹°ë„˜)ì„ì„ ë‚˜íƒ€ë‚¸ë‹¤.
+						case BILLING_MSG_PAY_FQ	 :	// FQ	ë¡œê·¸ì¸ ëœ ì‚¬ìš©ìëŠ” ê°œì¸ì •ëŸ‰ ì‚¬ìš©ìì„ì„ ë‚˜íƒ€ë‚¸ë‹¤.
+						case BILLING_MSG_PAY_GU  :	// GU	ë¡œê·¸ì¸ ëœ ì‚¬ìš©ìëŠ” ê²Œì„ë°© ì‚¬ìš©ìì„ì„ ë‚˜íƒ€ë‚¸ë‹¤.
+						case BILLING_MSG_PAY_GQ  :	// GQ	ê²Œì„ë°©ì—ì„œ ë¡œê·¸ì¸ì„ ì‹œë„í•˜ì˜€ìœ¼ë‚˜ ê²Œì„ë°©ì˜ ê³¼ê¸ˆê¸°ê°„(ì‹œê°„)ì´ ë§Œë£Œë˜ì–´ ê°œì¸ì •ëŸ‰ìœ¼ë¡œ ë¡œê·¸ì¸ ë˜ì—ˆìŒì„ ë‚˜íƒ€ë‚¸ë‹¤.
+						case BILLING_MSG_PAY_IQ  :	// IQ	ê²Œì„ë°©ì—ì„œ ë¡œê·¸ì¸ì„ ì‹œë„í•˜ì˜€ìœ¼ë‚˜ ì´ë¯¸ ê³„ì•½ëœ IP ìˆ«ìë¥¼ ëª¨ë‘ ì‚¬ìš©í•˜ê³  ìˆì–´ ê°œì¸ì •ëŸ‰ìœ¼ë¡œ ë¡œê·¸ì¸ ë˜ì—ˆìŒì„ ë‚˜íƒ€ë‚¸ë‹¤.
 							this->RecvGums_LoginSUC( eNation, pUserID, szString, pSeqID, iPayType );
 							return;
 						default		 :
@@ -625,68 +625,68 @@ void AS_gumSOCKET::Recv_GumsPACKET (char *szString, int iStrLen)
 					break;
 				}
 			}
-			// ¾Æ·¡ °øÂ¥ ¼­¹ö »ç¿ë¸¸ ÇÒ¼ö ÀÖ´Ù..
+			// ì•„ë˜ ê³µì§œ ì„œë²„ ì‚¬ìš©ë§Œ í• ìˆ˜ ìˆë‹¤..
 			//g_LOG.CS_ODS( 0xffff, "%d login success:: %s \n", iMsgTYPE, szString );
 			//return;
 		}
-		case 	GUMS112_REPLY_FREE_SRV_ONLY			:	// ÇÁ¸® ·Î±×ÀÎ ½ÇÆĞ
+		case 	GUMS112_REPLY_FREE_SRV_ONLY			:	// í”„ë¦¬ ë¡œê·¸ì¸ ì‹¤íŒ¨
 		case	GUMS1112_REPLY_FREE_SRV_ONLY		:
 			// g_LOG.CS_ODS( 0xffff, "%d allow only free server :: %s \n", iMsgTYPE, szString );
 			this->RecvGums_LoginOnlyFREE( iMsgTYPE, pUserID, pSeqID );
 			return;
 
 		// Response Message type 2	:: pLast == NULL
-		case 	GUMS012_REPLY_LOGIN_FAILED_INVALID_ID_OR_PW		:	// »ç¿ëÀÚÀÇ ID³ª PW°¡ Æ²¸°°æ¿ì
+		case 	GUMS012_REPLY_LOGIN_FAILED_INVALID_ID_OR_PW		:	// ì‚¬ìš©ìì˜ IDë‚˜ PWê°€ í‹€ë¦°ê²½ìš°
 			g_LOG.CS_ODS( 0xffff, "%d invalid id or password :: %s \n", iMsgTYPE, szString );
-		case 	GUMS013_REPLY_LOGIN_FAILED_NO_RIGHT				:	// °ÔÀÓÇÒ ±ÇÇÑÀÌ ¾ø´Â »ç¿ëÀÚ
+		case 	GUMS013_REPLY_LOGIN_FAILED_NO_RIGHT				:	// ê²Œì„í•  ê¶Œí•œì´ ì—†ëŠ” ì‚¬ìš©ì
 		case	GUMS113_REPLY_LOGIN_FAILED			:
 			this->RecvGums_LogInFailedNoRIGHT( iMsgTYPE, pUserID, pSeqID );
 			return;
 
-		case 	GUMS016_REPLY_LOGIN_FAILED_IP_FULL_USED			:	// °áÁ¦ÇÑ IPÀÇ ¼ö·®À» ¸ğµÎ »ç¿ëÁßÀÎ °æ¿ì(°×¹æ)
+		case 	GUMS016_REPLY_LOGIN_FAILED_IP_FULL_USED			:	// ê²°ì œí•œ IPì˜ ìˆ˜ëŸ‰ì„ ëª¨ë‘ ì‚¬ìš©ì¤‘ì¸ ê²½ìš°(ê²œë°©)
 		case	GUMS116_REPLY_FREE_LOGIN_FAILED_IP_FULL_USED	:
 			this->RecvGums_LogInFailedOutOfIP( iMsgTYPE, pUserID, pSeqID );
 			return;
 
 #ifndef	__SHO_LS_LIB
-		case 	GUMS014_REPLY_LOGIN_FAILED_TIME_EXPIRED			:	// »ç¿ë ±â°£ ¸¸·á
+		case 	GUMS014_REPLY_LOGIN_FAILED_TIME_EXPIRED			:	// ì‚¬ìš© ê¸°ê°„ ë§Œë£Œ
 			this->RecvGums_LogInFailedTimeEXPIRED( iMsgTYPE, pUserID, szString );
 			return;
 
-		case 	GUMS018_REPLY_LOGIN_FAILED_ONE_DAY_EXPIRED		:	// ÀÏÀÏ »ç¿ë ±â°£ÀÌ ¸¸·áµÈ »ç¿ëÀÚ
-		case 	GUMS019_REPLY_LOGIN_FAILED_ONE_DAY_EXPIRED2		:	// ÀÏÀÏ »ç¿ë ±â°£ÀÌ ¸¸·áµÈ »ç¿ëÀÚ
+		case 	GUMS018_REPLY_LOGIN_FAILED_ONE_DAY_EXPIRED		:	// ì¼ì¼ ì‚¬ìš© ê¸°ê°„ì´ ë§Œë£Œëœ ì‚¬ìš©ì
+		case 	GUMS019_REPLY_LOGIN_FAILED_ONE_DAY_EXPIRED2		:	// ì¼ì¼ ì‚¬ìš© ê¸°ê°„ì´ ë§Œë£Œëœ ì‚¬ìš©ì
 			this->RecvGums_LogInFailedOneDayEXPIRED ( iMsgTYPE, pUserID );
 			return;
 
-		case 	GUMS015_REPLY_LOGIN_FAILED_ALREADY_LOGIN			:	// ÀÌ¹Ì ·Î±×ÀÎ ÇÑ »ç¿ëÀÚ
+		case 	GUMS015_REPLY_LOGIN_FAILED_ALREADY_LOGIN			:	// ì´ë¯¸ ë¡œê·¸ì¸ í•œ ì‚¬ìš©ì
 			this->RecvGums_LogInFailedAlreadyLOGIN ( iMsgTYPE, pUserID );
 			return;
 
-		case 	GUMS017_REPLY_LOGIN_FAILED_KICKED_USER			:	// Á¢¼Ó ÇØÁö ·Î±×ÀÎ ¿äÃ»½Ã ±âÁ¸ »ç¿ëÀÚ ·Î±× ¾Æ¿ôµÆ´Ù°í Åëº¸ ¹ŞÀ½..
+		case 	GUMS017_REPLY_LOGIN_FAILED_KICKED_USER			:	// ì ‘ì† í•´ì§€ ë¡œê·¸ì¸ ìš”ì²­ì‹œ ê¸°ì¡´ ì‚¬ìš©ì ë¡œê·¸ ì•„ì›ƒëë‹¤ê³  í†µë³´ ë°›ìŒ..
 			// g_LOG.CS_ODS( 0xffff, "%d kickout from new login :: %s \n", iMsgTYPE, szString );
 			this->RecvGums_LogInFailedKickedUSER( iMsgTYPE, pUserID );
 			return;
 
-		case 	GUMS021_REPLY_LOGOUT_SUCCESS		:	// »ç¿ëÀÚ ·Î±×¾Æ¿ô ¼º°ø
+		case 	GUMS021_REPLY_LOGOUT_SUCCESS		:	// ì‚¬ìš©ì ë¡œê·¸ì•„ì›ƒ ì„±ê³µ
 			// g_LOG.CS_ODS( 0xffff, "%d logout success :: %s \n", iMsgTYPE, szString );
-			// ·Î±×¾Æ¿ô ¿äÃ»¿¡ ÀÇÇÑ°ÍÀÌ¹Ç·Î °Á ¹«½Ã~~~
+			// ë¡œê·¸ì•„ì›ƒ ìš”ì²­ì— ì˜í•œê²ƒì´ë¯€ë¡œ ê± ë¬´ì‹œ~~~
 			return;
-		case	GUMS022_REPLY_LOGOUT_FAILED			:	// ·Î±×¾Æ¿ô ½ÇÆĞ
-			// ·Î±×¾Æ¿ô ¿äÃ»¿¡ ÀÇÇØ Àü¼Û ¹ŞÀº°Í...
+		case	GUMS022_REPLY_LOGOUT_FAILED			:	// ë¡œê·¸ì•„ì›ƒ ì‹¤íŒ¨
+			// ë¡œê·¸ì•„ì›ƒ ìš”ì²­ì— ì˜í•´ ì „ì†¡ ë°›ì€ê²ƒ...
 			// g_LOG.CS_ODS( 0xffff, "%d logout failed:: %s \n", iMsgTYPE, szString );
 			return;
 
-		case 	GUMS088_REPLY_DO_INIT_FIRST			:	// ConnectionÀÌ ÃÊ±âÈ­ µÇÁö ¾Ê¾ÒÀ» °æ¿ì MsgType ÀÌ 88 
-		case 	GUMS099_REPLY_INVALID_MSG_FORMAT	:	// ¸Ş¼¼Áö Çü½ÄÀÌ Æ²·ÈÀ» °æ¿ì
-		case 	GUMS044_REPLY_NETWORK_IS_NOT_GOOD	:	// ³×Æ®¿÷ »ç¿ë»óÈ²ÀÌ ÁÁÁö ¾Ê¾Æ ¸Ş½ÃÁö Ã³¸®°¡ ºÒ°¡´É.
+		case 	GUMS088_REPLY_DO_INIT_FIRST			:	// Connectionì´ ì´ˆê¸°í™” ë˜ì§€ ì•Šì•˜ì„ ê²½ìš° MsgType ì´ 88 
+		case 	GUMS099_REPLY_INVALID_MSG_FORMAT	:	// ë©”ì„¸ì§€ í˜•ì‹ì´ í‹€ë ¸ì„ ê²½ìš°
+		case 	GUMS044_REPLY_NETWORK_IS_NOT_GOOD	:	// ë„¤íŠ¸ì› ì‚¬ìš©ìƒí™©ì´ ì¢‹ì§€ ì•Šì•„ ë©”ì‹œì§€ ì²˜ë¦¬ê°€ ë¶ˆê°€ëŠ¥.
 			break;
 
 		// Response Message type 3	:: pLast == Remain Time
-		case 	GUMS041_REPLY_EXPIRE_DAY			:	// Á¤¾× »ç¿ëÀÚÀÇ Á¾·áÀÏÀÚ¸¦ µ¹·ÁÁØ´Ù
-		case 	GUMS042_REPLY_EXPIRE_DAY2			:	// Á¾·® »ç¿ëÀÚÀÇ ³²Àº ½Ã°£À» µ¹·ÁÁØ´Ù.
+		case 	GUMS041_REPLY_EXPIRE_DAY			:	// ì •ì•¡ ì‚¬ìš©ìì˜ ì¢…ë£Œì¼ìë¥¼ ëŒë ¤ì¤€ë‹¤
+		case 	GUMS042_REPLY_EXPIRE_DAY2			:	// ì¢…ëŸ‰ ì‚¬ìš©ìì˜ ë‚¨ì€ ì‹œê°„ì„ ëŒë ¤ì¤€ë‹¤.
 		{
-			//Á¾·áÀÏÀÚ Çü½Ä : YYYYMMDDhhmm
-			//[YYYY : ³â, MM : ¿ù, DD : ÀÏ, hh : ½Ã(24½Ã°£ ±âÁØ), mm(ºĞ)]
+			//ì¢…ë£Œì¼ì í˜•ì‹ : YYYYMMDDhhmm
+			//[YYYY : ë…„, MM : ì›”, DD : ì¼, hh : ì‹œ(24ì‹œê°„ ê¸°ì¤€), mm(ë¶„)]
 			//GUMP/1.2/1#41/1/subsub/1/200309101025/
 
 			// GUMP/1.2/1#42/1/subsub/1/122/
@@ -702,7 +702,7 @@ void AS_gumSOCKET::Recv_GumsPACKET (char *szString, int iStrLen)
 		case	GUMS1042_REPLY_EXPIRE_DAY2			:
 		{
 			// GUMP/1.2/1#41/1/subsub/1/1/200609101025/4/200609251025
-			// Entry ¿ä±İÁ¦ÀÇ ¸¸·á½Ã°£Àº 2006³â 9¿ù 10ÀÏ 10:25 ÀÌ¸ç Stock Space ¿ä±İÁ¦ÀÇ ¸¸·á½Ã°£Àº 2006³â 9¿ù 25ÀÏ 10:25ÀÌ´Ù.
+			// Entry ìš”ê¸ˆì œì˜ ë§Œë£Œì‹œê°„ì€ 2006ë…„ 9ì›” 10ì¼ 10:25 ì´ë©° Stock Space ìš”ê¸ˆì œì˜ ë§Œë£Œì‹œê°„ì€ 2006ë…„ 9ì›” 25ì¼ 10:25ì´ë‹¤.
 			char szTmp1[256], szTmp2[256] = { 0, } ;
 			char *pDate = ST.GetTokenNext( pTabDelimiters );
 			while( pLast && pDate ) {
@@ -720,13 +720,13 @@ void AS_gumSOCKET::Recv_GumsPACKET (char *szString, int iStrLen)
 		}
 
 		//
-		// Callback Messages		:: pLast == Time(³²Àº½Ã°£(ºĞ)À» ³ªÅ¸³½´Ù)
+		// Callback Messages		:: pLast == Time(ë‚¨ì€ì‹œê°„(ë¶„)ì„ ë‚˜íƒ€ë‚¸ë‹¤)
 		//
-		// 1. °æ°í ¸Ş¼¼Áö
-		case 	GUMS051_REPLY_DAY_EXPIRED_ALERT		:	// (1)	±â°£ ¸¸·á °æ°í(Á¤¾×) :: °áÁ¦ÇÑ »ç¿ë±â°£ÀÌ ¸¸·áµÇ±â ¸î ºĞÀü¿¡ Game Server¿¡°Ô Àü´ŞµÇ´Â ¸Ş½ÃÁö´Ù. MsgType ÀÌ 51
-		case 	GUMS052_REPLY_ONE_DAY_TIME_OVER		:	// (2)	ÀÏÀÏ »ç¿ë½Ã°£ ÇÑµµ ÃÊ°ú °æ°í:: ÀÏÀÏ »ç¿ë½Ã°£ ÇÑµµ - ¿¹¸¦ µé¸é ÇÏ·ç 1½Ã°£ »ç¿ë°¡´É - ¸¦ ÃÊ°úÇÏ±â ¸î ºĞÀü¿¡ Game Server¿¡°Ô Àü´ŞµÇ´Â ¸Ş½ÃÁö´Ù. MsgType ÀÌ 52
-		case 	GUMS053_REPLY_ONE_DAY_TIME_OVER2	:	// (3)	ÀÏÀÏ »ç¿ë±â°£ ¹üÀ§ ÃÊ°ú °æ°í:: ÀÏÀÏ »ç¿ë±â°£ - ¿¹¸¦ µé¸é 18:00 ~ 20:00 ½Ã - À» ¹ş¾î³ª±â ¸î ºĞÀü¿¡ Game Server¿¡°Ô Àü´ŞµÇ´Â ¸Ş½ÃÁö´Ù. MsgType ÀÌ 53
-		case 	GUMS054_REPLY_TIME_EXPIRED_ALERT	:	// (4)	»ç¿ë½Ã°£(Á¤·®) ÃÊ°ú °æ°í :: Á¤·®Á¦ »ç¿ë½Ã°£ ¸¸·á ¸î ºĞÀü¿¡ Game Server¿¡°Ô Àü´ŞµÇ´Â ¸Ş½ÃÁö´Ù. MsgType ÀÌ 54
+		// 1. ê²½ê³  ë©”ì„¸ì§€
+		case 	GUMS051_REPLY_DAY_EXPIRED_ALERT		:	// (1)	ê¸°ê°„ ë§Œë£Œ ê²½ê³ (ì •ì•¡) :: ê²°ì œí•œ ì‚¬ìš©ê¸°ê°„ì´ ë§Œë£Œë˜ê¸° ëª‡ ë¶„ì „ì— Game Serverì—ê²Œ ì „ë‹¬ë˜ëŠ” ë©”ì‹œì§€ë‹¤. MsgType ì´ 51
+		case 	GUMS052_REPLY_ONE_DAY_TIME_OVER		:	// (2)	ì¼ì¼ ì‚¬ìš©ì‹œê°„ í•œë„ ì´ˆê³¼ ê²½ê³ :: ì¼ì¼ ì‚¬ìš©ì‹œê°„ í•œë„ - ì˜ˆë¥¼ ë“¤ë©´ í•˜ë£¨ 1ì‹œê°„ ì‚¬ìš©ê°€ëŠ¥ - ë¥¼ ì´ˆê³¼í•˜ê¸° ëª‡ ë¶„ì „ì— Game Serverì—ê²Œ ì „ë‹¬ë˜ëŠ” ë©”ì‹œì§€ë‹¤. MsgType ì´ 52
+		case 	GUMS053_REPLY_ONE_DAY_TIME_OVER2	:	// (3)	ì¼ì¼ ì‚¬ìš©ê¸°ê°„ ë²”ìœ„ ì´ˆê³¼ ê²½ê³ :: ì¼ì¼ ì‚¬ìš©ê¸°ê°„ - ì˜ˆë¥¼ ë“¤ë©´ 18:00 ~ 20:00 ì‹œ - ì„ ë²—ì–´ë‚˜ê¸° ëª‡ ë¶„ì „ì— Game Serverì—ê²Œ ì „ë‹¬ë˜ëŠ” ë©”ì‹œì§€ë‹¤. MsgType ì´ 53
+		case 	GUMS054_REPLY_TIME_EXPIRED_ALERT	:	// (4)	ì‚¬ìš©ì‹œê°„(ì •ëŸ‰) ì´ˆê³¼ ê²½ê³  :: ì •ëŸ‰ì œ ì‚¬ìš©ì‹œê°„ ë§Œë£Œ ëª‡ ë¶„ì „ì— Game Serverì—ê²Œ ì „ë‹¬ë˜ëŠ” ë©”ì‹œì§€ë‹¤. MsgType ì´ 54
 			// g_LOG.CS_ODS( 0xffff, "%d time out alert:: %s \n", iMsgTYPE, szString );
 			if ( pLast )
 				this->RecvGums_TimeALERT( iMsgTYPE, pUserID, pLast );
@@ -747,18 +747,18 @@ void AS_gumSOCKET::Recv_GumsPACKET (char *szString, int iStrLen)
 			return;
 		}
 
-		// 2. Á¢¼Ó ÇØÁ¦ ¿äÃ» ¸Ş¼¼Áö
-		case 	GUMS061_REPLY_DAY_EXPIRED_DIS		:	// (1)	±â°£ ¸¸·á Á¢¼Ó ÇØÁ¦ ¸Ş½ÃÁö(Á¤¾×) :: °áÁ¦ÇÑ »ç¿ë±â°£ÀÌ ¸¸·áµÇ¾î »ç¿ëÀÚÀÇ Á¢¼ÓÀ» ÇØÁ¦ÇÏ¶ó´Â ¸Ş½ÃÁöÀÌ´Ù. MsgType ÀÌ 61
-		case 	GUMS062_REPLY_ONE_DAY_EXPIRED_DIS	:	// (2)	ÀÏÀÏ »ç¿ë½Ã°£ ÇÑµµ ÃÊ°ú Á¢¼Ó ÇØÁ¦ ¸Ş½ÃÁö :: ÀÏÀÏ »ç¿ë½Ã°£ ÇÑµµ°¡ ÃÊ°úµÇ¾î »ç¿ëÀÚÀÇ Á¢¼ÓÀ» ÇØÁ¦ÇÏ¶ó´Â ¸Ş½ÃÁöÀÌ´Ù. MsgType ÀÌ 62
-		case 	GUMS063_REPLY_ONE_DAY_EXPIRED_DIS2	:	// (3)	ÀÏÀÏ »ç¿ë±â°£ ¹üÀ§ ÃÊ°ú Á¢¼Ó ÇØÁ¦ ¸Ş½ÃÁö :: ÀÏÀÏ »ç¿ë±â°£ ¹üÀ§°¡ ÃÊ°úµÇ¾î »ç¿ëÀÚÀÇ Á¢¼ÓÀ» ÇØÁ¦ÇÏ¶ó´Â ¸Ş½ÃÁöÀÌ´Ù. MsgType ÀÌ 63
-		case 	GUMS066_REPLY_TIME_EXPIRED_DIS		:	// »ç¿ë½Ã°£(Á¤·®) ¸¸·á Á¢¼Ó ÇØÁ¦ ¸Ş½ÃÁö
+		// 2. ì ‘ì† í•´ì œ ìš”ì²­ ë©”ì„¸ì§€
+		case 	GUMS061_REPLY_DAY_EXPIRED_DIS		:	// (1)	ê¸°ê°„ ë§Œë£Œ ì ‘ì† í•´ì œ ë©”ì‹œì§€(ì •ì•¡) :: ê²°ì œí•œ ì‚¬ìš©ê¸°ê°„ì´ ë§Œë£Œë˜ì–´ ì‚¬ìš©ìì˜ ì ‘ì†ì„ í•´ì œí•˜ë¼ëŠ” ë©”ì‹œì§€ì´ë‹¤. MsgType ì´ 61
+		case 	GUMS062_REPLY_ONE_DAY_EXPIRED_DIS	:	// (2)	ì¼ì¼ ì‚¬ìš©ì‹œê°„ í•œë„ ì´ˆê³¼ ì ‘ì† í•´ì œ ë©”ì‹œì§€ :: ì¼ì¼ ì‚¬ìš©ì‹œê°„ í•œë„ê°€ ì´ˆê³¼ë˜ì–´ ì‚¬ìš©ìì˜ ì ‘ì†ì„ í•´ì œí•˜ë¼ëŠ” ë©”ì‹œì§€ì´ë‹¤. MsgType ì´ 62
+		case 	GUMS063_REPLY_ONE_DAY_EXPIRED_DIS2	:	// (3)	ì¼ì¼ ì‚¬ìš©ê¸°ê°„ ë²”ìœ„ ì´ˆê³¼ ì ‘ì† í•´ì œ ë©”ì‹œì§€ :: ì¼ì¼ ì‚¬ìš©ê¸°ê°„ ë²”ìœ„ê°€ ì´ˆê³¼ë˜ì–´ ì‚¬ìš©ìì˜ ì ‘ì†ì„ í•´ì œí•˜ë¼ëŠ” ë©”ì‹œì§€ì´ë‹¤. MsgType ì´ 63
+		case 	GUMS066_REPLY_TIME_EXPIRED_DIS		:	// ì‚¬ìš©ì‹œê°„(ì •ëŸ‰) ë§Œë£Œ ì ‘ì† í•´ì œ ë©”ì‹œì§€
 			// g_LOG.CS_ODS( 0xffff, "%d time expired :: %s \n", iMsgTYPE, szString );
 			this->RecvGums_TimeEXPIRED( iMsgTYPE, pUserID, szString );
 			return;
 
-		case 	GUMS1061_REPLY_DAY_EXPIRED_DIS		:	// »ç¿ë±â°£(Á¤¾×) ¸¸·á Á¢¼Ó ÇØÁ¦ ¸Ş¼¼Áö
-		case 	GUMS1062_REPLY_ONE_DAY_EXPIRED_DIS	:	// ÀÏÀÏ »ç¿ë½Ã°£ ÇÑµµ ÃÊ°ú Á¢¼Ó ÇØÁ¦ ¸Ş½ÃÁö
-		case 	GUMS1063_REPLY_ONE_DAY_EXPIRED_DIS2 :	// ÀÏÀÏ ÇÑµµ½Ã°£ ÇÑµµ ÃÊ°ú Á¢¼Ó ÇØÁ¦ ¸Ş½ÃÁö
+		case 	GUMS1061_REPLY_DAY_EXPIRED_DIS		:	// ì‚¬ìš©ê¸°ê°„(ì •ì•¡) ë§Œë£Œ ì ‘ì† í•´ì œ ë©”ì„¸ì§€
+		case 	GUMS1062_REPLY_ONE_DAY_EXPIRED_DIS	:	// ì¼ì¼ ì‚¬ìš©ì‹œê°„ í•œë„ ì´ˆê³¼ ì ‘ì† í•´ì œ ë©”ì‹œì§€
+		case 	GUMS1063_REPLY_ONE_DAY_EXPIRED_DIS2 :	// ì¼ì¼ í•œë„ì‹œê°„ í•œë„ ì´ˆê³¼ ì ‘ì† í•´ì œ ë©”ì‹œì§€
 		case	GUMS1066_REPLY_TIME_EXPIRED_DIS		:	
 		{
 			char *szFlag = pLast;
@@ -769,18 +769,18 @@ void AS_gumSOCKET::Recv_GumsPACKET (char *szString, int iStrLen)
 			return;
 		}
 
-		case 	GUMS064_REPLY_DUP_USERID_DIS		:	// (4)	´Ù¸¥ »ç¿ëÀÚÀÇ ¿ä±¸·Î Á¢¼Ó ÇØÁ¦ ¸Ş½ÃÁö :: °°Àº ¾ÆÀÌµğ·Î ´Ù¸¥ »ç¿ëÀÚ°¡ ·Î±×ÀÎÀ» ÇÏ¸é¼­ ÀÌ¹Ì ·Î±×ÀÎ µÇ¾î ÀÖ´ø ±âÁ¸ »ç¿ëÀÚ¸¦ ·Î±× ¾Æ¿ô ½ÃÅ³ ¶§ ±âÁ¸ »ç¿ëÀÚ¿¡°Ô Àü´ŞµÇ´Â ¸Ş½ÃÁöÀÌ´Ù. MsgType ÀÌ 64
+		case 	GUMS064_REPLY_DUP_USERID_DIS		:	// (4)	ë‹¤ë¥¸ ì‚¬ìš©ìì˜ ìš”êµ¬ë¡œ ì ‘ì† í•´ì œ ë©”ì‹œì§€ :: ê°™ì€ ì•„ì´ë””ë¡œ ë‹¤ë¥¸ ì‚¬ìš©ìê°€ ë¡œê·¸ì¸ì„ í•˜ë©´ì„œ ì´ë¯¸ ë¡œê·¸ì¸ ë˜ì–´ ìˆë˜ ê¸°ì¡´ ì‚¬ìš©ìë¥¼ ë¡œê·¸ ì•„ì›ƒ ì‹œí‚¬ ë•Œ ê¸°ì¡´ ì‚¬ìš©ìì—ê²Œ ì „ë‹¬ë˜ëŠ” ë©”ì‹œì§€ì´ë‹¤. MsgType ì´ 64
 		case	GUMS1064_REPLY_DUP_USERID_DIS		:
 			g_LOG.CS_ODS( 0xffff, "%d time expired or duplicated ID :: %s \n", iMsgTYPE, szString );
 			this->RecvGums_DupUserID( iMsgTYPE, pUserID );
 			return;
 
-		case 	GUMS065_REPLY_USER_NOT_FOUND		:	// »ç¿ëÀÚ Live ½ÅÈ£°¡ ¿ÔÀ»¶§ »ç¿ëÀÚ°¡ ¸Ş¸ğ¸® ³»¿¡ ¾øÀ» °æ¿ì º¸³»ÁÖ´Â ¸Ş½ÃÁö
+		case 	GUMS065_REPLY_USER_NOT_FOUND		:	// ì‚¬ìš©ì Live ì‹ í˜¸ê°€ ì™”ì„ë•Œ ì‚¬ìš©ìê°€ ë©”ëª¨ë¦¬ ë‚´ì— ì—†ì„ ê²½ìš° ë³´ë‚´ì£¼ëŠ” ë©”ì‹œì§€
 		case	GUMS1065_REPLY_USER_NOT_FOUND		:
-			// ·Î±×ÀÎ ¼­¹ö¿¡´Â ÀÖ´Â ²­¼­¹ö¿¡ ¾øµ§´Ù
-			// ÀÌ°æ¿ì´Â gums¿Í Á¢¼ÓÀÌ ²÷±äÈÄ ÀçÁ¢ µÆÀ»¶§... 
-			// ±âÁ¸ Á¢¼ÓÀÚ Á¤º¸¸¦ º¸³»¸é gums¿¡¼­ °¨´çÇØ ³»Áö ¸øÇÏ±â ¶§¹®¿¡...
-			// ÇöÀç °èÁ¤ ÀÀ´ä¿Â °èÁ¤ÀÌ ÀÖ´ÂÁö Á¶»çÇØ¼­ ÀÖÀ¸¸é ·Î±×ÀÎ ¿äÃ»...
+			// ë¡œê·¸ì¸ ì„œë²„ì—ëŠ” ìˆëŠ” ê»Œì„œë²„ì— ì—†ë´ë‹¤
+			// ì´ê²½ìš°ëŠ” gumsì™€ ì ‘ì†ì´ ëŠê¸´í›„ ì¬ì ‘ ëì„ë•Œ... 
+			// ê¸°ì¡´ ì ‘ì†ì ì •ë³´ë¥¼ ë³´ë‚´ë©´ gumsì—ì„œ ê°ë‹¹í•´ ë‚´ì§€ ëª»í•˜ê¸° ë•Œë¬¸ì—...
+			// í˜„ì¬ ê³„ì • ì‘ë‹µì˜¨ ê³„ì •ì´ ìˆëŠ”ì§€ ì¡°ì‚¬í•´ì„œ ìˆìœ¼ë©´ ë¡œê·¸ì¸ ìš”ì²­...
 			if ( this->RecvGums_TimeOUT( iMsgTYPE, pUserID ) /* g_pListACCOUNT->RecvGums_TimeOUT( pUserID ) */ ) {
 				;// g_LOG.CS_ODS( 0xffff, "%d user Request relogin :: %s \n", iMsgTYPE, szString );
 			} else
@@ -801,7 +801,7 @@ bool AS_gumSOCKET::Proc_SocketMSG (WPARAM wParam, LPARAM lParam)
 		{
 			m_SockGUM.OnReceive( nErrorCode );
 
-			// ¹ŞÀº ÆĞÅ¶ Ã³¸®..
+			// ë°›ì€ íŒ¨í‚· ì²˜ë¦¬..
 			while( m_SockGUM.Peek_Packet( m_pRecvPket, true ) ) {
 				// LogString( LOG_DEBUG, "Handle LS Packet: Type[ 0x%x ], Size[ %d ]\n", m_pRecvPket->m_HEADER.m_wType, m_pRecvPket->m_HEADER.m_nSize);
 				if ( 0x0ffff == m_pRecvPket->m_HEADER.m_wType ) {
@@ -840,7 +840,7 @@ bool AS_gumSOCKET::Proc_SocketMSG (WPARAM wParam, LPARAM lParam)
 				m_pSendAliveTimer->Start ();
 
 				// iMsgType, szServerName, iServerGroupNumber, iServerNumber, iZoneNumber
-				// ¶óÀÌºê 6ºĞ¼³Á¤... : °ÔÀÓ¿¡¼­ 5ºĞ¸¶³ª ¿Â´Ù.
+				// ë¼ì´ë¸Œ 6ë¶„ì„¤ì •... : ê²Œì„ì—ì„œ 5ë¶„ë§ˆë‚˜ ì˜¨ë‹¤.
 
 			#ifdef	__SHO_LS_LIB
 				this->Send_IntializedMessage( "roseON_LS", 1, 1, 1, 3, 10 );
@@ -859,7 +859,7 @@ bool AS_gumSOCKET::Proc_SocketMSG (WPARAM wParam, LPARAM lParam)
 			}
 			break;
 		}
-		case FD_CLOSE:		// Close()ÇÔ¼ö¸¦ È£ÃâÇØ¼­ Á¾·áµÉ¶§´Â ¹ß»ı ¾ÈÇÑ´Ù.
+		case FD_CLOSE:		// Close()í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•´ì„œ ì¢…ë£Œë ë•ŒëŠ” ë°œìƒ ì•ˆí•œë‹¤.
 		{
 			m_bGumsINIT = false;
 

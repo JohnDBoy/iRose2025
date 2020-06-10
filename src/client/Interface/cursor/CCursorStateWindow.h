@@ -4,10 +4,10 @@
 
 
 /**
-* À©µµ¿ì ±âº» Ä¿¼­¸¦ º¯°æ¾øÀÌ »ç¿ëÇÏ´Â  State Class
+* ìœˆë„ìš° ê¸°ë³¸ ì»¤ì„œë¥¼ ë³€ê²½ì—†ì´ ì‚¬ìš©í•˜ëŠ”  State Class
 * 
 *
-* @Author		ÃÖÁ¾Áø
+* @Author		ìµœì¢…ì§„
 *
 * @Date			2005/9/6
 */

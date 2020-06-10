@@ -35,12 +35,12 @@ void CTargetManager::Proc()
 		g_pViewMSG->AddObjIDX( m_iCurrentMouseTargetObject );
 	}
 
-	/// ÇöÀç ¼±ÅÃµÈ ¿ÀºêÁ§Æ®°¡ ÀÖ°í
+	/// í˜„ì¬ ì„ íƒëœ ì˜¤ë¸Œì íŠ¸ê°€ ìˆê³ 
 	if ( g_UserInputSystem.GetCurrentTarget() ) 
 	{
-		/// ±×°ÍÀÌ ¸÷ÀÌ¶ó¸é
+		/// ê·¸ê²ƒì´ ëª¹ì´ë¼ë©´
 		CObjCHAR *pObj = (CObjCHAR*)g_pObjMGR->Get_CharOBJ( g_UserInputSystem.GetCurrentTarget(), true );
-		/// À¯È¿ÇÏÁö ¾ÊÀº Å¸°ÙÀÌ´Ù.. ¸¶¿ì½º ÄÄ¸Çµå ÃÊ±âÈ­
+		/// ìœ íš¨í•˜ì§€ ì•Šì€ íƒ€ê²Ÿì´ë‹¤.. ë§ˆìš°ìŠ¤ ì»´ë§¨ë“œ ì´ˆê¸°í™”
 		if( pObj != NULL )
 		{		
 			if( pObj->IsA( OBJ_MOB ) )
@@ -53,7 +53,7 @@ void CTargetManager::Proc()
 
 void CTargetManager::Draw()
 {
-	/// ¼±ÅÃµÈ Å¸°Ù Ãâ·Â.
+	/// ì„ íƒëœ íƒ€ê²Ÿ ì¶œë ¥.
 	//if ( g_UserInputSystem.GetCurrentTarget() ) 
 	//{		
 	//	
@@ -63,7 +63,7 @@ void CTargetManager::Draw()
 	//		return;
 
 	//	CObjCHAR *pObj = (CObjCHAR*)g_pObjMGR->Get_CharOBJ( g_UserInputSystem.GetCurrentTarget(), true );
-	//	/// À¯È¿ÇÏÁö ¾ÊÀº Å¸°ÙÀÌ´Ù.. ¸¶¿ì½º ÄÄ¸Çµå ÃÊ±âÈ­
+	//	/// ìœ íš¨í•˜ì§€ ì•Šì€ íƒ€ê²Ÿì´ë‹¤.. ë§ˆìš°ìŠ¤ ì»´ë§¨ë“œ ì´ˆê¸°í™”
 	//	if( pObj == NULL )
 	//	{
 	//		g_UserInputSystem.ClearMouseState();

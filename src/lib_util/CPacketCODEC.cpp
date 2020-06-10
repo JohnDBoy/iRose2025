@@ -86,7 +86,7 @@ struct t_PACKETHEADER
 
 			DWORD	m_wRandAryIDX		: 11;
 			DWORD	m_wRandTblIDX		: 4;
-			DWORD	m_wAddedDummyLEN	: 3;	// Γί°΅µΗ΄Β ΖΠΕ¶ ±ζΐΜ ¶Η΄Β °ΛΑυ ΊρΖ®...
+			DWORD	m_wAddedDummyLEN	: 3;	// μ¶”κ°€λλ” ν¨ν‚· κΈΈμ΄ λλ” κ²€μ¦ λΉ„νΈ...
 			// MSB
 		} ;
 
@@ -129,7 +129,7 @@ union tagCODEC {
 		DWORD	m_R7				: 3;
 	} ;
 
-	// °ª ³Φΐ» ±ΈΑ¶ΓΌ...
+	// κ°’ λ„£μ„ κµ¬μ΅°μ²΄...
 	struct {
 		DWORD	m_wPacketSIZE		: 11;
 		DWORD	m_wPacketTYPE		: 11;	// 7ff		: 0 ~ 2047
@@ -141,7 +141,7 @@ union tagCODEC {
 
 		DWORD	m_wRandAryIDX		: 11;
 		DWORD	m_wRandTblIDX		: 4;
-		DWORD	m_wAddedDummyLEN	: 3;	// Γί°΅µΗ΄Β ΖΠΕ¶ ±ζΐΜ...
+		DWORD	m_wAddedDummyLEN	: 3;	// μ¶”κ°€λλ” ν¨ν‚· κΈΈμ΄...
 		// MSB
 	} ;
 
@@ -291,7 +291,7 @@ bool CpC::Init (DWORD dwInitCODE)
 }
 
 //-------------------------------------------------------------------------------------------------
-// Ε¬¶σΐΜΎπΖ®Ώ΅Ό­ Ό­Ήφ·Ξ ΊΈ³Ύ ΖΠΕ¶ ΎΟΘ£Θ­...
+// ν΄λΌμ΄μ–ΈνΈμ—μ„ μ„λ²„λ΅ λ³΄λ‚Ό ν¨ν‚· μ•”νΈν™”...
 // Encode_SendClientPACKET
 WORD CpC::ESCP (t_PACKETHEADER *pHEADER, int &iSendSEQ)
 {
@@ -335,7 +335,7 @@ WORD CpC::ESCP (t_PACKETHEADER *pHEADER, int &iSendSEQ)
 
 	// Encoding Packet Header ...
 	for (wI=0; wI<sizeof(tagCODEC); wI++) {
-		// ΏψΊ» Ημ΄υΐΗ CRC°θ»κ...
+		// μ›λ³Έ ν—¤λ”μ CRCκ³„μ‚°...
 		wCRC = CalTAG( wCRC, sEnCODE.m_pDATA[ wI ] );
 		pHEADER->m_pDATA[ wI ] ^= s_iRandTABLE[ wI ][ iRandIdx ];
 	}
@@ -361,7 +361,7 @@ WORD CpC::ESCP (t_PACKETHEADER *pHEADER, int &iSendSEQ)
 
 
 //-------------------------------------------------------------------------------------------------
-// Ό­ΉφΏ΅Ό­ Ε¬¶σΐΜΎπΖ®·Ξ ΊΈ³Ύ ΖΠΕ¶ ΎΟΘ£Θ­...
+// μ„λ²„μ—μ„ ν΄λΌμ΄μ–ΈνΈλ΅ λ³΄λ‚Ό ν¨ν‚· μ•”νΈν™”...
 // Encode_SendServerPACKET
 WORD CpC::ESSP (t_PACKETHEADER *pHEADER)
 {
@@ -370,7 +370,7 @@ WORD CpC::ESSP (t_PACKETHEADER *pHEADER)
 	int iRandIdx = RANDOM( MAX_RANDOM_INDEX_SIZE+1 );
 	int iRandTbl = RANDOM( RANDOM_TABLE_COUNT+1 );
 
-	// Ό­ΉφΏ΅Ό­ ΐόΌΫµΗ΄Β ΖΠΕ¶ΐΊ ΄υΉΜ »ηΐΜΑξ ΎΖ΄Ο΄Ω...
+	// μ„λ²„μ—μ„ μ „μ†΅λλ” ν¨ν‚·μ€ λ”λ―Έ μ‚¬μ΄μ¦ μ•„λ‹λ‹¤...
 	sEnCODE.m_wRandAryIDX    = iRandIdx;
 	sEnCODE.m_wRandTblIDX	 = iRandTbl;
 	sEnCODE.m_wAddedDummyLEN = ( iRandIdx + iRandTbl ) & 0x07;  // 0 ~ 7
@@ -398,7 +398,7 @@ WORD CpC::ESSP (t_PACKETHEADER *pHEADER)
 	WORD wCRC = 0;
 	// Encoding Packet Header ...
 	for (wI=0; wI<sizeof(tagCODEC); wI++) {
-		// ΏψΊ» Ημ΄υΐΗ CRC°θ»κ...
+		// μ›λ³Έ ν—¤λ”μ CRCκ³„μ‚°...
 		wCRC = CalTAG( wCRC, sEnCODE.m_pDATA[ wI ] );
 		pHEADER->m_pDATA[ wI ] ^= s_iRandTABLE[ wI ][ iRandIdx ];
 	}
@@ -411,7 +411,7 @@ WORD CpC::ESSP (t_PACKETHEADER *pHEADER)
 
 	pHEADER->m_CRC = wCRC;
 	/*
-	΄υΉΜ ΖΠΕ¶ Ύψ΄Ω..
+	λ”λ―Έ ν¨ν‚· μ—†λ‹¤..
 	for (	; wI<wTotSize; wI++) {
 		pHEADER->m_pDATA[ wI ] ^= s_iRandTABLE[ (iRandTbl+wI) & RANDOM_TABLE_COUNT ][ (iRandIdx+wI) & MAX_RANDOM_TABLE_SIZE ];
 	}
@@ -433,7 +433,7 @@ WORD CpC::GDPL(t_PACKETHEADER *pPacket)
 }
 
 //-------------------------------------------------------------------------------------------------
-// Ό­ΉφΏ΅Ό­ ΉήΐΊ ΖΠΕ¶Ημ΄υ ΊΉΘ£Θ­...
+// μ„λ²„μ—μ„ λ°›μ€ ν¨ν‚·ν—¤λ” λ³µνΈν™”...
 // Decode_RecvServerHEADER
 WORD CpC::DRSH(t_PACKETHEADER *pHEADER)
 {
@@ -444,13 +444,13 @@ WORD CpC::DRSH(t_PACKETHEADER *pHEADER)
 	sEnCODE.m_R3 = pHEADER->m_SC.m_R3;
 	sEnCODE.m_R4 = pHEADER->m_SC.m_R4;
 
-	// Ημ΄υ ΊΉΘ£Θ­...
+	// ν—¤λ” λ³µνΈν™”...
 	int iSeqRandIDX = sEnCODE.m_wRandAryIDX;
 	for (short nI=0; nI<sizeof(tagCODEC); nI++) {
 		pHEADER->m_pDATA[ nI ] ^= s_iRandTABLE[ nI ][ iSeqRandIDX ];
 	}
 
-	// »ηΐΜΑξ...
+	// μ‚¬μ΄μ¦...
 	sEnCODE.m_S1 = pHEADER->m_SC.m_S1;
 	sEnCODE.m_S2 = pHEADER->m_SC.m_S2;
 	sEnCODE.m_S3 = pHEADER->m_SC.m_S3;
@@ -460,17 +460,17 @@ WORD CpC::DRSH(t_PACKETHEADER *pHEADER)
 	sEnCODE.m_R5 = pHEADER->m_SC.m_R5;
 	sEnCODE.m_R6 = pHEADER->m_SC.m_R6;
 
-	// °ΛΑυ ΔΪµε...
+	// κ²€μ¦ μ½”λ“...
 	sEnCODE.m_R7 = pHEADER->m_SC.m_R7;
 
-	// ΖΠΕ¶ Ε©±β °ΛΑυ..
+	// ν¨ν‚· ν¬κΈ° κ²€μ¦..
 	if ( wPacketSize > MAX_PACKET_SIZE || wPacketSize < sizeof(t_PACKETHEADER) ) {
 		return 0;
 	}
 	if ( sEnCODE.m_wAddedDummyLEN != ( (sEnCODE.m_wRandAryIDX+sEnCODE.m_wRandTblIDX) & 0x07 ) )
 		return 0;
 
-	// ΖΠΕ¶ ΕΈΐΤ...
+	// ν¨ν‚· νƒ€μ…...
 	sEnCODE.m_T1 = pHEADER->m_SC.m_T1;
 	sEnCODE.m_T2 = pHEADER->m_SC.m_T2;
 	sEnCODE.m_T3 = pHEADER->m_SC.m_T3;
@@ -482,7 +482,7 @@ WORD CpC::DRSH(t_PACKETHEADER *pHEADER)
 }
 
 //-------------------------------------------------------------------------------------------------
-// Ε¬¶σΐΜΎπΖ®Ώ΅Ό­ ΉήΐΊ ΖΠΕ¶Ημ΄υ ΊΉΘ£Θ­...
+// ν΄λΌμ΄μ–ΈνΈμ—μ„ λ°›μ€ ν¨ν‚·ν—¤λ” λ³µνΈν™”...
 // Decode_RecvClientHEADER
 WORD CpC::DRCH(t_PACKETHEADER *pHEADER, int &iRecvSEQ)
 {
@@ -493,19 +493,19 @@ WORD CpC::DRCH(t_PACKETHEADER *pHEADER, int &iRecvSEQ)
 	sEnCODE.m_R3 = pHEADER->m_CS.m_R3;
 	sEnCODE.m_R4 = pHEADER->m_CS.m_R4;
 
-	// Ό­ΉφΏ΅Ό­ΈΈ Ε¬¶σΐΜΎπΖ®Ώ΅Ό­ ΉήΐΊ ΖΠΕ¶ °ΛΑυ...
+	// μ„λ²„μ—μ„λ§ ν΄λΌμ΄μ–ΈνΈμ—μ„ λ°›μ€ ν¨ν‚· κ²€μ¦...
 	iRecvSEQ &= MAX_RANDOM_INDEX_SIZE;
 	int iSeqRandIDX = ( s_wRandINDEX[ iRecvSEQ++ ] & 0x07ff );
 	if ( iSeqRandIDX != sEnCODE.m_wRandAryIDX ) {
 		return 0;
 	}
 
-	// Ημ΄υ ΊΉΘ£Θ­...
+	// ν—¤λ” λ³µνΈν™”...
 	for (short nI=0; nI<sizeof(tagCODEC); nI++) {
 		pHEADER->m_pDATA[ nI ] ^= s_iRandTABLE[ nI ][ iSeqRandIDX ];
 	}
 
-	// »ηΐΜΑξ...
+	// μ‚¬μ΄μ¦...
 	sEnCODE.m_S1 = pHEADER->m_CS.m_S1;
 	sEnCODE.m_S2 = pHEADER->m_CS.m_S2;
 	sEnCODE.m_S3 = pHEADER->m_CS.m_S3;
@@ -515,10 +515,10 @@ WORD CpC::DRCH(t_PACKETHEADER *pHEADER, int &iRecvSEQ)
 	sEnCODE.m_R5 = pHEADER->m_CS.m_R5;
 	sEnCODE.m_R6 = pHEADER->m_CS.m_R6;
 
-	// ΄υΉΜ »ηΐΜΑξ...
+	// λ”λ―Έ μ‚¬μ΄μ¦...
 	sEnCODE.m_R7 = pHEADER->m_CS.m_R7;
 
-	// ΖΠΕ¶ Ε©±β °ΛΑυ..
+	// ν¨ν‚· ν¬κΈ° κ²€μ¦..
 	if ( wPacketSize > MAX_PACKET_SIZE ||
 		 wPacketSize - sEnCODE.m_wAddedDummyLEN < sizeof(t_PACKETHEADER) ) {
 		return 0;
@@ -528,7 +528,7 @@ WORD CpC::DRCH(t_PACKETHEADER *pHEADER, int &iRecvSEQ)
 		return 0;
 	}
 
-	// ΖΠΕ¶ ΕΈΐΤ...
+	// ν¨ν‚· νƒ€μ…...
 	sEnCODE.m_T1 = pHEADER->m_CS.m_T1;
 	sEnCODE.m_T2 = pHEADER->m_CS.m_T2;
 	sEnCODE.m_T3 = pHEADER->m_CS.m_T3;
@@ -541,7 +541,7 @@ WORD CpC::DRCH(t_PACKETHEADER *pHEADER, int &iRecvSEQ)
 
 
 //-------------------------------------------------------------------------------------------------
-// ΉήΐΊ ΖΠΕ¶ΐΗ ΈφΕλ ΊΉΘ£Θ­... Ημ΄υ΄Β ΊΉΘ£Θ­ µΗΎξ ΐΦΎξΎί ΗΡ΄Ω !!!
+// λ°›μ€ ν¨ν‚·μ λªΈν†µ λ³µνΈν™”... ν—¤λ”λ” λ³µνΈν™” λμ–΄ μμ–΄μ•Ό ν•λ‹¤ !!!
 // Decode_RecvServerBODY
 short CpC::DRSB (t_PACKETHEADER *pHEADER)
 {
@@ -574,7 +574,7 @@ short CpC::DRSB (t_PACKETHEADER *pHEADER)
 }
 
 //-------------------------------------------------------------------------------------------------
-// ΉήΐΊ ΖΠΕ¶ΐΗ ΈφΕλ ΊΉΘ£Θ­... Ημ΄υ΄Β ΊΉΘ£Θ­ µΗΎξ ΐΦΎξΎί ΗΡ΄Ω !!!
+// λ°›μ€ ν¨ν‚·μ λªΈν†µ λ³µνΈν™”... ν—¤λ”λ” λ³µνΈν™” λμ–΄ μμ–΄μ•Ό ν•λ‹¤ !!!
 // Decode_RecvClientBODY
 short CpC::DRCB (t_PACKETHEADER *pHEADER)
 {

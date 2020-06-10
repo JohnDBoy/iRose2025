@@ -1,5 +1,5 @@
 //*------------------------------------------------------------------------------------
-/// 2004 / 6 /11 . ¿ÜºÎ¿¡¼­ ÀÔ·ÂµÈ CommandÀÇ »èÁ¦´Â ÇÏÁö ¾Ê´Â´Ù.
+/// 2004 / 6 /11 . ì™¸ë¶€ì—ì„œ ì…ë ¥ëœ Commandì˜ ì‚­ì œëŠ” í•˜ì§€ ì•ŠëŠ”ë‹¤.
 //*------------------------------------------------------------------------------------
 #include "stdafx.h"
 #include ".\cnumberinputdlg.h"
@@ -30,7 +30,7 @@ unsigned int CNumberInputDlg::Process( UINT uiMsg,WPARAM wParam,LPARAM lParam )
 		OnLButtonUp( IID_BTN_OK );
 		return uiMsg;
 	}
-	/// °è»ê±âÃ¢¿¡¼­ ESCÅ°°¡ ¿À¸é ´İ±â
+	/// ê³„ì‚°ê¸°ì°½ì—ì„œ ESCí‚¤ê°€ ì˜¤ë©´ ë‹«ê¸°
 	if( uiMsg == WM_KEYDOWN && wParam == VK_ESCAPE )
 	{
 		OnLButtonUp( IID_BUTTON_CLOSE );
@@ -165,7 +165,7 @@ __int64 CNumberInputDlg::GetNumberFromEditBox()
 		
 		__int64 iRet = _atoi64( szText );
 
-		///¸Æ½º Á¦ÇÑÀÌ °É·È°í ÀÔ·Â°ªÀÌ ¸Æ½ºº¸´Ù Å¬°æ¿ì
+		///ë§¥ìŠ¤ ì œí•œì´ ê±¸ë ¸ê³  ì…ë ¥ê°’ì´ ë§¥ìŠ¤ë³´ë‹¤ í´ê²½ìš°
 		if( m_iMaxNumber >= 0 && m_iMaxNumber < iRet )
 			iRet = m_iMaxNumber;
 	
@@ -211,7 +211,7 @@ void CNumberInputDlg::SendCommand()
 	}
 }
 
-/// Invoker¿¡ Àü´Ş ¾ÈµÈ Command´Â »èÁ¦ÇÑ´Ù.
+/// Invokerì— ì „ë‹¬ ì•ˆëœ CommandëŠ” ì‚­ì œí•œë‹¤.
 void CNumberInputDlg::SetCommand( CTCmdNumberInput* pCmd, CTObject* pObj )
 {
 	m_pCmd			= pCmd;

@@ -207,7 +207,7 @@ void CPrivateStoreDlg::OnLButtonUp( unsigned uiProcID, WPARAM wParam, LPARAM lPa
 					CTEditBox* pEdit = (CTEditBox*)pCtrl;
 					const char* pszTitle = pEdit->get_text();
 					
-					//20050727 È«±Ù °³ÀÎ »óÁ¡ÀÇ ¹ö±×
+					//20050727 í™ê·¼ ê°œì¸ ìƒì ì˜ ë²„ê·¸
 					if( strlen(pszTitle) == 0 )
 					{
 						std::string strTitle = CStr::Printf( STR_DEFAULT_PRIVATESTORE_TITLE,g_pAVATAR->Get_NAME() );
@@ -446,7 +446,7 @@ void CPrivateStoreDlg::Update( POINT ptMouse )
 }
 
 //*------------------------------------------------------------------
-/// @brief ÇöÀç ¼±ÅÃµÈ ÅÇÀÇ Á¾·ù 
+/// @brief í˜„ì¬ ì„ íƒëœ íƒ­ì˜ ì¢…ë¥˜ 
 //*------------------------------------------------------------------
 int CPrivateStoreDlg::GetTabType()
 {

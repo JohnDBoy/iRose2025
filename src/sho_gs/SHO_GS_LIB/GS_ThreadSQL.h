@@ -1,7 +1,7 @@
 /**
  * \ingroup SHO_GS
  * \file	GS_ThreadSQL.h
- * \brief	°ÔÀÓ µðºñ¼­¹ö¿Í ¿¬°á,Åë½ÅÇÏ´Â Å¬·¡½º
+ * \brief	ê²Œìž„ ë””ë¹„ì„œë²„ì™€ ì—°ê²°,í†µì‹ í•˜ëŠ” í´ëž˜ìŠ¤
  */
 #ifndef	__GS_THREADSQL_H
 #define	__GS_THREADSQL_H
@@ -10,7 +10,7 @@
 
 #pragma pack (push, 1)
 
-#define DATA_VER_2		2 // ¹èÆ²Ä«Æ®
+#define DATA_VER_2		2 // ë°°í‹€ì¹´íŠ¸
 
 struct tagBasicETC {
 	tPOINTF		m_PosSTART;
@@ -71,8 +71,8 @@ struct tagGrowA_BUFF {
  * \ingroup SHO_GS_LIB
  * \class	GS_CThreadSQL
  * \author	wookSang.Jo
- * \brief	ÄÉ¸¯ÅÍ µ¥ÀÌÅ¸¸¦ µðºñ¼­¹ö¿¡ ÀÐ°í ¾²´Â ¾²·¡µå Å¬·¡½º
- *			µðºñ¿¬°á¹× Ã³¸® Å¬·¡½ºÀÎ CSqlTHREAD¸¦ »ó¼Ó ¹ÞÀ½
+ * \brief	ì¼€ë¦­í„° ë°ì´íƒ€ë¥¼ ë””ë¹„ì„œë²„ì— ì½ê³  ì“°ëŠ” ì“°ëž˜ë“œ í´ëž˜ìŠ¤
+ *			ë””ë¹„ì—°ê²°ë° ì²˜ë¦¬ í´ëž˜ìŠ¤ì¸ CSqlTHREADë¥¼ ìƒì† ë°›ìŒ
  */
 class GS_CThreadSQL : public CSqlTHREAD
 {

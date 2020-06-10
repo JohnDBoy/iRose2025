@@ -34,9 +34,9 @@ void __SetVfsError (short nCode)
 }
 
 /*********************************************************************************
- * °æ·Î¸¦ VFS¿¡ ¸Â°Ô °íÄ§
- * ´ë¹®ÀÚ·Î º¯È¯ÇØ¼­ ¸®ÅÏÇÑ´Ù
- * 1. ¾ÕÂÊ°ú µŞÂÊ¿¡ °ø¹éÀ» ¾ø¾Ø´Ù
+ * ê²½ë¡œë¥¼ VFSì— ë§ê²Œ ê³ ì¹¨
+ * ëŒ€ë¬¸ìë¡œ ë³€í™˜í•´ì„œ ë¦¬í„´í•œë‹¤
+ * 1. ì•ìª½ê³¼ ë’·ìª½ì— ê³µë°±ì„ ì—†ì•¤ë‹¤
  * 2. / ==> \ 
  * 3. \\ ==> \
  */
@@ -86,23 +86,23 @@ bool __stdcall __ConvertPath (const char * path , char * path2 )
 
 
 /*********************************************************************************
- * ÆÄÀÏ ¿£Æ®¸®¸¦ ÀĞ´Â´Ù.
- * @param fe [out] ÀĞ¾îµé °÷
- * @param fp [in] vfsÆÄÀÏ
+ * íŒŒì¼ ì—”íŠ¸ë¦¬ë¥¼ ì½ëŠ”ë‹¤.
+ * @param fe [out] ì½ì–´ë“¤ ê³³
+ * @param fp [in] vfsíŒŒì¼
  */
 bool VReadFileEntry (FileEntry *fe, FILE * fp)
 {	
 	char *	buff = NULL;
 	short	sLength = 0;
 
-	fread ((void *)&sLength, sizeof (short), 1, fp);	/// µÚ¿¡¿À´Â ¹®ÀÚ¿­ÀÇ ±æÀÌ¸¦ ±¸ÇÑ´Ù
+	fread ((void *)&sLength, sizeof (short), 1, fp);	/// ë’¤ì—ì˜¤ëŠ” ë¬¸ìì—´ì˜ ê¸¸ì´ë¥¼ êµ¬í•œë‹¤
 	if( sLength > CGlobalData::FILENAME_MAX_LENGTH )
 		return false;
 
 	if((buff = new char[ sLength ]))
 	{
-		ZeroMemory (buff, sLength);						/// 0À¸·Î ÃÊ±âÈ­
-		fread (buff, sizeof (char), sLength, fp);		/// NULL¹®ÀÚ±îÁö Æ÷ÇÔÇØ¼­ ÀĞ¾î¿Â´Ù
+		ZeroMemory (buff, sLength);						/// 0ìœ¼ë¡œ ì´ˆê¸°í™”
+		fread (buff, sizeof (char), sLength, fp);		/// NULLë¬¸ìê¹Œì§€ í¬í•¨í•´ì„œ ì½ì–´ì˜¨ë‹¤
 		fe->sFileName = buff;
 		delete [] buff;
 	}
@@ -113,7 +113,7 @@ bool VReadFileEntry (FileEntry *fe, FILE * fp)
 	fread (&fe->cDeleted,		sizeof(BYTE), 1, fp);
 	fread (&fe->btCompressType, sizeof(BYTE), 1, fp);
 	fread (&fe->btEncType,		sizeof(BYTE), 1, fp);
-	fread (&fe->dwVersion,		sizeof(DWORD), 1, fp);	/// ¹öÁ¯
+	fread (&fe->dwVersion,		sizeof(DWORD), 1, fp);	/// ë²„ì ¼
 	fread (&fe->dwCRC,			sizeof(DWORD), 1, fp);
 
 	return true;
@@ -133,9 +133,9 @@ long __SizeOfFileEntry (FileEntry *FE)
 
 
 /*********************************************************************************
- * ÆÄÀÏ ¿£Æ®¸®¸¦ ¾´´Ù
- * @param fe [in] ÆÄÀÏ ¿£Æ®¸®
- * @param fp [in] vfs ÆÄÀÏ ÇÚµé
+ * íŒŒì¼ ì—”íŠ¸ë¦¬ë¥¼ ì“´ë‹¤
+ * @param fe [in] íŒŒì¼ ì—”íŠ¸ë¦¬
+ * @param fp [in] vfs íŒŒì¼ í•¸ë“¤
  */
 bool VWriteFileEntry (FileEntry *fe, FILE * fp, bool bFlush)
 {	
@@ -166,27 +166,27 @@ bool VWriteFileEntry (FileEntry *fe, FILE * fp, bool bFlush)
 
 
 /*********************************************************************************
- * ÆÄÀÏ ¿£Æ®¸®¸¦ Å©±â¸¸Å­ indicator¸¦ ÀÌµ¿½ÃÅ²´Ù
- * @param pFE skipÇÒ File Entry
- * @param fp ÆÄÀÏÆ÷ÀÎÅÍ
+ * íŒŒì¼ ì—”íŠ¸ë¦¬ë¥¼ í¬ê¸°ë§Œí¼ indicatorë¥¼ ì´ë™ì‹œí‚¨ë‹¤
+ * @param pFE skipí•  File Entry
+ * @param fp íŒŒì¼í¬ì¸í„°
  */
 void __SkipFileEntry (FileEntry *pFE, FILE *fp)
 {
 	short sLength = 0;
-	/// ÆÄÀÏÀÌ¸§ ±æÀÌ¸¸Å­ skipÇÑ´Ù
+	/// íŒŒì¼ì´ë¦„ ê¸¸ì´ë§Œí¼ skipí•œë‹¤
 	fread ((void *)&sLength	, sizeof (short), 1, fp);
-	/// ³ª¸ÓÁö ¸â¹öµéÀÇ ±æÀÌ¸¸Å­ skipÇÑ´Ù. - sizeof(short)´Â ÀÌ¹Ì Áö³ªÃÆ±â ¶§¹®¿¡ »«´Ù
+	/// ë‚˜ë¨¸ì§€ ë©¤ë²„ë“¤ì˜ ê¸¸ì´ë§Œí¼ skipí•œë‹¤. - sizeof(short)ëŠ” ì´ë¯¸ ì§€ë‚˜ì³¤ê¸° ë•Œë¬¸ì— ëº€ë‹¤
 	fseek (fp, SIZEOF_FILEENTRY_EXCPTSTRING + sLength - sizeof (short), SEEK_CUR);
 }
 
 
 
 /*********************************************************************************
- * ¾ĞÃà ÇÏ±â. Áö±İÀº ±¸ÇöµÇÁö ¾Ê¾ÒÀ½. ´Ü¼øÈ÷ ³Ñ°Ü¹ŞÀº DataBuffer°ªÀ» ´Ù½Ã ³Ñ°ÜÁÜ
- * @param pbtData ÀÔ·Âµ¥ÀÌÅÍ
- * @param lSize pbtData¿¡ ÀúÀåµÇ¾î ÀÖ´Â µ¥ÀÌÅÍÀÇ ¹ÙÀÌÆ® Å©±â
- * @param btCompress ¾ĞÃàÇüÅÂ. 0ÀÌ¸é ¾ĞÃàµÇ¾î ÀÖÁö ¾ÊÀ½
- * @ppbtOutData ÃÖÁ¾ °á°ú´Â ¿©±â·Î ¸®ÅÏ
+ * ì••ì¶• í•˜ê¸°. ì§€ê¸ˆì€ êµ¬í˜„ë˜ì§€ ì•Šì•˜ìŒ. ë‹¨ìˆœíˆ ë„˜ê²¨ë°›ì€ DataBufferê°’ì„ ë‹¤ì‹œ ë„˜ê²¨ì¤Œ
+ * @param pbtData ì…ë ¥ë°ì´í„°
+ * @param lSize pbtDataì— ì €ì¥ë˜ì–´ ìˆëŠ” ë°ì´í„°ì˜ ë°”ì´íŠ¸ í¬ê¸°
+ * @param btCompress ì••ì¶•í˜•íƒœ. 0ì´ë©´ ì••ì¶•ë˜ì–´ ìˆì§€ ì•ŠìŒ
+ * @ppbtOutData ìµœì¢… ê²°ê³¼ëŠ” ì—¬ê¸°ë¡œ ë¦¬í„´
  */
 bool Compress (BYTE * pbtData, long lSize, BYTE btCompress, BYTE ** ppbtOutData)
 {
@@ -197,11 +197,11 @@ bool Compress (BYTE * pbtData, long lSize, BYTE btCompress, BYTE ** ppbtOutData)
 
 
 /*********************************************************************************
- * Encryption ÇÏ±â. Áö±İÀº ±¸ÇöµÇÁö ¾Ê¾ÒÀ½. ´Ü¼øÈ÷ ³Ñ°Ü¹ŞÀº DataBuffer°ªÀ» ´Ù½Ã ³Ñ°ÜÁÜ
- * @param pbtData ÀÔ·Âµ¥ÀÌÅÍ
- * @param lSize pbtData¿¡ ÀúÀåµÇ¾î ÀÖ´Â µ¥ÀÌÅÍÀÇ ¹ÙÀÌÆ® Å©±â
- * @param btEncType Encryption ÇüÅÂ. 0ÀÌ¸é ¾ĞÃàµÇ¾î ÀÖÁö ¾ÊÀ½
- * @ppbtOutData ÃÖÁ¾ °á°ú´Â ¿©±â·Î ¸®ÅÏ
+ * Encryption í•˜ê¸°. ì§€ê¸ˆì€ êµ¬í˜„ë˜ì§€ ì•Šì•˜ìŒ. ë‹¨ìˆœíˆ ë„˜ê²¨ë°›ì€ DataBufferê°’ì„ ë‹¤ì‹œ ë„˜ê²¨ì¤Œ
+ * @param pbtData ì…ë ¥ë°ì´í„°
+ * @param lSize pbtDataì— ì €ì¥ë˜ì–´ ìˆëŠ” ë°ì´í„°ì˜ ë°”ì´íŠ¸ í¬ê¸°
+ * @param btEncType Encryption í˜•íƒœ. 0ì´ë©´ ì••ì¶•ë˜ì–´ ìˆì§€ ì•ŠìŒ
+ * @ppbtOutData ìµœì¢… ê²°ê³¼ëŠ” ì—¬ê¸°ë¡œ ë¦¬í„´
  */
 bool Encrypt (BYTE * pbtData, long lSize, BYTE btEncType, BYTE ** ppbtOutData)
 {
@@ -223,8 +223,8 @@ bool Encrypt (BYTE * pbtData, long lSize, BYTE btEncType, BYTE ** ppbtOutData)
 
 CVFS::CVFS ()
 {
-	m_dwNum			= 0;	/// ÆÄÀÏ¿£Æ®¸®ÀÇ °¹¼ö
-	m_lStartOffset	= 0;	/// µ¥ÀÌÅÍÀÇ ½ÃÀÛ. »ç¿ëÇÏÁö´Â ¾ÊÀ½
+	m_dwNum			= 0;	/// íŒŒì¼ì—”íŠ¸ë¦¬ì˜ ê°¯ìˆ˜
+	m_lStartOffset	= 0;	/// ë°ì´í„°ì˜ ì‹œì‘. ì‚¬ìš©í•˜ì§€ëŠ” ì•ŠìŒ
 	m_fp			= NULL;
 	m_fpFAT			= NULL;
 	m_Buffer		= NULL;
@@ -238,18 +238,18 @@ CVFS::CVFS ()
 
 
 /*********************************************************************************
- * File Pointer¸¦ ÀÌ¿ëÇÏ¿© VFS ÆÄÀÏ Å¬·¡½º¸¦ ÃÊ±âÈ­ÇÑ´Ù
+ * File Pointerë¥¼ ì´ìš©í•˜ì—¬ VFS íŒŒì¼ í´ë˜ìŠ¤ë¥¼ ì´ˆê¸°í™”í•œë‹¤
  */
 CVFS::CVFS (FILE * fpFAT, long lOffset, DWORD dwNum, const char *VfsName, char * Mode)
 {
-	m_dwNum			= dwNum;		/// ÆÄÀÏ¿£Æ®¸®ÀÇ °¹¼ö
-	m_lStartOffset	= 0;			/// µ¥ÀÌÅÍÀÇ ½ÃÀÛ. »ç¿ëÇÏÁö´Â ¾ÊÀ½
+	m_dwNum			= dwNum;		/// íŒŒì¼ì—”íŠ¸ë¦¬ì˜ ê°¯ìˆ˜
+	m_lStartOffset	= 0;			/// ë°ì´í„°ì˜ ì‹œì‘. ì‚¬ìš©í•˜ì§€ëŠ” ì•ŠìŒ
 	m_fp			= NULL;
 	m_fpFAT			= fpFAT;
 	m_Buffer		= NULL;
 	m_BUFSIZ		= BUFSIZ;
 	m_lEntryStart	= lOffset;
-	m_sFileName		= VfsName;		/// vfs ÆÄÀÏ¸í
+	m_sFileName		= VfsName;		/// vfs íŒŒì¼ëª…
 
 	m_is.clear ();
 	m_si.clear ();
@@ -273,15 +273,15 @@ CVFS::~CVFS ()
 
 
 /*********************************************************************************
- * VfsÆÄÀÏÀ» ¿ÀÇÂÇÑ´Ù. 
- * @param Mode : r(ÀĞ±â¸¸). w+(¾²±â/ÀĞ±â. ÆÄÀÏÀÖÀ¸¸é ³»¿ë Áö¿öÁü), r+(ÀĞ±â/¾²±â. ÆÄÀÏ¾øÀ¸¸é ¿¡·¯)
- * @param Dir ¸¶Áö¸·¿¡ "\"¹®ÀÚ±îÁö Æ÷ÇÔ
+ * VfsíŒŒì¼ì„ ì˜¤í”ˆí•œë‹¤. 
+ * @param Mode : r(ì½ê¸°ë§Œ). w+(ì“°ê¸°/ì½ê¸°. íŒŒì¼ìˆìœ¼ë©´ ë‚´ìš© ì§€ì›Œì§), r+(ì½ê¸°/ì“°ê¸°. íŒŒì¼ì—†ìœ¼ë©´ ì—ëŸ¬)
+ * @param Dir ë§ˆì§€ë§‰ì— "\"ë¬¸ìê¹Œì§€ í¬í•¨
  */
 bool CVFS::Open (FILE * fpFAT, long lOffset, const char *VfsName, const char *Dir, const char * Mode)
 {
-	m_dwNum			= 0;			/// ÆÄÀÏ¿£Æ®¸®ÀÇ °¹¼ö
+	m_dwNum			= 0;			/// íŒŒì¼ì—”íŠ¸ë¦¬ì˜ ê°¯ìˆ˜
 	m_dwDelCnt		= 0;
-	m_lStartOffset	= 0;			/// µ¥ÀÌÅÍÀÇ ½ÃÀÛ. »ç¿ëÇÏÁö´Â ¾ÊÀ½
+	m_lStartOffset	= 0;			/// ë°ì´í„°ì˜ ì‹œì‘. ì‚¬ìš©í•˜ì§€ëŠ” ì•ŠìŒ
 
 	m_fp			= NULL;
 	m_fpFAT			= fpFAT;
@@ -291,7 +291,7 @@ bool CVFS::Open (FILE * fpFAT, long lOffset, const char *VfsName, const char *Di
 	m_Buffer		= NULL;
 	m_BUFSIZ		= BUFSIZ;
 	m_lEntryStart	= lOffset;
-	m_sFileName		= VfsName;		/// vfs ÆÄÀÏ¸í
+	m_sFileName		= VfsName;		/// vfs íŒŒì¼ëª…
 	std::string	sOpenPath = Dir;
 	sOpenPath.append (VfsName);
 
@@ -299,10 +299,10 @@ bool CVFS::Open (FILE * fpFAT, long lOffset, const char *VfsName, const char *Di
 	m_si.clear ();
 	m_ve.clear ();
 
-	if( _access( sOpenPath.c_str(), 0 ) != 0 ) // ÆÄÀÏÀÌ Á¸ÀçÇÏÁö ¾ÊÀ¸¸é
+	if( _access( sOpenPath.c_str(), 0 ) != 0 ) // íŒŒì¼ì´ ì¡´ì¬í•˜ì§€ ì•Šìœ¼ë©´
 		return false;
 
-	/// ÀĞ±â
+	/// ì½ê¸°
 	_set_fmode(_O_BINARY);
 	if ((strcmp (Mode, "mr") == 0) || (strcmp (Mode, "mr+") == 0))
 	{
@@ -314,21 +314,21 @@ bool CVFS::Open (FILE * fpFAT, long lOffset, const char *VfsName, const char *Di
 				return __ReadFileEntry ();
 		}
 	}
-	/// w+ , ¾²±â/ÀĞ±â¸ğµå + »ı¼º. ±âÁ¸ÀÇ ÆÄÀÏÀÌ ÀÖÀ¸¸é ³»¿ëÀÌ Áö¿öÁü
+	/// w+ , ì“°ê¸°/ì½ê¸°ëª¨ë“œ + ìƒì„±. ê¸°ì¡´ì˜ íŒŒì¼ì´ ìˆìœ¼ë©´ ë‚´ìš©ì´ ì§€ì›Œì§
 	else if(strcmp (Mode, "w+") == 0)
 	{
-		if((m_fp = fopen (sOpenPath.c_str (), "w+"))) /// ½ÇÁ¦ ¿ÀÇÂÀº Àı´ë °æ·Î·Î ÇÑ´Ù
+		if((m_fp = fopen (sOpenPath.c_str (), "w+"))) /// ì‹¤ì œ ì˜¤í”ˆì€ ì ˆëŒ€ ê²½ë¡œë¡œ í•œë‹¤
 		{
 			m_dwDelCnt	= 0;
 			m_dwNum		= 0;
-			/// ÇöÀç ÃÊ±âÈ­ µÇ¾î ÀÖ´Â ¸â¹ö°ªÀ¸·Î ÃÊ±âÈ­ÇÑ´Ù
+			/// í˜„ì¬ ì´ˆê¸°í™” ë˜ì–´ ìˆëŠ” ë©¤ë²„ê°’ìœ¼ë¡œ ì´ˆê¸°í™”í•œë‹¤
 			__VWriteVFSHeader (m_dwNum, m_dwDelCnt, m_lStartOffset);
 			return true;
 		}
 	}
 	else if(strcmp (Mode, "r") == 0 || strcmp (Mode, "r+") == 0)
 	{
-		m_fp = fopen (sOpenPath.c_str (), Mode); /// ½ÇÁ¦ ¿ÀÇÂÀº Àı´ë °æ·Î·Î ÇÑ´Ù
+		m_fp = fopen (sOpenPath.c_str (), Mode); /// ì‹¤ì œ ì˜¤í”ˆì€ ì ˆëŒ€ ê²½ë¡œë¡œ í•œë‹¤
 		if (m_fp) 
 			return __ReadFileEntry ();
 	}
@@ -338,11 +338,11 @@ bool CVFS::Open (FILE * fpFAT, long lOffset, const char *VfsName, const char *Di
 
 
 /*********************************************************************************
- * vfsÆÄÀÏÀ» ´İ´Â´Ù
+ * vfsíŒŒì¼ì„ ë‹«ëŠ”ë‹¤
  */
 void CVFS::Close (void)
 {
-	/// ¿ÀÇÂµÈ vfsÆÄÀÏÀ» ´İ´Â´Ù
+	/// ì˜¤í”ˆëœ vfsíŒŒì¼ì„ ë‹«ëŠ”ë‹¤
 	if(m_fp)	{ fclose (m_fp);	m_fp	= NULL; }
 	if (m_hFile != INVALID_HANDLE_VALUE) 
 	{ 
@@ -363,7 +363,7 @@ void CVFS::Close (void)
 	}
 
 	std::vector<FileEntry *>::iterator iv = m_ve.begin ();
-	/// newµÈ FileEntry *¸¦ deleteÇÑ´Ù
+	/// newëœ FileEntry *ë¥¼ deleteí•œë‹¤
 	for(; iv != m_ve.end (); iv++)
 	{
 		if(*iv) 
@@ -377,7 +377,7 @@ void CVFS::Close (void)
 	m_dwNum			= 0;
 	m_lStartOffset	= 0;
 
-	/// ¹öÆÛ·Î »ç¿ëµÇ¾ú´ø ¸Ş¸ğ¸®¸¦ ÇØÁ¦ÇÑ´Ù
+	/// ë²„í¼ë¡œ ì‚¬ìš©ë˜ì—ˆë˜ ë©”ëª¨ë¦¬ë¥¼ í•´ì œí•œë‹¤
 	if(m_Buffer) 
 	{ 
 		delete [] m_Buffer; 
@@ -393,22 +393,22 @@ bool CVFS::__ReadFileEntry (void)
 	if (!m_fp && (this->m_hFile == INVALID_HANDLE_VALUE)) 
 		return false;
 
-	/// ÆÄÀÏ ¾ÕÀ¸·Î ÀÌµ¿
+	/// íŒŒì¼ ì•ìœ¼ë¡œ ì´ë™
 	long lMaxOffset = 0;
-	if(m_hFile != INVALID_HANDLE_VALUE)		// Memory Mapped IO °¡ ¾Æ´Ï¸é ÆÄÀÏÀÇ Å©±â¸¦ Á¶»çÇÑ´Ù
+	if(m_hFile != INVALID_HANDLE_VALUE)		// Memory Mapped IO ê°€ ì•„ë‹ˆë©´ íŒŒì¼ì˜ í¬ê¸°ë¥¼ ì¡°ì‚¬í•œë‹¤
 		lMaxOffset = __fseek (m_fp, 0, SEEK_END);
 
 	fseek (m_fpFAT, m_lEntryStart, SEEK_SET);
-	fread ((void *)&m_dwNum			, sizeof (DWORD), 1, m_fpFAT); /// °¹¼ö¸¦ ÀĞ´Â´Ù
-	fread ((void *)&m_dwDelCnt		, sizeof (DWORD), 1, m_fpFAT); /// »èÁ¦Ç×¸ñÀÇ °¹¼ö¸¦ ÀĞ´Â´Ù
-	fread ((void *)&m_lStartOffset	, sizeof (long)	, 1, m_fpFAT); /// vfsÆÄÀÏ¿¡¼­ µ¥ÀÌÅÍÀÇ ½ÃÀÛ
+	fread ((void *)&m_dwNum			, sizeof (DWORD), 1, m_fpFAT); /// ê°¯ìˆ˜ë¥¼ ì½ëŠ”ë‹¤
+	fread ((void *)&m_dwDelCnt		, sizeof (DWORD), 1, m_fpFAT); /// ì‚­ì œí•­ëª©ì˜ ê°¯ìˆ˜ë¥¼ ì½ëŠ”ë‹¤
+	fread ((void *)&m_lStartOffset	, sizeof (long)	, 1, m_fpFAT); /// vfsíŒŒì¼ì—ì„œ ë°ì´í„°ì˜ ì‹œì‘
 
-	// °ª Ã¼Å©
+	// ê°’ ì²´í¬
 	if( m_dwNum > CGlobalData::FILEENTRY_MAX_COUNT || m_dwNum < 0 
 		|| m_dwDelCnt > CGlobalData::FILEENTRY_MAX_COUNT || m_dwDelCnt < 0 )
 		return false;
 
-	// Memory Mapped IO °¡ ¾Æ´Ï¸é ¹üÀ§¸¦ Ã¼Å©ÇÑ´Ù
+	// Memory Mapped IO ê°€ ì•„ë‹ˆë©´ ë²”ìœ„ë¥¼ ì²´í¬í•œë‹¤
 	if(m_hFile != INVALID_HANDLE_VALUE && m_lStartOffset > lMaxOffset )
 		return false;
 
@@ -419,19 +419,19 @@ bool CVFS::__ReadFileEntry (void)
 			if( !VReadFileEntry (fe, m_fpFAT) )
 				return false;
 
-			/// »èÁ¦Ç×¸ñÀÌ ¾Æ´Ï¸é. 
+			/// ì‚­ì œí•­ëª©ì´ ì•„ë‹ˆë©´. 
 			if(fe->cDeleted == 0)
 			{
-				m_ve.push_back (fe); /// ÀÌ ¸®½ºÆ®¿¡´Â 
+				m_ve.push_back (fe); /// ì´ ë¦¬ìŠ¤íŠ¸ì—ëŠ” 
 				m_is[ i ]				= fe->sFileName;
 				m_si[ fe->sFileName ]	= i;
 			}
-			/// »èÁ¦Ç×¸ñÀÌ¸é »èÁ¦Ç×¸ñ¸®½ºÆ®¿¡ Ãß°¡
+			/// ì‚­ì œí•­ëª©ì´ë©´ ì‚­ì œí•­ëª©ë¦¬ìŠ¤íŠ¸ì— ì¶”ê°€
 			else
 			{ 
-				/// m_is, m_si¸Ê¿¡ Ãß°¡ÇÏÁö ¾ÊÀ¸¸é ÆÄÀÏ¿£Æ®¸®¿¡ Á¢±ÙÇÒ¼ö ¾ø´Ù.
-				/// ÇÏÁö¸¸ vector¿¡´Â Ãß°¡ÇØ ³õ´Â´Ù. ³ªÁß¿¡ Àç»ç¿ëµÇ´Â °æ¿ì¸¦ À§ÇØ¼­
-				m_ve.push_back (fe); /// ÀÌ ¸®½ºÆ®¿¡´Â 
+				/// m_is, m_sië§µì— ì¶”ê°€í•˜ì§€ ì•Šìœ¼ë©´ íŒŒì¼ì—”íŠ¸ë¦¬ì— ì ‘ê·¼í• ìˆ˜ ì—†ë‹¤.
+				/// í•˜ì§€ë§Œ vectorì—ëŠ” ì¶”ê°€í•´ ë†“ëŠ”ë‹¤. ë‚˜ì¤‘ì— ì¬ì‚¬ìš©ë˜ëŠ” ê²½ìš°ë¥¼ ìœ„í•´ì„œ
+				m_ve.push_back (fe); /// ì´ ë¦¬ìŠ¤íŠ¸ì—ëŠ” 
 				m_mapDel[ i ] = fe; 
 			}
 
@@ -516,13 +516,13 @@ bool CVFS::__SortFiles (const char **Files, int iNum)
 
 
 /**
- * vfsÆÄÀÏÀ» Ã³À½ ¸¸µé¾úÀ»¶§ ÃÊ±âÈ­ ½ÃÄÑ ÁØ´Ù
- * @param dwNum			vfsÆÄÀÏÀÇ ÆÄÀÏ °¹¼ö
- * @param lStartOffset	vfsÆÄÀÏÀÇ µ¥ÀÌÅÍ ½ÃÀÛ¿ÀÇÁ¼Â
+ * vfsíŒŒì¼ì„ ì²˜ìŒ ë§Œë“¤ì—ˆì„ë•Œ ì´ˆê¸°í™” ì‹œì¼œ ì¤€ë‹¤
+ * @param dwNum			vfsíŒŒì¼ì˜ íŒŒì¼ ê°¯ìˆ˜
+ * @param lStartOffset	vfsíŒŒì¼ì˜ ë°ì´í„° ì‹œì‘ì˜¤í”„ì…‹
  */
 void CVFS::__VWriteVFSHeader (DWORD dwNum, DWORD dwDelCnt, long lStartOffset)
 {
-	/// ÆÄÀÏÀÇ ¾ÕºÎºĞÀ¸·Î ÆÄÀÏ indicator¸¦ ÀÌµ¿½ÃÅ²´Ù
+	/// íŒŒì¼ì˜ ì•ë¶€ë¶„ìœ¼ë¡œ íŒŒì¼ indicatorë¥¼ ì´ë™ì‹œí‚¨ë‹¤
 	fseek (m_fpFAT, m_lEntryStart, SEEK_SET);
 
 	fwrite (&dwNum			, sizeof(DWORD)	, 1, m_fpFAT);
@@ -533,9 +533,9 @@ void CVFS::__VWriteVFSHeader (DWORD dwNum, DWORD dwDelCnt, long lStartOffset)
 
 
 /********************************************************************************************
- * map¿¡¼­ ÆÄÀÏÀÌ¸§¿¡ ÇØ´çÇÏ´Â ¿£Æ®¸®¸¦ Á¦°ÅÇÑ´Ù. 
- * @param FileName	Áö¿ï ÆÄÀÏ¸í
- * @param iIndex	Áö¿ï ÀÎµ¦½º
+ * mapì—ì„œ íŒŒì¼ì´ë¦„ì— í•´ë‹¹í•˜ëŠ” ì—”íŠ¸ë¦¬ë¥¼ ì œê±°í•œë‹¤. 
+ * @param FileName	ì§€ìš¸ íŒŒì¼ëª…
+ * @param iIndex	ì§€ìš¸ ì¸ë±ìŠ¤
  */
 void CVFS::__EraseMemEntry (const char *FileName, int iIndex)
 {
@@ -543,25 +543,25 @@ void CVFS::__EraseMemEntry (const char *FileName, int iIndex)
 	std::map<std::string, int>::iterator iSI;
 	std::map<int, std::string>::iterator iIS;
 
-	/// iSI->second == iIndex ¿©¾ß ÇÔ
+	/// iSI->second == iIndex ì—¬ì•¼ í•¨
 	iSI = m_si.find (FileName);
 	iIS = m_is.find (iIndex);
-	/// map¿¡¼­ Áö¿î´Ù
+	/// mapì—ì„œ ì§€ìš´ë‹¤
 	m_si.erase (iSI);
 	m_is.erase (iIS);
-	/// º¤ÅÍ¿¡¼­ Áö¿î´Ù
+	/// ë²¡í„°ì—ì„œ ì§€ìš´ë‹¤
 	iv = m_ve.begin () + iIndex;
 	m_ve.erase (iv);
 }
 
 
 /********************************************************************************************
- * ÆÄÀÏÀ» µÚÂÊ¿¡ Ãß°¡ÇÒ¶§ »ç¿ë
- * @param FileName		Ãß°¡µÉ ÆÄÀÏ
- * @param TargetName	ÀÌ ÀÌ¸§À¸·Î Ãß°¡µÈ´Ù. ¸ğµç Å¸°ÙÆÄÀÏ¸íÀº ´ë¹®ÀÚ·Î º¯È¯µÈ´Ù
- * @param pVFile		vfsÆÄÀÏ ÇÚµé
- * @param btEncType		Encryption Å¸ÀÔ
- * @param btCompress	¾ĞÃàÇüÅÂ
+ * íŒŒì¼ì„ ë’¤ìª½ì— ì¶”ê°€í• ë•Œ ì‚¬ìš©
+ * @param FileName		ì¶”ê°€ë  íŒŒì¼
+ * @param TargetName	ì´ ì´ë¦„ìœ¼ë¡œ ì¶”ê°€ëœë‹¤. ëª¨ë“  íƒ€ê²ŸíŒŒì¼ëª…ì€ ëŒ€ë¬¸ìë¡œ ë³€í™˜ëœë‹¤
+ * @param pVFile		vfsíŒŒì¼ í•¸ë“¤
+ * @param btEncType		Encryption íƒ€ì…
+ * @param btCompress	ì••ì¶•í˜•íƒœ
  */
 short CVFS::AddFile (const char * FileName
 					, const char * uprTargetName
@@ -571,15 +571,15 @@ short CVFS::AddFile (const char * FileName
 					, BYTE btCompress
 					, bool bUseDel)
  {
-	FILE * fp						= NULL;	/// Ãß°¡ÇÒ ÆÄÀÏÀÇ ÆÄÀÏÆ÷ÀÎÅÍ
-	BYTE * pbtBuff					= NULL;	/// Ãß°¡ÇÒ ÆÄÀÏ¿¡¼­ ÀĞÀº µ¥ÀÌÅÍ¸¦ ¿©±â¿¡ ÀúÀå
-	BYTE * pbtChangedData			= NULL;	/// EncryptionÀÌ³ª CompressÇÑ µ¥ÀÌÅÍ´Â ¿©±â·Î ¸®ÅÏ
-	FileEntry * pFileEntry			= NULL; /// »õ·Ó°Ô newÇÑ FileEntry´Â ¿©±â¿¡ ÀúÀå
-	/// DWORD dwCRC					= 0;	/// CRC°ª
-	bool bError						= false;/// Ã³¸®°úÁ¤Áß ¿¡·¯°¡ ¹ß»ıÇÏ¸é ¿©±â¿¡ true
-	bUseDel							= false; /// °­Á¦·Î false·Î ÇÔ. ÀÌ ºÎºĞ Àß ¸øµÆÀ½. °íÃÄ¾ß ÇÔ
+	FILE * fp						= NULL;	/// ì¶”ê°€í•  íŒŒì¼ì˜ íŒŒì¼í¬ì¸í„°
+	BYTE * pbtBuff					= NULL;	/// ì¶”ê°€í•  íŒŒì¼ì—ì„œ ì½ì€ ë°ì´í„°ë¥¼ ì—¬ê¸°ì— ì €ì¥
+	BYTE * pbtChangedData			= NULL;	/// Encryptionì´ë‚˜ Compressí•œ ë°ì´í„°ëŠ” ì—¬ê¸°ë¡œ ë¦¬í„´
+	FileEntry * pFileEntry			= NULL; /// ìƒˆë¡­ê²Œ newí•œ FileEntryëŠ” ì—¬ê¸°ì— ì €ì¥
+	/// DWORD dwCRC					= 0;	/// CRCê°’
+	bool bError						= false;/// ì²˜ë¦¬ê³¼ì •ì¤‘ ì—ëŸ¬ê°€ ë°œìƒí•˜ë©´ ì—¬ê¸°ì— true
+	bUseDel							= false; /// ê°•ì œë¡œ falseë¡œ í•¨. ì´ ë¶€ë¶„ ì˜ ëª»ëìŒ. ê³ ì³ì•¼ í•¨
 
-	/// ÆÄÀÏÀÌ Á¸ÀçÇÏ´ÂÁö È®ÀÎ. "rb" binary mode·Î ¿­¾î¾ß ÇÔ
+	/// íŒŒì¼ì´ ì¡´ì¬í•˜ëŠ”ì§€ í™•ì¸. "rb" binary modeë¡œ ì—´ì–´ì•¼ í•¨
 	_set_fmode(_O_BINARY);
 	
 	short nErrorCode = VADDFILE_SUCCESS;
@@ -593,7 +593,7 @@ short CVFS::AddFile (const char * FileName
 	if(FileExists (uprTargetName)) 
 		return VADDFILE_EXISTSALREADY;
 
-	/// ÆÄÀÏÀÇ Å©±â¸¦ ¾Ë¾Æ³½´Ù
+	/// íŒŒì¼ì˜ í¬ê¸°ë¥¼ ì•Œì•„ë‚¸ë‹¤
 	long lSize = __vfseek (fp, 0, SEEK_END);
 
 	if(lSize <= 0)
@@ -603,16 +603,16 @@ short CVFS::AddFile (const char * FileName
 		return VADDFILE_ZEROFILESIZE;
 	}
 
-	/// ÆÄÀÏ indicator¸¦ ´Ù½Ã Ã³À½À¸·Î µ¹·Á ³õ´Â´Ù
+	/// íŒŒì¼ indicatorë¥¼ ë‹¤ì‹œ ì²˜ìŒìœ¼ë¡œ ëŒë ¤ ë†“ëŠ”ë‹¤
 	fseek (fp, 0, SEEK_SET);
 
 	if((pbtBuff = new BYTE[ lSize ]))
 	{
-		fread (pbtBuff, sizeof (BYTE), (size_t)lSize, fp);	/// ÆÄÀÏÀÇ ³»¿ëÀ» ÀĞ¾î µéÀÎ´Ù
-		fclose (fp);	// ÆÄÀÏÀ» Close ÇÑ´Ù
+		fread (pbtBuff, sizeof (BYTE), (size_t)lSize, fp);	/// íŒŒì¼ì˜ ë‚´ìš©ì„ ì½ì–´ ë“¤ì¸ë‹¤
+		fclose (fp);	// íŒŒì¼ì„ Close í•œë‹¤
 
 		int iIndex = 0;
-		/// Áö¿öÁø ºí·°À» »ç¿ëÇÏ°í, Àû´çÇÑ ÆÄÀÏÅ©±âÀÇ ºí·°À» Ã£À¸¸é
+		/// ì§€ì›Œì§„ ë¸”ëŸ­ì„ ì‚¬ìš©í•˜ê³ , ì ë‹¹í•œ íŒŒì¼í¬ê¸°ì˜ ë¸”ëŸ­ì„ ì°¾ìœ¼ë©´
 		if(bUseDel && (pFileEntry = __FindBlock (FileName, lSize, &iIndex)))
 		{
 			pFileEntry->sFileName		= uprTargetName;
@@ -623,45 +623,45 @@ short CVFS::AddFile (const char * FileName
 			pFileEntry->dwVersion		= dwVersion;
 			pFileEntry->dwCRC			= dwCRC;
 
-			std::vector<FileEntry *>::iterator iv = m_ve.begin (); /// Áö¿öÁø ÆÄÀÏ ¿£Æ®¸® ¾Õ±îÁö ÀÌµ¿ÇÑ´Ù
+			std::vector<FileEntry *>::iterator iv = m_ve.begin (); /// ì§€ì›Œì§„ íŒŒì¼ ì—”íŠ¸ë¦¬ ì•ê¹Œì§€ ì´ë™í•œë‹¤
 
-			fseek (m_fpFAT, m_lEntryStart + SIZEOF_VENTRYHEADER, SEEK_SET); /// ÆÄÀÏ¿£Æ®¸® ¾Õ±îÁö ÀÌµ¿ÇÏ°í
+			fseek (m_fpFAT, m_lEntryStart + SIZEOF_VENTRYHEADER, SEEK_SET); /// íŒŒì¼ì—”íŠ¸ë¦¬ ì•ê¹Œì§€ ì´ë™í•˜ê³ 
 			for(int i = 0; i < iIndex; i++) 
 			{ 
 				__SkipFileEntry (*iv, m_fpFAT); 
 				iv++; 
 			}
 
-			::VWriteFileEntry (pFileEntry, m_fpFAT); /// ÀÌµ¿ÇÑ ´ÙÀ½ ÆÄÀÏ¿£Æ®¸®¸¦ °»½ÅÇÑ´Ù
+			::VWriteFileEntry (pFileEntry, m_fpFAT); /// ì´ë™í•œ ë‹¤ìŒ íŒŒì¼ì—”íŠ¸ë¦¬ë¥¼ ê°±ì‹ í•œë‹¤
 			fflush (m_fpFAT);
 
 			fseek (m_fp, pFileEntry->lFileOffset, SEEK_SET);
 			fwrite (pbtBuff, sizeof(BYTE), (size_t)lSize, m_fp);
 
-			// 2004 10 28 ¼öÁ¤
-			// VFS ÆÄÀÏÀ» flush ÇÏ°í ÀÎµ¦½º¸¦ °»½ÅÇÏ°í ÀÎµ¦½ºÆÄÀÏÀ» flush ÇÑ´Ù
+			// 2004 10 28 ìˆ˜ì •
+			// VFS íŒŒì¼ì„ flush í•˜ê³  ì¸ë±ìŠ¤ë¥¼ ê°±ì‹ í•˜ê³  ì¸ë±ìŠ¤íŒŒì¼ì„ flush í•œë‹¤
 			fflush (m_fp);
 			m_dwNum++;
 			__VWriteVFSHeader (m_dwNum, m_dwDelCnt, m_lStartOffset);
 			fflush (m_fpFAT);
 
-			delete [] pbtBuff; // ¸Ş¸ğ¸®¸¦ ÇØÁ¦ÇÑ´Ù.
+			delete [] pbtBuff; // ë©”ëª¨ë¦¬ë¥¼ í•´ì œí•œë‹¤.
 			pbtBuff = NULL;
 			delete pFileEntry; 
 			pFileEntry = NULL;
 
 			return VADDFILE_SUCCESS;
 		}
-		/// Áö¿öÁø ºí·ÏÀ» »ç¿ë ¾È ÇÏ°Å³ª , À§°¡ ½ÇÆĞÇßÀ» °æ¿ì
+		/// ì§€ì›Œì§„ ë¸”ë¡ì„ ì‚¬ìš© ì•ˆ í•˜ê±°ë‚˜ , ìœ„ê°€ ì‹¤íŒ¨í–ˆì„ ê²½ìš°
 		else
 		{
-			long lOldSize = __vfseek (m_fp, 0, SEEK_END); /// vfsÆÄÀÏÀÇ Å©±â
+			long lOldSize = __vfseek (m_fp, 0, SEEK_END); /// vfsíŒŒì¼ì˜ í¬ê¸°
 			size_t stWrtSize = 0;
 			int iRetFlush = 0;
 			if( ( stWrtSize = fwrite (pbtBuff, sizeof(BYTE), (size_t)lSize, m_fp) ) == lSize 
 				&& (iRetFlush = fflush (m_fp)) != EOF)
 			{
-				pFileEntry = new FileEntry; /// ÆÄÀÏ ¿£Æ®¸®¸¦ ¸¸µç´Ù
+				pFileEntry = new FileEntry; /// íŒŒì¼ ì—”íŠ¸ë¦¬ë¥¼ ë§Œë“ ë‹¤
 				pFileEntry->sFileName		= uprTargetName;
 				pFileEntry->btEncType		= btEncType;
 				pFileEntry->btCompressType	= btCompress;
@@ -670,10 +670,10 @@ short CVFS::AddFile (const char * FileName
 				pFileEntry->cDeleted		= 0;
 				pFileEntry->dwVersion		= dwVersion;
 				pFileEntry->dwCRC			= dwCRC;
-				/// File Offset : ÀÌ ¹öÁ¯Àº ¹«Á¶°Ç µÚ¿¡ ºÙÀÌ´Ï±î FileOffset Àº ±âÁ¸ÀÇ ÆÄÀÏ Å©±â°¡ µÊ
+				/// File Offset : ì´ ë²„ì ¼ì€ ë¬´ì¡°ê±´ ë’¤ì— ë¶™ì´ë‹ˆê¹Œ FileOffset ì€ ê¸°ì¡´ì˜ íŒŒì¼ í¬ê¸°ê°€ ë¨
 				pFileEntry->lFileOffset		= lOldSize ;
 
-				/// ÆÄÀÏ¿£Æ®¸® Å×ÀÌºíÀÇ Å©±â
+				/// íŒŒì¼ì—”íŠ¸ë¦¬ í…Œì´ë¸”ì˜ í¬ê¸°
 				long lSizeOfIdxFile = __vfseek (m_fpFAT, 0, SEEK_END);
 				long lTableSize		= SizeOfEntryTable ();
 				::__MoveFileBlock (m_lEntryStart + lTableSize
@@ -682,10 +682,10 @@ short CVFS::AddFile (const char * FileName
 					, 1000000
 					, m_fpFAT
 					, true); 
-				/* ÆÄÀÏ¿£Æ®¸® ÇÏ³ªÀÇ Å©±â : SIZEOF_FILEENTRY_EXCPTSTRING + pFileEntry->sFileName.size () + 1 */
+				/* íŒŒì¼ì—”íŠ¸ë¦¬ í•˜ë‚˜ì˜ í¬ê¸° : SIZEOF_FILEENTRY_EXCPTSTRING + pFileEntry->sFileName.size () + 1 */
 				fseek (m_fpFAT, m_lEntryStart + lTableSize, SEEK_SET);
 
-				VWriteFileEntry (pFileEntry, m_fpFAT, true); /// File Entry¸¦ ¾´´Ù
+				VWriteFileEntry (pFileEntry, m_fpFAT, true); /// File Entryë¥¼ ì“´ë‹¤
 
 				__AddMemEntry (pFileEntry);
 
@@ -693,7 +693,7 @@ short CVFS::AddFile (const char * FileName
 				__VWriteVFSHeader (m_dwNum, m_dwDelCnt, m_lStartOffset);
 				fflush (m_fpFAT);
 
-				delete [] pbtBuff; // ¸Ş¸ğ¸®¸¦ ÇØÁ¦ÇÑ´Ù.
+				delete [] pbtBuff; // ë©”ëª¨ë¦¬ë¥¼ í•´ì œí•œë‹¤.
 				pbtBuff = NULL;
 
 				return VADDFILE_SUCCESS;
@@ -721,8 +721,8 @@ short CVFS::AddFile (const char * FileName
 
 
 /********************************************************************************************
- * vector¿Í map¿¡ ¿£Æ®¸®¸¦ Ãß°¡ÇÑ´Ù
- * @param FE Ãß°¡ÇÒ FileEntry
+ * vectorì™€ mapì— ì—”íŠ¸ë¦¬ë¥¼ ì¶”ê°€í•œë‹¤
+ * @param FE ì¶”ê°€í•  FileEntry
  */
 void CVFS::__AddMemEntry (FileEntry *FE)
 {
@@ -736,7 +736,7 @@ void CVFS::__AddMemEntry (FileEntry *FE)
 
 
 /********************************************************************************************
- * ÆÄÀÏ¿£Æ®¸®Å×ÀÌºíÀÌ Â÷ÁöÇÏ´Â Å©±â¸¦ ±¸ÇÑ´Ù
+ * íŒŒì¼ì—”íŠ¸ë¦¬í…Œì´ë¸”ì´ ì°¨ì§€í•˜ëŠ” í¬ê¸°ë¥¼ êµ¬í•œë‹¤
  */
 long CVFS::SizeOfEntryTable (void)
 {
@@ -763,18 +763,18 @@ long CVFS::SizeOfEntryTable (void)
 
 
 /********************************************************************************************
- * vfsÆÄÀÏ¿¡¼­ Æ¯Á¤ÆÄÀÏÀ» ¿ÀÇÂÇØ ÁØ´Ù
- * @param FileName ÆÄÀÏ¸í
- * @param Mode ¸ğµå. "w", "r"
- * @param pVFile vfsÆÄÀÏ ÇÚµé
+ * vfsíŒŒì¼ì—ì„œ íŠ¹ì •íŒŒì¼ì„ ì˜¤í”ˆí•´ ì¤€ë‹¤
+ * @param FileName íŒŒì¼ëª…
+ * @param Mode ëª¨ë“œ. "w", "r"
+ * @param pVFile vfsíŒŒì¼ í•¸ë“¤
  */
 VFileHandle * CVFS::OpenFile (const char * FileName)
 {
 	VFileHandle * pVFH	= NULL;
-	FileEntry * pFE		= NULL; /// ¿©±â Ã£Àº ÆÄÀÏÀÇ ÆÄÀÏ ¿£Æ®¸®¸¦ ÀúÀåÇÑ´Ù
+	FileEntry * pFE		= NULL; /// ì—¬ê¸° ì°¾ì€ íŒŒì¼ì˜ íŒŒì¼ ì—”íŠ¸ë¦¬ë¥¼ ì €ì¥í•œë‹¤
 
 	int iFind = index (FileName);
-	/// ÆÄÀÏÀÌ¸§ÀÇ Å°°¡ ÀÖÀ¸¸é °è¼ÓÇÑ´Ù
+	/// íŒŒì¼ì´ë¦„ì˜ í‚¤ê°€ ìˆìœ¼ë©´ ê³„ì†í•œë‹¤
 	if(iFind >= 0)
 	{
 		pFE = *(m_ve.begin () + iFind);
@@ -786,25 +786,25 @@ VFileHandle * CVFS::OpenFile (const char * FileName)
 			pVFH->lStartOff			= pFE->lFileOffset;
 			pVFH->lEndOff			= pFE->lFileOffset + pFE->lFileLength;
 			pVFH->sFileName			= FileName;
-			pVFH->btFileType		= 0; /// Packed ÆÄÀÏÀÏ °æ¿ì 0
+			pVFH->btFileType		= 0; /// Packed íŒŒì¼ì¼ ê²½ìš° 0
 			pVFH->btEncrypted		= pFE->btEncType;
 			
 			//pVFH->hMap = CreateFileMapping( this->m_hFile, NULL, PAGE_READONLY, 0, 0, NULL );
-			// Memory Mapped ÀÏ °æ¿ì
+			// Memory Mapped ì¼ ê²½ìš°
 			if (m_hMap) {
-				// MapViewOfFile() ÀÇ ÆÄÀÏ¿ÀÇÁ¼ÂÀº ½Ã½ºÅÛÀÇ Granularity ´ÜÀ§·Î ²÷¾îÁ®¾ß ÇÔ.
-				// µû¶ó¼­, iAllocOffsetÀ» ÅëÇØ ½ÇÁ¦ ¿ÀÇÁ¼ÂÀ» ±â¾ïÅä·Ï ÇÔ.
+				// MapViewOfFile() ì˜ íŒŒì¼ì˜¤í”„ì…‹ì€ ì‹œìŠ¤í…œì˜ Granularity ë‹¨ìœ„ë¡œ ëŠì–´ì ¸ì•¼ í•¨.
+				// ë”°ë¼ì„œ, iAllocOffsetì„ í†µí•´ ì‹¤ì œ ì˜¤í”„ì…‹ì„ ê¸°ì–µí† ë¡ í•¨.
 				pVFH->iAllocOffset = pFE->lFileOffset % SYSTEM_GRANULARITY;
 				pVFH->pData = reinterpret_cast<char *>(MapViewOfFile( m_hMap, FILE_MAP_READ, 0, 
 					pFE->lFileOffset - pVFH->iAllocOffset, pFE->lFileLength + pVFH->iAllocOffset));	
 			}
-			/// ±×³É ÆÄÀÏ¹æ½Ä
+			/// ê·¸ëƒ¥ íŒŒì¼ë°©ì‹
 			else {
 
 				pVFH->fp	= m_fp;
 				pVFH->pData = NULL;
 			}
-			/// ÆÄÀÏ indicator¸¦ ÀÌµ¿½ÃÅ²´Ù
+			/// íŒŒì¼ indicatorë¥¼ ì´ë™ì‹œí‚¨ë‹¤
 			//fseek (m_fp, pFE->lFileOffset, SEEK_SET);
 		}
 	}
@@ -814,13 +814,13 @@ VFileHandle * CVFS::OpenFile (const char * FileName)
 
 
 /******************************************************************************************
- * ¿ÀÇÂÇÑ ÆÄÀÏÀ» ´İ´Â´Ù. new VFileHandÀ» deleteÇÑ´Ù
- * @param FH ¿ÀÇÂÇÑ ÆÄÀÏÇÚµé
+ * ì˜¤í”ˆí•œ íŒŒì¼ì„ ë‹«ëŠ”ë‹¤. new VFileHandì„ deleteí•œë‹¤
+ * @param FH ì˜¤í”ˆí•œ íŒŒì¼í•¸ë“¤
  */
 void CVFS::CloseFile (VFileHandle * FH)
 {
 	if(FH->btFileType) 
-		fclose (FH->fp);		/// Packed ÆÄÀÏÀÌ ¾Æ´Ò °æ¿ì ÀÏ¹İÆÄÀÏÀ» ¿ÀÇÂÇßÀ¸¹Ç·Î ´İ´Â´Ù
+		fclose (FH->fp);		/// Packed íŒŒì¼ì´ ì•„ë‹ ê²½ìš° ì¼ë°˜íŒŒì¼ì„ ì˜¤í”ˆí–ˆìœ¼ë¯€ë¡œ ë‹«ëŠ”ë‹¤
 	else 
 	{
 		if (FH->pData) 
@@ -835,18 +835,18 @@ void CVFS::CloseFile (VFileHandle * FH)
 
 
 /******************************************************************************************
- * ÆÄÀÏÀÇ Å©±â¸¦ ¾Ë¾Æ³½´Ù
- * @param FileName ÆÄÀÏ¸í
- * @param pVFile vfsÆÄÀÏ ÇÚµé
- * @return ÀÖÀ¸¸é Å©±â¸¦, ¾øÀ¸¸é -1À» ¸®ÅÏÇÑ´Ù. 0Å©±âÀÇ ÆÄÀÏÀÌ ÀÖÀ» ¼ö ÀÖ´Ù. ÆÄÀÏÀÌ vfs³»¿¡ ¾øÀ¸¸é -1À» ¸®ÅÏ
+ * íŒŒì¼ì˜ í¬ê¸°ë¥¼ ì•Œì•„ë‚¸ë‹¤
+ * @param FileName íŒŒì¼ëª…
+ * @param pVFile vfsíŒŒì¼ í•¸ë“¤
+ * @return ìˆìœ¼ë©´ í¬ê¸°ë¥¼, ì—†ìœ¼ë©´ -1ì„ ë¦¬í„´í•œë‹¤. 0í¬ê¸°ì˜ íŒŒì¼ì´ ìˆì„ ìˆ˜ ìˆë‹¤. íŒŒì¼ì´ vfsë‚´ì— ì—†ìœ¼ë©´ -1ì„ ë¦¬í„´
  */
 long CVFS::GetFileLength (const char * FileName)
 {
 	int iIndex		= -1;
-	FileEntry * pFE	= NULL; /// ¿©±â Ã£Àº ÆÄÀÏÀÇ ÆÄÀÏ ¿£Æ®¸®¸¦ ÀúÀåÇÑ´Ù
+	FileEntry * pFE	= NULL; /// ì—¬ê¸° ì°¾ì€ íŒŒì¼ì˜ íŒŒì¼ ì—”íŠ¸ë¦¬ë¥¼ ì €ì¥í•œë‹¤
 
 	iIndex = index (FileName);
-	/// ÆÄÀÏÀÌ¸§ÀÇ Å°°¡ ÀÖÀ¸¸é °è¼ÓÇÑ´Ù
+	/// íŒŒì¼ì´ë¦„ì˜ í‚¤ê°€ ìˆìœ¼ë©´ ê³„ì†í•œë‹¤
 	if(iIndex >= 0)
 	{
 		std::vector<FileEntry *>::iterator iv = m_ve.begin () + iIndex;
@@ -862,7 +862,7 @@ long CVFS::GetFileLength (const char * FileName)
 
 
 /******************************************************************************************
- * ÆÄÀÏÀÇ °¹¼ö : ÃÑ °¹¼ö - Áö¿öÁø °¹¼ö
+ * íŒŒì¼ì˜ ê°¯ìˆ˜ : ì´ ê°¯ìˆ˜ - ì§€ì›Œì§„ ê°¯ìˆ˜
  */
 DWORD CVFS::GetEntryCount (void)
 {
@@ -870,7 +870,7 @@ DWORD CVFS::GetEntryCount (void)
 }
 
 /******************************************************************************************
- * ÆÄÀÏÀÇ °¹¼ö : ÃÑ °¹¼ö - Áö¿öÁø °¹¼ö
+ * íŒŒì¼ì˜ ê°¯ìˆ˜ : ì´ ê°¯ìˆ˜ - ì§€ì›Œì§„ ê°¯ìˆ˜
  */
 DWORD CVFS::GetFileCount (void)
 {
@@ -879,7 +879,7 @@ DWORD CVFS::GetFileCount (void)
 	
 
 /******************************************************************************************
- * ÆÄÀÏ ÀÌ¸§ °¡Á®¿À. ¸Ş¸ğ¸® ÇÒ´çÀº È£ÃâÇÏ´Â ÂÊ¿¡¼­
+ * íŒŒì¼ ì´ë¦„ ê°€ì ¸ì˜¤. ë©”ëª¨ë¦¬ í• ë‹¹ì€ í˜¸ì¶œí•˜ëŠ” ìª½ì—ì„œ
  */
 DWORD CVFS::GetFileNames (char **pFiles, DWORD nFiles, int nMaxPath)
 {
@@ -891,7 +891,7 @@ DWORD CVFS::GetFileNames (char **pFiles, DWORD nFiles, int nMaxPath)
 
 	for(; iv != m_ve.end () && iGet < nFiles; iv++)
 	{
-		/// Áö¿öÁø Ç×¸ñÀÌ ¾Æ´Ï¸é ÆÄÀÏ¸íÀ» Ä«ÇÇÇÑ´Ù
+		/// ì§€ì›Œì§„ í•­ëª©ì´ ì•„ë‹ˆë©´ íŒŒì¼ëª…ì„ ì¹´í”¼í•œë‹¤
 		if(!(*iv)->cDeleted)
 		{
 			strcpy (pFiles [ iGet ], (*iv)->sFileName.c_str ());
@@ -904,11 +904,11 @@ DWORD CVFS::GetFileNames (char **pFiles, DWORD nFiles, int nMaxPath)
 
 
 /******************************************************************************************
- * Áö¿öÁø ÆÄÀÏ¿£Æ®¸®Áß ÀÌ Å©±â°¡ µé¾î °¥¼ö ÀÖ´Â ºí¸¤À» Ã£´Â´Ù. bRestore == true ÀÌ¸é º¹±¸ÇÑ´Ù
- * @param lSize		Ã£À» ºí·ÏÀÇ Å©±â
- * @param bRestore	º¹¿øÇÒÁö ¸»Áö °áÁ¤
- * @param iIndex	[out] ¿©±â¿¡ Ã£Àº ÀÎµ¦½º¸¦ ³Ö´Â´Ù
- * @return Ã£À¸¸é Àû´çÇÑ ÆÄÀÏ¿£Æ®¸® Æ÷ÀÎÅÍ, ¸ø Ã£À¸¸é NULLÀ» ¸®ÅÏ
+ * ì§€ì›Œì§„ íŒŒì¼ì—”íŠ¸ë¦¬ì¤‘ ì´ í¬ê¸°ê°€ ë“¤ì–´ ê°ˆìˆ˜ ìˆëŠ” ë¸”ë¥µì„ ì°¾ëŠ”ë‹¤. bRestore == true ì´ë©´ ë³µêµ¬í•œë‹¤
+ * @param lSize		ì°¾ì„ ë¸”ë¡ì˜ í¬ê¸°
+ * @param bRestore	ë³µì›í• ì§€ ë§ì§€ ê²°ì •
+ * @param iIndex	[out] ì—¬ê¸°ì— ì°¾ì€ ì¸ë±ìŠ¤ë¥¼ ë„£ëŠ”ë‹¤
+ * @return ì°¾ìœ¼ë©´ ì ë‹¹í•œ íŒŒì¼ì—”íŠ¸ë¦¬ í¬ì¸í„°, ëª» ì°¾ìœ¼ë©´ NULLì„ ë¦¬í„´
  */
 FileEntry * CVFS::__FindBlock (std::string sFileName, long lSize, int *iIndex, bool bRestore)
 {
@@ -940,33 +940,33 @@ FileEntry * CVFS::__FindBlock (std::string sFileName, long lSize, int *iIndex, b
 
 
 /******************************************************************************************
- * ÆÄÀÏÀ» Áö¿ì´Âµ¥ ÆÄÀÏÀ» Á¤¸®ÇÏÁö ¾Ê°í ±×³É ºó°ø°£À¸·Î ³ö µÎ´Â ¹öÁ¯
- * @param Files Áö¿ï ÆÄÀÏ¸íÀÌ ÀúÀåµÇ¾î ÀÖÀ½
- * @param iNum	Áö¿ï ÆÄÀÏÀÇ °¹¼ö
- * @return VRMVFILE_XXXX, ¼º°øÇÏ¸é VRMVFILE_SUCCESSÀ» ¸®ÅÏ
+ * íŒŒì¼ì„ ì§€ìš°ëŠ”ë° íŒŒì¼ì„ ì •ë¦¬í•˜ì§€ ì•Šê³  ê·¸ëƒ¥ ë¹ˆê³µê°„ìœ¼ë¡œ ë†” ë‘ëŠ” ë²„ì ¼
+ * @param Files ì§€ìš¸ íŒŒì¼ëª…ì´ ì €ì¥ë˜ì–´ ìˆìŒ
+ * @param iNum	ì§€ìš¸ íŒŒì¼ì˜ ê°¯ìˆ˜
+ * @return VRMVFILE_XXXX, ì„±ê³µí•˜ë©´ VRMVFILE_SUCCESSì„ ë¦¬í„´
  */
 short CVFS::RemoveFilesB (const char **Files, int iNum)
 {
-	/// ÀÎµ¦½º¿Í ÆÄÀÏ¸íÀ» ÇÏ³ª·Î ¹­¾î¼­ °ü¸®
+	/// ì¸ë±ìŠ¤ì™€ íŒŒì¼ëª…ì„ í•˜ë‚˜ë¡œ ë¬¶ì–´ì„œ ê´€ë¦¬
 	struct sFind
 	{
 		int			iIndex;
-		const char *sFileName; /// ¿©±â¿¡ std::stringÀ» »ç¿ëÇÏ¸é delete pFInd¿¡¼­ ¿¡·¯ ¹ß»ı
+		const char *sFileName; /// ì—¬ê¸°ì— std::stringì„ ì‚¬ìš©í•˜ë©´ delete pFIndì—ì„œ ì—ëŸ¬ ë°œìƒ
 	};
 
-	/// ÆÄÀÏÀÌ¸§À» ÆÄÀÏ¿£Æ®¸®¼øÀ¸·Î Á¤·ÄÇÑ´Ù
+	/// íŒŒì¼ì´ë¦„ì„ íŒŒì¼ì—”íŠ¸ë¦¬ìˆœìœ¼ë¡œ ì •ë ¬í•œë‹¤
 	/// __SortFiles (Files, iNum);
-	/// ¸ÕÀú ÀÎµ¦½º¸¦ Ã£¾Æ¼­ ¿©±â¿¡ ÀúÀå
+	/// ë¨¼ì € ì¸ë±ìŠ¤ë¥¼ ì°¾ì•„ì„œ ì—¬ê¸°ì— ì €ì¥
 	sFind *	pFind = new sFind[ iNum ];
 	int		iTemp;
 	int		iFind = 0, i = 0;
 
 	if(pFind)
 	{
-		/// ÀÎµ¦½º¸¦ Ã£¾Æ¼­ ÀúÀåÇÑ´Ù
+		/// ì¸ë±ìŠ¤ë¥¼ ì°¾ì•„ì„œ ì €ì¥í•œë‹¤
 		for(i = 0; i < iNum; i++)
 		{
-			/// ÀÎµ¦½º¸¦ ¸ø Ã£À» °æ¿ì 0º¸´Ù ÀÛÀº °ªÀÌ´Ù. ÀÌ °æ¿ì ¾Æ¿¹ Á¦¿Ü½ÃÄÑ ¹ö¸²
+			/// ì¸ë±ìŠ¤ë¥¼ ëª» ì°¾ì„ ê²½ìš° 0ë³´ë‹¤ ì‘ì€ ê°’ì´ë‹¤. ì´ ê²½ìš° ì•„ì˜ˆ ì œì™¸ì‹œì¼œ ë²„ë¦¼
 			if((iTemp = index (Files[ i ])) >= 0) 
 			{ 
 				pFind[ i ].iIndex		= iTemp; 
@@ -978,40 +978,40 @@ short CVFS::RemoveFilesB (const char **Files, int iNum)
 		if(iFind > 0)
 		{
 			std::vector<FileEntry *>::iterator iv = m_ve.begin ();
-			/// ÆÄÀÏ¿£Æ®¸®¸¦ ´Ù½Ã ¾²±â À§ÇØ ÆÄÀÏ¿£Æ®¸® ¾ÕÂÊÀ¸·Î ÀÌµ¿ÇÑ´Ù
+			/// íŒŒì¼ì—”íŠ¸ë¦¬ë¥¼ ë‹¤ì‹œ ì“°ê¸° ìœ„í•´ íŒŒì¼ì—”íŠ¸ë¦¬ ì•ìª½ìœ¼ë¡œ ì´ë™í•œë‹¤
 			fseek (m_fpFAT, m_lEntryStart + SIZEOF_VENTRYHEADER, SEEK_SET);
 			/// fseek (m_fpFAT, m_lStartOffset + SIZEOF_VENTRYHEADER, SEEK_SET);
-			/// Á¦ÀÏ ¾ÕÂÊºÎÅÍ ÆÄÀÏ¿£Æ®¸®¸¦ ½ºµhÇÑ´Ù
+			/// ì œì¼ ì•ìª½ë¶€í„° íŒŒì¼ì—”íŠ¸ë¦¬ë¥¼ ìŠ¤?í•œë‹¤
 			i = 0;
 			for(int j = 0; j <= pFind[ iFind - 1 ].iIndex; j++)
 			{
-				/// Áö¿ï·Á´Â ÆÄÀÏÀÌ¸§ÇÏ°í °°À¸¸é ´Ù½Ã ¾²°í
+				/// ì§€ìš¸ë ¤ëŠ” íŒŒì¼ì´ë¦„í•˜ê³  ê°™ìœ¼ë©´ ë‹¤ì‹œ ì“°ê³ 
 				if((*iv)->sFileName == pFind[ i ].sFileName && (*iv)->cDeleted != 1)
 				{
 					(*iv)->cDeleted = 1;
-					/// 1·Î ¸¶Å·ÇÑ °ÍÀ» ´Ù½Ã ÆÄÀÏ¿¡ ¾´´Ù
+					/// 1ë¡œ ë§ˆí‚¹í•œ ê²ƒì„ ë‹¤ì‹œ íŒŒì¼ì— ì“´ë‹¤
 					::VWriteFileEntry (*iv, m_fpFAT, false);
-					/// ¸Ê¿¡¼­ Á¦°ÅÇÑ´Ù
+					/// ë§µì—ì„œ ì œê±°í•œë‹¤
 					m_si.erase (m_si.find (pFind[ i ].sFileName));
 					m_is.erase (m_is.find (pFind[ i ].iIndex));
-					/// »èÁ¦¸®½ºÆ®¿¡´Â Ãß°¡ÇÑ´Ù
+					/// ì‚­ì œë¦¬ìŠ¤íŠ¸ì—ëŠ” ì¶”ê°€í•œë‹¤
 					m_mapDel[ pFind[ i ].iIndex ] = *iv;
-					/// »èÁ¦Ç×¸ñÀÇ °¹¼ö¸¦ 1 Áõ°¡½ÃÅ²´Ù
+					/// ì‚­ì œí•­ëª©ì˜ ê°¯ìˆ˜ë¥¼ 1 ì¦ê°€ì‹œí‚¨ë‹¤
 					m_dwDelCnt++;
-					/// ´ÙÀ½ ÆÄÀÏÀÌ¸§À¸·Î ÀÌµ¿ÇÏ±â À§ÇØ i++
+					/// ë‹¤ìŒ íŒŒì¼ì´ë¦„ìœ¼ë¡œ ì´ë™í•˜ê¸° ìœ„í•´ i++
 					i++;
 				}
-				/// ¾Æ´Ï¸é ±×³É ½ºµhÇÑ´Ù
+				/// ì•„ë‹ˆë©´ ê·¸ëƒ¥ ìŠ¤?í•œë‹¤
 				else
 				{ 
 					::__SkipFileEntry (*iv, m_fpFAT); 
 				}
-				/// ¹İº¹ÀÚ¸¦ ÇÏ³ª Áõ°¡
+				/// ë°˜ë³µìë¥¼ í•˜ë‚˜ ì¦ê°€
 				iv++;
 			}
-			/// flush´Â ÇÑ¹ø¿¡
+			/// flushëŠ” í•œë²ˆì—
 			fflush (m_fpFAT);
-			/// ÆÄÀÏÇì´õ¸¦ ¾´´Ù
+			/// íŒŒì¼í—¤ë”ë¥¼ ì“´ë‹¤
 			__VWriteVFSHeader (m_dwNum, m_dwDelCnt, m_lStartOffset);
 
 			delete[] pFind;
@@ -1031,7 +1031,7 @@ short CVFS::RemoveFilesB (const char **Files, int iNum)
 
 
 /*******************************************************************************************
- * ÆÄÀÏ¿¡ ´ëÇÑ Á¤º¸¸¦ ¾Ë¾Æ³¿
+ * íŒŒì¼ì— ëŒ€í•œ ì •ë³´ë¥¼ ì•Œì•„ëƒ„
  */
 void CVFS::GetFileInfo (const char * FileName, VFileInfo * pFileInfo)
 {
@@ -1048,7 +1048,7 @@ void CVFS::GetFileInfo (const char * FileName, VFileInfo * pFileInfo)
 
 
 /*******************************************************************************************
- * ÆÄÀÏ¿¡ ´ëÇÑ Á¤º¸¸¦ UpdateÇÔ
+ * íŒŒì¼ì— ëŒ€í•œ ì •ë³´ë¥¼ Updateí•¨
  */
 bool CVFS::SetFileInfo (const char * FileName, VFileInfo * pFileInfo)
 {
@@ -1058,19 +1058,19 @@ bool CVFS::SetFileInfo (const char * FileName, VFileInfo * pFileInfo)
 	if(iIndex >= 0)
 	{
 		std::vector<FileEntry *>::iterator iv = m_ve.begin ();
-		/// ÆÄÀÏ¿£Æ®¸®¸¦ ´Ù½Ã ¾²±â À§ÇØ ÆÄÀÏ¿£Æ®¸® ¾ÕÂÊÀ¸·Î ÀÌµ¿ÇÑ´Ù
+		/// íŒŒì¼ì—”íŠ¸ë¦¬ë¥¼ ë‹¤ì‹œ ì“°ê¸° ìœ„í•´ íŒŒì¼ì—”íŠ¸ë¦¬ ì•ìª½ìœ¼ë¡œ ì´ë™í•œë‹¤
 		fseek (m_fpFAT, m_lEntryStart + SIZEOF_VENTRYHEADER, SEEK_SET);
-		/// Á¦ÀÏ ¾ÕÂÊºÎÅÍ ÆÄÀÏ¿£Æ®¸®¸¦ ½ºµhÇÑ´Ù
+		/// ì œì¼ ì•ìª½ë¶€í„° íŒŒì¼ì—”íŠ¸ë¦¬ë¥¼ ìŠ¤?í•œë‹¤
 		for(; i < iIndex; i++)
 		{
 			::__SkipFileEntry (*iv, m_fpFAT); 
-			/// ¹İº¹ÀÚ¸¦ ÇÏ³ª Áõ°¡
+			/// ë°˜ë³µìë¥¼ í•˜ë‚˜ ì¦ê°€
 			iv++;
 		}
-		(*iv)->dwCRC		= pFileInfo->dwCRC;			/// ¼öÁ¤ÇÔ
+		(*iv)->dwCRC		= pFileInfo->dwCRC;			/// ìˆ˜ì •í•¨
 		(*iv)->dwVersion	= pFileInfo->dwVersion;
-		VWriteFileEntry (*iv, m_fpFAT);				/// ÆÄÀÏ¿¡ ±â·ÏÇÔ
-		/// flush´Â ÇÑ¹ø¿¡
+		VWriteFileEntry (*iv, m_fpFAT);				/// íŒŒì¼ì— ê¸°ë¡í•¨
+		/// flushëŠ” í•œë²ˆì—
 		fflush (m_fpFAT);
 
 		return true;
@@ -1081,16 +1081,16 @@ bool CVFS::SetFileInfo (const char * FileName, VFileInfo * pFileInfo)
 
 
 /******************************************************************************************
- * vfsÆÄÀÏ³»¿¡ ÀÖ´Â °ø¹éÀ» Á¤¸®ÇÑ´Ù. RemoveFilesB ()¸¦ È£ÃâÇßÀ»¶§ »ı±ä °ø¹éµé
- * »èÁ¦ÇÏ´Â ºÎºĞ : ÆÄÀÏ µÚÀÇ ¿©¹é <=== ÀÌ ºÎºĞÀº Ãß°¡µÈ ÆÄÀÏÀÌ Áö¿öÁø ÆÄÀÏ¿£Æ®¸®¿¡ µ¤¾î¾²±â µÈ °æ¿ì
- *                 , Áö¿öÁø ¿£Æ®¸®
+ * vfsíŒŒì¼ë‚´ì— ìˆëŠ” ê³µë°±ì„ ì •ë¦¬í•œë‹¤. RemoveFilesB ()ë¥¼ í˜¸ì¶œí–ˆì„ë•Œ ìƒê¸´ ê³µë°±ë“¤
+ * ì‚­ì œí•˜ëŠ” ë¶€ë¶„ : íŒŒì¼ ë’¤ì˜ ì—¬ë°± <=== ì´ ë¶€ë¶„ì€ ì¶”ê°€ëœ íŒŒì¼ì´ ì§€ì›Œì§„ íŒŒì¼ì—”íŠ¸ë¦¬ì— ë®ì–´ì“°ê¸° ëœ ê²½ìš°
+ *                 , ì§€ì›Œì§„ ì—”íŠ¸ë¦¬
  */
 struct sDeleteBlockB
 {
-	long lTarget;		/// ¿Å°ÜÁö´Â À§Ä¡
-	long lStart;		/// ¿Å±æ ºÎºĞÀÇ ½ÃÀÛ. µÚ¿¡ ¾øÀ¸¸é(¸¶Áö¸·) -1
-	long lLength;		/// ¿Å±æ ºÎºĞÀÇ ±æÀÌ. 0ÀÌ µÉ¼ö ÀÖ´Ù
-	long lDelLength;	/// Áö¿ï ºÎºĞÀÇ ±æÀÌ
+	long lTarget;		/// ì˜®ê²¨ì§€ëŠ” ìœ„ì¹˜
+	long lStart;		/// ì˜®ê¸¸ ë¶€ë¶„ì˜ ì‹œì‘. ë’¤ì— ì—†ìœ¼ë©´(ë§ˆì§€ë§‰) -1
+	long lLength;		/// ì˜®ê¸¸ ë¶€ë¶„ì˜ ê¸¸ì´. 0ì´ ë ìˆ˜ ìˆë‹¤
+	long lDelLength;	/// ì§€ìš¸ ë¶€ë¶„ì˜ ê¸¸ì´
 };
 bool CVFS::ClearBlank (void)
 {
@@ -1098,60 +1098,60 @@ bool CVFS::ClearBlank (void)
 
 	sDeleteBlockB * pBlock = NULL;
 
-	/// »èÁ¦ÇÒ À§Ä¡ ÀúÀå
+	/// ì‚­ì œí•  ìœ„ì¹˜ ì €ì¥
 	std::list< std::vector< FileEntry * >::iterator > listDel;
 	std::list< sDeleteBlockB * > listDelBlok;
-	/// vfsÆÄÀÏÀÇ Å©±â
-	long lFileSize		= __vfseek (m_fp, 0, SEEK_END);					/// Vfs ÆÄÀÏÀÇ Å©±â
+	/// vfsíŒŒì¼ì˜ í¬ê¸°
+	long lFileSize		= __vfseek (m_fp, 0, SEEK_END);					/// Vfs íŒŒì¼ì˜ í¬ê¸°
 	
 	std::vector<FileEntry *>::iterator iv = m_ve.begin ();
-	/// ÆÄÀÏ¿£Æ®¸®µµ µ¿½Ã¿¡ ¼öÁ¤
+	/// íŒŒì¼ì—”íŠ¸ë¦¬ë„ ë™ì‹œì— ìˆ˜ì •
 	fseek (m_fpFAT, m_lEntryStart + SIZEOF_VENTRYHEADER, SEEK_SET);
-	/// »èÁ¦µÇ´Â ±æÀÌ´Â ÀüºÎ ¿©±â¿¡ ´õÇØÁø´Ù
+	/// ì‚­ì œë˜ëŠ” ê¸¸ì´ëŠ” ì „ë¶€ ì—¬ê¸°ì— ë”í•´ì§„ë‹¤
 	long lDeletedLength = 0;
-	/// »èÁ¦µÇ´Â ¿£Æ®¸® ±æ¸®
+	/// ì‚­ì œë˜ëŠ” ì—”íŠ¸ë¦¬ ê¸¸ë¦¬
 	long lDeletedEntryLength = 0;
-	/// for loop¾È¿¡¼­ vector element¸¦ »èÁ¦ÇÑ´Ù. <== ÁÖÀÇÇÒ °Í
+	/// for loopì•ˆì—ì„œ vector elementë¥¼ ì‚­ì œí•œë‹¤. <== ì£¼ì˜í•  ê²ƒ
 	for(; iv != m_ve.end (); iv++)
 	{
-		/// ¿£Æ®¸® ÀüÃ¼ »èÁ¦ÀÏ °æ¿ì
+		/// ì—”íŠ¸ë¦¬ ì „ì²´ ì‚­ì œì¼ ê²½ìš°
 		if((*iv)->cDeleted)
 		{
 			pBlock = new sDeleteBlockB; assert (pBlock);
-			pBlock->lTarget		= (*iv)->lFileOffset - lDeletedLength;		/// ¿Å±æ À§Ä¡
-			pBlock->lStart		= (*iv)->lFileOffset + (*iv)->lBlockSize;	/// ¿Å°ÜÁö´Â À§Ä¡	
-			pBlock->lLength		= 0;										/// ¿Å±æ ±æÀÌ. »èÁ¦ÀÎ °æ¿ì 0
-			pBlock->lDelLength	= (*iv)->lBlockSize;						/// »èÁ¦µÇ´Â ±æÀÌ
-			listDelBlok.push_back (pBlock);									/// vector¿¡ ÀúÀå
+			pBlock->lTarget		= (*iv)->lFileOffset - lDeletedLength;		/// ì˜®ê¸¸ ìœ„ì¹˜
+			pBlock->lStart		= (*iv)->lFileOffset + (*iv)->lBlockSize;	/// ì˜®ê²¨ì§€ëŠ” ìœ„ì¹˜	
+			pBlock->lLength		= 0;										/// ì˜®ê¸¸ ê¸¸ì´. ì‚­ì œì¸ ê²½ìš° 0
+			pBlock->lDelLength	= (*iv)->lBlockSize;						/// ì‚­ì œë˜ëŠ” ê¸¸ì´
+			listDelBlok.push_back (pBlock);									/// vectorì— ì €ì¥
 			listDel.push_back (iv);
-			lDeletedLength		+= (*iv)->lBlockSize;						/// ÃÑÁö¿öÁø ±æÀÌ += ÀÌ ºí·° Å©±â
+			lDeletedLength		+= (*iv)->lBlockSize;						/// ì´ì§€ì›Œì§„ ê¸¸ì´ += ì´ ë¸”ëŸ­ í¬ê¸°
 			lDeletedEntryLength += __SizeOfFileEntry (*iv);
-			/// ÀÌ ºí·°Àº Áö¿öÁö´Ï±î µ¤¾î¾²±â µÇ¾î¾ß ÇÑ´Ù
+			/// ì´ ë¸”ëŸ­ì€ ì§€ì›Œì§€ë‹ˆê¹Œ ë®ì–´ì“°ê¸° ë˜ì–´ì•¼ í•œë‹¤
 		}
-		/// ºÎºĞÀûÀÎ ÀÌµ¿ÀÎ °æ¿ì
+		/// ë¶€ë¶„ì ì¸ ì´ë™ì¸ ê²½ìš°
 		else if((*iv)->lBlockSize > (*iv)->lFileLength)
 		{
 			pBlock = new sDeleteBlockB; assert (pBlock);
-			/// ¿Å±æ À§Ä¡ = ÀÌ ÆÄÀÏÀÌ µÚÂÊ - ¾ÕÂÊ¿¡¼­ »èÁ¦µÈ ±æÀÌ
+			/// ì˜®ê¸¸ ìœ„ì¹˜ = ì´ íŒŒì¼ì´ ë’¤ìª½ - ì•ìª½ì—ì„œ ì‚­ì œëœ ê¸¸ì´
 			pBlock->lTarget		= (*iv)->lFileOffset + (*iv)->lFileLength - lDeletedLength;	
-			pBlock->lStart		= (*iv)->lFileOffset + (*iv)->lBlockSize;	/// ¿Å°ÜÁö´Â À§Ä¡
-			/// ¿Å±æ ±æÀÌ. (ÃÑ ºí·°ÀÇ Å©±â - ÆÄÀÏÀÌ Â÷ÁöÇÏ´Â Å©±â)¸¸Å­ÀÌ ¿Å°ÜÁ®¾ß ÇÑ´Ù
+			pBlock->lStart		= (*iv)->lFileOffset + (*iv)->lBlockSize;	/// ì˜®ê²¨ì§€ëŠ” ìœ„ì¹˜
+			/// ì˜®ê¸¸ ê¸¸ì´. (ì´ ë¸”ëŸ­ì˜ í¬ê¸° - íŒŒì¼ì´ ì°¨ì§€í•˜ëŠ” í¬ê¸°)ë§Œí¼ì´ ì˜®ê²¨ì ¸ì•¼ í•œë‹¤
 			pBlock->lLength		= (*iv)->lBlockSize - (*iv)->lFileLength;
-			pBlock->lDelLength	= (*iv)->lBlockSize;/* ÀÌ»óÇÔ */			/// Áö¿öÁö´Â ±æÀÌ	
-			listDelBlok.push_back (pBlock);									/// vector¿¡ ÀúÀå
-			(*iv)->lFileOffset	-= lDeletedLength;							/// »ì¾Æ ³²Àº ³ğÀº ¾ÕÀ¸·Î ÀüÁøÇØ¾ß ÇÔ
-			(*iv)->lBlockSize	= (*iv)->lFileLength;						/// µŞºÎºĞÀ» »èÁ¦ÇÏ´Ï±î ÀÌÁ¦ Block Size¿Í File Lenght´Â °°´Ù
-			VWriteFileEntry (*iv, m_fpFAT, false);							/// ¼öÁ¤µÈ ºÎºĞÀÌ ÀÖÀ¸´Ï±î ´Ù½Ã ¿£Æ®¸®¸¦ ¾´´Ù.
-			lDeletedLength		+= (*iv)->lBlockSize - (*iv)->lFileLength;	/// µŞºÎºĞ Áö¿öÁö´Â ¸¸Å­ ÃÑ Áö¿öÁö´Â ±æÀÌ¿¡ ´õÇÑ´Ù
+			pBlock->lDelLength	= (*iv)->lBlockSize;/* ì´ìƒí•¨ */			/// ì§€ì›Œì§€ëŠ” ê¸¸ì´	
+			listDelBlok.push_back (pBlock);									/// vectorì— ì €ì¥
+			(*iv)->lFileOffset	-= lDeletedLength;							/// ì‚´ì•„ ë‚¨ì€ ë†ˆì€ ì•ìœ¼ë¡œ ì „ì§„í•´ì•¼ í•¨
+			(*iv)->lBlockSize	= (*iv)->lFileLength;						/// ë’·ë¶€ë¶„ì„ ì‚­ì œí•˜ë‹ˆê¹Œ ì´ì œ Block Sizeì™€ File LenghtëŠ” ê°™ë‹¤
+			VWriteFileEntry (*iv, m_fpFAT, false);							/// ìˆ˜ì •ëœ ë¶€ë¶„ì´ ìˆìœ¼ë‹ˆê¹Œ ë‹¤ì‹œ ì—”íŠ¸ë¦¬ë¥¼ ì“´ë‹¤.
+			lDeletedLength		+= (*iv)->lBlockSize - (*iv)->lFileLength;	/// ë’·ë¶€ë¶„ ì§€ì›Œì§€ëŠ” ë§Œí¼ ì´ ì§€ì›Œì§€ëŠ” ê¸¸ì´ì— ë”í•œë‹¤
 		}
-		/// ¾ÕÂÊ¿¡ Áö¿öÁö´Â ºí·°ÀÌ ÀÖÀ¸¸é ÀÌºí·ÏÀº ´Ü¼øÈ÷ Å©±â¸¸ Ãß°¡ÇØ¼­ °°ÀÌ ÀÌµ¿µÇµµ·ÏÇÑ´Ù
+		/// ì•ìª½ì— ì§€ì›Œì§€ëŠ” ë¸”ëŸ­ì´ ìˆìœ¼ë©´ ì´ë¸”ë¡ì€ ë‹¨ìˆœíˆ í¬ê¸°ë§Œ ì¶”ê°€í•´ì„œ ê°™ì´ ì´ë™ë˜ë„ë¡í•œë‹¤
 		else if (pBlock)
 		{
 			pBlock->lLength		+= (*iv)->lBlockSize;
-			(*iv)->lFileOffset	-= lDeletedLength;							/// ¾ÕÂÊ¿¡ »èÁ¦µÈ ±æÀÌ¸¸Å­ ¾ÕÀ¸·Î ´ç°ÜÁ®¾ß ÇÏ´Ï±î ¿©±âµµ ¼öÁ¤
-			::VWriteFileEntry (*iv, m_fpFAT, false);						/// ¾ÕÂÊ¿¡ ¼öÁ¤µÈ °Ô ÀÖÀ¸´Ï±î ¿©±âµµ ¼öÁ¤ ´Ù¾¾ write file
+			(*iv)->lFileOffset	-= lDeletedLength;							/// ì•ìª½ì— ì‚­ì œëœ ê¸¸ì´ë§Œí¼ ì•ìœ¼ë¡œ ë‹¹ê²¨ì ¸ì•¼ í•˜ë‹ˆê¹Œ ì—¬ê¸°ë„ ìˆ˜ì •
+			::VWriteFileEntry (*iv, m_fpFAT, false);						/// ì•ìª½ì— ìˆ˜ì •ëœ ê²Œ ìˆìœ¼ë‹ˆê¹Œ ì—¬ê¸°ë„ ìˆ˜ì • ë‹¤ì”¨ write file
 		}
-		/// ±×³É ¿£Æ®¸® ÀÌµ¿
+		/// ê·¸ëƒ¥ ì—”íŠ¸ë¦¬ ì´ë™
 		else
 		{
 			(*iv)->lFileOffset	-= lDeletedLength;
@@ -1160,34 +1160,34 @@ bool CVFS::ClearBlank (void)
 
 		CBlankInfo::DoStep ();
 	}
-	fflush (m_fpFAT);																/// ÀÎµ¦½ºÆÄÀÏ¿¡ fflushÇÑ´Ù
-	/// ::__ftruncate (__vfseek (m_fpFAT, 0, SEEK_END) - lDeletedEntryLength, m_fpFAT);	/// ÀÎµ¦½ºÆÄÀÏÀÇ Å©±â¸¦ Á¶Á¤ÇÑ
-	/// ÀÎµ¦½º ÆÄÀÏÇÏ³ª¿¡ ¿©·¯°³ÀÇ Vfs°¡ µé¾î °¡ ÀÖÀ»¶§´Â Manager¿¡¼­ µŞºÎºĞÀ» Á¤¸®ÇØ ÁØ´Ù
+	fflush (m_fpFAT);																/// ì¸ë±ìŠ¤íŒŒì¼ì— fflushí•œë‹¤
+	/// ::__ftruncate (__vfseek (m_fpFAT, 0, SEEK_END) - lDeletedEntryLength, m_fpFAT);	/// ì¸ë±ìŠ¤íŒŒì¼ì˜ í¬ê¸°ë¥¼ ì¡°ì •í•œ
+	/// ì¸ë±ìŠ¤ íŒŒì¼í•˜ë‚˜ì— ì—¬ëŸ¬ê°œì˜ Vfsê°€ ë“¤ì–´ ê°€ ìˆì„ë•ŒëŠ” Managerì—ì„œ ë’·ë¶€ë¶„ì„ ì •ë¦¬í•´ ì¤€ë‹¤
 
 	std::list< sDeleteBlockB * >::iterator il = listDelBlok.begin ();
 
 	for(; il != listDelBlok.end (); il++)
 	{
-		/// ºí·°À» ÀÌµ¿½ÃÅ²´Ù
+		/// ë¸”ëŸ­ì„ ì´ë™ì‹œí‚¨ë‹¤
 		::__MoveFileBlock ((*il)->lStart, (*il)->lLength, (*il)->lTarget, (int)m_BUFSIZ, m_fp, false);
 
 		CBlankInfo::DoStep ();
 	}
 	fflush (m_fp);
-	/// ÇöÀç À§Ä¡·Î Å©±â¸¦ ÁÙÀÎ´Ù
+	/// í˜„ì¬ ìœ„ì¹˜ë¡œ í¬ê¸°ë¥¼ ì¤„ì¸ë‹¤
 	::__ftruncate (lFileSize - lDeletedLength, m_fp);
 	
 	std::list< std::vector< FileEntry * >::iterator >::reverse_iterator ir = listDel.rbegin ();
 	for(; ir != listDel.rend (); ir++)
 	{
-		delete *(*ir);														/// ÆÄÀÏ¿£Æ®¸®¸¦ ¸Ş¸ğ¸®°ø°£À» ÇØÁ¦ÇÑ´Ù
-		m_ve.erase (*ir);													/// vector¿¡¼­ Á¦°Å
+		delete *(*ir);														/// íŒŒì¼ì—”íŠ¸ë¦¬ë¥¼ ë©”ëª¨ë¦¬ê³µê°„ì„ í•´ì œí•œë‹¤
+		m_ve.erase (*ir);													/// vectorì—ì„œ ì œê±°
 	}
-	m_dwNum		-= (DWORD)listDel.size ();									/// ¿£Æ®¸®ÀÇ °¹¼ö¸¦ ÁÙÀÎ´Ù
-	m_dwDelCnt	= 0;														/// »èÁ¦Ç×¸ñÀÇ °¹¼ö¸¦ 0À¸·Î
-	__VWriteVFSHeader (m_dwNum, m_dwDelCnt, m_lStartOffset);				/// ÆÄÀÏÇì´õ¸¦ ´Ù½Ã ÀÛ¼ºÇÑ´Ù
-	m_mapDel.clear ();														/// »èÁ¦Ç×¸ñÀ» °¡Áö°í ¸ÊÀ» ºñ¿î´Ù
-	CBlankInfo::DoStep ();													/// ÆÄÀÏ Çì´õÀÛ¼º±îÁö....
+	m_dwNum		-= (DWORD)listDel.size ();									/// ì—”íŠ¸ë¦¬ì˜ ê°¯ìˆ˜ë¥¼ ì¤„ì¸ë‹¤
+	m_dwDelCnt	= 0;														/// ì‚­ì œí•­ëª©ì˜ ê°¯ìˆ˜ë¥¼ 0ìœ¼ë¡œ
+	__VWriteVFSHeader (m_dwNum, m_dwDelCnt, m_lStartOffset);				/// íŒŒì¼í—¤ë”ë¥¼ ë‹¤ì‹œ ì‘ì„±í•œë‹¤
+	m_mapDel.clear ();														/// ì‚­ì œí•­ëª©ì„ ê°€ì§€ê³  ë§µì„ ë¹„ìš´ë‹¤
+	CBlankInfo::DoStep ();													/// íŒŒì¼ í—¤ë”ì‘ì„±ê¹Œì§€....
 
 	il = listDelBlok.begin();
 	for(; il != listDelBlok.end(); il++)
@@ -1199,7 +1199,7 @@ bool CVFS::ClearBlank (void)
 
 
 /************************************************************
- * Àç»ç¿ëµÈ ºí·°ÀÇ °¹¼ö¸¦ Á¶»çÇÑ´Ù
+ * ì¬ì‚¬ìš©ëœ ë¸”ëŸ­ì˜ ê°¯ìˆ˜ë¥¼ ì¡°ì‚¬í•œë‹¤
  */
 DWORD CVFS::GetReUsedCnt (void)
 {
@@ -1215,7 +1215,7 @@ DWORD CVFS::GetReUsedCnt (void)
 }
 
 /******************************************************************************************
- * »èÁ¦µÇ¾úÁö¸¸ ºí·ÏÀº ³²¾ÆÀÖ´Â ¿£Æ®¸®ÀÇ °¹¼ö¸¦ ¸®ÅÏ
+ * ì‚­ì œë˜ì—ˆì§€ë§Œ ë¸”ë¡ì€ ë‚¨ì•„ìˆëŠ” ì—”íŠ¸ë¦¬ì˜ ê°¯ìˆ˜ë¥¼ ë¦¬í„´
  */
 DWORD CVFS::GetDelCnt (void)
 {
@@ -1224,7 +1224,7 @@ DWORD CVFS::GetDelCnt (void)
 
 
 /******************************************************************************************
- * ÆÄÀÏÀº ÀÖÁö¸¸ ºí·ÏÅ©±â¿Í ÆÄÀÏÅ©±â°¡ ÀÏÄ¡ÇÏÁö ¾Ê´Â ¿£Æ®¸®ÀÇ °¹¼ö¸¦ Á¶»çÇÑ´Ù. (¶«»§´çÇÑ ºí·Ï)
+ * íŒŒì¼ì€ ìˆì§€ë§Œ ë¸”ë¡í¬ê¸°ì™€ íŒŒì¼í¬ê¸°ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠëŠ” ì—”íŠ¸ë¦¬ì˜ ê°¯ìˆ˜ë¥¼ ì¡°ì‚¬í•œë‹¤. (ë•œë¹µë‹¹í•œ ë¸”ë¡)
  */
 DWORD CVFS::GetFileCntWithHole (void)
 {
@@ -1233,7 +1233,7 @@ DWORD CVFS::GetFileCntWithHole (void)
 	std::vector<FileEntry *>::iterator iv = m_ve.begin ();
 	for(; iv != m_ve.end (); iv++)
 	{
-		/// ÆÄÀÏ±æÀÌ¿Í ºí·°±æÀÌ°¡ ´Ù¸£¸é ÀÌ°Å´Â holeÀÖ´Â ¿£Æ®¸®ÀÌ´Ù.
+		/// íŒŒì¼ê¸¸ì´ì™€ ë¸”ëŸ­ê¸¸ì´ê°€ ë‹¤ë¥´ë©´ ì´ê±°ëŠ” holeìˆëŠ” ì—”íŠ¸ë¦¬ì´ë‹¤.
 		if((*iv)->lBlockSize != (*iv)->lFileLength) 
 			dwCnt++;
 	}
@@ -1243,7 +1243,7 @@ DWORD CVFS::GetFileCntWithHole (void)
 
 
 /******************************************************************************************
- * ÆÄÀÏ¿£Æ®¸® Å×ÀÌºíÀÇ ½ÃÀÛ¿ÀÇÁ¼ÂÀ» ¾÷µ¥ÀÌÆ®ÇÑ´Ù
+ * íŒŒì¼ì—”íŠ¸ë¦¬ í…Œì´ë¸”ì˜ ì‹œì‘ì˜¤í”„ì…‹ì„ ì—…ë°ì´íŠ¸í•œë‹¤
  */
 void CVFS::SetStartOfEntry (long lStartOfEntry)
 {
@@ -1252,9 +1252,9 @@ void CVFS::SetStartOfEntry (long lStartOfEntry)
 
 
 /******************************************************************************************
- * ÆÄÀÏÀÌ Á¸ÀçÇÏ´ÂÁö °Ë»çÇÑ´Ù. ÀÌ FileExists ¹öÁ¯Àº Pack³»¿¡ ÀÖÀ»¶§¸¸ true. 
- * ¹Ù±ùÀÇ ÆÄÀÏÀº false
- * ÁÖÀÇ »çÇ× :  FileNameÀº ¹«Á¶°Ç ´ë¹®ÀÚ·Î ³Ñ¾î¿Í¾ß ÇÑ´Ù
+ * íŒŒì¼ì´ ì¡´ì¬í•˜ëŠ”ì§€ ê²€ì‚¬í•œë‹¤. ì´ FileExists ë²„ì ¼ì€ Packë‚´ì— ìˆì„ë•Œë§Œ true. 
+ * ë°”ê¹¥ì˜ íŒŒì¼ì€ false
+ * ì£¼ì˜ ì‚¬í•­ :  FileNameì€ ë¬´ì¡°ê±´ ëŒ€ë¬¸ìë¡œ ë„˜ì–´ì™€ì•¼ í•œë‹¤
  */
 bool CVFS::FileExists (const char *FileName)
 {
@@ -1263,7 +1263,7 @@ bool CVFS::FileExists (const char *FileName)
 
 	__ConvertPath (FileName, UpperName);
 	
-	/// °Ë»öÇØ¼­ end °¡ ¾Æ´Ï¸é ÀÖ´Â °ÍÀÌ´Ù
+	/// ê²€ìƒ‰í•´ì„œ end ê°€ ì•„ë‹ˆë©´ ìˆëŠ” ê²ƒì´ë‹¤
 	im = m_si.find (UpperName);
 	if(im != m_si.end ()) 
 		return true;
@@ -1273,7 +1273,7 @@ bool CVFS::FileExists (const char *FileName)
 
 
 /*********************************************************
- * VFS¿¡ ´ëÇÑ FILE * ¸¦ Á¶»çÇÑ´Ù
+ * VFSì— ëŒ€í•œ FILE * ë¥¼ ì¡°ì‚¬í•œë‹¤
  */
 FILE * CVFS::GetFP ( void )
 {
@@ -1281,7 +1281,7 @@ FILE * CVFS::GetFP ( void )
 }
 
 /********************************************************
- * VFS ÆÄÀÏ³»¿¡¼­ DataÀÇ ½ÃÀÛ OffsetÀ» Á¶»çÇÑ´Ù
+ * VFS íŒŒì¼ë‚´ì—ì„œ Dataì˜ ì‹œì‘ Offsetì„ ì¡°ì‚¬í•œë‹¤
  */
 long CVFS::GetStartOff (void )
 {
@@ -1290,7 +1290,7 @@ long CVFS::GetStartOff (void )
 
 
 /********************************************************
- * ÃÑ Blank Area ¸¦ °è»êÇÑ´Ù
+ * ì´ Blank Area ë¥¼ ê³„ì‚°í•œë‹¤
  */
 int CVFS::GetSizeofBlankArea ()
 {

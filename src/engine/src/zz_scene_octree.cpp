@@ -532,7 +532,7 @@ void zz_scene_octree::render_shadowmap_objects (vector<zz_visible*>& nodes, cons
 		vis = nodes[i];
 		if (!vis) continue;
 
-		if (IS_A(vis, zz_model) && vis->get_shadow_onoff())   //modelµµ Shadow On/Off Ãß°¡ 
+		if (IS_A(vis, zz_model) && vis->get_shadow_onoff())   //modelë„ Shadow On/Off ì¶”ê°€ 
 		{
 			vis->get_position_world(world_position);
 			dist_square = world_position.distance_square(compare_pos);
@@ -1169,7 +1169,7 @@ void zz_scene_octree::render ()
     draw_scene_line();
 	draw_scene_axis();
 
-//	if(znzin->camera_sfx.get_play_onoff())   //Á¶¼ºÇö 2006 10/23 ¿ÉÀú¹ö Ä«¸Þ¶ó ÃÔ¿µ¸ðµå.
+//	if(znzin->camera_sfx.get_play_onoff())   //ì¡°ì„±í˜„ 2006 10/23 ì˜µì €ë²„ ì¹´ë©”ë¼ ì´¬ì˜ëª¨ë“œ.
 //    znzin->camera_sfx.draw_camera();
 	
 	// render viewfrustum

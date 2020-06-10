@@ -1,62 +1,62 @@
 /*
 {
 	switch( iChargeType ) {
-		case 0  :	// ±ÝÁö
-		case 1	:	// ½Ã°£Á¦ - ¸Å 1 ½Ã°£ ´ÜÀ§·Î 6 Æ÷ÀÎÆ® »è°¨, 1½Ã°£À» Ã¤¿ìÁö ¸øÇßÀ» °æ¿ì, 1½Ã°£À¸·Î °è»êÇÑ´Ù.
-		case 2	:	// ¿ù Á¤¾×Á¦ - ¸Å 30 ÀÏ ´ÜÀ§·Î 350 Æ÷ÀÎÆ® »è°¨.
-		case 3	:	// ½Ã°£ Á¤¾×Á¦ - ¸Å 12 ½Ã°£ ´ÜÀ§·Î 20 Æ÷ÀÎÆ® »è°¨.
-		case 4	:	// 3°³¿ù Á¤¾×Á¦ - ¸Å 90 ÀÏ ´ÜÀ§·Î 888 Æ÷ÀÎÆ® »è°¨.
-		case 5	:	// È«Äá ¿ùÁ¤¾×Á¦
-		case 6	:	// È«Äá 3°³¿ù Á¤¾×Á¦
-		case 7	:	// È«Äá ½Ã°£Á¦
-		case 8	:	// È«Äá ½Ã°£ Á¤¾×Á¦
-		case 9	:	// ºÐ Á¤·®Á¦ - ¸Å 1ºÐ ´ÜÀ§·Î 0.25Æ÷ÀÎÆ® »è°¨.
-		case 10	:	// ½Ã°£ Á¤·®Á¦  - ¸Å 2½Ã°£ ´ÜÀ§·Î 12 Æ÷ÀÎÆ® »è°¨.
-		case 11	:	// 10ÀÏ - ¸Å 10ÀÏ ´ÜÀ§·Î 150 Æ÷ÀÎÆ® »è°¨.
-		case 12	:	// ¹«·á Ã¼Çè
-		case 101:	// ºí·Ï 3ÀÏ
-		case 102:	// ºí·Ï 7ÀÏ
-		case 103:	// ºí·Ï 10ÀÏ
+		case 0  :	// ê¸ˆì§€
+		case 1	:	// ì‹œê°„ì œ - ë§¤ 1 ì‹œê°„ ë‹¨ìœ„ë¡œ 6 í¬ì¸íŠ¸ ì‚­ê°, 1ì‹œê°„ì„ ì±„ìš°ì§€ ëª»í–ˆì„ ê²½ìš°, 1ì‹œê°„ìœ¼ë¡œ ê³„ì‚°í•œë‹¤.
+		case 2	:	// ì›” ì •ì•¡ì œ - ë§¤ 30 ì¼ ë‹¨ìœ„ë¡œ 350 í¬ì¸íŠ¸ ì‚­ê°.
+		case 3	:	// ì‹œê°„ ì •ì•¡ì œ - ë§¤ 12 ì‹œê°„ ë‹¨ìœ„ë¡œ 20 í¬ì¸íŠ¸ ì‚­ê°.
+		case 4	:	// 3ê°œì›” ì •ì•¡ì œ - ë§¤ 90 ì¼ ë‹¨ìœ„ë¡œ 888 í¬ì¸íŠ¸ ì‚­ê°.
+		case 5	:	// í™ì½© ì›”ì •ì•¡ì œ
+		case 6	:	// í™ì½© 3ê°œì›” ì •ì•¡ì œ
+		case 7	:	// í™ì½© ì‹œê°„ì œ
+		case 8	:	// í™ì½© ì‹œê°„ ì •ì•¡ì œ
+		case 9	:	// ë¶„ ì •ëŸ‰ì œ - ë§¤ 1ë¶„ ë‹¨ìœ„ë¡œ 0.25í¬ì¸íŠ¸ ì‚­ê°.
+		case 10	:	// ì‹œê°„ ì •ëŸ‰ì œ  - ë§¤ 2ì‹œê°„ ë‹¨ìœ„ë¡œ 12 í¬ì¸íŠ¸ ì‚­ê°.
+		case 11	:	// 10ì¼ - ë§¤ 10ì¼ ë‹¨ìœ„ë¡œ 150 í¬ì¸íŠ¸ ì‚­ê°.
+		case 12	:	// ë¬´ë£Œ ì²´í—˜
+		case 101:	// ë¸”ë¡ 3ì¼
+		case 102:	// ë¸”ë¡ 7ì¼
+		case 103:	// ë¸”ë¡ 10ì¼
 			break;
 	}
 }
 
 {
 	switch( iResult ) {
-		case 0	:	// ¼º°ø
-		case 2	:	// Áßº¹ ·Î±×ÀÎ (login result)	ÀÌ¹Ì ·Î±×ÀÎ µÈ °èÁ¤
-		case 3	:	// ÆÐ½º¿öµå ¿¡·¯ (login result)	°èÁ¤ ¶Ç´Â ÆÐ½º¿öµå ¿¡·¯ ¶Ç´Â Æ÷ÀÎÆ® ÃæÀüÇÏÁö ¾ÊÀº »óÅÂ,  Joypark È¸¿ø Áß½É Âü°í.
-		case 4	:	// ObjnetObiect ±¸Ãà ½ÇÆÐ, Login Serverµî·Ï ºÒ°¡´É (Connection State Result)
-		case 5	:	// Login Server¿¬°á Áß´Ü (Connection State Result)
-		case 6	:	// Login Server¿¬°á ½ÇÆÐ (Connection State Result)
-		case 7	:	// ¾ø´Â °èÁ¤ (login result)	°èÁ¤ ¶Ç´Â ÆÐ½º¿öµå ¿¡·¯ ¶Ç´Â Æ÷ÀÎÆ®¸¦ ÃæÀüÇÏÁö ¾ÊÀº »óÅÂ,  Joypark È¸¿ø Áß½É Âü°í. 
-		case 8	:	// Æ÷ÀÎÆ® ºÎÁ· (login result)	Æ÷ÀÎÆ® ºÎÁ·
-		case 9	:	// ½Ã°£ ºÎÁ· (login result)	¹«·á Ã¼Çè±â°£ ¸¸±â
-		case 10	:	// ¾ø´Â °ú±ÝÁ¦µµ (login result)	°ú±Ý¹æ½Ä ¹®Á¦
-		case 11	:	// ºí·Ï (login result)	ºí·Ï Áß
-		case 12	:	// ºí·Ï£³ÀÏ (login result)	ºí·Ï Áß
-		case 13	:	// ºí·Ï£·ÀÏ (login result)	ºí·Ï Áß
-		case 14	:	// ºí·Ï 10 ÀÏ (login result)	ºí·Ï Áß
-		case 15	:	// ·Î±× ¾Æ¿ô »óÅÂ (logout result)
-		case 16	:	// ºÒÈ®½ÇÇÑ ¿¡·¯ (µ¥ÀÌÅÍ º£ÀÌ½º ¿¡·¯ login, relogin, logout result)	ºÒÈ®½ÇÇÑ ¿¡·¯
-		case 17	:	// IpÁßº¹ (È¨ À¯Àú ´ë»ó login, relogin, result) 
-		case 18	:	// °ÔÀÓ¹æ À¯È¿ÇÑ °ÔÀÓ¹æ ip¸®½ºÆ® (»ç¿ë : °ÔÀÓ¹æ login, relogin, result)	
-		case 20	:	// ¾ø´Â °èÁ¤ (relogin result)	°èÁ¤ ¶Ç´Â ÆÐ½º¿öµå ¿¡·¯ µµ´Â Æ÷ÀÎÆ®¸¦ ÃæÀüÇÏÁö ¾ÊÀº »óÅÂ, Joypark È¸¿ø Áß½É Âü°í.
-		case 21	:	// Áßº¹ ·Î±×ÀÎ (relogin result)	ÀÌ¹Ì ¿Â¶óÀÎ »óÈ²ÀÎ °èÁ¤ 
-		case 23	:	// Æ÷ÀÎÆ® ºÎÁ· (relogin result)	Æ÷ÀÎÆ® ºÎÁ·
-		case 24	:	// ½Ã°£ ºÎÁ· (relogin result)	¹«·á Ã¼Çè±â°£ ¸¸±â
-		case 25	:	// ºÎÁ¤È®ÇÑ °ú±Ý¹æ½Ä (relogin result)	°ú±Ý¹æ½Ä ¹®Á¦ 
-		case 26	:	// ºí·Ï (relogin result)	ºí·Ï Áß
-		case 27	:	// ºí·Ï £³ÀÏ (relogin result)	ºí·Ï Áß
-		case 28	:	// ºí·Ï £·ÀÏ (relogin result)	ºí·Ï Áß
-		case 29	:	// ºí·Ï 10 ÀÏ (relogin result)	ºí·Ï Áß
-		case 30	:	// °°Àº ip  nÃÊ³» Áßº¹ ·Î±×ÀÎ (login result)	¸¶¿ì½º¸¦ Àá±ñ ½¬°Ô ÇÏ°í, ¸î ÃÊ ÈÄ ´Ù½Ã Á¢¼Ó.
-		case 31	:	// Game Serverµî·Ï ¼º°ø (Connection State result)
-		case 32	:	// Game Serverµî·Ï IDÁßº¹(Connection State result)
-		case 33	:	// Game Server¹Ì µî·Ï(login, relogin result)	¼­¹ö Á¢¼Ó ºÒ°¡´É, Àá½ÃÈÄ ´Ù½Ã ¿¬°á ½Ãµµ.
-		case 34	:	// À¯Àú ¸ÅÀÏ Á¢¼Ó °¡´ÉÇÑ ½Ã°£ ÃÊ°ú.(login, relogin result)	Á¢¼Ó½Ã°£ ÃÊ°ú. 
-		case 35	:	// ¹«·á Ã¼ÇèÁ¦ ¹Ì ¿ÀÇÂ (login result)	ÀÌ ¼­¹ö´Â ¹«·á Ã¼Çè °èÁ¤ Á¦°øÇÏÁö ¾ÊÀ½.
-		case 101:	// Library¹öÀü°ú Login Server ¿Í ¸ÂÁö ¾ÊÀ½. (Connection State result)
+		case 0	:	// ì„±ê³µ
+		case 2	:	// ì¤‘ë³µ ë¡œê·¸ì¸ (login result)	ì´ë¯¸ ë¡œê·¸ì¸ ëœ ê³„ì •
+		case 3	:	// íŒ¨ìŠ¤ì›Œë“œ ì—ëŸ¬ (login result)	ê³„ì • ë˜ëŠ” íŒ¨ìŠ¤ì›Œë“œ ì—ëŸ¬ ë˜ëŠ” í¬ì¸íŠ¸ ì¶©ì „í•˜ì§€ ì•Šì€ ìƒíƒœ,  Joypark íšŒì› ì¤‘ì‹¬ ì°¸ê³ .
+		case 4	:	// ObjnetObiect êµ¬ì¶• ì‹¤íŒ¨, Login Serverë“±ë¡ ë¶ˆê°€ëŠ¥ (Connection State Result)
+		case 5	:	// Login Serverì—°ê²° ì¤‘ë‹¨ (Connection State Result)
+		case 6	:	// Login Serverì—°ê²° ì‹¤íŒ¨ (Connection State Result)
+		case 7	:	// ì—†ëŠ” ê³„ì • (login result)	ê³„ì • ë˜ëŠ” íŒ¨ìŠ¤ì›Œë“œ ì—ëŸ¬ ë˜ëŠ” í¬ì¸íŠ¸ë¥¼ ì¶©ì „í•˜ì§€ ì•Šì€ ìƒíƒœ,  Joypark íšŒì› ì¤‘ì‹¬ ì°¸ê³ . 
+		case 8	:	// í¬ì¸íŠ¸ ë¶€ì¡± (login result)	í¬ì¸íŠ¸ ë¶€ì¡±
+		case 9	:	// ì‹œê°„ ë¶€ì¡± (login result)	ë¬´ë£Œ ì²´í—˜ê¸°ê°„ ë§Œê¸°
+		case 10	:	// ì—†ëŠ” ê³¼ê¸ˆì œë„ (login result)	ê³¼ê¸ˆë°©ì‹ ë¬¸ì œ
+		case 11	:	// ë¸”ë¡ (login result)	ë¸”ë¡ ì¤‘
+		case 12	:	// ë¸”ë¡ï¼“ì¼ (login result)	ë¸”ë¡ ì¤‘
+		case 13	:	// ë¸”ë¡ï¼—ì¼ (login result)	ë¸”ë¡ ì¤‘
+		case 14	:	// ë¸”ë¡ 10 ì¼ (login result)	ë¸”ë¡ ì¤‘
+		case 15	:	// ë¡œê·¸ ì•„ì›ƒ ìƒíƒœ (logout result)
+		case 16	:	// ë¶ˆí™•ì‹¤í•œ ì—ëŸ¬ (ë°ì´í„° ë² ì´ìŠ¤ ì—ëŸ¬ login, relogin, logout result)	ë¶ˆí™•ì‹¤í•œ ì—ëŸ¬
+		case 17	:	// Ipì¤‘ë³µ (í™ˆ ìœ ì € ëŒ€ìƒ login, relogin, result) 
+		case 18	:	// ê²Œìž„ë°© ìœ íš¨í•œ ê²Œìž„ë°© ipë¦¬ìŠ¤íŠ¸ (ì‚¬ìš© : ê²Œìž„ë°© login, relogin, result)	
+		case 20	:	// ì—†ëŠ” ê³„ì • (relogin result)	ê³„ì • ë˜ëŠ” íŒ¨ìŠ¤ì›Œë“œ ì—ëŸ¬ ë„ëŠ” í¬ì¸íŠ¸ë¥¼ ì¶©ì „í•˜ì§€ ì•Šì€ ìƒíƒœ, Joypark íšŒì› ì¤‘ì‹¬ ì°¸ê³ .
+		case 21	:	// ì¤‘ë³µ ë¡œê·¸ì¸ (relogin result)	ì´ë¯¸ ì˜¨ë¼ì¸ ìƒí™©ì¸ ê³„ì • 
+		case 23	:	// í¬ì¸íŠ¸ ë¶€ì¡± (relogin result)	í¬ì¸íŠ¸ ë¶€ì¡±
+		case 24	:	// ì‹œê°„ ë¶€ì¡± (relogin result)	ë¬´ë£Œ ì²´í—˜ê¸°ê°„ ë§Œê¸°
+		case 25	:	// ë¶€ì •í™•í•œ ê³¼ê¸ˆë°©ì‹ (relogin result)	ê³¼ê¸ˆë°©ì‹ ë¬¸ì œ 
+		case 26	:	// ë¸”ë¡ (relogin result)	ë¸”ë¡ ì¤‘
+		case 27	:	// ë¸”ë¡ ï¼“ì¼ (relogin result)	ë¸”ë¡ ì¤‘
+		case 28	:	// ë¸”ë¡ ï¼—ì¼ (relogin result)	ë¸”ë¡ ì¤‘
+		case 29	:	// ë¸”ë¡ 10 ì¼ (relogin result)	ë¸”ë¡ ì¤‘
+		case 30	:	// ê°™ì€ ip  nì´ˆë‚´ ì¤‘ë³µ ë¡œê·¸ì¸ (login result)	ë§ˆìš°ìŠ¤ë¥¼ ìž ê¹ ì‰¬ê²Œ í•˜ê³ , ëª‡ ì´ˆ í›„ ë‹¤ì‹œ ì ‘ì†.
+		case 31	:	// Game Serverë“±ë¡ ì„±ê³µ (Connection State result)
+		case 32	:	// Game Serverë“±ë¡ IDì¤‘ë³µ(Connection State result)
+		case 33	:	// Game Serverë¯¸ ë“±ë¡(login, relogin result)	ì„œë²„ ì ‘ì† ë¶ˆê°€ëŠ¥, ìž ì‹œí›„ ë‹¤ì‹œ ì—°ê²° ì‹œë„.
+		case 34	:	// ìœ ì € ë§¤ì¼ ì ‘ì† ê°€ëŠ¥í•œ ì‹œê°„ ì´ˆê³¼.(login, relogin result)	ì ‘ì†ì‹œê°„ ì´ˆê³¼. 
+		case 35	:	// ë¬´ë£Œ ì²´í—˜ì œ ë¯¸ ì˜¤í”ˆ (login result)	ì´ ì„œë²„ëŠ” ë¬´ë£Œ ì²´í—˜ ê³„ì • ì œê³µí•˜ì§€ ì•ŠìŒ.
+		case 101:	// Libraryë²„ì „ê³¼ Login Server ì™€ ë§žì§€ ì•ŠìŒ. (Connection State result)
 			;
 	}
 }
@@ -222,14 +222,14 @@ CBS_Taiwan::~CBS_Taiwan ()
 //-------------------------------------------------------------------------------------------------
 void CBS_Taiwan::ConnectionState(int iResult)
 {
-	// Login Server¿ÍÀÇ ¿¬°á ½ÇÆÐ ¶Ç´Â Login Server¿ÍÀÇ ¿¬°á Áß´Ü½Ã ¶Ç´Â ¿¬°á ¼º°ø ÈÄ, 
+	// Login Serverì™€ì˜ ì—°ê²° ì‹¤íŒ¨ ë˜ëŠ” Login Serverì™€ì˜ ì—°ê²° ì¤‘ë‹¨ì‹œ ë˜ëŠ” ì—°ê²° ì„±ê³µ í›„, 
 	g_LOG.CS_ODS(0xffff, "connection state %d\n", iResult );
 
 	CBS_Taiwan::Instance()->m_iLastConnectResult = iResult;
 	CBS_Taiwan::Instance()->m_iConnectResult = iResult;
 	if ( TB_CONNECTED != iResult ) {
-		// -1ÀÌ¸é openConnectionÈ£ÃâµÈ »óÅÂ´Ù..
-		// -2ÀÌ¸é openConnectionÈ£ÃâµÉ ²¨´Ù..
+		// -1ì´ë©´ openConnectioní˜¸ì¶œëœ ìƒíƒœë‹¤..
+		// -2ì´ë©´ openConnectioní˜¸ì¶œë  êº¼ë‹¤..
 		CBS_Taiwan::Instance()->m_iConnectResult = -2;
 	}
 }
@@ -247,29 +247,29 @@ void CBS_Taiwan::ConnectionState(int iResult)
 		CLS_Client *pClient = (CLS_Client *)g_pListCLIENT->GetSOCKET( uIdentity );
 		if ( pClient && !strcmpi( strPlayerID, pClient->m_Account.Get() ) ) {
 			if ( 0 == uPreloginResult ) {
-				// ¼º°ø
+				// ì„±ê³µ
 				switch( u16ChargeType ) {
-					case 1	:	// ½Ã°£Á¦ - ¸Å 1 ½Ã°£ ´ÜÀ§·Î 6 Æ÷ÀÎÆ® »è°¨, 1½Ã°£À» Ã¤¿ìÁö ¸øÇßÀ» °æ¿ì, 1½Ã°£À¸·Î °è»êÇÑ´Ù.
-					case 2	:	// ¿ù Á¤¾×Á¦ - ¸Å 30 ÀÏ ´ÜÀ§·Î 350 Æ÷ÀÎÆ® »è°¨.
-					case 3	:	// ½Ã°£ Á¤¾×Á¦ - ¸Å 12 ½Ã°£ ´ÜÀ§·Î 20 Æ÷ÀÎÆ® »è°¨.
-					case 4	:	// 3°³¿ù Á¤¾×Á¦ - ¸Å 90 ÀÏ ´ÜÀ§·Î 888 Æ÷ÀÎÆ® »è°¨.
-					case 5	:	// È«Äá ¿ùÁ¤¾×Á¦
-					case 6	:	// È«Äá 3°³¿ù Á¤¾×Á¦
-					case 7	:	// È«Äá ½Ã°£Á¦
-					case 8	:	// È«Äá ½Ã°£ Á¤¾×Á¦
-					case 9	:	// ºÐ Á¤·®Á¦ - ¸Å 1ºÐ ´ÜÀ§·Î 0.25Æ÷ÀÎÆ® »è°¨.
-					case 10	:	// ½Ã°£ Á¤·®Á¦  - ¸Å 2½Ã°£ ´ÜÀ§·Î 12 Æ÷ÀÎÆ® »è°¨.
-					case 11	:	// 10ÀÏ - ¸Å 10ÀÏ ´ÜÀ§·Î 150 Æ÷ÀÎÆ® »è°¨.
-					case 12	:	// ¹«·á Ã¼Çè
+					case 1	:	// ì‹œê°„ì œ - ë§¤ 1 ì‹œê°„ ë‹¨ìœ„ë¡œ 6 í¬ì¸íŠ¸ ì‚­ê°, 1ì‹œê°„ì„ ì±„ìš°ì§€ ëª»í–ˆì„ ê²½ìš°, 1ì‹œê°„ìœ¼ë¡œ ê³„ì‚°í•œë‹¤.
+					case 2	:	// ì›” ì •ì•¡ì œ - ë§¤ 30 ì¼ ë‹¨ìœ„ë¡œ 350 í¬ì¸íŠ¸ ì‚­ê°.
+					case 3	:	// ì‹œê°„ ì •ì•¡ì œ - ë§¤ 12 ì‹œê°„ ë‹¨ìœ„ë¡œ 20 í¬ì¸íŠ¸ ì‚­ê°.
+					case 4	:	// 3ê°œì›” ì •ì•¡ì œ - ë§¤ 90 ì¼ ë‹¨ìœ„ë¡œ 888 í¬ì¸íŠ¸ ì‚­ê°.
+					case 5	:	// í™ì½© ì›”ì •ì•¡ì œ
+					case 6	:	// í™ì½© 3ê°œì›” ì •ì•¡ì œ
+					case 7	:	// í™ì½© ì‹œê°„ì œ
+					case 8	:	// í™ì½© ì‹œê°„ ì •ì•¡ì œ
+					case 9	:	// ë¶„ ì •ëŸ‰ì œ - ë§¤ 1ë¶„ ë‹¨ìœ„ë¡œ 0.25í¬ì¸íŠ¸ ì‚­ê°.
+					case 10	:	// ì‹œê°„ ì •ëŸ‰ì œ  - ë§¤ 2ì‹œê°„ ë‹¨ìœ„ë¡œ 12 í¬ì¸íŠ¸ ì‚­ê°.
+					case 11	:	// 10ì¼ - ë§¤ 10ì¼ ë‹¨ìœ„ë¡œ 150 í¬ì¸íŠ¸ ì‚­ê°.
+					case 12	:	// ë¬´ë£Œ ì²´í—˜
 					{
 						CLS_Account *pCAccount = g_pListJOIN->Search_ACCOUNT( strPlayerID );
 						if ( pCAccount ) {
-							// ÀÌ¹Ì login µÇ¾î ÀÖ´Â °èÁ¤..
-							// Á¢¼ÓµÇ¾î ÀÖ´Â °ÔÀÓ ¼­¹ö·Î °èÁ¤ ÇØÁö Àü¼Û...
-							// pCAccount->m_pWorldServer == NULLÀÎ °æ¿ì´Â »èÁ¦ ´ë±âÁß °èÁ¤ÀÌ´Ù.
+							// ì´ë¯¸ login ë˜ì–´ ìžˆëŠ” ê³„ì •..
+							// ì ‘ì†ë˜ì–´ ìžˆëŠ” ê²Œìž„ ì„œë²„ë¡œ ê³„ì • í•´ì§€ ì „ì†¡...
+							// pCAccount->m_pWorldServer == NULLì¸ ê²½ìš°ëŠ” ì‚­ì œ ëŒ€ê¸°ì¤‘ ê³„ì •ì´ë‹¤.
 							DWORD dwCurTime = ::timeGetTime();
 							if ( dwCurTime - pCAccount->m_dwDisconnectTryTIME >= 2 * 60 * 1000 ) {
-								// ÀÌ¹Ì ¿ùµå ¼­¹ö¿¡ »èÁ¦ ¿äÃ»ÇÑÁö ÀÏÁ¤½Ã°£ Áö³µÀ¸¸é...
+								// ì´ë¯¸ ì›”ë“œ ì„œë²„ì— ì‚­ì œ ìš”ì²­í•œì§€ ì¼ì •ì‹œê°„ ì§€ë‚¬ìœ¼ë©´...
 								pCAccount->m_dwDisconnectTryTIME = dwCurTime;
 								if ( pCAccount->m_pWorldServer ) {
 									pCAccount->m_pWorldServer->Send_str_PACKET( WLS_KICK_ACCOUNT, strPlayerID );
@@ -284,37 +284,37 @@ void CBS_Taiwan::ConnectionState(int iResult)
 						pClient->m_dwRIGHT   = right;
 
 						/*
-						#define	RIGHT_NG			0x00100			// ÀÏ¹Ý GM
-						#define	RIGHT_MG			0x00200			// ¸¶½ºÅ¸ GM
-						#define	RIGHT_DEV			0x00400			// °³¹ßÀÚ È¸¿ø
-						#define	RIGHT_MASTER		0x00800			// ¸¶½ºÅ¸..
+						#define	RIGHT_NG			0x00100			// ì¼ë°˜ GM
+						#define	RIGHT_MG			0x00200			// ë§ˆìŠ¤íƒ€ GM
+						#define	RIGHT_DEV			0x00400			// ê°œë°œìž íšŒì›
+						#define	RIGHT_MASTER		0x00800			// ë§ˆìŠ¤íƒ€..
 						if (  pClient->m_dwRIGHT >= RIGHT_MG ) {
 							if ( IsTestLS() ) {
-								// Å×¼· ~
+								// í…Œì„­ ~
 								if ( strcmpi(strPlayerID, "trigger21") && pClient->m_dwRIGHT > RIGHT_DEV ) {
 									pClient->m_dwRIGHT = RIGHT_MG;
 								}
 							} else
 							if ( strcmpi(strPlayerID, "trigger21") ) {
-								// º»¼· ~
+								// ë³¸ì„­ ~
 								pClient->m_dwRIGHT = RIGHT_NG;
 							}
 						}
 						*/
 
-						pClient->m_dwPayFLAG = PLAY_FLAG_KOREA_DEFAULT;	//u16ChargeType;	¿ì¼± ÇÑ±¹ °³ÀÎ Á¤¾×À¸·ç...
+						pClient->m_dwPayFLAG = PLAY_FLAG_KOREA_DEFAULT;	//u16ChargeType;	ìš°ì„  í•œêµ­ ê°œì¸ ì •ì•¡ìœ¼ë£¨...
 						break;
 					}
-					//case 0  :	// ±ÝÁö
-					//case 101:	// ºí·Ï 3ÀÏ
-					//case 102:	// ºí·Ï 7ÀÏ
-					//case 103:	// ºí·Ï 10ÀÏ
+					//case 0  :	// ê¸ˆì§€
+					//case 101:	// ë¸”ë¡ 3ì¼
+					//case 102:	// ë¸”ë¡ 7ì¼
+					//case 103:	// ë¸”ë¡ 10ì¼
 					default :
 						pClient->Send_lsv_LOGIN_REPLY( RESULT_LOGIN_REPLY_TAIWAN_FAILED, u16ChargeType );
 						break;
 				}
 			} else {
-				// ½ÇÆÐ..
+				// ì‹¤íŒ¨..
 				pClient->Send_lsv_LOGIN_REPLY( RESULT_LOGIN_REPLY_TAIWAN_FAILED, uPreloginResult );
 			}
 		}
@@ -334,34 +334,34 @@ void CBS_Taiwan::ConnectionState(int iResult)
 		g_LOG.CS_ODS(0xffff, "login result ID:%s ,ChargeType:%d ,Point:%f ,Identity:%d ,Result:%d\n" ,strPlayerID, u16ChargeType, dPoint, uIdentity,uLoginResult);
 
 		if ( 0 == uLoginResult ) {
-			// ¼º°ø
+			// ì„±ê³µ
 			switch( u16ChargeType ) {
-				case 1	:	// ½Ã°£Á¦ - ¸Å 1 ½Ã°£ ´ÜÀ§·Î 6 Æ÷ÀÎÆ® »è°¨, 1½Ã°£À» Ã¤¿ìÁö ¸øÇßÀ» °æ¿ì, 1½Ã°£À¸·Î °è»êÇÑ´Ù.
-				case 2	:	// ¿ù Á¤¾×Á¦ - ¸Å 30 ÀÏ ´ÜÀ§·Î 350 Æ÷ÀÎÆ® »è°¨.
-				case 3	:	// ½Ã°£ Á¤¾×Á¦ - ¸Å 12 ½Ã°£ ´ÜÀ§·Î 20 Æ÷ÀÎÆ® »è°¨.
-				case 4	:	// 3°³¿ù Á¤¾×Á¦ - ¸Å 90 ÀÏ ´ÜÀ§·Î 888 Æ÷ÀÎÆ® »è°¨.
-				case 5	:	// È«Äá ¿ùÁ¤¾×Á¦
-				case 6	:	// È«Äá 3°³¿ù Á¤¾×Á¦
-				case 7	:	// È«Äá ½Ã°£Á¦
-				case 8	:	// È«Äá ½Ã°£ Á¤¾×Á¦
-				case 9	:	// ºÐ Á¤·®Á¦ - ¸Å 1ºÐ ´ÜÀ§·Î 0.25Æ÷ÀÎÆ® »è°¨.
-				case 10	:	// ½Ã°£ Á¤·®Á¦  - ¸Å 2½Ã°£ ´ÜÀ§·Î 12 Æ÷ÀÎÆ® »è°¨.
-				case 11	:	// 10ÀÏ - ¸Å 10ÀÏ ´ÜÀ§·Î 150 Æ÷ÀÎÆ® »è°¨.
-				case 12	:	// ¹«·á Ã¼Çè
+				case 1	:	// ì‹œê°„ì œ - ë§¤ 1 ì‹œê°„ ë‹¨ìœ„ë¡œ 6 í¬ì¸íŠ¸ ì‚­ê°, 1ì‹œê°„ì„ ì±„ìš°ì§€ ëª»í–ˆì„ ê²½ìš°, 1ì‹œê°„ìœ¼ë¡œ ê³„ì‚°í•œë‹¤.
+				case 2	:	// ì›” ì •ì•¡ì œ - ë§¤ 30 ì¼ ë‹¨ìœ„ë¡œ 350 í¬ì¸íŠ¸ ì‚­ê°.
+				case 3	:	// ì‹œê°„ ì •ì•¡ì œ - ë§¤ 12 ì‹œê°„ ë‹¨ìœ„ë¡œ 20 í¬ì¸íŠ¸ ì‚­ê°.
+				case 4	:	// 3ê°œì›” ì •ì•¡ì œ - ë§¤ 90 ì¼ ë‹¨ìœ„ë¡œ 888 í¬ì¸íŠ¸ ì‚­ê°.
+				case 5	:	// í™ì½© ì›”ì •ì•¡ì œ
+				case 6	:	// í™ì½© 3ê°œì›” ì •ì•¡ì œ
+				case 7	:	// í™ì½© ì‹œê°„ì œ
+				case 8	:	// í™ì½© ì‹œê°„ ì •ì•¡ì œ
+				case 9	:	// ë¶„ ì •ëŸ‰ì œ - ë§¤ 1ë¶„ ë‹¨ìœ„ë¡œ 0.25í¬ì¸íŠ¸ ì‚­ê°.
+				case 10	:	// ì‹œê°„ ì •ëŸ‰ì œ  - ë§¤ 2ì‹œê°„ ë‹¨ìœ„ë¡œ 12 í¬ì¸íŠ¸ ì‚­ê°.
+				case 11	:	// 10ì¼ - ë§¤ 10ì¼ ë‹¨ìœ„ë¡œ 150 í¬ì¸íŠ¸ ì‚­ê°.
+				case 12	:	// ë¬´ë£Œ ì²´í—˜
 					g_pListACCOUNT->Gums_LoginSUC( EXT_BILLING_MSG_PAY_TAIWAN, strPlayerID, u16ChargeType/*iPayType*/, PLAY_FLAG_TAIWAN_DEFAULT );
 					return;
 
-				//case 0  :	// ±ÝÁö
-				//case 101:	// ºí·Ï 3ÀÏ
-				//case 102:	// ºí·Ï 7ÀÏ
-				//case 103:	// ºí·Ï 10ÀÏ
+				//case 0  :	// ê¸ˆì§€
+				//case 101:	// ë¸”ë¡ 3ì¼
+				//case 102:	// ë¸”ë¡ 7ì¼
+				//case 103:	// ë¸”ë¡ 10ì¼
 				//default :
 				//	g_pListACCOUNT->Gums_KickOutUSER( strPlayerID, uLoginResult );
 				//	break;
 			}
 		} 
 		//else {
-		//	// ½ÇÆÐ..
+		//	// ì‹¤íŒ¨..
 		//}
 
 		g_pListACCOUNT->Gums_KickOutUSER( strPlayerID, uLoginResult );
@@ -380,20 +380,20 @@ void CBS_Taiwan::ReloginResult(char *strPlayerID,unsigned short u16ChargeType, d
 	g_LOG.CS_ODS(0xffff, "relogin result ID:%s ,ChargeType:%d ,Point:%f ,Result:%d\n" ,strPlayerID, u16ChargeType, dPoint,uReloginResult);
 #ifndef	__SHO_LS_LIB
 	if ( 0 == uReloginResult ) {
-		// ¼º°ø
+		// ì„±ê³µ
 		switch( u16ChargeType ) {
-			case 1	:	// ½Ã°£Á¦ - ¸Å 1 ½Ã°£ ´ÜÀ§·Î 6 Æ÷ÀÎÆ® »è°¨, 1½Ã°£À» Ã¤¿ìÁö ¸øÇßÀ» °æ¿ì, 1½Ã°£À¸·Î °è»êÇÑ´Ù.
-			case 2	:	// ¿ù Á¤¾×Á¦ - ¸Å 30 ÀÏ ´ÜÀ§·Î 350 Æ÷ÀÎÆ® »è°¨.
-			case 3	:	// ½Ã°£ Á¤¾×Á¦ - ¸Å 12 ½Ã°£ ´ÜÀ§·Î 20 Æ÷ÀÎÆ® »è°¨.
-			case 4	:	// 3°³¿ù Á¤¾×Á¦ - ¸Å 90 ÀÏ ´ÜÀ§·Î 888 Æ÷ÀÎÆ® »è°¨.
-			case 5	:	// È«Äá ¿ùÁ¤¾×Á¦
-			case 6	:	// È«Äá 3°³¿ù Á¤¾×Á¦
-			case 7	:	// È«Äá ½Ã°£Á¦
-			case 8	:	// È«Äá ½Ã°£ Á¤¾×Á¦
-			case 9	:	// ºÐ Á¤·®Á¦ - ¸Å 1ºÐ ´ÜÀ§·Î 0.25Æ÷ÀÎÆ® »è°¨.
-			case 10	:	// ½Ã°£ Á¤·®Á¦  - ¸Å 2½Ã°£ ´ÜÀ§·Î 12 Æ÷ÀÎÆ® »è°¨.
-			case 11	:	// 10ÀÏ - ¸Å 10ÀÏ ´ÜÀ§·Î 150 Æ÷ÀÎÆ® »è°¨.
-			case 12	:	// ¹«·á Ã¼Çè
+			case 1	:	// ì‹œê°„ì œ - ë§¤ 1 ì‹œê°„ ë‹¨ìœ„ë¡œ 6 í¬ì¸íŠ¸ ì‚­ê°, 1ì‹œê°„ì„ ì±„ìš°ì§€ ëª»í–ˆì„ ê²½ìš°, 1ì‹œê°„ìœ¼ë¡œ ê³„ì‚°í•œë‹¤.
+			case 2	:	// ì›” ì •ì•¡ì œ - ë§¤ 30 ì¼ ë‹¨ìœ„ë¡œ 350 í¬ì¸íŠ¸ ì‚­ê°.
+			case 3	:	// ì‹œê°„ ì •ì•¡ì œ - ë§¤ 12 ì‹œê°„ ë‹¨ìœ„ë¡œ 20 í¬ì¸íŠ¸ ì‚­ê°.
+			case 4	:	// 3ê°œì›” ì •ì•¡ì œ - ë§¤ 90 ì¼ ë‹¨ìœ„ë¡œ 888 í¬ì¸íŠ¸ ì‚­ê°.
+			case 5	:	// í™ì½© ì›”ì •ì•¡ì œ
+			case 6	:	// í™ì½© 3ê°œì›” ì •ì•¡ì œ
+			case 7	:	// í™ì½© ì‹œê°„ì œ
+			case 8	:	// í™ì½© ì‹œê°„ ì •ì•¡ì œ
+			case 9	:	// ë¶„ ì •ëŸ‰ì œ - ë§¤ 1ë¶„ ë‹¨ìœ„ë¡œ 0.25í¬ì¸íŠ¸ ì‚­ê°.
+			case 10	:	// ì‹œê°„ ì •ëŸ‰ì œ  - ë§¤ 2ì‹œê°„ ë‹¨ìœ„ë¡œ 12 í¬ì¸íŠ¸ ì‚­ê°.
+			case 11	:	// 10ì¼ - ë§¤ 10ì¼ ë‹¨ìœ„ë¡œ 150 í¬ì¸íŠ¸ ì‚­ê°.
+			case 12	:	// ë¬´ë£Œ ì²´í—˜
 				return;
 		}
 	} 
@@ -409,7 +409,7 @@ void CBS_Taiwan::LogoutResult(char *strPlayerID, unsigned int uIdentity, unsigne
 	g_LOG.CS_ODS(0xffff, "logout result ID:%s ,Identity:%d ,Result:%d\n" ,strPlayerID, uIdentity,uLogoutResult);
 
 #ifndef	__SHO_LS_LIB
-	// ÇÒ°Å ¾øÀÚ³ª...
+	// í• ê±° ì—†ìžë‚˜...
 	;
 	;
 	;
@@ -422,20 +422,20 @@ void CBS_Taiwan::BillingMessage(char *strPlayerID, char *strBillingMessage, unsi
 	g_LOG.CS_ODS(0xffff, " %s\n" , strBillingMessage);
 
 #ifndef	__SHO_LS_LIB
-	// Å¬¶óÀÌ¾ðÆ®¿¡ Àü¼Û
+	// í´ë¼ì´ì–¸íŠ¸ì— ì „ì†¡
 	g_pListACCOUNT->Gums_Message( BILLING_MSG_TYPE_TAIWAN, strPlayerID, strBillingMessage );
 #endif
 }
 //-------------------------------------------------------------------------------------------------
 void CBS_Taiwan::EnforceLogout(int iPlayerNo, char *strPlayerID)
 {
-	// iPlayerNo ¹«½ÃÇØµµ µÊ !!!
+	// iPlayerNo ë¬´ì‹œí•´ë„ ë¨ !!!
 	g_LOG.CS_ODS(0xffff, "enforce logout Player NO:%d ,ID:%s", &iPlayerNo, strPlayerID);
 
 	CBS_Taiwan::Instance()->m_pLoginClient->logoutToServer( strPlayerID,1 );
 
 #ifndef	__SHO_LS_LIB
-	// °ú±Ý ½Ã°£ ¸¸·á...
+	// ê³¼ê¸ˆ ì‹œê°„ ë§Œë£Œ...
 	g_pListACCOUNT->Gums_KickOutUSER( strPlayerID, BILLING_MSG_KICKOUT_TAIWAN );
 #endif
 	//processCommand();

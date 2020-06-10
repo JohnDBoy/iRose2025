@@ -22,7 +22,7 @@
 
 CKeyboard *CKeyboard::m_pInstance = NULL;
 
-/// ½ºÅ©¸° Ä¸ÃÄ½Ã¿¡ BMP ÆÄÀÏÀ» Áö¿ï°ÍÀÌ³Ä ¸»°ÍÀÌ³Ä..
+/// ìŠ¤í¬ë¦° ìº¡ì³ì‹œì— BMP íŒŒì¼ì„ ì§€ìš¸ê²ƒì´ëƒ ë§ê²ƒì´ëƒ..
 bool g_bDontDeleteCapFile = false;
 
 bool IJL_BMP2JPEG (const char *szBMPFile, char *szJPGFile)
@@ -157,7 +157,7 @@ bool CKeyboard::IME_WndMSG (UINT uiMsg, WPARAM wParam, LPARAM lParam)
 	switch ( m_IME.ProcIMEMessage (uiMsg, wParam, lParam) ) {
 		case CIME_WMCHAR    :
 		case CIME_HANDLED	:	
-			return true;			// IME¿¡¼­ ¸Ş¼¼Áö°¡ Ã³¸® µÆ´Ù.
+			return true;			// IMEì—ì„œ ë©”ì„¸ì§€ê°€ ì²˜ë¦¬ ëë‹¤.
 
 		case CIME_RETURN	:		// VK_RETURN
 		{
@@ -166,7 +166,7 @@ bool CKeyboard::IME_WndMSG (UINT uiMsg, WPARAM wParam, LPARAM lParam)
 
 		case CIME_CANCEL    :		// VK_ESC
 			m_IME.SetActive( false );
-			m_IME.ToggleInputMode( false );	// °­Á¦·Î ¿µ¹®À¸·Î ÀüÈ¯ ½ÃÅ²´Ù.
+			m_IME.ToggleInputMode( false );	// ê°•ì œë¡œ ì˜ë¬¸ìœ¼ë¡œ ì „í™˜ ì‹œí‚¨ë‹¤.
 			return true;
 	}
 
@@ -176,7 +176,7 @@ bool CKeyboard::IME_WndMSG (UINT uiMsg, WPARAM wParam, LPARAM lParam)
 
 
 //-------------------------------------------------------------------------------------------------
-// Å°º¸µå¿¡¼­ Ã³¸®ÇØ¾ßÇÒ À©µµ¿ì ¸Ş¼¼Áö°¡ ÀÖÀ¸¸é ÀÌ°÷¿¡ Ãß°¡ !!!
+// í‚¤ë³´ë“œì—ì„œ ì²˜ë¦¬í•´ì•¼í•  ìœˆë„ìš° ë©”ì„¸ì§€ê°€ ìˆìœ¼ë©´ ì´ê³³ì— ì¶”ê°€ !!!
 bool CKeyboard::Add_WndMSG (UINT uiMsg, WPARAM wParam, LPARAM lParam)
 {
 	if( !IsEnable() )
@@ -241,7 +241,7 @@ void CKeyboard::On_WM_KEYDOWN (WPARAM wParam, LPARAM lParam)
 	static float s_fScale = 1.0f;
 
     if ( lParam & 0x40000000 ) {
-		// ÀÌÀü¿¡ ´­·Á ÀÖ´ø Å°´Ù....
+		// ì´ì „ì— ëˆŒë ¤ ìˆë˜ í‚¤ë‹¤....
 		return;
 	}
 
@@ -320,7 +320,7 @@ void CKeyboard::On_WM_CHAR (WPARAM wParam, LPARAM lParam)
 #ifdef	__USE_IME
 			m_IME.ClearString();
 			m_IME.SetActive ( true );
-			m_IME.ToggleInputMode ( true );	// °­Á¦·Î ÇÑ±Û·Î ÀüÈ¯ ½ÃÅ²´Ù.
+			m_IME.ToggleInputMode ( true );	// ê°•ì œë¡œ í•œê¸€ë¡œ ì „í™˜ ì‹œí‚¨ë‹¤.
 #endif
 			return;
 	}

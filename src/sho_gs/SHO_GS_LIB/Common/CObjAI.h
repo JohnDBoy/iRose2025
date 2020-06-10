@@ -11,13 +11,13 @@
 //
 // Character state
 //
-#define	CS_BIT_INT		0x1000					// µ¿ÀÛÁß ÀÎÅÍ·´Æ® °É¸®¸é ¾ÈµÇ´Â°Í..
-#define CS_BIT_ADJ		0x2000					// µ¿ÀÛÁß ÁÂÇ¥ º¸Á¤ÇÒ°Í.
-#define	CS_BIT_CHK		0x4000					// µ¿ÀÛ ÇÁ·¹ÀÓ Ã¼Å©..
-#define CS_BIT_ONE	  (	0x8000 | CS_BIT_CHK )	// µ¿ÀÛÀÌ 1¹ø ·çÇÁ µ¹°í ³¡³¯°Í.
-#define CS_BIT_MOV		0x0100					// ÀÌµ¿ÁßÀÌ´Ù.
-#define	CS_BIT_INT2	  (	0x0200 | CS_BIT_INT )	// È÷Æ® µ¿ÀÛÁ¶Â÷µµ Àû¿ë¾ÈµÈ´Ù..
-#define	CS_BIT_MOV2		0x0400					// »óÅÂ°¡ ¹Ù²î¾úÁö¸¸ ÀÌÀü ÀÌµ¿ÇÑ ¼öÄ¡¸¸Å­Àº Àû¿ë..
+#define	CS_BIT_INT		0x1000					// ë™ì‘ì¤‘ ì¸í„°ëŸ½íŠ¸ ê±¸ë¦¬ë©´ ì•ˆë˜ëŠ”ê²ƒ..
+#define CS_BIT_ADJ		0x2000					// ë™ì‘ì¤‘ ì¢Œí‘œ ë³´ì •í• ê²ƒ.
+#define	CS_BIT_CHK		0x4000					// ë™ì‘ í”„ë ˆì„ ì²´í¬..
+#define CS_BIT_ONE	  (	0x8000 | CS_BIT_CHK )	// ë™ì‘ì´ 1ë²ˆ ë£¨í”„ ëŒê³  ëë‚ ê²ƒ.
+#define CS_BIT_MOV		0x0100					// ì´ë™ì¤‘ì´ë‹¤.
+#define	CS_BIT_INT2	  (	0x0200 | CS_BIT_INT )	// íˆíŠ¸ ë™ì‘ì¡°ì°¨ë„ ì ìš©ì•ˆëœë‹¤..
+#define	CS_BIT_MOV2		0x0400					// ìƒíƒœê°€ ë°”ë€Œì—ˆì§€ë§Œ ì´ì „ ì´ë™í•œ ìˆ˜ì¹˜ë§Œí¼ì€ ì ìš©..
 
 #define	CS_BIT_ATTACK	0x0002
 
@@ -28,14 +28,14 @@
 #define CS_FALL		  ( 0x0004			| CS_BIT_INT | CS_BIT_ONE )
 #define CS_RAISE	  ( 0x0005			| CS_BIT_INT | CS_BIT_ONE )
 #define CS_SITTING	  ( 0x0005			| CS_BIT_INT | CS_BIT_ONE )
-#define CS_SIT		  ( 0x0006			| CS_BIT_INT			  )		// Áö¼Ó µÇ´Â µ¿ÀÛ
+#define CS_SIT		  ( 0x0006			| CS_BIT_INT			  )		// ì§€ì† ë˜ëŠ” ë™ì‘
 #define CS_STANDING	  ( 0x0007			| CS_BIT_INT | CS_BIT_ONE )
 #define CS_NEXT_STOP  ( 0x0008			| CS_BIT_INT | CS_BIT_ONE )
 #define CS_NEXT_STOP2 ( 0x0009			| CS_BIT_INT2| CS_BIT_ONE )
 #define	CS_DIE		  (	0x0010			| CS_BIT_INT | CS_BIT_ONE )
 #define CS_CASTING	  ( 0x0011			| CS_BIT_INT2| CS_BIT_ONE )
 
-#define	CMD_BIT_INT		0x8000					// ¸í·ÉÁß ÀÎÅÍ·´Æ® °É¸®¸é ¾ÈµÇ´Â°Í..
+#define	CMD_BIT_INT		0x8000					// ëª…ë ¹ì¤‘ ì¸í„°ëŸ½íŠ¸ ê±¸ë¦¬ë©´ ì•ˆë˜ëŠ”ê²ƒ..
 
 #define	CMD_STOP		0x0000
 #define	CMD_MOVE		0x0001
@@ -50,7 +50,7 @@
 
 #define	CMD_STORE		0x000b
 
-/// °øÅë¾×¼Çµé
+/// ê³µí†µì•¡ì…˜ë“¤
 enum
 {
 	COMMON_COMMAND_SIT			= 1,
@@ -86,7 +86,7 @@ private :
 #else
 public  :
 #endif
-	int						m_iServerTarget;		/// °ø°İÇÒ ¼­¹ö °´Á¦ ¹øÈ£
+	int						m_iServerTarget;		/// ê³µê²©í•  ì„œë²„ ê°ì œ ë²ˆí˜¸
 
 protected :
 	CAI_OBJ *				Get_TargetOBJ (bool bCheckHP);
@@ -99,26 +99,26 @@ public  :
 } ;
 
 
-#define	RECOVER_JUST_CHECK_TIME			0		/// ¾Ï°Íµµ ¾ÈÇÏ°í ½Ã°£¸¸ °£´Ù.
-#define	RECOVER_STATE_CHECK_TIME		8000	/// 4ÃÊ´ç È¸º¹..
-#define	USE_FUEL_CHEC_TIME				10000	/// 10ÃÊ´ç ¼Ò¸ğ..
-#define	RECOVER_STATE_SIT_ON_CHAIR		30		/// ÀÇÀÚ ¾É±â		:: nRecoverMODE = 30
-#define	RECOVER_STATE_SIT_ON_GROUND		20		/// ¹Ù´Ú ¾É±â       :: nRecoverMODE = 20
-#define RECOVER_STATE_STOP_OR_WALK		8		/// Á¤Áö,°È±â »óÅÂ	:: nRecoverMODE = 8
+#define	RECOVER_JUST_CHECK_TIME			0		/// ì•”ê²ƒë„ ì•ˆí•˜ê³  ì‹œê°„ë§Œ ê°„ë‹¤.
+#define	RECOVER_STATE_CHECK_TIME		8000	/// 4ì´ˆë‹¹ íšŒë³µ..
+#define	USE_FUEL_CHEC_TIME				10000	/// 10ì´ˆë‹¹ ì†Œëª¨..
+#define	RECOVER_STATE_SIT_ON_CHAIR		30		/// ì˜ì ì•‰ê¸°		:: nRecoverMODE = 30
+#define	RECOVER_STATE_SIT_ON_GROUND		20		/// ë°”ë‹¥ ì•‰ê¸°       :: nRecoverMODE = 20
+#define RECOVER_STATE_STOP_OR_WALK		8		/// ì •ì§€,ê±·ê¸° ìƒíƒœ	:: nRecoverMODE = 8
 
 /**
  * \ingroup SHO_GS_LIB
  * \class	CObjAI
  * \author	wookSang.Jo
- * \brief	ÄÉ¸¯ÅÍ ÀÎ°øÁö´É Ã³¸® Å¬·¡½º
- *			ÀÎ°øÁö´É µ¥ÀÌÅ¸Å¬·¡½º(CAI_OBJ)¸¦ »ó¼Ó ¹ŞÀ½
+ * \brief	ì¼€ë¦­í„° ì¸ê³µì§€ëŠ¥ ì²˜ë¦¬ í´ë˜ìŠ¤
+ *			ì¸ê³µì§€ëŠ¥ ë°ì´íƒ€í´ë˜ìŠ¤(CAI_OBJ)ë¥¼ ìƒì† ë°›ìŒ
  */
 class CObjAI : public CGameOBJ, public CAI_OBJ, public CObjTARGET 
 {
 private	  :
 	WORD				m_wState;
 	WORD				m_wCommand;
-	WORD				m_wBeforeCMD;			/// self skill »ç¿ë½Ã ÇöÀç ¸í·É ÀúÀå..			
+	WORD				m_wBeforeCMD;			/// self skill ì‚¬ìš©ì‹œ í˜„ì¬ ëª…ë ¹ ì €ì¥..			
 
 	CZoneTHREAD*		GetCur_ZONE ()	{	return this->GetZONE();		}
 
@@ -161,7 +161,7 @@ protected :
 	virtual void		Attack_END (bool bStopTrail=true) = 0;
 	virtual int			Get_L_WEAPON ()=0;
 
-	/// ½ÇÁ¦ ½ºÅ³µ¿ÀÛÀ» ÇÒ¼ö ÀÖ´Â°¡?( ¼­¹ö·Î ºÎÅÍ ½ÇÁ¦ °á°ú¸¦ ¹Ş¾Ò´Â°¡? )
+	/// ì‹¤ì œ ìŠ¤í‚¬ë™ì‘ì„ í• ìˆ˜ ìˆëŠ”ê°€?( ì„œë²„ë¡œ ë¶€í„° ì‹¤ì œ ê²°ê³¼ë¥¼ ë°›ì•˜ëŠ”ê°€? )
 	virtual bool		bCanActionActiveSkill() = 0;
 	virtual void		SetEffectedSkillFlag( bool bResult )= 0;
 
@@ -171,10 +171,10 @@ protected :
 #endif
 
 
-	/// ¾Æ·¡ 3°³ÀÇ ÇÔ¼ö´Â ÀÚ½ÅÀÏ°æ¿ì ÀÚÃ¼ °è»êµÈ °ª / ÆÄÆ¼¿øÀÏ°æ¿ì ¼­¹ö¿¡¼­ ¹ŞÀº °ª ¸®ÅÏ
-	virtual int			Get_CON()						{	return 0;	}	// À¯ÀúÀÏ °æ¿ì return pAVATAR->GetCur_CON();
-	virtual int			GetAdd_RecoverHP()				{	return 0;	}	// À¯ÀúÀÏ °æ¿ì return pAVATAR->m_btRecoverHP;
-	virtual int			GetAdd_RecoverMP()				{	return 0;	}	// À¯ÀúÀÏ °æ¿ì return pAVATAR->m_btRecoverHP;
+	/// ì•„ë˜ 3ê°œì˜ í•¨ìˆ˜ëŠ” ìì‹ ì¼ê²½ìš° ìì²´ ê³„ì‚°ëœ ê°’ / íŒŒí‹°ì›ì¼ê²½ìš° ì„œë²„ì—ì„œ ë°›ì€ ê°’ ë¦¬í„´
+	virtual int			Get_CON()						{	return 0;	}	// ìœ ì €ì¼ ê²½ìš° return pAVATAR->GetCur_CON();
+	virtual int			GetAdd_RecoverHP()				{	return 0;	}	// ìœ ì €ì¼ ê²½ìš° return pAVATAR->m_btRecoverHP;
+	virtual int			GetAdd_RecoverMP()				{	return 0;	}	// ìœ ì €ì¼ ê²½ìš° return pAVATAR->m_btRecoverHP;
 	
 	
 #ifndef	__SERVER
@@ -187,7 +187,7 @@ public:
 
 protected:
 	virtual short		GetPsv_ATKSPEED ()				{	return 0;		}
-	virtual short		Get_nAttackSPEED()=0;			/// ±âº»¼Óµµ 100À» ±âÁØ :: ±âº» °ø°İ ¼Óµµ( m_fAtkAniSPEED ) + ½ºÅ³¿¡ ÀÇÇØ º¸Á¤µÈ °ª ...
+	virtual short		Get_nAttackSPEED()=0;			/// ê¸°ë³¸ì†ë„ 100ì„ ê¸°ì¤€ :: ê¸°ë³¸ ê³µê²© ì†ë„( m_fAtkAniSPEED ) + ìŠ¤í‚¬ì— ì˜í•´ ë³´ì •ëœ ê°’ ...
 	virtual float		Get_MoveSPEED ()=0;
 	virtual int			Get_AttackRange(short /*nSKillIDX*/)=0;
 	virtual float		Get_SCALE() = 0;
@@ -200,8 +200,8 @@ public:
 	virtual short		Get_WeightRATE()				{	return 0;		}
 
 protected:
-	virtual DWORD		GetIngDurationStateFLAG() = 0;						/// ÇöÀç Áö¼Ó »óÅÂ ÇÃ·¹±×°ªÀ» ¾ò´Â´Ù.
-	virtual short		GetIngDurationStateSKILL( eING_TYPE eTYPE ) = 0;	/// ÇöÀç Áö¼Ó »óÅÂ¿¡ Àû¿ëµÈ ½ºÅ³¹øÈ£
+	virtual DWORD		GetIngDurationStateFLAG() = 0;						/// í˜„ì¬ ì§€ì† ìƒíƒœ í”Œë ˆê·¸ê°’ì„ ì–»ëŠ”ë‹¤.
+	virtual short		GetIngDurationStateSKILL( eING_TYPE eTYPE ) = 0;	/// í˜„ì¬ ì§€ì† ìƒíƒœì— ì ìš©ëœ ìŠ¤í‚¬ë²ˆí˜¸
 
 public:
 	virtual void		Set_HP( int iHP )									{	;	};
@@ -239,7 +239,7 @@ public    :
 	virtual bool		SetCMD_MOVE2D (float fPosX, float fPosY, BYTE btRunMODE);
 	virtual void		SetCMD_RUNnATTACK(int iTargetObjTAG)
 	{	
-		// ÀÎ°øÁö´É¿¡¼­ È£ÃâµÇ´Â °ø°İ ¸í·É !!!
+		// ì¸ê³µì§€ëŠ¥ì—ì„œ í˜¸ì¶œë˜ëŠ” ê³µê²© ëª…ë ¹ !!!
 		if ( !Is_TauntSTATUS( iTargetObjTAG ) ) {
 			if ( this->SetCMD_ATTACK (iTargetObjTAG) )		// MOB AI SetCMD_RUNnATTACK()... 
 				this->m_bRunMODE = true;
@@ -299,19 +299,19 @@ public    :
 	bool				m_bAttackSTART;
 	bool				m_bCastingSTART;
 
-	int					m_iWaitLoopCnt;			/// ¼­¹ö·ÎºÎÅÍÀÇ °á°ú¸¦ ±â´Ù¸®¸ç..
+	int					m_iWaitLoopCnt;			/// ì„œë²„ë¡œë¶€í„°ì˜ ê²°ê³¼ë¥¼ ê¸°ë‹¤ë¦¬ë©°..
 
-	short				m_nToDoSkillIDX;		/// »ç¿ëÇÒ(¼³Á¤µÈ) ½ºÅ³
+	short				m_nToDoSkillIDX;		/// ì‚¬ìš©í• (ì„¤ì •ëœ) ìŠ¤í‚¬
 
 private :
-	short				m_nActiveSkillIDX;		/// ÇöÀç µ¿ÀÛ¿¡ Àû¿ëµÈ (Ä³½ºÆÃÁß) ½ºÅ³
+	short				m_nActiveSkillIDX;		/// í˜„ì¬ ë™ì‘ì— ì ìš©ëœ (ìºìŠ¤íŒ…ì¤‘) ìŠ¤í‚¬
 
 public :
 	short				Get_ActiveSKILL()		{	return m_nActiveSkillIDX;					}
 	void				Del_ActiveSKILL()		{	m_bCastingSTART=false, m_nActiveSkillIDX=0;	}
 
-	int					m_iActiveObject;		/// ÇöÀç µ¿ÀÛ¿¡ Àû¿ëµÈ Å¸ÄÏ :: Å¬¶óÀÌ¾ğÆ® °´Ã¼ ¹øÈ£ 
-	short				m_nDoingSkillIDX;		/// ÇöÀç ÁøÇàÁßÀÎ ½ºÅ³( Çìºñ¾îÅÃ°°Àº ±Ù°Å¸® Å¸°İ½ºÅ³À» À§ÇØ¼­ )
+	int					m_iActiveObject;		/// í˜„ì¬ ë™ì‘ì— ì ìš©ëœ íƒ€ì¼“ :: í´ë¼ì´ì–¸íŠ¸ ê°ì²´ ë²ˆí˜¸ 
+	short				m_nDoingSkillIDX;		/// í˜„ì¬ ì§„í–‰ì¤‘ì¸ ìŠ¤í‚¬( í—¤ë¹„ì–´íƒê°™ì€ ê·¼ê±°ë¦¬ íƒ€ê²©ìŠ¤í‚¬ì„ ìœ„í•´ì„œ )
 
 	float				m_fRunAniSPEED;
 
@@ -321,7 +321,7 @@ public :
 	t_POSITION			m_PosBORN;
 	t_POSITION			m_PosMoveSTART;
 	t_POSITION			m_PosGOTO;
-	tPOINTF				m_MoveVEC;		// 1/1000 ´ç ÀÌµ¿·®
+	tPOINTF				m_MoveVEC;		// 1/1000 ë‹¹ ì´ë™ëŸ‰
     BYTE				m_bRunMODE;
 
 
@@ -332,7 +332,7 @@ public:
 
 	bool				ProcMotionFrame (void);
 
-	void				Set_STATE( WORD wState )				{	m_wState = wState;								}	/// »óÅÂ ¼³Á¤
+	void				Set_STATE( WORD wState )				{	m_wState = wState;								}	/// ìƒíƒœ ì„¤ì •
 	WORD				Get_STATE ()							{	return m_wState;								}
 	WORD				Get_COMMAND ()							{	return m_wCommand;								}
 	void				Set_COMMAND (WORD wCommand)			{	m_wCommand = wCommand;							}
@@ -342,7 +342,7 @@ public:
 	float				Cal_AtkAniSPEED( short nRightWeaponItemNO );
 	float				Cal_RunAniSPEED( short nCmPerSec )
 	{
-		// ÀÌµ¿ µ¿ÀÛ µô·¹ÀÌ = ( ÀÌµ¿¼Óµµ+180) /600
+		// ì´ë™ ë™ì‘ ë”œë ˆì´ = ( ì´ë™ì†ë„+180) /600
 		return ( (nCmPerSec+180.f) / 600.f );
 	}
 

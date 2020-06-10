@@ -16,7 +16,7 @@
 #include "IO_Terrain.h"
 #include "CommandFilter.h"
 
-//¹ÚÁöÈ£
+//ë°•ì§€í˜¸
 #include "./GameProc/UseItemDelay.h"
 
 
@@ -72,46 +72,46 @@ void CObjUSER::Init_DefaultValue (void)
 	::ZeroMemory ( &m_Battle,		sizeof( tagBattleAbility) );
 	m_Inventory.Clear ();
 
-	Set_STR( 100 );		// ±Ù·Â
-	Set_DEX( 100 );		// ¹ÎÃ¸
-	Set_INT( 10 );		// Áö·Â
-	Set_CON( 10 );		// ÁıÁß
-	Set_CHARM( 10 );	// ¸Å·Â
-	Set_SENSE( 10 );	// °¨°¢
+	Set_STR( 100 );		// ê·¼ë ¥
+	Set_DEX( 100 );		// ë¯¼ì²©
+	Set_INT( 10 );		// ì§€ë ¥
+	Set_CON( 10 );		// ì§‘ì¤‘
+	Set_CHARM( 10 );	// ë§¤ë ¥
+	Set_SENSE( 10 );	// ê°ê°
 
 	tagITEM sITEM;
 	::ZeroMemory( &sITEM, sizeof(tagITEM) );
 
-	sITEM.m_cType   = ITEM_TYPE_ARMOR;			// °©¿Ê
+	sITEM.m_cType   = ITEM_TYPE_ARMOR;			// ê°‘ì˜·
 	sITEM.m_nItemNo = 72;	
 	Set_EquipITEM ( EQUIP_IDX_ARMOR,		sITEM );
 
-	sITEM.m_cType   = ITEM_TYPE_KNAPSACK;		// µîÀåºñ
+	sITEM.m_cType   = ITEM_TYPE_KNAPSACK;		// ë“±ì¥ë¹„
 	sITEM.m_nItemNo = 0;	
 	Set_EquipITEM ( EQUIP_IDX_KNAPSACK,		sITEM );	
 
-	sITEM.m_cType   = ITEM_TYPE_GAUNTLET;		// Àå°©
+	sITEM.m_cType   = ITEM_TYPE_GAUNTLET;		// ì¥ê°‘
 	sITEM.m_nItemNo = 71;	
 	Set_EquipITEM ( EQUIP_IDX_GAUNTLET,		sITEM );
 
-	sITEM.m_cType   = ITEM_TYPE_BOOTS;			// ½Å¹ß
+	sITEM.m_cType   = ITEM_TYPE_BOOTS;			// ì‹ ë°œ
 	sITEM.m_nItemNo = 44;	
 	Set_EquipITEM ( EQUIP_IDX_BOOTS,		sITEM );
 
 //*
-	sITEM.m_cType   = ITEM_TYPE_WEAPON;			// ¿À¸¥¼Õ
+	sITEM.m_cType   = ITEM_TYPE_WEAPON;			// ì˜¤ë¥¸ì†
 	sITEM.m_nItemNo = 36;//231;//202;//26;
 	Set_EquipITEM ( EQUIP_IDX_WEAPON_R,		sITEM );
-//	117 ;	// ¾ğ¿ùµµ
-//	209 ;	// Àå±Ã
+//	117 ;	// ì–¸ì›”ë„
+//	209 ;	// ì¥ê¶
 
 	sITEM.m_cType   = ITEM_TYPE_SUBWPN;
-	sITEM.m_nItemNo = 0;	// ¿Ş¼Õ
+	sITEM.m_nItemNo = 0;	// ì™¼ì†
 	Set_EquipITEM ( EQUIP_IDX_WEAPON_L,		sITEM );
 //*/
 
-	this->SetPartITEM( BODY_PART_FACE,		1 );	// ¾ó±¼
-	this->SetPartITEM( BODY_PART_HAIR,		0 );	// ±âº» ¸Ó¸®ÅĞ
+	this->SetPartITEM( BODY_PART_FACE,		1 );	// ì–¼êµ´
+	this->SetPartITEM( BODY_PART_HAIR,		0 );	// ê¸°ë³¸ ë¨¸ë¦¬í„¸
 	this->SetPartITEM( BODY_PART_HELMET,	51 );
 	// TEST .......
 
@@ -146,7 +146,7 @@ void CObjUSER::Init_DefaultValue (void)
 		Add_ITEM( MAX_EQUIP_IDX+INV_WEAPON*INVENTORY_PAGE_SIZE + nI+nJ+nA, sITEM );
 	}
 
-	// ¸ğÀÚ
+	// ëª¨ì
 	sITEM.m_cType     = BODY_PART_HELMET;
 	sITEM.m_nItemNo   = 55;
 	Add_ITEM( MAX_EQUIP_IDX+INV_WEAPON*INVENTORY_PAGE_SIZE + nI+nJ+nA, sITEM );
@@ -159,13 +159,13 @@ void CObjUSER::Init_DefaultValue (void)
 	sITEM.m_nItemNo   = 8;
 	Add_ITEM( MAX_EQUIP_IDX+INV_WEAPON*INVENTORY_PAGE_SIZE + nI+nJ+nA + 2, sITEM );
 
-	//ºÎÃ÷
+	//ë¶€ì¸ 
 	sITEM.m_cType     = EQUIP_IDX_BOOTS;
 	sITEM.m_nItemNo   = 44;
 	Add_ITEM( MAX_EQUIP_IDX+INV_WEAPON*INVENTORY_PAGE_SIZE + nI+nJ+nA+3, sITEM );	
 
 	/*
-	//Àå°©
+	//ì¥ê°‘
 	sITEM.m_cType     = ITEM_TYPE_GAUNTLET;
 	sITEM.m_nItemNo   = 7;
 	Add_ITEM( MAX_EQUIP_IDX+INV_WEAPON*INVENTORY_PAGE_SIZE + nI+nJ+nA+4, sITEM );
@@ -174,7 +174,7 @@ void CObjUSER::Init_DefaultValue (void)
 	sITEM.m_nItemNo   = 6;
 	Add_ITEM( MAX_EQUIP_IDX+INV_WEAPON*INVENTORY_PAGE_SIZE + nI+nJ+nA+5, sITEM );
 
-	//°¡¹æ
+	//ê°€ë°©
 	sITEM.m_cType     = ITEM_TYPE_KNAPSACK;
 	sITEM.m_nItemNo   = 2;
 	Add_ITEM( MAX_EQUIP_IDX+INV_WEAPON*INVENTORY_PAGE_SIZE + nI+nJ+nA+6, sITEM );
@@ -183,7 +183,7 @@ void CObjUSER::Init_DefaultValue (void)
 	sITEM.m_nItemNo   = 4;
 	Add_ITEM( MAX_EQUIP_IDX+INV_WEAPON*INVENTORY_PAGE_SIZE + nI+nJ+nA+7, sITEM );
 
-	//¾ó±¼
+	//ì–¼êµ´
 	sITEM.m_cType     = ITEM_TYPE_FACE_ITEM;
 	sITEM.m_nItemNo   = 5;
 	Add_ITEM( MAX_EQUIP_IDX+INV_WEAPON*INVENTORY_PAGE_SIZE + nI+nJ+nA+8, sITEM );
@@ -206,7 +206,7 @@ void CObjUSER::Init_DefaultValue (void)
 		{ 0, 0  }
 	} ;
 	
-	// ¼Ò¸ğ
+	// ì†Œëª¨
 	for (nI=0; sDefUseITEM[ nI ].nItemNo; nI++) {
 		sITEM.m_cType     = ITEM_TYPE_USE;
 		sITEM.m_nItemNo   = sDefUseITEM[ nI ].nItemNo;
@@ -214,7 +214,7 @@ void CObjUSER::Init_DefaultValue (void)
 		Add_ITEM( MAX_EQUIP_IDX+INV_USE*INVENTORY_PAGE_SIZE + nI, sITEM );
 	}
 
-	// ±âÅ¸
+	// ê¸°íƒ€
 	tagDefITEM sDefEtcITEM[ ] = {
 		/*
 		{	1, 100	},	{ 3, 100 },	{ 6, 50 },	{ 8, 50 },	{ 23, 20 },
@@ -235,36 +235,36 @@ void CObjUSER::Init_DefaultValue (void)
 	this->m_GrowAbility.m_nLevel = 1;
 	this->LevelUP ();
 
-	/// °øÅë ¾×¼Ç
+	/// ê³µí†µ ì•¡ì…˜
 	AddNewSkill( 1, 0, 1 );
 	AddNewSkill( 2, 1, 1 );
 	AddNewSkill( 3, 2, 1 );
 
-	/// °øÅë- ÀÌ¸ğ¼Ç
+	/// ê³µí†µ- ì´ëª¨ì…˜
 	AddNewSkill( 11, 10, 1 );
 	AddNewSkill( 12, 11, 1 );
 	AddNewSkill( 13, 12, 1 );
 
-	/// ÀüÅõ - ±ÙÁ¢
+	/// ì „íˆ¬ - ê·¼ì ‘
 	AddNewSkill( 21, MAX_LEARNED_SKILL_CNT/4 + 0, 1 );
 	AddNewSkill( 22, MAX_LEARNED_SKILL_CNT/4 + 1, 1 );
 	
-	/// ÀüÅõ - ¿ø°Å¸® ¹ß»ç
+	/// ì „íˆ¬ - ì›ê±°ë¦¬ ë°œì‚¬
 	AddNewSkill( 31, MAX_LEARNED_SKILL_CNT/4 + 2, 1 );
 
-	/// ÀüÅõ - º¸Á¶
+	/// ì „íˆ¬ - ë³´ì¡°
 	AddNewSkill( 41, MAX_LEARNED_SKILL_CNT/4 + 3, 1 );
 }
 
-/// »õ·Î¿î ½ºÅ³ Ãß°¡.
+/// ìƒˆë¡œìš´ ìŠ¤í‚¬ ì¶”ê°€.
 bool CObjUSER::AddNewSkill( int iSkillIDX, int iSkillSlotNO, int iSkillLevel ,bool bSubPOINT )
 {
 	if( iSkillSlotNO >= MAX_LEARNED_SKILL_CNT )
 		return false;
 
-	/// ½ºÅ³ ¹è¿ì¸é Àû¿ë
+	/// ìŠ¤í‚¬ ë°°ìš°ë©´ ì ìš©
 	if ( this->Skill_LEARN( iSkillSlotNO, iSkillIDX , bSubPOINT ) ) {
-		/// ÆĞ½Ãºê ½ºÅ³Áß ¼Óµµ¿¡ º¯È­°¡ »ı±æ°æ¿ì..
+		/// íŒ¨ì‹œë¸Œ ìŠ¤í‚¬ì¤‘ ì†ë„ì— ë³€í™”ê°€ ìƒê¸¸ê²½ìš°..
 		this->Update_SPEED ();
 	}
 
@@ -272,7 +272,7 @@ bool CObjUSER::AddNewSkill( int iSkillIDX, int iSkillSlotNO, int iSkillLevel ,bo
 
 	return true;
 }
-///  ±âÁ¸ ½ºÅ³ÀÇ ·¹º§¾÷
+///  ê¸°ì¡´ ìŠ¤í‚¬ì˜ ë ˆë²¨ì—…
 bool CObjUSER::Skill_LevelUp( int iSkillSlotNo, int iSkillIndex )
 {
 	if( iSkillSlotNo >= MAX_LEARNED_SKILL_CNT )
@@ -295,7 +295,7 @@ void CObjUSER::Update_SPEED ()
  	} 
 	else 
 	{
-		/// ¹èÆ²Ä«Æ® °ø¼Ó Àû¿ë Ãß°¡ nAvy - 2005/7/28
+		/// ë°°í‹€ì¹´íŠ¸ ê³µì† ì ìš© ì¶”ê°€ nAvy - 2005/7/28
 #if defined(_GBC)
 		m_fRunAniSPEED = ( m_nRunSPEED + 500 ) / 1000.f;
 		m_nAtkAniSPEED = Cal_AtkAniSPEED( this->GetPartITEM(BODY_PART_WEAPON_R) );
@@ -304,7 +304,7 @@ void CObjUSER::Update_SPEED ()
 			m_nAtkAniSPEED += PAT_ITEM_ATK_SPD( m_sPetPartItemIDX[ i ].m_nItemNo );*/
 #else
  		m_fRunAniSPEED = ( m_nRunSPEED + 500 ) / 1000.f;
- 		///<- 2005/7/25 Ä«Æ® ½Ã½ºÅÛ ÆÄÃ÷ Ãß°¡·Î ¼öÁ¤ : nAvy
+ 		///<- 2005/7/25 ì¹´íŠ¸ ì‹œìŠ¤í…œ íŒŒì¸  ì¶”ê°€ë¡œ ìˆ˜ì • : nAvy
 		//m_nAtkAniSPEED = ( 1500.f / ( ( PAT_ITEM_ATK_SPD( m_sPetPartItemIDX[ RIDE_PART_ARMS ].m_nItemNo )) + 5 ) ) + this->m_iAddValue[ AT_ATK_SPD ];
 		m_nAtkAniSPEED = ( 1500.f / ( ( PAT_ITEM_ATK_SPD( m_sPetPartItemIDX[ RIDE_PART_ARMS ].m_nItemNo )) + 5 ) ) + this->m_iAddValue[ AT_ATK_SPD ];
 		///->
@@ -324,7 +324,7 @@ void CObjUSER::Add_EXP (short nExp)
 	bool bLevelUp=false;
 
 	while ( m_GrowAbility.m_lEXP >= iNeedEXP ) {
-		// ·¹º§ Á¦ÇÑ ???
+		// ë ˆë²¨ ì œí•œ ???
 		this->Set_LEVEL( this->Get_LEVEL() + 1 );
 
 		g_itMGR.AppendChatMsg(CStr::Printf (">>> %s LEVEL UP to %d", Get_NAME(), Get_LEVEL() ), IT_MGR::CHAT_TYPE_SYSTEM );
@@ -346,19 +346,19 @@ void CObjUSER::RideCartToggle( bool bRide )
 	this->UpdateAbility();
 	Cal_PatAbility();
 
-	/// PatÅ¾½Â ¿©ºÎ¿¡ µû¶ó ½ºÅ³ÀÇ È°¼ºÈ­/ºñÈ°¼ºÈ­¸¦ ¹Ù²Ù¾î ÁØ´Ù.
+	/// Patíƒ‘ìŠ¹ ì—¬ë¶€ì— ë”°ë¼ ìŠ¤í‚¬ì˜ í™œì„±í™”/ë¹„í™œì„±í™”ë¥¼ ë°”ê¾¸ì–´ ì¤€ë‹¤.
 	/// 
 	m_SkillSlot.SetActiveSkillEnableByRideState( bRide );
 
 }
 
 //-------------------------------------------------------------------------------------------------
-/// Å¬·¡½º ³»ºÎ¿¡ ¼³Á¤µÈ ¾Æ¹ÙÅ¸ Á¤º¸¸¦ ÀÌ¿ëÇØ¼­, ¾÷µ¥ÀÌÆ® ÇÑ´Ù.
+/// í´ë˜ìŠ¤ ë‚´ë¶€ì— ì„¤ì •ëœ ì•„ë°”íƒ€ ì •ë³´ë¥¼ ì´ìš©í•´ì„œ, ì—…ë°ì´íŠ¸ í•œë‹¤.
 void CObjUSER::Update (bool bUpdateBONE )
 {
 	CObjAVT::Update( bUpdateBONE );
 
-	// 7. °ø°İ, ÀÌµ¿ ¼Óµµ °»½Å.
+	// 7. ê³µê²©, ì´ë™ ì†ë„ ê°±ì‹ .
 	this->Update_SPEED ();
 }
 
@@ -401,7 +401,7 @@ int	 CObjUSER::Quest_GetPartyLEVEL()
 	int iBulletNo = 0;
 	int iShotType = sItem.GetShotTYPE();
 
-	/// ÃÑ¾Ë¼Ò¸ğ ¾ÈÇÏ´Â ¸¶¹ı ¹«±â
+	/// ì´ì•Œì†Œëª¨ ì•ˆí•˜ëŠ” ë§ˆë²• ë¬´ê¸°
 	if( iShotType >= MAX_SHOT_TYPE )
 	{		
 		switch( WEAPON_TYPE( sItem.m_nItemNo ) ) 
@@ -444,8 +444,8 @@ void CObjUSER::SubActiveBulletQuantity( )
 	pItem->SubQuantity( 1 );
 	m_ItemSlot.ChangeItemStatus( INVENTORY_SHOT_ITEM0 + iShotType );
 	
-	///ÀÎº¥Åä¸®¿¡¼­ »èÁ¦
-	///gsv_SET_BULLETÀ¸·Î ¼ÂÆÃµÈ°ªÀÌ 0¶ó¸é ( ´Ù »ç¿ëÇß´Ù°í ¾Ë·ÁÁ³´Ù¸é );
+	///ì¸ë²¤í† ë¦¬ì—ì„œ ì‚­ì œ
+	///gsv_SET_BULLETìœ¼ë¡œ ì…‹íŒ…ëœê°’ì´ 0ë¼ë©´ ( ë‹¤ ì‚¬ìš©í–ˆë‹¤ê³  ì•Œë ¤ì¡Œë‹¤ë©´ );
 	if( CObjAVT::m_ShotData[ iShotType ].m_nItemNo == 0 )
 	{
 		ClearITEM( INVENTORY_SHOT_ITEM0 + iShotType );
@@ -463,10 +463,10 @@ BYTE  CObjUSER::GetCur_MOVE_MODE ()
 	return this->m_btMoveMODE;
 }
 
-/// ÇöÀç ÆêÀÌ Á¶ÇÕÀÌ ´ÙµÇ¾î Å»¼ö ÀÖ´Â°¡?
+/// í˜„ì¬ í«ì´ ì¡°í•©ì´ ë‹¤ë˜ì–´ íƒˆìˆ˜ ìˆëŠ”ê°€?
 bool CObjUSER::CanRidePET()
 {
-// È«±Ù :
+// í™ê·¼ :
 #ifdef _GBC
 	for( int i = 0; i < MAX_RIDING_PART - 2; i++ )
 	{
@@ -489,7 +489,7 @@ bool CObjUSER::CanRidePET()
 }
 
 
-//2ÀÎ½Â Ä«Æ®
+//2ì¸ìŠ¹ ì¹´íŠ¸
 bool	CObjUSER::IsRideItem(int iIndex_)
 {
 	if( iIndex_>=0 
@@ -512,25 +512,25 @@ void	CObjUSER::Set_MP (int iMP)
 	SetCur_MP( iMP );				
 }
 //--------------------------------------------------------------------------------
-/// @brief  : CInventoryDlgÀÇ VirtualInventory°ú WeightRate¸¦ °»½ÅÇÑ´Ù.
+/// @brief  : CInventoryDlgì˜ VirtualInventoryê³¼ WeightRateë¥¼ ê°±ì‹ í•œë‹¤.
 //--------------------------------------------------------------------------------
 void	CObjUSER::UpdateInventory()
 {
 	if( m_bWaitUpdateInventory )
 		return;
 
-	/// °¡»ó ÀÎº¥Åä¸® °»½Å
+	/// ê°€ìƒ ì¸ë²¤í† ë¦¬ ê°±ì‹ 
 	//g_itMGR.UpdateInventory();
 
-	/// ¹«°ÔºñÀ² °»½Å	
-	int iMaxWeight  = Get_MaxWEIGHT();///ÃÖ´ë ¼ÒÁö·®
+	/// ë¬´ê²Œë¹„ìœ¨ ê°±ì‹ 	
+	int iMaxWeight  = Get_MaxWEIGHT();///ìµœëŒ€ ì†Œì§€ëŸ‰
 
 	//assert( iMaxWeight > 0 );
 	if( iMaxWeight <= 0 )
 		return;
 
-	int iCurrWeight = 0;///ÇöÀç ¼ÒÁö·®
-	int iItemWeight = 0;///¾ÆÀÌÅÛ 1°³´ç ¹«°Ô
+	int iCurrWeight = 0;///í˜„ì¬ ì†Œì§€ëŸ‰
+	int iItemWeight = 0;///ì•„ì´í…œ 1ê°œë‹¹ ë¬´ê²Œ
 
 	tagITEM*	pItem = NULL;
 	for( int iIndex = 0; iIndex < INVENTORY_TOTAL_SIZE; ++iIndex )
@@ -563,7 +563,7 @@ void	CObjUSER::UpdateInventory()
 
 	SetWeightRate( btCurrWeightRate );
 
-	///ÀÏÁ¤ºñÀ²( 80%, 100% )À» ³Ñ°Å³ª ³»·Á¿ÔÀ»¶§ ¼­¹ö¿¡°Ô ¾Ë¸°´Ù.
+	///ì¼ì •ë¹„ìœ¨( 80%, 100% )ì„ ë„˜ê±°ë‚˜ ë‚´ë ¤ì™”ì„ë•Œ ì„œë²„ì—ê²Œ ì•Œë¦°ë‹¤.
 	int		iPrevWeightRateState = 0;
 	if( btPrevWeightRate < 100 )
 		iPrevWeightRateState = 0;
@@ -624,7 +624,7 @@ short	CObjUSER::Add_CatchITEM (short nListRealNO, tagITEM &sITEM)
 		m_ItemSlot.AddItem( nListRealNO, sITEM );
 		UpdateInventory();
 	}
-	///ÀÎº¥Åä¸®¿¡ ¾ÆÀÌÅÛÀÌ µé¾î°¥¶§
+	///ì¸ë²¤í† ë¦¬ì— ì•„ì´í…œì´ ë“¤ì–´ê°ˆë•Œ
 	g_pSoundLIST->IDX_PlaySound( SID_GETTING_ITEM );
 	return nRet;
 }
@@ -641,7 +641,7 @@ void	CObjUSER::Set_ITEM(short nListRealNO, tagITEM& sITEM)
 {
 	tagITEM* pItem = &(CUserDATA::m_Inventory.m_ItemLIST[ nListRealNO ] );
 
-	///±âÁ¸½½·Ô¿¡ ¾ÆÀÌÅÛÀÌ ÀÖ°í ... Áßº¹°¡´ÉÇÏ¸ç, °°Àº ¾ÆÀÌÅÛÀÏ°æ¿ì´Â Count¸¸ ´Ã¸°´Ù.
+	///ê¸°ì¡´ìŠ¬ë¡¯ì— ì•„ì´í…œì´ ìˆê³  ... ì¤‘ë³µê°€ëŠ¥í•˜ë©°, ê°™ì€ ì•„ì´í…œì¼ê²½ìš°ëŠ” Countë§Œ ëŠ˜ë¦°ë‹¤.
 	if( !pItem->IsEmpty() && !sITEM.IsEmpty() && sITEM.IsEnableDupCNT() && pItem->IsEqual ( sITEM.GetTYPE(), sITEM.GetItemNO() ) )
 	{
 		CUserDATA::m_Inventory.m_ItemLIST[ nListRealNO ] = sITEM;
@@ -653,11 +653,11 @@ void	CObjUSER::Set_ITEM(short nListRealNO, tagITEM& sITEM)
 		if( !sITEM.IsEmpty() )
 		{
 			if( (nListRealNO > 0 && nListRealNO < INVENTORY_ITEM_INDEX_0) || 
-				(nListRealNO >= INVENTORY_SHOT_ITEM0 && nListRealNO <  INVENTORY_SHOT_ITEM0 + MAX_SHOT_TYPE ) )///ÀåÂø½Ã
+				(nListRealNO >= INVENTORY_SHOT_ITEM0 && nListRealNO <  INVENTORY_SHOT_ITEM0 + MAX_SHOT_TYPE ) )///ì¥ì°©ì‹œ
 				g_pSoundLIST->IDX_PlaySound( ITEM_EQUIP_SOUND( sITEM.GetTYPE(), sITEM.GetItemNO() )  );
 		}
 	}
-	///m_ItemSlotÀÇ Add,Sub,DelItemÀº CUserDATA::Set_ITEM¿¡¼­ È£ÃâµÈ´Ù.
+	///m_ItemSlotì˜ Add,Sub,DelItemì€ CUserDATA::Set_ITEMì—ì„œ í˜¸ì¶œëœë‹¤.
 	//m_ItemSlot.SetItem( nListRealNO, sITEM );
 
 
@@ -686,8 +686,8 @@ void	CObjUSER::UpdateAbility()
 	Cal_BattleAbility(); 
 	Calc_AruaAddAbility();
 	
-	// È«±Ù : UpdateInventory()¿Í Update_SPEED()ÀÇ À§Ä¡ ¹Ù²Ş.
-	UpdateInventory();///ÃÖ´ë ¼ÒÁö·®ÀÌ º¯°æµÇ¾úÀ»¼ö ÀÖ´Ù.
+	// í™ê·¼ : UpdateInventory()ì™€ Update_SPEED()ì˜ ìœ„ì¹˜ ë°”ê¿ˆ.
+	UpdateInventory();///ìµœëŒ€ ì†Œì§€ëŸ‰ì´ ë³€ê²½ë˜ì—ˆì„ìˆ˜ ìˆë‹¤.
 	Update_SPEED();	
 	
 
@@ -716,7 +716,7 @@ int	CObjUSER::Proc (void)
 }
 
 //-------------------------------------------------------------------------------------------------
-/// ¹«°Ô °ü·Ã	
+/// ë¬´ê²Œ ê´€ë ¨	
 short CObjUSER::GetCur_WEIGHT()
 {
 	return m_nCurrWeight;
@@ -728,7 +728,7 @@ void CObjUSER::SetCurrWeight( short nWeight )
 }
 
 //-------------------------------------------------------------------------------------------------
-/// ¿ùµå¼­¹ö¿¡¼­ À¯´ÏÅ©ÇÑ 
+/// ì›”ë“œì„œë²„ì—ì„œ ìœ ë‹ˆí¬í•œ 
 void  CObjUSER::SetUniqueTag( DWORD dwUniqueTag )
 {
 	m_dwUniqueTag = dwUniqueTag;
@@ -740,7 +740,7 @@ DWORD CObjUSER::GetUniqueTag()
 }
 
 //-------------------------------------------------------------------------------------------------
-/// ¼­¹ö¿¡ ÀúÀåµÇ¾î ÀÖ´Â ÂÊÁö °ü·Ã Ã³¸®¸¦ À§ÇÑ Method
+/// ì„œë²„ì— ì €ì¥ë˜ì–´ ìˆëŠ” ìª½ì§€ ê´€ë ¨ ì²˜ë¦¬ë¥¼ ìœ„í•œ Method
 void CObjUSER::SetServerSavedMemoCount( int iCount )
 {
 	m_iServerSavedMemoCount = iCount;
@@ -759,7 +759,7 @@ void CObjUSER::DecreaseServerSavedMemoCount()
 		m_iServerSavedMemoCount;
 }
 
-/// ¼ÒÈ¯°¡´É ÃÑ ·®..
+/// ì†Œí™˜ê°€ëŠ¥ ì´ ëŸ‰..
 int	CObjUSER::GetCur_SummonMaxCapacity()
 { 
 	return 50 + GetPassiveSkillValue( AT_PSV_SUMMON_MOB_CNT ); 
@@ -767,7 +767,7 @@ int	CObjUSER::GetCur_SummonMaxCapacity()
 
 void CObjUSER::AddSummonedMob( int iIndex, int iSkillIDX )
 { 
-	/// ÀÌ¹Ì ÀÖ´Â³ğÀÌ¶ó¸é..
+	/// ì´ë¯¸ ìˆëŠ”ë†ˆì´ë¼ë©´..
 	std::list< SummonMobInfo >::iterator begin = m_SummonedMobList.begin();
 
 	for( ; begin != m_SummonedMobList.end() ; ++begin )
@@ -797,7 +797,7 @@ void CObjUSER::AddSummonedMob( int iIndex, int iSkillIDX )
 
 void CObjUSER::SubSummonedMob( int iIndex )
 { 
-	/// ÀÌ¹Ì ÀÖ´Â³ğÀÌ¶ó¸é..
+	/// ì´ë¯¸ ìˆëŠ”ë†ˆì´ë¼ë©´..
 	std::list< SummonMobInfo >::iterator begin = m_SummonedMobList.begin();
 
 	for( ; begin != m_SummonedMobList.end() ; ++begin )
@@ -816,7 +816,7 @@ void CObjUSER::SubSummonedMob( int iIndex )
 
 bool CObjUSER::GetSummonedMobInfo( int iIndex, SummonMobInfo& mobInfo )
 {
-	/// ÀÌ¹Ì ÀÖ´Â³ğÀÌ¶ó¸é..
+	/// ì´ë¯¸ ìˆëŠ”ë†ˆì´ë¼ë©´..
 	std::list< SummonMobInfo >::iterator begin = m_SummonedMobList.begin();
 
 	for( ; begin != m_SummonedMobList.end() ; ++begin )
@@ -843,7 +843,7 @@ void CObjUSER::SetCur_STAMINA( short nStamina )
 	CUserDATA::m_GrowAbility.m_nSTAMINA = nStamina;
 }
 //*----------------------------------------------------------------------
-/// @brief overriden CObjAVT::GetStamina() -- CObjAVT::Proc¿¡¼­ È£Ãâ½Ã CObjUSERÀÇ °æ¿ì È£ÃâµÇ¾î Áø´Ù.
+/// @brief overriden CObjAVT::GetStamina() -- CObjAVT::Procì—ì„œ í˜¸ì¶œì‹œ CObjUSERì˜ ê²½ìš° í˜¸ì¶œë˜ì–´ ì§„ë‹¤.
 //*----------------------------------------------------------------------
 short CObjUSER::GetStamina()
 {
@@ -861,7 +861,7 @@ void CObjUSER::Set_JOB (int iValue)
 	if( GetClanID() )
 		g_pNet->Send_cli_CLAN_MEMBER_JOBnLEV( Get_LEVEL(), iValue ) ;
 
-	//20050823 È«±Ù Ä¡Æ®·Î Á÷¾÷À» º¯°æÇßÀ» °æ¿ì¿¡µµ MAXHP º¯È­ Ç¥½Ã ÇØÁÖ±â À§ÇØ.
+	//20050823 í™ê·¼ ì¹˜íŠ¸ë¡œ ì§ì—…ì„ ë³€ê²½í–ˆì„ ê²½ìš°ì—ë„ MAXHP ë³€í™” í‘œì‹œ í•´ì£¼ê¸° ìœ„í•´.
 	UpdateAbility();
 }
 
@@ -951,21 +951,21 @@ short CObjUSER::GetPsv_ATKSPEED (float fCurSpeed, short nRightWeaponItemNo)
 	return this->GetPassiveSkillAttackSpeed( fCurSpeed, nRightWeaponItemNo ) + CUserDATA::m_iAddValue[ AT_ATK_SPD ];
 }
 
-/// ½ºÅ³¿¡ ÀÇÇØ º¸Á¤µÈ °ªÀÌ ÀÖÀ»°æ¿ì ´õÇØÁ®¼­ ¸®ÅÏÇÒ ÇÔ¼ö
-/// arua»óÅÂ¿¡ ÀÇÇØ¼­ º¯°æµÈ °ªµµ ´õÇØÁØ´Ù.					2005/7/12 : nAvy
+/// ìŠ¤í‚¬ì— ì˜í•´ ë³´ì •ëœ ê°’ì´ ìˆì„ê²½ìš° ë”í•´ì ¸ì„œ ë¦¬í„´í•  í•¨ìˆ˜
+/// aruaìƒíƒœì— ì˜í•´ì„œ ë³€ê²½ëœ ê°’ë„ ë”í•´ì¤€ë‹¤.					2005/7/12 : nAvy
 int CObjUSER::GetCur_MaxHP ()
 { 
 	return this->m_Battle.m_nMaxHP + m_EndurancePack.GetStateValue( ING_INC_MAX_HP ) + m_AruaAddHp; 
 };
 
-/// ½ºÅ³¿¡ ÀÇÇØ º¸Á¤µÈ °ªÀÌ ÀÖÀ»°æ¿ì ´õÇØÁ®¼­ ¸®ÅÏÇÒ ÇÔ¼ö
-/// arua»óÅÂ¿¡ ÀÇÇØ¼­ º¯°æµÈ °ªµµ ´õÇØÁØ´Ù.					2005/7/12 : nAvy
+/// ìŠ¤í‚¬ì— ì˜í•´ ë³´ì •ëœ ê°’ì´ ìˆì„ê²½ìš° ë”í•´ì ¸ì„œ ë¦¬í„´í•  í•¨ìˆ˜
+/// aruaìƒíƒœì— ì˜í•´ì„œ ë³€ê²½ëœ ê°’ë„ ë”í•´ì¤€ë‹¤.					2005/7/12 : nAvy
 int	CObjUSER::GetCur_MaxMP ()
 { 
 	return this->m_Battle.m_nMaxMP + m_EndurancePack.GetStateValue( ING_INC_MAX_MP ) + m_AruaAddMp; 
 };
 //------------------------------------------------------------------------------------
-/// @brief aura »óÅÂ¿¡ ÀÇÇØ¼­ º¯°æµÈ °ª Àû¿ë					2005/7/13 : nAvy
+/// @brief aura ìƒíƒœì— ì˜í•´ì„œ ë³€ê²½ëœ ê°’ ì ìš©					2005/7/13 : nAvy
 //------------------------------------------------------------------------------------
 int CObjUSER::GetCur_CRITICAL()		
 { 
@@ -997,7 +997,7 @@ int CObjUSER::GetOri_MaxMP()
 	return m_Battle.m_nMaxMP;
 }
 //------------------------------------------------------------------------------------
-/// @brief ¾Æ·ç¾Æ ¹öÇÁ °É¸° »óÅÂ¿¡ ´ëÇÑ Ãß°¡ÀûÀÎ ´É·ÂÄ¡ °è»ê 2005/7/13 : navy
+/// @brief ì•„ë£¨ì•„ ë²„í”„ ê±¸ë¦° ìƒíƒœì— ëŒ€í•œ ì¶”ê°€ì ì¸ ëŠ¥ë ¥ì¹˜ ê³„ì‚° 2005/7/13 : navy
 //------------------------------------------------------------------------------------
 void CObjUSER::Calc_AruaAddAbility()
 {
@@ -1040,9 +1040,9 @@ void CObjUSER::SetCMD_Skill2POS (const D3DVECTOR& PosGOTO, short nSkillIDX)
 
 
 //------------------------------------------------------------------------------------------------------
-/// @brief Ä«Æ®ÀÇ Ãß°¡ÀûÀÎ ´É·ÂÄ¡¸¦ ±¸ÇØÁÖ´Â ÇÔ¼ö
-///			1. Ä«Æ® °ÔÀÌÁö
-///		- ¼­¹ö¿¡¼­ °ªÀ» ³»·ÁÁÖ±â ¶§¹®¿¡ ÀÌ ºÎºĞÀ» »«´Ù 2005/7/27 - nAvy
+/// @brief ì¹´íŠ¸ì˜ ì¶”ê°€ì ì¸ ëŠ¥ë ¥ì¹˜ë¥¼ êµ¬í•´ì£¼ëŠ” í•¨ìˆ˜
+///			1. ì¹´íŠ¸ ê²Œì´ì§€
+///		- ì„œë²„ì—ì„œ ê°’ì„ ë‚´ë ¤ì£¼ê¸° ë•Œë¬¸ì— ì´ ë¶€ë¶„ì„ ëº€ë‹¤ 2005/7/27 - nAvy
 //------------------------------------------------------------------------------------------------------
 void CObjUSER::Cal_PatAbility()
 {

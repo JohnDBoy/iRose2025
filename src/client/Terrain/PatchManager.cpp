@@ -50,14 +50,14 @@ void CPatchManager::SetPATCH (int iX, int iY, CMAP_PATCH *pPATCH)
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief Visible patch¸®½ºÆ® °»½Å
+/// @brief Visible patchë¦¬ìŠ¤íŠ¸ ê°±ì‹ 
 //----------------------------------------------------------------------------------------------------
 
 void CPatchManager::Update_VisiblePatch( short nMappingX, short nMappingY )
 {
 	short nIndex, nY, nX;	
 
-	/// ½ÇÁ¦·Î ¿£Áø¿¡¼­ »ç¿ëµÉ ÆĞÄ¡µéÀ» µî·Ï..
+	/// ì‹¤ì œë¡œ ì—”ì§„ì—ì„œ ì‚¬ìš©ë  íŒ¨ì¹˜ë“¤ì„ ë“±ë¡..
 	for ( nIndex=g_pCRange->GetStartIndex(0); nIndex<g_pCRange->GetStartIndex( 22 ); nIndex++) 
 	{
 		nX = nMappingX + g_pCRange->m_pPOINTS[ nIndex ].x;
@@ -78,7 +78,7 @@ void CPatchManager::Update_VisiblePatch( short nMappingX, short nMappingY )
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief Visible patch ¿£Áø¿¡ µî·Ï
+/// @brief Visible patch ì—”ì§„ì— ë“±ë¡
 //----------------------------------------------------------------------------------------------------
 void CPatchManager::Insert_VisiblePatch (CMAP_PATCH *pPATCH)
 {
@@ -92,7 +92,7 @@ void CPatchManager::Insert_VisiblePatch (CMAP_PATCH *pPATCH)
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief ¸ğµç Visible Á¦°Å
+/// @brief ëª¨ë“  Visible ì œê±°
 //----------------------------------------------------------------------------------------------------
 
 void CPatchManager::Clear_VisiblePatch (void)
@@ -113,7 +113,7 @@ void CPatchManager::Clear_VisiblePatch (void)
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief À¯È¿ÇÏÁö ¾ÊÀº patch Á¦°Å( time expire )
+/// @brief ìœ íš¨í•˜ì§€ ì•Šì€ patch ì œê±°( time expire )
 //----------------------------------------------------------------------------------------------------
 
 void CPatchManager::Delete_UnvisiblePatch (void)
@@ -145,12 +145,12 @@ void CPatchManager::Delete_UnvisiblePatch (void)
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief ÇöÀç ÇÇÅ·µÈ ÆĞÄ¡, À§Ä¡¸¦ ±¸ÇÑ´Ù.
+/// @brief í˜„ì¬ í”¼í‚¹ëœ íŒ¨ì¹˜, ìœ„ì¹˜ë¥¼ êµ¬í•œë‹¤.
 //----------------------------------------------------------------------------------------------------
 
 float CPatchManager::Pick_POSITION( D3DXVECTOR3 &PosPICK )
 {
-	// ¼Óµµ »óÇâÀ» À§ÇØ¼­ ÆĞÄ¡¸¦ ¼±º°ÀûÀ¸·Î ¼±ÅÃÇØ¼­ Á¶»çÇØ¾ß...
+	// ì†ë„ ìƒí–¥ì„ ìœ„í•´ì„œ íŒ¨ì¹˜ë¥¼ ì„ ë³„ì ìœ¼ë¡œ ì„ íƒí•´ì„œ ì¡°ì‚¬í•´ì•¼...
 	classDLLNODE< CMAP_PATCH* > *pCurNode;
     
 	float fMinDis=-1, fCurDis=g_fMaxDistance;
@@ -172,7 +172,7 @@ float CPatchManager::Pick_POSITION( D3DXVECTOR3 &PosPICK )
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief  PatchManager¿¡ ÂüÁ¶µÈ *m_ppQuadPatchManager[3][3]À» ¸ğµÎ ClearÇÔ
+/// @brief  PatchManagerì— ì°¸ì¡°ëœ *m_ppQuadPatchManager[3][3]ì„ ëª¨ë‘ Clearí•¨
 //----------------------------------------------------------------------------------------------------
 
 void CPatchManager::ClearAllQuadPatchManager()
@@ -199,7 +199,7 @@ void CPatchManager::ClearAllQuadPatchManager()
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief  PatchManager¿¡ (y,x)À§Ä¡ÀÇ *m_ppQuadPatchManager[y][x]¸¦ ÂüÁ¶  
+/// @brief  PatchManagerì— (y,x)ìœ„ì¹˜ì˜ *m_ppQuadPatchManager[y][x]ë¥¼ ì°¸ì¡°  
 //----------------------------------------------------------------------------------------------------
 void CPatchManager::AddQuadPatchManager(CMAP *pMap,short y,short x)
 {
@@ -211,7 +211,7 @@ void CPatchManager::AddQuadPatchManager(CMAP *pMap,short y,short x)
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief  ÂüÁ¶µÈ °¢ *m_ppQuadPatchManagerÀÇ CMAPÀÌ À¯¿ëÇÏ¸é ViewFrustumCullingÀ» ÇØ¼­ VisiblePatch¸¦ ¾òÀ½ 
+/// @brief  ì°¸ì¡°ëœ ê° *m_ppQuadPatchManagerì˜ CMAPì´ ìœ ìš©í•˜ë©´ ViewFrustumCullingì„ í•´ì„œ VisiblePatchë¥¼ ì–»ìŒ 
 //----------------------------------------------------------------------------------------------------
 void CPatchManager::CalculateViewFrustumCulling()
 {
@@ -290,7 +290,7 @@ void CPatchManager::CalculateViewFrustumCulling()
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief ÂüÁ¶µÈ °¢ *m_ppQuadPatchManagerÀÇ VisiblePatch¸¦ CPatchManager¿¡ ÇÕº´ÇÕ
+/// @brief ì°¸ì¡°ëœ ê° *m_ppQuadPatchManagerì˜ VisiblePatchë¥¼ CPatchManagerì— í•©ë³‘í•©
 //----------------------------------------------------------------------------------------------------
 void CPatchManager::AddVisiblePatch(CQuadPatchManager* pQuadPatch)
 {
@@ -316,13 +316,13 @@ void CPatchManager::AddVisiblePatch(CQuadPatchManager* pQuadPatch)
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief VisiblePatch¸¦ ¿£Áø¿¡ µî·Ï
+/// @brief VisiblePatchë¥¼ ì—”ì§„ì— ë“±ë¡
 //----------------------------------------------------------------------------------------------------
 void CPatchManager::Update_VisiblePatchManager()
 {
 	short i;	
 
-	/// ½ÇÁ¦·Î ¿£Áø¿¡¼­ »ç¿ëµÉ ÆĞÄ¡µéÀ» µî·Ï..
+	/// ì‹¤ì œë¡œ ì—”ì§„ì—ì„œ ì‚¬ìš©ë  íŒ¨ì¹˜ë“¤ì„ ë“±ë¡..
 	
 
 	CalculateViewFrustumCulling();
@@ -349,7 +349,7 @@ void CPatchManager::Update_VisiblePatchManager()
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief VisiblePatchÀÇ Drawing TypeÀ» Á¤ÇÔ
+/// @brief VisiblePatchì˜ Drawing Typeì„ ì •í•¨
 //----------------------------------------------------------------------------------------------------
 void CPatchManager::SetPatchType()
 {
@@ -398,7 +398,7 @@ void CPatchManager::SetPatchType()
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief VisiblePatchÀÇ Drawing TypeÀ» ¿£Áø¿¡ ¾Ë·ÁÁÜ
+/// @brief VisiblePatchì˜ Drawing Typeì„ ì—”ì§„ì— ì•Œë ¤ì¤Œ
 //----------------------------------------------------------------------------------------------------
 void CPatchManager::ExecutePatchTpye()
 {
@@ -435,7 +435,7 @@ void CPatchManager::ExecutePatchTpye()
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief VisiblePatchÁß Ä«¸Ş¶ó ÁÖÀ§ÀÇ Patch¸¦ ¾òÀ½  
+/// @brief VisiblePatchì¤‘ ì¹´ë©”ë¼ ì£¼ìœ„ì˜ Patchë¥¼ ì–»ìŒ  
 //----------------------------------------------------------------------------------------------------
 void CPatchManager::InsertCameraPatch(CMAP_PATCH* pPatch)
 {

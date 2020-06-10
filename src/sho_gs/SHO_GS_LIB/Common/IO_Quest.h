@@ -3,7 +3,7 @@
 #include "../util/classSTR.h"
 #include "../util/classHASH.h"
 #include "IO_STB.h"
-#include "CUserDATA.h"///Ãß°¡ 2004 / 2 /19 : Ãß°¡ nAvy
+#include "CUserDATA.h"///ì¶”ê°€ 2004 / 2 /19 : ì¶”ê°€ nAvy
 #pragma warning( disable : 4200 )
 //-------------------------------------------------------------------------------------------------
 
@@ -16,51 +16,51 @@
 #define	QST_VARTYPE_UNION		0x0600
 
 /// \struct STR_QUEST_DATA
-/// \brief  Äù½ºÆ® µ¥ÀÌÅ¸ÀÇ Çì´õ
-///		    STR_COND_001, STR_REWD_002¿¡ ÇÊ¿äÇÑ Structure. Questº¯¼ö¿¡ ´ëÇÑ Ã¼Å©¿¡ »ç¿ëµÊ
+/// \brief  í€˜ìŠ¤íŠ¸ ë°ì´íƒ€ì˜ í—¤ë”
+///		    STR_COND_001, STR_REWD_002ì— í•„ìš”í•œ Structure. Questë³€ìˆ˜ì— ëŒ€í•œ ì²´í¬ì— ì‚¬ìš©ë¨
 struct STR_QUEST_DATA
 {
 	union {
 		int		iType;	///< 0x00000000~0x00000010 ==> QuestVar0 ~ QuestVar9, 
 						///< 0x01000000~0x0100001F ==> switch0 ~ switch32
-						///< 0x02000000 ==> Äù½ºÆ® Å¸ÀÌ¸Ó¸¦ ÀÇ¹ÌÇÔ
-						///< 0x03000000 ~ 0x03000004 ==> ¿¡ÇÇ¼Òµå ÁøÇàº¯¼ö 5°³
-						///< 0x04000000 ~ 0x04000002 ==> Á÷¾÷ÁøÇàº¯¼ö 3°³
-						///< 0x05000000 ~ 0x05000006 ==> Çà¼ºº° ÁøÇàº¯¼ö 7°³
-						///< 0x06000000 ~ 0x06000009 ==> Á¶ÇÕº° ÁøÇàº¯¼ö 10°³
+						///< 0x02000000 ==> í€˜ìŠ¤íŠ¸ íƒ€ì´ë¨¸ë¥¼ ì˜ë¯¸í•¨
+						///< 0x03000000 ~ 0x03000004 ==> ì—í”¼ì†Œë“œ ì§„í–‰ë³€ìˆ˜ 5ê°œ
+						///< 0x04000000 ~ 0x04000002 ==> ì§ì—…ì§„í–‰ë³€ìˆ˜ 3ê°œ
+						///< 0x05000000 ~ 0x05000006 ==> í–‰ì„±ë³„ ì§„í–‰ë³€ìˆ˜ 7ê°œ
+						///< 0x06000000 ~ 0x06000009 ==> ì¡°í•©ë³„ ì§„í–‰ë³€ìˆ˜ 10ê°œ
 		struct {
 			WORD	m_wVarNO;
 			WORD	m_wVarTYPE;
 		} ;
 	} ;
 
-	// ºñ±³´Â :: ¾òÀº°ª op nValue
-	short	nValue;	///< ºñ±³ÇÒ µ¥ÀÌÅÍ°ª. 0~255, ½ºÀ§Ä¡ÀÏ °æ¿ì 0, 1 (iType¿¡ ÇØ´çÇÏ´Â °ª Op btValue)
-	BYTE	btOp;	///< iData°ª¿¡ ´ëÇÑ ºñ±³¹æ¹ı. 0 = °°´Ù, 1 = Å©´Ù, 2 = Å©°Å³ª °°´Ù. 3=ÀÛ´Ù, 4=ÀÛ°Å³ª °°´Ù, 
-					///< (ÀÌÈÄ ¾×¼ÇÂÊ) 5 = °ª¹Ù²Ş, 6 = Áõ°¡(ÁÖ¾îÁø ¸¸Å­), 7 = °¨¼Ò, 8 = ½ºÀ§Ä¡ Off, 9 = ½ºÀ§Ä¡ On
+	// ë¹„êµëŠ” :: ì–»ì€ê°’ op nValue
+	short	nValue;	///< ë¹„êµí•  ë°ì´í„°ê°’. 0~255, ìŠ¤ìœ„ì¹˜ì¼ ê²½ìš° 0, 1 (iTypeì— í•´ë‹¹í•˜ëŠ” ê°’ Op btValue)
+	BYTE	btOp;	///< iDataê°’ì— ëŒ€í•œ ë¹„êµë°©ë²•. 0 = ê°™ë‹¤, 1 = í¬ë‹¤, 2 = í¬ê±°ë‚˜ ê°™ë‹¤. 3=ì‘ë‹¤, 4=ì‘ê±°ë‚˜ ê°™ë‹¤, 
+					///< (ì´í›„ ì•¡ì…˜ìª½) 5 = ê°’ë°”ê¿ˆ, 6 = ì¦ê°€(ì£¼ì–´ì§„ ë§Œí¼), 7 = ê°ì†Œ, 8 = ìŠ¤ìœ„ì¹˜ Off, 9 = ìŠ¤ìœ„ì¹˜ On
 };
 
 /// \struct STR_ABIL_DATA
-/// \brief  STR_COND_003, STR_REWD_004 ¿¡ ÇÊ¿äÇÑ Structure. ´É·ÂÄ¡ Ã¼Å©¿¡ »ç¿ëµÇ´Â µ¥ÀÌÅÍ
+/// \brief  STR_COND_003, STR_REWD_004 ì— í•„ìš”í•œ Structure. ëŠ¥ë ¥ì¹˜ ì²´í¬ì— ì‚¬ìš©ë˜ëŠ” ë°ì´í„°
 struct STR_ABIL_DATA
 {
-	int		iType;	///< enum t_AbilityINDEX¿Í µ¿ÀÏ
+	int		iType;	///< enum t_AbilityINDEXì™€ ë™ì¼
 
-	int		iValue;	///< ºñ±³ÇÒ µ¥ÀÌÅÍ°ª (iTypeÀÇ ´É·ÂÄ¡ Op iValue)
-	BYTE	btOp;	///< iData°ª¿¡ ´ëÇÑ ºñ±³¹æ¹ı. 0 = °°´Ù, 1 = Å©´Ù, 2 = Å©°Å³ª °°´Ù. 3=ÀÛ´Ù, 4=ÀÛ°Å³ª °°´Ù.
-					///< (¾×¼ÇÂÊ) 5 = °ª¹Ù²Ş, 6 = Áõ°¡, 7 = °¨¼Ò
+	int		iValue;	///< ë¹„êµí•  ë°ì´í„°ê°’ (iTypeì˜ ëŠ¥ë ¥ì¹˜ Op iValue)
+	BYTE	btOp;	///< iDataê°’ì— ëŒ€í•œ ë¹„êµë°©ë²•. 0 = ê°™ë‹¤, 1 = í¬ë‹¤, 2 = í¬ê±°ë‚˜ ê°™ë‹¤. 3=ì‘ë‹¤, 4=ì‘ê±°ë‚˜ ê°™ë‹¤.
+					///< (ì•¡ì…˜ìª½) 5 = ê°’ë°”ê¿ˆ, 6 = ì¦ê°€, 7 = ê°ì†Œ
 };
 
 /// \struct STR_ITEM_DATA
-/// \brief STR_COND_004¿¡ ÇÊ¿äÇÑ Structure. ÇÑ°³ ItemÃ¼Å© µ¥ÀÌÅÍ
+/// \brief STR_COND_004ì— í•„ìš”í•œ Structure. í•œê°œ Itemì²´í¬ ë°ì´í„°
 struct STR_ITEM_DATA
 {
-	unsigned int uiItemSN;	///< ¾ÆÀÌÅÛ ¹øÈ£ (ÃÑ5ÀÚ¸® = ¾Õ2ÀÚ¸®(¾ÆÀÌÅÛºĞ·ù) + µŞ3ÀÚ¸®(¾ÆÀÌÅÛ¹øÈ£)
-							///< Äù½ºÆ® ¾ÆÀÌÅÛÀº ¾ÆÀÌÅÛºĞ·ù°¡ 13
-	int		iWhere;			///< ¾ÆÀÌÅÛ ÀåÂøÀ§Ä¡ (enum t_EquipINDEX¿Í µ¿ÀÏ)
-							///< EQUIP_IDX_NULL ÀÌ¸é ÀÎº¥Åä¸®¿¡ ÀÖ´ÂÁö¸¦ Ã¼Å©
-	int		iRequestCnt;	///< Ã¼Å©ÇÒ °¹¼ö. (ÀåÂø¾ÆÀÌÅÛÀÏ °æ¿ì´Â 1) (iTemSNÀÇ°¹¼ö Op iRequestCnt)
-	BYTE	btOp;			///< iRequestCnt¿¡ ´ëÇÑ OP.  0 = °°´Ù, 1 = Å©´Ù, 2 = Å©°Å³ª °°´Ù. 3=ÀÛ´Ù, 4=ÀÛ°Å³ª °°´Ù.
+	unsigned int uiItemSN;	///< ì•„ì´í…œ ë²ˆí˜¸ (ì´5ìë¦¬ = ì•2ìë¦¬(ì•„ì´í…œë¶„ë¥˜) + ë’·3ìë¦¬(ì•„ì´í…œë²ˆí˜¸)
+							///< í€˜ìŠ¤íŠ¸ ì•„ì´í…œì€ ì•„ì´í…œë¶„ë¥˜ê°€ 13
+	int		iWhere;			///< ì•„ì´í…œ ì¥ì°©ìœ„ì¹˜ (enum t_EquipINDEXì™€ ë™ì¼)
+							///< EQUIP_IDX_NULL ì´ë©´ ì¸ë²¤í† ë¦¬ì— ìˆëŠ”ì§€ë¥¼ ì²´í¬
+	int		iRequestCnt;	///< ì²´í¬í•  ê°¯ìˆ˜. (ì¥ì°©ì•„ì´í…œì¼ ê²½ìš°ëŠ” 1) (iTemSNì˜ê°¯ìˆ˜ Op iRequestCnt)
+	BYTE	btOp;			///< iRequestCntì— ëŒ€í•œ OP.  0 = ê°™ë‹¤, 1 = í¬ë‹¤, 2 = í¬ê±°ë‚˜ ê°™ë‹¤. 3=ì‘ë‹¤, 4=ì‘ê±°ë‚˜ ê°™ë‹¤.
 };
 
 
@@ -73,32 +73,32 @@ struct StrHeader
 } ;
 
 /****************************************************************************
- * ÇöÀç Äù½ºÆ®¸¦ ¼öÇàÁßÀÎ°¡
+ * í˜„ì¬ í€˜ìŠ¤íŠ¸ë¥¼ ìˆ˜í–‰ì¤‘ì¸ê°€
  */
 struct STR_COND_000
 {
-	unsigned int uiSize;	/// ÀÌ ½ºÆ®·°ÃÄÀÇ Å©±â
-	int			 iType;		/// ÄÁµğ¼Ç Å¸ÀÔ
+	unsigned int uiSize;	/// ì´ ìŠ¤íŠ¸ëŸ­ì³ì˜ í¬ê¸°
+	int			 iType;		/// ì»¨ë””ì…˜ íƒ€ì…
 
-	int			 iQuestSN;	/// °Ë»çÇÒ Äù½ºÆ® ¹øÈ£
+	int			 iQuestSN;	/// ê²€ì‚¬í•  í€˜ìŠ¤íŠ¸ ë²ˆí˜¸
 } ;
 
 
 /****************************************************************************
- * Äù½ºÆ® µ¥ÀÌÅÍ Ã¼Å©
+ * í€˜ìŠ¤íŠ¸ ë°ì´í„° ì²´í¬
  */
 struct STR_COND_001
 {
-	unsigned int	uiSize;			/// ÀÌ ½ºÆ®·°ÃÄÀÇ Å©±â
-	int				iType;			/// ÄÁµğ¼Ç Å¸ÀÔ
+	unsigned int	uiSize;			/// ì´ ìŠ¤íŠ¸ëŸ­ì³ì˜ í¬ê¸°
+	int				iType;			/// ì»¨ë””ì…˜ íƒ€ì…
 
-	int				iDataCnt;		/// µÚ¿¡ ¸î°³ÀÇ µ¥ÀÌÅÍ°¡ ÀÖ´ÂÁö
-	STR_QUEST_DATA	CheckData[ 1 ]; /// Äù½ºÅÍ º¯¼ö°ªÀÌ³ª, ½ºÀ§Ä¡¿¡ ´ëÇØ °Ë»çÇÏ´Â µ¥ÀÌÅÍ
+	int				iDataCnt;		/// ë’¤ì— ëª‡ê°œì˜ ë°ì´í„°ê°€ ìˆëŠ”ì§€
+	STR_QUEST_DATA	CheckData[ 1 ]; /// í€˜ìŠ¤í„° ë³€ìˆ˜ê°’ì´ë‚˜, ìŠ¤ìœ„ì¹˜ì— ëŒ€í•´ ê²€ì‚¬í•˜ëŠ” ë°ì´í„°
 } ;
 
 
 /******************************************************************************
- * Äù½ºÆ® ÁøÇà º¯¼ö Ã¼Å©
+ * í€˜ìŠ¤íŠ¸ ì§„í–‰ ë³€ìˆ˜ ì²´í¬
  */ 
 struct STR_COND_002
 {
@@ -106,17 +106,17 @@ struct STR_COND_002
 	int					iType;
 
 	int					iDataCnt;
-	STR_QUEST_DATA		CheckData[ 1 ]; /// Ã¼Å©ÇÒ Äù½ºÆ®ÁøÇà µ¥ÀÌÅÍ°¡ ¿©±â¿¡ ¹è¿­·Î
+	STR_QUEST_DATA		CheckData[ 1 ]; /// ì²´í¬í•  í€˜ìŠ¤íŠ¸ì§„í–‰ ë°ì´í„°ê°€ ì—¬ê¸°ì— ë°°ì—´ë¡œ
 };
 
 
 /****************************************************************************
- * ´É·ÂÄ¡ Ã¼Å©
+ * ëŠ¥ë ¥ì¹˜ ì²´í¬
  */
 struct STR_COND_003
 {
-	unsigned int	uiSize;			/// ÀÌ ½ºÆ®·°ÃÄÀÇ Å©±â
-	int				iType;			/// ÄÁµğ¼Ç Å¸ÀÔ
+	unsigned int	uiSize;			/// ì´ ìŠ¤íŠ¸ëŸ­ì³ì˜ í¬ê¸°
+	int				iType;			/// ì»¨ë””ì…˜ íƒ€ì…
 
 	int				iDataCnt;
 	STR_ABIL_DATA	CheckData[ 1 ];
@@ -124,7 +124,7 @@ struct STR_COND_003
 
 
 /****************************************************************************
- * ¼ÒÁö/ÀåÂø ¾ÆÀÌÅÛ Ã¼Å©
+ * ì†Œì§€/ì¥ì°© ì•„ì´í…œ ì²´í¬
  */
 struct STR_COND_004
 {
@@ -137,37 +137,37 @@ struct STR_COND_004
 
 
 /****************************************************************************
- * ÆÄÆ¼ Ã¼Å©
+ * íŒŒí‹° ì²´í¬
  */
 struct STR_COND_005
 {
 	unsigned int	uiSize;
 	int				iType;
 
-	BYTE			btIsLeader;		/// ÆÄÆ¼¸®´õÀÎ°¡ ? 0 = µûÁúÇÊ¿ä ¾øÀ½. 1 = ÆÄÆ¼¸®´õÀÎÁö Ã¼Å©
-	int				iLevel;			/// ÆÄÆ¼·¹º§ ¾ó¸¶ÀÌ»ó (ÀÌ»ó¸¸ »ı°¢ÇÔ)
-	BYTE			btReversed;		/// ÀÌÈÄ¸¦ À§ÇØ¼­ ±×³É Ãß°¡. 2004.02.09ÇöÀç´Â ¹«Á¶°Ç 0
+	BYTE			btIsLeader;		/// íŒŒí‹°ë¦¬ë”ì¸ê°€ ? 0 = ë”°ì§ˆí•„ìš” ì—†ìŒ. 1 = íŒŒí‹°ë¦¬ë”ì¸ì§€ ì²´í¬
+	int				iLevel;			/// íŒŒí‹°ë ˆë²¨ ì–¼ë§ˆì´ìƒ (ì´ìƒë§Œ ìƒê°í•¨)
+	BYTE			btReversed;		/// ì´í›„ë¥¼ ìœ„í•´ì„œ ê·¸ëƒ¥ ì¶”ê°€. 2004.02.09í˜„ì¬ëŠ” ë¬´ì¡°ê±´ 0
 };
 
 
 /****************************************************************************
- * À§Ä¡ Ã¼Å©
+ * ìœ„ì¹˜ ì²´í¬
  */
 struct STR_COND_006
 {
 	unsigned int	uiSize;
 	int				iType;
 
-	int				iZoneSN;		/// Á¸¹øÈ£
-	int				iX;				/// XÁÂÇ¥
-	int				iY;				/// YÁÂÇ¥
-	int				iZ;				/// ³ªÁßÀ» À§ÇØ¼­. 2004.02.09ÇöÀç´Â ¹«Á¶°Ç 0
-	int				iRadius;		/// ¹İÁö¸§. (X,Y)¸¦ ±âÁØÀ¸·Î ÇÏ¿© ¹İÁö¸§ ¾ó¸¶ÀÌ³»¿¡..
+	int				iZoneSN;		/// ì¡´ë²ˆí˜¸
+	int				iX;				/// Xì¢Œí‘œ
+	int				iY;				/// Yì¢Œí‘œ
+	int				iZ;				/// ë‚˜ì¤‘ì„ ìœ„í•´ì„œ. 2004.02.09í˜„ì¬ëŠ” ë¬´ì¡°ê±´ 0
+	int				iRadius;		/// ë°˜ì§€ë¦„. (X,Y)ë¥¼ ê¸°ì¤€ìœ¼ë¡œ í•˜ì—¬ ë°˜ì§€ë¦„ ì–¼ë§ˆì´ë‚´ì—..
 };
 
 
 /****************************************************************************
- * ¿ùµå ½Ã°¢ Ã¼Å©
+ * ì›”ë“œ ì‹œê° ì²´í¬
  */
 struct STR_COND_007
 {
@@ -175,25 +175,25 @@ struct STR_COND_007
 	int				iType;
 
 	unsigned long	ulTime;			/// 
-	unsigned long	ulEndTime;		/// ¸ÅÀÏ 0½Ã¸¦ ±âÁØÀ¸·Î ¿ùµå½Ã°¢ÀÌ ulTimeÀÌ»ó ulEndTimeÀÌÇÏÀÎ°¡ ?
+	unsigned long	ulEndTime;		/// ë§¤ì¼ 0ì‹œë¥¼ ê¸°ì¤€ìœ¼ë¡œ ì›”ë“œì‹œê°ì´ ulTimeì´ìƒ ulEndTimeì´í•˜ì¸ê°€ ?
 };
 
 
 /****************************************************************************
- * µî·ÏÄù½ºÆ® ¼öÇà ÀÜ¿©½Ã°£ Ã¼Å©
+ * ë“±ë¡í€˜ìŠ¤íŠ¸ ìˆ˜í–‰ ì”ì—¬ì‹œê°„ ì²´í¬
  */
 struct STR_COND_008
 {
 	unsigned int	uiSize;
 	int				iType;
 
-	unsigned long	ulTime;			/// Ã¼Å©ÇÒ °ª (ulTime Op Äù½ºÆ®µî·Ï½Ã°£)
-	BYTE			btOp;			/// ulTime¿¡ ´ëÇÑ ºñ±³¹æ¹ı. 0 = °°´Ù, 1 = Å©´Ù, 2 = Å©°Å³ª °°´Ù. 3=ÀÛ´Ù, 4=ÀÛ°Å³ª °°´Ù.
+	unsigned long	ulTime;			/// ì²´í¬í•  ê°’ (ulTime Op í€˜ìŠ¤íŠ¸ë“±ë¡ì‹œê°„)
+	BYTE			btOp;			/// ulTimeì— ëŒ€í•œ ë¹„êµë°©ë²•. 0 = ê°™ë‹¤, 1 = í¬ë‹¤, 2 = í¬ê±°ë‚˜ ê°™ë‹¤. 3=ì‘ë‹¤, 4=ì‘ê±°ë‚˜ ê°™ë‹¤.
 };
 
 
 /****************************************************************************
- * ½ºÅ³À» º¸À¯ÇÏ°í ÀÖ´ÂÁö Ã¼Å©
+ * ìŠ¤í‚¬ì„ ë³´ìœ í•˜ê³  ìˆëŠ”ì§€ ì²´í¬
  */
 struct STR_COND_009
 {
@@ -201,13 +201,13 @@ struct STR_COND_009
 	int				iType;
 
 	int				iSkillSN1;
-	int				iSkillSN2;	/// iSkillSN1 ~ iSkillSN2 ¹ø ½ºÅ³À» °¡Áö°í ÀÖ´Â°¡/¾ø´Â°¡ ?
-	BYTE			btOp;		/// 0 = ¾ø´ÂÁö Ã¼Å©, 1 = ÀÖ´ÂÁö Ã¼Å©
+	int				iSkillSN2;	/// iSkillSN1 ~ iSkillSN2 ë²ˆ ìŠ¤í‚¬ì„ ê°€ì§€ê³  ìˆëŠ”ê°€/ì—†ëŠ”ê°€ ?
+	BYTE			btOp;		/// 0 = ì—†ëŠ”ì§€ ì²´í¬, 1 = ìˆëŠ”ì§€ ì²´í¬
 } ;
 
 
 /****************************************************************************
- * È®·ü
+ * í™•ë¥ 
  */
 struct STR_COND_010
 {
@@ -215,11 +215,11 @@ struct STR_COND_010
 	int				iType;
 
 	BYTE			btLowPcnt;	///
-	BYTE			btHighPcnt; /// btLowPcnt <= È®·ü AND  È®·ü <= btHighPcnt
+	BYTE			btHighPcnt; /// btLowPcnt <= í™•ë¥  AND  í™•ë¥  <= btHighPcnt
 };
 
 /****************************************************************************
- * NPC º¯¼ö °ª Ã¼Å©
+ * NPC ë³€ìˆ˜ ê°’ ì²´í¬
  */
 typedef struct	tagValueQST
 {
@@ -228,21 +228,21 @@ typedef struct	tagValueQST
 
 	BYTE			btWho;	// 0:NPC, 1:EventOBJ
 
-	short			nVarNo;	// º¯¼ö ¹øÈ£ : 0 ~ , Á¸ÀÇ °æÁ¦µ¥ÀÌÅÍ º¯¼ö
-	int				iValue;	// ºñ±³ÇÒ µ¥ÀÌÅÍ°ª (iTypeÀÇ ´É·ÂÄ¡ Op iValue)
-	BYTE			btOp;	// iValue°ª¿¡ ´ëÇÑ ºñ±³¹æ¹ı. 0 = °°´Ù, 1 = Å©´Ù, 2 = Å©°Å³ª °°´Ù. 3=ÀÛ´Ù, 4=ÀÛ°Å³ª °°´Ù.
-							// (¾×¼ÇÂÊ) 5 = °ª¹Ù²Ş, 6 = Áõ°¡, 7 = °¨¼Ò
+	short			nVarNo;	// ë³€ìˆ˜ ë²ˆí˜¸ : 0 ~ , ì¡´ì˜ ê²½ì œë°ì´í„° ë³€ìˆ˜
+	int				iValue;	// ë¹„êµí•  ë°ì´í„°ê°’ (iTypeì˜ ëŠ¥ë ¥ì¹˜ Op iValue)
+	BYTE			btOp;	// iValueê°’ì— ëŒ€í•œ ë¹„êµë°©ë²•. 0 = ê°™ë‹¤, 1 = í¬ë‹¤, 2 = í¬ê±°ë‚˜ ê°™ë‹¤. 3=ì‘ë‹¤, 4=ì‘ê±°ë‚˜ ê°™ë‹¤.
+							// (ì•¡ì…˜ìª½) 5 = ê°’ë°”ê¿ˆ, 6 = ì¦ê°€, 7 = ê°ì†Œ
 } STR_COND_011, STR_REWD_011;
 
 /****************************************************************************
- * ÀÌº¥Æ® ¼±ÅÃ
+ * ì´ë²¤íŠ¸ ì„ íƒ
  */
 struct STR_COND_012
 {
 	unsigned int	uiSize;
 	int				iType;
 
-	short			iZone;	/// 04.03.40 Ãß°¡...
+	short			iZone;	/// 04.03.40 ì¶”ê°€...
 
 	int				iX;
 	int				iY;
@@ -254,20 +254,20 @@ struct STR_COND_012
 
 
 /****************************************************************************
- * NPC ¼±ÅÃ
+ * NPC ì„ íƒ
  */
 struct STR_COND_013
 {
 	unsigned int	uiSize;
 	int				iType;
 
-//	short			nZoneNo;	/// 04.03.30 Ãß°¡...
-	int				iNpcNo; /// ¼±ÅÃÇÒ NPC ¹øÈ£
+//	short			nZoneNo;	/// 04.03.30 ì¶”ê°€...
+	int				iNpcNo; /// ì„ íƒí•  NPC ë²ˆí˜¸
 };
 
 
 /****************************************************************************
- * Switch Ã¼Å©
+ * Switch ì²´í¬
  */
 struct STR_COND_014
 {
@@ -275,12 +275,12 @@ struct STR_COND_014
 	int				iType;
 
 	short			nSN; // 0 ~ 255
-	BYTE			btOp; // 0 = OffÀÎÁö Ã¼Å©, 1 = OnÀÎÁö Ã¼Å©
+	BYTE			btOp; // 0 = Offì¸ì§€ ì²´í¬, 1 = Onì¸ì§€ ì²´í¬
 };
 
 
 /****************************************************************************
- * ÆÄÆ¼ÀÎ¿ø Ã¼Å©. 
+ * íŒŒí‹°ì¸ì› ì²´í¬. 
  */
 struct STR_COND_015
 {
@@ -288,22 +288,22 @@ struct STR_COND_015
 	int				iType;
 
 	short			nNumber1;
-	short			nNumber2; // nNumber1 <= ÆÄÆ¼¿ø¼ö <= nNumber2 ÀÌ¸é true
-							  // ºñÆÄÆ¼Ã¼Å©´Â 0 <= ÆÄÆ¼¿ù¼ö <= 0 ÀÌ true ÀÎ°ÍÀ¸·Î ÆÇ´Ü
+	short			nNumber2; // nNumber1 <= íŒŒí‹°ì›ìˆ˜ <= nNumber2 ì´ë©´ true
+							  // ë¹„íŒŒí‹°ì²´í¬ëŠ” 0 <= íŒŒí‹°ì›”ìˆ˜ <= 0 ì´ true ì¸ê²ƒìœ¼ë¡œ íŒë‹¨
 };
 
 /****************************************************************************
- * Á¸½Ã°¢ Ã¼Å©
+ * ì¡´ì‹œê° ì²´í¬
  */
 struct STR_COND_016
 {
 	unsigned int	uiSize;
 	int				iType;
 
-	BYTE			btWho;		/// 0=ÇöÀç ¼±ÅÃµÈ NPC, 1=Á¶°Ç¿¡¼­ ÁöÁ¤µÈ Event, 2=»ç¿ëÀÚ
+	BYTE			btWho;		/// 0=í˜„ì¬ ì„ íƒëœ NPC, 1=ì¡°ê±´ì—ì„œ ì§€ì •ëœ Event, 2=ì‚¬ìš©ì
 
 	unsigned long	ulTime;		//
-	unsigned long	ulEndTime;	// ulTime <= ÇöÀç Á¸½Ã°¢ <= ulEndTime ÀÌ¸é true
+	unsigned long	ulEndTime;	// ulTime <= í˜„ì¬ ì¡´ì‹œê° <= ulEndTime ì´ë©´ true
 };
 
 
@@ -314,7 +314,7 @@ struct STR_NPCVAR
 };
 
 /****************************************************************************
- * NPC º¯¼ö ºñ±³. (NPC1ÀÇ Aº¯¼ö OP NPC2ÀÇ Cº¯¼ö)
+ * NPC ë³€ìˆ˜ ë¹„êµ. (NPC1ì˜ Aë³€ìˆ˜ OP NPC2ì˜ Cë³€ìˆ˜)
  */
 struct STR_COND_017
 {
@@ -323,46 +323,46 @@ struct STR_COND_017
 
 	STR_NPCVAR		NpcVar1;			
 	STR_NPCVAR		NpcVar2;			
-	BYTE			btOp; // µ¿ÀÏ .  <NpcVar1.nVarNoÀÇ °ª> btOp <NpcVar2.nVarNoÀÇ °ª>
+	BYTE			btOp; // ë™ì¼ .  <NpcVar1.nVarNoì˜ ê°’> btOp <NpcVar2.nVarNoì˜ ê°’>
 };
 
 
 /****************************************************************************
- * ³¯Â¥ + ½Ã°¢ Ã¼Å©
+ * ë‚ ì§œ + ì‹œê° ì²´í¬
  */
 struct STR_COND_018
 {
 	unsigned int	uiSize;
 	int				iType;
 
-	BYTE			btDate;		// ³¯Â¥. (1 ~ 31)
+	BYTE			btDate;		// ë‚ ì§œ. (1 ~ 31)
 
-	BYTE			btHour1;	// ½Ã (1 ~ 24)
-	BYTE			btMin1;		// ºĞ (1 ~ 60)
-	BYTE			btHour2;	// ½Ã
-	BYTE			btMin2;		// ºĞ
-	//  ÇöÀçÀÇ ³¯Â¥°¡ btDate ÀÌ°í, btHour1½Ã btMin1ºĞ  <= ÇöÀç ½Ã°¢ <= btHour1½Ã btMin1ºĞ ÀÌ¸é true
+	BYTE			btHour1;	// ì‹œ (1 ~ 24)
+	BYTE			btMin1;		// ë¶„ (1 ~ 60)
+	BYTE			btHour2;	// ì‹œ
+	BYTE			btMin2;		// ë¶„
+	//  í˜„ì¬ì˜ ë‚ ì§œê°€ btDate ì´ê³ , btHour1ì‹œ btMin1ë¶„  <= í˜„ì¬ ì‹œê° <= btHour1ì‹œ btMin1ë¶„ ì´ë©´ true
 };
 
 /****************************************************************************
- * ¿äÀÏ + ½Ã°¢ Ã¼Å©
+ * ìš”ì¼ + ì‹œê° ì²´í¬
  */
 struct STR_COND_019
 {
 	unsigned int	uiSize;
 	int				iType;
 
-	BYTE			btWeekDay;	// ¿äÀÏ (0 ~ 6)
+	BYTE			btWeekDay;	// ìš”ì¼ (0 ~ 6)
 
-	BYTE			btHour1;	// ½Ã
-	BYTE			btMin1;		// ºĞ
+	BYTE			btHour1;	// ì‹œ
+	BYTE			btMin1;		// ë¶„
 	BYTE			btHour2;	
 	BYTE			btMin2;		
-	//  ÇöÀçÀÇ ¿äÀÏÀÌ btWeekDay ÀÌ°í, btHour1½Ã btMin1ºĞ  <= ÇöÀç ½Ã°¢ <= btHour1½Ã btMin1ºĞ ÀÌ¸é true
+	//  í˜„ì¬ì˜ ìš”ì¼ì´ btWeekDay ì´ê³ , btHour1ì‹œ btMin1ë¶„  <= í˜„ì¬ ì‹œê° <= btHour1ì‹œ btMin1ë¶„ ì´ë©´ true
 };
 
 /****************************************************************************
- * (PVP Á¸)ÆÀ¹øÈ£ Ã¼Å©
+ * (PVP ì¡´)íŒ€ë²ˆí˜¸ ì²´í¬
  */
 struct STR_COND_020
 {
@@ -370,24 +370,24 @@ struct STR_COND_020
 	int				iType;
 
 	int				iNo1;
-	int				iNo2; // nNo1 <= ÆÀ¹øÈ£ <= nNo2 ÀÌ¸é true
+	int				iNo2; // nNo1 <= íŒ€ë²ˆí˜¸ <= nNo2 ì´ë©´ true
 };
 
 
 /****************************************************************************
- * NPC¿Í °Å·¡ Ã¼Å©...
+ * NPCì™€ ê±°ë˜ ì²´í¬...
  */
 struct STR_COND_021
 {
 	unsigned int	uiSize;
 	int				iType;
 
-	BYTE			btSelObjType;	/// °Å¸® ºñ±³ÇÑ ¼±ÅÃÇÑ °´Ã¼...
-	int				iRadius;		/// ¹İÁö¸§. (X,Y)¸¦ ±âÁØÀ¸·Î ÇÏ¿© ¹İÁö¸§ x ¹ÌÅÍ³»¿¡..
+	BYTE			btSelObjType;	/// ê±°ë¦¬ ë¹„êµí•œ ì„ íƒí•œ ê°ì²´...
+	int				iRadius;		/// ë°˜ì§€ë¦„. (X,Y)ë¥¼ ê¸°ì¤€ìœ¼ë¡œ í•˜ì—¬ ë°˜ì§€ë¦„ x ë¯¸í„°ë‚´ì—..
 };
 
 /****************************************************************************
- * Ã¤³Î ¼­¹ö Ã¼Å©
+ * ì±„ë„ ì„œë²„ ì²´í¬
  */
 struct STR_COND_022
 {
@@ -400,86 +400,86 @@ struct STR_COND_022
 
 
 //
-// Å¬·£ °ü·Ã
+// í´ëœ ê´€ë ¨
 //
 
-// Å¬·£¿¡ °¡ÀÔ Ã¼Å© - Ãß°¡ µ¥ÀÌÅÍ ¾øÀ½
+// í´ëœì— ê°€ì… ì²´í¬ - ì¶”ê°€ ë°ì´í„° ì—†ìŒ
 struct STR_COND_023
 {
 	unsigned int	uiSize;
 	int				iType;
-	BYTE			btReg;	// 0 = ºñ°¡ÀÔÀÚ³Ä? 1= °¡ÀÔÀÚ³Ä?
+	BYTE			btReg;	// 0 = ë¹„ê°€ì…ìëƒ? 1= ê°€ì…ìëƒ?
 };
 
-// Å¬·£ Á÷À§ Ã¼Å©
+// í´ëœ ì§ìœ„ ì²´í¬
 struct STR_COND_024
 {
 	unsigned int	uiSize;
 	int				iType;
 
-	short			nPOS;	// Á÷À§ ¹øÈ£
-	BYTE			btOP;	// 0 = °°´Ù, 1 = Å©´Ù, 2 = Å©°Å³ª °°´Ù. 3=ÀÛ´Ù, 4=ÀÛ°Å³ª °°´Ù.
+	short			nPOS;	// ì§ìœ„ ë²ˆí˜¸
+	BYTE			btOP;	// 0 = ê°™ë‹¤, 1 = í¬ë‹¤, 2 = í¬ê±°ë‚˜ ê°™ë‹¤. 3=ì‘ë‹¤, 4=ì‘ê±°ë‚˜ ê°™ë‹¤.
 };
 
-// Å¬·£ °³ÀÎ ±â¿©µµ Ã¼Å©
+// í´ëœ ê°œì¸ ê¸°ì—¬ë„ ì²´í¬
 struct STR_COND_025
 {
 	unsigned int	uiSize;
 	int				iType;
 
-	short			nCONT;	// ±â¿©µµ
-	BYTE			btOP;	// 0 = °°´Ù, 1 = Å©´Ù, 2 = Å©°Å³ª °°´Ù. 3=ÀÛ´Ù, 4=ÀÛ°Å³ª °°´Ù.
+	short			nCONT;	// ê¸°ì—¬ë„
+	BYTE			btOP;	// 0 = ê°™ë‹¤, 1 = í¬ë‹¤, 2 = í¬ê±°ë‚˜ ê°™ë‹¤. 3=ì‘ë‹¤, 4=ì‘ê±°ë‚˜ ê°™ë‹¤.
 };
 
-// µî±Ş Ã¼Å©
+// ë“±ê¸‰ ì²´í¬
 struct STR_COND_026
 {
 	unsigned int	uiSize;
 	int				iType;
 
-	short			nGRD;	// Å¬·£ µî±Ş
-	BYTE			btOP;	// 0 = °°´Ù, 1 = Å©´Ù, 2 = Å©°Å³ª °°´Ù. 3=ÀÛ´Ù, 4=ÀÛ°Å³ª °°´Ù.
+	short			nGRD;	// í´ëœ ë“±ê¸‰
+	BYTE			btOP;	// 0 = ê°™ë‹¤, 1 = í¬ë‹¤, 2 = í¬ê±°ë‚˜ ê°™ë‹¤. 3=ì‘ë‹¤, 4=ì‘ê±°ë‚˜ ê°™ë‹¤.
 };
 
-// Á¡¼ö Ã¼Å©
+// ì ìˆ˜ ì²´í¬
 struct STR_COND_027
 {
 	unsigned int	uiSize;
 	int				iType;
 
-	short			nPOINT;	// Å¬·£ Á¡¼ö
-	BYTE			btOP;	// 0 = °°´Ù, 1 = Å©´Ù, 2 = Å©°Å³ª °°´Ù. 3=ÀÛ´Ù, 4=ÀÛ°Å³ª °°´Ù.
+	short			nPOINT;	// í´ëœ ì ìˆ˜
+	BYTE			btOP;	// 0 = ê°™ë‹¤, 1 = í¬ë‹¤, 2 = í¬ê±°ë‚˜ ê°™ë‹¤. 3=ì‘ë‹¤, 4=ì‘ê±°ë‚˜ ê°™ë‹¤.
 };
 
-// ¸Ó´Ï Ã¼Å©
+// ë¨¸ë‹ˆ ì²´í¬
 struct STR_COND_028
 {
 	unsigned int	uiSize;
 	int				iType;
 
-	int				iMONEY;	// Å¬·£ ¸Ó´Ï
-	BYTE			btOP;	// 0 = °°´Ù, 1 = Å©´Ù, 2 = Å©°Å³ª °°´Ù. 3=ÀÛ´Ù, 4=ÀÛ°Å³ª °°´Ù.
+	int				iMONEY;	// í´ëœ ë¨¸ë‹ˆ
+	BYTE			btOP;	// 0 = ê°™ë‹¤, 1 = í¬ë‹¤, 2 = í¬ê±°ë‚˜ ê°™ë‹¤. 3=ì‘ë‹¤, 4=ì‘ê±°ë‚˜ ê°™ë‹¤.
 };
 
-// ÀÎ¿ø Ã¼Å©
+// ì¸ì› ì²´í¬
 struct STR_COND_029
 {
 	unsigned int	uiSize;
 	int				iType;
 
-	short			nMemberCNT;	// Å¬·£ ÀÎ¿ø
-	BYTE			btOP;	// 0 = °°´Ù, 1 = Å©´Ù, 2 = Å©°Å³ª °°´Ù. 3=ÀÛ´Ù, 4=ÀÛ°Å³ª °°´Ù.
+	short			nMemberCNT;	// í´ëœ ì¸ì›
+	BYTE			btOP;	// 0 = ê°™ë‹¤, 1 = í¬ë‹¤, 2 = í¬ê±°ë‚˜ ê°™ë‹¤. 3=ì‘ë‹¤, 4=ì‘ê±°ë‚˜ ê°™ë‹¤.
 };
 
-// ½ºÅ³ Ã¼Å©
+// ìŠ¤í‚¬ ì²´í¬
 struct STR_COND_030
 {
 	unsigned int	uiSize;
 	int				iType;
 
 	short			nSkill1;
-	short			nSkill2; // nSkill1 ~ nSkill2 ÀÇ ½ºÅ³ÀÌ ÀÖ´ÂÁö/¾ø´ÂÁö Ã¼Å©
-	BYTE			btOP;	// 0: ¾ø´Â°¡ ?  1: ÀÖ´Â°¡ ?
+	short			nSkill2; // nSkill1 ~ nSkill2 ì˜ ìŠ¤í‚¬ì´ ìˆëŠ”ì§€/ì—†ëŠ”ì§€ ì²´í¬
+	BYTE			btOP;	// 0: ì—†ëŠ”ê°€ ?  1: ìˆëŠ”ê°€ ?
 };
 
 
@@ -487,140 +487,140 @@ struct STR_COND_030
 
 //-------------------------------------------------------------------------------------------------
 
-// Äù½ºÆ® µî·Ï/»èÁ¦ ¿äÃ»
+// í€˜ìŠ¤íŠ¸ ë“±ë¡/ì‚­ì œ ìš”ì²­
 struct STR_REWD_000
 {
 	unsigned int	uiSize;
 	int				iType;
 
-	int				iQuestSN;	/// Quest ¹øÈ£. »èÁ¦½Ã´Â ÇöÀç Äù½ºÆ®¸¦ »èÁ¦ÇÏ´Â °Å´Ï±î, ÇÊ¿ä ¾øÀ½.
-	BYTE			btOp;		/// 0 = »èÁ¦, 1 = µî·Ï, 2 = º¯°æ(µ¥ÀÌÅÍ À¯Áö), 3 = º¯°æ/ÃÖ±âÈ­ 
+	int				iQuestSN;	/// Quest ë²ˆí˜¸. ì‚­ì œì‹œëŠ” í˜„ì¬ í€˜ìŠ¤íŠ¸ë¥¼ ì‚­ì œí•˜ëŠ” ê±°ë‹ˆê¹Œ, í•„ìš” ì—†ìŒ.
+	BYTE			btOp;		/// 0 = ì‚­ì œ, 1 = ë“±ë¡, 2 = ë³€ê²½(ë°ì´í„° ìœ ì§€), 3 = ë³€ê²½/ìµœê¸°í™” 
 } ;
 
 
-// Äù½ºÆ®Àü¿ë ¾ÆÀÌÅÛ ÁÖ±â/»¯±â (ÀÏ¹İ ¾ÆÀÌÅÛµµ ÀÌ°Å »ç¿ëÇØµµ µÊ)
-// »¯±â´Â Quest Inventory¿¡¼­. ÁÖ´Â°Å´Â ÀÏ¹İ, Äù½ºÆ® ¾ÆÀÌÅÛ ¸ğµÎ °¡´É
+// í€˜ìŠ¤íŠ¸ì „ìš© ì•„ì´í…œ ì£¼ê¸°/ëºê¸° (ì¼ë°˜ ì•„ì´í…œë„ ì´ê±° ì‚¬ìš©í•´ë„ ë¨)
+// ëºê¸°ëŠ” Quest Inventoryì—ì„œ. ì£¼ëŠ”ê±°ëŠ” ì¼ë°˜, í€˜ìŠ¤íŠ¸ ì•„ì´í…œ ëª¨ë‘ ê°€ëŠ¥
 struct STR_REWD_001
 {
 	unsigned int	uiSize;
 	int				iType;
 
 	unsigned int	uiItemSN;
-	BYTE			btOp;			/// 0 = »©¾Ñ±â, 1 = ÁÖ±â
-	short			nDupCNT;		/// Áßº¹ °³¼ö
-	BYTE			btPartyOpt;		/// 0 = ÆÄÆ¼¿ø Àû¿ë ¾ÈÇÔ, 1 = ÆÄÆ¼¿ø Àû¿ë
+	BYTE			btOp;			/// 0 = ë¹¼ì•—ê¸°, 1 = ì£¼ê¸°
+	short			nDupCNT;		/// ì¤‘ë³µ ê°œìˆ˜
+	BYTE			btPartyOpt;		/// 0 = íŒŒí‹°ì› ì ìš© ì•ˆí•¨, 1 = íŒŒí‹°ì› ì ìš©
 } ;
 
 
-// Äù½ºÆ® º¯¼ö°ª/½ºÀ§Ä¡°ª º¯°æ
+// í€˜ìŠ¤íŠ¸ ë³€ìˆ˜ê°’/ìŠ¤ìœ„ì¹˜ê°’ ë³€ê²½
 struct STR_REWD_002
 {
 	unsigned int	uiSize;
 	int				iType;
 
-	int				iDataCnt;		/// µÚ¿¡ ¸î°³ÀÇ µ¥ÀÌÅÍ°¡ ÀÖ´ÂÁö
-	STR_QUEST_DATA	CheckData[ 1 ]; /// Äù½ºÅÍ º¯¼ö°ªÀÌ³ª, ½ºÀ§Ä¡¿¡ ´ëÇØ °Ë»çÇÏ´Â µ¥ÀÌÅÍ
+	int				iDataCnt;		/// ë’¤ì— ëª‡ê°œì˜ ë°ì´í„°ê°€ ìˆëŠ”ì§€
+	STR_QUEST_DATA	CheckData[ 1 ]; /// í€˜ìŠ¤í„° ë³€ìˆ˜ê°’ì´ë‚˜, ìŠ¤ìœ„ì¹˜ì— ëŒ€í•´ ê²€ì‚¬í•˜ëŠ” ë°ì´í„°
 } ;
 
 
-// Ä³¸¯ÅÍ ´É·ÂÄ¡ º¯°æ - (º¯°æ)
+// ìºë¦­í„° ëŠ¥ë ¥ì¹˜ ë³€ê²½ - (ë³€ê²½)
 struct STR_REWD_003
 {
 	unsigned int	uiSize;
 	int				iType;
 
-	int				iDataCnt;		/// µÚ¿¡ ¸î°³ÀÇ µ¥ÀÌÅÍ°¡ ÀÖ´ÂÁö
-	STR_ABIL_DATA	CheckData[ 1 ]; /// º¯°æ½ÃÅ³ ´É·ÂÄ¡
-	BYTE			btPartyOpt;		/// 0 = ÆÄÆ¼¿ø Àû¿ë ¾ÈÇÔ, 1 = ÆÄÆ¼¿ø Àû¿ë
+	int				iDataCnt;		/// ë’¤ì— ëª‡ê°œì˜ ë°ì´í„°ê°€ ìˆëŠ”ì§€
+	STR_ABIL_DATA	CheckData[ 1 ]; /// ë³€ê²½ì‹œí‚¬ ëŠ¥ë ¥ì¹˜
+	BYTE			btPartyOpt;		/// 0 = íŒŒí‹°ì› ì ìš© ì•ˆí•¨, 1 = íŒŒí‹°ì› ì ìš©
 } ;
 
 
-// Ä³¸¯ÅÍ ÁøÇàº¯¼ö°ª º¯°æ
+// ìºë¦­í„° ì§„í–‰ë³€ìˆ˜ê°’ ë³€ê²½
 struct STR_REWD_004
 {
 	unsigned int	uiSize;
 	int				iType;
 
-	int				iDataCnt;		/// µÚ¿¡ ¸î°³ÀÇ µ¥ÀÌÅÍ°¡ ÀÖ´ÂÁö
+	int				iDataCnt;		/// ë’¤ì— ëª‡ê°œì˜ ë°ì´í„°ê°€ ìˆëŠ”ì§€
 	STR_QUEST_DATA	CheckData[ 1 ];
 } ;
 
 
-// º¸»ó
+// ë³´ìƒ
 struct STR_REWD_005
 {
 	unsigned int	uiSize;
 	int				iType;
 
-	BYTE			btTarget;	/// 0 = °æÇèÄ¡, 1 = µ· , 2 = ¾ÆÀÌÅÛ
-	BYTE			btEquation;	/// »çÀü¿¡ ¾à¼ÓµÈ °è»ê½Ä
-	int				iValue;		/// ±âÁØ°ª
-	int				iItemSN;	/// btTarget = 2 ÀÏ °æ¿ì ¾ÆÀÌÅÛ¹øÈ£´Â ÀÌ°Å·Î ÂüÁ¶
-	BYTE			btPartyOpt;	/// 0 = ÆÄÆ¼¿ø Àû¿ë ¾ÈÇÔ, 1 = ÆÄÆ¼¿ø Àû¿ë
-	// 2004-06-03 ÀÌÈÄ
-	short			nItemOpt;	// ¾ÆÀÌÅÛ º¸»ó. list_jemitem.stbÀÇ ¶óÀÎ¹øÈ£. (btTarget=2ÀÏ °æ¿ì¸¸ À¯È¿)
+	BYTE			btTarget;	/// 0 = ê²½í—˜ì¹˜, 1 = ëˆ , 2 = ì•„ì´í…œ
+	BYTE			btEquation;	/// ì‚¬ì „ì— ì•½ì†ëœ ê³„ì‚°ì‹
+	int				iValue;		/// ê¸°ì¤€ê°’
+	int				iItemSN;	/// btTarget = 2 ì¼ ê²½ìš° ì•„ì´í…œë²ˆí˜¸ëŠ” ì´ê±°ë¡œ ì°¸ì¡°
+	BYTE			btPartyOpt;	/// 0 = íŒŒí‹°ì› ì ìš© ì•ˆí•¨, 1 = íŒŒí‹°ì› ì ìš©
+	// 2004-06-03 ì´í›„
+	short			nItemOpt;	// ì•„ì´í…œ ë³´ìƒ. list_jemitem.stbì˜ ë¼ì¸ë²ˆí˜¸. (btTarget=2ì¼ ê²½ìš°ë§Œ ìœ íš¨)
 } ;
 
 
-// Ä³¸¯ÅÍ Hp, Mp È¸º¹
+// ìºë¦­í„° Hp, Mp íšŒë³µ
 struct STR_REWD_006
 {
 	unsigned int	uiSize;
 	int				iType;
 
-	int				iPercentOfHP;	/// ¸ğµÎ È¸º¹ÀÌ¸é 100% (ÇöÀç´Â ¹«Á¶°Ç 100)
-	int				iPercentOfMP;	/// ¸ğµÎ È¸º¹ÀÌ¸é 100% (ÇöÀç´Â ¹«Á¶°Ç 100)
-	BYTE			btPartyOpt;	/// 0 = ÆÄÆ¼¿ø Àû¿ë ¾ÈÇÔ, 1 = ÆÄÆ¼¿ø Àû¿ë
+	int				iPercentOfHP;	/// ëª¨ë‘ íšŒë³µì´ë©´ 100% (í˜„ì¬ëŠ” ë¬´ì¡°ê±´ 100)
+	int				iPercentOfMP;	/// ëª¨ë‘ íšŒë³µì´ë©´ 100% (í˜„ì¬ëŠ” ë¬´ì¡°ê±´ 100)
+	BYTE			btPartyOpt;	/// 0 = íŒŒí‹°ì› ì ìš© ì•ˆí•¨, 1 = íŒŒí‹°ì› ì ìš©
 } ;
 
 
-// ¿öÇÁ
+// ì›Œí”„
 struct STR_REWD_007
 {
 	unsigned int	uiSize;
 	int				iType;
 
-	int				iZoneSN;		/// Á¸¹øÈ£
-	int				iX;				/// ÇØ´çÁ¸ÀÇ ¿Å±æ XÁÂÇ¥
-	int				iY;				/// ÇØ´çÁ¸ÀÇ ¿Å±æ YÁÂÇ¥
-	BYTE			btPartyOpt;		/// 0 = ÆÄÆ¼¿ø Àû¿ë ¾ÈÇÔ, 1 = ÆÄÆ¼¿ø Àû¿ë
+	int				iZoneSN;		/// ì¡´ë²ˆí˜¸
+	int				iX;				/// í•´ë‹¹ì¡´ì˜ ì˜®ê¸¸ Xì¢Œí‘œ
+	int				iY;				/// í•´ë‹¹ì¡´ì˜ ì˜®ê¸¸ Yì¢Œí‘œ
+	BYTE			btPartyOpt;		/// 0 = íŒŒí‹°ì› ì ìš© ì•ˆí•¨, 1 = íŒŒí‹°ì› ì ìš©
 } ;
 
 
-// ¸÷¼ÒÈ¯
+// ëª¹ì†Œí™˜
 struct STR_REWD_008
 {
 	unsigned int	uiSize;
 	int				iType;
 
-	int				iMonsterSN;		/// ¼ÒÈ¯ÇÒ ¸ó½ºÅÍ ¹øÈ£
-	int				iHowMany;		/// ¼ÒÈ¯ÇÒ ¸¶¸®¼ö
+	int				iMonsterSN;		/// ì†Œí™˜í•  ëª¬ìŠ¤í„° ë²ˆí˜¸
+	int				iHowMany;		/// ì†Œí™˜í•  ë§ˆë¦¬ìˆ˜
 
-	/// 0 = À¯Àú(¾Æ¹ÙÅ¸)ÁÖº¯, 1 = NPCÁÖº¯, 2 = ÀÌº¥Æ®ÁÖº¯, 3 = ÇØ´ç»çÇ× ¾øÀ½(ÁÂÇ¥Àû¿ë)
+	/// 0 = ìœ ì €(ì•„ë°”íƒ€)ì£¼ë³€, 1 = NPCì£¼ë³€, 2 = ì´ë²¤íŠ¸ì£¼ë³€, 3 = í•´ë‹¹ì‚¬í•­ ì—†ìŒ(ì¢Œí‘œì ìš©)
 	BYTE			btWho;		
 
-	/// btWhere == 2 ÀÏ °æ¿ì ¾Æ·¡ Àû¿ë
-	int				iZoneSN;		/// Á¸¹øÈ£
+	/// btWhere == 2 ì¼ ê²½ìš° ì•„ë˜ ì ìš©
+	int				iZoneSN;		/// ì¡´ë²ˆí˜¸
 	int				iX;				/// X
 	int				iY;				/// Y
 
-	/// °øÅëÀûÀ¸·Î Àû¿ë
-	int				iRange;			/// ¹ÌÅÍ ÀÌ³»¿¡
+	/// ê³µí†µì ìœ¼ë¡œ ì ìš©
+	int				iRange;			/// ë¯¸í„° ì´ë‚´ì—
 	int				iTeamNo;
 } ;
 
 
-// *** ¸î¹ø Ã¼Å©·Î ÀÌµ¿ ==> º¯¼ö¸í º¯°æ, shNameLen Ãß°¡
+// *** ëª‡ë²ˆ ì²´í¬ë¡œ ì´ë™ ==> ë³€ìˆ˜ëª… ë³€ê²½, shNameLen ì¶”ê°€
 struct STR_REWD_009
 {
 	unsigned int	uiSize;
 	int				iType;
 
 	short			shNameLen;
-	char			szNextTriggerSN[ 1 ];	/// ÇöÀç ÆĞÅÏ¿¡¼­ iNextTriggerSN(Oº£ÀÌ½º)¹øÂ° ÀÌµ¿ÇØ¼­ Æ®¸®°ÅÃ¼Å©
+	char			szNextTriggerSN[ 1 ];	/// í˜„ì¬ íŒ¨í„´ì—ì„œ iNextTriggerSN(Oë² ì´ìŠ¤)ë²ˆì§¸ ì´ë™í•´ì„œ íŠ¸ë¦¬ê±°ì²´í¬
 };
 
-// ½ºÅİ ÃÊ±âÈ­ !!!
+// ìŠ¤í…Ÿ ì´ˆê¸°í™” !!!
 struct STR_REWD_010
 {
 	unsigned int	uiSize;
@@ -633,9 +633,9 @@ struct STR_REWD_012
 	unsigned int	uiSize;
 	int				iType;
 
-	BYTE		btMsgType;		/// 0 = ÇöÀçÇÊµå, 1 = ÇöÀçÁ¸, 2=ÀüÃ¼¿ùµå
-//	short		nMsgLength;		/// ´ë»çÀÇ ±æÀÌ NULLÆ÷ÇÔ
-//	char		szMsg[ 1 ];		/// ´ë»ç
+	BYTE		btMsgType;		/// 0 = í˜„ì¬í•„ë“œ, 1 = í˜„ì¬ì¡´, 2=ì „ì²´ì›”ë“œ
+//	short		nMsgLength;		/// ëŒ€ì‚¬ì˜ ê¸¸ì´ NULLí¬í•¨
+//	char		szMsg[ 1 ];		/// ëŒ€ì‚¬
 	int			iStrID;
 };
 struct STR_REWD_012_STR
@@ -643,12 +643,12 @@ struct STR_REWD_012_STR
 	unsigned int	uiSize;
 	int				iType;
 
-	BYTE		btMsgType;		/// 0 = ÇöÀçÇÊµå, 1 = ÇöÀçÁ¸, 2=ÀüÃ¼¿ùµå
-	char		szMsg[ 1 ];		/// ´ë»ç
+	BYTE		btMsgType;		/// 0 = í˜„ì¬í•„ë“œ, 1 = í˜„ì¬ì¡´, 2=ì „ì²´ì›”ë“œ
+	char		szMsg[ 1 ];		/// ëŒ€ì‚¬
 };
 
 
-// ‘pÃÊ ÈÄ¿¡ ¾î¶² Æ®¸®°Å ¼öÇà
+// Â‘pì´ˆ í›„ì— ì–´ë–¤ íŠ¸ë¦¬ê±° ìˆ˜í–‰
 struct STR_REWD_013
 {
 	unsigned int	uiSize;
@@ -656,22 +656,22 @@ struct STR_REWD_013
 
 	BYTE			btWho;	// 0:NPC, 1:EventOBJ
 
-	int				iSec;	/// ¸îÃÊÈÄ¿¡.
+	int				iSec;	/// ëª‡ì´ˆí›„ì—.
 	short			nNameLength;
-	char			szTriggerName[ 1 ]; /// Æ®¸®°Å¸í NULLÆ÷ÇÔ
+	char			szTriggerName[ 1 ]; /// íŠ¸ë¦¬ê±°ëª… NULLí¬í•¨
 
-	t_HASHKEY		m_HashNextTrigger;	/// ·Îµù½Ã Æ®¸®°Å¸íÀ» Çì½¬°ªÀ¸·Î º¯°æ ½ÃÅ´...
+	t_HASHKEY		m_HashNextTrigger;	/// ë¡œë”©ì‹œ íŠ¸ë¦¬ê±°ëª…ì„ í—¤ì‰¬ê°’ìœ¼ë¡œ ë³€ê²½ ì‹œí‚´...
 };
 
 
-// ½ºÅ³¸¦ ÁÖ°Å³ª »èÁ¦ÇÑ´Ù
+// ìŠ¤í‚¬ë¥¼ ì£¼ê±°ë‚˜ ì‚­ì œí•œë‹¤
 struct STR_REWD_014
 {
 	unsigned int	uiSize;
 	int				iType;
 
-	BYTE			btOp;		// 0 - »¯´Â´Ù , 1 - ÁØ´Ù
-	int				iSkillNo;	// ½ºÅ³¹øÈ£
+	BYTE			btOp;		// 0 - ëºëŠ”ë‹¤ , 1 - ì¤€ë‹¤
+	int				iSkillNo;	// ìŠ¤í‚¬ë²ˆí˜¸
 };
 
 
@@ -682,45 +682,45 @@ struct STR_REWD_015
 	unsigned int	uiSize;
 	int				iType;
 
-	short			nSN;	// ½ºÀ§Ä¡ ¹øÈ£ 0 ~ 512
+	short			nSN;	// ìŠ¤ìœ„ì¹˜ ë²ˆí˜¸ 0 ~ 512
 	BYTE			btOp;	// 0 = Off , 1 = On
 };
 
-// ±×·ìº° Switch Clear
+// ê·¸ë£¹ë³„ Switch Clear
 //#define		TYPE_REWD_016
 struct STR_REWD_016
 {
 	unsigned int	uiSize;
 	int				iType;
 
-	short			nGroupSN;	// ½ºÀ§Ä¡ ¹øÈ£ 0 ~ 512 / 32
+	short			nGroupSN;	// ìŠ¤ìœ„ì¹˜ ë²ˆí˜¸ 0 ~ 512 / 32
 };
 
-// ÀüÃ¼ Switch Clear
+// ì „ì²´ Switch Clear
 //#define		TYPE_REWD_017
 struct STR_REWD_017
 {
 	unsigned int	uiSize;
 	int				iType;
 
-	// µ¥ÀÌÅÍ ÇÊ¿ä ¾øÀ½.
+	// ë°ì´í„° í•„ìš” ì—†ìŒ.
 };
 
 
 
-// NPC º¯¼ö Ãâ·Â
+// NPC ë³€ìˆ˜ ì¶œë ¥
 struct STR_REWD_018
 {
-	unsigned int	uiSize;		// ¹®ÀÚ¿­ ±æÀÌ·Î ´ëÃ¼...
+	unsigned int	uiSize;		// ë¬¸ìì—´ ê¸¸ì´ë¡œ ëŒ€ì²´...
 	int				iType;
 
-	int				iStrID;		// ¹®ÀÚ¿­ ½ÃÀÛÀ§Ä¡·Î ´ëÃ¼..
+	int				iStrID;		// ë¬¸ìì—´ ì‹œì‘ìœ„ì¹˜ë¡œ ëŒ€ì²´..
 	short			nCnt;
 	BYTE			Data[ 1 ];
-	/* "xxxx %d xxxx %d xxx "¿¡¼­ %d°¡ nCnt¸¸Å­ ÀÖÀ½. */
+	/* "xxxx %d xxxx %d xxx "ì—ì„œ %dê°€ nCntë§Œí¼ ìˆìŒ. */
 };
 
-// Æ¯Á¤ ÆÀ¹øÈ£¸¦ °¡Áø ¾Æ¹ÙÅ¸¿¡°Ô Æ®¸®°Å ½ÇÇà
+// íŠ¹ì • íŒ€ë²ˆí˜¸ë¥¼ ê°€ì§„ ì•„ë°”íƒ€ì—ê²Œ íŠ¸ë¦¬ê±° ì‹¤í–‰
 struct STR_REWD_019
 {
 	unsigned int	uiSize;
@@ -730,136 +730,136 @@ struct STR_REWD_019
 
 	short			nTeamNo;
 	short			nTriggerLength;
-	char			TriggerName[ 1 ];	// char Trigger[ nTriggerLength ], NULL Æ÷ÇÔ
+	char			TriggerName[ 1 ];	// char Trigger[ nTriggerLength ], NULL í¬í•¨
 
-	t_HASHKEY		m_HashTrigger;		/// ·Îµù½Ã Æ®¸®°Å¸íÀ» Çì½¬°ªÀ¸·Î º¯°æ ½ÃÅ´...
+	t_HASHKEY		m_HashTrigger;		/// ë¡œë”©ì‹œ íŠ¸ë¦¬ê±°ëª…ì„ í—¤ì‰¬ê°’ìœ¼ë¡œ ë³€ê²½ ì‹œí‚´...
 };
 
-// ÆÀ¹øÈ£ ºÎ¿© (PVP Á¸) - Æ®¸®°Å¸¦ ¹ßµ¿½ÃÅ² ºĞ²² ÆÀ¹øÈ£ ºÎ¿©
+// íŒ€ë²ˆí˜¸ ë¶€ì—¬ (PVP ì¡´) - íŠ¸ë¦¬ê±°ë¥¼ ë°œë™ì‹œí‚¨ ë¶„ê»˜ íŒ€ë²ˆí˜¸ ë¶€ì—¬
 struct STR_REWD_020
 {
 	unsigned int	uiSize;
 	int				iType;
 
-	unsigned char	btNoType;	// 0:À¯´ÏÅ© ÆÀ¹øÈ£ ºÎ¿©, 1:Å¬·£¹øÈ£·Î ºÎ¿©, 2:ÆÄÆ¼¹øÈ£·Î ºÎ¿©
+	unsigned char	btNoType;	// 0:ìœ ë‹ˆí¬ íŒ€ë²ˆí˜¸ ë¶€ì—¬, 1:í´ëœë²ˆí˜¸ë¡œ ë¶€ì—¬, 2:íŒŒí‹°ë²ˆí˜¸ë¡œ ë¶€ì—¬
 };
 
-// ÇöÀçÁ¸ÀÇ ºÎÈ° À§Ä¡ ÁöÁ¤ (PVP Á¸) 
+// í˜„ì¬ì¡´ì˜ ë¶€í™œ ìœ„ì¹˜ ì§€ì • (PVP ì¡´) 
 struct STR_REWD_021
 {
 	unsigned int	uiSize;
 	int				iType;
 
-	int				iX;			// Å¬¶óÀÌ¾ğÆ®ÀÇ ÀÛÀº¸Ê¿¡ º¸ÀÌ´Â ÁÂÇ¥ ½ÇÁ¦ÁÂÇ¥ * 1000µÈ°ª
+	int				iX;			// í´ë¼ì´ì–¸íŠ¸ì˜ ì‘ì€ë§µì— ë³´ì´ëŠ” ì¢Œí‘œ ì‹¤ì œì¢Œí‘œ * 1000ëœê°’
 	int				iY;
 };
 
-// ÇöÀçÁ¸ÀÇ ¸®Á¨ ½Ã½ºÅÛ Åä±Û..
+// í˜„ì¬ì¡´ì˜ ë¦¬ì   ì‹œìŠ¤í…œ í† ê¸€..
 struct STR_REWD_022
 {
 	unsigned int	uiSize;
 	int				iType;
 
-	short			nZonNo;	// 0 : ÇöÀçÁ¸, ÀÌ¿Ü: Á¸¹øÈ£
+	short			nZonNo;	// 0 : í˜„ì¬ì¡´, ì´ì™¸: ì¡´ë²ˆí˜¸
 	BYTE			btOp;	// 0: Off, 1: On, 2: Toggle
 };
 
 
 
 //
-// Å¬·£
+// í´ëœ
 //
-// Å¬·£ µî±Ş ÇÑ´Ü°è Áõ°¡ - Ãß°¡ µ¥ÀÌÅÍ ¾øÀ½
+// í´ëœ ë“±ê¸‰ í•œë‹¨ê³„ ì¦ê°€ - ì¶”ê°€ ë°ì´í„° ì—†ìŒ
 struct STR_REWD_023
 {
 	unsigned int	uiSize;
 	int				iType;
 } ;
 
-// ¸Ó´Ï °¨¼Ò / Áõ°¡ 
+// ë¨¸ë‹ˆ ê°ì†Œ / ì¦ê°€ 
 struct STR_REWD_024
 {
 	unsigned int	uiSize;
 	int				iType;
 
 	int				iMONEY; // 
-	BYTE			btOP;	// 5 = °ª¹Ù²Ş, 6 = Áõ°¡(ÁÖ¾îÁø ¸¸Å­), 7 = °¨¼Ò(ÁÖ¾îÁø ¸¸Å­)
+	BYTE			btOP;	// 5 = ê°’ë°”ê¿ˆ, 6 = ì¦ê°€(ì£¼ì–´ì§„ ë§Œí¼), 7 = ê°ì†Œ(ì£¼ì–´ì§„ ë§Œí¼)
 } ;
-// Á¡¼ö °¨¼Ò/ Áõ°¡
+// ì ìˆ˜ ê°ì†Œ/ ì¦ê°€
 struct STR_REWD_025
 {
 	unsigned int	uiSize;
 	int				iType;
 
 	short			nPOINT;
-	BYTE			btOP;	// 5 = °ª¹Ù²Ş, 6 = Áõ°¡(ÁÖ¾îÁø ¸¸Å­), 7 = °¨¼Ò(ÁÖ¾îÁø ¸¸Å­)
+	BYTE			btOP;	// 5 = ê°’ë°”ê¿ˆ, 6 = ì¦ê°€(ì£¼ì–´ì§„ ë§Œí¼), 7 = ê°ì†Œ(ì£¼ì–´ì§„ ë§Œí¼)
 } ;
 
-// ½ºÅ³ ½Àµæ / »èÁ¦
+// ìŠ¤í‚¬ ìŠµë“ / ì‚­ì œ
 struct STR_REWD_026
 {
 	unsigned int	uiSize;
 	int				iType;
 
-	short			nSkillNo; // ½ºÅ³¹øÈ£
-	BYTE			btOP;	// 0: »èÁ¦, 1: ½Àµæ
+	short			nSkillNo; // ìŠ¤í‚¬ë²ˆí˜¸
+	BYTE			btOP;	// 0: ì‚­ì œ, 1: ìŠµë“
 } ;
 
-// ±â¿©µµ °¨¼Ò / Áõ°¡
+// ê¸°ì—¬ë„ ê°ì†Œ / ì¦ê°€
 struct STR_REWD_027
 {
 	unsigned int	uiSize;
 	int				iType;
 
-	short			nCONT; // ±â¿©µµ
-	BYTE			btOP;	// 5 = °ª¹Ù²Ş, 6 = Áõ°¡(ÁÖ¾îÁø ¸¸Å­), 7 = °¨¼Ò(ÁÖ¾îÁø ¸¸Å­)
+	short			nCONT; // ê¸°ì—¬ë„
+	BYTE			btOP;	// 5 = ê°’ë°”ê¿ˆ, 6 = ì¦ê°€(ì£¼ì–´ì§„ ë§Œí¼), 7 = ê°ì†Œ(ì£¼ì–´ì§„ ë§Œí¼)
 } ;
 
 
-// Å¬·£¿ø ¿öÇÁ
+// í´ëœì› ì›Œí”„
 struct STR_REWD_028
 {
 	unsigned int	uiSize;
 	int				iType;
 
-	int				iRange; // ÁÖº¯ ¸î ¹ÌÅÍ
-	short			nZoneNo; // Å¸°Ù Á¸¹øÈ£
-	int				iX;		// Å¸°Ù xÁÂÇ¥
-	int				iY;		// Å¸°Ù yÁÂÇ¥
+	int				iRange; // ì£¼ë³€ ëª‡ ë¯¸í„°
+	short			nZoneNo; // íƒ€ê²Ÿ ì¡´ë²ˆí˜¸
+	int				iX;		// íƒ€ê²Ÿ xì¢Œí‘œ
+	int				iY;		// íƒ€ê²Ÿ yì¢Œí‘œ
 } ;
 
 
-// ½ºÅ©¸³Æ® ½ÇÇà. ( Å¬¶óÀÌ¾ğÆ®¿¡¸¸ Àû¿ë )
+// ìŠ¤í¬ë¦½íŠ¸ ì‹¤í–‰. ( í´ë¼ì´ì–¸íŠ¸ì—ë§Œ ì ìš© )
 struct STR_REWD_029
 {
 	unsigned int	uiSize;
 	int				iType;
 
-	short			nLength; // ½ºÅ©¸³Æ®¸íÀÇ ±æÀÌ ( NULL Æ÷ÇÔ )
-	char			szSrciptName[ 1 ]; // ½ºÅ©¸³Æ®¸í
+	short			nLength; // ìŠ¤í¬ë¦½íŠ¸ëª…ì˜ ê¸¸ì´ ( NULL í¬í•¨ )
+	char			szSrciptName[ 1 ]; // ìŠ¤í¬ë¦½íŠ¸ëª…
 } ;
 
-// ½ºÅ³ ÃÊ±âÈ­
+// ìŠ¤í‚¬ ì´ˆê¸°í™”
 struct STR_REWD_030
 {
 	unsigned int	uiSize;
 	int				iType;
 };
 
-// ¸ó½ºÅÍ »ç³É º¯¼ö Áõ°¡
+// ëª¬ìŠ¤í„° ì‚¬ëƒ¥ ë³€ìˆ˜ ì¦ê°€
 struct STR_REWD_031
 {
 	unsigned int	uiSize;
 	int				iType;
 
-	int				iMonsterSN;		/// ¼ÒÈ¯ÇÒ ¸ó½ºÅÍ ¹øÈ£
-	int				iCompareValue;	// ºñ±³ ¼öÄ¡
-	STR_QUEST_DATA	Var;			// º¯¼ö Á¤º¸
+	int				iMonsterSN;		/// ì†Œí™˜í•  ëª¬ìŠ¤í„° ë²ˆí˜¸
+	int				iCompareValue;	// ë¹„êµ ìˆ˜ì¹˜
+	STR_QUEST_DATA	Var;			// ë³€ìˆ˜ ì •ë³´
 };
 
 
 
-// Äù½ºÆ® ¾ÆÀÌÅÛ È¹µæ Á¤º¸
+// í€˜ìŠ¤íŠ¸ ì•„ì´í…œ íšë“ ì •ë³´
 struct STR_REWD_032
 {
 	unsigned int	uiSize;
@@ -867,26 +867,26 @@ struct STR_REWD_032
 
 	unsigned int	uiItemSN;
 	int				iCompareValue;
-	BYTE			btPartyOpt;		// 0 = ÆÄÆ¼ Àû¿ë ¾È µÊ, ÆÄÆ¼ Àû¿ëµÊ
+	BYTE			btPartyOpt;		// 0 = íŒŒí‹° ì ìš© ì•ˆ ë¨, íŒŒí‹° ì ìš©ë¨
 };
 
 
-// ¼±ÅÃº¸»ó Æ®¸®°Å Á¤º¸
+// ì„ íƒë³´ìƒ íŠ¸ë¦¬ê±° ì •ë³´
 struct STR_REWD_033
 {
 	unsigned int	uiSize;
 	int				iType;
 
-	short			nNextRewardSplitter;	// -1 ÀÌ¸é º¸»óÆ®¸®°ÅÀÇ ³¡ÀÓ
+	short			nNextRewardSplitter;	// -1 ì´ë©´ ë³´ìƒíŠ¸ë¦¬ê±°ì˜ ëì„
 };
 
-// NPC ¼û±â±â/º¸ÀÌ±â/Åä±ÛÇÏ±â
+// NPC ìˆ¨ê¸°ê¸°/ë³´ì´ê¸°/í† ê¸€í•˜ê¸°
 struct STR_REWD_034
 {
 	unsigned int	uiSize;
 	int				iType;
 
-	BYTE			btHIDE; // 0 = ¼û±â±â , 1 = º¸ÀÌ±â, 2 = Åä±ÛÇÏ±â
+	BYTE			btHIDE; // 0 = ìˆ¨ê¸°ê¸° , 1 = ë³´ì´ê¸°, 2 = í† ê¸€í•˜ê¸°
 };
 
 //-------------------------------------------------------------------------------------------------
@@ -977,7 +977,7 @@ union uniQstENTITY {
 /*
 enum eQE_CODE {		// Quest error code
 	QSTERR_QUEST_OK = 0x0000,
-	QSTERR_QUEST_NOT_REGISTERED,	// ÇöÀç ¼öÇàÁßÀÎ Äù½ºÆ®°¡ ¾Æ´Ï´Ù
+	QSTERR_QUEST_NOT_REGISTERED,	// í˜„ì¬ ìˆ˜í–‰ì¤‘ì¸ í€˜ìŠ¤íŠ¸ê°€ ì•„ë‹ˆë‹¤
 } ;
 */
 class CUserDATA;
@@ -993,19 +993,19 @@ class classUSER;
 struct tQST_PARAM {
 #ifndef	__SERVER
 	CQuestTRIGGER*m_pCurrentTRIGGER;
-	CUserDATA	*m_pOWNER;				///< Äù½ºÆ® »ç¿ëÀÚ
+	CUserDATA	*m_pOWNER;				///< í€˜ìŠ¤íŠ¸ ì‚¬ìš©ì
 #else
-	CObjVAR		*m_pEventVAR;			///< ÇöÀç ¼±ÅÃµÈ Event Object
-	CObjVAR		*m_pNpcVAR;				///< ÇöÀç ¼±ÅÃµÈ NPC
-	classUSER	*m_pOWNER;				///< Äù½ºÆ® »ç¿ëÀÚ
+	CObjVAR		*m_pEventVAR;			///< í˜„ì¬ ì„ íƒëœ Event Object
+	CObjVAR		*m_pNpcVAR;				///< í˜„ì¬ ì„ íƒëœ NPC
+	classUSER	*m_pOWNER;				///< í€˜ìŠ¤íŠ¸ ì‚¬ìš©ì
 	CGameOBJ	*m_pCallOBJ;
 #endif
 
-	short		 m_nCurZoneNO;			///< Äù½ºÆ® ¹ß»ıÀÚ°¡ ÀÖ´Â Á¸ ¹øÈ£
+	short		 m_nCurZoneNO;			///< í€˜ìŠ¤íŠ¸ ë°œìƒìê°€ ìˆëŠ” ì¡´ ë²ˆí˜¸
 
 	BYTE		 m_btQuestSLOT;
-	CQUEST		*m_pQUEST;				///< ÇöÀç ¼±ÅÃµÈ Äù½ºÆ® 
-	t_HASHKEY	 m_HashNextTRIGGER;		///< Á¶°ÇÀÌ ¸¸Á·ÇÒ °æ¿ì Ãß°¡ °Ë»öÇÒ Äù½ºÆ® Æ®¸®°Å
+	CQUEST		*m_pQUEST;				///< í˜„ì¬ ì„ íƒëœ í€˜ìŠ¤íŠ¸ 
+	t_HASHKEY	 m_HashNextTRIGGER;		///< ì¡°ê±´ì´ ë§Œì¡±í•  ê²½ìš° ì¶”ê°€ ê²€ìƒ‰í•  í€˜ìŠ¤íŠ¸ íŠ¸ë¦¬ê±°
 
 	bool		 m_bServerFUNC;	
 	short		 m_nErrSTEP;
@@ -1032,7 +1032,7 @@ struct tQST_PARAM {
 /**
  * \ingroup SHO_GS_LIB
  * \class CQuestTRIGGER
- * \brief °³º° Äù½ºÆ® Æ®¸®°Å µ¥ÀÌÅ¸¹× Ã³¸®
+ * \brief ê°œë³„ í€˜ìŠ¤íŠ¸ íŠ¸ë¦¬ê±° ë°ì´íƒ€ë° ì²˜ë¦¬
  */
 class CQuestTRIGGER {
 private:
@@ -1076,17 +1076,17 @@ public :
 #define	QUEST_OWNER_TYPE(I)			g_QuestList.m_STB.m_ppDATA[ I ][ 2 ]
 
 enum eQST_RESULT {
-	QST_RESULT_INVALID = 0,	// ¼­¹ö¿¡¼­ Â©¸°´Ù.
+	QST_RESULT_INVALID = 0,	// ì„œë²„ì—ì„œ ì§¤ë¦°ë‹¤.
 	QST_RESULT_SUCCESS,
-	QST_RESULT_FAILED,		// ¼­¹ö¿¡¼­ ½ÇÆĞ Åëº¸ µÈ´Ù.
-	QST_RESULT_STOPPED,		// ¼­¹ö Á¡°ËÁßÀÌ´Ù.
+	QST_RESULT_FAILED,		// ì„œë²„ì—ì„œ ì‹¤íŒ¨ í†µë³´ ëœë‹¤.
+	QST_RESULT_STOPPED,		// ì„œë²„ ì ê²€ì¤‘ì´ë‹¤.
 } ;
 
 /**
  * \ingroup SHO_GS_LIB
  * \class	CQuestDATA
  * \author	wookSang.Jo
- * \brief	ÀüÃ¼ Äù½ºÆ® Æ®¸®°Å µ¥ÀÌÅ¸ º¸°ü¹× Ã³¸®ÇÏ´Â Å¬·¡½º
+ * \brief	ì „ì²´ í€˜ìŠ¤íŠ¸ íŠ¸ë¦¬ê±° ë°ì´íƒ€ ë³´ê´€ë° ì²˜ë¦¬í•˜ëŠ” í´ë˜ìŠ¤
  */
 class CQuestDATA {
 private:

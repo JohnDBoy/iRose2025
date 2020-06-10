@@ -36,13 +36,13 @@ bool CBasicDATA::Load3DDATA ()
 	for (nS=0; nS<2; nS++)	
 		for (short nI=0; nI<MAX_BODY_PART; nI++) 
 		{
-			if ( nS && nI > BODY_PART_BOOTS )	// °øÅë Àåºñ´Â 0¹ø¸¸ ·Îµù.
+			if ( nS && nI > BODY_PART_BOOTS )	// ê³µí†µ ìž¥ë¹„ëŠ” 0ë²ˆë§Œ ë¡œë”©.
 				continue;
 
 			m_pMD_CharPARTS[ nS ][ nI ] = new CModelDATA <CCharPART>;
 		}
 
-	// ³²ÀÚ
+	// ë‚¨ìž
 	m_pMD_CharPARTS[ 0 ][ BODY_PART_FACE	]->Load( "3Ddata\\avatar\\LIST_mFACE.ZSC",	BONE_IDX_HEAD );
 	m_pMD_CharPARTS[ 0 ][ BODY_PART_HAIR	]->Load( "3Ddata\\avatar\\LIST_mHAIR.ZSC",	BONE_IDX_HEAD );		// link to bone
 	m_pMD_CharPARTS[ 0 ][ BODY_PART_HELMET	]->Load( "3Ddata\\avatar\\LIST_mCAP.ZSC",	-1,				DUMMY_IDX_CAP	);
@@ -51,7 +51,7 @@ bool CBasicDATA::Load3DDATA ()
 	m_pMD_CharPARTS[ 0 ][ BODY_PART_GAUNTLET]->Load( "3Ddata\\avatar\\LIST_mARMS.ZSC" );		// skinning
 	m_pMD_CharPARTS[ 0 ][ BODY_PART_BOOTS	]->Load( "3Ddata\\avatar\\LIST_mFOOT.ZSC" );		// skinning
 
-	// ¿©ÀÚ
+	// ì—¬ìž
 	m_pMD_CharPARTS[ 1 ][ BODY_PART_FACE	]->Load( "3Ddata\\avatar\\LIST_wFACE.ZSC",	BONE_IDX_HEAD );
 	m_pMD_CharPARTS[ 1 ][ BODY_PART_HAIR	]->Load( "3Ddata\\avatar\\LIST_wHAIR.ZSC",	BONE_IDX_HEAD );		// link to bone
 	m_pMD_CharPARTS[ 1 ][ BODY_PART_HELMET	]->Load( "3Ddata\\avatar\\LIST_wCAP.ZSC",	-1,				DUMMY_IDX_CAP	);
@@ -130,7 +130,7 @@ void CBasicDATA::Free3DDATA ()
 	for (short nS=0; nS<2; nS++)
 		for (short nI=0; nI<MAX_BODY_PART; nI++) 
 		{
-			if ( nS && nI > BODY_PART_BOOTS )	// °øÅë Àåºñ´Â 0¹ø¸¸ ·Îµù.
+			if ( nS && nI > BODY_PART_BOOTS )	// ê³µí†µ ìž¥ë¹„ëŠ” 0ë²ˆë§Œ ë¡œë”©.
 				continue;
 
 			SAFE_DELETE ( m_pMD_CharPARTS[ nS ][ nI ] );
@@ -143,7 +143,7 @@ void CBasicDATA::Free3DDATA ()
 }
 
 
-/// Zone type ¿¡ µû¸¥ ·Îµùµ¥ÀÌÅÍ
+/// Zone type ì— ë”°ë¥¸ ë¡œë”©ë°ì´í„°
 bool CBasicDATA::LoadZoneData( short nZoneNO )
 {
 	if( m_ModelCNST.Load( ZONE_CNST_TABLE( nZoneNO ) ) == false )

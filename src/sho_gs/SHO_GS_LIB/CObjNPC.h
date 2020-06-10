@@ -1,7 +1,7 @@
 /**
  * \ingroup SHO_GS
  * \file	CObjNPC.h
- * \brief	mob/npc ÄÉ¸¯ÅÍ Ã³¸®
+ * \brief	mob/npc ì¼€ë¦­í„° ì²˜ë¦¬
  */
 #ifndef	__COBJNPC_H
 #define	__COBJNPC_H
@@ -23,8 +23,8 @@ struct tagSavedDAMAGE {
  * \ingroup SHO_GS_LIB
  * \class	CObjMOB
  * \author	wookSang.Jo
- * \brief	mob ÄÉ¸¯ÅÍ °´Ã¼ÀÇ µ¥ÀÌÅ¸ °ü¸®¹× Ã³¸®ÇÏ´Â Å¬·¡½º
- *			CObjCHARÅ¬·¡½º¸¦ »ó¼Ó¹ŞÀ½
+ * \brief	mob ì¼€ë¦­í„° ê°ì²´ì˜ ë°ì´íƒ€ ê´€ë¦¬ë° ì²˜ë¦¬í•˜ëŠ” í´ë˜ìŠ¤
+ *			CObjCHARí´ë˜ìŠ¤ë¥¼ ìƒì†ë°›ìŒ
  */
 class CObjMOB : public CObjCHAR
 {
@@ -76,7 +76,7 @@ public :
 	int		Save_Damage( int iAttackerIDX, int iDamage);
 	bool	Dead (CObjCHAR *pKiller);
 
-//    short	Get_ItemQUALITY (short nEquipIDX)	{	return 60;			    }	// ¹«Á¶°Ç 60 !
+//    short	Get_ItemQUALITY (short nEquipIDX)	{	return 60;			    }	// ë¬´ì¡°ê±´ 60 !
     short	Get_WEIGHT ()			{	return 0;			            	}
     int		Get_LEVEL ()			{	return NPC_LEVEL( m_nCharIdx );		}
     int		Get_GiveEXP ()			{	return NPC_GIVE_EXP( m_nCharIdx );	}
@@ -108,7 +108,7 @@ public :
 	void	Add_ToTargetLIST( CObjAVT *pAVTChar );
 	void	Sub_FromTargetLIST( CObjAVT *pAVTChar );
 
-	WORD	Get_ATTRIBUTE ()		{	return NPC_ATTRIBUTE( m_nCharIdx );	}		// ¼Ó¼º
+	WORD	Get_ATTRIBUTE ()		{	return NPC_ATTRIBUTE( m_nCharIdx );	}		// ì†ì„±
 
 
 private:
@@ -142,7 +142,7 @@ public :
     bool Init (CZoneTHREAD *pZONE, short nCharIdx, float fXPos, float fYPos, int iTeamNO, CRegenPOINT *pRegenPOINT=NULL, short nQuestIDX=0);
     int  Proc ();
 
-	// CAI_OBJ :: virtual ÇÔ¼ö ÀçÁ¤ÀÇ
+	// CAI_OBJ :: virtual í•¨ìˆ˜ ì¬ì •ì˜
 	int		 Get_AiVAR(short nVarIdx)				{	return m_iAiVAR[ nVarIdx ];		}
 	void	 Set_AiVAR(short nVarIdx, int iValue )	
 	{	
@@ -167,28 +167,28 @@ public :
 	inline void Do_CreatedAI (void)								{	g_AI_LIST.AI_Created( NPC_AI_TYPE(m_nCharIdx), this );						}
 	inline void Do_StopAI (void)								
 	{	
-		if ( this->m_IngSTATUS.IsIgnoreSTATUS() ) return;		// ±âÀı, ¼ö¸é »óÅÂ¸é Åë°ú..
+		if ( this->m_IngSTATUS.IsIgnoreSTATUS() ) return;		// ê¸°ì ˆ, ìˆ˜ë©´ ìƒíƒœë©´ í†µê³¼..
 		g_AI_LIST.AI_Stop( NPC_AI_TYPE(m_nCharIdx), this );							
 	}
 	inline void Do_AttackMoveAI (CObjCHAR *pTarget)				
 	{	
-		if ( this->m_IngSTATUS.IsIgnoreSTATUS() ) return;		// ±âÀı, ¼ö¸é »óÅÂ¸é Åë°ú..
+		if ( this->m_IngSTATUS.IsIgnoreSTATUS() ) return;		// ê¸°ì ˆ, ìˆ˜ë©´ ìƒíƒœë©´ í†µê³¼..
 		g_AI_LIST.AI_AttackMove( NPC_AI_TYPE(m_nCharIdx), this, pTarget );			
 	}
 	inline void Do_DamagedAI (CObjCHAR *pTarget, int iDamage )	
 	{	
-		if ( this->m_IngSTATUS.IsIgnoreSTATUS() ) return;		// ±âÀı, ¼ö¸é »óÅÂ¸é Åë°ú..
+		if ( this->m_IngSTATUS.IsIgnoreSTATUS() ) return;		// ê¸°ì ˆ, ìˆ˜ë©´ ìƒíƒœë©´ í†µê³¼..
 
-		// ¶§¸°³ÑÀÌ ¾Æ±ºÀÌ ¾Æ´Ï°í Å¬·ÎÅ· »óÅÂ°¡ ¾Æ´Ï¸é...
+		// ë•Œë¦°ë„˜ì´ ì•„êµ°ì´ ì•„ë‹ˆê³  í´ë¡œí‚¹ ìƒíƒœê°€ ì•„ë‹ˆë©´...
 		if ( !this->Is_ALLIED( pTarget ) /* && 0 == pTarget->m_IngSTATUS.IsSET( FLAG_ING_DISGUISE | FLAG_ING_TRANSPARENT) */ ) {
-			// »ç¿ëÀÚ¿¡ ÀÇÇØ ¼ÒÈ¯µÈ ÄÉ¸¯ÀÌ ¾Æ±ºÀ» °ø°İÇÏÁö ¸øÇÏµµ·Ï...
+			// ì‚¬ìš©ìì— ì˜í•´ ì†Œí™˜ëœ ì¼€ë¦­ì´ ì•„êµ°ì„ ê³µê²©í•˜ì§€ ëª»í•˜ë„ë¡...
 			if ( !( CMD_BIT_INT & this->Get_COMMAND() ) )
 				g_AI_LIST.AI_Damaged( NPC_AI_TYPE(m_nCharIdx), this, pTarget, iDamage );
 		}
 	}
 	inline void Do_KillAI (CObjCHAR *pTarget, int iDamage)		
 	{	
-		if ( this->m_IngSTATUS.IsIgnoreSTATUS() ) return;		// ±âÀı, ¼ö¸é »óÅÂ¸é Åë°ú..
+		if ( this->m_IngSTATUS.IsIgnoreSTATUS() ) return;		// ê¸°ì ˆ, ìˆ˜ë©´ ìƒíƒœë©´ í†µê³¼..
 		g_AI_LIST.AI_Kill( NPC_AI_TYPE( m_nCharIdx ), this, pTarget, iDamage );		
 	}
 	inline void Do_DeadAI (CObjCHAR *pTarget, int iDamage)		{	g_AI_LIST.AI_Dead( NPC_AI_TYPE( m_nCharIdx ), this, pTarget, iDamage );		}
@@ -202,8 +202,8 @@ public :
  * \ingroup SHO_GS_LIB
  * \class	CObjSUMMON
  * \author	wookSang.Jo
- * \brief	ÀÓÀÇ ¼ÒÈ¯µÈ ÄÉ¸¯ÅÍ °´Ã¼ÀÇ µ¥ÀÌÅ¸ °ü¸®¹× Ã³¸®ÇÏ´Â Å¬·¡½º
- *			CObjMOBÅ¬·¡½º¸¦ »ó¼Ó¹ŞÀ½
+ * \brief	ì„ì˜ ì†Œí™˜ëœ ì¼€ë¦­í„° ê°ì²´ì˜ ë°ì´íƒ€ ê´€ë¦¬ë° ì²˜ë¦¬í•˜ëŠ” í´ë˜ìŠ¤
+ *			CObjMOBí´ë˜ìŠ¤ë¥¼ ìƒì†ë°›ìŒ
  */
 class CObjSUMMON : public CObjMOB
 {
@@ -225,10 +225,10 @@ public :
     int		Proc ();
 	BYTE		m_btSummonCMD;
 
-	int			m_iCallerUserObjIDX;	// ¼ÒÈ¯ ½ÃÅ² ÁÖÀÎ
-	t_HASHKEY	m_HashCALLER;			// ÁÖÀÎ ÄÉ¸¯ ÇØ½¬
+	int			m_iCallerUserObjIDX;	// ì†Œí™˜ ì‹œí‚¨ ì£¼ì¸
+	t_HASHKEY	m_HashCALLER;			// ì£¼ì¸ ì¼€ë¦­ í•´ì‰¬
 
-	// ¼ÒÈ¯ ½ÃÅ² ÁÖÀÎ ¼³Á¤. 2005-06-30(kchs)Ãß°¡¼öÁ¤: ¼ÒÈ¯¸÷ ´É·ÂÄ¡ ¼öÁ¤¿¡ µû¸¥ ÁÖÀÎ ¾Æ¹ÙÅ¸ µ¥ÀÌÅÍ ÇÊ¿ä..
+	// ì†Œí™˜ ì‹œí‚¨ ì£¼ì¸ ì„¤ì •. 2005-06-30(kchs)ì¶”ê°€ìˆ˜ì •: ì†Œí™˜ëª¹ ëŠ¥ë ¥ì¹˜ ìˆ˜ì •ì— ë”°ë¥¸ ì£¼ì¸ ì•„ë°”íƒ€ ë°ì´í„° í•„ìš”..
 	void SetCallerOBJ( int iCallerOBJ, t_HASHKEY HashCallerOBJ, int iCallerLEVEL, short nSkillIDX , CObjCHAR * pOwnerAVT);
 
 	int			GetCallerUsrIDX ()			{	return m_iCallerUserObjIDX;		}
@@ -250,10 +250,10 @@ public :
  * \ingroup SHO_GS_LIB
  * \class	CObjSUMMON
  * \author	wookSang.Jo
- * \brief	npc ÄÉ¸¯ÅÍ °´Ã¼ÀÇ µ¥ÀÌÅ¸ °ü¸®¹× Ã³¸®ÇÏ´Â Å¬·¡½º
- *			CObjVAR, CObjMOB Å¬·¡½º·Î ºÎÅÍ »ó¼Ó¹ŞÀ½
+ * \brief	npc ì¼€ë¦­í„° ê°ì²´ì˜ ë°ì´íƒ€ ê´€ë¦¬ë° ì²˜ë¦¬í•˜ëŠ” í´ë˜ìŠ¤
+ *			CObjVAR, CObjMOB í´ë˜ìŠ¤ë¡œ ë¶€í„° ìƒì†ë°›ìŒ
  */
-// CObjVAR¸¦ ¸ÕÀú »ó¼Ó...
+// CObjVARë¥¼ ë¨¼ì € ìƒì†...
 class CObjNPC : public CObjVAR, public CObjMOB
 {
 public :
@@ -268,7 +268,7 @@ public :
 	bool  VSend_gsv_SHOUT( char *szMsg )				{	return Send_gsv_SHOUT(szMsg);	}
 	void  VSend_gsv_ANNOUNCE_CHAT( char *szMsg )		{	Send_gsv_ANNOUNCE_CHAT(szMsg);	}
 
-	// 0 = ¼û±â±â , 1 = º¸ÀÌ±â, 2 = Åä±ÛÇÏ±â
+	// 0 = ìˆ¨ê¸°ê¸° , 1 = ë³´ì´ê¸°, 2 = í† ê¸€í•˜ê¸°
 	void  VSet_SHOW		 ( BYTE btShowMode );
 
 	short VGetCur_ZoneNO();
@@ -279,12 +279,12 @@ public :
 
 	void  Set_ObjVAR(BYTE btVarIDX, short nValue )
 	{
-		// ¿©±â¼­ ¼³Á¤ ? ¾Æ´Ô ¼­¹ö¿¡¼­ ¹Ş¾Æ¼­ ¼³Á¤ ???
+		// ì—¬ê¸°ì„œ ì„¤ì • ? ì•„ë‹˜ ì„œë²„ì—ì„œ ë°›ì•„ì„œ ì„¤ì • ???
 		if ( 0 == btVarIDX ) {
 			short nBefore = this->Get_ObjVAR( 0 );
 			CObjVAR::Set_ObjVAR( 0, nValue );
 			if ( nBefore != this->Get_ObjVAR( 0 ) ) {
-				// °ªÀÌ ¹Ù²î¾ú´Ù.
+				// ê°’ì´ ë°”ë€Œì—ˆë‹¤.
 				this->Send_gsv_SET_EVENT_STATUS ();
 			}
 		} else
@@ -293,7 +293,7 @@ public :
 
 	void Set_NextTRIGGER( int iRemainSec, t_HASHKEY HashNextTrigger )
 	{
-		// »ó¼Ó ¹Ş¾Æ¼­ ¿ùµå ¼­¹ö¿¡ Àü¼ÛÇØ¾ß ÇÔ...
+		// ìƒì† ë°›ì•„ì„œ ì›”ë“œ ì„œë²„ì— ì „ì†¡í•´ì•¼ í•¨...
 		CObjVAR::Set_NextTRIGGER( iRemainSec, HashNextTrigger );
 	}
 	void Set_TRIGGER (t_HASHKEY HashNextTrigger)

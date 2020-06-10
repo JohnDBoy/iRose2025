@@ -60,7 +60,7 @@ public :
 	bool	Load (char *szFileName, bool bHasNameCol=false, bool bHasDescCol=false, bool bMakeKEY=false);
 	void	Free (void);
 
-	//	xls2stb.exe·Î º¯°æµÈ À¯´ÏÄÚµåstbÆÄÀÏ ÀĞ±â..
+	//	xls2stb.exeë¡œ ë³€ê²½ëœ ìœ ë‹ˆì½”ë“œstbíŒŒì¼ ì½ê¸°..
 	bool	LoadWSTB (char *szFileName, int iKeyColIDX, ...);
 	bool	LoadWSTB (bool bCheckQuotationMark, char *szFileName, int iKeyColIDX, ...);
 	char   *GetValueSTR(short nCol, short nRow)
@@ -82,18 +82,18 @@ public :
 } ;
 
 //-------------------------------------------------------------------------------------------------
-// ÀåÂø ¾ÆÀÌÅÛ STB 21,22ColumnÃß°¡( ÀåÂø Á¦ÇÑ Á¶°Ç Ãß°¡ ): 2004/1/12 - nAvy
+// ì¥ì°© ì•„ì´í…œ STB 21,22Columnì¶”ê°€( ì¥ì°© ì œí•œ ì¡°ê±´ ì¶”ê°€ ): 2004/1/12 - nAvy
 
-// ¸ğµç ÁßºĞ·ù ¾ÆÀÌÅÛÀÇ °øÅë
+// ëª¨ë“  ì¤‘ë¶„ë¥˜ ì•„ì´í…œì˜ ê³µí†µ
 #ifdef __SERVER
-	#define	ITEM_NAME(T,I)					g_pTblSTBs[T]->m_ppNAME[ I ]			// ¾ÆÀÌÅÛ ÀÌ¸§
-	#define ITEM_DESC(T,I)					g_pTblSTBs[T]->m_ppDESC[ I ]			// ¾ÆÀÌÅÛ ¼³¸í
+	#define	ITEM_NAME(T,I)					g_pTblSTBs[T]->m_ppNAME[ I ]			// ì•„ì´í…œ ì´ë¦„
+	#define ITEM_DESC(T,I)					g_pTblSTBs[T]->m_ppDESC[ I ]			// ì•„ì´í…œ ì„¤ëª…
 #else
 	#define	ITEM_NAME(T,I)					CStringManager::GetSingleton().GetItemName( T, I ) 
-	#define ITEM_DESC(T,I)					CStringManager::GetSingleton().GetItemDesc( T, I )// ¾ÆÀÌÅÛ ¼³¸í
+	#define ITEM_DESC(T,I)					CStringManager::GetSingleton().GetItemDesc( T, I )// ì•„ì´í…œ ì„¤ëª…
 #endif
 
-///»ç¿ëÁ¦ÇÑ - 0: ¸ğµÎ »ç¿ë°¡´É, 1: »óÁ¡ ÆÇ¸Å¸¸ ºÒ°¡, 2: ¹ö¸®±â,±³È¯¸¸ ºÒ°¡, 3:»óÁ¡ÆÇ¸Å,¹ö¸®±â,±³È¯ ºÒ°¡
+///ì‚¬ìš©ì œí•œ - 0: ëª¨ë‘ ì‚¬ìš©ê°€ëŠ¥, 1: ìƒì  íŒë§¤ë§Œ ë¶ˆê°€, 2: ë²„ë¦¬ê¸°,êµí™˜ë§Œ ë¶ˆê°€, 3:ìƒì íŒë§¤,ë²„ë¦¬ê¸°,êµí™˜ ë¶ˆê°€
 #define	ITEM_ANNOUNCE_TYPE(T,I)			g_pTblSTBs[T]->m_ppDATA[ I ][  2 ]
 #define ITEM_USE_RESTRICTION(T,I)		g_pTblSTBs[T]->m_ppDATA[ I ][  3 ]
 
@@ -104,30 +104,30 @@ public :
 #define	ITEM_ENABLE_KEEPING				0x04
 
 
-#define	ITEM_TYPE(T,I)					g_pTblSTBs[T]->m_ppDATA[ I ][  4 ]	// ¾ÆÀÌÅÛ Á¾·ù : ÁßºĞ·ù?
-#define	ITEM_BASE_PRICE(T,I)			g_pTblSTBs[T]->m_ppDATA[ I ][  5 ]	// ±âÁØ°¡°İ
-#define	ITEM_PRICE_RATE(T,I)			g_pTblSTBs[T]->m_ppDATA[ I ][  6 ]	// °¡°İ º¯µ¿·ü
-#define	ITEM_WEIGHT(T,I)				g_pTblSTBs[T]->m_ppDATA[ I ][  7 ]	// ¹«°Ô
-#define	ITEM_QUALITY(T,I)				g_pTblSTBs[T]->m_ppDATA[ I ][  8 ]	// Ç°Áú
-#define	ITEM_ICON_NO(T,I)				g_pTblSTBs[T]->m_ppDATA[ I ][  9 ]	// ¾ÆÀÌÅÛ ¹øÈ£
-#define	ITEM_FIELD_MODEL(T,I)			g_pTblSTBs[T]->m_ppDATA[ I ][ 10 ]	// ÇÊµå ¸ğµ¨ µ¥ÀÌÅ¸
-#define	ITEM_EQUIP_SOUND(T,I)			g_pTblSTBs[T]->m_ppDATA[ I ][ 11 ]	// ÀåÂø È¿°úÀ½
-#define	ITEM_MAKE_NUM(T,I)				g_pTblSTBs[T]->m_ppDATA[ I ][ 12 ]	// Á¦Á¶ ¹øÈ£
-#define ITEM_SKILL_LEV(T,I)				g_pTblSTBs[T]->m_ppDATA[ I ][ 13 ]	// ½ºÅ³ ·¹º§
-#define ITEM_PRODUCT_IDX(T,I)			g_pTblSTBs[T]->m_ppDATA[ I ][ 14 ]	// Àç·á ¹øÈ£
-#define	ITEM_MAKE_DIFFICULT(T,I)		g_pTblSTBs[T]->m_ppDATA[ I ][ 15 ]	// Á¦Á¶ ³­ÀÌµµ
-#define ITEM_TRADE_UNIONPOINT(T,I)		ITEM_MAKE_DIFFICULT(T,I)			// Á¶ÇÕ»óÁ¡¿¡¼­ ¾ÆÀÌÅÛ ±¸ÀÔ½Ã ÇÊ¿äÇÑ Á¶ÇÕÆ÷ÀÎÆ®
+#define	ITEM_TYPE(T,I)					g_pTblSTBs[T]->m_ppDATA[ I ][  4 ]	// ì•„ì´í…œ ì¢…ë¥˜ : ì¤‘ë¶„ë¥˜?
+#define	ITEM_BASE_PRICE(T,I)			g_pTblSTBs[T]->m_ppDATA[ I ][  5 ]	// ê¸°ì¤€ê°€ê²©
+#define	ITEM_PRICE_RATE(T,I)			g_pTblSTBs[T]->m_ppDATA[ I ][  6 ]	// ê°€ê²© ë³€ë™ë¥ 
+#define	ITEM_WEIGHT(T,I)				g_pTblSTBs[T]->m_ppDATA[ I ][  7 ]	// ë¬´ê²Œ
+#define	ITEM_QUALITY(T,I)				g_pTblSTBs[T]->m_ppDATA[ I ][  8 ]	// í’ˆì§ˆ
+#define	ITEM_ICON_NO(T,I)				g_pTblSTBs[T]->m_ppDATA[ I ][  9 ]	// ì•„ì´í…œ ë²ˆí˜¸
+#define	ITEM_FIELD_MODEL(T,I)			g_pTblSTBs[T]->m_ppDATA[ I ][ 10 ]	// í•„ë“œ ëª¨ë¸ ë°ì´íƒ€
+#define	ITEM_EQUIP_SOUND(T,I)			g_pTblSTBs[T]->m_ppDATA[ I ][ 11 ]	// ì¥ì°© íš¨ê³¼ìŒ
+#define	ITEM_MAKE_NUM(T,I)				g_pTblSTBs[T]->m_ppDATA[ I ][ 12 ]	// ì œì¡° ë²ˆí˜¸
+#define ITEM_SKILL_LEV(T,I)				g_pTblSTBs[T]->m_ppDATA[ I ][ 13 ]	// ìŠ¤í‚¬ ë ˆë²¨
+#define ITEM_PRODUCT_IDX(T,I)			g_pTblSTBs[T]->m_ppDATA[ I ][ 14 ]	// ì¬ë£Œ ë²ˆí˜¸
+#define	ITEM_MAKE_DIFFICULT(T,I)		g_pTblSTBs[T]->m_ppDATA[ I ][ 15 ]	// ì œì¡° ë‚œì´ë„
+#define ITEM_TRADE_UNIONPOINT(T,I)		ITEM_MAKE_DIFFICULT(T,I)			// ì¡°í•©ìƒì ì—ì„œ ì•„ì´í…œ êµ¬ì…ì‹œ í•„ìš”í•œ ì¡°í•©í¬ì¸íŠ¸
 
-// ¼Ò¸ğ, ±âÅ¸ ¾ÆÀÌÅÛ °øÅë
-#define	ITEM_RATE_TYPE(T,I)				g_pTblSTBs[T]->m_ppDATA[ I ][ 16 ]	// »ıÇÊÇ° Á¾·ù
+// ì†Œëª¨, ê¸°íƒ€ ì•„ì´í…œ ê³µí†µ
+#define	ITEM_RATE_TYPE(T,I)				g_pTblSTBs[T]->m_ppDATA[ I ][ 16 ]	// ìƒí•„í’ˆ ì¢…ë¥˜
 
-// ÀåÂø °¡´ÉÇÑ ¾ÆÀÌÅÛÀÇ °øÅë
+// ì¥ì°© ê°€ëŠ¥í•œ ì•„ì´í…œì˜ ê³µí†µ
 /*
 #define	ITEM_JOB_TYPE_CNT				3
 #define	ITEM_JOB_TYPE(T,I,C)			g_pTblSTBs[T]->m_ppDATA[ I ][ 16+C ]
-#define	ITEM_JOB_TYPE1(T,I)				g_pTblSTBs[T]->m_ppDATA[ I ][ 16 ]	// ÇØ´ç Á÷¾÷1
-#define	ITEM_JOB_TYPE2(T,I)				g_pTblSTBs[T]->m_ppDATA[ I ][ 17 ]	// ÇØ´ç Á÷¾÷2
-#define	ITEM_JOB_TYPE3(T,I)				g_pTblSTBs[T]->m_ppDATA[ I ][ 18 ]	// ÇØ´ç Á÷¾÷3
+#define	ITEM_JOB_TYPE1(T,I)				g_pTblSTBs[T]->m_ppDATA[ I ][ 16 ]	// í•´ë‹¹ ì§ì—…1
+#define	ITEM_JOB_TYPE2(T,I)				g_pTblSTBs[T]->m_ppDATA[ I ][ 17 ]	// í•´ë‹¹ ì§ì—…2
+#define	ITEM_JOB_TYPE3(T,I)				g_pTblSTBs[T]->m_ppDATA[ I ][ 18 ]	// í•´ë‹¹ ì§ì—…3
 */
 #define ITEM_EQUIP_REQUIRE_CLASS(T,I)		g_pTblSTBs[T]->m_ppDATA[ I ][ 16 ]
 #define ITEM_EQUIP_REQUIRE_UNION_CNT		2
@@ -135,17 +135,17 @@ public :
 
 
 #define ITEM_NEED_DATA_CNT				2
-#define	ITEM_NEED_DATA_TYPE(T,I,C)		g_pTblSTBs[T]->m_ppDATA[ I ][ 19+(C*2) ]	// ¾ÆÀÌÅÛ Á¾·ù
-#define	ITEM_NEED_DATA_VALUE(T,I,C)		g_pTblSTBs[T]->m_ppDATA[ I ][ 20+(C*2) ]	// ¾ÆÀÌÅÛ Á¾·ù
+#define	ITEM_NEED_DATA_TYPE(T,I,C)		g_pTblSTBs[T]->m_ppDATA[ I ][ 19+(C*2) ]	// ì•„ì´í…œ ì¢…ë¥˜
+#define	ITEM_NEED_DATA_VALUE(T,I,C)		g_pTblSTBs[T]->m_ppDATA[ I ][ 20+(C*2) ]	// ì•„ì´í…œ ì¢…ë¥˜
 #define	ITEM_NEED_UNION_CNT				2
 #define	ITEM_NEED_UNION(T,I,C)			g_pTblSTBs[T]->m_ppDATA[ I ][ 23+(C*3) ]
 #define ITEM_ADD_DATA_TYPE(T,I,C)		g_pTblSTBs[T]->m_ppDATA[ I ][ 24+(C*3) ]
 #define	ITEM_ADD_DATA_VALUE(T,I,C)		g_pTblSTBs[T]->m_ppDATA[ I ][ 25+(C*3) ]
-#define	ITEM_DURABITY(T,I)				g_pTblSTBs[T]->m_ppDATA[ I ][ 29 ]	// ¾ÆÀÌÅÛ ³»±¸µµ
+#define	ITEM_DURABITY(T,I)				g_pTblSTBs[T]->m_ppDATA[ I ][ 29 ]	// ì•„ì´í…œ ë‚´êµ¬ë„
 
 #define	ITEM_RARE_TYPE(T,I)				g_pTblSTBs[T]->m_ppDATA[ I ][ 30 ]
-#define ITEM_DEFENCE(T,I)				g_pTblSTBs[T]->m_ppDATA[ I ][ 31 ]	// ¹æ¾î·Â
-#define ITEM_RESISTENCE(T,I)			g_pTblSTBs[T]->m_ppDATA[ I ][ 32 ]	// Ç×¸¶·Â
+#define ITEM_DEFENCE(T,I)				g_pTblSTBs[T]->m_ppDATA[ I ][ 31 ]	// ë°©ì–´ë ¥
+#define ITEM_RESISTENCE(T,I)			g_pTblSTBs[T]->m_ppDATA[ I ][ 32 ]	// í•­ë§ˆë ¥
 
 
 //-------------------------------------------------------------------------------------------------
@@ -160,7 +160,7 @@ public :
 // LIST_BODY.STB
 #define	ARMOR_NAME(I)					ITEM_NAME( ITEM_TYPE_ARMOR, I );
 //	@Use ITEM_xxxx
-#define	ARMOR_MAT_TYPE(I)				g_TblARMOR.m_ppDATA[ I ][ 33 ]		// ÀçÁú Å¸ÀÔ
+#define	ARMOR_MAT_TYPE(I)				g_TblARMOR.m_ppDATA[ I ][ 33 ]		// ì¬ì§ˆ íƒ€ì…
 
 //-------------------------------------------------------------------------------------------------
 // LIST_FOOT.STB
@@ -175,13 +175,13 @@ public :
 //	@Use ITEM_xxxx
 
 //-------------------------------------------------------------------------------------------------
-// LIST_FACEITEM.STB	¾ó±¼¾ÆÀÌÅÛ 
+// LIST_FACEITEM.STB	ì–¼êµ´ì•„ì´í…œ 
 #define FACEITEM_NAME(I)			ITEM_NAME( ITEM_TYPE_FACE_ITEM, I )
 #define FACEITEM_DESC(I)			ITEM_DESC( ITEM_TYPE_FACE_ITEM, I )
 
 
 //-------------------------------------------------------------------------------------------------
-// LIST_BACK.STB		°¡¹æ¾ÆÀÌÅÛ 
+// LIST_BACK.STB		ê°€ë°©ì•„ì´í…œ 
 #define BACKITEM_NAME(I)				ITEM_NAME( ITEM_TYPE_KNAPSACK, I )
 #define BACKITEM_DESC(I)				ITEM_DESC( ITEM_TYPE_KNAPSACK, I )	
 
@@ -229,7 +229,7 @@ public :
 #define	SUBWPN_GEMMING_POSITION(I)		g_TblSUBWPN.m_ppDATA[ I ][ 34 ]
 
 //-------------------------------------------------------------------------------------------------
-// LIST_JEWEL.STB		Àå½Å±¸¾ÆÀÌÅÛ 
+// LIST_JEWEL.STB		ì¥ì‹ êµ¬ì•„ì´í…œ 
 #define	JEWEL_NAME(I)						ITEM_NAME( ITEM_TYPE_JEWEL, I)
 
 //	@Use ITEM_xxxx
@@ -240,31 +240,31 @@ public :
 #define	JEWEL_NEED_UNION(I,C)				g_TblJEWELITEM.m_ppDATA[ I ][ 23+(C*3) ]
 #define JEWEL_ADD_DATA_TYPE(I,C)			g_TblJEWELITEM.m_ppDATA[ I ][ 24+(C*3) ]
 #define	JEWEL_ADD_DATA_VALUE(I,C)			g_TblJEWELITEM.m_ppDATA[ I ][ 25+(C*3) ]
-///ÀÌ»ó ÀåÂø ¾ÆÀÌÅÛ
+///ì´ìƒ ì¥ì°© ì•„ì´í…œ
 //-------------------------------------------------------------------------------------------------
-// LIST_USEITEM.STB		¼Ò¸ğ¾ÆÀÌÅÛ
+// LIST_USEITEM.STB		ì†Œëª¨ì•„ì´í…œ
 #define USEITEM_NAME(I)						ITEM_NAME(ITEM_TYPE_USE, I)
 #define USEITEM_DESC(I)						ITEM_DESC(ITEM_TYPE_USE, I)
 
-#define	USEITEM_STORE_SKIN(I)				g_TblUSEITEM.m_ppDATA[ I ][  8 ]	// °³ÀÎ»óÁ¡ ÀÌ¹ÌÁö ¹øÈ£...
+#define	USEITEM_STORE_SKIN(I)				g_TblUSEITEM.m_ppDATA[ I ][  8 ]	// ê°œì¸ìƒì  ì´ë¯¸ì§€ ë²ˆí˜¸...
 
 #define USEITEM_CONFILE_IDX(I)				g_TblUSEITEM.m_ppDATA[ I ][ 22 ]
 //	@Use ITEM_xxxx
 #define	USEITEM_NEED_DATA_TYPE(I)			g_TblUSEITEM.m_ppDATA[ I ][ 17 ]
 #define	USEITEM_NEED_DATA_VALUE(I)			g_TblUSEITEM.m_ppDATA[ I ][ 18 ]
-#define	USEITEM_ADD_DATA_TYPE(I)			g_TblUSEITEM.m_ppDATA[ I ][ 19 ]	// ¾ÆÀÌÅÛ Á¾·ù
-#define	USEITEM_ADD_DATA_VALUE(I)			g_TblUSEITEM.m_ppDATA[ I ][ 20 ]	// ¾ÆÀÌÅÛ Á¾·ù
+#define	USEITEM_ADD_DATA_TYPE(I)			g_TblUSEITEM.m_ppDATA[ I ][ 19 ]	// ì•„ì´í…œ ì¢…ë¥˜
+#define	USEITEM_ADD_DATA_VALUE(I)			g_TblUSEITEM.m_ppDATA[ I ][ 20 ]	// ì•„ì´í…œ ì¢…ë¥˜
 
-#define	USEITEM_SCROLL_LEARN_SKILL			USEITEM_ADD_DATA_VALUE				// ½ºÅ³ ¹è¿ì´Â ½ºÅ©·Ñ..
-#define	USEITEM_SCROLL_USE_SKILL			USEITEM_ADD_DATA_VALUE				// ½ºÅ³ »ç¿ëÇÏ´Â ½ºÅ©·Ñ.
+#define	USEITEM_SCROLL_LEARN_SKILL			USEITEM_ADD_DATA_VALUE				// ìŠ¤í‚¬ ë°°ìš°ëŠ” ìŠ¤í¬ë¡¤..
+#define	USEITEM_SCROLL_USE_SKILL			USEITEM_ADD_DATA_VALUE				// ìŠ¤í‚¬ ì‚¬ìš©í•˜ëŠ” ìŠ¤í¬ë¡¤.
 
 #define	USEITEM_SCRIPT(I)					g_TblUSEITEM.m_ppDATA[ I ][ 21 ]
-#define	USEITEM_USE_EFFECT(I)				g_TblUSEITEM.m_ppDATA[ I ][ 22 ]	// »ç¿ë È¿°úÀ½
-#define	USEITEM_USE_SOUND(I)				g_TblUSEITEM.m_ppDATA[ I ][ 23 ]	// »ç¿ë È¿°úÀ½
-#define	USEITME_STATUS_STB(I)				g_TblUSEITEM.m_ppDATA[ I ][ 24 ]	// Áö¼ÓÇü »óÅÂ
+#define	USEITEM_USE_EFFECT(I)				g_TblUSEITEM.m_ppDATA[ I ][ 22 ]	// ì‚¬ìš© íš¨ê³¼ìŒ
+#define	USEITEM_USE_SOUND(I)				g_TblUSEITEM.m_ppDATA[ I ][ 23 ]	// ì‚¬ìš© íš¨ê³¼ìŒ
+#define	USEITME_STATUS_STB(I)				g_TblUSEITEM.m_ppDATA[ I ][ 24 ]	// ì§€ì†í˜• ìƒíƒœ
 
-#define USEITME_DELAYTIME_TYPE(I)			g_TblUSEITEM.m_ppDATA[ I ][ 25 ]	// ÄğÅ¸ÀÓÅ¸ÀÔ
-#define USEITME_DELAYTIME_TICK(I)			g_TblUSEITEM.m_ppDATA[ I ][ 26 ]	// ÄğÅ¸ÀÓÆ½(ÃÊ´ÜÀ§)
+#define USEITME_DELAYTIME_TYPE(I)			g_TblUSEITEM.m_ppDATA[ I ][ 25 ]	// ì¿¨íƒ€ì„íƒ€ì…
+#define USEITME_DELAYTIME_TICK(I)			g_TblUSEITEM.m_ppDATA[ I ][ 26 ]	// ì¿¨íƒ€ì„í‹±(ì´ˆë‹¨ìœ„)
 
 #define	MAX_USEITEM_COOLTIME_TYPE			4	// 0~3
 
@@ -273,29 +273,29 @@ public :
 
 
 //-------------------------------------------------------------------------------------------------
-// LIST_JEMITEM.STB		º¸¼®¾ÆÀÌÅÛ
-#define GEMITEM_NAME(I)						ITEM_NAME( ITEM_TYPE_GEM, I )//ÀÌ¸§
-#define GEMITEM_DESC(I)						ITEM_DESC( ITEM_TYPE_GEM, I )//¼³¸í 
+// LIST_JEMITEM.STB		ë³´ì„ì•„ì´í…œ
+#define GEMITEM_NAME(I)						ITEM_NAME( ITEM_TYPE_GEM, I )//ì´ë¦„
+#define GEMITEM_DESC(I)						ITEM_DESC( ITEM_TYPE_GEM, I )//ì„¤ëª… 
 
 //	@Use ITEM_xxxx
-#define	GEMITEM_BASE_PRICE(I)				g_TblGEMITEM.m_ppDATA[ I ][  5 ]	// ±âÁØ°¡°İ
-#define	GEMITEM_PRICE_RATE(I)				g_TblGEMITEM.m_ppDATA[ I ][  6 ]	// °¡°İ º¯µ¿·ü
+#define	GEMITEM_BASE_PRICE(I)				g_TblGEMITEM.m_ppDATA[ I ][  5 ]	// ê¸°ì¤€ê°€ê²©
+#define	GEMITEM_PRICE_RATE(I)				g_TblGEMITEM.m_ppDATA[ I ][  6 ]	// ê°€ê²© ë³€ë™ë¥ 
 
 #define GEMITEM_ADD_DATA_TYPE(I,C)			g_TblGEMITEM.m_ppDATA[ I ][ 16+(C*2) ]
 #define	GEMITEM_ADD_DATA_VALUE(I,C)			g_TblGEMITEM.m_ppDATA[ I ][ 17+(C*2) ]
 
-#define GEMITEM_MARK_IMAGE(I)				g_TblGEMITEM.m_ppDATA[ I ][ 20 ]	//¸¶Å©ÀÌ¹ÌÁö 
-#define GEMITEM_ATTACK_EFFECT(I)			g_TblGEMITEM.m_ppDATA[ I ][ 21 ]	//¾ÆÀÌÅÜ¿¡ ºÙÀ» ÀÌ¹ÌÁö
+#define GEMITEM_MARK_IMAGE(I)				g_TblGEMITEM.m_ppDATA[ I ][ 20 ]	//ë§ˆí¬ì´ë¯¸ì§€ 
+#define GEMITEM_ATTACK_EFFECT(I)			g_TblGEMITEM.m_ppDATA[ I ][ 21 ]	//ì•„ì´í…ì— ë¶™ì„ ì´ë¯¸ì§€
 
 
 
 
 //-------------------------------------------------------------------------------------------------
-// LIST_NATURAL.STB		¿øÀç·á 
+// LIST_NATURAL.STB		ì›ì¬ë£Œ 
 #define NATURAL_NAME(I)				ITEM_NAME( ITEM_TYPE_NATURAL, I )
 #define NATURAL_DESC(I)				ITEM_DESC( ITEM_TYPE_NATURAL, I )
 //	@Use ITEM_xxxx
-#define NATURAL_BULLET_NO(I)		g_TblNATUAL.m_ppDATA[ I ][ 17 ]///¼öÁ¤ 2004 / 2 /18 :nAvy g_TblNPC => g_TblNATUAL
+#define NATURAL_BULLET_NO(I)		g_TblNATUAL.m_ppDATA[ I ][ 17 ]///ìˆ˜ì • 2004 / 2 /18 :nAvy g_TblNPC => g_TblNATUAL
 
 
 
@@ -311,9 +311,9 @@ public :
 //	#define	SET_NPC_DEAD_EVENT(I,V)		g_TblNPC.m_ppVALUE[ I ][ 41 ].SetVALUE(V)
 //#else
 /// use load2 function
-	#define	NPC_NAME(I)					CStringManager::GetSingleton().GetNpcName( I )	// NPC ÀÌ¸§
-	#define NPC_DESC(I)					g_TblNPC.m_ppVALUE[ I ][ 41 ].GetSTR()			/// Á×À»¶§ ÀÌº¥Æ®
-	#define NPC_HEIGHT(I)				g_TblNPC.m_ppVALUE[ I ][ 42 ].GetINT()			/// NPCÅ°
+	#define	NPC_NAME(I)					CStringManager::GetSingleton().GetNpcName( I )	// NPC ì´ë¦„
+	#define NPC_DESC(I)					g_TblNPC.m_ppVALUE[ I ][ 41 ].GetSTR()			/// ì£½ì„ë•Œ ì´ë²¤íŠ¸
+	#define NPC_HEIGHT(I)				g_TblNPC.m_ppVALUE[ I ][ 42 ].GetINT()			/// NPCí‚¤
 //#endif
 #define	NPC_WALK_SPEED(I)			g_TblNPC.m_ppVALUE[ I ][ 2 ].GetINT()
 #define NPC_RUN_SPEED(I)			g_TblNPC.m_ppVALUE[ I ][ 3 ].GetINT()
@@ -332,14 +332,14 @@ public :
 #define NPC_AI_TYPE(I)				g_TblNPC.m_ppVALUE[ I ][ 16 ].GetINT()
 #define NPC_GIVE_EXP(I)				g_TblNPC.m_ppVALUE[ I ][ 17 ].GetINT()
 #define NPC_DROP_TYPE(I)			g_TblNPC.m_ppVALUE[ I ][ 18 ].GetINT()
-#define NPC_MARK_NO(I)				NPC_DROP_TYPE(I)			///¹Ì´Ï¸Ê¿¡ Ç¥½ÃµÇ´Â NPC IMAGE NO
+#define NPC_MARK_NO(I)				NPC_DROP_TYPE(I)			///ë¯¸ë‹ˆë§µì— í‘œì‹œë˜ëŠ” NPC IMAGE NO
 
 #define NPC_DROP_MONEY(I)			g_TblNPC.m_ppVALUE[ I ][ 19 ].GetINT()
 #define NPC_DROP_ITEM(I)			g_TblNPC.m_ppVALUE[ I ][ 20 ].GetINT()
 
-#define NPC_UNION_NO(I)				NPC_DROP_ITEM(I)			///Á¶ÇÕ»óÁ¡¿¡¼­ ÇØ´ç Á¶ÇÕÀÇ ¹øÈ£
+#define NPC_UNION_NO(I)				NPC_DROP_ITEM(I)			///ì¡°í•©ìƒì ì—ì„œ í•´ë‹¹ ì¡°í•©ì˜ ë²ˆí˜¸
 
-#define	NPC_NEED_SUMMON_CNT(I)		g_TblNPC.m_ppVALUE[ I ][ 21 ].GetINT()		// ¼ÒÈ¯½Ã ÇÊ¿äÇÑ ¼ÒÈ¯´É·ÂÄ¡
+#define	NPC_NEED_SUMMON_CNT(I)		g_TblNPC.m_ppVALUE[ I ][ 21 ].GetINT()		// ì†Œí™˜ì‹œ í•„ìš”í•œ ì†Œí™˜ëŠ¥ë ¥ì¹˜
 #define NPC_SELL_TAB(I,T)			g_TblNPC.m_ppVALUE[ I ][ 21+T ].GetINT()
 #define NPC_SELL_TAB0(I)			g_TblNPC.m_ppVALUE[ I ][ 21 ].GetINT()
 #define NPC_SELL_TAB1(I)			g_TblNPC.m_ppVALUE[ I ][ 22 ].GetINT()
@@ -350,29 +350,29 @@ public :
 #define	NPC_TYPE(I)					g_TblNPC.m_ppVALUE[ I ][ 27 ].GetINT()
 #define	NPC_HIT_MATERIAL_TYPE(I)	g_TblNPC.m_ppVALUE[ I ][ 28 ].GetINT()
 
-/// NPCÀÏ°æ¿ì( NPC_TYPE==999 )ÀÏ°æ¿ì¿¡´Â ´ëÈ­½Ã ¾ó±¼ ÀÌ¹ÌÁö ÀÎµ¦½ºÀÌ°í ¼ÒÈ¯¸÷ÀÏ°æ¿ì¿¡´Â HP °è»ê½Ä±¸ºĞ¿¡ »ç¿ëµÈ´Ù.
-/// 2005/8/26 ÃÖÁ¾Áø
+/// NPCì¼ê²½ìš°( NPC_TYPE==999 )ì¼ê²½ìš°ì—ëŠ” ëŒ€í™”ì‹œ ì–¼êµ´ ì´ë¯¸ì§€ ì¸ë±ìŠ¤ì´ê³  ì†Œí™˜ëª¹ì¼ê²½ìš°ì—ëŠ” HP ê³„ì‚°ì‹êµ¬ë¶„ì— ì‚¬ìš©ëœë‹¤.
+/// 2005/8/26 ìµœì¢…ì§„
 #define	NPC_FACE_ICON(I)			g_TblNPC.m_ppVALUE[ I ][ 29 ].GetINT()
 #define	NPC_SUMMONMOB_TYPE(I)		g_TblNPC.m_ppVALUE[ I ][ 29 ].GetINT()
 
 #define	NPC_NORMAL_EFFECT_SOUND(I)	g_TblNPC.m_ppVALUE[ I ][ 30 ].GetINT()
-#define	NPC_ATTACK_SOUND(I)			g_TblNPC.m_ppVALUE[ I ][ 31 ].GetINT()		// °ø°İ ½ÃÀÛ »ç¿îµå
-#define	NPC_HITTED_SOUND(I)			g_TblNPC.m_ppVALUE[ I ][ 32 ].GetINT()		// ¸Â¾ÒÀ»¶§ ³»´Â ¼Ò¸®
-#define	NPC_HAND_HIT_EFFECT(I)		g_TblNPC.m_ppVALUE[ I ][ 33 ].GetINT()		//	¸Ç¼Õ Å¸°İÈ¿°ú
+#define	NPC_ATTACK_SOUND(I)			g_TblNPC.m_ppVALUE[ I ][ 31 ].GetINT()		// ê³µê²© ì‹œì‘ ì‚¬ìš´ë“œ
+#define	NPC_HITTED_SOUND(I)			g_TblNPC.m_ppVALUE[ I ][ 32 ].GetINT()		// ë§ì•˜ì„ë•Œ ë‚´ëŠ” ì†Œë¦¬
+#define	NPC_HAND_HIT_EFFECT(I)		g_TblNPC.m_ppVALUE[ I ][ 33 ].GetINT()		//	ë§¨ì† íƒ€ê²©íš¨ê³¼
 
 #define	NPC_DEAD_EFFECT(I)			g_TblNPC.m_ppVALUE[ I ][ 34 ].GetINT()
-#define NPC_DIE_SOUND(I)			g_TblNPC.m_ppVALUE[ I ][ 35 ].GetINT()		//	Á×À»¶§ È¿°úÀ½
+#define NPC_DIE_SOUND(I)			g_TblNPC.m_ppVALUE[ I ][ 35 ].GetINT()		//	ì£½ì„ë•Œ íš¨ê³¼ìŒ
 
-#define NPC_QUEST_TYPE(I)			g_TblNPC.m_ppVALUE[ I ][ 38 ].GetINT()		//	Äù½ºÆ® Å¸ÀÔ
-#define NPC_GLOW_COLOR(I)			g_TblNPC.m_ppVALUE[ I ][ 39 ].GetINT()		//	Äù½ºÆ® Å¸ÀÔ
-#define NPC_GLOW_COLOR(I)			g_TblNPC.m_ppVALUE[ I ][ 39 ].GetINT()		//	Äù½ºÆ® Å¸ÀÔ
+#define NPC_QUEST_TYPE(I)			g_TblNPC.m_ppVALUE[ I ][ 38 ].GetINT()		//	í€˜ìŠ¤íŠ¸ íƒ€ì…
+#define NPC_GLOW_COLOR(I)			g_TblNPC.m_ppVALUE[ I ][ 39 ].GetINT()		//	í€˜ìŠ¤íŠ¸ íƒ€ì…
+#define NPC_GLOW_COLOR(I)			g_TblNPC.m_ppVALUE[ I ][ 39 ].GetINT()		//	í€˜ìŠ¤íŠ¸ íƒ€ì…
 
 #define	NPC_STRING_ID_COLOUM		40
-#define NPC_STRING_ID(I)			g_TblNPC.m_ppVALUE[ I ][ NPC_STRING_ID_COLOUM ].GetSTR()		//	½ºÆ®¸µ ¾ÆÀÌµğ
+#define NPC_STRING_ID(I)			g_TblNPC.m_ppVALUE[ I ][ NPC_STRING_ID_COLOUM ].GetSTR()		//	ìŠ¤íŠ¸ë§ ì•„ì´ë””
 
 
-#define	NPC_CREATE_EFFECT(I)		g_TblNPC.m_ppVALUE[ I ][ 44 ].GetINT()		// »ı¼º½Ã È¿°ú.
-#define NPC_CREATE_SOUND(I)			g_TblNPC.m_ppVALUE[ I ][ 45 ].GetINT()		// »ı¼º½Ã È¿°úÀ½.
+#define	NPC_CREATE_EFFECT(I)		g_TblNPC.m_ppVALUE[ I ][ 44 ].GetINT()		// ìƒì„±ì‹œ íš¨ê³¼.
+#define NPC_CREATE_SOUND(I)			g_TblNPC.m_ppVALUE[ I ][ 45 ].GetINT()		// ìƒì„±ì‹œ íš¨ê³¼ìŒ.
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -416,12 +416,12 @@ public :
 #define	HIT_SOUND(T, I)				g_TblHitSound.m_ppDATA[ T ][ I ]
 
 //-------------------------------------------------------------------------------------------------
-// LIST_PRODUCT.STB			: ¾ÆÀÌÅÛ Á¦Á¶ Àç·á
+// LIST_PRODUCT.STB			: ì•„ì´í…œ ì œì¡° ì¬ë£Œ
 #define	PRODUCT_TYPE(I)					g_TblPRODUCT.m_ppDATA[ I ][ 0 ]
-#define	PRODUCT_RAW_MATERIAL(I)			g_TblPRODUCT.m_ppDATA[ I ][ 1 ]			// ¿ø·á Á¾·ù ¹øÈ£
+#define	PRODUCT_RAW_MATERIAL(I)			g_TblPRODUCT.m_ppDATA[ I ][ 1 ]			// ì›ë£Œ ì¢…ë¥˜ ë²ˆí˜¸
 
-#define	PRODUCT_NEED_ITEM_NO(P,C)		g_TblPRODUCT.m_ppDATA[ P ][ 2+(C)*2 ]	// Àç·á ¾ÆÀÌÅÛ ¹øÈ£
-#define	PRODUCT_NEED_ITEM_CNT(P,C)		g_TblPRODUCT.m_ppDATA[ P ][ 3+(C)*2 ]	// ÆÓ¿ä °¹¼ö
+#define	PRODUCT_NEED_ITEM_NO(P,C)		g_TblPRODUCT.m_ppDATA[ P ][ 2+(C)*2 ]	// ì¬ë£Œ ì•„ì´í…œ ë²ˆí˜¸
+#define	PRODUCT_NEED_ITEM_CNT(P,C)		g_TblPRODUCT.m_ppDATA[ P ][ 3+(C)*2 ]	// íŒ°ìš” ê°¯ìˆ˜
 
 /*
 	..
@@ -434,9 +434,9 @@ public :
 
 
 
-// Äù½ºÆ®¾ÆÀÌÅÛ 
+// í€˜ìŠ¤íŠ¸ì•„ì´í…œ 
 
-// »óÁ¡ 
+// ìƒì  
 #ifdef __SERVER
 	#define STORE_NAME(I)					g_TblStore.m_ppNAME[ I ]
 	#define STORE_TAB_ICON(I)				g_TblStore.m_ppDATA[ I ][ 1 ]
@@ -446,7 +446,7 @@ public :
 	#define STORE_ITEM(I,T)					g_TblStore.m_ppVALUE[ I ][ 2+T ].GetINT()
 #endif
 
-// ¿öÇÁ
+// ì›Œí”„
 #define	TELEPORT_NAME(I)					g_TblWARP.m_ppVALUE[ I ][ 0 ].GetSTR()
 #define	TELEPORT_ZONE(I)					g_TblWARP.m_ppVALUE[ I ][ 1 ].GetINT()
 #define TELEPORT_EVENT_POS(I)				g_TblWARP.m_ppVALUE[ I ][ 2 ].GetSTR()
@@ -478,8 +478,8 @@ public :
 #define	ZONE_NAME(I)						g_TblZONE.m_ppVALUE[ I ][ 0 ].GetSTR()
 #define ZONE_DESC(I)
 #else
-#define	ZONE_NAME(I)						CStringManager::GetSingleton().GetZoneName( I )	// Zone ÀÌ¸§
-#define ZONE_DESC(I)						CStringManager::GetSingleton().GetZoneDesc( I )	// Zone ¼³¸í
+#define	ZONE_NAME(I)						CStringManager::GetSingleton().GetZoneName( I )	// Zone ì´ë¦„
+#define ZONE_DESC(I)						CStringManager::GetSingleton().GetZoneDesc( I )	// Zone ì„¤ëª…
 #endif
 
 #define	ZONE_FILE(I)						g_TblZONE.m_ppVALUE[ I ][ 1 ].GetSTR()
@@ -505,13 +505,13 @@ public :
 #define ZONE_PVP_STATE(I)					g_TblZONE.m_ppVALUE[ I ][ 18 ].GetINT()
 #define ZONE_PLANET_NO(I)					g_TblZONE.m_ppVALUE[ I ][ 19 ].GetINT()
 #define ZONE_TYPE(I)						g_TblZONE.m_ppVALUE[ I ][ 20 ].GetINT()
-#define ZONE_CAMERA_TYPE(I)					g_TblZONE.m_ppVALUE[ I ][ 21 ].GetINT()			/// Ä«¸Ş¶ó¿¡¼­ÀÇ ½ÃÀÛÀ§Ä¡.
-#define	ZONE_JOIN_TRIGGER(I)				g_TblZONE.m_ppVALUE[ I ][ 22 ].GetSTR()			/// Á¸¿¡ Á¶ÀÎ½Ã ½ÇÇàÇÒ Æ®¸®°Å
-#define	ZONE_KILL_TRIGGER(I)				g_TblZONE.m_ppVALUE[ I ][ 23 ].GetSTR()			/// PK ¸ğµå on½Ã »ç¿ëÀÚ¸¦ Á×¿´À»¶§ ½ÇÇàµÉ Æ®¸®°Å
-#define	ZONE_DEAD_TRIGGER(I)				g_TblZONE.m_ppVALUE[ I ][ 24 ].GetSTR()			/// PK ¸ğµå on½Ã Á×¾úÀ»¶§ ½ÇÇàµÉ Æ®¸®°Å
-#define	ZONE_SECTOR_SIZE(I)					g_TblZONE.m_ppVALUE[ I ][ 25 ].GetINT()			/// ¼­¹ö¿¡¼­ »ç¿ëÇÏ´Â °ª
-#define ZONE_STRING_ID(I)					g_TblZONE.m_ppVALUE[ I ][ 26 ].GetSTR()			/// ½ºÆ®¸µ ¾ÆÀÌµğ
-#define ZONE_WEATHER_TYPE(I)				g_TblZONE.m_ppVALUE[ I ][ 27 ].GetINT()			/// ³¯¾¾Å¸ÀÔ
+#define ZONE_CAMERA_TYPE(I)					g_TblZONE.m_ppVALUE[ I ][ 21 ].GetINT()			/// ì¹´ë©”ë¼ì—ì„œì˜ ì‹œì‘ìœ„ì¹˜.
+#define	ZONE_JOIN_TRIGGER(I)				g_TblZONE.m_ppVALUE[ I ][ 22 ].GetSTR()			/// ì¡´ì— ì¡°ì¸ì‹œ ì‹¤í–‰í•  íŠ¸ë¦¬ê±°
+#define	ZONE_KILL_TRIGGER(I)				g_TblZONE.m_ppVALUE[ I ][ 23 ].GetSTR()			/// PK ëª¨ë“œ onì‹œ ì‚¬ìš©ìë¥¼ ì£½ì˜€ì„ë•Œ ì‹¤í–‰ë  íŠ¸ë¦¬ê±°
+#define	ZONE_DEAD_TRIGGER(I)				g_TblZONE.m_ppVALUE[ I ][ 24 ].GetSTR()			/// PK ëª¨ë“œ onì‹œ ì£½ì—ˆì„ë•Œ ì‹¤í–‰ë  íŠ¸ë¦¬ê±°
+#define	ZONE_SECTOR_SIZE(I)					g_TblZONE.m_ppVALUE[ I ][ 25 ].GetINT()			/// ì„œë²„ì—ì„œ ì‚¬ìš©í•˜ëŠ” ê°’
+#define ZONE_STRING_ID(I)					g_TblZONE.m_ppVALUE[ I ][ 26 ].GetSTR()			/// ìŠ¤íŠ¸ë§ ì•„ì´ë””
+#define ZONE_WEATHER_TYPE(I)				g_TblZONE.m_ppVALUE[ I ][ 27 ].GetINT()			/// ë‚ ì”¨íƒ€ì…
 
 #define	ZONE_PARTY_EXP_A(I)					g_TblZONE.m_ppVALUE[ I ][ 28 ].GetINT()
 #define	ZONE_PARTY_EXP_B(I)					g_TblZONE.m_ppVALUE[ I ][ 29 ].GetINT()
@@ -520,10 +520,10 @@ public :
 //#define	ZONE_OCEAN_FRAME(I)					g_TblZONE.m_ppVALUE[ I ][ 31 ].GetINT()
 
 
-#define	ZONE_RIDING_REFUSE_FLAG(I)			g_TblZONE.m_ppVALUE[ I ][ 30 ].GetINT()			// Å¾½Â °ÅºÎ ÇÃ·¡±×
-#define	ZONE_REVIVE_ZONENO(I)				g_TblZONE.m_ppVALUE[ I ][ 31 ].GetINT()			// »ç¸Á½Ã ºÎÈ°Á¸ ¹øÈ£
-#define	ZONE_REVIVE_X_POS(I)				g_TblZONE.m_ppVALUE[ I ][ 32 ].GetINT()			// »ç¸Á½Ã ºÎÈ°Á¸ ÁÂÇ¥
-#define	ZONE_REVIVE_Y_POS(I)				g_TblZONE.m_ppVALUE[ I ][ 33 ].GetINT()			// »ç¸Á½Ã ºÎÈ°Á¸ ÁÂÇ¥
+#define	ZONE_RIDING_REFUSE_FLAG(I)			g_TblZONE.m_ppVALUE[ I ][ 30 ].GetINT()			// íƒ‘ìŠ¹ ê±°ë¶€ í”Œë˜ê·¸
+#define	ZONE_REVIVE_ZONENO(I)				g_TblZONE.m_ppVALUE[ I ][ 31 ].GetINT()			// ì‚¬ë§ì‹œ ë¶€í™œì¡´ ë²ˆí˜¸
+#define	ZONE_REVIVE_X_POS(I)				g_TblZONE.m_ppVALUE[ I ][ 32 ].GetINT()			// ì‚¬ë§ì‹œ ë¶€í™œì¡´ ì¢Œí‘œ
+#define	ZONE_REVIVE_Y_POS(I)				g_TblZONE.m_ppVALUE[ I ][ 33 ].GetINT()			// ì‚¬ë§ì‹œ ë¶€í™œì¡´ ì¢Œí‘œ
 
 
 
@@ -553,7 +553,7 @@ public :
 #define	AVATAR_MONEY(I)						g_TblAVATAR.m_ppDATA[ I ][ 44 ]
 #define	AVATAR_ZONE(I)						g_TblAVATAR.m_ppDATA[ I ][ 45 ]
 
-/// Option - ÇØ»óµµ
+/// Option - í•´ìƒë„
 #define RESOLUTION_DEFAULT					0
 #define RESOLUTION_NAME(I)					g_TblResolution.m_ppVALUE[ I ][ 0 ].GetSTR();
 #define RESOLUTION_WIDTH(I)					g_TblResolution.m_ppVALUE[ I ][ 1 ].GetINT();
@@ -565,7 +565,7 @@ public :
 
 
 
-/// Ä³¸¯ÅÍ »óÅÂº¯°æ Á¤º¸
+/// ìºë¦­í„° ìƒíƒœë³€ê²½ ì •ë³´
 #ifdef __SERVER
 	#define STATE_NAME(I)					g_TblSTATE.m_ppVALUE[ I ][ 0 ].GetSTR()
 #else
@@ -573,44 +573,44 @@ public :
 #endif
 //#define STATE_DESC(I)						g_TblSTATE.m_ppVALUE[ I ][ 18 ].GetSTR()
 
-#define STATE_TYPE(I)						g_TblSTATE.m_ppVALUE[ I ][ 1 ].GetINT()		/// À¯Çü
-#define STATE_CAN_DUPLICATED(I)				g_TblSTATE.m_ppVALUE[ I ][ 2 ].GetINT()		/// Áßº¹ ¿©ºÎ
-#define STATE_PRIFITS_LOSSES(I)				g_TblSTATE.m_ppVALUE[ I ][ 3 ].GetINT()		/// À¯¸® ºÒ¸®
-#define STATE_APPLY_ARG(I)					g_TblSTATE.m_ppVALUE[ I ][ 4 ].GetINT()		/// Àû¿ë ÀÎÀÚ
+#define STATE_TYPE(I)						g_TblSTATE.m_ppVALUE[ I ][ 1 ].GetINT()		/// ìœ í˜•
+#define STATE_CAN_DUPLICATED(I)				g_TblSTATE.m_ppVALUE[ I ][ 2 ].GetINT()		/// ì¤‘ë³µ ì—¬ë¶€
+#define STATE_PRIFITS_LOSSES(I)				g_TblSTATE.m_ppVALUE[ I ][ 3 ].GetINT()		/// ìœ ë¦¬ ë¶ˆë¦¬
+#define STATE_APPLY_ARG(I)					g_TblSTATE.m_ppVALUE[ I ][ 4 ].GetINT()		/// ì ìš© ì¸ì
 
-/// Àû¿ë ´É·Â
+/// ì ìš© ëŠ¥ë ¥
 #define STATE_APPLY_ABILITY_CNT				2
-#define STATE_APPLY_ING_STB(I,T)			g_TblSTATE.m_ppVALUE[ I ][ 5 + (T)*2 ].GetINT()			/// Àû¿ë ´É·Â
-#define STATE_APPLY_ABILITY_VALUE(I,T)		g_TblSTATE.m_ppVALUE[ I ][ 5 + (T)*2 + 1 ].GetINT()		/// Àû¿ë ´É·Â ¼öÄ¡
+#define STATE_APPLY_ING_STB(I,T)			g_TblSTATE.m_ppVALUE[ I ][ 5 + (T)*2 ].GetINT()			/// ì ìš© ëŠ¥ë ¥
+#define STATE_APPLY_ABILITY_VALUE(I,T)		g_TblSTATE.m_ppVALUE[ I ][ 5 + (T)*2 + 1 ].GetINT()		/// ì ìš© ëŠ¥ë ¥ ìˆ˜ì¹˜
 
-#define STATE_SYMBOL(I)						g_TblSTATE.m_ppVALUE[ I ][ 9  ].GetINT()	/// »óÅÂ ½Éº¼
-#define STATE_STEP_EFFECT(I)				g_TblSTATE.m_ppVALUE[ I ][ 10 ].GetINT()	/// ´Ü°è È¿°ú
-#define STATE_STEP_SOUND(I)					g_TblSTATE.m_ppVALUE[ I ][ 11 ].GetINT()	/// ´Ü°è »ç¿îµå
+#define STATE_SYMBOL(I)						g_TblSTATE.m_ppVALUE[ I ][ 9  ].GetINT()	/// ìƒíƒœ ì‹¬ë³¼
+#define STATE_STEP_EFFECT(I)				g_TblSTATE.m_ppVALUE[ I ][ 10 ].GetINT()	/// ë‹¨ê³„ íš¨ê³¼
+#define STATE_STEP_SOUND(I)					g_TblSTATE.m_ppVALUE[ I ][ 11 ].GetINT()	/// ë‹¨ê³„ ì‚¬ìš´ë“œ
 
-/// ÄÁÅÍ·Ñ
+/// ì»¨í„°ë¡¤
 #define STATE_CONTROL_CNT					3
-#define STATE_CONTROL(I,T)					g_TblSTATE.m_ppVALUE[ I ][ 12 +(T) ].GetINT()	/// ÄÁÅÍ·Ñ
+#define STATE_CONTROL(I,T)					g_TblSTATE.m_ppVALUE[ I ][ 12 +(T) ].GetINT()	/// ì»¨í„°ë¡¤
 
-#define STATE_SHOTDOWN_EFFECT(I)			g_TblSTATE.m_ppVALUE[ I ][ 15 ].GetINT()	/// Á¾·á È¿°ú
-#define STATE_SHOTDOWN_SOUND(I)				g_TblSTATE.m_ppVALUE[ I ][ 16 ].GetINT()	/// Á¾·á »ç¿îµå
+#define STATE_SHOTDOWN_EFFECT(I)			g_TblSTATE.m_ppVALUE[ I ][ 15 ].GetINT()	/// ì¢…ë£Œ íš¨ê³¼
+#define STATE_SHOTDOWN_SOUND(I)				g_TblSTATE.m_ppVALUE[ I ][ 16 ].GetINT()	/// ì¢…ë£Œ ì‚¬ìš´ë“œ
 
-/// STB ÀÎµ¦½º¸¦ »óÅÂ ¹øÈ£·Î ºÃÀ»¶§ À¯¸®, ºÒ¸® Á¤º¸
-#define STATE_PRIFITS_LOSSES_BY_STATE(I)	g_TblSTATE.m_ppVALUE[ I ][ 17 ].GetINT()	/// Á¾·á »ç¿îµå
+/// STB ì¸ë±ìŠ¤ë¥¼ ìƒíƒœ ë²ˆí˜¸ë¡œ ë´¤ì„ë•Œ ìœ ë¦¬, ë¶ˆë¦¬ ì •ë³´
+#define STATE_PRIFITS_LOSSES_BY_STATE(I)	g_TblSTATE.m_ppVALUE[ I ][ 17 ].GetINT()	/// ì¢…ë£Œ ì‚¬ìš´ë“œ
 
-/// ÇØÁö ¼³Á¤½Ã Ãâ·ÂÇÒ ¸Ş¼¼Áö
+/// í•´ì§€ ì„¤ì •ì‹œ ì¶œë ¥í•  ë©”ì„¸ì§€
 #ifdef __SERVER
-	#define STATE_SETTING_STRING(I)				g_TblSTATE.m_ppVALUE[ I ][ 18 ].GetSTR()	/// ¼³Á¤ ½ºÆ®¸µ
-	#define STATE_DELETE_STRING(I)				g_TblSTATE.m_ppVALUE[ I ][ 19 ].GetSTR()	/// Á¾·á ½ºÆ®¸µ
+	#define STATE_SETTING_STRING(I)				g_TblSTATE.m_ppVALUE[ I ][ 18 ].GetSTR()	/// ì„¤ì • ìŠ¤íŠ¸ë§
+	#define STATE_DELETE_STRING(I)				g_TblSTATE.m_ppVALUE[ I ][ 19 ].GetSTR()	/// ì¢…ë£Œ ìŠ¤íŠ¸ë§
 #else
 	#define STATE_SETTING_STRING(I)				CStringManager::GetSingleton().GetStatusStartMsg( I )
 	#define STATE_DELETE_STRING(I)				CStringManager::GetSingleton().GetStatusEndMsg( I )
 #endif
 
-#define STATE_STRING_ID(I)					g_TblSTATE.m_ppVALUE[ I ][ 20 ].GetSTR()	/// Á¾·á ½ºÆ®¸µ
+#define STATE_STRING_ID(I)					g_TblSTATE.m_ppVALUE[ I ][ 20 ].GetSTR()	/// ì¢…ë£Œ ìŠ¤íŠ¸ë§
 
 
 ///
-///	½Ã¾ßÁ¤º¸...
+///	ì‹œì•¼ì •ë³´...
 ///
 
 #define CAMERA_NAME(I)						g_TblCamera.m_ppVALUE[ I ][ 0 ].GetSTR()
@@ -627,14 +627,14 @@ public :
 
 
 ///
-/// Lod °ü·Ã °Å¸® Á¤º¸
+/// Lod ê´€ë ¨ ê±°ë¦¬ ì •ë³´
 ///
 #define LOD_APPEAR_MIN(I)					g_TblRangeSet.m_ppDATA[ I ][ 1 ]
 #define LOD_APPEAR_MAX(I)					g_TblRangeSet.m_ppDATA[ I ][ 2 ]
 
 
 ///
-/// Á¶ÇÕ...( LIST_UNION.STB )
+/// ì¡°í•©...( LIST_UNION.STB )
 ///
 #ifdef __SERVER
 	#define UNION_NAME(I)						g_TblUnion.m_ppVALUE[ I ][ 0 ].GetSTR()
@@ -649,14 +649,14 @@ public :
 
 
 ///
-/// Á÷¾÷±º( LIST_CLASS.STB )
+/// ì§ì—…êµ°( LIST_CLASS.STB )
 ///
 #ifdef __SERVER
 	#define CLASS_NAME(I)						g_TblClass.m_ppVALUE[ I ][ 0 ].GetSTR()
 #else
 	#define CLASS_NAME(I)						CStringManager::GetSingleton().GetClassName(I)
 #endif
-#define CLASS_INCLUDE_JOB_CNT				8///ÇØ´ç Class¿¡ Æ÷ÇÔµÇ´Â Á÷¾÷µéÀÇ ÃÑ °¹¼ö
+#define CLASS_INCLUDE_JOB_CNT				8///í•´ë‹¹ Classì— í¬í•¨ë˜ëŠ” ì§ì—…ë“¤ì˜ ì´ ê°¯ìˆ˜
 #define CLASS_INCLUDE_JOB(I,C)				g_TblClass.m_ppVALUE[ I ][ 1 + C ].GetINT()	
 #define CLASS_STRING_ID(L)					g_TblClass.m_ppVALUE[ L ][ 11 ].GetSTR()
 
@@ -664,7 +664,7 @@ public :
 
 
 ///
-/// ¹ßÀÚ±¹ ¼Ò¸®( LIST_STEPSOUND.STB )
+/// ë°œìêµ­ ì†Œë¦¬( LIST_STEPSOUND.STB )
 ///
 #define STEPSOUND( ZONETYPE, TILENO )		g_TblStepSound.m_ppDATA[ TILENO ][ ZONETYPE ]
 
@@ -673,7 +673,7 @@ public :
 
 
 ///
-/// Àåºñ ¾ÆÀÌÅÛ µî±Şº° Àû¿ë ¼öÄ¡...( LIST_GRADE.STB )
+/// ì¥ë¹„ ì•„ì´í…œ ë“±ê¸‰ë³„ ì ìš© ìˆ˜ì¹˜...( LIST_GRADE.STB )
 ///
 #define	ITEMGRADE_ATK(G)					g_TblItemGRADE.m_ppDATA[ G ][ 0 ]
 #define	ITEMGRADE_HIT(G)					g_TblItemGRADE.m_ppDATA[ G ][ 1 ]
@@ -689,34 +689,34 @@ public :
 
 
 
-extern STBDATA	g_TblHAIR;			//¸Ó¸®
-extern STBDATA	g_TblFACE;			//¾ó±¼
+extern STBDATA	g_TblHAIR;			//ë¨¸ë¦¬
+extern STBDATA	g_TblFACE;			//ì–¼êµ´
 
-extern STBDATA	g_TblARMOR;			//°©¿Ê ¾ÆÀÌÅÛ
-extern STBDATA	g_TblGAUNTLET;		//Àå°© ¾ÆÀÌÅÛ 
-extern STBDATA	g_TblBOOTS;			//½Å¹ß ¾ÆÀÌÅÛ 
-extern STBDATA	g_TblHELMET;		//Çï¸ä ¾ÆÀÌÅÛ 
-extern STBDATA	g_TblWEAPON;		//¹«±â ¾ÆÀÌÅÛ
-extern STBDATA	g_TblSUBWPN;		//º¸Á¶¹«±â ¾ÆÀÌÅÛ
-extern STBDATA  g_TblFACEITEM;		//¾ó±¼ ¾ÆÀÌÅÛ 
-extern STBDATA  g_TblBACKITEM;		//µî¿¡ ´Ù´Â ¾ÆÀÌÅÛ 
-extern STBDATA  g_TblJEWELITEM;		//Àå½Å±¸ ¾ÆÀÌÅÛ 
-extern STBDATA  g_TblGEMITEM;		//º¸¼® ¾ÆÀÌÅÛ 
-extern STBDATA  g_TblNATUAL;		//¿øÀç·á 
-extern STBDATA	g_TblUSEITEM;		//¼Ò¸ğ ¾ÆÀÌÅÛ 
+extern STBDATA	g_TblARMOR;			//ê°‘ì˜· ì•„ì´í…œ
+extern STBDATA	g_TblGAUNTLET;		//ì¥ê°‘ ì•„ì´í…œ 
+extern STBDATA	g_TblBOOTS;			//ì‹ ë°œ ì•„ì´í…œ 
+extern STBDATA	g_TblHELMET;		//í—¬ë©§ ì•„ì´í…œ 
+extern STBDATA	g_TblWEAPON;		//ë¬´ê¸° ì•„ì´í…œ
+extern STBDATA	g_TblSUBWPN;		//ë³´ì¡°ë¬´ê¸° ì•„ì´í…œ
+extern STBDATA  g_TblFACEITEM;		//ì–¼êµ´ ì•„ì´í…œ 
+extern STBDATA  g_TblBACKITEM;		//ë“±ì— ë‹¤ëŠ” ì•„ì´í…œ 
+extern STBDATA  g_TblJEWELITEM;		//ì¥ì‹ êµ¬ ì•„ì´í…œ 
+extern STBDATA  g_TblGEMITEM;		//ë³´ì„ ì•„ì´í…œ 
+extern STBDATA  g_TblNATUAL;		//ì›ì¬ë£Œ 
+extern STBDATA	g_TblUSEITEM;		//ì†Œëª¨ ì•„ì´í…œ 
 
 
-extern STBDATA  g_TblEFFECT;		//È¿°ú 
+extern STBDATA  g_TblEFFECT;		//íš¨ê³¼ 
 extern STBDATA	g_TblNPC;			//NPC
-extern STBDATA	g_TblDropITEM;		//µå·Ó ¾ÆÀÌÅÛ
+extern STBDATA	g_TblDropITEM;		//ë“œë¡­ ì•„ì´í…œ
 extern STBDATA	g_TblAniTYPE;		//anitype
-extern STBDATA  g_TblPRODUCT;		//»ı»ê¹°	
+extern STBDATA  g_TblPRODUCT;		//ìƒì‚°ë¬¼	
 
-extern STBDATA  g_TblQUESTITEM;		//Äù½ºÆ® ¾ÆÀÌÅÛ 
-extern STBDATA  g_TblStore;			//»óÁ¡ 
+extern STBDATA  g_TblQUESTITEM;		//í€˜ìŠ¤íŠ¸ ì•„ì´í…œ 
+extern STBDATA  g_TblStore;			//ìƒì  
 
-extern STBDATA	g_TblWARP;			// ¿öÇÁ !
-extern STBDATA	g_TblEVENT;			// ÀÌº¥Æ®
+extern STBDATA	g_TblWARP;			// ì›Œí”„ !
+extern STBDATA	g_TblEVENT;			// ì´ë²¤íŠ¸
 
 extern STBDATA	g_TblSKY;
 
@@ -727,24 +727,24 @@ extern STBDATA *g_pTblSTBs[ ITEM_TYPE_RIDE_PART+1 ];
 
 
 extern STBDATA	g_TblString;		// String table
-extern STBDATA	g_TblHitSound;		// ÀçÁú¿¡ µû¸¥ Å¸°İ½ÃÀÇ »ç¿îµå
+extern STBDATA	g_TblHitSound;		// ì¬ì§ˆì— ë”°ë¥¸ íƒ€ê²©ì‹œì˜ ì‚¬ìš´ë“œ
 
-extern STBDATA	g_TblAVATAR;		/// ¾Æ¹ÙÅ¸ ÃÊ±â ¼³Á¤ µ¥ÀÌÅ¸..
-extern STBDATA  g_TblResolution;	/// ¿É¼Ç-ÇØ»óµµ
-extern STBDATA	g_TblFoulWord;		/// Ã¤ÆÃ½Ã FilteringµÉ ´Ü¾îµéÀÇ ¸®½ºÆ® 
+extern STBDATA	g_TblAVATAR;		/// ì•„ë°”íƒ€ ì´ˆê¸° ì„¤ì • ë°ì´íƒ€..
+extern STBDATA  g_TblResolution;	/// ì˜µì…˜-í•´ìƒë„
+extern STBDATA	g_TblFoulWord;		/// ì±„íŒ…ì‹œ Filteringë  ë‹¨ì–´ë“¤ì˜ ë¦¬ìŠ¤íŠ¸ 
 
 
 
-extern STBDATA  g_TblSTATE;			/// Ä³¸¯ÅÍÀÇ »óÅÂ¸¦ º¯°æÇÏ´Â Á¤º¸.
+extern STBDATA  g_TblSTATE;			/// ìºë¦­í„°ì˜ ìƒíƒœë¥¼ ë³€ê²½í•˜ëŠ” ì •ë³´.
 
-extern STBDATA  g_TblCamera;		/// ½Ã¾ß°ü·Ã Á¤º¸..
-extern STBDATA  g_TblRangeSet;		/// LOD °Å¸® °ü·Ã Á¤º¸..
+extern STBDATA  g_TblCamera;		/// ì‹œì•¼ê´€ë ¨ ì •ë³´..
+extern STBDATA  g_TblRangeSet;		/// LOD ê±°ë¦¬ ê´€ë ¨ ì •ë³´..
 
 extern STBDATA  g_TblUnion;
 extern STBDATA	g_TblClass;
-extern STBDATA  g_TblStepSound;		/// ¹ßÀÚ±¹¼Ò¸®..
+extern STBDATA  g_TblStepSound;		/// ë°œìêµ­ì†Œë¦¬..
 
-extern STBDATA	g_TblItemGRADE;		/// Àåºñ ¾ÆÀÌÅÛº° µî±Ş Àû¿ë ¼öÄ¡
+extern STBDATA	g_TblItemGRADE;		/// ì¥ë¹„ ì•„ì´í…œë³„ ë“±ê¸‰ ì ìš© ìˆ˜ì¹˜
 
 #ifndef __SERVER
 	extern STBDATA      g_TblHELP; 

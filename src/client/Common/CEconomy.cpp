@@ -68,15 +68,15 @@ int CEconomy::Get_ItemBuyPRICE (short nItemTYPE, short nItemNO, short nBuySkillV
 		case ITEM_TYPE_WEAPON	:
 		case ITEM_TYPE_SUBWPN	:
 		case ITEM_TYPE_RIDE_PART:
-			// 2004. 1. 2 ±∏¿‘ ∞°∞› = 
+			// 2004. 1. 2 Íµ¨ÏûÖ Í∞ÄÍ≤© = 
 			iPrice = (int)(	ITEM_BASE_PRICE( nItemTYPE, nItemNO ) * ( ITEM_QUALITY( nItemTYPE, nItemNO )+50.f ) * ( 1.f - nBuySkillVALUE * 0.01 ) / 100.f + 0.5f );
 			break;
 
 		case ITEM_TYPE_USE		:
 		case ITEM_TYPE_NATURAL	:
 			if ( IsEssentialGoods( ITEM_TYPE( nItemTYPE, nItemNO ) ) ) {
-				// ª˝« «∞.
-				// ±∏¿‘ ∞°∞› = ITEM_BASE * { 1 + (ITEM_RATE - 50) * ITEM_FLUC / 1000 } * (1 - ±∏¿‘Ω∫≈≥∑π∫ß * 0.02)
+				// ÏÉùÌïÑÌíà.
+				// Íµ¨ÏûÖ Í∞ÄÍ≤© = ITEM_BASE * { 1 + (ITEM_RATE - 50) * ITEM_FLUC / 1000 } * (1 - Íµ¨ÏûÖÏä§ÌÇ¨Î†àÎ≤® * 0.02)
 				iItemRate  = this->Get_ItemRATE( ITEM_RATE_TYPE( nItemTYPE, nItemNO ) );
 				iPriceRate = ITEM_PRICE_RATE( nItemTYPE, nItemNO );
 
@@ -89,7 +89,7 @@ int CEconomy::Get_ItemBuyPRICE (short nItemTYPE, short nItemNO, short nBuySkillV
 		case ITEM_TYPE_JEWEL	:
 		case ITEM_TYPE_GEM		:
 		case ITEM_TYPE_QUEST	:
-			// 2003. 08. 18 ±∏¿‘ ∞°∞› = ITEM_BASE * { 1 + (TOWN_RATE - 50) * ITEM_FLUC / 1000 } * (1 - ±∏¿‘Ω∫≈≥∑π∫ß * 0.02)
+			// 2003. 08. 18 Íµ¨ÏûÖ Í∞ÄÍ≤© = ITEM_BASE * { 1 + (TOWN_RATE - 50) * ITEM_FLUC / 1000 } * (1 - Íµ¨ÏûÖÏä§ÌÇ¨Î†àÎ≤® * 0.02)
 			iPriceRate = ITEM_PRICE_RATE( nItemTYPE, nItemNO );
 			iPrice = (int) ( 
 							ITEM_BASE_PRICE( nItemTYPE, nItemNO ) * 
@@ -116,7 +116,7 @@ int CEconomy::Get_ItemSellPRICE (tagITEM &sITEM, short nSellSkillVALUE)
 		case ITEM_TYPE_WEAPON	:
 		case ITEM_TYPE_SUBWPN	:
 		case ITEM_TYPE_RIDE_PART:
-			// √ﬂ∞°ø…º«¿∫ ∫∏ºÆ∞˙ ∞∞¿Ã
+			// Ï∂îÍ∞ÄÏòµÏÖòÏùÄ Î≥¥ÏÑùÍ≥º Í∞ôÏù¥
 			iPrice = (int) ( 
 						(float)ITEM_BASE_PRICE( sITEM.GetTYPE(), sITEM.GetItemNO() ) * 
 						(float)( 40 + sITEM.GetGrade() ) * 
@@ -133,8 +133,8 @@ int CEconomy::Get_ItemSellPRICE (tagITEM &sITEM, short nSellSkillVALUE)
 			if ( IsEssentialGoods( ITEM_TYPE( sITEM.m_cType, sITEM.m_nItemNo ) ) ) {
 				iItemRate  = this->Get_ItemRATE( ITEM_RATE_TYPE( sITEM.m_cType, sITEM.m_nItemNo ) );
 				iPriceRate = ITEM_PRICE_RATE( sITEM.m_cType, sITEM.m_nItemNo );
-				// ª˝« «∞.
-				// ∆«∏≈ ∞°∞› = ITEM_BASE * { 1000 + (ITEM_RATE - 50) * ITEM_FLUC } * (1 + ∆«∏≈Ω∫≈≥∑π∫ß * 0.02) * (200- WORLD_RATE) / 200000
+				// ÏÉùÌïÑÌíà.
+				// ÌåêÎß§ Í∞ÄÍ≤© = ITEM_BASE * { 1000 + (ITEM_RATE - 50) * ITEM_FLUC } * (1 + ÌåêÎß§Ïä§ÌÇ¨Î†àÎ≤® * 0.02) * (200- WORLD_RATE) / 200000
 				iPrice = (int) (
 					ITEM_BASE_PRICE( sITEM.m_cType, sITEM.m_nItemNo) * 
 					( 1000 + ( iItemRate-50 ) * iPriceRate ) *
@@ -146,8 +146,8 @@ int CEconomy::Get_ItemSellPRICE (tagITEM &sITEM, short nSellSkillVALUE)
 		case ITEM_TYPE_JEWEL	:
 		case ITEM_TYPE_GEM		:
 		case ITEM_TYPE_QUEST	:
-			// 2003.08.018 ±◊ π€¿« æ∆¿Ã≈€.
-			// ∆«∏≈ ∞°∞› = ITEM_BASE * { 1000 + (TOWN_RATE - 50) * ITEM_FLUC } * (1 + ∆«∏≈Ω∫≈≥∑π∫ß * 0.02) * (200- WORLD_RATE) / 200000
+			// 2003.08.018 Í∑∏ Î∞ñÏùò ÏïÑÏù¥ÌÖú.
+			// ÌåêÎß§ Í∞ÄÍ≤© = ITEM_BASE * { 1000 + (TOWN_RATE - 50) * ITEM_FLUC } * (1 + ÌåêÎß§Ïä§ÌÇ¨Î†àÎ≤® * 0.02) * (200- WORLD_RATE) / 200000
 			iPriceRate = ITEM_PRICE_RATE( sITEM.m_cType, sITEM.m_nItemNo );
 			iPrice = (int) ( 
 					ITEM_BASE_PRICE( sITEM.m_cType, sITEM.m_nItemNo) * 

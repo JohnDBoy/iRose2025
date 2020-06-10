@@ -120,13 +120,13 @@ bool CExternalUIManager::InitExternalUIs()
 	//CTComboBox* pComboBox = NULL;
 	// 
 	//if( pComboBox = (CTComboBox*)pCreateAvata->Find( CCreateAvata::IID_COMBOBOX_RACE ) )
-	//	pComboBox->AddItem("ÀÎ°£");
+	//	pComboBox->AddItem("ì¸ê°„");
 
 
 	//if( pComboBox = (CTComboBox*)pCreateAvata->Find( CCreateAvata::IID_COMBOBOX_SEX ) )
 	//{
-	//	pComboBox->AddItem("³²ÀÚ");
-	//	pComboBox->AddItem("¿©ÀÚ");
+	//	pComboBox->AddItem("ë‚¨ì");
+	//	pComboBox->AddItem("ì—¬ì");
 	//}
 
 
@@ -154,8 +154,8 @@ bool CExternalUIManager::InitExternalUIs()
 
 	//if( pComboBox = (CTComboBox*)pCreateAvata->Find( CCreateAvata::IID_COMBOBOX_STARTPOS) )
 	//{
-	//	pComboBox->AddItem("¸ğÇèÀÚ¸¶À»");
-	//	pComboBox->AddItem("ÀÌ»óÇÑÇÊµå");
+	//	pComboBox->AddItem("ëª¨í—˜ìë§ˆì„");
+	//	pComboBox->AddItem("ì´ìƒí•œí•„ë“œ");
 	//}
 	//EUI_SETTINT,
 	return true;

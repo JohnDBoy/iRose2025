@@ -5,9 +5,9 @@
 #include <vector>
 
 /**
-* �� ���� Ȥ�� �༺��.. ��Ȳ�� ���� �ε��̹��� ��ü ����..
+* 각 존별 혹은 행성별.. 상황에 따른 로딩이미지 교체 관리..
 *
-* @Author		�̵���
+* @Author		이동현
 * @Date			2005/9/5
 */ 
 
@@ -23,15 +23,15 @@ public:
 
 private:
 
-	/// �̺�Ʈ�� �ε� �̹����� ����ؾ��ϴ°�..
+	/// 이벤트용 로딩 이미지를 출력해야하는가..
 	bool	m_bDisplayEventLoadingImage;
 
 
-	/// �༺�� �ε� �̹��� ���̺�
+	/// 행성별 로딩 이미지 테이블
 	std::vector< std::string >			m_LoadingImageTableByEvent;
-	/// �༺�� �ε� �̹��� ���̺�
+	/// 행성별 로딩 이미지 테이블
 	std::multimap< int, std::string >	m_LoadingImageTableByPlanet;    
-	/// ���� �ε� �̹��� ���̺�
+	/// 존별 로딩 이미지 테이블
 	std::multimap< int, std::string >	m_LoadingImageTableByZone;
 
 

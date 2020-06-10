@@ -27,13 +27,13 @@ void CQuestRewardQueue::Clear()
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief ¸ðµç ¸®½ºÆ®¸¦ Àû¿ë..
+/// @brief ëª¨ë“  ë¦¬ìŠ¤íŠ¸ë¥¼ ì ìš©..
 //----------------------------------------------------------------------------------------------------
 
 void CQuestRewardQueue::ApplyReward()
 {
 	//----------------------------------------------------------------------------------------------------
-	/// ¾ÆÀÌÅÛ º¸»ó
+	/// ì•„ì´í…œ ë³´ìƒ
 	//----------------------------------------------------------------------------------------------------	
 	//std::for_each( m_InvItemList.begin(), m_InvItemList.end(), CQuestRewardQueue::RewardItem );
 	
@@ -70,7 +70,7 @@ void CQuestRewardQueue::PushAddAbility( gsv_SET_ABILITY& sAddAbility )
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief ¾ÆÀÌÅÛ º¸»óÇÔ¼ö for std::algorithm
+/// @brief ì•„ì´í…œ ë³´ìƒí•¨ìˆ˜ for std::algorithm
 //----------------------------------------------------------------------------------------------------
 
 //void CQuestRewardQueue::RewardItem( tag_SET_INVITEM sInvITEM )
@@ -84,16 +84,16 @@ void CQuestRewardQueue::PushAddAbility( gsv_SET_ABILITY& sAddAbility )
 //	if ( pSrvITEM->IsEnableDupCNT() ) 
 //	{
 //		pInvITEM = &g_pAVATAR->m_Inventory.m_ItemLIST[ sInvITEM.m_btInvIDX ];
-//		szMsg = CStr::Printf("%s %d°³¸¦ º¸»ó ¹Þ¾Ò½À´Ï´Ù.", ITEM_NAME( pSrvITEM->GetTYPE(), pSrvITEM->GetItemNO() ), pSrvITEM->GetQuantity() - pInvITEM->GetQuantity() );
+//		szMsg = CStr::Printf("%s %dê°œë¥¼ ë³´ìƒ ë°›ì•˜ìŠµë‹ˆë‹¤.", ITEM_NAME( pSrvITEM->GetTYPE(), pSrvITEM->GetItemNO() ), pSrvITEM->GetQuantity() - pInvITEM->GetQuantity() );
 //	} else {
-//		szMsg = CStr::Printf("%sÀ» º¸»ó ¹Þ¾Ò½À´Ï´Ù.", ITEM_NAME( pSrvITEM->GetTYPE(), pSrvITEM->GetItemNO() ) );
+//		szMsg = CStr::Printf("%sì„ ë³´ìƒ ë°›ì•˜ìŠµë‹ˆë‹¤.", ITEM_NAME( pSrvITEM->GetTYPE(), pSrvITEM->GetItemNO() ) );
 //	}
 //	g_itMGR.AppendChatMsg( szMsg, g_dwWHITE );
 //}
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief ¾Æ¹ÙÅ¸ ´É·ÂÄ¡ ¼¼ÆÃ
+/// @brief ì•„ë°”íƒ€ ëŠ¥ë ¥ì¹˜ ì„¸íŒ…
 //----------------------------------------------------------------------------------------------------
 
 void CQuestRewardQueue::SetAbility( gsv_SET_ABILITY sSetAbility )

@@ -58,7 +58,7 @@ unsigned CMemoViewDlg::Process( unsigned uiMsg, WPARAM wParam, LPARAM lParam )
 			{
 			case IID_BTN_DELETE:
 				
-				CSqliteDB::GetInstance().DeleteMemo( m_iID );				/// Å¬¶óÀÌ¾ğÆ® DB¿¡¼­ »èÁ¦
+				CSqliteDB::GetInstance().DeleteMemo( m_iID );				/// í´ë¼ì´ì–¸íŠ¸ DBì—ì„œ ì‚­ì œ
 				
 				if( CTDialog* pDlg = g_itMGR.FindDlg( DLG_TYPE_COMMUNITY ) )
 				{

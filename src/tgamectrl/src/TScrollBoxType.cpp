@@ -46,7 +46,7 @@ POINT CTScrollBoxTypeVertical::GetMoveBoxPosByScreenPoint(SIZE sizeScrollBox, RE
 
 	ptRet.x = MoveRange.left;
 	
-	//È«±Ù : ½ºÅ©·Ñ¹Ù ¿µ¿ª ¹ÛÀ¸·Î ³ª°¡Áö ¾Ê°Ô ÇÏ´Â ºÎºÐ.
+	//í™ê·¼ : ìŠ¤í¬ë¡¤ë°” ì˜ì—­ ë°–ìœ¼ë¡œ ë‚˜ê°€ì§€ ì•Šê²Œ í•˜ëŠ” ë¶€ë¶„.
 	//if( ptRet.y <= MoveRange.top + sizeScrollBox.cy )
 	if( ptRet.y <= MoveRange.top )
 	{

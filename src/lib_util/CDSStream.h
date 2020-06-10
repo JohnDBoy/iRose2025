@@ -21,7 +21,7 @@ private :
 	bool					m_bMP3Stream;
 	WORD					m_wBitsPerSample;
 	DWORD					m_dwReadData;
-	short					m_nNumPlayNotifications;		// ÀüÃ¼ ¹öÆÛ¸¦ ¸î¹ø¿¡ ³ª´²¼­ ÀĞ¾î µéÀÏ°ÍÀÎ°¡?
+	short					m_nNumPlayNotifications;		// ì „ì²´ ë²„í¼ë¥¼ ëª‡ë²ˆì— ë‚˜ëˆ ì„œ ì½ì–´ ë“¤ì¼ê²ƒì¸ê°€?
 
 	classMP3			   *m_pClassMP3;
 	classWAV			   *m_pClassWAV;
@@ -57,8 +57,8 @@ public :
 
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	//
-	// iBufferingSec			:: ÇÒ´çÇÒ ¹öÆÛÀÇ »çÀÌÁî¸¦ °áÁ¤.. ÇÒ´çÇÒ ¸Ş¸ğ¸®ÀÇ ¾çÀ» °áÁ¤.
-	// nNumPlayNotifications	:: ÀüÃ¼ ¹öÆÛ¸¦ ¸î¹ø¿¡ °ÉÃ³¼­ ÀĞ¾îµéÀÏ °ÍÀÎ°¡ .. µğ½ºÅ© ¾×¼¼½º È½¼ö¸¦ °áÁ¤.
+	// iBufferingSec			:: í• ë‹¹í•  ë²„í¼ì˜ ì‚¬ì´ì¦ˆë¥¼ ê²°ì •.. í• ë‹¹í•  ë©”ëª¨ë¦¬ì˜ ì–‘ì„ ê²°ì •.
+	// nNumPlayNotifications	:: ì „ì²´ ë²„í¼ë¥¼ ëª‡ë²ˆì— ê±¸ì²˜ì„œ ì½ì–´ë“¤ì¼ ê²ƒì¸ê°€ .. ë””ìŠ¤í¬ ì•¡ì„¸ìŠ¤ íšŸìˆ˜ë¥¼ ê²°ì •.
 	//
 	bool	OpenMP3StreamFile (char *szMP3File, LPDIRECTSOUND pDirectSound, int iBufferingSec, short nNumPlayNotifications, bool bAlreadyCoInitialized);
 	bool	OpenWAVStreamFile (char *szWAVFile, LPDIRECTSOUND pDirectSound, int iBufferingSec, short nNumPlayNotifications, long lFilePtr);

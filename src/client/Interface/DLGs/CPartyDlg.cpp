@@ -26,8 +26,8 @@
 
 #include <algorithm>
 
-const int   g_iAutoExpDecreaseTimeSpace = 10000;///Å¬¶óÀÌ¾ðÆ®¿¡¼­ ÆÄÆ¼ °æÇèÄ¡¸¦ ¾ó¸¶ÀÇ ½Ã°£¸¶´Ù ÆÄÆ¼·¹º§¸¸Å­ »©ÁÖ³ª
-///TDialogÀÇ Left-Top¿¡¼­ºÎÅÍÀÇ °Å¸®
+const int   g_iAutoExpDecreaseTimeSpace = 10000;///í´ë¼ì´ì–¸íŠ¸ì—ì„œ íŒŒí‹° ê²½í—˜ì¹˜ë¥¼ ì–¼ë§ˆì˜ ì‹œê°„ë§ˆë‹¤ íŒŒí‹°ë ˆë²¨ë§Œí¼ ë¹¼ì£¼ë‚˜
+///TDialogì˜ Left-Topì—ì„œë¶€í„°ì˜ ê±°ë¦¬
 
 const int	g_iPartyExpGuageWidth	= 111;
 const int	g_iPartyExpGuageHeight	= 9;
@@ -45,7 +45,7 @@ CPartyDlg::~CPartyDlg(void)
 }
 
 
-/// ¹æÀåÀº ¸ÇÀ§·Î ,, ³ª¸ÓÁö´Â ±×´ë·Î
+/// ë°©ìž¥ì€ ë§¨ìœ„ë¡œ ,, ë‚˜ë¨¸ì§€ëŠ” ê·¸ëŒ€ë¡œ
 void CPartyDlg::ResetMemberPositions()
 {
 	POINT pt = { m_sPosition.x + 5 , m_sPosition.y + m_iHeight + 5 };
@@ -125,7 +125,7 @@ void	CPartyDlg::OnLButtonUp( unsigned iProcID )
 		{
 			if( CPartyMember* pMember = GetSelectedMember())
 			{
-				//ÀÚ±âÀÚ½ÅÀº ¾ÈµÇÁö
+				//ìžê¸°ìžì‹ ì€ ì•ˆë˜ì§€
 				if( pMember->GetObjectTag() == g_pAVATAR->GetUniqueTag() )
 					break;
 				if( pMember->GetObjSvrIdx() <= 0 )
@@ -155,7 +155,7 @@ void	CPartyDlg::OnLButtonUp( unsigned iProcID )
 		{
 			if( CPartyMember* pMember = GetSelectedMember())
 			{
-				//ÀÚ±âÀÚ½ÅÀº ¾ÈµÇÁö
+				//ìžê¸°ìžì‹ ì€ ì•ˆë˜ì§€
 				if( pMember->GetObjectTag()  == g_pAVATAR->GetUniqueTag() )
 					break;
 
@@ -248,7 +248,7 @@ void CPartyDlg::Draw()
 	CParty& Party = CParty::GetInstance();
 	for_each( m_listPartyMember.begin(), m_listPartyMember.end(), mem_fun( &CPartyMember::Draw) );
 
-	///ÆÄÆ¼·¹º§, ÆÄÆ¼ °æÇèÄ¡
+	///íŒŒí‹°ë ˆë²¨, íŒŒí‹° ê²½í—˜ì¹˜
 	D3DXMATRIX mat;	
 	D3DXMatrixTranslation( &mat, (float)m_sPosition.x, (float)m_sPosition.y, 0.0f);
 	::setTransformSprite( mat );
@@ -257,7 +257,7 @@ void CPartyDlg::Draw()
 	//drawFont( g_GameDATA.m_hFONT[ FONT_NORMAL ], true, 17, 34, g_dwWHITE, CStr::Printf("%s %d", STR_PARTYLEVEL, Party.GetLevel() ));
 	drawFont( g_GameDATA.m_hFONT[ FONT_NORMAL ], true, 11, 32, g_dwWHITE, CStr::Printf("%s %d", STR_PARTYLEVEL, Party.GetLevel() ));
 
-	///°æÇèÄ¡
+	///ê²½í—˜ì¹˜
 	short nWidth = 0;
 	
 	int iPartyExpMax = Party.GetMaxExp();

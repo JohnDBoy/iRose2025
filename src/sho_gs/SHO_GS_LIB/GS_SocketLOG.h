@@ -63,58 +63,58 @@ public :
 
 		void Send_gsv_LOG_SQL();
 #endif
-	// Ω√Ω∫≈€ ø¿∑˘...
+	// ÏãúÏä§ÌÖú Ïò§Î•ò...
 	bool When_ERROR ( classUSER *pUSER, char *szFile, int iLine, char *szDesc );
 
-	// ∑Œ±◊¿Œ/æ∆øÙ
+	// Î°úÍ∑∏Ïù∏/ÏïÑÏõÉ
 	bool When_LogIN  ( classUSER *pUSER );
 	bool When_LogOUT ( classUSER *pUSER );
 
-	// ƒ…∏Ø ª˝º∫/ªË¡¶
+	// ÏºÄÎ¶≠ ÏÉùÏÑ±/ÏÇ≠Ï†ú
 	bool When_CreateCHAR ( classUSER *pSourAVT, char *szCharNAME );
 	bool When_DeleteCHAR ( classUSER *pSourAVT, char *szCharNAME );
 
-	// ¡›∞≈≥™ πˆ∏Æ±‚
+	// Ï§çÍ±∞ÎÇò Î≤ÑÎ¶¨Í∏∞
 	bool When_PickITEM		( classUSER *pSourAVT, CObjITEM *pItemOBJ );
 	bool When_DropITEM		( classUSER *pSourAVT, CObjITEM *pItemOBJ );
 	bool When_DeletedITEM	( CObjITEM *pItemOBJ );
 
-	// ∆»∞≈≥™ ¡÷±‚
+	// ÌåîÍ±∞ÎÇò Ï£ºÍ∏∞
 	bool When_Sell2STORE ( classUSER *pSourAVT, tagITEM *pITEM, CObjCHAR  *pDestCHR );
 	bool When_P2PTRADE   ( classUSER *pSourAVT, tagITEM *pITEM, classUSER *pDestAVT, DWORD dwTradeMoney );
 
 	bool When_GiveITEM ( classUSER *pSourAVT, tagITEM  *pITEM, classUSER *pDestAVT );
 	bool When_RecvITEM ( classUSER *pSourAVT, tagITEM  *pITEM, classUSER *pDestAVT );
 
-	// √¢∞Ìø° ∫∏∞¸ √£±‚
+	// Ï∞ΩÍ≥†Ïóê Î≥¥Í¥Ä Ï∞æÍ∏∞
 	bool When_DEPOSIT  ( classUSER *pSourAVT, tagITEM  *pITEM );
 	bool When_WithDRAW ( classUSER *pSourAVT, tagITEM  *pITEM );
 
-	// ¡¶¡∂ ∞¸∑√
+	// Ï†úÏ°∞ Í¥ÄÎ†®
 	bool When_CreatedITEM	( classUSER *pSourAVT, tagITEM *pITEM );
 	bool When_DestroyedITEM ( classUSER *pSourAVT, tagITEM *pITEM );
 
 	bool When_DieBY( CObjCHAR *pKillOBJ, classUSER *pDeadAVT );
 
-	// ∑π∫ßæ˜
+	// Î†àÎ≤®ÏóÖ
 	bool When_LevelUP ( classUSER *pSourAVT, int iGetEXP );
 
-	// ƒ˘Ω∫∆Æ...
+	// ÌÄòÏä§Ìä∏...
 	bool When_RecvQUEST		( classUSER *pSourAVT, int iQuestIDX );
 	bool When_DoneQUEST		( classUSER *pSourAVT, t_HASHKEY hQuestHASH );
 	bool When_GiveUpQUEST	( classUSER *pSourAVT, int iQuestIDX );
 
-	// Ω∫≈≥...
+	// Ïä§ÌÇ¨...
 	bool When_LearnSKILL	( classUSER *pSourAVT,	short nSkillIDX );
 	bool When_LevelUpSKILL	( classUSER *pSourAVT,	short nSkillIDX );
 
-	// ¿Áπ÷ ∞¸∑√
+	// Ïû¨Î∞ç Í¥ÄÎ†®
 	bool When_GemmingITEM	( classUSER *pSourAVT,	tagITEM *pEquipITEM, tagITEM *pJewelITEM );
 	bool When_UngemmingITEM	( classUSER *pSourAVT,	tagITEM *pEquipITEM, tagITEM *pJewelITEM );
 	bool When_UpgradeITEM	( classUSER *pSourAVT,  tagITEM *pEquipITEM, BYTE btBeforeGrade, bool bSuccess );
 	bool When_BreakupITEM	( classUSER *pSourAVT,	tagITEM *pITEM ); 
 
-	// ƒ°∆Æ ∞¸∑√
+	// ÏπòÌä∏ Í¥ÄÎ†®
 	bool When_CheatCODE		( classUSER *pSourAVT,	char *szCode );
 } ;
 extern GS_logSOCKET	*g_pSockLOG;

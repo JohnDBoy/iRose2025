@@ -15,7 +15,7 @@
 
 
 
-///ÀÌ¸§ Ç¥½Ã¿¡ »ç¿ëµÇ´Â Ä®¶ó
+///ì´ë¦„ í‘œì‹œì— ì‚¬ìš©ë˜ëŠ” ì¹¼ë¼
 const D3DCOLOR	g_dwVioletName		= D3DCOLOR_ARGB( 255, 224, 149, 255 );
 const D3DCOLOR	g_dwPinkName		= D3DCOLOR_ARGB( 255, 255, 136, 200 );
 const D3DCOLOR	g_dwRedName			= D3DCOLOR_ARGB( 255, 255, 113, 107 );
@@ -28,7 +28,7 @@ const D3DCOLOR	g_dwGrayName		= D3DCOLOR_ARGB( 255, 217,217,217 );
 
 
 
-/// Å¬·£ ·¹º§¿¡ µû¸¥ Ç¥½Ã »ö»óÀ» ±¸ÇÏ´Â ÇÔ¼ö
+/// í´ëœ ë ˆë²¨ì— ë”°ë¥¸ í‘œì‹œ ìƒ‰ìƒì„ êµ¬í•˜ëŠ” í•¨ìˆ˜
 inline DWORD GetClanNameColor( int iClanLevel )
 {
 	switch( iClanLevel )
@@ -89,7 +89,7 @@ void CNameBox::Draw(float x,float y,float z)
 }
 
 #include "../IO_Terrain.h"
-/// @bug name °¡ NULL ÀÏ¶§´Â ¾È±×¸®°Ô Çß´Ù. ÀÌ°Ç?
+/// @bug name ê°€ NULL ì¼ë•ŒëŠ” ì•ˆê·¸ë¦¬ê²Œ í–ˆë‹¤. ì´ê±´?
 void CNameBox::Draw( CObjCHAR* pCharOBJ, float x, float y, float z )
 {	
 	assert( pCharOBJ );
@@ -105,11 +105,11 @@ void CNameBox::Draw( CObjCHAR* pCharOBJ, float x, float y, float z )
 		return;
 
 	//---------------------------------------------------------------------------------
-	/// Åõ¸íÀÌ³ª À§Àå»óÅÂÀÏ¶§´Â ¾ÆÀÌµğÇ¥½Ã¸¦ ÇÏÁö ¾Ê´Â´Ù.
+	/// íˆ¬ëª…ì´ë‚˜ ìœ„ì¥ìƒíƒœì¼ë•ŒëŠ” ì•„ì´ë””í‘œì‹œë¥¼ í•˜ì§€ ì•ŠëŠ”ë‹¤.
 	//---------------------------------------------------------------------------------
 	if( pCharOBJ->m_EndurancePack.GetStateFlag() & ( FLAG_ING_DISGUISE | FLAG_ING_TRANSPARENT ) )
 	{
-		/// °°ÀºÆÀÀÌ ¾Æ´Ï¸é ¿ÏÀüÈ÷ ¾Èº¸ÀÌ¹Ç·Î ¾ÆÀÌµğ Ç¥½Ãµµ ÇÏÁö ¾Ê´Â´Ù.
+		/// ê°™ì€íŒ€ì´ ì•„ë‹ˆë©´ ì™„ì „íˆ ì•ˆë³´ì´ë¯€ë¡œ ì•„ì´ë”” í‘œì‹œë„ í•˜ì§€ ì•ŠëŠ”ë‹¤.
 		if( !(g_pAVATAR->Is_ALLIED( pCharOBJ ) || pCharOBJ->IsA( OBJ_USER )) )
 			return;
 	}
@@ -154,7 +154,7 @@ void CNameBox::Draw( CObjCHAR* pCharOBJ, float x, float y, float z )
 	}
 }
 
-/// ¸÷°ú ³ªÀÇ ·¹º§Â÷¿¡ ÀÇÇÑ ¸÷ÀÇ ÀÌ¸§Ç¥½Ã »ö»ó ±¸ÇÏ´Â ÇÔ¼ö
+/// ëª¹ê³¼ ë‚˜ì˜ ë ˆë²¨ì°¨ì— ì˜í•œ ëª¹ì˜ ì´ë¦„í‘œì‹œ ìƒ‰ìƒ êµ¬í•˜ëŠ” í•¨ìˆ˜
 DWORD CNameBox::GetTargetMobNameColor( int iAvatarLv, int iMobLv )
 {
 	DWORD dwColor = g_dwRED;
@@ -182,10 +182,10 @@ DWORD CNameBox::GetTargetMobNameColor( int iAvatarLv, int iMobLv )
 	return dwColor;
 }
 
-/// NPC´Â ³ªÀÇ Äù½ºÆ® º¸À¯¹× Ã³¸® °á°ú¿¡ µû¸¥ ÀÌ¸ğÆ¼ÄÜÀ» Ãß°¡·Î Ç¥½ÃÇÑ´Ù.
+/// NPCëŠ” ë‚˜ì˜ í€˜ìŠ¤íŠ¸ ë³´ìœ ë° ì²˜ë¦¬ ê²°ê³¼ì— ë”°ë¥¸ ì´ëª¨í‹°ì½˜ì„ ì¶”ê°€ë¡œ í‘œì‹œí•œë‹¤.
 void CNameBox::DrawNpcName( float x, float y, float z, CObjCHAR* pCharOBJ, bool bTargeted )
 {
-	/// ÀÌÄÚÆ¼ÄÜ ÀÌ¹ÌÁöÀÇ »çÀÌÁî »ó¼ö
+	/// ì´ì½”í‹°ì½˜ ì´ë¯¸ì§€ì˜ ì‚¬ì´ì¦ˆ ìƒìˆ˜
 	const int		emoticon_width	= 72;
 	const int		emoticon_height = 62;
 
@@ -286,7 +286,7 @@ void CNameBox::DrawMobName( float x, float y, float z, CObjCHAR* pCharOBJ, bool 
 {
 	DWORD dwColor = GetTargetMobNameColor( g_pAVATAR->Get_LEVEL(), pCharOBJ->Get_LEVEL() );
 
-	/// ¼ÒÈ¯¸÷ÀÏ°æ¿ì¿¡´Â ¹«Á¶°Ç ÆÄ¶õ»ö
+	/// ì†Œí™˜ëª¹ì¼ê²½ìš°ì—ëŠ” ë¬´ì¡°ê±´ íŒŒë€ìƒ‰
 	if( pCharOBJ->m_EndurancePack.GetStateFlag() & FLAG_ING_DEC_LIFE_TIME )
 		dwColor = g_dwBlueName;
 
@@ -358,9 +358,9 @@ void CNameBox::DrawAvatarName( float x, float y, float z, CObjCHAR* pCharOBJ, bo
 	else if(pLevel >= 200)
 		dwColor = 0xFFFF8400;
 #endif
-	if( g_GameDATA.m_iPvPState  )/// PVP ¸ğµå¶ó¸é..
+	if( g_GameDATA.m_iPvPState  )/// PVP ëª¨ë“œë¼ë©´..
 	{
-		if( CUserInputState::IsEnemy( (CObjAVT*)pCharOBJ ) )/// ³»°¡ ¾Æ´Ñ ¾Æ¹ÙÅ¸¶ó¸é ÆÀÆÇº°..
+		if( CUserInputState::IsEnemy( (CObjAVT*)pCharOBJ ) )/// ë‚´ê°€ ì•„ë‹Œ ì•„ë°”íƒ€ë¼ë©´ íŒ€íŒë³„..
 			dwColor = g_dwRED;
 	}
 
@@ -531,7 +531,7 @@ void CNameBox::DrawMyName( float x, float y, float z, CObjCHAR* pCharOBJ, bool b
 	
 
 	//---------------------------------------------------------------------------------------------
-	/// Å¬·£¿¡ ¼Ò¼ÓµÇ¾î ÀÖ´Ù¸é..
+	/// í´ëœì— ì†Œì†ë˜ì–´ ìˆë‹¤ë©´..
 	if( g_pAVATAR->GetClanID() )
 	{
 		D3DVECTOR vDrawClanMark = GetClanMarkDrawPos( g_pAVATAR , x, y, z);
@@ -585,7 +585,7 @@ void CNameBox::DrawTargetMark( CObjCHAR* pChar, RECT& rcDrawName , float z)
 					iTargetMarkImageID );
 }
 
-/// Ä³¸¯ÅÍÀÇ À§Ä¡¿Í ÀÌ¸§À¸·Î Å¬·£¸¶Å©¸¦ ±×¸± À§Ä¡¸¦ ±¸ÇÑ´Ù.
+/// ìºë¦­í„°ì˜ ìœ„ì¹˜ì™€ ì´ë¦„ìœ¼ë¡œ í´ëœë§ˆí¬ë¥¼ ê·¸ë¦´ ìœ„ì¹˜ë¥¼ êµ¬í•œë‹¤.
 D3DVECTOR	CNameBox::GetClanMarkDrawPos( CObjCHAR* pChar, float x, float y, float z )
 {
 	assert( pChar );

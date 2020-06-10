@@ -129,8 +129,8 @@ bool tagMOTION::LoadZMO (char *szFileName)
 		int aaa=0;
 	}
 
-	// ÁøÇàµÈ ÇÁ·¹ÀÓ°ú ¸ÂÃß±â À§ÇØ¼­..
-	/// Å¬¶óÀÌ¾ðÆ®´Â ÅäÅ»ÇÁ·¹ÀÓÀ» ÀÖ´Â ±×´ë·Î ¹Þ¾Æ µéÀÌ½Ã¿À!@@@@@@@!!!!!!!!
+	// ì§„í–‰ëœ í”„ë ˆìž„ê³¼ ë§žì¶”ê¸° ìœ„í•´ì„œ..
+	/// í´ë¼ì´ì–¸íŠ¸ëŠ” í† íƒˆí”„ë ˆìž„ì„ ìžˆëŠ” ê·¸ëŒ€ë¡œ ë°›ì•„ ë“¤ì´ì‹œì˜¤!@@@@@@@!!!!!!!!
 	///m_wTotalFrame --;
 
 	pFileSystem->CloseFile();
@@ -211,7 +211,7 @@ bool tagMOTION::LoadZMO (char *szFileName)
 					case 25:
 					case 26:
 					case 27:
-					case 28: // ÆÖ½ºÅ³ .. Ãß°¡
+					case 28: // íŒ»ìŠ¤í‚¬ .. ì¶”ê°€
 					case 10:
 					case 20:
 					case 56:
@@ -263,7 +263,7 @@ tagMOTION*CMotionLIST::IDX_GetMOTION(short nIndex, bool bIsFemale)
 {	
 	tagMOTION *pMotion;
 	if ( bIsFemale ) {
-		// ¿©ÀÚ ¸ð¼Ç
+		// ì—¬ìž ëª¨ì…˜
 		pMotion = this->Get_DATAUseIDX( nIndex+m_nFemaleIndex );
 		if ( pMotion )
 			return pMotion;
@@ -282,7 +282,7 @@ bool CMotionLIST::Load (char *szSTBFile, short nFileNameColNO, char *szBaseDIR)
 
 	if ( fSTB.Open (szFileName) ) {
 		m_nFemaleIndex = fSTB.GetRowCount();
-		Alloc_FILES( m_nFemaleIndex*2 );	// ³²/¿© 
+		Alloc_FILES( m_nFemaleIndex*2 );	// ë‚¨/ì—¬ 
 
 		for (short nSex=0; nSex<2; nSex++) {
 			for (short nI=0; nI<m_nFemaleIndex; nI++) {
@@ -318,9 +318,9 @@ bool CMotionLIST::Load_FILE (tagFileDATA<tagMOTION*> *pData)
 
 		pData->m_DATA->m_hMotion = ::loadMotion( szName, pData->m_FileName.Get(), 1, ZZ_INTERP_CATMULLROM, ZZ_INTERP_SQUAD, 1, 1 );
 		if ( pData->m_DATA->m_hMotion ) {
-			// º¸°£ ½Ã°£ ¼³Á¤
+			// ë³´ê°„ ì‹œê°„ ì„¤ì •
 			::setMotionInterporationInterval( pData->m_DATA->m_hMotion, pData->m_DATA->m_iInterpolationInterval );
-			// LoadZMO¿¡¼­ ±¸ÇØÁø´Ù.
+			// LoadZMOì—ì„œ êµ¬í•´ì§„ë‹¤.
 			// pData->m_DATA->m_wTotalFrame = ::getMotionTotalFrame( pData->m_DATA->m_hMotion );
 			return true;
 		}

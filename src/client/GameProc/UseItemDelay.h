@@ -22,7 +22,7 @@ const int DEFAULT_USE_SCROLL_DELAY = 3000;
 
 //----------------------------------------------------------------------------------------------------
 /// class CUseItemDelay
-/// °¢ Use Item Å¸ÀÔº°·Î Á¤ÇØÁø µô·¹ÀÌ Àû¿ë.
+/// ê° Use Item íƒ€ì…ë³„ë¡œ ì •í•´ì§„ ë”œë ˆì´ ì ìš©.
 //----------------------------------------------------------------------------------------------------
 
 //class CUseItemDelay
@@ -42,7 +42,7 @@ const int DEFAULT_USE_SCROLL_DELAY = 3000;
 //};
 
 /*===================================================================
-	2005. 05. 26	¹Ú	ÁöÈ£ 
+	2005. 05. 26	ë°•	ì§€í˜¸ 
 =====================================================================*/
 #include <map>
 using namespace std;
@@ -69,12 +69,12 @@ public:
 
 
 
-//UseItemp¿¡ »ç¿ëµÇ´Â Å¬·¡½º 
+//UseItempì— ì‚¬ìš©ë˜ëŠ” í´ë˜ìŠ¤ 
 extern CUseItemDelay	g_UseItemDelay;
 extern CUseItemDelay	g_CurUseItemDelayTick;
 extern CUseItemDelay	g_SoloUseItemDelayTick;
 
-//½ºÅ³¿¡ »ç¿ëµÇ´Â Å¬·¡½º 
+//ìŠ¤í‚¬ì— ì‚¬ìš©ë˜ëŠ” í´ë˜ìŠ¤ 
 extern CUseItemDelay   g_UseSkillDelay;
 extern CUseItemDelay   g_CurSkillDelayTick;
 extern CUseItemDelay   g_SoloSkillDelayTick;

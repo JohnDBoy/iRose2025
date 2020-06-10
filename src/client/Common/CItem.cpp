@@ -18,7 +18,7 @@ enum
 
 
 //-------------------------------------------------------------------------------------------------
-// º≠πˆø°º≠¥¬ ±∏¡∂√º¿Ã∏ß¿Ã π›µÂΩ√ tagITEM...
+// ÏÑúÎ≤ÑÏóêÏÑúÎäî Íµ¨Ï°∞Ï≤¥Ïù¥Î¶ÑÏù¥ Î∞òÎìúÏãú tagITEM...
 short tagITEM::Subtract (tagITEM &sITEM)
 {
 	if ( this->GetHEADER() != sITEM.GetHEADER() ) {
@@ -34,19 +34,19 @@ short tagITEM::Subtract (tagITEM &sITEM)
 			return ( ITEM_WEIGHT( sITEM.m_cType, sITEM.m_nItemNo ) * sITEM.GetQuantity() );
 		}
 
-		// «ˆ¿Á ∫∏¿Ø ºˆ∑Æ.
+		// ÌòÑÏû¨ Î≥¥Ïú† ÏàòÎüâ.
 		nWeight = ITEM_WEIGHT( sITEM.m_cType, sITEM.m_nItemNo ) * this->GetQuantity();
 		sITEM.m_uiQuantity = this->GetQuantity();
 	} else
 		nWeight = ITEM_WEIGHT( sITEM.m_cType, sITEM.m_nItemNo );
 	
-	// ¿Â∫Ò æ∆¿Ã≈€¿∫ π´¡∂∞« ªË¡¶..
+	// Ïû•ÎπÑ ÏïÑÏù¥ÌÖúÏùÄ Î¨¥Ï°∞Í±¥ ÏÇ≠Ï†ú..
 	this->Clear();
 
 	return nWeight;
 }
 //-------------------------------------------------------------------------------------------------
-// º≠πˆø°º≠¥¬ ±∏¡∂√º¿Ã∏ß¿Ã π›µÂΩ√ tagITEM...
+// ÏÑúÎ≤ÑÏóêÏÑúÎäî Íµ¨Ï°∞Ï≤¥Ïù¥Î¶ÑÏù¥ Î∞òÎìúÏãú tagITEM...
 void tagITEM::SubtractOnly (tagITEM &sITEM)
 {
 	if ( this->GetHEADER() != sITEM.GetHEADER() )
@@ -59,7 +59,7 @@ void tagITEM::SubtractOnly (tagITEM &sITEM)
 		}
 	}
 	
-	// ¿Â∫Ò æ∆¿Ã≈€¿∫ π´¡∂∞«, ∞πºˆ 0∞≥¿Œ æ∆¿Ã≈€ ªË¡¶..
+	// Ïû•ÎπÑ ÏïÑÏù¥ÌÖúÏùÄ Î¨¥Ï°∞Í±¥, Í∞ØÏàò 0Í∞úÏù∏ ÏïÑÏù¥ÌÖú ÏÇ≠Ï†ú..
 	this->Clear();
 }
 
@@ -91,7 +91,7 @@ void tagBaseITEM::Init(int iItem, unsigned int uiQuantity)
 			uiQuantity = 1;
 		this->m_uiQuantity = uiQuantity;
 	} else {
-		this->m_nLife	    = MAX_ITEM_LIFE;		// ±‚∫ª ºˆ∏Ì¿∫ 1000¿∏∑Œ ..
+		this->m_nLife	    = MAX_ITEM_LIFE;		// Í∏∞Î≥∏ ÏàòÎ™ÖÏùÄ 1000ÏúºÎ°ú ..
 		this->m_cDurability = ITEM_DURABITY( this->m_cType, this->m_nItemNo );
 	}
 }
@@ -119,8 +119,8 @@ bool tagBaseITEM::IsEnableKEEPING ()
 	if ( this->IsEmpty() )
 		return false;
 
-	// 0¿Œ∞Õ∏∏ ¿∫«‡ø° ∫∏∞¸ ∞°¥…«‘... 
-	// ∞Ë¡§¿∏∑Œ ∞¯¿Øµ«¥¬ √¢∞Ì±‚ ∂ßπÆø° ¥Ÿ∏• ƒ…∏Ø¿∏∑Œ æ∆¿Ã≈€¿Ã ¿¸¿Ã æ»µ«µµ∑œ...
+	// 0Ïù∏Í≤ÉÎßå ÏùÄÌñâÏóê Î≥¥Í¥Ä Í∞ÄÎä•Ìï®... 
+	// Í≥ÑÏ†ïÏúºÎ°ú Í≥µÏú†ÎêòÎäî Ï∞ΩÍ≥†Í∏∞ ÎïåÎ¨∏Ïóê Îã§Î•∏ ÏºÄÎ¶≠ÏúºÎ°ú ÏïÑÏù¥ÌÖúÏù¥ Ï†ÑÏù¥ ÏïàÎêòÎèÑÎ°ù...
 	return ( 0 == ITEM_USE_RESTRICTION( this->m_cType, this->m_nItemNo ) ||
 		     ITEM_ENABLE_KEEPING & ITEM_USE_RESTRICTION( this->m_cType, this->m_nItemNo ) );
 }
@@ -134,7 +134,7 @@ bool tagBaseITEM::IsEnableDROP ()
 		return false;
 
 	if ( ITEM_DONT_DROP_EXCHANGE & ITEM_USE_RESTRICTION( this->m_cType, this->m_nItemNo ) ) {
-		// µÂ∑” ∫“∞° æ∆¿Ã≈€.
+		// ÎìúÎ°≠ Î∂àÍ∞Ä ÏïÑÏù¥ÌÖú.
 		return false;
 	}
 
@@ -150,7 +150,7 @@ bool tagBaseITEM::IsEnableSELL ()
 		return false;
 
 	if ( ITEM_DONT_SELL & ITEM_USE_RESTRICTION( this->m_cType, this->m_nItemNo ) ) {
-		// ∆«∏≈ ∫“∞° æ∆¿Ã≈€.
+		// ÌåêÎß§ Î∂àÍ∞Ä ÏïÑÏù¥ÌÖú.
 		return false;
 	}
 
@@ -163,13 +163,13 @@ bool tagBaseITEM::IsTwoHands ()
 	if ( m_cType == ITEM_TYPE_WEAPON ) {
 		short nWeaponTYPE = WEAPON_TYPE(m_nItemNo);
 		if ( nWeaponTYPE >= 221 && nWeaponTYPE <= 255 ) {
-			// æÁº’∞À : 221 ~
-			// ø¯∞≈∏Æ : 231 ~
-			// ∏∂π˝π´±‚ : 241 ~
-			// ƒ´∆Æ∏£∞Ëø≠ : 251 ~
+			// ÏñëÏÜêÍ≤Ä : 221 ~
+			// ÏõêÍ±∞Î¶¨ : 231 ~
+			// ÎßàÎ≤ïÎ¨¥Í∏∞ : 241 ~
+			// Ïπ¥Ìä∏Î•¥Í≥ÑÏó¥ : 251 ~
 			if ( nWeaponTYPE != 242 ) {
 				return true;
-			} // else ( 242 «—º’ ∏∂π˝ µµ±∏ )
+			} // else ( 242 ÌïúÏÜê ÎßàÎ≤ï ÎèÑÍµ¨ )
 		}
 	}
 
@@ -179,7 +179,7 @@ bool tagBaseITEM::IsTwoHands ()
 //-------------------------------------------------------------------------------------------------
 t_eSHOT tagBaseITEM::GetShotTYPE ()
 {
-	/// ∏«º’ ¿œ∂ßµµ »£√‚µ»¥Ÿ.
+	/// Îß®ÏÜê ÏùºÎïåÎèÑ Ìò∏Ï∂úÎêúÎã§.
 	if ( ITEM_TYPE_WEAPON == m_cType ) {
 		switch( WEAPON_TYPE( m_nItemNo ) ) {
 
@@ -199,15 +199,15 @@ const t_EquipINDEX s_ItemType2EquipPos[] =
 {
 	MAX_EQUIP_IDX,
 
-	EQUIP_IDX_FACE_ITEM,	// ITEM_TYPE_FACE_ITEM = 1,		// 1	LIST_FACEITEM.stb	æÛ±º ¿ÂΩƒ	
+	EQUIP_IDX_FACE_ITEM,	// ITEM_TYPE_FACE_ITEM = 1,		// 1	LIST_FACEITEM.stb	ÏñºÍµ¥ Ïû•Ïãù	
 	EQUIP_IDX_HELMET,		// ITEM_TYPE_HELMET,			// 2	LIST_CAP.stb
 	EQUIP_IDX_ARMOR,		// ITEM_TYPE_ARMOR,				// 3	LIST_BODY.stb
 	EQUIP_IDX_GAUNTLET,		// ITEM_TYPE_GAUNTLET,			// 4	LIST_ARMS.stb
 	EQUIP_IDX_BOOTS,		// ITEM_TYPE_BOOTS,				// 5	LIST_FOOT.stb
 	EQUIP_IDX_KNAPSACK,		// ITEM_TYPE_KNAPSACK,			// 6	LIST_BACK.stb
-	EQUIP_IDX_NECKLACE,		// ITEM_TYPE_JEWEL,				// 7	LIST_JEWEL.stb		¿ÂΩ≈±∏ : ∏Ò∞…¿Ã π›¡ˆ
+	EQUIP_IDX_NECKLACE,		// ITEM_TYPE_JEWEL,				// 7	LIST_JEWEL.stb		Ïû•Ïã†Íµ¨ : Î™©Í±∏Ïù¥ Î∞òÏßÄ
 
-	EQUIP_IDX_WEAPON_R,		// ITEM_TYPE_WEAPON,			// 8	LIST_WEAPON.stb		π´±‚
+	EQUIP_IDX_WEAPON_R,		// ITEM_TYPE_WEAPON,			// 8	LIST_WEAPON.stb		Î¨¥Í∏∞
 	EQUIP_IDX_WEAPON_L,		// ITEM_TYPE_SUBWPN,			// 9	LIST_SUBWPN.stb
 } ;
 t_EquipINDEX tagBaseITEM::GetEquipPOS ()
@@ -232,7 +232,7 @@ t_EquipINDEX tagBaseITEM::GetEquipPOS ()
 
 //-------------------------------------------------------------------------------------------------
 #ifndef	__SERVER	
-/// 2004 / 6 /17 : Clientø°º≠¥¬ ºˆ∑Æ æ¯¥¬ æ∆¿Ã≈€¿œ∞ÊøÏø°¥¬ «◊ªÛ 0 or 1¿ª ∏Æ≈œ«œµµ∑œ ºˆ¡§
+/// 2004 / 6 /17 : ClientÏóêÏÑúÎäî ÏàòÎüâ ÏóÜÎäî ÏïÑÏù¥ÌÖúÏùºÍ≤ΩÏö∞ÏóêÎäî Ìï≠ÏÉÅ 0 or 1ÏùÑ Î¶¨ÌÑ¥ÌïòÎèÑÎ°ù ÏàòÏ†ï
 unsigned int   tagBaseITEM::GetQuantity ()
 {	
 	if( IsEnableDupCNT() )
@@ -278,7 +278,7 @@ unsigned short tagBaseITEM::GetModelINDEX ()
 	if( m_cType == 0 )
 		return 0;
 
-	return ITEM_FIELD_MODEL( m_cType, m_nItemNo );	// æ¯¥¬∞ÊøÏ¥¬ ¥Î«• π⁄Ω∫≥™ ∫∏µ˚∏Æ∑Œ...
+	return ITEM_FIELD_MODEL( m_cType, m_nItemNo );	// ÏóÜÎäîÍ≤ΩÏö∞Îäî ÎåÄÌëú Î∞ïÏä§ÎÇò Î≥¥Îî∞Î¶¨Î°ú...
 }
 #endif
 
@@ -296,7 +296,7 @@ char* tagBaseITEM::GettingMESSAGE ()
 	} 
 	else 
 	{
-		// ¿Â∫Ò..
+		// Ïû•ÎπÑ..
 		return CStr::Printf(F_STR_GETTING_ITEM, ITEM_NAME( m_cType, m_nItemNo ) );
 	} 
 
@@ -315,7 +315,7 @@ char* tagBaseITEM::GettingMESSAGE_Party (const char * paryName_)
 	} 
 	else 
 	{
-		// ¿Â∫Ò..
+		// Ïû•ÎπÑ..
 		return CStr::Printf(STR_GETTING_ITEM_PARTY, paryName_, ITEM_NAME( m_cType, m_nItemNo ) );
 	} 
 	return NULL;
@@ -342,7 +342,7 @@ char* tagBaseITEM::GettingMESSAGE (int iInventoryListNo )
 	} 
 	else 
 	{
-		// ¿Â∫Ò..
+		// Ïû•ÎπÑ..
 		return CStr::Printf(F_STR_GETTING_ITEM, ITEM_NAME( m_cType, m_nItemNo ) );
 	} 
 
@@ -378,7 +378,7 @@ char*	tagBaseITEM::SubtractQuestMESSAGE()
 #endif
 
 //-------------------------------------------------------------------------------------------------
-///º“∏≈∫æ∆¿Ã≈€¿« ShotType¿ª æÚ±‚
+///ÏÜåÎ™®ÌÉÑÏïÑÏù¥ÌÖúÏùò ShotTypeÏùÑ ÏñªÍ∏∞
 #ifndef	__SERVER
 t_eSHOT tagBaseITEM::GetBulletType()
 {
@@ -400,13 +400,13 @@ t_eSHOT tagBaseITEM::GetNaturalBulletType( int iItemNo )
 
 	switch( ITEM_TYPE( ITEM_TYPE_NATURAL, iItemNo ) )
 	{
-	case 431:///»≠ªÏ
+	case 431:///ÌôîÏÇ¥
 		retType = SHOT_TYPE_ARROW;
 		break;
-	case 432:///√—æÀ
+	case 432:///Ï¥ùÏïå
 		retType = SHOT_TYPE_BULLET;
 		break;
-	case 433:///≈ı√¥
+	case 433:///Ìà¨Ï≤ô
 	case 421:
 	case 422:
 	case 423:
@@ -463,7 +463,7 @@ bool tagBaseITEM::IsEnableExchange ()
 		return false;
 
 	if ( ITEM_DONT_DROP_EXCHANGE & ITEM_USE_RESTRICTION( this->m_cType, this->m_nItemNo ) ) {
-		// µÂ∑” ,±≥»Ø ∫“∞° æ∆¿Ã≈€.
+		// ÎìúÎ°≠ ,ÍµêÌôò Î∂àÍ∞Ä ÏïÑÏù¥ÌÖú.
 		return false;
 	}
 
@@ -477,10 +477,10 @@ bool tagBaseITEM::IsEnableSeparate ()
 	if( IsEmpty() )
 		return false;
 
-	if( GetTYPE() == ITEM_TYPE_GEM )///∫∏ºÆ¿∫ ∫–∏Æ∞° ∫“∞°¥…«œ¥Ÿ
+	if( GetTYPE() == ITEM_TYPE_GEM )///Î≥¥ÏÑùÏùÄ Î∂ÑÎ¶¨Í∞Ä Î∂àÍ∞ÄÎä•ÌïòÎã§
 		return false;
 
-	if( HasSocket() && GetGemNO() > 300 )///¿Áπ÷µ» ∞ÊøÏ
+	if( HasSocket() && GetGemNO() > 300 )///Ïû¨Î∞çÎêú Í≤ΩÏö∞
 		return true;
 	
 	if( ITEM_PRODUCT_IDX( GetTYPE(), GetItemNO() ) )
@@ -500,16 +500,16 @@ bool tagBaseITEM::IsEnableUpgrade ()
 
 	if( GetGrade() < 9 )
 	{
-		if( iClass >= 211 && iClass <= 280 )///π´±‚ - ∞¯∞›∑¬, ∏Ì¡ﬂ∑¬ªÛΩ¬
+		if( iClass >= 211 && iClass <= 280 )///Î¨¥Í∏∞ - Í≥µÍ≤©Î†•, Î™ÖÏ§ëÎ†•ÏÉÅÏäπ
 			return true;
 
-		if( iClass >= 121 && iClass <= 153 )///πÊæÓ±∏ - πÊæÓ∑¬, «◊∏∂∑¬, »∏««∑¬ªÛΩ¬
+		if( iClass >= 121 && iClass <= 153 )///Î∞©Ïñ¥Íµ¨ - Î∞©Ïñ¥Î†•, Ìï≠ÎßàÎ†•, ÌöåÌîºÎ†•ÏÉÅÏäπ
 			return true;
 
-		if( iClass == 161 || iClass == 163 )///µÓ¿Â∫Ò( ∞°πÊ ¡¶ø‹)
+		if( iClass == 161 || iClass == 163 )///Îì±Ïû•ÎπÑ( Í∞ÄÎ∞© Ï†úÏô∏)
 			return true;
 
-		if( iClass == 261 )///πÊ∆– - πÊæÓ∑¬,«◊∏∂∑¬,»∏««∑¬ªÛΩ¬
+		if( iClass == 261 )///Î∞©Ìå® - Î∞©Ïñ¥Î†•,Ìï≠ÎßàÎ†•,ÌöåÌîºÎ†•ÏÉÅÏäπ
 			return true;
 	}
 	return false;

@@ -48,12 +48,12 @@ bool CCharDATA::Load_MOBorNPC (FILE *fp, t_HASHKEY *pAniKEY, short nAniCNT)
 	::ZeroMemory( m_ppAniFILE,	sizeof( tagMOTION* ) * MAX_MOB_ANI );
 
 	for (nI=0; nI<m_nAniCNT; nI++) {
-		// nAniIDX == 0 ÀÎ Á¤Áö°¡ ¾Èµé¾î ¿Â´Ù..
+		// nAniIDX == 0 ì¸ ì •ì§€ê°€ ì•ˆë“¤ì–´ ì˜¨ë‹¤..
 		fread (&nAniIDX, sizeof(short), 1, fp);
 		fread (&nIndex,  sizeof(short), 1, fp);
 
 		if ( nAniIDX < 0 ) {
-			// »ç¿ëÇÏÁö ¾Ê´Â´Ù...
+			// ì‚¬ìš©í•˜ì§€ ì•ŠëŠ”ë‹¤...
 			continue;
 		}
 
@@ -63,9 +63,9 @@ bool CCharDATA::Load_MOBorNPC (FILE *fp, t_HASHKEY *pAniKEY, short nAniCNT)
 
 		m_ppAniFILE[ nAniIDX ] = g_MotionFILE.KEY_GetMOTION( pAniKEY[ nIndex ] );
 
-		// ¿©±â¼­ »¶³ª¸é...
-		// Load_MOBorNPCÇÔ¼ö¿¡¼­ g_MotionFILE.Add_FILEÇÔ¼ö È£Ãâ½Ã nAniIDX°ªÀ» ÀÌ¿ëÇØ¼­
-		// ¸ð¼Ç ÆÄÀÏ ÀÌ¸§À» Ã£ÀÚ~~~~
+		// ì—¬ê¸°ì„œ ë»‘ë‚˜ë©´...
+		// Load_MOBorNPCí•¨ìˆ˜ì—ì„œ g_MotionFILE.Add_FILEí•¨ìˆ˜ í˜¸ì¶œì‹œ nAniIDXê°’ì„ ì´ìš©í•´ì„œ
+		// ëª¨ì…˜ íŒŒì¼ ì´ë¦„ì„ ì°¾ìž~~~~
 		if ( 0 == m_ppAniFILE[ nAniIDX ] ) {
 			int i=00;
 			assert( m_ppAniFILE[ nAniIDX ] );
@@ -143,7 +143,7 @@ bool CCharDatLIST::Load_MOBorNPC (char *szBaseDIR, char *szFileName)
 		}
 */
 		if ( !CUtil::Is_FileExist( pFullPath ) ) {
-			::MessageBox( NULL, pFullPath, "¸ð¼Ç ÆÄÀÏ ¾øÀ½", MB_OK );
+			::MessageBox( NULL, pFullPath, "ëª¨ì…˜ íŒŒì¼ ì—†ìŒ", MB_OK );
 		}
 		pAniKEY[ nI ] = g_MotionFILE.Add_FILE ( pFullPath );
 		assert( pAniKEY[ nI ] );

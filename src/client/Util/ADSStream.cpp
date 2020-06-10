@@ -229,7 +229,7 @@ HRESULT ADirectSoundSTREAM::CreateStreamBuffer (LPDIRECTSOUND pDirectSound, WAVE
     hResult = pDirectSound->CreateSoundBuffer (&dsbd, &m_pDSBuffer, NULL);
     if ( hResult != DS_OK ) 
 		return hResult;
-	m_pDSBuffer->SetVolume( DSBVOLUME_MIN );	// ÃÊ±â ¹¬À½À¸·Î..
+	m_pDSBuffer->SetVolume( DSBVOLUME_MIN );	// ì´ˆê¸° ë¬µìŒìœ¼ë¡œ..
 
 	m_dwPlayTimePerBlock = 1000 * iBufferingSec / (m_wDataBlockCount*1);
 	m_pDataBlock = new ADirectSoundSTREAM::tagDataBlock[ m_wDataBlockCount ];
@@ -544,7 +544,7 @@ AOggSTREAM::AOggSTREAM ()
 }
 AOggSTREAM::~AOggSTREAM ()
 {
-	// ÁÖÀÇ !! ¾²·¹µå°¡ Á¾·áµÈ ÈÄ¿¡ ogg°¡ Á¾·áµÇ¾ß ÇÔ...
+	// ì£¼ì˜ !! ì“°ë ˆë“œê°€ ì¢…ë£Œëœ í›„ì— oggê°€ ì¢…ë£Œë˜ì•¼ í•¨...
 	this->CloseStreamThread ();
 	while( !this->m_bTerminated )
 		::Sleep( 100 );

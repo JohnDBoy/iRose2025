@@ -66,7 +66,7 @@ bool CHttp::SendQueryData (const char * szURL)
 
 	if(hInternet != NULL)
 	{
-		// URL¿ª ø¨¥Ÿ.
+		// URLÏùÑ Ïó∞Îã§.
 		HINTERNET hURL = InternetOpenUrl (hInternet, szURL, NULL, 0
 			, INTERNET_FLAG_RELOAD, 0);
 		if(hURL) 

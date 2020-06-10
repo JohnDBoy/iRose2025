@@ -37,10 +37,10 @@ CCamera *CCamera::Instance ()
 }
 
 ///*------------------------------------------------------------
-/// 2004 / 3/ 31 :¼öÁ¤ nAvy
-/// 1. unloadCamera½Ã¿¡ Error¹ß»ý
-/// =>Instance¸¦ Áö¿ì¸é ¸â¹ö º¯¼ö¿¡´Â ¾²·¹±â °ªÀÌ µé¾î°¡°Ô µÈ´Ù.
-/// =>Instance»èÁ¦¸¦ ¸Ç ¹ØÀ¸·Î ÀÌµ¿ÇÏ°Å³ª Destructor¿¡¼­ ¸â¹öº¯¼ö¸¦ Áö¿ìÀÚ.
+/// 2004 / 3/ 31 :ìˆ˜ì • nAvy
+/// 1. unloadCameraì‹œì— Errorë°œìƒ
+/// =>Instanceë¥¼ ì§€ìš°ë©´ ë©¤ë²„ ë³€ìˆ˜ì—ëŠ” ì“°ë ˆê¸° ê°’ì´ ë“¤ì–´ê°€ê²Œ ëœë‹¤.
+/// =>Instanceì‚­ì œë¥¼ ë§¨ ë°‘ìœ¼ë¡œ ì´ë™í•˜ê±°ë‚˜ Destructorì—ì„œ ë©¤ë²„ë³€ìˆ˜ë¥¼ ì§€ìš°ìž.
 void CCamera::Destroy ()
 {
 	if( m_hNODE != NULL )
@@ -71,10 +71,10 @@ void CCamera::Init (HNODE hNODE)
 
 	m_fDistance = 1000.f;
 
-	// -- Ä«¸Þ¶ó ÃÊ±â°ª ÁöÁ¤
+	// -- ì¹´ë©”ë¼ ì´ˆê¸°ê°’ ì§€ì •
 	m_fYAW   = 0;			// [-180, 180]
 	m_fPITCH = 0.5;			// [0, 1]
-	m_bFollowMode = false;	// 1 : µÚ¿¡¼­ µû¶ó°¡´Â ¸ðµå, 0 : 3ÀÎÄª ¸ðµå
+	m_bFollowMode = false;	// 1 : ë’¤ì—ì„œ ë”°ë¼ê°€ëŠ” ëª¨ë“œ, 0 : 3ì¸ì¹­ ëª¨ë“œ
 
 	if( m_hMotion != NULL )
 	{
@@ -180,19 +180,19 @@ void CCamera::Add_YAW (short nMovement)
 {
 	const float fMaxAngle = 180.f;
 
-	// -- ÇöÀç Àû¿ëµÈ °¢ ¾ò¾î¿À±â(setCameraFollowYaw()¿¡ ÀÇÇØ ÀÌÀü¿¡ Àû¿ëµÈ °ª°ú ´Ù¸¦ ¼ö ÀÖÀ½)
+	// -- í˜„ìž¬ ì ìš©ëœ ê° ì–»ì–´ì˜¤ê¸°(setCameraFollowYaw()ì— ì˜í•´ ì´ì „ì— ì ìš©ëœ ê°’ê³¼ ë‹¤ë¥¼ ìˆ˜ ìžˆìŒ)
 	m_fYAW = getCameraFollowYaw(m_hNODE);
 
-	// -- ¸¶¿ì½ºÀÇ xÃà °ªÀ¸·Î È¸Àü°¢ Á¤ÀÇ(ÀÌÀü°¢¿¡ ´©Àû½ÃÅ´)
+	// -- ë§ˆìš°ìŠ¤ì˜ xì¶• ê°’ìœ¼ë¡œ íšŒì „ê° ì •ì˜(ì´ì „ê°ì— ëˆ„ì ì‹œí‚´)
 	m_fYAW = m_fYAW - 480.f * nMovement / g_pCApp->GetWIDTH();
 
-	// -- ÃÖ´ë°¢°ú ÃÖ¼Ò°¢À¸·Î Á¦ÇÑ
+	// -- ìµœëŒ€ê°ê³¼ ìµœì†Œê°ìœ¼ë¡œ ì œí•œ
 /*
 	if ( m_fYAW < -fMaxAngle ) m_fYAW = -fMaxAngle;
 	else
 	if ( m_fYAW >  fMaxAngle ) m_fYAW = fMaxAngle;
 */
-	// -- Ä«¸Þ¶ó È¸Àü°¢ ¼³Á¤ (°ªÀÇ ¹üÀ§´Â -180 µµ¿¡¼­ 180 µµ±îÁö)
+	// -- ì¹´ë©”ë¼ íšŒì „ê° ì„¤ì • (ê°’ì˜ ë²”ìœ„ëŠ” -180 ë„ì—ì„œ 180 ë„ê¹Œì§€)
 	setCameraFollowYaw ( m_hNODE, m_fYAW );
 }
 

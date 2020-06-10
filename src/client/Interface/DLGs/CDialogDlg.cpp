@@ -67,7 +67,7 @@ void CDialogDlg::SetScript( char* pszScript )
 	pListBox->SetExtent( 3 );
 
 
-	///´äº¯ ¿¹Á¦¸¦ ´ãÀ» ListBoxÀÇ À§Ä¡¸¦ Á¶Á¤ÇÑ´Ù.
+	///ë‹µë³€ ì˜ˆì œë¥¼ ë‹´ì„ ListBoxì˜ ìœ„ì¹˜ë¥¼ ì¡°ì •í•œë‹¤.
 	pCtrl = Find( IID_ZLISTBOX_ANSWER_EXAMPLE );
 	assert( pCtrl ); if( pCtrl == NULL ) return;
 
@@ -227,7 +227,7 @@ void CDialogDlg::Draw()
 {
 	if( !IsVision() ) return;
 
-	// È«±Ù : È÷¾î·Î Äù½ºÆ® Ãß°¡.
+	// í™ê·¼ : íˆì–´ë¡œ í€˜ìŠ¤íŠ¸ ì¶”ê°€.
 	if( m_fNpctalkinterfaceHideTime > 0 )
 	{
 		m_fNpctalkinterfaceHideTime -= g_GameDATA.GetElapsedFrameTime();
@@ -274,13 +274,13 @@ void CDialogDlg::SetNpcName( std::string strName )
 	m_strNpcName = strName;
 }
 
-//È«±Ù : È÷¾î·Î Äù½ºÆ®
+//í™ê·¼ : íˆì–´ë¡œ í€˜ìŠ¤íŠ¸
 void CDialogDlg::SetNpctalkinterfaceHide( float fTime )
 {
 	m_fNpctalkinterfaceHideTime = fTime;
 }
 
-//È«±Ù : È÷¾î·Î Äù½ºÆ®
+//í™ê·¼ : íˆì–´ë¡œ í€˜ìŠ¤íŠ¸
 float CDialogDlg::GetNpctalkinterfaceHide()
 {
 	return m_fNpctalkinterfaceHideTime;

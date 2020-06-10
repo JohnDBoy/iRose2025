@@ -54,17 +54,17 @@ char *s_pCheatStr[] = {
 	"/WARP_M",		//11
 	"/EFFECT",		//12
 	"/SOUND",		//13
-	"/ÁøÇà¼öÄ¡",	//14
-	"/Á¶ÇÕ¸í¼º",	//15
+	"/ì§„í–‰ìˆ˜ì¹˜",	//14
+	"/ì¡°í•©ëª…ì„±",	//15
 	"/QV",			//16
-	"/Á÷¾÷",		//17
-	"/Á¤º¸",		//18
+	"/ì§ì—…",		//17
+	"/ì •ë³´",		//18
 	"/NOUI",		//19
 	"/PVP",			//20   Special cheat..
 	"/CQC",			//21   Check Quest Condition..
 	"/FREE",		//22
 	"/CLAN",		//23
-	"/¿ä±İ",		//24
+	"/ìš”ê¸ˆ",		//24
 	"/TRANSLATE",	//25
 	"/fname",		//26
 	"/sright",		//27
@@ -194,7 +194,7 @@ char* classPARSESTR::ParseString(char* pStr,short nStrNo)
 	ZeroMemory(m_szBUF,sizeof(char)*MAX_PATH);
 	
 	for(int iStr=0;iStr<iStrLen;iStr++) {
-		if(pStr[iStr]==' ') { //°ø¹éÀÌ¸é 
+		if(pStr[iStr]==' ') { //ê³µë°±ì´ë©´ 
 			if(nSpaceCNT==nStrNo) {
 				return m_szBUF;
 			}
@@ -231,7 +231,7 @@ short classPARSESTR::ParseCheatCodeIdx(char* pStr)
 	return -1;
 }
 
-//special Ä¡Æ®½ÇÇà
+//special ì¹˜íŠ¸ì‹¤í–‰
 int  classPARSESTR::DoSpecialCheat(char* pCheatCode, bool bServerCheate )
 {
 	char *pStr		= ParseString(pCheatCode,0);
@@ -433,7 +433,7 @@ int classPARSESTR::DoCheat(char* pCheatCode, bool bServerCheate )
 
 bool classPARSESTR::DoSET(char* pStr)
 {
-	//¸í·É Á¶°Ç : /SET SRT ¼ıÀÚ 
+	//ëª…ë ¹ ì¡°ê±´ : /SET SRT ìˆ«ì 
 
 	char* pARG1 = ParseString(pStr,1);
 	char* pARG2;
@@ -493,7 +493,7 @@ short classPARSESTR::GetSET_CodeIdx(char* pStr)
 
 bool classPARSESTR::DoADD(char* pStr)
 {
-	// ¸í·É Á¶°Ç : /ADD EXP ¼ıÀÚ 
+	// ëª…ë ¹ ì¡°ê±´ : /ADD EXP ìˆ«ì 
 
 	char* pARG1 = ParseString(pStr,1);
 	char* pARG2;
@@ -527,7 +527,7 @@ short classPARSESTR::GetADD_CodeIdx(char* pStr)
 
 bool classPARSESTR::DoFULL(char* pStr)
 {
-	// ¸í·É Á¶°Ç : /FULL HP
+	// ëª…ë ¹ ì¡°ê±´ : /FULL HP
 	char* pARG1 = ParseString(pStr,1);
 	short nCodeIdx = GetADD_CodeIdx(pARG1);
 	
@@ -558,7 +558,7 @@ short classPARSESTR::GetFULL_CodeIdx(char* pStr)
 
 bool classPARSESTR::DoSKILL(char* pStr)
 {
-	// SKILL ¼ıÀÚ  ÇØ´ç¹øÈ£ÀÇ ½ºÅ³À» °¡Áö°Ô µÈ´Ù 
+	// SKILL ìˆ«ì  í•´ë‹¹ë²ˆí˜¸ì˜ ìŠ¤í‚¬ì„ ê°€ì§€ê²Œ ëœë‹¤ 
 	char* pARG2;
 	int   iVAL;
 	pARG2 = ParseString(pStr,2);
@@ -571,18 +571,18 @@ bool classPARSESTR::DoSKILL(char* pStr)
 
 bool classPARSESTR::DoITEM(char* pStr)
 {
-	// ITEM Á¾·ù ¼ıÀÚ °³¼ö   ÇØ´ç Á¾·ùÀÇ ¾ÆÀÌÅÛÀ» °³¼ö¸¸Å­ ÀÎº¥Åä¸®¿¡ »ı¼º½ÃÅ²´Ù 
-	// Àåºñ ¾ÆÀÌÅÛÀÇ °æ¿ì´Â °³¼ö°¡ ¹«Á¶°Ç 1°³
+	// ITEM ì¢…ë¥˜ ìˆ«ì ê°œìˆ˜   í•´ë‹¹ ì¢…ë¥˜ì˜ ì•„ì´í…œì„ ê°œìˆ˜ë§Œí¼ ì¸ë²¤í† ë¦¬ì— ìƒì„±ì‹œí‚¨ë‹¤ 
+	// ì¥ë¹„ ì•„ì´í…œì˜ ê²½ìš°ëŠ” ê°œìˆ˜ê°€ ë¬´ì¡°ê±´ 1ê°œ
 	char* pARG;
 	int   iType,iVal,iCNT;
 	
-	// Á¾·ù 
+	// ì¢…ë¥˜ 
 	pARG   = ParseString(pStr,2);
 	iType  = StrToInt(pARG);
-	// ¼ıÀÚ 
+	// ìˆ«ì 
 	pARG   = ParseString(pStr,3);
 	iVal   = StrToInt(pARG);
-	// °³¼ö 
+	// ê°œìˆ˜ 
 	pARG   = ParseString(pStr,4);
 	iCNT   = StrToInt(pARG);
 	
@@ -593,7 +593,7 @@ bool classPARSESTR::DoITEM(char* pStr)
 
 bool classPARSESTR::DoMONEY(char* pStr)
 {
-	// MONEY ¼ıÀÚ	ÁöÁ¤¼öÄ¡¸¸Å­ µ·Áõ°¡ 
+	// MONEY ìˆ«ì	ì§€ì •ìˆ˜ì¹˜ë§Œí¼ ëˆì¦ê°€ 
 
 	char* pARG;
 	int   iVal;
@@ -677,7 +677,7 @@ static CEffect *s_pEF=NULL;
 bool classPARSESTR::DoEFFECT(char* pStr)
 {
 	char* pARG;
-	// È¿°ú number
+	// íš¨ê³¼ number
 	pARG   = ParseString(pStr,1);
 	int iEffectNO  = StrToInt(pARG);
 
@@ -706,42 +706,42 @@ bool classPARSESTR::DoSOUND(char* pStr)
 	return true;
 }
 
-//ÁøÇà ¼öÄ¡
+//ì§„í–‰ ìˆ˜ì¹˜
 bool classPARSESTR::DoProcVal( char* pStr )
 {
 	char* pARG;
-	// ¼Ò¼Ó¹øÈ£ number
+	// ì†Œì†ë²ˆí˜¸ number
 	pARG   = ParseString(pStr,1);
 	int iUnionNO  = StrToInt(pARG);
 	
 	
-	//sprintf( Buf, "¼Ò¼Óº° ¸í¼º[ %d: %d ]", iUnionNO, g_pAVATAR->m_Quests.m_nQuestFameOfUnion[ iUnionNO ] );
+	//sprintf( Buf, "ì†Œì†ë³„ ëª…ì„±[ %d: %d ]", iUnionNO, g_pAVATAR->m_Quests.m_nQuestFameOfUnion[ iUnionNO ] );
 	g_itMGR.AppendChatMsg( g_MsgBuf, IT_MGR::CHAT_TYPE_SYSTEM );
 
 	return true;
 }
 
-//¼Ò¼Ó ¸í¼º
+//ì†Œì† ëª…ì„±
 bool classPARSESTR::DoUnionFame( char* pStr )
 {
 	char* pARG;
-	// ¼Ò¼Ó¹øÈ£ number
+	// ì†Œì†ë²ˆí˜¸ number
 	pARG   = ParseString(pStr,1);
 	int iUnionNO  = StrToInt(pARG);
 
 	
-	//sprintf( Buf, "ÁøÇà¼öÄ¡[ %d : %d ]", iUnionNO, g_pAVATAR->m_Quests.m_nQuestProcOfUnion[ iUnionNO ] );
+	//sprintf( Buf, "ì§„í–‰ìˆ˜ì¹˜[ %d : %d ]", iUnionNO, g_pAVATAR->m_Quests.m_nQuestProcOfUnion[ iUnionNO ] );
 	g_itMGR.AppendChatMsg( g_MsgBuf, IT_MGR::CHAT_TYPE_SYSTEM );
 
 	return true;
 }
 
-//Äù½ºÆ® º¯¼ö
+//í€˜ìŠ¤íŠ¸ ë³€ìˆ˜
 bool classPARSESTR::DoQuestVal( char* pStr )
 {
 	char* pARG;
 
-	// ½½·Ô¹øÈ£ number
+	// ìŠ¬ë¡¯ë²ˆí˜¸ number
 	pARG   = ParseString(pStr,1);
 
 	if( stricmp( "VJ", pARG ) == 0 )
@@ -808,12 +808,12 @@ bool classPARSESTR::DoQuestVal( char* pStr )
 	return true;
 }
 
-// Á÷¾÷ ÀüÈ¯
+// ì§ì—… ì „í™˜
 bool classPARSESTR::DoJob( char* pStr )
 {
 	char* pARG;
 
-	// Á÷¾÷¹øÈ£ number
+	// ì§ì—…ë²ˆí˜¸ number
 	pARG   = ParseString(pStr,1);
 	int iJobNO  = StrToInt(pARG);
 	
@@ -865,12 +865,12 @@ bool classPARSESTR::DoFree( char* pStr )
 	}
 	return false;
 }
-// ½ºÆä¼È Ä¡Æ®
+// ìŠ¤í˜ì…œ ì¹˜íŠ¸
 bool classPARSESTR::DoSpecial( char* pStr )
 {
 	char* pARG;
 	
-	/// PVP °¡ Çã¿ëµÇÁö ¾ÊÀ½
+	/// PVP ê°€ í—ˆìš©ë˜ì§€ ì•ŠìŒ
 	if( !g_pTerrain->IsPVPZone() )
 		return false;
 
@@ -924,28 +924,28 @@ void classPARSESTR::DoFee()
 	switch( paytype  )
 	{
 	case BILLING_MSG_FREE_USER:
-		g_itMGR.AppendChatMsg( "¹«·á »ç¿ëÀÚÀÔ´Ï´Ù", IT_MGR::CHAT_TYPE_SYSTEM );
+		g_itMGR.AppendChatMsg( "ë¬´ë£Œ ì‚¬ìš©ìì…ë‹ˆë‹¤", IT_MGR::CHAT_TYPE_SYSTEM );
 		break;
 	case BILLING_MSG_PAY_FU:
-		g_itMGR.AppendChatMsg( "Æò»ı¹«·á »ç¿ëÀÚÀÔ´Ï´Ù", IT_MGR::CHAT_TYPE_SYSTEM );
+		g_itMGR.AppendChatMsg( "í‰ìƒë¬´ë£Œ ì‚¬ìš©ìì…ë‹ˆë‹¤", IT_MGR::CHAT_TYPE_SYSTEM );
 		break;
 	case BILLING_MSG_PAY_FA:
-		g_itMGR.AppendChatMsg( "°³ÀÎÁ¤¾× »ç¿ëÀÚÀÔ´Ï´Ù", IT_MGR::CHAT_TYPE_SYSTEM );
+		g_itMGR.AppendChatMsg( "ê°œì¸ì •ì•¡ ì‚¬ìš©ìì…ë‹ˆë‹¤", IT_MGR::CHAT_TYPE_SYSTEM );
 		break;
 	case BILLING_MSG_PAY_FAP:
-		g_itMGR.AppendChatMsg( "°³ÀÎÁ¤¾×(ÇÃ·¹Æ¼³Ñ) »ç¿ëÀÚÀÔ´Ï´Ù", IT_MGR::CHAT_TYPE_SYSTEM );
+		g_itMGR.AppendChatMsg( "ê°œì¸ì •ì•¡(í”Œë ˆí‹°ë„˜) ì‚¬ìš©ìì…ë‹ˆë‹¤", IT_MGR::CHAT_TYPE_SYSTEM );
 		break;
 	case BILLING_MSG_PAY_FQ:
-		g_itMGR.AppendChatMsg( "°³ÀÎÁ¤·® »ç¿ëÀÚÀÔ´Ï´Ù",IT_MGR::CHAT_TYPE_SYSTEM );
+		g_itMGR.AppendChatMsg( "ê°œì¸ì •ëŸ‰ ì‚¬ìš©ìì…ë‹ˆë‹¤",IT_MGR::CHAT_TYPE_SYSTEM );
 		break;
 	case BILLING_MSG_PAY_GU:
-		g_itMGR.AppendChatMsg( "°ÔÀÓ¹æ »ç¿ëÀÚ·Î Á¢¼ÓµÇ¾ú½À´Ï´Ù", IT_MGR::CHAT_TYPE_SYSTEM );
+		g_itMGR.AppendChatMsg( "ê²Œì„ë°© ì‚¬ìš©ìë¡œ ì ‘ì†ë˜ì—ˆìŠµë‹ˆë‹¤", IT_MGR::CHAT_TYPE_SYSTEM );
 		break;
 	case BILLING_MSG_PAY_GQ:
-		g_itMGR.AppendChatMsg( "°ÔÀÓ¹æÀÇ °ú±İ±â°£(½Ã°£)ÀÌ ¸¸·áµÇ¾î °³ÀÎÁ¤·®À¸·Î Á¢¼ÓµÇ¾ú½À´Ï´Ù", IT_MGR::CHAT_TYPE_SYSTEM );
+		g_itMGR.AppendChatMsg( "ê²Œì„ë°©ì˜ ê³¼ê¸ˆê¸°ê°„(ì‹œê°„)ì´ ë§Œë£Œë˜ì–´ ê°œì¸ì •ëŸ‰ìœ¼ë¡œ ì ‘ì†ë˜ì—ˆìŠµë‹ˆë‹¤", IT_MGR::CHAT_TYPE_SYSTEM );
 		break;
 	case BILLING_MSG_PAY_IQ:
-		g_itMGR.AppendChatMsg( "°ÔÀÓ¹æÀÇ Á¢¼Ó °¡´É IP¼ıÀÚ¸¦ ³Ñ¾î °³ÀÎÁ¤·®À¸·Î Á¢¼ÓµÇ¾ú½À´Ï´Ù",IT_MGR::CHAT_TYPE_SYSTEM );
+		g_itMGR.AppendChatMsg( "ê²Œì„ë°©ì˜ ì ‘ì† ê°€ëŠ¥ IPìˆ«ìë¥¼ ë„˜ì–´ ê°œì¸ì •ëŸ‰ìœ¼ë¡œ ì ‘ì†ë˜ì—ˆìŠµë‹ˆë‹¤",IT_MGR::CHAT_TYPE_SYSTEM );
 		break;
 	default:
 		break;
@@ -953,7 +953,7 @@ void classPARSESTR::DoFee()
 
 	switch( CGame::GetInstance().GetExpireTimeType() )
 	{
-	case 1://³¯Â¥
+	case 1://ë‚ ì§œ
 		{
 			const std::string& strTime = CGame::GetInstance().GetExpireTime();
 
@@ -969,7 +969,7 @@ void classPARSESTR::DoFee()
 			}
 		}
 		break;
-	case 2://ºĞ
+	case 2://ë¶„
 		{
 			const std::string& time = CGame::GetInstance().GetExpireTime();
 			DWORD set_time = CGame::GetInstance().GetSetExpireTime();
@@ -978,7 +978,7 @@ void classPARSESTR::DoFee()
 			int iTime = atoi( time.c_str() );
 			int remain_time = iTime - ( curr_time - set_time ) / ( 1000 * 60 );
 
-			g_itMGR.AppendChatMsg( CStr::Printf("»ç¿ë½Ã°£ÀÌ %dºĞ ³²¾Ò½À´Ï´Ù", remain_time ), IT_MGR::CHAT_TYPE_SYSTEM );
+			g_itMGR.AppendChatMsg( CStr::Printf("ì‚¬ìš©ì‹œê°„ì´ %dë¶„ ë‚¨ì•˜ìŠµë‹ˆë‹¤", remain_time ), IT_MGR::CHAT_TYPE_SYSTEM );
 		}
 		break;
 	default:

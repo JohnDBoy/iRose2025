@@ -38,11 +38,11 @@ private:
 	CRITICAL_SECTION			m_csSendList;
 
 protected:
-	classDLLIST<tagIO_DATA>		m_SendList;			// Client¿¡°Ô º¸³¾ µ¥ÀÌÅ¸ ¸®½ºÆ®.
-	bool						m_bSending;			// WriteFile¿¡ º¸³»°í ÀÖ³Ä ?
+	classDLLIST<tagIO_DATA>		m_SendList;			// Clientì—ê²Œ ë³´ë‚¼ ë°ì´íƒ€ ë¦¬ìŠ¤íŠ¸.
+	bool						m_bSending;			// WriteFileì— ë³´ë‚´ê³  ìˆëƒ ?
 /*
 	CRITICAL_SECTION			m_csRecvList;
-	classDLLIST<tagIO_DATA>		m_RecvList;			// Client¿¡¼­ ¹ŞÀº µ¥ÀÌÅ¸ ¸®½ºÆ®.
+	classDLLIST<tagIO_DATA>		m_RecvList;			// Clientì—ì„œ ë°›ì€ ë°ì´íƒ€ ë¦¬ìŠ¤íŠ¸.
 */
 public :
     SOCKET  m_Socket;

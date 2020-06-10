@@ -13,24 +13,24 @@
 
 
 /**
-* ¾Æ¹ÙÅ¸¸¦ ±âÁØ(Z°ª)À¸·Î ±×·ÁÁö´Â ÀÎÅÍÆäÀÌ½ºµéÀ» Ç¥½ÃÇÏ´Â Class
+* ì•„ë°”íƒ€ë¥¼ ê¸°ì¤€(Zê°’)ìœ¼ë¡œ ê·¸ë ¤ì§€ëŠ” ì¸í„°í˜ì´ìŠ¤ë“¤ì„ í‘œì‹œí•˜ëŠ” Class
 * 
-* @Author		ÀÌµ¿Çö,ÃÖÁ¾Áø
+* @Author		ì´ë™í˜„,ìµœì¢…ì§„
 *
 * @Date			2005/9/5
 */
 class CUIMediator
 {
 private:
-	CChatBoxManager					m_ChatBoxMgr;				/// ¾Æ¹ÙÅ¸ ¸Ó¸®À§ Ã¤ÆÃ±Û Ç¥½Ã ¹Ú½º
+	CChatBoxManager					m_ChatBoxMgr;				/// ì•„ë°”íƒ€ ë¨¸ë¦¬ìœ„ ì±„íŒ…ê¸€ í‘œì‹œ ë°•ìŠ¤
 	
-	CNameBox						m_NameBox;					/// ¾Æ¹ÙÅ¸ ÀÌ¸§¹× ±æµå³×ÀÓ, HP°ÔÀÌÁöµî..
+	CNameBox						m_NameBox;					/// ì•„ë°”íƒ€ ì´ë¦„ë° ê¸¸ë“œë„¤ì„, HPê²Œì´ì§€ë“±..
 
-	CDigitEffect					m_DigitEffect;				/// µ¥¹ÌÁö, Å©¸®Æ¼ÄÃ, ¹Ì½ºµî ÀÌÆåÆ®
+	CDigitEffect					m_DigitEffect;				/// ë°ë¯¸ì§€, í¬ë¦¬í‹°ì»¬, ë¯¸ìŠ¤ë“± ì´í™íŠ¸
 	
-	CPersonalStoreManager			m_PersonalStoreManager;		/// °³ÀÎ»óÁ¡ °£ÆÇ °ü¸®ÀÚ
+	CPersonalStoreManager			m_PersonalStoreManager;		/// ê°œì¸ìƒì  ê°„íŒ ê´€ë¦¬ì
 
-	HNODE							m_LogoTex;					/// °ÔÀÓ·Î°í
+	HNODE							m_LogoTex;					/// ê²Œì„ë¡œê³ 
 	//std::string					m_strZoneName;
 
 public:
@@ -56,7 +56,7 @@ public:
 
 
 	//----------------------------------------------------------------------------------------------------	
-	/// °³ÀÎ»óÁ¡ °£ÆÇ
+	/// ê°œì¸ìƒì  ê°„íŒ
 	//----------------------------------------------------------------------------------------------------
 	void	AddPersonalStoreIndex( int iObjIDX );
 	void	SubPersonalStoreIndex( int iObjIDX );

@@ -1,7 +1,7 @@
 /**
  * \ingroup SHO_GS
  * \file	GS_ThreadLOG.h
- * \brief	°ÔÀÓ ·Î±×¸¦ ·Î±×µğºñ¿¡ ±â·ÏÇÏ´Â ¾²·¹µå Å¬·¡½º
+ * \brief	ê²Œì„ ë¡œê·¸ë¥¼ ë¡œê·¸ë””ë¹„ì— ê¸°ë¡í•˜ëŠ” ì“°ë ˆë“œ í´ë˜ìŠ¤
  */
 #ifndef	__GS_THREADLOG_H
 #define	__GS_THREADLOG_H
@@ -31,8 +31,8 @@ enum {
  * \ingroup SHO_GS_LIB
  * \class	GS_CThreadLOG
  * \author	wookSang.Jo
- * \brief	·Î±× µğºñ¿Í ¿¬°áµÇ´Â ¾²·¡µå Å¬·¡½º
- *			±âº» ·Î±×¸¦ Ã³¸®ÇÏ´Â CThreadLOG¸¦ »ó¼Ó ¹ŞÀ½
+ * \brief	ë¡œê·¸ ë””ë¹„ì™€ ì—°ê²°ë˜ëŠ” ì“°ë˜ë“œ í´ë˜ìŠ¤
+ *			ê¸°ë³¸ ë¡œê·¸ë¥¼ ì²˜ë¦¬í•˜ëŠ” CThreadLOGë¥¼ ìƒì† ë°›ìŒ
  */
 class GS_CThreadLOG : public CThreadLOG	// CSqlTHREAD
 {
@@ -74,10 +74,10 @@ public :
 		return m_szDateTime;
 	}
 	void Send_gsv_LOG_SQL();
-	// ½Ã½ºÅÛ ¿À·ù...
+	// ì‹œìŠ¤í…œ ì˜¤ë¥˜...
 	bool When_ERROR ( classUSER *pUSER, char *szFile, int iLine, char *szDesc );
 */
-	// ·Î±×ÀÎ/¾Æ¿ô
+	// ë¡œê·¸ì¸/ì•„ì›ƒ
 #ifdef	__NEW_LOG
 	// @param btTYPE : 0:login, 1:logout, 2:char backup
 	bool When_LogInOrOut ( classUSER *pUSER, BYTE btType );
@@ -93,26 +93,26 @@ public :
 	bool When_TagItemLOG( int iAction, classUSER *pSourAVT, tagITEM *pItem, short nQuantity=1, __int64 biTradeZuly=0, classUSER *pDestAVT=NULL, bool bForce=false);
 	bool When_ObjItemLOG( int iAction, classUSER *pSourAVT, CObjITEM *pItemOBJ);
 #else
-	// Áİ°Å³ª ¹ö¸®±â
+	// ì¤ê±°ë‚˜ ë²„ë¦¬ê¸°
 	bool When_PickITEM	( classUSER *pSourAVT, CObjITEM *pItemOBJ );
 	bool When_DropITEM	( classUSER *pSourAVT, CObjITEM *pItemOBJ );
 
-	// ÆÈ°Å³ª ÁÖ±â
+	// íŒ”ê±°ë‚˜ ì£¼ê¸°
 	bool When_NpcTRADE  ( classUSER *pSourAVT, tagITEM *pITEM, CObjCHAR  *pDestCHR, char *szLogType, int iPriceTOT, int iDupCnt );
 	bool When_P2PTRADE	( classUSER *pSourAVT, tagITEM *pITEM, classUSER *pDestAVT, DWORD dwTradeMoney );
 
 	bool When_GiveITEM ( classUSER *pSourAVT, tagITEM  *pITEM, classUSER *pDestAVT, short nTradeSlotNO );
 	bool When_RecvITEM ( classUSER *pSourAVT, tagITEM  *pITEM, classUSER *pDestAVT, short nTradeSlotNO );
 
-	// Ã¢°í¿¡ º¸°ü Ã£±â
+	// ì°½ê³ ì— ë³´ê´€ ì°¾ê¸°
 	bool When_DEPOSIT  ( classUSER *pSourAVT, tagITEM  *pITEM );
 	bool When_WithDRAW ( classUSER *pSourAVT, tagITEM  *pITEM );
 #endif
 
-	// Á¦Á¶ °ü·Ã
+	// ì œì¡° ê´€ë ¨
 #ifdef	__NEW_LOG
-	// @param:: btMakeOrBreak: 0:Á¦Á¶, 1:ºĞ¸®
-	//          btSucOrFail: 0:¼º°ø, 1:½ÇÆĞ
+	// @param:: btMakeOrBreak: 0:ì œì¡°, 1:ë¶„ë¦¬
+	//          btSucOrFail: 0:ì„±ê³µ, 1:ì‹¤íŒ¨
 	bool When_CreateOrDestroyITEM ( classUSER *pSourAVT, tagITEM *pOutItem, tagITEM *pUseItem, short nUseCNT, BYTE btMakeOrBreak, BYTE btSucOrFail );
 #else
 	bool When_CreatedITEM	( classUSER *pSourAVT, tagITEM *pITEM );
@@ -121,12 +121,12 @@ public :
 
 	bool When_DieBY( CObjCHAR *pKillOBJ, classUSER *pDeadAVT );
 
-	// ·¹º§¾÷
+	// ë ˆë²¨ì—…
 	bool When_LevelUP ( classUSER *pSourAVT, int iGetEXP );
 
-	// Äù½ºÆ®...
+	// í€˜ìŠ¤íŠ¸...
 #ifdef	__NEW_LOG
-	// @param:: btLogType: 0:ºÎ¿©, 1:¼öÇà, 2:Æ÷±â
+	// @param:: btLogType: 0:ë¶€ì—¬, 1:ìˆ˜í–‰, 2:í¬ê¸°
 	bool When_QuestLOG ( classUSER *pSourAVT, int iQuestIDX, BYTE btLogType );
 #else
 	bool When_RecvQUEST		( classUSER *pSourAVT, int iQuestIDX );
@@ -135,13 +135,13 @@ public :
 	bool When_ChangedQUEST	( classUSER *pSourAVT, int iOldQuestIDX, int iNewQuestIDX );
 #endif
 
-	// ½ºÅ³...
+	// ìŠ¤í‚¬...
 	bool When_LearnSKILL	( classUSER *pSourAVT,	short nSkillIDX );
 #ifndef	__NEW_LOG
 	bool When_LevelUpSKILL	( classUSER *pSourAVT,	short nSkillIDX );
 #endif
 
-	// Àç¹Ö °ü·Ã
+	// ì¬ë° ê´€ë ¨
 	bool When_UpgradeITEM	( classUSER *pSourAVT,  tagITEM *pEquipITEM, BYTE btBeforeGrade, BYTE btResult );
 	bool When_GemmingITEM	( classUSER *pSourAVT,	tagITEM *pEquipITEM, tagITEM *pJewelITEM, BYTE btGemming, BYTE btSuccess );
 #ifndef	__NEW_LOG
@@ -149,19 +149,19 @@ public :
 	bool When_BreakupITEM	( classUSER *pSourAVT,	tagITEM *pITEM ); 
 #endif
 
-	// Á¶ÇÕ °ü·Ã
+	// ì¡°í•© ê´€ë ¨
 	bool When_ChangeUNION	( classUSER *pSourAVT, int iBeforeUnion, int iNewUnion );
 	bool When_PointUNION	( classUSER *pSourAVT, int iCurUnion, int iCurPoint, int iNewPoint );
 
-	// Ä¡Æ® °ü·Ã
+	// ì¹˜íŠ¸ ê´€ë ¨
 	bool When_CheatCODE		( classUSER *pSourAVT,	char *szCode );
 
 	bool When_ItemHACKING	( classUSER *pSourAVT, tagITEM *pHackITEM, char *szLogType );
 
-	// ¹é¾÷ ·Î±×.
+	// ë°±ì—… ë¡œê·¸.
 	bool When_BackUP		( classUSER *pSourAVT,  char *szBackUpType );
 
-	// Å¬·£ ·Î±×..
+	// í´ëœ ë¡œê·¸..
 	bool When_gs_CLAN		( classUSER *pSourAVT, char *szLogType, BYTE btSucType );
 
 	bool When_ChangeABILITY	( classUSER * pSourAVT , BYTE btAbilityTYPE, short nUsedBPOINT );

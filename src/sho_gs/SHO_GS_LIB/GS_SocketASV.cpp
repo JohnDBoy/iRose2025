@@ -123,13 +123,13 @@ bool GS_asvSOCKET::Recv_zas_KICK_ACCOUNT ()
 	if ( pUser ) {
 		pUser->Send_gsv_BILLING_MESSAGE( m_pRecvPket->m_zas_KICK_ACCOUNT.m_btWHY, "." );
 
-		// ÀÏÁ¤½Ã°£ÈÄ¿¡ Á¢¼Ó ²÷±â°Ô....
+		// ì¼ì •ì‹œê°„í›„ì— ì ‘ì† ëŠê¸°ê²Œ....
 		pUser->m_bKickOutFromGUMS = true;
 		pUser->m_btWishLogOutMODE = LOGOUT_MODE_LEFT;
 		pUser->m_dwTimeToLogOUT   = ::timeGetTime() + 10 * 1000;
 	} else {
 	// if ( !g_pUserLIST->Kick_ACCOUNT( szAccount ) ) {
-		// ¸øÃ£¾Ò´Ù...
+		// ëª»ì°¾ì•˜ë‹¤...
 		g_LOG.CS_ODS( 0xffff, "Recv Kick Account from GUMS but [%s] not found", szAccount );
 	}
 	return true;
@@ -181,15 +181,15 @@ bool GS_asvSOCKET::Recv_zas_CHECK_ACCOUNT ()
 	switch( m_pRecvPket->m_zas_CHECK_ACCOUNT.m_btType ) {
 		case ZAS_CHECK_DISCONNECT :
 		{
-			// Å¬¶óÀÌ¾ðÆ®¿¡¼­ Keep alive¾È¿Í¼­ Gums¿¡¼­ Å¸ÀÓ¾Æ¿ô °É·È´Ù...
-			// °ÔÀÓ»ó Á¢¼ÓÇØ ÀÖ´Â °èÁ¤ÀÌ´Ù... Á¢¼ÓµÈ °èÁ¤À¸·Î ÆÐÅ¶ ³¯·Áº¸±¸...
-			// gums¿¡ ´Ù½Ã ·Î±ä ¿äÃ»..
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œ Keep aliveì•ˆì™€ì„œ Gumsì—ì„œ íƒ€ìž„ì•„ì›ƒ ê±¸ë ¸ë‹¤...
+			// ê²Œìž„ìƒ ì ‘ì†í•´ ìžˆëŠ” ê³„ì •ì´ë‹¤... ì ‘ì†ëœ ê³„ì •ìœ¼ë¡œ íŒ¨í‚· ë‚ ë ¤ë³´êµ¬...
+			// gumsì— ë‹¤ì‹œ ë¡œê¸´ ìš”ì²­..
 			bool bAlive=false;
 			classUSER *pUser = g_pUserLIST->Find_ACCOUNT (szAccount);
 			if ( pUser ) {
 				classPACKET *pCPacket = Packet_AllocNLock ();
 				if ( pCPacket ) {
-					// »ì¾Æ ÀÖ´ÂÁö ÆÐÅ¶ÇÔ ³¯·Á º¸°í...
+					// ì‚´ì•„ ìžˆëŠ”ì§€ íŒ¨í‚·í•¨ ë‚ ë ¤ ë³´ê³ ...
 					pCPacket->m_HEADER.m_wType = SRV_ERROR;
 					pCPacket->m_HEADER.m_nSize = sizeof( gsv_ERROR );
 					pCPacket->m_gsv_ERROR.m_wErrorCODE = 0;
@@ -199,7 +199,7 @@ bool GS_asvSOCKET::Recv_zas_CHECK_ACCOUNT ()
 			}
 			
 			if ( bAlive ) {
-				//AS¿¡ °èÁ¤ÀÌ ³²¾Æ ÀÖ±â¶§¹®¿¡.... ¹Ù·Î Send_zws_ADD_ACCOUNT ¾ÈµÇ³×..
+				//ASì— ê³„ì •ì´ ë‚¨ì•„ ìžˆê¸°ë•Œë¬¸ì—.... ë°”ë¡œ Send_zws_ADD_ACCOUNT ì•ˆë˜ë„¤..
 				this->Send_zas_CHECK_ACCOUNT( ZAS_CHECK_RELOGIN, szAccount );
 			} else {
 				this->Send_zas_SUB_ACCOUNT( szAccount, 0xff, -1, -1 );
@@ -213,7 +213,7 @@ bool GS_asvSOCKET::Recv_zas_CHECK_ACCOUNT ()
 //-------------------------------------------------------------------------------------------------
 bool GS_asvSOCKET::Send_cli_ALIVE ( char *szAccount )
 {
-	// GUMS¿¡ alive ÆÐÅ¶ Àü¼Û.
+	// GUMSì— alive íŒ¨í‚· ì „ì†¡.
 	classPACKET *pCPacket = Packet_AllocNLock ();
 	if ( !pCPacket )
 		return false;
@@ -255,7 +255,7 @@ bool GS_asvSOCKET::Proc_SocketMSG (WPARAM wParam, LPARAM lParam)
 		{
 			m_SockASV.OnReceive( nErrorCode );
 
-			// ¹ÞÀº ÆÐÅ¶ Ã³¸®..
+			// ë°›ì€ íŒ¨í‚· ì²˜ë¦¬..
 			while( m_SockASV.Peek_Packet( m_pRecvPket, true ) ) {
 				// LogString( LOG_DEBUG, "Handle LS Packet: Type[ 0x%x ], Size[ %d ]\n", m_pRecvPket->m_HEADER.m_wType, m_pRecvPket->m_HEADER.m_nSize);
 				switch( m_pRecvPket->m_HEADER.m_wType ) {
@@ -301,7 +301,7 @@ bool GS_asvSOCKET::Proc_SocketMSG (WPARAM wParam, LPARAM lParam)
 				if ( m_pReconnectTimer )
 					m_pReconnectTimer->Stop ();
 
-				// Å×½ºÆ® ¼­¹ö³Ä ???
+				// í…ŒìŠ¤íŠ¸ ì„œë²„ëƒ ???
 				if ( CLIB_GameSRV::GetInstance()->IsTestServer() ) {
 					this->Send_zas_SERVER_TYPE( 1 );
 				}
@@ -316,7 +316,7 @@ bool GS_asvSOCKET::Proc_SocketMSG (WPARAM wParam, LPARAM lParam)
 			}
 			break;
 		}
-		case FD_CLOSE:		// Close()ÇÔ¼ö¸¦ È£ÃâÇØ¼­ Á¾·áµÉ¶§´Â ¹ß»ý ¾ÈÇÑ´Ù.
+		case FD_CLOSE:		// Close()í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•´ì„œ ì¢…ë£Œë ë•ŒëŠ” ë°œìƒ ì•ˆí•œë‹¤.
 		{
 			m_SockASV.OnClose ( nErrorCode );
 

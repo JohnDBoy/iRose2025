@@ -47,7 +47,7 @@ void CClanSkillSlot::ClearSlot()
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief ½ºÅ³ ½½·Ô ÃÊ±âÈ­
+/// @brief ìŠ¤í‚¬ ìŠ¬ë¡¯ ì´ˆê¸°í™”
 //----------------------------------------------------------------------------------------------------
 
 void CClanSkillSlot::InitSlot()
@@ -57,7 +57,7 @@ void CClanSkillSlot::InitSlot()
 
 
 //----------------------------------------------------------------------------------------------------
-/// ÁÖ¸ñÀûÀº Å¸ÀÌ¸ÓÀÇ ÁøÇàÀ» À§ÇØ¼­ÀÓ
+/// ì£¼ëª©ì ì€ íƒ€ì´ë¨¸ì˜ ì§„í–‰ì„ ìœ„í•´ì„œìž„
 //----------------------------------------------------------------------------------------------------
 void CClanSkillSlot::UpdateSkillSlot()
 {
@@ -76,11 +76,11 @@ void CClanSkillSlot::UpdateSkillSlot()
 
 
 //----------------------------------------------------------------------------------------------------
-/// @param nSlotIndex ½ºÅ³ ½½·Ô ÀÎµ¦½º
-/// @param nSlotIndex ½ºÅ³ ÀÎµ¦½º
-/// @param nSlotIndex ½ºÅ³ ·¹º§
-/// @param nSlotIndex ½ºÅ³ ½½·Ô ÀÎµ¦½º
-/// @brief »õ·Î¿î ½ºÅ³À» ½ºÅ³ ½½·Ô¿¡ µî·Ï
+/// @param nSlotIndex ìŠ¤í‚¬ ìŠ¬ë¡¯ ì¸ë±ìŠ¤
+/// @param nSlotIndex ìŠ¤í‚¬ ì¸ë±ìŠ¤
+/// @param nSlotIndex ìŠ¤í‚¬ ë ˆë²¨
+/// @param nSlotIndex ìŠ¤í‚¬ ìŠ¬ë¡¯ ì¸ë±ìŠ¤
+/// @brief ìƒˆë¡œìš´ ìŠ¤í‚¬ì„ ìŠ¤í‚¬ ìŠ¬ë¡¯ì— ë“±ë¡
 //----------------------------------------------------------------------------------------------------
 
 void CClanSkillSlot::SetSkillSlot(short nSlotIndex, short nSkillIndex, short nSkillLevel, DWORD expire_time_abssec )
@@ -108,9 +108,9 @@ void CClanSkillSlot::SetSkillSlot(short nSlotIndex, short nSkillIndex, short nSk
 	NotifyObservers( &m_Event );
 }
 //----------------------------------------------------------------------------------------------------
-/// @param nSlotIndex ½ºÅ³ ½½·Ô ÀÎµ¦½º
-/// @param nSlotIndex ½ºÅ³ ÀÎµ¦½º
-/// @brief ½ºÅ³·¹º§¾÷À» ÇÏ¸é¼­ Å¸ÀÔÀÌ º¯°æµÇ´Â ½ºÅ³ÀÏ°æ¿ì ±âÁ¸°ÍÀ» Áö¿ì°í »õ·Î ¸¸µé¾îÁÖ¾î¾ß ÇÑ´Ù.
+/// @param nSlotIndex ìŠ¤í‚¬ ìŠ¬ë¡¯ ì¸ë±ìŠ¤
+/// @param nSlotIndex ìŠ¤í‚¬ ì¸ë±ìŠ¤
+/// @brief ìŠ¤í‚¬ë ˆë²¨ì—…ì„ í•˜ë©´ì„œ íƒ€ìž…ì´ ë³€ê²½ë˜ëŠ” ìŠ¤í‚¬ì¼ê²½ìš° ê¸°ì¡´ê²ƒì„ ì§€ìš°ê³  ìƒˆë¡œ ë§Œë“¤ì–´ì£¼ì–´ì•¼ í•œë‹¤.
 //----------------------------------------------------------------------------------------------------
 void CClanSkillSlot::SkillLevelUp( int iSkillSlotNo, int iSkillIndex )
 {
@@ -142,8 +142,8 @@ void CClanSkillSlot::SkillLevelUp( int iSkillSlotNo, int iSkillIndex )
 }
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief ½ºÅ³¹øÈ£·Î ½ºÅ³½½·ÔÀ» ¾ò°í ½ÇÁ¦ ½ºÅ³°´Ã¼¸¦ ¾ò¾î¿Â´Ù.
-///			¼­¹ö·Î ºÎÅÍ´Â ½ºÅ³¹øÈ£¸¸ ¹Þ±â ¶§¹®¿¡ ¿ªÀ¸·Î ¹øÈ£·Î ½½·ÔÀ» ¾ò¾î¿Ã ÇÊ¿ä°¡ ÀÖ´Ù.( Å¸ÀÌ¸Ó ¼¼ÆÃ )
+/// @brief ìŠ¤í‚¬ë²ˆí˜¸ë¡œ ìŠ¤í‚¬ìŠ¬ë¡¯ì„ ì–»ê³  ì‹¤ì œ ìŠ¤í‚¬ê°ì²´ë¥¼ ì–»ì–´ì˜¨ë‹¤.
+///			ì„œë²„ë¡œ ë¶€í„°ëŠ” ìŠ¤í‚¬ë²ˆí˜¸ë§Œ ë°›ê¸° ë•Œë¬¸ì— ì—­ìœ¼ë¡œ ë²ˆí˜¸ë¡œ ìŠ¬ë¡¯ì„ ì–»ì–´ì˜¬ í•„ìš”ê°€ ìžˆë‹¤.( íƒ€ì´ë¨¸ ì„¸íŒ… )
 //----------------------------------------------------------------------------------------------------
 
 CSkill* CClanSkillSlot::GetSkillBySkillIDX( int iSkillIDX )
@@ -165,8 +165,8 @@ CSkill* CClanSkillSlot::GetSkillBySkillIDX( int iSkillIDX )
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief ½ºÅ³¹øÈ£·Î ½ºÅ³½½·ÔÀ» ¾ò°í ½ÇÁ¦ ½ºÅ³°´Ã¼¸¦ ¾ò¾î¿Â´Ù.
-///			¼­¹ö·Î ºÎÅÍ´Â ½ºÅ³¹øÈ£¸¸ ¹Þ±â ¶§¹®¿¡ ¿ªÀ¸·Î ¹øÈ£·Î ½½·ÔÀ» ¾ò¾î¿Ã ÇÊ¿ä°¡ ÀÖ´Ù.( Å¸ÀÌ¸Ó ¼¼ÆÃ )
+/// @brief ìŠ¤í‚¬ë²ˆí˜¸ë¡œ ìŠ¤í‚¬ìŠ¬ë¡¯ì„ ì–»ê³  ì‹¤ì œ ìŠ¤í‚¬ê°ì²´ë¥¼ ì–»ì–´ì˜¨ë‹¤.
+///			ì„œë²„ë¡œ ë¶€í„°ëŠ” ìŠ¤í‚¬ë²ˆí˜¸ë§Œ ë°›ê¸° ë•Œë¬¸ì— ì—­ìœ¼ë¡œ ë²ˆí˜¸ë¡œ ìŠ¬ë¡¯ì„ ì–»ì–´ì˜¬ í•„ìš”ê°€ ìžˆë‹¤.( íƒ€ì´ë¨¸ ì„¸íŒ… )
 //----------------------------------------------------------------------------------------------------
 CSkill* CClanSkillSlot::GetSkillByBaseSkillIDX( int iBaseSkillIDX )
 {
@@ -185,7 +185,7 @@ CSkill* CClanSkillSlot::GetSkillByBaseSkillIDX( int iBaseSkillIDX )
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief ÇØ´ç ½½·ÔÀÇ ½ºÅ³ ¹øÈ£¸¦ ¾ò¾î¿Â´Ù.
+/// @brief í•´ë‹¹ ìŠ¬ë¡¯ì˜ ìŠ¤í‚¬ ë²ˆí˜¸ë¥¼ ì–»ì–´ì˜¨ë‹¤.
 //----------------------------------------------------------------------------------------------------
 
 short CClanSkillSlot::GetSkillIndex(short nSlotIndex)
@@ -202,7 +202,7 @@ short CClanSkillSlot::GetSkillIndex(short nSlotIndex)
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief ÇØ´ç ½½·ÔÀÇ ·¹º§À» ¾ò¾î¿Â´Ù.
+/// @brief í•´ë‹¹ ìŠ¬ë¡¯ì˜ ë ˆë²¨ì„ ì–»ì–´ì˜¨ë‹¤.
 //----------------------------------------------------------------------------------------------------
 
 short CClanSkillSlot::GetSkillLevel(short nSlotIndex)
@@ -220,7 +220,7 @@ short CClanSkillSlot::GetSkillLevel(short nSlotIndex)
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief ÇØ´ç ½½·ÔÀÇ Delay time¸¦ ¾ò¾î¿Â´Ù.
+/// @brief í•´ë‹¹ ìŠ¬ë¡¯ì˜ Delay timeë¥¼ ì–»ì–´ì˜¨ë‹¤.
 //----------------------------------------------------------------------------------------------------
 
 short CClanSkillSlot::GetSkillDelayTime(short nSlotIndex)
@@ -236,7 +236,7 @@ short CClanSkillSlot::GetSkillDelayTime(short nSlotIndex)
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief ¾ÆÀÌÄÜ ¹øÈ£¸¦ ¾ò¾î¿Â´Ù.
+/// @brief ì•„ì´ì½˜ ë²ˆí˜¸ë¥¼ ì–»ì–´ì˜¨ë‹¤.
 //----------------------------------------------------------------------------------------------------
 
 short CClanSkillSlot::GetSkillIconIndex(short nSlotIndex)

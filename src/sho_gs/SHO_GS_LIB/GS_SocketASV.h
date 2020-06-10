@@ -1,7 +1,7 @@
 /**
  * \ingroup SHO_GS
  * \file	GS_SocketASV.h
- * \brief	╟Ха╓╪╜╧Ж©м еК╫его╢б ╪рдо е╛╥║╫╨
+ * \brief	ЙЁ└Л═∙Л└°К╡└Л≥─ М├╣Л▀═М∙≤К┼■ Л├▄Л╪⌠ М│╢К·≤Л┼╓
  */
 #ifndef	__GS_SOCKETASV_H
 #define	__GS_SOCKETASV_H
@@ -17,7 +17,7 @@ public :
  * \ingroup SHO_GS_LIB
  * \class	GS_asvSOCKET
  * \author	wookSang.Jo
- * \brief	╥наН ╟Ха╓╪╜╧Ж sho_as©м еК╫е╧в цЁ╦╝го╢б е╛╥║╫╨
+ * \brief	К║°Л╕┬ ЙЁ└Л═∙Л└°К╡└ sho_asЛ≥─ М├╣Л▀═К╟▐ Л╡≤К╕╛М∙≤К┼■ М│╢К·≤Л┼╓
  */
 class GS_asvSOCKET	// : private CCriticalSection
 {

@@ -32,7 +32,7 @@ void CObjAVT::Update_SPEED ()
 		this->m_nPassiveAttackSpeed = this->GetPassiveSkillAttackSpeed( fSpeed, nWeaponItemNo );
 		this->m_nAtkAniSPEED = (short)( fSpeed + this->m_nPassiveAttackSpeed );
 		this->m_nAtkAniSPEED += m_iAddValue[ AT_ATK_SPD ];
-		// À§¿¡±îÁö´Â Ä³¸¯ÅÍ ²¨ ±×¸®°í ÆÖ²¨ ¾Æ·¡¿¡¼­ ´õÇÔ
+		// ìœ„ì—ê¹Œì§€ëŠ” ìºë¦­í„° êº¼ ê·¸ë¦¬ê³  íŒ»êº¼ ì•„ë˜ì—ì„œ ë”í•¨
 		for (short nI=0; nI<MAX_RIDING_PART; nI++) {
 			tagITEM sITEM = this->m_Inventory.m_ItemRIDE[ nI ];
 			this->m_nAtkAniSPEED += PAT_ITEM_ATK_SPD( sITEM.GetItemNO() );
@@ -52,14 +52,14 @@ void CObjAVT::Update_SPEED ()
 //-------------------------------------------------------------------------------------------------
 int CObjAVT::Get_AttackRange( short nSkillIDX )
 {
-	/// ½ºÅ³¿¡ °ø°İ °Å¸®°¡ ÀÔ·ÂµÇ¾î ÀÖ´Ù¸é ½ºÅ³°Å¸® ¾Æ´Ï¸é ¹«±â °Å¸®..
+	/// ìŠ¤í‚¬ì— ê³µê²© ê±°ë¦¬ê°€ ì…ë ¥ë˜ì–´ ìˆë‹¤ë©´ ìŠ¤í‚¬ê±°ë¦¬ ì•„ë‹ˆë©´ ë¬´ê¸° ê±°ë¦¬..
 	if ( nSkillIDX && SKILL_DISTANCE( nSkillIDX ) ) 
 	{
 		return SKILL_DISTANCE( nSkillIDX );
 	}
 
 	if ( this->GetCur_MOVE_MODE() <= MOVE_MODE_RUN ) {
-		/// ¾îÅÃ ·¹ÀÎÁö¸¦ ±¸ÇÑ´Ù. ¿À¸¥ÂÊ ¹«±â°¡ ÀÖÀ¸¸é ±× ¹«±âÀÇ ·¹ÀÎÁö ¸®ÅÏ.
+		/// ì–´íƒ ë ˆì¸ì§€ë¥¼ êµ¬í•œë‹¤. ì˜¤ë¥¸ìª½ ë¬´ê¸°ê°€ ìˆìœ¼ë©´ ê·¸ ë¬´ê¸°ì˜ ë ˆì¸ì§€ ë¦¬í„´.
 		if ( Get_R_WEAPON() )
 		{
 			return (int) ( WEAPON_ATTACK_RANGE( this->Get_R_WEAPON() ) + ( Get_SCALE() * 120 ) );
@@ -67,7 +67,7 @@ int CObjAVT::Get_AttackRange( short nSkillIDX )
 	} else {
 		//if ( this->m_nRideItemIDX[ RIDE_PART_ARMS ] ) {
 		if ( this->m_RideITEM[ RIDE_PART_ARMS ].m_nItemNo ) {
-			// ÀåÂøµÈ ¹«±â°¡ ÀÖ´Ù.
+			// ì¥ì°©ëœ ë¬´ê¸°ê°€ ìˆë‹¤.
 			//return (int) ( PAT_ITEM_ATK_RANGE( this->m_nRideItemIDX[RIDE_PART_ARMS] ) + ( Get_SCALE() * 120 ) );
 			return (int) ( PAT_ITEM_ATK_RANGE( this->m_RideITEM[RIDE_PART_ARMS].m_nItemNo ) + ( Get_SCALE() * 120 ) );
 		}
@@ -86,7 +86,7 @@ bool CObjAVT::Make_gsv_ADD_OBJECT( classPACKET *pCPacket )
     pCPacket->m_HEADER.m_nSize = sizeof( gsv_AVT_CHAR );
 
     pCPacket->m_gsv_AVT_CHAR.m_btCharRACE   = (BYTE)this->m_nCharRACE;
-	pCPacket->m_gsv_AVT_CHAR.m_nRunSpeed    = this->GetOri_RunSPEED();			// ÆĞ½Ãºê¿¡ÀÇÇØ¼­¸¸ º¸Á¤/ Áö¼Óº¸Á¤ Á¦¿ÜµÈ°ª.
+	pCPacket->m_gsv_AVT_CHAR.m_nRunSpeed    = this->GetOri_RunSPEED();			// íŒ¨ì‹œë¸Œì—ì˜í•´ì„œë§Œ ë³´ì •/ ì§€ì†ë³´ì • ì œì™¸ëœê°’.
 	pCPacket->m_gsv_AVT_CHAR.m_nPsvAtkSpeed	= this->GetPsv_ATKSPEED ();
 	pCPacket->m_gsv_AVT_CHAR.m_btWeightRate = this->m_btWeightRate;
 	pCPacket->m_gsv_AVT_CHAR.m_dwSubFLAG    = this->m_IngSTATUS.m_dwSubStatusFLAG;
@@ -112,7 +112,7 @@ bool CObjAVT::Make_gsv_ADD_OBJECT( classPACKET *pCPacket )
 
 	pCPacket->AppendString( this->Get_NAME() );
 
-	// °³ÀÎ »óÁ¡ »óÅÂ¸é »óÁ¡ Å¸ÀÌÆ²...
+	// ê°œì¸ ìƒì  ìƒíƒœë©´ ìƒì  íƒ€ì´í‹€...
 	if ( this->m_IngSTATUS.IsSubSET( FLAG_SUB_STORE_MODE ) ) {
 #ifdef	__INC_PLATINUM
 		short nStoreSkin = this->m_GrowAbility.GetStoreSKIN( this->GetCurAbsSEC() );
@@ -146,7 +146,7 @@ tagMOTION *CObjAVT::Get_MOTION (short nActionIdx)
 	tagMOTION *pMOTION;
 
 	if ( !this->m_btRideMODE ) {
-		// ¿À¸¥¼Õ ¹«±â Á¾·ù¿¡µû¶ó...
+		// ì˜¤ë¥¸ì† ë¬´ê¸° ì¢…ë¥˜ì—ë”°ë¼...
 		//nFileIDX = FILE_MOTION( WEAPON_MOTION_TYPE(this->m_nRWeaponIDX), nActionIdx );
 		nFileIDX = FILE_MOTION( WEAPON_MOTION_TYPE(this->m_sRWeaponIDX.m_nItemNo), nActionIdx );
 		nType = this->IsFemale();
@@ -156,13 +156,13 @@ tagMOTION *CObjAVT::Get_MOTION (short nActionIdx)
 	}
 
 	if ( 0 == nFileIDX ) {
-		// ¸ğ¼ÇÀÌ ¾øÀ¸¸é ¸Ç¼Õ ¸ğ¼ÇÀ¸·Î ´ëÃ¼ ??? :: 0¹ø ÆÄÀÏ ¾ø´Âµ¥ ??..
+		// ëª¨ì…˜ì´ ì—†ìœ¼ë©´ ë§¨ì† ëª¨ì…˜ìœ¼ë¡œ ëŒ€ì²´ ??? :: 0ë²ˆ íŒŒì¼ ì—†ëŠ”ë° ??..
 		// nFileIDX = FILE_MOTION( 0, nActionIdx );
 		return NULL;
 	}
 
-	// TODO:: °°Àº µ¿ÀÛ¿¡ ´ëÇØ¼­´Â ³²/¿© ¸ğµÎ ÇÁ·¹ÀÓÀÌ °°´Ù.
-	// Á¾Á·ÀÌ Æ²¸®¸é ???
+	// TODO:: ê°™ì€ ë™ì‘ì— ëŒ€í•´ì„œëŠ” ë‚¨/ì—¬ ëª¨ë‘ í”„ë ˆì„ì´ ê°™ë‹¤.
+	// ì¢…ì¡±ì´ í‹€ë¦¬ë©´ ???
 	pMOTION = g_MotionFILE.IDX_GetMOTION( nFileIDX, nType );
 	if ( pMOTION ) {
 		pMOTION->m_nActionIdx = nActionIdx;
@@ -203,7 +203,7 @@ void CObjAVT::SetPartITEM (short nEquipInvIDX)
 	}
 
 	if ( this->GetCur_MOVE_MODE() <= MOVE_MODE_RUN )
-		this->UpdateAbility ();		// ÆÄÆ® ¾ÆÀÌÅÛ ¼³Á¤
+		this->UpdateAbility ();		// íŒŒíŠ¸ ì•„ì´í…œ ì„¤ì •
 }
 void CObjAVT::SetRideITEM (short nRideInvIDX)
 {
@@ -215,7 +215,7 @@ void CObjAVT::SetRideITEM (short nRideInvIDX)
 	m_RideITEM[ nRideInvIDX ].m_bHasSocket= this->m_Inventory.m_ItemRIDE[ nRideInvIDX ].m_bHasSocket;
 
 	if ( this->GetCur_MOVE_MODE() == MOVE_MODE_DRIVE )
-		this->UpdateAbility ();		// Å¾½Â ¾ÆÀÌÅÛ ¼³Á¤
+		this->UpdateAbility ();		// íƒ‘ìŠ¹ ì•„ì´í…œ ì„¤ì •
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -226,7 +226,7 @@ void CObjAVT::Set_TargetIDX (int iTargetIndex, bool bCheckHP)
 
 	CObjCHAR *pTarget;
 	if ( Get_TargetIDX() ) {
-		pTarget = (CObjCHAR*) this->Get_TargetOBJ (true);	// HP Ã¼Å©µÈ CAI_OBJ¸¦ »ó¼Ó¹ŞÀº CObjCHAR°¡ ³Ñ¾î ¿Â´Ù.
+		pTarget = (CObjCHAR*) this->Get_TargetOBJ (true);	// HP ì²´í¬ëœ CAI_OBJë¥¼ ìƒì†ë°›ì€ CObjCHARê°€ ë„˜ì–´ ì˜¨ë‹¤.
 		if ( pTarget ) {
 			pTarget->Sub_FromTargetLIST( this );
 		}
@@ -235,12 +235,12 @@ void CObjAVT::Set_TargetIDX (int iTargetIndex, bool bCheckHP)
 	this->CObjTARGET::Set_TargetIDX( iTargetIndex );
 
 	if ( Get_TargetIDX() ) {
-		pTarget = (CObjCHAR*) this->Get_TargetOBJ (bCheckHP);		// HP Ã¼Å©µÈ CAI_OBJ¸¦ »ó¼Ó¹ŞÀº CObjCHAR°¡ ³Ñ¾î ¿Â´Ù.
+		pTarget = (CObjCHAR*) this->Get_TargetOBJ (bCheckHP);		// HP ì²´í¬ëœ CAI_OBJë¥¼ ìƒì†ë°›ì€ CObjCHARê°€ ë„˜ì–´ ì˜¨ë‹¤.
 		if ( pTarget ) {
 			pTarget->Add_ToTargetLIST( this );
 			this->Send_gsv_HP_REPLY( Get_TargetIDX(), pTarget->Get_HP() );
 		} else {
-			// Ä³¸¯ÅÍ°¡ ¾Æ´Ï°Å³ª Á×¾ú´Ù...
+			// ìºë¦­í„°ê°€ ì•„ë‹ˆê±°ë‚˜ ì£½ì—ˆë‹¤...
 			CObjTARGET::Set_TargetIDX( 0 );
 		}
 	}
@@ -251,7 +251,7 @@ void CObjAVT::Set_TargetIDX (int iTargetIndex, bool bCheckHP)
 bool CObjAVT::SetCMD_TOGGLE (BYTE btTYPE, bool bForce)
 {
 #ifdef	__BLOCK_WHEN_SKILL
-	// 2005.08.03 : icarus :: Á¶°Ç °Ë»ö¾øÀÌ °­Á¦ Åä±Û ½ÃÅ³¼ö ÀÖµµ·Ï ¼öÁ¤...
+	// 2005.08.03 : icarus :: ì¡°ê±´ ê²€ìƒ‰ì—†ì´ ê°•ì œ í† ê¸€ ì‹œí‚¬ìˆ˜ ìˆë„ë¡ ìˆ˜ì •...
 	if ( !bForce && Get_ActiveSKILL() ) {
 		return true;
 	}
@@ -261,11 +261,11 @@ bool CObjAVT::SetCMD_TOGGLE (BYTE btTYPE, bool bForce)
 		case TOGGLE_TYPE_RUN :
 		{
 			if ( this->m_btRideMODE ) {
-				// Å¾½ÂÇÏ°í ??
+				// íƒ‘ìŠ¹í•˜ê³  ??
 				return true;
 			}
 			if ( this->m_btWeightRate >= WEIGHT_RATE_WALK ) {
-				// ¶Û·Á±¸ ?
+				// ë›¸ë ¤êµ¬ ?
 				return true;
 			}
 
@@ -282,7 +282,7 @@ bool CObjAVT::SetCMD_TOGGLE (BYTE btTYPE, bool bForce)
 		case TOGGLE_TYPE_SIT :
 		{
 			if ( this->m_btRideMODE ) {
-				// Å¾½ÂÇÏ°í ??
+				// íƒ‘ìŠ¹í•˜ê³  ??
 				return true;
 			}
 
@@ -293,11 +293,11 @@ bool CObjAVT::SetCMD_TOGGLE (BYTE btTYPE, bool bForce)
 
 				case CMD_SIT :
 					CObjAI::SetCMD_STAND ();
-					this->Send_gsv_SET_HPnMP( 0x03 );	// hp, mp µÑ´Ù.
+					this->Send_gsv_SET_HPnMP( 0x03 );	// hp, mp ë‘˜ë‹¤.
 					break;
 
 				default :
-					// ¾ÉÀ»¼ö ¾ø´Â °æ¿ì...
+					// ì•‰ì„ìˆ˜ ì—†ëŠ” ê²½ìš°...
 					return true;
 			}
 			break;
@@ -306,11 +306,11 @@ bool CObjAVT::SetCMD_TOGGLE (BYTE btTYPE, bool bForce)
 		case TOGGLE_TYPE_DRIVE :
 		{	
 			if ( this->m_btRideMODE ) {
-				// ³»¸²..
+				// ë‚´ë¦¼..
 				if ( this->m_iLinkedCartObjIDX ) {
 					classUSER *pUSER = g_pObjMGR->Get_UserOBJ( this->m_iLinkedCartObjIDX );
 					if ( RIDE_MODE_GUEST == pUSER->GetCur_RIDE_MODE() ) {
-						// ÅÂ¿ü´ø ¼Õ´Ôµµ ³»¸®°Ô...
+						// íƒœì› ë˜ ì†ë‹˜ë„ ë‚´ë¦¬ê²Œ...
 						pUSER->m_btRideMODE = 0;
 						pUSER->m_btRideATTR = RIDE_ATTR_NORMAL;
 					}
@@ -322,7 +322,7 @@ bool CObjAVT::SetCMD_TOGGLE (BYTE btTYPE, bool bForce)
 				this->m_iLinkedCartObjIDX = 0;
 				this->m_IngSTATUS.ClearAllGOOD ();
 			} else {
-				// ½ÂÂ÷, Á¶°Ç Ã¼Å©, 
+				// ìŠ¹ì°¨, ì¡°ê±´ ì²´í¬, 
 				for (short nI=0; nI<MAX_RIDING_PART-2; nI++) {
 					if ( ITEM_TYPE_RIDE_PART != this->m_Inventory.m_ItemRIDE[ nI ].GetTYPE() ) {
 						return true;
@@ -337,11 +337,11 @@ bool CObjAVT::SetCMD_TOGGLE (BYTE btTYPE, bool bForce)
 				}
 
 #ifdef	__KCHS_BATTLECART__
-				if( this->GetCur_PatHP() <= 0 ) // Ä«Æ®Ã¼·ÂÀÌ 0ÀÌ¸é Ä«Æ®¸¦ ¼ÒÈ¯ÇÒ ¼ö ¾ø´Ù
+				if( this->GetCur_PatHP() <= 0 ) // ì¹´íŠ¸ì²´ë ¥ì´ 0ì´ë©´ ì¹´íŠ¸ë¥¼ ì†Œí™˜í•  ìˆ˜ ì—†ë‹¤
 					return true;
 #endif
 
-				this->Dec_EngineLife ();	// ½ÂÂ÷½Ã ¿¬·á °¨¼Ò
+				this->Dec_EngineLife ();	// ìŠ¹ì°¨ì‹œ ì—°ë£Œ ê°ì†Œ
 				this->m_btRideMODE = RIDE_MODE_DRIVE;
 
 				if ( PET_TYPE_CASTLE_GEAR01 == PAT_ITEM_PART_TYPE( this->m_Inventory.m_ItemRIDE[ RIDE_PART_BODY ].GetItemNO() ) )
@@ -417,12 +417,12 @@ bool CObjAVT::SetCMD_TOGGLE (BYTE btTYPE, bool bForce)
 				else
 					this->m_btRideATTR = RIDE_ATTR_CART;
 
-				// Å¾½Â½Ã ¸ğµç À¯¸® »óÅÂ ÇØÁö...
+				// íƒ‘ìŠ¹ì‹œ ëª¨ë“  ìœ ë¦¬ ìƒíƒœ í•´ì§€...
 				this->m_IngSTATUS.ClearAllGOOD ();
 			}
 			this->m_dwRecoverTIME = 0;
 
-			this->UpdateAbility ();		// Å¾½Â Åä±Û...
+			this->UpdateAbility ();		// íƒ‘ìŠ¹ í† ê¸€...
 			btTYPE = TOGGLE_TYPE_DRIVE + this->Get_MoveMODE ();
 			return this->Send_gsv_TOGGLE( btTYPE, true );
 		}
@@ -437,8 +437,8 @@ bool CObjAVT::SetCMD_TOGGLE (BYTE btTYPE, bool bForce)
 //-------------------------------------------------------------------------------------------------
 void CObjAVT::SetCur_SEX( char cValue )
 {
-	this->m_nCharRACE &= 0x0fffe;			// ÇÏÀ§ºñÆ® ³¯¸®°í~
-	this->m_nCharRACE |= ( cValue & 0x01 );	// ÇÏÀ§ºñÆ® ¼³Á¤ÇÏ°í~
+	this->m_nCharRACE &= 0x0fffe;			// í•˜ìœ„ë¹„íŠ¸ ë‚ ë¦¬ê³ ~
+	this->m_nCharRACE |= ( cValue & 0x01 );	// í•˜ìœ„ë¹„íŠ¸ ì„¤ì •í•˜ê³ ~
 }
 
 int	 CObjAVT::GetCur_FUEL ()
@@ -457,7 +457,7 @@ void CObjAVT::SubCur_FUEL (short nValue)
 	if ( pEngine->m_nLife > nValue )
 		pEngine->m_nLife -= nValue;
 	else {
-		// ¼ö¸í 0µÆ´Ù...
+		// ìˆ˜ëª… 0ëë‹¤...
 		pEngine->m_nLife = 0;
 		this->Send_gsv_SET_ITEM_LIFE( INVENTORY_RIDE_ITEM0+RIDE_PART_ENGINE, 0 );
 		// this->SetCMD_STOP ();
@@ -555,7 +555,7 @@ int	CObjAVT::Save_Damage( int iAttackerIDX, int iDamage)
 {
 	this->Stamp_AttackTIME ();
 
-	// ¹æ¾î±¸ ¼ö¸í °¨¼Ò
+	// ë°©ì–´êµ¬ ìˆ˜ëª… ê°ì†Œ
 	int iRand = 1 + RANDOM(400);
 	if ( iRand >= 101 )
 		return 0;
@@ -564,43 +564,43 @@ int	CObjAVT::Save_Damage( int iAttackerIDX, int iDamage)
 	short nInvIDX;
 
 	if ( this->Get_MoveMODE() == MOVE_MODE_DRIVE ) {
-		if ( iRand >= 51 )	nInvIDX =  INVENTORY_RIDE_ITEM0 + RIDE_PART_BODY;	// ¹Ùµğ
+		if ( iRand >= 51 )	nInvIDX =  INVENTORY_RIDE_ITEM0 + RIDE_PART_BODY;	// ë°”ë””
 		else
-		if ( iRand >= 21 )	nInvIDX =  INVENTORY_RIDE_ITEM0 + RIDE_PART_LEG;	// ·¹±×
+		if ( iRand >= 21 )	nInvIDX =  INVENTORY_RIDE_ITEM0 + RIDE_PART_LEG;	// ë ˆê·¸
 		else
 		// if ( iRand >= 16 )	
 		{
-			nInvIDX =  INVENTORY_RIDE_ITEM0 + RIDE_PART_ARMS;	// ¿şÆù
+			nInvIDX =  INVENTORY_RIDE_ITEM0 + RIDE_PART_ARMS;	// ì›¨í°
 		}
-		// else				nInvIDX =  INVENTORY_RIDE_ITEM0 + RIDE_PART_ENGINE;	// ¿£Áø
+		// else				nInvIDX =  INVENTORY_RIDE_ITEM0 + RIDE_PART_ENGINE;	// ì—”ì§„
 	} else {
 		pItem = &m_Inventory.m_ItemLIST[ EQUIP_IDX_WEAPON_L ];
 		if ( pItem->GetLife() && WEAPON_ITEM_SHIELD == ITEM_TYPE( pItem->GetTYPE(), pItem->GetItemNO() ) ) {
-			// ¹æÆĞ ÀÖÀ½
-			if ( iRand >  60 )	nInvIDX = EQUIP_IDX_WEAPON_L;	// ¹æÆĞ, ¿Ş¼Õ¹«±â
+			// ë°©íŒ¨ ìˆìŒ
+			if ( iRand >  60 )	nInvIDX = EQUIP_IDX_WEAPON_L;	// ë°©íŒ¨, ì™¼ì†ë¬´ê¸°
 			else				
-			if ( iRand >  30 )	nInvIDX = EQUIP_IDX_ARMOR;		// °©¿Ê
+			if ( iRand >  30 )	nInvIDX = EQUIP_IDX_ARMOR;		// ê°‘ì˜·
 			else
-			if ( iRand >  22 )	nInvIDX = EQUIP_IDX_BOOTS;		// ½Å¹ß
+			if ( iRand >  22 )	nInvIDX = EQUIP_IDX_BOOTS;		// ì‹ ë°œ
 			else
-			if ( iRand >  16 )	nInvIDX = EQUIP_IDX_HELMET;		// ¸Ó¸®
+			if ( iRand >  16 )	nInvIDX = EQUIP_IDX_HELMET;		// ë¨¸ë¦¬
 			else
-			if ( iRand >  9 )	nInvIDX = EQUIP_IDX_KNAPSACK;	// µî
+			if ( iRand >  9 )	nInvIDX = EQUIP_IDX_KNAPSACK;	// ë“±
 			else
-			if ( iRand >  5 )	nInvIDX = EQUIP_IDX_GAUNTLET;	// Àå°©
-			else				nInvIDX = EQUIP_IDX_FACE_ITEM;	// ¾ó±¼(¾Ç¼¼»ç¸®)
+			if ( iRand >  5 )	nInvIDX = EQUIP_IDX_GAUNTLET;	// ì¥ê°‘
+			else				nInvIDX = EQUIP_IDX_FACE_ITEM;	// ì–¼êµ´(ì•…ì„¸ì‚¬ë¦¬)
 		} else {
-			// ¹æÆĞ ¾øÀ½
-			if ( iRand > 64 )	nInvIDX = EQUIP_IDX_ARMOR;		// °©¿Ê
+			// ë°©íŒ¨ ì—†ìŒ
+			if ( iRand > 64 )	nInvIDX = EQUIP_IDX_ARMOR;		// ê°‘ì˜·
 			else
-			if ( iRand > 46 )	nInvIDX = EQUIP_IDX_BOOTS;		// ½Å¹ß
+			if ( iRand > 46 )	nInvIDX = EQUIP_IDX_BOOTS;		// ì‹ ë°œ
 			else				
-			if ( iRand > 31 )	nInvIDX = EQUIP_IDX_GAUNTLET;	// Àå°©
+			if ( iRand > 31 )	nInvIDX = EQUIP_IDX_GAUNTLET;	// ì¥ê°‘
 			else				
-			if ( iRand > 15 )	nInvIDX = EQUIP_IDX_KNAPSACK;	// µî
+			if ( iRand > 15 )	nInvIDX = EQUIP_IDX_KNAPSACK;	// ë“±
 			else 
-			if ( iRand > 7 )	nInvIDX = EQUIP_IDX_HELMET;		// ¸Ó¸®
-			else				nInvIDX = EQUIP_IDX_FACE_ITEM;	// ¾ó±¼(¾Ç¼¼»ç¸®)
+			if ( iRand > 7 )	nInvIDX = EQUIP_IDX_HELMET;		// ë¨¸ë¦¬
+			else				nInvIDX = EQUIP_IDX_FACE_ITEM;	// ì–¼êµ´(ì•…ì„¸ì‚¬ë¦¬)
 		}
 	}
 
@@ -610,11 +610,11 @@ int	CObjAVT::Save_Damage( int iAttackerIDX, int iDamage)
 
 	iRand = 1+RANDOM(120) - ( pItem->GetDurability() + 10 - (int)( iDamage*0.1f ) );
 	if ( iRand >= 0 ) {
-		// ³»±¸µµ 1 °¨¼Ò, 10´ÜÀ§ º¯È­°¡ ÀÖÀ¸¸é Å¬¶óÀÌ¾ğÆ®¿¡ Àü¼Û
+		// ë‚´êµ¬ë„ 1 ê°ì†Œ, 10ë‹¨ìœ„ ë³€í™”ê°€ ìˆìœ¼ë©´ í´ë¼ì´ì–¸íŠ¸ì— ì „ì†¡
 		if ( pItem->GetLife() > 1 ) {
 			pItem->m_nLife --;
 			if ( pItem->GetLife() % 10 == 0 ) {
-				// º¯°æµÈ ¼ö¸í Àü¼Û...
+				// ë³€ê²½ëœ ìˆ˜ëª… ì „ì†¡...
 				this->Send_gsv_SET_ITEM_LIFE( nInvIDX, pItem->GetLife () );
 			}
 		} else {
@@ -622,7 +622,7 @@ int	CObjAVT::Save_Damage( int iAttackerIDX, int iDamage)
 			this->Send_gsv_SET_ITEM_LIFE( nInvIDX, 0 );
 
 			short nCurSpeed = this->GetOri_RunSPEED();
-			this->UpdateAbility ();		// ¹æ¾î±¸ ¼ö¸í = 0
+			this->UpdateAbility ();		// ë°©ì–´êµ¬ ìˆ˜ëª… = 0
 			if ( nCurSpeed != this->GetOri_RunSPEED() )
 				this->Send_gsv_SPEED_CHANGED( false );
 		}
@@ -645,7 +645,7 @@ void CObjAVT::Dec_EngineLife()
 		if ( iDiv10 != (pEngine->m_nLife / 10) )
 			this->Send_gsv_SET_ITEM_LIFE( INVENTORY_RIDE_ITEM0+RIDE_PART_ENGINE, pEngine->GetLife () );
 	} else {
-		// ¼ö¸í 0µÆ´Ù...
+		// ìˆ˜ëª… 0ëë‹¤...
 		pEngine->m_nLife = 0;
 		this->Send_gsv_SET_ITEM_LIFE( INVENTORY_RIDE_ITEM0+RIDE_PART_ENGINE, 0 );
 		this->SetCMD_STOP ();
@@ -659,7 +659,7 @@ void CObjAVT::Dec_WeaponLife()
 	short nInvIDX;
 
 	if ( this->GetCur_MOVE_MODE() == MOVE_MODE_DRIVE ) {
-		this->Dec_EngineLife ();		// °ø°İ½Ã ¸¶´Ù ¿£Áø ¿¬·á °¨¼Ò...
+		this->Dec_EngineLife ();		// ê³µê²©ì‹œ ë§ˆë‹¤ ì—”ì§„ ì—°ë£Œ ê°ì†Œ...
 
 		// PAT
 		nInvIDX = INVENTORY_RIDE_ITEM0 + RIDE_PART_ARMS;
@@ -672,11 +672,11 @@ void CObjAVT::Dec_WeaponLife()
 		return;
 		
 	if ( RANDOM( 710 ) + 1 - ( pWeapon->GetDurability()+600 ) >= 0 ) {
-		// ¼ö¸í 1 °¨¼Ò
+		// ìˆ˜ëª… 1 ê°ì†Œ
 		if ( pWeapon->GetLife() > 1 ) {
 			pWeapon->m_nLife --;
 			if ( pWeapon->GetLife() % 10 == 0 ) {
-				// º¯°æµÈ ¼ö¸í Àü¼Û...
+				// ë³€ê²½ëœ ìˆ˜ëª… ì „ì†¡...
 				this->Send_gsv_SET_ITEM_LIFE( nInvIDX, pWeapon->GetLife () );
 			}
 		} else {
@@ -684,7 +684,7 @@ void CObjAVT::Dec_WeaponLife()
 			this->Send_gsv_SET_ITEM_LIFE( nInvIDX, 0 );
 
 			short nCurSpeed = this->GetOri_RunSPEED();
-			this->UpdateAbility ();			// ¹«±â ¼ö¸í = 0
+			this->UpdateAbility ();			// ë¬´ê¸° ìˆ˜ëª… = 0
 			if ( nCurSpeed != this->GetOri_RunSPEED() )
 				this->Send_gsv_SPEED_CHANGED( false );
 		}
@@ -832,7 +832,7 @@ bool CObjAVT::Del_Goddess (void)
 #define	CHECK_GODDNESS_CALL_TIME			( 60 * 60 * 1000 ) 
 
 #define	CHECK_PAT_COOL_TIME					( 1000 )
-#define	PAT_DECREASE_COOLTIME_PER_SEC		(1 * 1000)		// 1ÃÊ½Ä °¨¼Ò½ÃÄÑ¼­..
+#define	PAT_DECREASE_COOLTIME_PER_SEC		(1 * 1000)		// 1ì´ˆì‹ ê°ì†Œì‹œì¼œì„œ..
 
 void CObjAVT::Check_PerFRAME (DWORD dwPassTIME)
 {
@@ -846,10 +846,10 @@ void CObjAVT::Check_PerFRAME (DWORD dwPassTIME)
 			if ( m_dwRecoverTIME >= USE_FUEL_CHEC_TIME ) {
 				m_dwRecoverTIME -= USE_FUEL_CHEC_TIME;
 				if( !Get_STATE() && (Get_STATE() & CS_MOVE) ) // 
-					this->Dec_EngineLife ();	// Å¾½Â ¸ğµå, ¿¬·á ¼Ò¸ğ	
+					this->Dec_EngineLife ();	// íƒ‘ìŠ¹ ëª¨ë“œ, ì—°ë£Œ ì†Œëª¨	
 			}
 			break;
-		default :							// HP / MP È¸º¹
+		default :							// HP / MP íšŒë³µ
 		{
 			DWORD dwCheckTime = RECOVER_STATE_CHECK_TIME;
 			if ( m_dwRecoverTIME >=	dwCheckTime ) {
@@ -857,16 +857,16 @@ void CObjAVT::Check_PerFRAME (DWORD dwPassTIME)
 
 				// if ( this->GetCur_STAMINA() >= YELLOW_STAMINA ) 
 				{
-					// ½ºÅ×¹Ì³Ê Ã¼Å©...
+					// ìŠ¤í…Œë¯¸ë„ˆ ì²´í¬...
 					int iAdd;
 						int iArua;
 					if ( CMD_SIT == Get_COMMAND() ) {
-						//[¾É±â »óÅÂ]
-						// RECOVER_HP= (MAX_HP)/12+1+ ITEM_RECOVER_HP (1ÀÌÇÏ ¹ö¸²) ´ë¸¸ 2005.6.16 kchs
+						//[ì•‰ê¸° ìƒíƒœ]
+						// RECOVER_HP= (MAX_HP)/12+1+ ITEM_RECOVER_HP (1ì´í•˜ ë²„ë¦¼) ëŒ€ë§Œ 2005.6.16 kchs
 						iAdd = (int)( this->GetOri_MaxHP()/12.f + 1 + this->GetAdd_RecoverHP() );
 						iArua = ( this->m_IngSTATUS.IsSubSET( FLAG_SUB_ARUA_FAIRY ) ) ? iAdd >> 1 : 0;
 						this->Add_HP( iAdd+iArua );
-						// RECOVER_MP= (MAX_MP)/12+1+ ITEM_RECOVER_MP (1ÀÌÇÏ ¹ö¸²) ´ë¸¸ 2005.6.19 kchs
+						// RECOVER_MP= (MAX_MP)/12+1+ ITEM_RECOVER_MP (1ì´í•˜ ë²„ë¦¼) ëŒ€ë§Œ 2005.6.19 kchs
 						iAdd = (int)( this->GetOri_MaxMP()/12.f + 1 + this->GetAdd_RecoverMP() );
 						iArua = ( this->m_IngSTATUS.IsSubSET( FLAG_SUB_ARUA_FAIRY ) ) ? iAdd >> 1 : 0;
 						this->Add_MP( iAdd+iArua );
@@ -875,7 +875,7 @@ void CObjAVT::Check_PerFRAME (DWORD dwPassTIME)
 						iArua = ( this->m_IngSTATUS.IsSubSET( FLAG_SUB_ARUA_FAIRY ) ) ? iAdd >> 1 : 0;
 						this->Add_HP( iAdd+iArua );
 
-						// RECOVER_MP= (MAX_MP)/35+1+ ITEM_RECOVER_MP (1ÀÌÇÏ ¹ö¸²) ´ë¸¸ 2005.6.19 kchs
+						// RECOVER_MP= (MAX_MP)/35+1+ ITEM_RECOVER_MP (1ì´í•˜ ë²„ë¦¼) ëŒ€ë§Œ 2005.6.19 kchs
 						iAdd = (int)( this->GetOri_MaxMP()/35.f + 1 + this->GetAdd_RecoverMP() );
 						iArua = ( this->m_IngSTATUS.IsSubSET( FLAG_SUB_ARUA_FAIRY ) ) ? iAdd >> 1 : 0;
 						this->Add_MP( iAdd+iArua );
@@ -894,17 +894,17 @@ void CObjAVT::Resurrection (short nSkillIDX)
 	this->m_dwRecoverTIME = 0;
 
 	this->Del_ActiveSKILL ();
-	this->Clear_SummonCNT ();			// ºÎÈ°½Ã...
+	this->Clear_SummonCNT ();			// ë¶€í™œì‹œ...
 	this->CObjAI::SetCMD_STOP ();
 
-	// Á×À»¶§ °¨¼ÒµÈ °æÇèÄ¡ º¹±¸
+	// ì£½ì„ë•Œ ê°ì†Œëœ ê²½í—˜ì¹˜ ë³µêµ¬
 	this->Cancel_PenalEXP( SKILL_POWER(nSkillIDX) );
-	// ¸®Á®·º¼Ç ½ºÅ³¿¡ µû¶ó °æÄ¡ º¹±¸·®ÀÌ Æ²·ÁÁö´Ï ÇöÀç °æÄ¡ Àü¼Û :: 2005. 03. 25
+	// ë¦¬ì ¸ë ‰ì…˜ ìŠ¤í‚¬ì— ë”°ë¼ ê²½ì¹˜ ë³µêµ¬ëŸ‰ì´ í‹€ë ¤ì§€ë‹ˆ í˜„ì¬ ê²½ì¹˜ ì „ì†¡ :: 2005. 03. 25
 	this->Send_gsv_SETEXP( 0 );
 
 	this->Set_HP( 3*this->GetCur_MaxHP() / 10 );
 
-	// ÆÄÆ¼ÀÏ °æ¿ì ÆÄÆ¼¿ø¿¡°Ô ÇÇ Àü¼Û...
+	// íŒŒí‹°ì¼ ê²½ìš° íŒŒí‹°ì›ì—ê²Œ í”¼ ì „ì†¡...
 	if ( this->GetPARTY() ) {
 		this->GetPARTY()->Change_ObjectIDX( (classUSER*)this );
 	}
@@ -916,7 +916,7 @@ bool CObjAVT::Is_ALLIED( CAI_OBJ *pDestOBJ )
 {
 	if ( 0 == ( this->GetZONE()->GetGlobalFLAG() & ZONE_FLAG_PK_ALLOWED ) ) {
 		if ( pDestOBJ->Get_ObjTYPE() >= OBJ_AVATAR ) {
-			// PKÇÃ·¹±×°¡ ¼³Á¤ ¾ÈµÆÀ» °æ¿ì... ´ë»óÀÌ »ç¿ëÀÚ¸é ¹«Á¶°Ç ¾Æ±ºÀ¸·Î °£ÁÖ..
+			// PKí”Œë ˆê·¸ê°€ ì„¤ì • ì•ˆëì„ ê²½ìš°... ëŒ€ìƒì´ ì‚¬ìš©ìë©´ ë¬´ì¡°ê±´ ì•„êµ°ìœ¼ë¡œ ê°„ì£¼..
 			return true;
 		}
 	}
@@ -929,7 +929,7 @@ void CObjAVT::SetCur_UNION (char cValue)
 {	
 	if ( cValue >= 0 && cValue < MAX_UNION_COUNT )	{
 		g_pThreadLOG->When_ChangeUNION( (classUSER*)this, this->GetCur_JOHAP(), cValue );
-		// Á¶ÇÕ º¯°æ
+		// ì¡°í•© ë³€ê²½
 		this->m_BasicINFO.m_cUnion=cValue;	                                                                                                                                            
 	}
 }
@@ -954,7 +954,7 @@ void CObjAVT::UpdateCartGuest ()
 			return;
 		}
 
-		// ¼Õ´Ô À§Ä¡ º¸Á¤~
+		// ì†ë‹˜ ìœ„ì¹˜ ë³´ì •~
 		pGuest->m_PosCUR = this->m_PosCUR;
 		this->GetZONE()->UpdateSECTOR( pGuest );
 	}
@@ -967,17 +967,17 @@ bool CObjAVT::CanDoPatSkill( short nSkillIDX  )
 	if( !this->Get_RideMODE() )
 		return false;
 
-	if( SKILL_AVAILBLE_STATUS( nSkillIDX ) < 2 ) // 2º¸´Ù Å©¸é Ä«Æ® ¾Æ´Ï¸é °ø¿ë ½ºÅ³
+	if( SKILL_AVAILBLE_STATUS( nSkillIDX ) < 2 ) // 2ë³´ë‹¤ í¬ë©´ ì¹´íŠ¸ ì•„ë‹ˆë©´ ê³µìš© ìŠ¤í‚¬
 		return false;
 
-	if ( m_RideITEM[ RIDE_PART_ARMS ].m_nItemNo <= 0 ) // ARMS ÆÄÆ®¿¡ ¹«±â°¡ ÀåÂøµÇ¾î ÀÖ¾î¾ß ÇÑ´Ù.
+	if ( m_RideITEM[ RIDE_PART_ARMS ].m_nItemNo <= 0 ) // ARMS íŒŒíŠ¸ì— ë¬´ê¸°ê°€ ì¥ì°©ë˜ì–´ ìˆì–´ì•¼ í•œë‹¤.
 		return false;
 
 	return true;
 }
 
 //-------------------------------------------------------------------------------------------------
-// btOnOff : 0 : Ä«Æ®¼ÒÈ¯ ºÒ°¡´É(ÄğÅ¸ÀÓ°ª ³¯¶ó°¨) , 1 : Ä«Æ® ¼ÒÈ¯ °¡´É
+// btOnOff : 0 : ì¹´íŠ¸ì†Œí™˜ ë¶ˆê°€ëŠ¥(ì¿¨íƒ€ì„ê°’ ë‚ ë¼ê°) , 1 : ì¹´íŠ¸ ì†Œí™˜ ê°€ëŠ¥
 bool CObjAVT::Send_gsv_PATSTATE_CHAGE( BYTE btOnOff, DWORD dwCoolTIME )
 {
 	classPACKET *pCPacket = Packet_AllocNLock ();
@@ -998,11 +998,11 @@ bool CObjAVT::Send_gsv_PATSTATE_CHAGE( BYTE btOnOff, DWORD dwCoolTIME )
 	if( !btOnOff )
 	{
 		this->m_btRideATTR = RIDE_ATTR_NORMAL;
-		this->m_btRideMODE = 0; // ¸ÕÀú ÇÏÂ÷¸ğµå·Î..
+		this->m_btRideMODE = 0; // ë¨¼ì € í•˜ì°¨ëª¨ë“œë¡œ..
 		UpdateAbility();
-		this->Send_gsv_TOGGLE( TOGGLE_TYPE_DRIVE + this->Get_MoveMODE(), true );	// Å¬¶ó¿¡¼­´Â ÀÌ°Ô ÇÊ¿äÇÏ´Ù.. ÀÌ°Å ¾øÀ¸¸é Å¬¶ó¿¡¼­ ¼Óµµ ¸ø ¸ÂÃá´Ù.
+		this->Send_gsv_TOGGLE( TOGGLE_TYPE_DRIVE + this->Get_MoveMODE(), true );	// í´ë¼ì—ì„œëŠ” ì´ê²Œ í•„ìš”í•˜ë‹¤.. ì´ê±° ì—†ìœ¼ë©´ í´ë¼ì—ì„œ ì†ë„ ëª» ë§ì¶˜ë‹¤.
 
-		this->SetCMD_STOP ();	// 2005.08.03 : icarus :: Á¤Áö¸í·ÉÀ¸·Î
+		this->SetCMD_STOP ();	// 2005.08.03 : icarus :: ì •ì§€ëª…ë ¹ìœ¼ë¡œ
 	}
 
 	return true;

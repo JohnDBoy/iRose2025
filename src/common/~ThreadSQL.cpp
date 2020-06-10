@@ -51,7 +51,7 @@ void __fastcall CThreadSQL::Execute()
         pSqlNODE = m_SqlLIST.GetHeadNode ();
         while( pSqlNODE ) {
             if ( m_pSQL->ExecSQL (pSqlNODE->DATA.m_pBUFF, pSqlNODE->DATA.m_dwLEN) ) {
-                // ¼º°ø...
+                // ì„±ê³µ...
                 SAFE_DELETE_ARRAY( pSqlNODE->DATA.m_pBUFF );
 
                 pDelNODE = pSqlNODE;
@@ -60,7 +60,7 @@ void __fastcall CThreadSQL::Execute()
                 m_SqlLIST.DeleteNFree( pDelNODE );
                 this->UnlockSQL ();
             } else {
-                // ½ÇÆÐ...
+                // ì‹¤íŒ¨...
                 this->LockSQL ();
                 pSqlNODE = m_SqlLIST.GetNextNode( pSqlNODE );
                 this->UnlockSQL ();

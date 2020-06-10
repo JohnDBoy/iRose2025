@@ -56,19 +56,19 @@ int CGameStateMovePlanet::Update( bool bLostFocus )
 	// processing  ...
 	if ( !bLostFocus ) 
 	{
-		if ( ::beginScene() ) //  µğ¹ÙÀÌ½º°¡ ¼Õ½ÇµÈ »óÅÂ¶ó¸é 0À» ¸®ÅÏÇÏ¹Ç·Î, ¸ğµç ·»´õ¸µ ½ºÅµ
+		if ( ::beginScene() ) //  ë””ë°”ì´ìŠ¤ê°€ ì†ì‹¤ëœ ìƒíƒœë¼ë©´ 0ì„ ë¦¬í„´í•˜ë¯€ë¡œ, ëª¨ë“  ë Œë”ë§ ìŠ¤í‚µ
 		{
 			::setClearColor( 0.0f, 0.0f, 0.0f );
 			::clearScreen();
 			::renderScene();
 			
 			
-			/// ½ºÇÁ¶óÀÌÆ® Ãâ·Â..
+			/// ìŠ¤í”„ë¼ì´íŠ¸ ì¶œë ¥..
 
 			::beginSprite( D3DXSPRITE_ALPHABLEND );
 
-			/// ÇöÀç sFX µéÀº ´ëºÎºĞ ½ºÇÁ¶óÀÌÆ® Ãâ·ÂÀ¸·Î ±¸¼ºµÇ¾î ÀÖ´Ù.
-			/// ±×·¯´Ï ¿ä »çÀÌ¿¡..
+			/// í˜„ì¬ sFX ë“¤ì€ ëŒ€ë¶€ë¶„ ìŠ¤í”„ë¼ì´íŠ¸ ì¶œë ¥ìœ¼ë¡œ êµ¬ì„±ë˜ì–´ ìˆë‹¤.
+			/// ê·¸ëŸ¬ë‹ˆ ìš” ì‚¬ì´ì—..
 			/// SFX
 			CSFXManager::GetSingleton().Draw();			
 			
@@ -84,7 +84,7 @@ int CGameStateMovePlanet::Update( bool bLostFocus )
 		}
 	}
 
-	///::updateSceneTransform ();	// ÀÌµ¿ ¾Ö´Ï¸ŞÀÌ¼Ç Ã³¸®...	
+	///::updateSceneTransform ();	// ì´ë™ ì• ë‹ˆë©”ì´ì…˜ ì²˜ë¦¬...	
 
 	return 0;
 }
@@ -93,12 +93,12 @@ int CGameStateMovePlanet::Enter( int iPrevStateID )
 {
 	::SetOceanSFXOnOff( false );
 
-	/// ÇöÀç Á¸µ¥ÀÌÅÍ Ç®°í »õ·Î¿î Á¸ µ¥ÀÌÅÍ ·Îµå
+	/// í˜„ì¬ ì¡´ë°ì´í„° í’€ê³  ìƒˆë¡œìš´ ì¡´ ë°ì´í„° ë¡œë“œ
 	g_pTerrain->FreeZONE();
 
 	g_GameDATA.m_bJustObjectLoadMode = true;
 
-	/// »õ·Î¿î ÄÆ¾À Á¸ ·Îµå
+	/// ìƒˆë¡œìš´ ì»·ì”¬ ì¡´ ë¡œë“œ
 	g_pTerrain->LoadZONE( CUTSCENE_ZONE_NO );
 	g_pTerrain->InitZONE( 0, 0 );
 
@@ -120,7 +120,7 @@ int CGameStateMovePlanet::Enter( int iPrevStateID )
 	CSystemProcScript::GetSingleton().CallLuaFunction( "InitPlanetMoveWorld", ZZ_PARAM_INT, 1, ZZ_PARAM_END );
 	
 	///
-	/// Ä«¸Ş¶ó ¸ğ¼ÇÀº 32_32 ±âÁØÀ¸·Î ¸¸µé¾îÁ³´Ù.. ¸ğ¼ÇÀû¿ëÀ» À§ÇØ¼­ º¸Á¤ÇÑ´Ù.
+	/// ì¹´ë©”ë¼ ëª¨ì…˜ì€ 32_32 ê¸°ì¤€ìœ¼ë¡œ ë§Œë“¤ì–´ì¡Œë‹¤.. ëª¨ì…˜ì ìš©ì„ ìœ„í•´ì„œ ë³´ì •í•œë‹¤.
 	///
 	D3DVECTOR PosENZIN;
 	PosENZIN.x = 520000.0f;
@@ -129,7 +129,7 @@ int CGameStateMovePlanet::Enter( int iPrevStateID )
 
 	g_pCamera->Set_Position ( PosENZIN );
 
-	/// Æ÷±×¸¦ ¸Ö¸®..
+	/// í¬ê·¸ë¥¼ ë©€ë¦¬..
 	::setFogRange( 70000, 80000 );	
 	setAlphaFogRange( 70000, 80000 );
 
@@ -152,7 +152,7 @@ int CGameStateMovePlanet::Enter( int iPrevStateID )
 	return 0;
 }
 
-/// º°·Î ÇÒ°Ç¾ø°í.. ÀÏ¹İ¿öÇÁÃ³·³ Warp À» È£ÃâÇØ ¹ö¸°´Ù.
+/// ë³„ë¡œ í• ê±´ì—†ê³ .. ì¼ë°˜ì›Œí”„ì²˜ëŸ¼ Warp ì„ í˜¸ì¶œí•´ ë²„ë¦°ë‹¤.
 int CGameStateMovePlanet::Leave( int iNextStateID )
 {
 
@@ -169,7 +169,7 @@ int CGameStateMovePlanet::Leave( int iNextStateID )
 
 
 	///<--------------------------------------------------
-	///»ç¿ëÀÚ°¡ ÀúÀåÇÑ ½Ã¾ß¿É¼ÇÀ» Àç¼³Á¤ÇØÁØ´Ù.
+	///ì‚¬ìš©ìê°€ ì €ì¥í•œ ì‹œì•¼ì˜µì…˜ì„ ì¬ì„¤ì •í•´ì¤€ë‹¤.
 	t_OptionVideo option;
 	g_ClientStorage.GetVideoOption(option);
 	g_ClientStorage.ApplyCameraOption( option.iCamera );
@@ -299,12 +299,12 @@ void CGameStateMovePlanet::Render_GameMENU()
 						g_pAVATAR->m_bCastingSTART, g_pAVATAR->m_nDoingSkillIDX, g_pAVATAR->Get_COMMAND() );
 
 			//----------------------------------------------------------------------------------------------------
-			/// ÀÓ½Ã ¼ÒÈ¯¸÷ °³¼ö
+			/// ì„ì‹œ ì†Œí™˜ëª¹ ê°œìˆ˜
 			//----------------------------------------------------------------------------------------------------
 			if( g_pAVATAR->GetCur_SummonCNT() > 0 )
 			{
 				::drawFontf( g_GameDATA.m_hFONT[ FONT_LARGE_BOLD ], 
-								false, 5, 150, g_dwYELLOW, "[ ÇöÀç ¼ÒÈ¯µÈ ¸÷ ¼ö[ %d ] , ÇöÀç »ç¿ëÇÑ ¼ÒÈ¯·®[%d] ]/ ÇöÀç ¼ÒÈ¯°¡´ÉÇÑ ¼ÒÈ¯·®[%d]",					
+								false, 5, 150, g_dwYELLOW, "[ í˜„ì¬ ì†Œí™˜ëœ ëª¹ ìˆ˜[ %d ] , í˜„ì¬ ì‚¬ìš©í•œ ì†Œí™˜ëŸ‰[%d] ]/ í˜„ì¬ ì†Œí™˜ê°€ëŠ¥í•œ ì†Œí™˜ëŸ‰[%d]",					
 								g_pAVATAR->GetCur_SummonCNT(), 
 								g_pAVATAR->GetCur_SummonUsedCapacity(),
 								g_pAVATAR->GetCur_SummonMaxCapacity() );
@@ -327,12 +327,12 @@ void CGameStateMovePlanet::Render_GameMENU()
 					g_pEffectLIST->GetCount(),
 					CTERRAIN::m_RegistedPatchCnt );			
 
-			::drawFontf( g_GameDATA.m_hFONT[ FONT_NORMAL ], false, 220, 60, g_dwRED, "( °ø¼Ó: %d, ÀÌ¼Ó: %f ±âº»¼Óµµ: %f )",
+			::drawFontf( g_GameDATA.m_hFONT[ FONT_NORMAL ], false, 220, 60, g_dwRED, "( ê³µì†: %d, ì´ì†: %f ê¸°ë³¸ì†ë„: %f )",
 					( g_pAVATAR->GetPetMode() < 0 )? g_pAVATAR->Get_nAttackSPEED() : g_pAVATAR->m_pObjCART->Get_nAttackSPEED(), 
 					( g_pAVATAR->GetPetMode() < 0 )? g_pAVATAR->Get_MoveSPEED() : g_pAVATAR->m_pObjCART->Get_MoveSPEED(), 
 					( g_pAVATAR->GetPetMode() < 0 )? g_pAVATAR->Get_DefaultSPEED() : g_pAVATAR->m_pObjCART->Get_DefaultSPEED() );
 
-			::drawFontf( g_GameDATA.m_hFONT[ FONT_NORMAL ], false, 220, 80, g_dwRED, "( ¿ùµåÅ¸ÀÔ: %d, Á¸Å¸ÀÓ:%d, ºí·£µùºñÀ²:%f )",
+			::drawFontf( g_GameDATA.m_hFONT[ FONT_NORMAL ], false, 220, 80, g_dwRED, "( ì›”ë“œíƒ€ì…: %d, ì¡´íƒ€ì„:%d, ë¸”ëœë”©ë¹„ìœ¨:%f )",
 															g_DayNNightProc.GetWorldTime(), g_DayNNightProc.GetZoneTime(), g_DayNNightProc.GetBlendFactor() );
 
 			::drawFontf( g_GameDATA.m_hFONT[ FONT_NORMAL ], false, 220, 100, g_dwRED, "( WorldRATE: %d, WorldPROD:%d )",

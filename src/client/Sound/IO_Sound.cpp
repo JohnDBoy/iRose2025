@@ -73,12 +73,12 @@ bool CSoundLIST::KEY_PlaySound (t_HASHKEY HashKEY)
 	tagSndFILE *pSoundData = Get_DATAUseKEY( HashKEY );
 
 	if ( NULL == pSoundData ) {
-		// »ç¿îµåÆÄÀÏ¸®½ºÆ® ¿¡ µî·Ï µÇÁö ¾Ê´Â »ç¿îµå ÆÄÀÏÀÌ´Ù.
+		// ì‚¬ìš´ë“œíŒŒì¼ë¦¬ìŠ¤íŠ¸ ì— ë“±ë¡ ë˜ì§€ ì•ŠëŠ” ì‚¬ìš´ë“œ íŒŒì¼ì´ë‹¤.
 		return false;
 	}
 
 #ifdef USE_DEFAULT_3D_SOUND
-	if (!m_SOUND.Set3D (pSoundData->m_pSoundData, true)) return false; // ¾È-3D ¸ðµå·Î ¼³Á¤
+	if (!m_SOUND.Set3D (pSoundData->m_pSoundData, true)) return false; // ì•ˆ-3D ëª¨ë“œë¡œ ì„¤ì •
 #endif
 
 	m_SOUND.PlaySound (pSoundData->m_pSoundData, m_iSoundVol, m_iSoundPan, 0);
@@ -91,12 +91,12 @@ bool CSoundLIST::KEY_PlaySound3D (t_HASHKEY HashKEY, const D3DXVECTOR3& posWorld
 	tagSndFILE *pSoundData = Get_DATAUseKEY( HashKEY );
 
 	if ( NULL == pSoundData ) {
-		// »ç¿îµåÆÄÀÏ¸®½ºÆ® ¿¡ µî·Ï µÇÁö ¾Ê´Â »ç¿îµå ÆÄÀÏÀÌ´Ù.
+		// ì‚¬ìš´ë“œíŒŒì¼ë¦¬ìŠ¤íŠ¸ ì— ë“±ë¡ ë˜ì§€ ì•ŠëŠ” ì‚¬ìš´ë“œ íŒŒì¼ì´ë‹¤.
 		return false;
 	}
 
 #ifdef USE_DEFAULT_3D_SOUND
-	//if (!m_SOUND.Set3D (pSoundData->m_pSoundData, false)) return false; // 3D ¸ðµå·Î ¼³Á¤
+	//if (!m_SOUND.Set3D (pSoundData->m_pSoundData, false)) return false; // 3D ëª¨ë“œë¡œ ì„¤ì •
 	if (!m_SOUND.SetPosition (pSoundData->m_pSoundData, posWorld)) return false;
 #endif
 
@@ -117,12 +117,12 @@ bool CSoundLIST::KEY_PlaySound (t_HASHKEY HashKEY, int iVolume, int iPan)
 	tagSndFILE *pSoundData = Get_DATAUseKEY( HashKEY );
 
 	if ( NULL == pSoundData ) {
-		// »ç¿îµåÆÄÀÏ¸®½ºÆ® ¿¡ µî·Ï µÇÁö ¾Ê´Â »ç¿îµå ÆÄÀÏÀÌ´Ù.
+		// ì‚¬ìš´ë“œíŒŒì¼ë¦¬ìŠ¤íŠ¸ ì— ë“±ë¡ ë˜ì§€ ì•ŠëŠ” ì‚¬ìš´ë“œ íŒŒì¼ì´ë‹¤.
 		return false;
 	}
 
 #ifdef USE_DEFAULT_3D_SOUND
-	if (!m_SOUND.Set3D (pSoundData->m_pSoundData, true)) return false; // ¾È-3D ¸ðµå·Î ¼³Á¤
+	if (!m_SOUND.Set3D (pSoundData->m_pSoundData, true)) return false; // ì•ˆ-3D ëª¨ë“œë¡œ ì„¤ì •
 #endif
 
 	m_SOUND.PlaySound (pSoundData->m_pSoundData, iVolume, iPan, 0);
@@ -134,12 +134,12 @@ bool CSoundLIST::KEY_PlaySound3D (t_HASHKEY HashKEY, const D3DXVECTOR3& posWorld
 	tagSndFILE *pSoundData = Get_DATAUseKEY( HashKEY );
 
 	if ( NULL == pSoundData ) {
-		// »ç¿îµåÆÄÀÏ¸®½ºÆ® ¿¡ µî·Ï µÇÁö ¾Ê´Â »ç¿îµå ÆÄÀÏÀÌ´Ù.
+		// ì‚¬ìš´ë“œíŒŒì¼ë¦¬ìŠ¤íŠ¸ ì— ë“±ë¡ ë˜ì§€ ì•ŠëŠ” ì‚¬ìš´ë“œ íŒŒì¼ì´ë‹¤.
 		return false;
 	}
 
 #ifdef USE_DEFAULT_3D_SOUND
-	//if (!m_SOUND.Set3D (pSoundData->m_pSoundData, false)) return false; // 3D ¸ðµå·Î ¼³Á¤
+	//if (!m_SOUND.Set3D (pSoundData->m_pSoundData, false)) return false; // 3D ëª¨ë“œë¡œ ì„¤ì •
 	if (!m_SOUND.SetPosition (pSoundData->m_pSoundData, posWorld)) return false;
 #endif
 
@@ -165,12 +165,12 @@ bool CSoundLIST::KEY_PlaySound3DLoop (t_HASHKEY HashKEY, const D3DXVECTOR3& posW
 	tagSndFILE *pSoundData = Get_DATAUseKEY( HashKEY );
 
 	if ( NULL == pSoundData ) {
-		// »ç¿îµåÆÄÀÏ¸®½ºÆ® ¿¡ µî·Ï µÇÁö ¾Ê´Â »ç¿îµå ÆÄÀÏÀÌ´Ù.
+		// ì‚¬ìš´ë“œíŒŒì¼ë¦¬ìŠ¤íŠ¸ ì— ë“±ë¡ ë˜ì§€ ì•ŠëŠ” ì‚¬ìš´ë“œ íŒŒì¼ì´ë‹¤.
 		return false;
 	}
 
 #ifdef USE_DEFAULT_3D_SOUND
-	//if (!m_SOUND.Set3D (pSoundData->m_pSoundData, false)) return false; // 3D ¸ðµå·Î ¼³Á¤
+	//if (!m_SOUND.Set3D (pSoundData->m_pSoundData, false)) return false; // 3D ëª¨ë“œë¡œ ì„¤ì •
 	if (!m_SOUND.SetPosition (pSoundData->m_pSoundData, posWorld)) return false;
 #endif
 
@@ -190,7 +190,7 @@ bool CSoundLIST::KEY_StopSound3DLoop (t_HASHKEY HashKEY )
 	tagSndFILE *pSoundData = Get_DATAUseKEY( HashKEY );
 
 	if ( NULL == pSoundData ) {
-		// »ç¿îµåÆÄÀÏ¸®½ºÆ® ¿¡ µî·Ï µÇÁö ¾Ê´Â »ç¿îµå ÆÄÀÏÀÌ´Ù.
+		// ì‚¬ìš´ë“œíŒŒì¼ë¦¬ìŠ¤íŠ¸ ì— ë“±ë¡ ë˜ì§€ ì•ŠëŠ” ì‚¬ìš´ë“œ íŒŒì¼ì´ë‹¤.
 		return false;
 	}
 
@@ -204,12 +204,12 @@ bool CSoundLIST::IDX_PlaySound3DLoop (short nIndex, const D3DXVECTOR3& posWorld,
 	tagSndFILE *pSoundData = Get_DATAUseIDX( nIndex );
 
 	if ( NULL == pSoundData ) {
-		// »ç¿îµåÆÄÀÏ¸®½ºÆ® ¿¡ µî·Ï µÇÁö ¾Ê´Â »ç¿îµå ÆÄÀÏÀÌ´Ù.
+		// ì‚¬ìš´ë“œíŒŒì¼ë¦¬ìŠ¤íŠ¸ ì— ë“±ë¡ ë˜ì§€ ì•ŠëŠ” ì‚¬ìš´ë“œ íŒŒì¼ì´ë‹¤.
 		return false;
 	}
 
 #ifdef USE_DEFAULT_3D_SOUND
-	//if (!m_SOUND.Set3D (pSoundData->m_pSoundData, false)) return false; // 3D ¸ðµå·Î ¼³Á¤
+	//if (!m_SOUND.Set3D (pSoundData->m_pSoundData, false)) return false; // 3D ëª¨ë“œë¡œ ì„¤ì •
 	if (!m_SOUND.SetPosition (pSoundData->m_pSoundData, posWorld)) return false;
 #endif
 
@@ -230,7 +230,7 @@ bool CSoundLIST::IDX_StopSound3DLoop ( short nIndex )
 	tagSndFILE *pSoundData = Get_DATAUseIDX( nIndex );
 
 	if ( NULL == pSoundData ) {
-		// »ç¿îµåÆÄÀÏ¸®½ºÆ® ¿¡ µî·Ï µÇÁö ¾Ê´Â »ç¿îµå ÆÄÀÏÀÌ´Ù.
+		// ì‚¬ìš´ë“œíŒŒì¼ë¦¬ìŠ¤íŠ¸ ì— ë“±ë¡ ë˜ì§€ ì•ŠëŠ” ì‚¬ìš´ë“œ íŒŒì¼ì´ë‹¤.
 		return false;
 	}
 
@@ -255,12 +255,12 @@ bool CSoundLIST::IDX_PlaySound (short nIndex)
 	tagSndFILE *pSoundData = Get_DATAUseIDX( nIndex );
 
 	if ( NULL == pSoundData ) {
-		// »ç¿îµåÆÄÀÏ¸®½ºÆ® ¿¡ µî·Ï µÇÁö ¾Ê´Â »ç¿îµå ÆÄÀÏÀÌ´Ù.
+		// ì‚¬ìš´ë“œíŒŒì¼ë¦¬ìŠ¤íŠ¸ ì— ë“±ë¡ ë˜ì§€ ì•ŠëŠ” ì‚¬ìš´ë“œ íŒŒì¼ì´ë‹¤.
 		return false;
 	}
 
 #ifdef USE_DEFAULT_3D_SOUND
-	if (!m_SOUND.Set3D (pSoundData->m_pSoundData, true)) return false; // ¾È-3D ¸ðµå·Î ¼³Á¤
+	if (!m_SOUND.Set3D (pSoundData->m_pSoundData, true)) return false; // ì•ˆ-3D ëª¨ë“œë¡œ ì„¤ì •
 #endif
 	m_SOUND.PlaySound (pSoundData->m_pSoundData, m_iSoundVol, m_iSoundPan, 0);
 	return true;
@@ -271,12 +271,12 @@ bool CSoundLIST::IDX_PlaySound3D (short nIndex, const D3DXVECTOR3& posWorld, con
 	tagSndFILE *pSoundData = Get_DATAUseIDX( nIndex );
 
 	if ( NULL == pSoundData ) {
-		// »ç¿îµåÆÄÀÏ¸®½ºÆ® ¿¡ µî·Ï µÇÁö ¾Ê´Â »ç¿îµå ÆÄÀÏÀÌ´Ù.
+		// ì‚¬ìš´ë“œíŒŒì¼ë¦¬ìŠ¤íŠ¸ ì— ë“±ë¡ ë˜ì§€ ì•ŠëŠ” ì‚¬ìš´ë“œ íŒŒì¼ì´ë‹¤.
 		return false;
 	}
 
 #ifdef USE_DEFAULT_3D_SOUND
-	//if (!m_SOUND.Set3D (pSoundData->m_pSoundData, false)) return false; // 3D ¸ðµå·Î ¼³Á¤
+	//if (!m_SOUND.Set3D (pSoundData->m_pSoundData, false)) return false; // 3D ëª¨ë“œë¡œ ì„¤ì •
 	if (!m_SOUND.SetPosition (pSoundData->m_pSoundData, posWorld)) return false;
 #endif
 
@@ -308,7 +308,7 @@ bool CSoundLIST::PlaySoundFile3D (char *szFileName, const D3DXVECTOR3& posWorld,
 }
 
 //-------------------------------------------------------------------------------------------------
-/// @bug pSndFileDATA ÀÖ´Âµ¥.. pDATA->m_DATA NULL  ÀÏ °æ¿ì°¡ ÀÖ³Ä?
+/// @bug pSndFileDATA ìžˆëŠ”ë°.. pDATA->m_DATA NULL  ì¼ ê²½ìš°ê°€ ìžˆëƒ?
 t_HASHKEY CSoundLIST::AddSoundFile (char *szFileName, short nMixCNT, short nIndex)
 {
 	t_HASHKEY uiKEY = CStr::GetHASH( szFileName );
@@ -341,7 +341,7 @@ void CSoundLIST::SubSoundFile (t_HASHKEY uiKEY)
 		{
 			if ( --pSndFileDATA->m_DATA->m_nRefCNT <= 0 ) 
 			{
-				pSndFileDATA->m_iRefCnt = 0;	// °­Á¦·Î 1·Î ¼³Á¤ÇÏ¿© »èÁ¦´ë±â ¹öÆÛ¿¡ µî·ÏµÇµµ·Ï....
+				pSndFileDATA->m_iRefCnt = 0;	// ê°•ì œë¡œ 1ë¡œ ì„¤ì •í•˜ì—¬ ì‚­ì œëŒ€ê¸° ë²„í¼ì— ë“±ë¡ë˜ë„ë¡....
 				this->Sub_DATA (pSndFileDATA, false);
 			}
 		}		

@@ -1,7 +1,7 @@
 /**
  * \ingroup SHO_GS
  * \file	CObjAVT.h
- * \brief	CObjCHAR Å¬·¡½º¸¦ »ó¼Ó ¹Ş´Â avatar ÄÉ¸¯ÅÍ Ã³¸®
+ * \brief	CObjCHAR í´ë˜ìŠ¤ë¥¼ ìƒì† ë°›ëŠ” avatar ì¼€ë¦­í„° ì²˜ë¦¬
  */
 #ifndef	__COBJAVT_H
 #define	__COBJAVT_H
@@ -13,8 +13,8 @@
  * \ingroup SHO_GS_LIB
  * \class	CObjAVT
  * \author	wookSang.Jo
- * \brief	»ç¿ëÀÚ ÄÉ¸¯ÅÍ µ¥ÀÌÅÍ °ü¸®¹× Ã³¸®ÇÏ´Â Å¬·¡½º
- *			±âº» ÄÉ¸¯ÅÍ Å¬·¡½º CObjCHAR, »ç¿ëÀÚ ±âº»µ¥ÀÌÅ¸ Å¬·¡½º CUserDATA¸¦ »ó¼Ó¹ŞÀ½
+ * \brief	ì‚¬ìš©ì ì¼€ë¦­í„° ë°ì´í„° ê´€ë¦¬ë° ì²˜ë¦¬í•˜ëŠ” í´ë˜ìŠ¤
+ *			ê¸°ë³¸ ì¼€ë¦­í„° í´ë˜ìŠ¤ CObjCHAR, ì‚¬ìš©ì ê¸°ë³¸ë°ì´íƒ€ í´ë˜ìŠ¤ CUserDATAë¥¼ ìƒì†ë°›ìŒ
  */
 class CObjAVT : public CObjCHAR, public CUserDATA
 {
@@ -118,7 +118,7 @@ public :
 	int		GetANI_Die ()			{	return (  m_btRideMODE == RIDE_MODE_DRIVE ) ? ( m_nPatAniROW + PAT_ANI_DIE		)	: AVT_ANI_DIE;		}
 	int		GetANI_Hit ()			{	return (  m_btRideMODE == RIDE_MODE_DRIVE ) ? ( m_nPatAniROW + PAT_ANI_STOP1	)	: AVT_ANI_HIT;		}
 
-	// Ä«Æ®´Â ½ºÅ³À» Á÷Á¢ ÇÏÁö ¸øÇÑ´Ù :: ½ºÅ³ »ç¿ë½Ã Å¾½Â ¾Æ¹ÙÅ¸°¡ ¸ğ¼ÇÀ» ÇÏ´Â°ÍÀ¸·Î °¡Á¤ !!!
+	// ì¹´íŠ¸ëŠ” ìŠ¤í‚¬ì„ ì§ì ‘ í•˜ì§€ ëª»í•œë‹¤ :: ìŠ¤í‚¬ ì‚¬ìš©ì‹œ íƒ‘ìŠ¹ ì•„ë°”íƒ€ê°€ ëª¨ì…˜ì„ í•˜ëŠ”ê²ƒìœ¼ë¡œ ê°€ì • !!!
 	int		GetANI_Casting ()		
 	{	
 		return SKILL_ANI_CASTING( Get_ActiveSKILL() );	
@@ -159,8 +159,8 @@ public :
 	__int64	Get_MONEY()				{	return	GetCur_MONEY();			}
 
 	int		Get_INT ()				{	return	GetCur_INT ();			}
-    int		Get_CHARM ()			{	return	GetCur_CHARM ();		}	// ¸Å·Â
-    int		Get_SENSE ()			{	return	GetCur_SENSE ();		}	// °¨°¢
+    int		Get_CHARM ()			{	return	GetCur_CHARM ();		}	// ë§¤ë ¥
+    int		Get_SENSE ()			{	return	GetCur_SENSE ();		}	// ê°ê°
 
 	BYTE	Get_MoveMODE ()			{	return  ( this->m_btRideMODE ) ? m_btRideMODE : m_bRunMODE;	}
 	BYTE	Get_RideMODE ()			{	return	this->m_btRideMODE;		}
@@ -172,7 +172,7 @@ public :
     int		Get_GiveEXP ()           {	return 1;						}
 	int		Get_AbilityValue (WORD wType);
 
-	int		Get_HP ()				{	return	GetCur_HP ();				}	// »ı¸í·Â
+	int		Get_HP ()				{	return	GetCur_HP ();				}	// ìƒëª…ë ¥
 	int		Get_MP ()				{	return	GetCur_MP ();				}
 
 	void	Set_HP (int iHP)		{	SetCur_HP( iHP );					}
@@ -248,7 +248,7 @@ public :
 	union {
 		tagPartITEM	m_PartITEM[ MAX_BODY_PART ];
 		struct {
-			// ¼ø¼­´Â t_CharPART¿¡ µû¶ó¼­...
+			// ìˆœì„œëŠ” t_CharPARTì— ë”°ë¼ì„œ...
 			tagPartITEM m_sFaceIDX;			//short m_nFaceIDX;
 			tagPartITEM m_sHairIDX;			//short m_nHairIDX;
 			tagPartITEM m_sHelmetIDX;		//short m_nHelmetIDX;
@@ -274,7 +274,7 @@ public :
 			tagPartITEM m_sArmIDX;			//short m_nArmIDX;	// RIDE_PART_ARMS = 3,
 #else
 			tagPartITEM m_sAbilIDX;			//short m_nArmIDX;	// RIDE_PART_ARMS = 3, // kchs
-			tagPartITEM	m_sArmIDX;			// ABILÀÌ ±âÁ¸ Ç®¸° ¾ÆÀÌÅÛ ¶§¹®¿¡ Arms¾Õ¿¡
+			tagPartITEM	m_sArmIDX;			// ABILì´ ê¸°ì¡´ í’€ë¦° ì•„ì´í…œ ë•Œë¬¸ì— Armsì•ì—
 #endif
 		} ;
 	} ;
@@ -336,8 +336,8 @@ public :
 
 	int				m_iAppliedPenaltyEXP;
 	BYTE			m_btRideMODE;
-	int				m_iLinkedCartObjIDX;	// Á¸ÀÌ µ¿½Ã¿¡ ¹Ù²Ş
-	int				m_iLinkedCartUsrIDX;	// Á¢¼Ó Á¾·á½Ã±îÁö ¹Ù²îÁö ¾ÊÀ½
+	int				m_iLinkedCartObjIDX;	// ì¡´ì´ ë™ì‹œì— ë°”ê¿ˆ
+	int				m_iLinkedCartUsrIDX;	// ì ‘ì† ì¢…ë£Œì‹œê¹Œì§€ ë°”ë€Œì§€ ì•ŠìŒ
 
 	#define			RIDE_ATTR_NORMAL		0x01
 	#define			RIDE_ATTR_CART			0x02
@@ -366,9 +366,9 @@ public :
 	#define			RIDE_ATTR_MOUNT19		0x200000
 	#define			RIDE_ATTR_MOUNT20		0x400000
 
-	DWORD			m_btRideATTR;		// 0x1:°È±â/¶Ù±â, 0x2:Ä«Æ®Á¶Á¤, 0x4:Ä³½½Á¶Á¤, 0x8:Ä«Æ®¾ò¾îÅ¸±â
+	DWORD			m_btRideATTR;		// 0x1:ê±·ê¸°/ë›°ê¸°, 0x2:ì¹´íŠ¸ì¡°ì •, 0x4:ìºìŠ¬ì¡°ì •, 0x8:ì¹´íŠ¸ì–»ì–´íƒ€ê¸°
 #else
-	BYTE			m_btRideATTR;		// 0x1:°È±â/¶Ù±â, 0x2:Ä«Æ®Á¶Á¤, 0x4:Ä³½½Á¶Á¤, 0x8:Ä«Æ®¾ò¾îÅ¸±â
+	BYTE			m_btRideATTR;		// 0x1:ê±·ê¸°/ë›°ê¸°, 0x2:ì¹´íŠ¸ì¡°ì •, 0x4:ìºìŠ¬ì¡°ì •, 0x8:ì¹´íŠ¸ì–»ì–´íƒ€ê¸°
 #endif
     
 	CStrVAR			m_Name;
@@ -400,11 +400,11 @@ public :
 	{   
 		if ( this->GetCur_MOVE_MODE() == MOVE_MODE_DRIVE ) {
 			/*
-			m_nPatAniROW = PAT_RELATIVE_MOTION_POS(	m_nRideItemIDX[ RIDE_PART_BODY ] );	// ¸öÃ¼¿¡¼­ ¸ğ¼Ç ÁÙ ¹øÈ£
-			m_nPatAniCOL = PAT_RELATIVE_MOTION_POS( m_nRideItemIDX[ RIDE_PART_ARMS ] );	// ¹«±â¿¡¼­ ¸ğ¼Ç ¿­ ¹øÈ£
+			m_nPatAniROW = PAT_RELATIVE_MOTION_POS(	m_nRideItemIDX[ RIDE_PART_BODY ] );	// ëª¸ì²´ì—ì„œ ëª¨ì…˜ ì¤„ ë²ˆí˜¸
+			m_nPatAniCOL = PAT_RELATIVE_MOTION_POS( m_nRideItemIDX[ RIDE_PART_ARMS ] );	// ë¬´ê¸°ì—ì„œ ëª¨ì…˜ ì—´ ë²ˆí˜¸
 			*/
-			m_nPatAniROW = PAT_RELATIVE_MOTION_POS(	m_RideITEM[ RIDE_PART_BODY ].m_nItemNo );	// ¸öÃ¼¿¡¼­ ¸ğ¼Ç ÁÙ ¹øÈ£
-			m_nPatAniCOL = PAT_RELATIVE_MOTION_POS( m_RideITEM[ RIDE_PART_ARMS ].m_nItemNo );	// ¹«±â¿¡¼­ ¸ğ¼Ç ¿­ ¹øÈ£
+			m_nPatAniROW = PAT_RELATIVE_MOTION_POS(	m_RideITEM[ RIDE_PART_BODY ].m_nItemNo );	// ëª¸ì²´ì—ì„œ ëª¨ì…˜ ì¤„ ë²ˆí˜¸
+			m_nPatAniCOL = PAT_RELATIVE_MOTION_POS( m_RideITEM[ RIDE_PART_ARMS ].m_nItemNo );	// ë¬´ê¸°ì—ì„œ ëª¨ì…˜ ì—´ ë²ˆí˜¸
 		}
 
 		Cal_BattleAbility();
@@ -425,7 +425,7 @@ public :
 	void Set_PenalEXP (BYTE btAddPercent)
 	{
 		if ( this->GetCur_LEVEL() >= 10 ) {
-			// 10·¾ ÀÌ»óÀÌ¸é Æä³ÎÆ¼ Àû¿ë..
+			// 10ë ™ ì´ìƒì´ë©´ í˜ë„í‹° ì ìš©..
 			int iNeedEXP  = CCal::Get_NeedRawEXP( m_GrowAbility.m_nLevel );
 			int iPenalEXP = (int) ( iNeedEXP * btAddPercent / 100.f );
 
@@ -446,7 +446,7 @@ public :
 	void Cancel_PenalEXP (BYTE btPercent)
 	{
 		if ( this->GetCur_LEVEL() >= 10 && m_iAppliedPenaltyEXP > 0 ) {
-			// 10·¾ ÀÌ»óÀÌ¸é Àû¿ëÇß´ø Æä³ÎÆ¼ ÇØÁ¦...
+			// 10ë ™ ì´ìƒì´ë©´ ì ìš©í–ˆë˜ í˜ë„í‹° í•´ì œ...
 			m_iAppliedPenaltyEXP = (int)( m_iAppliedPenaltyEXP * btPercent / 100.f );
 			if ( m_iAppliedPenaltyEXP ) {
 				m_GrowAbility.m_lEXP += m_iAppliedPenaltyEXP;

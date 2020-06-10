@@ -7,10 +7,10 @@
 
 #include "tgamectrl/resourcemgr.h"
 //*-------------------------------------------------------------------------------/
-// @param iIndex : Ãß°¡½Ã À¯ÀÇ
-//			0  - topÀÏ°æ¿ì
-//			-1 - bottomÀÏ°æ¿ì
-//			*  - ½ÇÁ¦ scriptÃâ·Â
+// @param iIndex : ì¶”ê°€ì‹œ ìœ ì˜
+//			0  - topì¼ê²½ìš°
+//			-1 - bottomì¼ê²½ìš°
+//			*  - ì‹¤ì œ scriptì¶œë ¥
 //*-------------------------------------------------------------------------------/
 //const int c_iBorderLeft = 25;
 CDialogNpcScriptItem::CDialogNpcScriptItem( int iIndex,char* pszScript ,int iImageID, int iLineHeight, int iWidth, int iBorderWidth )

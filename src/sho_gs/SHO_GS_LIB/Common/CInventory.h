@@ -1,7 +1,7 @@
 /**
  * \ingroup SHO_GS
  * \file	CInventory.h
- * \brief	»ç¿ëÀÚ ÀÎº¥Åä¸® º¸°ü, °ü¸®
+ * \brief	ì‚¬ìš©ìž ì¸ë²¤í† ë¦¬ ë³´ê´€, ê´€ë¦¬
  */
 #ifndef	__CINVENTORY_H
 #define	__CINVENTORY_H
@@ -14,7 +14,7 @@
  * \ingroup SHO_GS_LIB
  * \class	CInventory
  * \author	wookSang.Jo
- * \brief	ÄÉ¸¯ÅÍÀÇ ¼ÒÁöÇ°Ã¢(ÀÎº¥Åä¸®)ÀÇ µ¥ÀÌÅÍ º¸°ü, °ü¸®, Ã³¸®ÇÏ´Â Å¬·¡½º
+ * \brief	ì¼€ë¦­í„°ì˜ ì†Œì§€í’ˆì°½(ì¸ë²¤í† ë¦¬)ì˜ ë°ì´í„° ë³´ê´€, ê´€ë¦¬, ì²˜ë¦¬í•˜ëŠ” í´ëž˜ìŠ¤
  */
 class CInventory {
 public :
@@ -23,13 +23,13 @@ public :
 	__int64		m_i64Money;
 
 	union {
-		// m_ItemLIST[ 0 ]Àº ¼­¹ö¿¡¼­ µ·¾ÆÀÌÅÛÀÌ´Ù...
+		// m_ItemLIST[ 0 ]ì€ ì„œë²„ì—ì„œ ëˆì•„ì´í…œì´ë‹¤...
 		tagITEM		m_ItemLIST[ INVENTORY_TOTAL_SIZE ];
 		struct {
-			tagITEM	m_ItemEQUIP[ MAX_EQUIP_IDX	];		// Âø¿ë Àåºñ..
+			tagITEM	m_ItemEQUIP[ MAX_EQUIP_IDX	];		// ì°©ìš© ìž¥ë¹„..
 			tagITEM	m_ItemPAGE [ MAX_INV_TYPE	][ INVENTORY_PAGE_SIZE ];
-			tagITEM	m_ItemSHOT [ MAX_SHOT_TYPE	];		// ¼³Á¤µÈ ¼Ò¸ðÅº..
-			tagITEM	m_ItemRIDE [ MAX_RIDING_PART];		// ¼³Á¤µÈ ½Â¿ë ¾ÆÀÌÅÛ.. 
+			tagITEM	m_ItemSHOT [ MAX_SHOT_TYPE	];		// ì„¤ì •ëœ ì†Œëª¨íƒ„..
+			tagITEM	m_ItemRIDE [ MAX_RIDING_PART];		// ì„¤ì •ëœ ìŠ¹ìš© ì•„ì´í…œ.. 
 		} ;
 	} ;	
 
@@ -43,9 +43,9 @@ public :
 	} ;
 
 
-	/// ItemLIST ¸¦ ±â¹ÝÀ¸·Î IndexLIST ¸¦ ¸¸µç´Ù.
+	/// ItemLIST ë¥¼ ê¸°ë°˜ìœ¼ë¡œ IndexLIST ë¥¼ ë§Œë“ ë‹¤.
 	void MakeItemIndexList();
-	/// ½ÇÁ¦ ¾ÆÀÌÅÛ ÀÎµ¦½º·Î ÂüÁ¶Å×ÀÌºí ÀÎµ¦½º¸¦ ±¸ÇÑ´Ù.
+	/// ì‹¤ì œ ì•„ì´í…œ ì¸ë±ìŠ¤ë¡œ ì°¸ì¡°í…Œì´ë¸” ì¸ë±ìŠ¤ë¥¼ êµ¬í•œë‹¤.
 	short GetLookupIndexFromRealIndex( short nRealIndex );
 	short Add_CatchITEM (short nListRealNO, tagITEM &sITEM, short &nCurWeight);
 #endif

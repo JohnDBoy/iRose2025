@@ -23,79 +23,79 @@ enum eGumsNATION {
 
 // Response Message type 1 
 #define	GUMS011_REPLY_LOGIN_SUCCESS							11
-#define	GUMS111_REPLY_FREE_LOGIN_SUCCESS					111		// º»¼·/ÇÁ¸®¼· ·Î±×ÀÎ °¡´É
+#define	GUMS111_REPLY_FREE_LOGIN_SUCCESS					111		// ë³¸ì„­/í”„ë¦¬ì„­ ë¡œê·¸ì¸ ê°€ëŠ¥
 
 // Response Message type 1 - JAPAN
 #define	GUMS1011_REPLY_LOGIN_SUCCESS						1011	// *
-#define	GUMS1111_REPLY_FREE_LOGIN_SUCCESS					1111	// * º»¼·/ÇÁ¸®¼· ·Î±×ÀÎ °¡´É
+#define	GUMS1111_REPLY_FREE_LOGIN_SUCCESS					1111	// * ë³¸ì„­/í”„ë¦¬ì„­ ë¡œê·¸ì¸ ê°€ëŠ¥
 
 
 
 // Response Message type 2
-#define	GUMS012_REPLY_LOGIN_FAILED_INVALID_ID_OR_PW			12		// »ç¿ëÀÚÀÇ ID³ª PW°¡ Æ²¸°°æ¿ì
-#define	GUMS013_REPLY_LOGIN_FAILED_NO_RIGHT					13		// °ÔÀÓÇÒ ±ÇÇÑÀÌ ¾ø´Â »ç¿ëÀÚ
-#define	GUMS014_REPLY_LOGIN_FAILED_TIME_EXPIRED				14		// »ç¿ë ±â°£ ¸¸·á
+#define	GUMS012_REPLY_LOGIN_FAILED_INVALID_ID_OR_PW			12		// ì‚¬ìš©ìžì˜ IDë‚˜ PWê°€ í‹€ë¦°ê²½ìš°
+#define	GUMS013_REPLY_LOGIN_FAILED_NO_RIGHT					13		// ê²Œìž„í•  ê¶Œí•œì´ ì—†ëŠ” ì‚¬ìš©ìž
+#define	GUMS014_REPLY_LOGIN_FAILED_TIME_EXPIRED				14		// ì‚¬ìš© ê¸°ê°„ ë§Œë£Œ
 
-#define	GUMS018_REPLY_LOGIN_FAILED_ONE_DAY_EXPIRED			18		// ÀÏÀÏ »ç¿ë ±â°£ÀÌ ¸¸·áµÈ »ç¿ëÀÚ
-#define	GUMS019_REPLY_LOGIN_FAILED_ONE_DAY_EXPIRED2			19		// ÀÏÀÏ »ç¿ë ±â°£ÀÌ ¸¸·áµÈ »ç¿ëÀÚ
+#define	GUMS018_REPLY_LOGIN_FAILED_ONE_DAY_EXPIRED			18		// ì¼ì¼ ì‚¬ìš© ê¸°ê°„ì´ ë§Œë£Œëœ ì‚¬ìš©ìž
+#define	GUMS019_REPLY_LOGIN_FAILED_ONE_DAY_EXPIRED2			19		// ì¼ì¼ ì‚¬ìš© ê¸°ê°„ì´ ë§Œë£Œëœ ì‚¬ìš©ìž
 
-#define	GUMS015_REPLY_LOGIN_FAILED_ALREADY_LOGIN			15		// ÀÌ¹Ì ·Î±×ÀÎ ÇÑ »ç¿ëÀÚ¶ó°í ¾Ë·ÁÁÖ¸é¼­ ·Î±×ÀÎÀÌ ¾ÈµÇ´Â°Å±¸¿©..
-#define	GUMS016_REPLY_LOGIN_FAILED_IP_FULL_USED				16		// °áÁ¦ÇÑ IPÀÇ ¼ö·®À» ¸ðµÎ »ç¿ëÁßÀÎ °æ¿ì(°×¹æ)
-#define	GUMS116_REPLY_FREE_LOGIN_FAILED_IP_FULL_USED		116		// °áÁ¦ÇÑ IPÀÇ ¼ö·®À» ¸ðµÎ »ç¿ëÁßÀÎ °æ¿ì(°×¹æ)
+#define	GUMS015_REPLY_LOGIN_FAILED_ALREADY_LOGIN			15		// ì´ë¯¸ ë¡œê·¸ì¸ í•œ ì‚¬ìš©ìžë¼ê³  ì•Œë ¤ì£¼ë©´ì„œ ë¡œê·¸ì¸ì´ ì•ˆë˜ëŠ”ê±°êµ¬ì—¬..
+#define	GUMS016_REPLY_LOGIN_FAILED_IP_FULL_USED				16		// ê²°ì œí•œ IPì˜ ìˆ˜ëŸ‰ì„ ëª¨ë‘ ì‚¬ìš©ì¤‘ì¸ ê²½ìš°(ê²œë°©)
+#define	GUMS116_REPLY_FREE_LOGIN_FAILED_IP_FULL_USED		116		// ê²°ì œí•œ IPì˜ ìˆ˜ëŸ‰ì„ ëª¨ë‘ ì‚¬ìš©ì¤‘ì¸ ê²½ìš°(ê²œë°©)
 
-#define	GUMS017_REPLY_LOGIN_FAILED_KICKED_USER				17		// ¸ÕÀú ·Î±×ÀÎ µÇ¾î ÀÖ´Â »ç¿ëÀÚ¸¦ ·Î±×¾Æ¿ô ½ÃÄ×´Ù°í ¾Ë·ÁÁÖ°í ·Î±×ÀÎÀÌ ¾ÈµÇ´Â °Ì´Ï´Ù.
+#define	GUMS017_REPLY_LOGIN_FAILED_KICKED_USER				17		// ë¨¼ì € ë¡œê·¸ì¸ ë˜ì–´ ìžˆëŠ” ì‚¬ìš©ìžë¥¼ ë¡œê·¸ì•„ì›ƒ ì‹œì¼°ë‹¤ê³  ì•Œë ¤ì£¼ê³  ë¡œê·¸ì¸ì´ ì•ˆë˜ëŠ” ê²ë‹ˆë‹¤.
 
-#define	GUMS021_REPLY_LOGOUT_SUCCESS						21		// »ç¿ëÀÚ ·Î±×¾Æ¿ô ¼º°ø
-#define	GUMS022_REPLY_LOGOUT_FAILED							22		// »ç¿ëÀÚ ·Î±×¾Æ¿ô ½ÇÆÐ
+#define	GUMS021_REPLY_LOGOUT_SUCCESS						21		// ì‚¬ìš©ìž ë¡œê·¸ì•„ì›ƒ ì„±ê³µ
+#define	GUMS022_REPLY_LOGOUT_FAILED							22		// ì‚¬ìš©ìž ë¡œê·¸ì•„ì›ƒ ì‹¤íŒ¨
 
-#define	GUMS088_REPLY_DO_INIT_FIRST							88		// ÄÁÅØ¼Ç¿¡ ´ëÇÑ ÃÊ±âÈ­ ½ÇÇàÀÌ µÇ¾îÀÖÁö ¾Ê¾Æ Á¤»óÀûÀÎ ¸Þ½ÃÁö Ã³¸® ºÒ°¡
-#define	GUMS099_REPLY_INVALID_MSG_FORMAT					99		// ¸Þ¼¼Áö Çü½ÄÀÌ Æ²·ÈÀ» °æ¿ì
+#define	GUMS088_REPLY_DO_INIT_FIRST							88		// ì»¨í…ì…˜ì— ëŒ€í•œ ì´ˆê¸°í™” ì‹¤í–‰ì´ ë˜ì–´ìžˆì§€ ì•Šì•„ ì •ìƒì ì¸ ë©”ì‹œì§€ ì²˜ë¦¬ ë¶ˆê°€
+#define	GUMS099_REPLY_INVALID_MSG_FORMAT					99		// ë©”ì„¸ì§€ í˜•ì‹ì´ í‹€ë ¸ì„ ê²½ìš°
 
-#define	GUMS044_REPLY_NETWORK_IS_NOT_GOOD					44		// ³×Æ®¿÷ »ç¿ë»óÈ²ÀÌ ÁÁÁö ¾Ê¾Æ ¸Þ½ÃÁö Ã³¸®°¡ ºÒ°¡´É.
+#define	GUMS044_REPLY_NETWORK_IS_NOT_GOOD					44		// ë„¤íŠ¸ì› ì‚¬ìš©ìƒí™©ì´ ì¢‹ì§€ ì•Šì•„ ë©”ì‹œì§€ ì²˜ë¦¬ê°€ ë¶ˆê°€ëŠ¥.
 
-#define	GUMS100_REPLY_INIT_SUCCESS							100		// ÃÊ±âÈ­ ¼º°ø
-#define	GUMS112_REPLY_FREE_SRV_ONLY							112		// ÇÁ¸®¼·¸¸ ·Î±ä °¡´É...
+#define	GUMS100_REPLY_INIT_SUCCESS							100		// ì´ˆê¸°í™” ì„±ê³µ
+#define	GUMS112_REPLY_FREE_SRV_ONLY							112		// í”„ë¦¬ì„­ë§Œ ë¡œê¸´ ê°€ëŠ¥...
 
-#define	GUMS1112_REPLY_FREE_SRV_ONLY						1112	// º»¼·/ÇÁ¸®¼· ·Î±×ÀÎ °¡´É
+#define	GUMS1112_REPLY_FREE_SRV_ONLY						1112	// ë³¸ì„­/í”„ë¦¬ì„­ ë¡œê·¸ì¸ ê°€ëŠ¥
 
 
-#define	GUMS113_REPLY_LOGIN_FAILED							113		// º»¼·/ÇÁ¸®¼· ¸ðµÎ ·Î±ä ºÒ°¡..
+#define	GUMS113_REPLY_LOGIN_FAILED							113		// ë³¸ì„­/í”„ë¦¬ì„­ ëª¨ë‘ ë¡œê¸´ ë¶ˆê°€..
 
 // Response Message type 3
-#define	GUMS041_REPLY_EXPIRE_DAY							41		// ÇØ´ç »ç¿ëÀÚÀÇ Á¾·áÀÏÀÚ¸¦ µ¹·ÁÁØ´Ù
-#define	GUMS042_REPLY_EXPIRE_DAY2							42		// ÇØ´ç »ç¿ëÀÚÀÇ ³²Àº ½Ã°£À» µ¹·ÁÁØ´Ù.
+#define	GUMS041_REPLY_EXPIRE_DAY							41		// í•´ë‹¹ ì‚¬ìš©ìžì˜ ì¢…ë£Œì¼ìžë¥¼ ëŒë ¤ì¤€ë‹¤
+#define	GUMS042_REPLY_EXPIRE_DAY2							42		// í•´ë‹¹ ì‚¬ìš©ìžì˜ ë‚¨ì€ ì‹œê°„ì„ ëŒë ¤ì¤€ë‹¤.
 
 // Response Message type 3 - JAPAN
-#define	GUMS1041_REPLY_EXPIRE_DAY							1041	// ÇØ´ç »ç¿ëÀÚÀÇ Á¾·áÀÏÀÚ¸¦ µ¹·ÁÁØ´Ù
-#define	GUMS1042_REPLY_EXPIRE_DAY2							1042	// ÇØ´ç »ç¿ëÀÚÀÇ ³²Àº ½Ã°£À» µ¹·ÁÁØ´Ù.
+#define	GUMS1041_REPLY_EXPIRE_DAY							1041	// í•´ë‹¹ ì‚¬ìš©ìžì˜ ì¢…ë£Œì¼ìžë¥¼ ëŒë ¤ì¤€ë‹¤
+#define	GUMS1042_REPLY_EXPIRE_DAY2							1042	// í•´ë‹¹ ì‚¬ìš©ìžì˜ ë‚¨ì€ ì‹œê°„ì„ ëŒë ¤ì¤€ë‹¤.
 
 // Callback Messages
-#define	GUMS051_REPLY_DAY_EXPIRED_ALERT						51		// »ç¿ë½Ã°£(Á¤¾×) ¸¸·á °æ°í ¸Þ½ÃÁö
-#define	GUMS052_REPLY_ONE_DAY_TIME_OVER						52		// ÀÏÀÏ »ç¿ë½Ã°£ ÇÑµµ ÃÊ°ú °æ°í ¸Þ¼¼Áö
-#define	GUMS053_REPLY_ONE_DAY_TIME_OVER2					53		// ÀÏÀÏ »ç¿ë½Ã°£ ÇÑµµ ÃÊ°ú °æ°í ¸Þ¼¼Áö
-#define	GUMS054_REPLY_TIME_EXPIRED_ALERT					54		// »ç¿ë½Ã°£(Á¤·®) ¸¸·á °æ°í ¸Þ¼¼Áö
+#define	GUMS051_REPLY_DAY_EXPIRED_ALERT						51		// ì‚¬ìš©ì‹œê°„(ì •ì•¡) ë§Œë£Œ ê²½ê³  ë©”ì‹œì§€
+#define	GUMS052_REPLY_ONE_DAY_TIME_OVER						52		// ì¼ì¼ ì‚¬ìš©ì‹œê°„ í•œë„ ì´ˆê³¼ ê²½ê³  ë©”ì„¸ì§€
+#define	GUMS053_REPLY_ONE_DAY_TIME_OVER2					53		// ì¼ì¼ ì‚¬ìš©ì‹œê°„ í•œë„ ì´ˆê³¼ ê²½ê³  ë©”ì„¸ì§€
+#define	GUMS054_REPLY_TIME_EXPIRED_ALERT					54		// ì‚¬ìš©ì‹œê°„(ì •ëŸ‰) ë§Œë£Œ ê²½ê³  ë©”ì„¸ì§€
 
 // Callback Messages - JAPAN
-#define	GUMS1051_REPLY_DAY_EXPIRED_ALERT					1051	// * »ç¿ë½Ã°£(Á¤¾×) ¸¸·á °æ°í ¸Þ½ÃÁö
-#define	GUMS1052_REPLY_ONE_DAY_TIME_OVER					1052	// * ÀÏÀÏ »ç¿ë½Ã°£ ÇÑµµ ÃÊ°ú °æ°í ¸Þ¼¼Áö
-#define	GUMS1053_REPLY_ONE_DAY_TIME_OVER2					1053	// * ÀÏÀÏ »ç¿ë½Ã°£ ÇÑµµ ÃÊ°ú °æ°í ¸Þ¼¼Áö
-#define	GUMS1054_REPLY_TIME_EXPIRED_ALERT					1054	// * »ç¿ë½Ã°£(Á¤·®) ¸¸·á °æ°í ¸Þ¼¼Áö
+#define	GUMS1051_REPLY_DAY_EXPIRED_ALERT					1051	// * ì‚¬ìš©ì‹œê°„(ì •ì•¡) ë§Œë£Œ ê²½ê³  ë©”ì‹œì§€
+#define	GUMS1052_REPLY_ONE_DAY_TIME_OVER					1052	// * ì¼ì¼ ì‚¬ìš©ì‹œê°„ í•œë„ ì´ˆê³¼ ê²½ê³  ë©”ì„¸ì§€
+#define	GUMS1053_REPLY_ONE_DAY_TIME_OVER2					1053	// * ì¼ì¼ ì‚¬ìš©ì‹œê°„ í•œë„ ì´ˆê³¼ ê²½ê³  ë©”ì„¸ì§€
+#define	GUMS1054_REPLY_TIME_EXPIRED_ALERT					1054	// * ì‚¬ìš©ì‹œê°„(ì •ëŸ‰) ë§Œë£Œ ê²½ê³  ë©”ì„¸ì§€
 
 
-#define	GUMS061_REPLY_DAY_EXPIRED_DIS						61		// »ç¿ë±â°£(Á¤¾×) ¸¸·á Á¢¼Ó ÇØÁ¦ ¸Þ¼¼Áö
-#define	GUMS062_REPLY_ONE_DAY_EXPIRED_DIS					62		// ÀÏÀÏ »ç¿ë½Ã°£ ÇÑµµ ÃÊ°ú Á¢¼Ó ÇØÁ¦ ¸Þ½ÃÁö
-#define	GUMS063_REPLY_ONE_DAY_EXPIRED_DIS2					63		// ÀÏÀÏ ÇÑµµ½Ã°£ ÇÑµµ ÃÊ°ú Á¢¼Ó ÇØÁ¦ ¸Þ½ÃÁö
-#define	GUMS064_REPLY_DUP_USERID_DIS						64		// ´Ù¸¥ »ç¿ëÀÚÀÇ ¿ä±¸·Î Á¢¼Ó ÇØÁ¦
-#define	GUMS065_REPLY_USER_NOT_FOUND						65		// »ç¿ëÀÚ Live ½ÅÈ£°¡ ¿ÔÀ»¶§ »ç¿ëÀÚ°¡ ¸Þ¸ð¸® ³»¿¡ ¾øÀ» °æ¿ì º¸³»ÁÖ´Â ¸Þ½ÃÁö
-#define	GUMS066_REPLY_TIME_EXPIRED_DIS						66		// »ç¿ë½Ã°£(Á¤·®) ¸¸·á Á¢¼Ó ÇØÁ¦ ¸Þ½ÃÁö
+#define	GUMS061_REPLY_DAY_EXPIRED_DIS						61		// ì‚¬ìš©ê¸°ê°„(ì •ì•¡) ë§Œë£Œ ì ‘ì† í•´ì œ ë©”ì„¸ì§€
+#define	GUMS062_REPLY_ONE_DAY_EXPIRED_DIS					62		// ì¼ì¼ ì‚¬ìš©ì‹œê°„ í•œë„ ì´ˆê³¼ ì ‘ì† í•´ì œ ë©”ì‹œì§€
+#define	GUMS063_REPLY_ONE_DAY_EXPIRED_DIS2					63		// ì¼ì¼ í•œë„ì‹œê°„ í•œë„ ì´ˆê³¼ ì ‘ì† í•´ì œ ë©”ì‹œì§€
+#define	GUMS064_REPLY_DUP_USERID_DIS						64		// ë‹¤ë¥¸ ì‚¬ìš©ìžì˜ ìš”êµ¬ë¡œ ì ‘ì† í•´ì œ
+#define	GUMS065_REPLY_USER_NOT_FOUND						65		// ì‚¬ìš©ìž Live ì‹ í˜¸ê°€ ì™”ì„ë•Œ ì‚¬ìš©ìžê°€ ë©”ëª¨ë¦¬ ë‚´ì— ì—†ì„ ê²½ìš° ë³´ë‚´ì£¼ëŠ” ë©”ì‹œì§€
+#define	GUMS066_REPLY_TIME_EXPIRED_DIS						66		// ì‚¬ìš©ì‹œê°„(ì •ëŸ‰) ë§Œë£Œ ì ‘ì† í•´ì œ ë©”ì‹œì§€
 
 
-#define	GUMS1061_REPLY_DAY_EXPIRED_DIS						1061	// * »ç¿ë±â°£(Á¤¾×) ¸¸·á Á¢¼Ó ÇØÁ¦ ¸Þ¼¼Áö
-#define	GUMS1062_REPLY_ONE_DAY_EXPIRED_DIS					1062	// * ÀÏÀÏ »ç¿ë½Ã°£ ÇÑµµ ÃÊ°ú Á¢¼Ó ÇØÁ¦ ¸Þ½ÃÁö
-#define	GUMS1063_REPLY_ONE_DAY_EXPIRED_DIS2					1063	// * ÀÏÀÏ ÇÑµµ½Ã°£ ÇÑµµ ÃÊ°ú Á¢¼Ó ÇØÁ¦ ¸Þ½ÃÁö
-#define	GUMS1064_REPLY_DUP_USERID_DIS						1064	// * ´Ù¸¥ »ç¿ëÀÚÀÇ ¿ä±¸·Î Á¢¼Ó ÇØÁ¦
-#define	GUMS1065_REPLY_USER_NOT_FOUND						1065	// * »ç¿ëÀÚ Live ½ÅÈ£°¡ ¿ÔÀ»¶§ »ç¿ëÀÚ°¡ ¸Þ¸ð¸® ³»¿¡ ¾øÀ» °æ¿ì º¸³»ÁÖ´Â ¸Þ½ÃÁö
-#define	GUMS1066_REPLY_TIME_EXPIRED_DIS						1066	// * »ç¿ë½Ã°£(Á¤·®) ¸¸·á Á¢¼Ó ÇØÁ¦ ¸Þ½ÃÁö
+#define	GUMS1061_REPLY_DAY_EXPIRED_DIS						1061	// * ì‚¬ìš©ê¸°ê°„(ì •ì•¡) ë§Œë£Œ ì ‘ì† í•´ì œ ë©”ì„¸ì§€
+#define	GUMS1062_REPLY_ONE_DAY_EXPIRED_DIS					1062	// * ì¼ì¼ ì‚¬ìš©ì‹œê°„ í•œë„ ì´ˆê³¼ ì ‘ì† í•´ì œ ë©”ì‹œì§€
+#define	GUMS1063_REPLY_ONE_DAY_EXPIRED_DIS2					1063	// * ì¼ì¼ í•œë„ì‹œê°„ í•œë„ ì´ˆê³¼ ì ‘ì† í•´ì œ ë©”ì‹œì§€
+#define	GUMS1064_REPLY_DUP_USERID_DIS						1064	// * ë‹¤ë¥¸ ì‚¬ìš©ìžì˜ ìš”êµ¬ë¡œ ì ‘ì† í•´ì œ
+#define	GUMS1065_REPLY_USER_NOT_FOUND						1065	// * ì‚¬ìš©ìž Live ì‹ í˜¸ê°€ ì™”ì„ë•Œ ì‚¬ìš©ìžê°€ ë©”ëª¨ë¦¬ ë‚´ì— ì—†ì„ ê²½ìš° ë³´ë‚´ì£¼ëŠ” ë©”ì‹œì§€
+#define	GUMS1066_REPLY_TIME_EXPIRED_DIS						1066	// * ì‚¬ìš©ì‹œê°„(ì •ëŸ‰) ë§Œë£Œ ì ‘ì† í•´ì œ ë©”ì‹œì§€
 
 
 
@@ -123,9 +123,9 @@ private:
 	CStrVAR		 m_GumServerIP;
 	int			 m_GumServerPORT;
 
-	// iGameID	:: GUMS¼­¹ö¿¡¼­ ±¸ºÐÇÏ´Â Gamd ID	¹«Á¶°Ç 1	Gum ¼­¹ö 1´ë¿¡ ¿©·¯°³ÀÎ ¼­ºñ½º ÇÒ¶§...
-	// ·ÎÁî¿¡¼±...º»¼·Àº 1, ÇÏ·ç ÀÏÁ¤½Ã°£ Áñ±æ¼ö ÀÖ´Â ¹«·á¼·Àº 2 !!!
-	// iCpID	:: È¸¿ø °ü¸®°¡ ºÐ¸®µÈ °æ¿ì ¾÷Ã¼ ID	¹«Á¶°Ç 1
+	// iGameID	:: GUMSì„œë²„ì—ì„œ êµ¬ë¶„í•˜ëŠ” Gamd ID	ë¬´ì¡°ê±´ 1	Gum ì„œë²„ 1ëŒ€ì— ì—¬ëŸ¬ê°œì¸ ì„œë¹„ìŠ¤ í• ë•Œ...
+	// ë¡œì¦ˆì—ì„ ...ë³¸ì„­ì€ 1, í•˜ë£¨ ì¼ì •ì‹œê°„ ì¦ê¸¸ìˆ˜ ìžˆëŠ” ë¬´ë£Œì„­ì€ 2 !!!
+	// iCpID	:: íšŒì› ê´€ë¦¬ê°€ ë¶„ë¦¬ëœ ê²½ìš° ì—…ì²´ ID	ë¬´ì¡°ê±´ 1
 //	int			 m_iGameID;
 	int			 m_iCpID;
 

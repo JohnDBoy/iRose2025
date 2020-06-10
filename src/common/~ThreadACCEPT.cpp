@@ -34,7 +34,7 @@ tpNormal	The thread has normal priority.
 tpHigher	The thread's priority is one point above normal.
 tpHighest	The thread's priority is two points above normal.
 tpTimeCritical	The thread gets highest priority.
-Warning:		Boosting the thread priority of a CPU intensive operation may “starve” other threads in the application. Only apply priority boosts to threads that spend most of their time waiting for external events.
+Warning:		Boosting the thread priority of a CPU intensive operation may â€œstarveâ€ other threads in the application. Only apply priority boosts to threads that spend most of their time waiting for external events.
 */
     Priority = tpLower;
     m_ListenSocket = NULL;
@@ -63,7 +63,7 @@ void __fastcall ThreadACCEPT::Execute()
 
     Synchronize( LogSTART );
 
-    // m_ListenSocketÀÌ INVALID_SOCKETÀÌ µÇ¸é ·çÇÁ¸¦ Å»ÃâÇÑ´Ù.
+    // m_ListenSocketì´ INVALID_SOCKETì´ ë˜ë©´ ë£¨í”„ë¥¼ íƒˆì¶œí•œë‹¤.
     while ( 1 ) //!Terminated )
     {
         ClientSocket = ::accept (m_ListenSocket, (sockaddr*)&SockADDR, &iAddrLEN);
@@ -76,7 +76,7 @@ void __fastcall ThreadACCEPT::Execute()
         }
 
         if ( !this->AcceptSOCKET( ClientSocket, SockADDR ) ) {
-            // ´õÀÌ»ó ¹ÞÀ»¼ö ¾ø´Ù.
+            // ë”ì´ìƒ ë°›ì„ìˆ˜ ì—†ë‹¤.
             struct linger li = {0, 0};	// Default: SO_DONTLINGER
 
             ::shutdown   (ClientSocket, SD_BOTH);
@@ -91,7 +91,7 @@ void __fastcall ThreadACCEPT::Execute()
 //---------------------------------------------------------------------------
 bool __fastcall ThreadACCEPT::Init (int iTCPPort)
 {
-	//----------------------- Accept socket »ý¼º
+	//----------------------- Accept socket ìƒì„±
 	int     iRet;
     WSADATA	wsaData;
 
@@ -144,8 +144,8 @@ void __fastcall ThreadACCEPT::Free (void)
     if ( this->Suspended )
         this->Resume ();
 
-    // ThreadWORKER¿Í ´Þ¸® m_ListenSocket¸¦ °øÀ¯ÇÏÁö ¾ÊÀ¸¹Ç·Î
-    // º» ÇÔ¼ö°¡ È£ÃâµÈÈÄ¿¡´Â ¾²·¹µå°¡ Á¾·áµÈ´Ù.
+    // ThreadWORKERì™€ ë‹¬ë¦¬ m_ListenSocketë¥¼ ê³µìœ í•˜ì§€ ì•Šìœ¼ë¯€ë¡œ
+    // ë³¸ í•¨ìˆ˜ê°€ í˜¸ì¶œëœí›„ì—ëŠ” ì“°ë ˆë“œê°€ ì¢…ë£Œëœë‹¤.
     this->WaitFor ();
 }
 
@@ -157,7 +157,7 @@ bool ThreadACCEPT::AcceptSOCKET (SOCKET hSocket, sockaddr_in &SockADDR)
 
     pNode = g_CUserLIST.AddUser (ClientSocket);
     if ( pNode == NULL ) {
-        // »ç¿ëÀÚ ¸®½ºÆ®¿¡ ´õÀÌ»ó µî·ÏÇÒ¼ö ¾ø´Ù..
+        // ì‚¬ìš©ìž ë¦¬ìŠ¤íŠ¸ì— ë”ì´ìƒ ë“±ë¡í• ìˆ˜ ì—†ë‹¤..
         ::closesocket (ClientSocket);
     } else
     if ( !pServer->_AddSocket (ClientSocket, (DWORD)&pNode->DATA) ) {

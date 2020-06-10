@@ -81,7 +81,7 @@ CSocketWND::CSocketWND (HINSTANCE hInstance, UINT uiMaxSocket)
 
 	// if ( !hPrevInstance ) 
 	{
-		// À©µµ¿ì Å¬·¹½º »ý¼º
+		// ìœˆë„ìš° í´ë ˆìŠ¤ ìƒì„±
 		WNDCLASS wc;
 
 		wc.style			= 0;
@@ -100,17 +100,17 @@ CSocketWND::CSocketWND (HINSTANCE hInstance, UINT uiMaxSocket)
 			return;
 	}
 
-	// À©µµ¿ì »ý¼º, À©µµ¿ì´Â µðÆúÆ®¿¡ ÀÇÇØ º¸ÀÌÁö ¾Ê°í ShowWindow·Î Àý´ë º¸¿©¼­´Â ¾ÈµÈ´Ù.
+	// ìœˆë„ìš° ìƒì„±, ìœˆë„ìš°ëŠ” ë””í´íŠ¸ì— ì˜í•´ ë³´ì´ì§€ ì•Šê³  ShowWindowë¡œ ì ˆëŒ€ ë³´ì—¬ì„œëŠ” ì•ˆëœë‹¤.
 	m_hWND = ::CreateWindow(
-				szWndClassName,						// À©µµ¿ì Å¬·¡½º ÀÌ¸§
-				"",									// À©µµ¿ì Å¸ÀÌÆ² Á¦¸ñ
-				0,									// À©µµ¿ì ½ºÅ¸ÀÏ
-				CW_USEDEFAULT, CW_USEDEFAULT,		// À§Ä¡ = µðÆúÆ®
-				CW_USEDEFAULT, CW_USEDEFAULT,		// Å©±â = µðÆúÆ®
-				NULL,								// ºÎ¸ð À©µµ¿ì ¾øÀ½
-				NULL,								// ¸Þ´º = À©µµ¿ì Å¬·¡½º µðÆúÆ®
-				hInstance,							// À©µµ¿ì ¼ÒÀ¯ÀÚ
-				NULL );								// Ãß°¡ÀûÀÎ »ý¼º µ¥ÀÌÅ¸ ¾øÀ½
+				szWndClassName,						// ìœˆë„ìš° í´ëž˜ìŠ¤ ì´ë¦„
+				"",									// ìœˆë„ìš° íƒ€ì´í‹€ ì œëª©
+				0,									// ìœˆë„ìš° ìŠ¤íƒ€ì¼
+				CW_USEDEFAULT, CW_USEDEFAULT,		// ìœ„ì¹˜ = ë””í´íŠ¸
+				CW_USEDEFAULT, CW_USEDEFAULT,		// í¬ê¸° = ë””í´íŠ¸
+				NULL,								// ë¶€ëª¨ ìœˆë„ìš° ì—†ìŒ
+				NULL,								// ë©”ë‰´ = ìœˆë„ìš° í´ëž˜ìŠ¤ ë””í´íŠ¸
+				hInstance,							// ìœˆë„ìš° ì†Œìœ ìž
+				NULL );								// ì¶”ê°€ì ì¸ ìƒì„± ë°ì´íƒ€ ì—†ìŒ
 	if ( m_hWND ) {
 		m_uiMaxSocket = uiMaxSocket ? uiMaxSocket : 1;
 

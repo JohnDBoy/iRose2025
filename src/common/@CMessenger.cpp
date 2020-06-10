@@ -21,12 +21,12 @@
 void CMessenger::MSGR_LogIN (int iCount, BYTE *pLIST)
 {
 /*
-	1. ³»°¡ µî·ÏÇÑ Ä£±¸¸®½ºÆ®¿¡¼­...
-		Ä£±¸°¡ Á¢¼ÓÇØ ÀÖ³Ä?
-		y: Ä£±¸°¡ ³ª¸¦ ¸®½ºÆ®¿¡ °®°í ÀÖ³Ä?
-		   y: »óÅÂÀü¼Û
-		   n: Åë°ú
-		n: ¿ÀÇÁ¶óÀÎ »óÅÂ
+	1. ë‚´ê°€ ë“±ë¡í•œ ì¹œêµ¬ë¦¬ìŠ¤íŠ¸ì—ì„œ...
+		ì¹œêµ¬ê°€ ì ‘ì†í•´ ìžˆëƒ?
+		y: ì¹œêµ¬ê°€ ë‚˜ë¥¼ ë¦¬ìŠ¤íŠ¸ì— ê°–ê³  ìžˆëƒ?
+		   y: ìƒíƒœì „ì†¡
+		   n: í†µê³¼
+		n: ì˜¤í”„ë¼ì¸ ìƒíƒœ
 */
 	classUSER *pClient;
 
@@ -75,15 +75,15 @@ void CMessenger::MSGR_LogIN (int iCount, BYTE *pLIST)
 				pClient = g_pListCLIENT->Find_CHAR( pName );
 				#endif
 				if ( pClient ) {
-					// Ä£±¸ÀÇ ¸ñ·Ï¿¡ ³»°¡ ·Î±äµÈ°É·Î ¼³Á¤ ³ª¿¡´ëÇÑ »óÅÂ¸¦ ¸®ÅÏÇÑ´Ù.
+					// ì¹œêµ¬ì˜ ëª©ë¡ì— ë‚´ê°€ ë¡œê¸´ëœê±¸ë¡œ ì„¤ì • ë‚˜ì—ëŒ€í•œ ìƒíƒœë¥¼ ë¦¬í„´í•œë‹¤.
 					pNODE->m_VALUE.m_pUSER    = pClient;
 					pNODE->m_VALUE.m_btSTATUS = pClient->MSGR_OnOffLine( pToFR, this, this->Get_DBID(), FRIEND_STATUS_ONLINE );
 				} else {
 					pNODE->m_VALUE.m_btSTATUS = FRIEND_STATUS_OFFLINE;
 				}
 			} /* else {
-				// ³ª¸¦ »èÁ¦ÇÏ°Å³ª ³»°¡ Â÷´ÜÇÑ³ÑÀÌ±â ¶«¿¡ ³» »óÅÂ Åëº¸ÇÒ ÇÊ¿ä¾ø´Ù.
-				// ³ªµµ ÀÌ³ÑÀ» ·Î±×¾Æ¿ô »óÅÂ·Î º¸ÀÌ°ÔÇÔ...
+				// ë‚˜ë¥¼ ì‚­ì œí•˜ê±°ë‚˜ ë‚´ê°€ ì°¨ë‹¨í•œë„˜ì´ê¸° ë•œì— ë‚´ ìƒíƒœ í†µë³´í•  í•„ìš”ì—†ë‹¤.
+				// ë‚˜ë„ ì´ë„˜ì„ ë¡œê·¸ì•„ì›ƒ ìƒíƒœë¡œ ë³´ì´ê²Œí•¨...
 			}
 			*/
 
@@ -105,9 +105,9 @@ void CMessenger::MSGR_LogIN (int iCount, BYTE *pLIST)
 
 //-------------------------------------------------------------------------------------------------
 /*
-2. ·Î±×¾Æ¿ô½Ã
-	. ³ª°¡ µî·ÏÇÑ Ä£±¸¸®½ºÆ® Á¶È¸..
-		NODE->m_VALUE.m_pUSER != NULL ÀÌ¸é ·Î±×¾Æ¿ô Àü¼Û.
+2. ë¡œê·¸ì•„ì›ƒì‹œ
+	. ë‚˜ê°€ ë“±ë¡í•œ ì¹œêµ¬ë¦¬ìŠ¤íŠ¸ ì¡°íšŒ..
+		NODE->m_VALUE.m_pUSER != NULL ì´ë©´ ë¡œê·¸ì•„ì›ƒ ì „ì†¡.
 */
 void CMessenger::MSGR_LogOUT ()
 {
@@ -152,10 +152,10 @@ void CMessenger::MSGR_LogOUT ()
 
 //-------------------------------------------------------------------------------------------------
 /*
-3. Ä£±¸µî·Ï½Ã : Ä£±¸´Â ¹Ýµå½Ã ¿Â¶óÀÎ »óÅÂ¿©¾ß ÇÑ´Ù.
-	. ´ë»óÀÇ ¸®½ºÆ®¿¡ ÀÌ¹Ì ³»°¡ Ä£±¸·Î µÇ¾î ÀÖ³Ä?
-	. ³ªÀÇ Ä£±¸¸ñ·Ï¿¡ Ãß°¡
-	. Ä£±¸ÀÚ½ÅÀ» µî·Ï½ÃÅ² ÄÉ¸¯ ¸®½ºÆ®¿¡ ³ª¸¦ Ãß°¡.
+3. ì¹œêµ¬ë“±ë¡ì‹œ : ì¹œêµ¬ëŠ” ë°˜ë“œì‹œ ì˜¨ë¼ì¸ ìƒíƒœì—¬ì•¼ í•œë‹¤.
+	. ëŒ€ìƒì˜ ë¦¬ìŠ¤íŠ¸ì— ì´ë¯¸ ë‚´ê°€ ì¹œêµ¬ë¡œ ë˜ì–´ ìžˆëƒ?
+	. ë‚˜ì˜ ì¹œêµ¬ëª©ë¡ì— ì¶”ê°€
+	. ì¹œêµ¬ìžì‹ ì„ ë“±ë¡ì‹œí‚¨ ì¼€ë¦­ ë¦¬ìŠ¤íŠ¸ì— ë‚˜ë¥¼ ì¶”ê°€.
 */
 bool CMessenger::MSGR_Add( CWS_Client *pFriend )
 {
@@ -190,7 +190,7 @@ void CMessenger::MSGR_Del( DWORD dwDBID )
 		pNODE = m_ListFRIEND.GetHeadNode ();
 		while( pNODE ) {
 			if ( dwDBID == pNODE->m_VALUE.m_dwDBID ) {
-				// ÀÌ³Ñ »èÁ¦
+				// ì´ë„˜ ì‚­ì œ
 				pDestUSER = pNODE->m_VALUE.m_pUSER;
 				m_ListFRIEND.DeleteNFree( pNODE );
 				this->m_bFriendUPDATE = true;
@@ -216,7 +216,7 @@ void CMessenger::MSGR_Ban( DWORD dwDBID )
 		pNODE = m_ListFRIEND.GetHeadNode ();
 		while( pNODE ) {
 			if ( dwDBID == pNODE->m_VALUE.m_dwDBID ) {
-				// ÀÌ³ÑÀÇ ¸Þ¼¼Áö Â÷´Ü..
+				// ì´ë„˜ì˜ ë©”ì„¸ì§€ ì°¨ë‹¨..
 				pNODE->m_VALUE.m_btSTATUS = FRIEND_STATUS_REFUSED;
 				break;
 			}

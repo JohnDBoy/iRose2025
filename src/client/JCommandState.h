@@ -96,7 +96,7 @@ public:
 
 
 	//----------------------------------------------------------------------------------------------------
-	/// @brief ÇöÀç Å°º¸µå ÀÔ·Â »óÅÂ¿¡ µû¸¥ Å¸°Ù ¼¼ÆÃ
+	/// @brief í˜„ì¬ í‚¤ë³´ë“œ ì…ë ¥ ìƒíƒœì— ë”°ë¥¸ íƒ€ê²Ÿ ì„¸íŒ…
 	//----------------------------------------------------------------------------------------------------
 	virtual void		ClearMouseState() = 0{ *(int*)0 = 10; };
 	virtual void		SetTargetObject( int iTargetType, int iTargetObj, D3DVECTOR& pickPos, DWORD wVKeyState, bool bDBClick = false ) = 0{ *(int*)0 = 10; };
@@ -107,7 +107,7 @@ public:
 
 
 	//----------------------------------------------------------------------------------------------------
-	/// PVP °ü·Ã ¼³Á¤ ÇÔ¼ö( non virtual )
+	/// PVP ê´€ë ¨ ì„¤ì • í•¨ìˆ˜( non virtual )
 	//----------------------------------------------------------------------------------------------------
 	void				PVPTarget_Click( int iTargetType, int iTargetObj, D3DVECTOR& pickPos, bool bDBClick = false );
 	static bool			IsEnemy( CObjCHAR* pTargetAVT );
@@ -135,7 +135,7 @@ public:
 	/*override*/bool		OnKeyDown( WPARAM wParam, LPARAM lParam );
 
 	//----------------------------------------------------------------------------------------------------
-	/// @brief ÇöÀç Å°º¸µå ÀÔ·Â »óÅÂ¿¡ µû¸¥ Å¸°Ù ¼¼ÆÃ
+	/// @brief í˜„ì¬ í‚¤ë³´ë“œ ì…ë ¥ ìƒíƒœì— ë”°ë¥¸ íƒ€ê²Ÿ ì„¸íŒ…
 	//----------------------------------------------------------------------------------------------------
 	/*override*/void		ClearMouseState();
 	/*override*/void		SetTargetObject( int iTargetType, int iTargetObj, D3DVECTOR& pickPos, DWORD wVKeyState, bool bDBClick = false );
@@ -165,7 +165,7 @@ public:
 	/*override*/bool		OnKeyDown( WPARAM wParam, LPARAM lParam );
 
 	//----------------------------------------------------------------------------------------------------
-	/// @brief ÇöÀç Å°º¸µå ÀÔ·Â »óÅÂ¿¡ µû¸¥ Å¸°Ù ¼¼ÆÃ
+	/// @brief í˜„ì¬ í‚¤ë³´ë“œ ì…ë ¥ ìƒíƒœì— ë”°ë¥¸ íƒ€ê²Ÿ ì„¸íŒ…
 	//----------------------------------------------------------------------------------------------------
 	/*override*/void		ClearMouseState();
 	/*override*/void		SetTargetObject( int iTargetType, int iTargetObj, D3DVECTOR& pickPos, DWORD wVKeyState, bool bDBClick = false );
@@ -239,7 +239,7 @@ public:
 
 
 	//----------------------------------------------------------------------------------------------------
-	/// @brief ÇöÀç Å°º¸µå ÀÔ·Â »óÅÂ¿¡ µû¸¥ Å¸°Ù ¼¼ÆÃ
+	/// @brief í˜„ì¬ í‚¤ë³´ë“œ ì…ë ¥ ìƒíƒœì— ë”°ë¥¸ íƒ€ê²Ÿ ì„¸íŒ…
 	//----------------------------------------------------------------------------------------------------
 	void		ClearMouseState()					{ m_pUserInput->ClearMouseState(); }
 	void		SetTargetObject( int iTargetType, int iTargetObj, D3DVECTOR& pickPos, DWORD wVKeyState )
@@ -251,7 +251,7 @@ public:
 	void		SetTargetObject_ShiftClick( int iTargetType, int iTargetObj, D3DVECTOR& pickPos )
 													{ m_pUserInput->SetTargetObject_ShiftClick( iTargetType, iTargetObj, pickPos ); }
 
-	/// ÀÚ½ÅÀ» Å¸°ÙÀ¸·Î ÇÑ´Ù.
+	/// ìì‹ ì„ íƒ€ê²Ÿìœ¼ë¡œ í•œë‹¤.
 	void		SetTargetSelf();
 };
 

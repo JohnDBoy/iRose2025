@@ -17,7 +17,7 @@
 
 //-------------------------------------------------------------------------------------------------
 
-// ³»°¡ µî·ÏÇÑ Ä£±¸ ¸®½ºÆ®
+// ë‚´ê°€ ë“±ë¡í•œ ì¹œêµ¬ ë¦¬ìŠ¤íŠ¸
 struct tagMyFriend {
 	int			m_iSocketIDX;
 	BYTE		m_btSTATUS;
@@ -40,7 +40,7 @@ private:
 public :
 	CDLList< tagMyFriend >	m_ListFRIEND;
 
-	bool IsUPDATE ()		{	return m_bUpdate;	}	// db °»½ÅÇØ¾ß ÇÏ³Ä?
+	bool IsUPDATE ()		{	return m_bUpdate;	}	// db ê°±ì‹ í•´ì•¼ í•˜ëƒ?
 
 	void When_LogIN (int iCount, BYTE *pLIST);
 	void When_LogOUT ();

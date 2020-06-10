@@ -13,10 +13,10 @@
 #pragma comment (lib, "dxerr9.lib")
 
 /*
-1. 2d »ç¿îµå¿Í °°ÀÌ ds ¹öÆÛ »ý¼º 
-2. ¹öÆÛ¿¡ »ç¿îµå µ¥ÀÌÅ¸ ÀûÀç
-3. 3d ¹öÆÛ Äõ¸®..
-4. 3d ¹öÆÛ ÆÄ¶ó¸ÞÅÍ ¼³Á¤
+1. 2d ì‚¬ìš´ë“œì™€ ê°™ì´ ds ë²„í¼ ìƒì„± 
+2. ë²„í¼ì— ì‚¬ìš´ë“œ ë°ì´íƒ€ ì ìž¬
+3. 3d ë²„í¼ ì¿¼ë¦¬..
+4. 3d ë²„í¼ íŒŒë¼ë©”í„° ì„¤ì •
 	{
 		// Get the 3D buffer parameters
 		g_dsBufferParams.dwSize = sizeof(DS3DBUFFER);
@@ -26,7 +26,7 @@
 		g_dsBufferParams.dwMode = DS3DMODE_HEADRELATIVE;
 		g_pDS3DBuffer->SetAllParameters( &g_dsBufferParams, DS3D_IMMEDIATE );
 	}
-5. ±âº» ds ¹öÆÛ play
+5. ê¸°ë³¸ ds ë²„í¼ play
 */
 
 //-------------------------------------------------------------------------------------------------
@@ -707,8 +707,8 @@ typedef struct _DS3DLISTENER
 	
 	// m_dsListenerParams.
 
-	// DS3D_DEFERRED	: ¾ÖÇÃ¸®ÄÉÀÌ¼ÇÀÌ IDirectSound3DListener8::CommitDeferredSettings ¸Þ¼­µå¸¦ È£ÃâÇÒ ¶§±îÁö, ¼³Á¤Àº Àû¿ëµÇÁö ¾Ê´Â´Ù. º¹¼öÀÇ ¼³Á¤À» º¯°æÇÑ ÈÄ, 1 È¸ÀÇ Àç°è»êÀ¸·Î ±×°ÍµéÀ» Àû¿ëÇÒ ¼ö ÀÖ´Ù.  
-	// DS3D_IMMEDIATE	: ¼³Á¤À» Áï½Ã Àû¿ëÇØ, ½Ã½ºÅÛÀº ¸ðµç 3D »ç¿îµå ¹öÆÛÀÇ 3D ÁÂÇ¥¸¦ Àç°è»êÇÑ´Ù.  
+	// DS3D_DEFERRED	: ì• í”Œë¦¬ì¼€ì´ì…˜ì´ IDirectSound3DListener8::CommitDeferredSettings ë©”ì„œë“œë¥¼ í˜¸ì¶œí•  ë•Œê¹Œì§€, ì„¤ì •ì€ ì ìš©ë˜ì§€ ì•ŠëŠ”ë‹¤. ë³µìˆ˜ì˜ ì„¤ì •ì„ ë³€ê²½í•œ í›„, 1 íšŒì˜ ìž¬ê³„ì‚°ìœ¼ë¡œ ê·¸ê²ƒë“¤ì„ ì ìš©í•  ìˆ˜ ìžˆë‹¤.  
+	// DS3D_IMMEDIATE	: ì„¤ì •ì„ ì¦‰ì‹œ ì ìš©í•´, ì‹œìŠ¤í…œì€ ëª¨ë“  3D ì‚¬ìš´ë“œ ë²„í¼ì˜ 3D ì¢Œí‘œë¥¼ ìž¬ê³„ì‚°í•œë‹¤.  
     m_pDSListener->SetAllParameters( &m_dsListenerParams, DS3D_IMMEDIATE );
 }
 

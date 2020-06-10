@@ -91,7 +91,7 @@ bool CDamageEffect::Init()
 
 
 	//	::setMaterialUseAlpha( hMat, 1 );
-	//	::setMaterialUseLight( hMat, 0 ); // ¶óÀÌÆÃ Àû¿ë ¾ÈÇÔ.
+	//	::setMaterialUseLight( hMat, 0 ); // ë¼ì´íŒ… ì ìš© ì•ˆí•¨.
 	//	
 	//	//::setMaterialUseAlphaTest( hMat, 1 );
 	//	//::setMaterialZWrite( hMat, 1 );
@@ -109,7 +109,7 @@ bool CDamageEffect::Init()
 	//	
 	//	//::insertToScene( hDummy );
 	//	//----------------------------------------------------------------------------------------------------	
-	//	/// @brief CHILDÀÇInsertToSceneÁ¦°Å
+	//	/// @brief CHILDì˜InsertToSceneì œê±°
 	//	//----------------------------------------------------------------------------------------------------
 	//	//::insertToScene( hAnimatable );
 	//}
@@ -124,7 +124,7 @@ bool CDamageEffect::Init()
 	//if( m_DigitTex[ DIGIT_NORMAL ] == NULL )
 	//{
 	//		g_pCApp->ErrorBOX( "Chatbox load failed !!", "File open error" );
-	//		//½ÇÆĞÇÑ ÀÌÀ¯¸¦ Àû¾îÁØ´Ù..
+	//		//ì‹¤íŒ¨í•œ ì´ìœ ë¥¼ ì ì–´ì¤€ë‹¤..
 	//		ClearAll();
 	//		return false;
 	//}
@@ -138,7 +138,7 @@ bool CDamageEffect::Init()
 	//if( m_DigitTex[ DIGIT_ATTACKED ] == NULL )
 	//{
 	//	g_pCApp->ErrorBOX( "Chatbox load failed !!", "File open error" );
-	//	//½ÇÆĞÇÑ ÀÌÀ¯¸¦ Àû¾îÁØ´Ù..
+	//	//ì‹¤íŒ¨í•œ ì´ìœ ë¥¼ ì ì–´ì¤€ë‹¤..
 	//	ClearAll();
 	//	return false;
 	//}
@@ -155,7 +155,7 @@ bool CDamageEffect::Init()
 	//if( m_DigitClearTex == NULL )
 	//{
 	//		g_pCApp->ErrorBOX( "m_DigitClearTex load failed !!", "File open error" );
-	//		//½ÇÆĞÇÑ ÀÌÀ¯¸¦ Àû¾îÁØ´Ù..
+	//		//ì‹¤íŒ¨í•œ ì´ìœ ë¥¼ ì ì–´ì¤€ë‹¤..
 	//		ClearAll();
 	//		return false;
 	//}
@@ -170,7 +170,7 @@ bool CDamageEffect::Init()
 	//if( m_DigitMissTex == NULL )
 	//{
 	//	g_pCApp->ErrorBOX( "m_DigitMissTex load failed !!", "File open error" );
-	//	//½ÇÆĞÇÑ ÀÌÀ¯¸¦ Àû¾îÁØ´Ù..
+	//	//ì‹¤íŒ¨í•œ ì´ìœ ë¥¼ ì ì–´ì¤€ë‹¤..
 	//	ClearAll();
 	//	return false;
 	//}
@@ -196,7 +196,7 @@ void CDamageEffect::ClearAll()
 	//	if( m_DigitNode[ i ].m_hAnimatable != NULL )
 	//	{
 	//		//----------------------------------------------------------------------------------------------------	
-	//		/// @brief CHILDÀÇRemoveToSceneÁ¦°Å
+	//		/// @brief CHILDì˜RemoveToSceneì œê±°
 	//		//----------------------------------------------------------------------------------------------------
 	//		//::removeFromScene( m_DigitNode[ i ].m_hAnimatable );
 	//		::unloadAnimatable( m_DigitNode[ i ].m_hAnimatable );
@@ -259,7 +259,7 @@ void CDamageEffect::Refresh()
 	//		if( iState == 0 )
 	//		{
 	//			//----------------------------------------------------------------------------------------------------	
-	//			/// @brief Visibility ·Î Á¶Á¤ÇÏ´Â°Ô ¾Æ´Ï¶ó ¾Æ¿¹ Scene¿¡¼­ »«´Ù.
+	//			/// @brief Visibility ë¡œ ì¡°ì •í•˜ëŠ”ê²Œ ì•„ë‹ˆë¼ ì•„ì˜ˆ Sceneì—ì„œ ëº€ë‹¤.
 	//			//----------------------------------------------------------------------------------------------------
 	//			::removeFromScene( m_DigitNode[ i ].m_hPositionDummy );
 	//			m_DigitNode[ i ].m_bVisible = false;
@@ -270,7 +270,7 @@ void CDamageEffect::Refresh()
 	//}
 }
 
-/// ÇöÀç »ç¿ëµÇ°í ÀÖÁö ¾Ê´Â ³ëµå¸¦ ¾ò´Â´Ù..( ¾Ö´Ï¸ÅÀÌ¼ÇÀÌ ³¡³µ°Å³ª, ¾Æ¿¹ ¾ÆÁ÷ »ı¼ºµÇÁö ¾ÊÀº°Í )
+/// í˜„ì¬ ì‚¬ìš©ë˜ê³  ìˆì§€ ì•ŠëŠ” ë…¸ë“œë¥¼ ì–»ëŠ”ë‹¤..( ì• ë‹ˆë§¤ì´ì…˜ì´ ëë‚¬ê±°ë‚˜, ì•„ì˜ˆ ì•„ì§ ìƒì„±ë˜ì§€ ì•Šì€ê²ƒ )
 int CDamageEffect::GetEmptyNode()
 {
 	/*for( int i = 0; i < MAX_DIGIT_EFFECT ; i++ )

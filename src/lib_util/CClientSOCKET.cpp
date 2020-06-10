@@ -52,8 +52,8 @@ unsigned __stdcall ClientSOCKET_SendTHREAD( void* lpParameter )
 
 		if ( pClientSocket->m_bWritable && pClientSocket->m_SendPacketQ.GetNodeCount() > 0 ) {
 			if ( !pClientSocket->Packet_Send () ) {
-				// ¼ÒÄÏ ¿À·ù ¹ß»ı...
-				#pragma message ( "!!!!!! >>>> ¼ÒÄÏ ¿À·ù ¹ß»ı½Ã ´ëÃ³...." )
+				// ì†Œì¼“ ì˜¤ë¥˜ ë°œìƒ...
+				#pragma message ( "!!!!!! >>>> ì†Œì¼“ ì˜¤ë¥˜ ë°œìƒì‹œ ëŒ€ì²˜...." )
 			}
 		} 
 #ifdef	_DEBUG
@@ -234,7 +234,7 @@ void CClientSOCKET::OnSend (int nErrorCode)
 {
 	if ( !nErrorCode ) {
 		m_bWritable = true;
-		::SetEvent( m_hThreadEvent );			// ¾²·¹µå¿¡ Åëº¸ !!!
+		::SetEvent( m_hThreadEvent );			// ì“°ë ˆë“œì— í†µë³´ !!!
 	}
 }
 
@@ -294,15 +294,15 @@ void CClientSOCKET::Packet_Register2SendQ (t_PACKET *pRegPacket)
 	{
 		::EnterCriticalSection( &m_csThread );
 		{
-			// Encoding pSendPacket->m_Packet ... À§¿¡ ÀÖ´ø°ÍÀ» ¾ÈÀ¸·Î... ÀÎÄÚµùµÈ ¼ö¼­¿Í º¸³»´Â ¼ø¼­°¡ ¸ÖÆ¼¾²·¹µå¿¡ ÀÇÇØ
-			// Æ²·ÁÁú¼ö ÀÖ±â¶§¹®¿¡...
+			// Encoding pSendPacket->m_Packet ... ìœ„ì— ìˆë˜ê²ƒì„ ì•ˆìœ¼ë¡œ... ì¸ì½”ë”©ëœ ìˆ˜ì„œì™€ ë³´ë‚´ëŠ” ìˆœì„œê°€ ë©€í‹°ì“°ë ˆë“œì— ì˜í•´
+			// í‹€ë ¤ì§ˆìˆ˜ ìˆê¸°ë•Œë¬¸ì—...
 			pSendPacket->m_wSize = this->mF_ESP( &pSendPacket->m_Packet.m_HEADER );
 
 			m_WaitPacketQ.AllocNAppend( pSendPacket );
 		}
 		::LeaveCriticalSection( &m_csThread );
 
-		::SetEvent( m_hThreadEvent );			// ¾²·¹µå¿¡ Åëº¸ !!!
+		::SetEvent( m_hThreadEvent );			// ì“°ë ˆë“œì— í†µë³´ !!!
 	}
 }
 
@@ -341,7 +341,7 @@ void CClientSOCKET::Packet_Recv( int iToRecvBytes )
 				// Decoding Packet Header ...
 				this->m_nPacketSize = this->mF_DRH( &m_pRecvPacket->m_HEADER );
 				if ( !this->m_nPacketSize ) {
-					// ÆĞÅ¶ ¿À·ù !!!
+					// íŒ¨í‚· ì˜¤ë¥˜ !!!
 					this->Close ();
 					return;
 				}
@@ -495,7 +495,7 @@ bool CClientSOCKET::Peek_Packet (t_PACKET *pPacket, bool bRemoveFromQ)
 		// pPacket = pNode->DATA;
 		CopyMemory (pPacket, pNode->DATA, pNode->DATA->m_HEADER.m_nSize);
 
-        // ÆĞÅ¶ »èÁ¦.
+        // íŒ¨í‚· ì‚­ì œ.
 		if ( bRemoveFromQ ) {
 			this->m_RecvPacketQ.DeleteNode ( pNode );
 			delete[] pNode->DATA;
@@ -539,7 +539,7 @@ void CClientSOCKET::Close ()
 	    m_cStatus = CLIENTSOCKET_CLOSING;
 
 		do {
-			::SetEvent( m_hThreadEvent );				// ¾²·¹µå Á×À¸¶ó°í Åëº¸...
+			::SetEvent( m_hThreadEvent );				// ì“°ë ˆë“œ ì£½ìœ¼ë¼ê³  í†µë³´...
 			Sleep (100);
 		} while ( m_cStatus == CLIENTSOCKET_CLOSING ) ;
 

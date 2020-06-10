@@ -49,7 +49,7 @@ enum {
 } ;
 
 #define	SWITCH_ANI			8
-#define SWITCH_COLLISION	( SWITCH_ANI+MAX_MESH_ANI_TYPE )	// Ãæµ¿ Ã¼Å© Á¶»ç ¿©ºÎ.
+#define SWITCH_COLLISION	( SWITCH_ANI+MAX_MESH_ANI_TYPE )	// ì¶©ë™ ì²´í¬ ì¡°ì‚¬ ì—¬ë¶€.
 #define	SWITCH_CNST_ANI		( SWITCH_COLLISION+1 )
 #define SWITCH_RANGE_SET	( SWITCH_COLLISION+2 )
 #define SWITCH_BUSE_LIGHTMAP	( SWITCH_COLLISION+3 )
@@ -162,7 +162,7 @@ bool CCharPART::Load( CFileSystem* pFileSystem, short nLinkBoneNo, short nLinkDu
 
 					if ( NULL == m_pMeshAniFILE ) 
 					{
-						// ¾Æ¹ÙÅ¸ ¾Ö´Ï°¡ ¸÷ ¾Ö´Ï º¸´Ù ¸¹À¸´Ï±î... MAX_AVT_ANI»ç¿ë.
+						// ì•„ë°”íƒ€ ì• ë‹ˆê°€ ëª¹ ì• ë‹ˆ ë³´ë‹¤ ë§ìœ¼ë‹ˆê¹Œ... MAX_AVT_ANIì‚¬ìš©.
 						m_pMeshAniFILE = new t_HASHKEY[ MAX_AVT_ANI ];
 						::ZeroMemory( m_pMeshAniFILE, sizeof(t_HASHKEY)*MAX_AVT_ANI);
 					}
@@ -182,7 +182,7 @@ bool CCharPART::Load( CFileSystem* pFileSystem, short nLinkBoneNo, short nLinkDu
 		for (short nI=0; nI<MAX_AVT_ANI; nI++) 
 		{
 			if ( !m_pMeshAniFILE[ nI ] ) {
-				// ¸ğ¼ÇÀÌ ¾ø´Â ºÎºĞÀº Á¤Áö·Î ..
+				// ëª¨ì…˜ì´ ì—†ëŠ” ë¶€ë¶„ì€ ì •ì§€ë¡œ ..
 				m_pMeshAniFILE[ nI ] = m_pMeshAniFILE[ MOB_ANI_STOP ];	// MOB_ANI_STOP == AVT_ANI_STOP1 == 0
 			}
 		}
@@ -295,7 +295,7 @@ CFixedPART::CFixedPART ()
 	m_nRangeSet = 0;
 }
 
-/// @bug collision level ¼ºÁ¤ ÀÌ»óÇÏ´Ù..
+/// @bug collision level ì„±ì • ì´ìƒí•˜ë‹¤..
 bool  CFixedPART::Load ( CFileSystem* pFileSystem, short nLinkBoneNo, short nLinkDummyNo)
 {
 	BYTE btTAG, btLen;
@@ -329,7 +329,7 @@ bool  CFixedPART::Load ( CFileSystem* pFileSystem, short nLinkBoneNo, short nLin
 				m_nParent --;
 				break;
 
-			case SWITCH_COLLISION :	// Ãæµ¹ Á¶»ç !!!
+			case SWITCH_COLLISION :	// ì¶©ëŒ ì¡°ì‚¬ !!!
 			{
 				short nColl;
 				pFileSystem->ReadInt16( &nColl );
@@ -351,7 +351,7 @@ bool  CFixedPART::Load ( CFileSystem* pFileSystem, short nLinkBoneNo, short nLin
 			}
 
 
-			/// 2004/3/17 Rangeset, buseLightmap Ãß°¡
+			/// 2004/3/17 Rangeset, buseLightmap ì¶”ê°€
 			case SWITCH_RANGE_SET:
 				{
 					short nColl;
@@ -381,7 +381,7 @@ bool  CFixedPART::Load ( CFileSystem* pFileSystem, short nLinkBoneNo, short nLin
 }
 
 ///
-/// ³»ºÎ¿¡ ¼¼ÆÃµÈ µ¥ÀÌÅÍ·Î¼­ ½ÇÁ¦ ³ëµå¸¦ »ı¼ºÇÑ´Ù.
+/// ë‚´ë¶€ì— ì„¸íŒ…ëœ ë°ì´í„°ë¡œì„œ ì‹¤ì œ ë…¸ë“œë¥¼ ìƒì„±í•œë‹¤.
 ///
 HNODE CFixedPART::LoadVisible (char *szName, D3DVECTOR BasePOS, HNODE hParent)
 {
@@ -436,8 +436,8 @@ void CFixedPART::UnloadVisible (HNODE hNODE)
 void  CFixedPART::ProcANI (HNODE hVisible)
 {
 	// degree x,y,z
-	// rotateAxis 2.0  0 1 0   Å« ³¯°³.
-	// rotateAxis 10.0  1 0 0  ÀÛÀº ÆÒ
+	// rotateAxis 2.0  0 1 0   í° ë‚ ê°œ.
+	// rotateAxis 10.0  1 0 0  ì‘ì€ íŒ¬
 	
 	if ( m_wAniTYPE & BIT_ROTAXIS ) {
 		// degree, x, y, z

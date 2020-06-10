@@ -3,19 +3,19 @@
 #include "CItem.h"
 //-------------------------------------------------------------------------------------------------
 struct tagECONOMY {
-	// ÀÔ·Â µ¥ÀÌÅÍ...
+	// ìž…ë ¥ ë°ì´í„°...
 	union {
 		struct {
 #if	defined( __SERVER ) || defined( __VIRTUAL_SERVER )
-			DWORD	m_dwTown_COUNTER;					// Ä«¿îÅÍ 1ºÐ¿¡ 1¾¿ °¨¼Ò.		50~100
+			DWORD	m_dwTown_COUNTER;					// ì¹´ìš´í„° 1ë¶„ì— 1ì”© ê°ì†Œ.		50~100
 
-			short	m_nTown_POP_BASE;					// ±âÁØ ÀÎ±¸¼ö.					100~8000
-			short	m_nTown_DEV_BASE;					// ±âÁØ ¹ßÀüµµ					10~100
-			short	m_nTown_CONSUM[ MAX_PRICE_TYPE ];	// ¾ÆÀÌÅÛº° ¼Òºñ·®
+			short	m_nTown_POP_BASE;					// ê¸°ì¤€ ì¸êµ¬ìˆ˜.					100~8000
+			short	m_nTown_DEV_BASE;					// ê¸°ì¤€ ë°œì „ë„					10~100
+			short	m_nTown_CONSUM[ MAX_PRICE_TYPE ];	// ì•„ì´í…œë³„ ì†Œë¹„ëŸ‰
 
-			short	m_nTownDEV;							// ¸¶À» ¹ßÀüµµ
-			int		m_iTownPOP;							// ¸¶À» ÀÎ±¸.
-			int		m_iTownITEM[ MAX_PRICE_TYPE ];		// ¾ÆÀÌÅÛº° º¸À¯·®				1000~100000
+			short	m_nTownDEV;							// ë§ˆì„ ë°œì „ë„
+			int		m_iTownPOP;							// ë§ˆì„ ì¸êµ¬.
+			int		m_iTownITEM[ MAX_PRICE_TYPE ];		// ì•„ì´í…œë³„ ë³´ìœ ëŸ‰				1000~100000
 
 			DWORD	m_dwCheckTIME;
 			union {
@@ -31,8 +31,8 @@ struct tagECONOMY {
 			DWORD	m_dwUpdateTIME;
 			union {
 				struct {
-					BYTE	m_btTOWN_RATE;						// ¸¶À» ¹°°¡					80~140
-					BYTE	m_btItemRATE[ MAX_PRICE_TYPE ];		// ¾ÆÀÌÅÛº° ¹°°¡				1~127
+					BYTE	m_btTOWN_RATE;						// ë§ˆì„ ë¬¼ê°€					80~140
+					BYTE	m_btItemRATE[ MAX_PRICE_TYPE ];		// ì•„ì´í…œë³„ ë¬¼ê°€				1~127
 					short	m_nCur_WorldPROD;
 					short	m_nCur_WorldRATE;
 				} ;
@@ -49,7 +49,7 @@ class CEconomy : public tagECONOMY
 private:
 	int m_iTownCounter;
 public :
-	// ¸¶À» ¹°°¡...
+	// ë§ˆì„ ë¬¼ê°€...
 	static bool IsEssentialGoods (int iItemTYPE);
 
 	CEconomy ();
@@ -79,10 +79,10 @@ public :
 #if	defined( __SERVER ) || defined( __VIRTUAL_SERVER )
 		if ( nVarIDX >= 11 && nVarIDX <= 30 ) {
 			if ( nVarIDX <= 20 ) {
-				// º¸À¯·®
+				// ë³´ìœ ëŸ‰
 				return m_iTownITEM [ MIN_PRICE_TYPE + nVarIDX - 11 ];
 			} else {
-				// ¹°°¡..
+				// ë¬¼ê°€..
 				return m_btItemRATE[ MIN_PRICE_TYPE + nVarIDX - 21 ];
 			}
 		}
@@ -109,7 +109,7 @@ public :
 extern short Get_WorldRATE ();
 extern void  Set_WorldRATE (short nWorldRate);
 
-extern short Get_WorldPROD ();					// Á¦Á¶½Ã »ç¿ëµÇ´Â WORLD_PRODUCT
+extern short Get_WorldPROD ();					// ì œì¡°ì‹œ ì‚¬ìš©ë˜ëŠ” WORLD_PRODUCT
 extern void  Set_WorldPROD (short nWorldProd);
 
 //-------------------------------------------------------------------------------------------------

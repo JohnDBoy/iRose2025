@@ -43,7 +43,7 @@ bool CTCmdDragInven2QuickBar::Exec( CTObject* pObj )
 
 	short nQuickSlotIdx = pQuickBar->GetMouseClickSlot( ptMouse );
 
-	if( nQuickSlotIdx == -1 )///ÇØ´ç À§Ä¡¿¡ ½½·ÔÀÌ ¾ø´Ù.
+	if( nQuickSlotIdx == -1 )///í•´ë‹¹ ìœ„ì¹˜ì— ìŠ¬ë¡¯ì´ ì—†ë‹¤.
 		return true;
 
 	tagHotICON hotICON;
@@ -86,7 +86,7 @@ bool	CTCmdDragSkill2QuickBar::Exec( CTObject* pObj )
 
 	short nQuickSlotIdx = pQuickBar->GetMouseClickSlot( ptMouse );
 
-	if( nQuickSlotIdx == -1 )///ÇØ´ç À§Ä¡¿¡ ½½·ÔÀÌ ¾ø´Ù.
+	if( nQuickSlotIdx == -1 )///í•´ë‹¹ ìœ„ì¹˜ì— ìŠ¬ë¡¯ì´ ì—†ë‹¤.
 		return true;
 
 	tagHotICON hotICON;
@@ -130,7 +130,7 @@ bool	CTCmdDragClanSkill2QuickBar::Exec( CTObject* pObj )
 
 	short nQuickSlotIdx = pQuickBar->GetMouseClickSlot( ptMouse );
 
-	if( nQuickSlotIdx == -1 )///ÇØ´ç À§Ä¡¿¡ ½½·ÔÀÌ ¾ø´Ù.
+	if( nQuickSlotIdx == -1 )///í•´ë‹¹ ìœ„ì¹˜ì— ìŠ¬ë¡¯ì´ ì—†ë‹¤.
 		return true;
 
 	tagHotICON hotICON;
@@ -222,14 +222,14 @@ bool	CTCmdMoveIconInQuickBar::Exec( CTObject* pObj )
 		LogString( LOG_NORMAL,"SlotIndex Is Same @CTCmdDragItemFromQuickBar::Exec");
 		return true;
 	}
-	///ÀÌÀü ½½·Ô ºñ¿ì±â
+	///ì´ì „ ìŠ¬ë¡¯ ë¹„ìš°ê¸°
 	tagHotICON hotICON;
 	hotICON.m_cType = 0;
 	hotICON.m_nSlotNo = 0;
 	g_pNet->Send_cli_SET_HOTICON( (BYTE)nPrevSlotIndex, hotICON );
 
 
-	///»õ·Î¿î ½½·ÔÀ¸·Î ÀÌµ¿
+	///ìƒˆë¡œìš´ ìŠ¬ë¡¯ìœ¼ë¡œ ì´ë™
 	CHotIconSlot* pHotIconSlot	= g_pAVATAR->GetHotIconSlot();
 	hotICON						= pHotIconSlot->GetHotItem( nPrevSlotIndex );
 
@@ -313,7 +313,7 @@ bool CTCmdDragItemFromInvenInItemDlg::Exec( CTObject* pObj )
 
 		int iItemType = pItemIcon->GetItem().GetTYPE();
 
-		/// @brief º¸¼® ¾ÆÀÌÅÛÀÌ¶ó¸é..
+		/// @brief ë³´ì„ ì•„ì´í…œì´ë¼ë©´..
 		if( iItemType == ITEM_TYPE_GEM )
 		{
 			int iEquipSlot = pItemDlg->GetEquipSlot( ptMouse );
@@ -321,7 +321,7 @@ bool CTCmdDragItemFromInvenInItemDlg::Exec( CTObject* pObj )
 				return false;
 
 			tagITEM& Item = g_pAVATAR->m_Inventory.m_ItemEQUIP[ iEquipSlot ];			
-			/// ¼ÒÄÏÀÌ ÀÖ´Ù¸é..
+			/// ì†Œì¼“ì´ ìžˆë‹¤ë©´..
 			if( Item.HasSocket() )
 			{
 				g_pNet->Send_cli_CRAFT_GEMMING_REQ( iEquipSlot, pItemIcon->GetIndex() );
@@ -330,7 +330,7 @@ bool CTCmdDragItemFromInvenInItemDlg::Exec( CTObject* pObj )
 			return true;
 		}
 
-		/// »ç¿ë¾ÆÀÌÅÛÀº µå·¡±×·Î ±âº» µ¿ÀÛ( ÀåÂø )À» Ã³¸®ÇÏÁö ¾Ê´Â´Ù.
+		/// ì‚¬ìš©ì•„ì´í…œì€ ë“œëž˜ê·¸ë¡œ ê¸°ë³¸ ë™ìž‘( ìž¥ì°© )ì„ ì²˜ë¦¬í•˜ì§€ ì•ŠëŠ”ë‹¤.
 		if( pItemIcon->GetItem().GetTYPE() != ITEM_TYPE_USE )
 			pItemIcon->ExecuteCommand();		
 	}
@@ -379,7 +379,7 @@ bool CTCmdDragItem2PrivateStoreDlg::Exec( CTObject* pObj )
 
 		switch( pPrivateStoreDlg->GetTabType()  )
 		{
-		case CPrivateStoreDlg::TAB_SELL:///ÆÇ¸Å¸ñ·Ï¿¡ Ãß°¡
+		case CPrivateStoreDlg::TAB_SELL:///íŒë§¤ëª©ë¡ì— ì¶”ê°€
 			{
 				pDlg = g_itMGR.FindDlg( DLG_TYPE_GOODS );
 
@@ -400,7 +400,7 @@ bool CTCmdDragItem2PrivateStoreDlg::Exec( CTObject* pObj )
 				}
 				break;
 			}
-		case CPrivateStoreDlg::TAB_BUY :///±¸ÀÔ¸ñ·Ï¿¡ Ãß°¡
+		case CPrivateStoreDlg::TAB_BUY :///êµ¬ìž…ëª©ë¡ì— ì¶”ê°€
 			{
 				CPrivateStore::GetInstance().AddItemWishList( pItemIcon->GetItem(), true );
 				break;

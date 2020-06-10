@@ -27,8 +27,8 @@ void CQuestListItem::Draw()
 {
 	CWinCtrl::Draw();
 
-	///ÀÌ¸§ Ãâ·Â
-	///ÀÏ´Ü ¾ÆÀÌÄÜÀÌ ¾î¶²°ÍÀÌ ±×·ÁÁö´ÂÁö ¸ğ¸£´Ï±î..TrasformÇÏ°í Á¦¸ñ¸¸ Ãâ·ÂÇÏÀÚ.
+	///ì´ë¦„ ì¶œë ¥
+	///ì¼ë‹¨ ì•„ì´ì½˜ì´ ì–´ë–¤ê²ƒì´ ê·¸ë ¤ì§€ëŠ”ì§€ ëª¨ë¥´ë‹ˆê¹Œ..Trasformí•˜ê³  ì œëª©ë§Œ ì¶œë ¥í•˜ì.
 
 	if( QUEST_ICON( m_iQuestIndex ) )
 		g_DrawImpl.Draw( m_sPosition.x + 3, m_sPosition.y + 1, IMAGE_RES_STATE_ICON, QUEST_ICON( m_iQuestIndex ) );
@@ -68,8 +68,8 @@ void CQuestListItem::Update( POINT ptMouse )
 	}
 }
 
-/// ºÎ¸ğ°¡ ÀÖ´Ù¸é ÀÏ´Ü ZListBox¶ó°í °¡Á¤ÇÑ´Ù
-/// ÃßÈÄ EventHandler, Listener, ActionµîÀ» ±¸ÇöÇØ¾ß ÇÑ´Ù.
+/// ë¶€ëª¨ê°€ ìˆë‹¤ë©´ ì¼ë‹¨ ZListBoxë¼ê³  ê°€ì •í•œë‹¤
+/// ì¶”í›„ EventHandler, Listener, Actionë“±ì„ êµ¬í˜„í•´ì•¼ í•œë‹¤.
 void CQuestListItem::SetSelected()
 {
 	if( m_pParent )

@@ -78,12 +78,12 @@ short CAccountLIST::LogIN (char *szAccount, char *szPassword)
 {
 /*
 #define RESULT_LOGIN_REPLY_OK                   0x00
-#define RESULT_LOGIN_REPLY_FAILED               0x01    // ¿À·ù
-#define RESULT_LOGIN_REPLY_NOT_FOUND_ACCOUNT    0x02    // °èÁ¤ ¾ø´Ù.
-#define RESULT_LOGIN_REPLY_INVALID_PASSWORD     0x03    // ºñ¹ø ¿À·ù
-#define RESULT_LOGIN_REPLY_ALREADY_LOGGEDIN     0x04    // ÀÌ¹Ì ·Î±×ÀÎ ÁßÀÌ´Ù
-#define RESULT_LOGIN_REPLY_REFUSED_ACCOUNT      0x05    // ¼­¹ö¿¡¼­ °ÅºÎµÈ °èÁ¤ÀÌ´Ù.
-#define RESULT_LOGIN_REPLY_NEED_CHARGE          0x06    // ÃæÀüÀÌ ÇÊ¿äÇÑ´Ù
+#define RESULT_LOGIN_REPLY_FAILED               0x01    // ì˜¤ë¥˜
+#define RESULT_LOGIN_REPLY_NOT_FOUND_ACCOUNT    0x02    // ê³„ì • ì—†ë‹¤.
+#define RESULT_LOGIN_REPLY_INVALID_PASSWORD     0x03    // ë¹„ë²ˆ ì˜¤ë¥˜
+#define RESULT_LOGIN_REPLY_ALREADY_LOGGEDIN     0x04    // ì´ë¯¸ ë¡œê·¸ì¸ ì¤‘ì´ë‹¤
+#define RESULT_LOGIN_REPLY_REFUSED_ACCOUNT      0x05    // ì„œë²„ì—ì„œ ê±°ë¶€ëœ ê³„ì •ì´ë‹¤.
+#define RESULT_LOGIN_REPLY_NEED_CHARGE          0x06    // ì¶©ì „ì´ í•„ìš”í•œë‹¤
 */
     // check account & password from DB
     if ( szAccount == NULL ) {

@@ -110,7 +110,7 @@ bool CCreateAvata::RecvCreateAvata( t_PACKET* recvPacket )
 		g_EUILobby.ShowMsgBox( STR_CANT_CREATE_MORE_CHARACTER, CMsgBox::BT_OK , true, 0 );
 		break;
 	case RESULT_CREATE_CHAR_BLOCKED:
-		g_EUILobby.ShowMsgBox( "ÇöÀç ¼­¹ö¿¡¼­´Â Ä³¸¯ÅÍ »ý¼ºÀÌ ºÒ°¡´ÉÇÕ´Ï´Ù. ÀÚ¼¼ÇÑ ³»¿ëÀº È¨ÆäÀÌÁö¸¦ Âü°íÇØÁÖ¼¼¿ä.", CMsgBox::BT_OK , true, 0 );
+		g_EUILobby.ShowMsgBox( "í˜„ìž¬ ì„œë²„ì—ì„œëŠ” ìºë¦­í„° ìƒì„±ì´ ë¶ˆê°€ëŠ¥í•©ë‹ˆë‹¤. ìžì„¸í•œ ë‚´ìš©ì€ í™ˆíŽ˜ì´ì§€ë¥¼ ì°¸ê³ í•´ì£¼ì„¸ìš”.", CMsgBox::BT_OK , true, 0 );
 		break;
 	default:
 		g_EUILobby.ShowMsgBox( STR_FAIL_MAKE_NEW_CHARACTER, CMsgBox::BT_OK , true, 0 );

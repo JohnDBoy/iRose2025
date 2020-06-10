@@ -46,8 +46,8 @@ CSkill::~CSkill()
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief  ½ºÅ³ ·¹º§¾÷½Ã¿¡´Â UserData ÀÇ Skill Á¤º¸¸¸ ¾÷µ¥ÀÌÆ® ÇÏ±â¶§¹®¿¡
-///			SkillSlot ÀÇ ½ºÅ³ Á¤º¸µéµµ ³»ºÎ¿¡ º¸°üÇÏÁö ¾Ê°í Á÷Á¢ UserData ÀÇ Skill Á¤º¸¸¦ ÂüÁ¶ÇÑ´Ù.
+/// @brief  ìŠ¤í‚¬ ë ˆë²¨ì—…ì‹œì—ëŠ” UserData ì˜ Skill ì •ë³´ë§Œ ì—…ë°ì´íŠ¸ í•˜ê¸°ë•Œë¬¸ì—
+///			SkillSlot ì˜ ìŠ¤í‚¬ ì •ë³´ë“¤ë„ ë‚´ë¶€ì— ë³´ê´€í•˜ì§€ ì•Šê³  ì§ì ‘ UserData ì˜ Skill ì •ë³´ë¥¼ ì°¸ì¡°í•œë‹¤.
 //----------------------------------------------------------------------------------------------------
 
 short CSkill::GetSkillIndex()
@@ -73,7 +73,7 @@ short CSkill::GetSkillIndex()
 	return nSkillIDX;
 }
 //----------------------------------------------------------------------------------------------------
-/// @modify Á÷Á¢ STB¿¡¼­ °¡Á®¿À´Â°ÍÀ¸·Î ¼öÁ¤ nAvy 2004/6/30;
+/// @modify ì§ì ‘ STBì—ì„œ ê°€ì ¸ì˜¤ëŠ”ê²ƒìœ¼ë¡œ ìˆ˜ì • nAvy 2004/6/30;
 //----------------------------------------------------------------------------------------------------
 short CSkill::GetSkillLevel()
 { 
@@ -97,7 +97,7 @@ bool CSkill::Create( int iSkillType, short nSkillIdx, short nSkillType, short nS
 	
 	switch( m_btSkillActionType )
 	{
-		/// ±âº»¸í·É( ¾É±â, ¼­±â, °¨Á¤Ç¥Çöµî )
+		/// ê¸°ë³¸ëª…ë ¹( ì•‰ê¸°, ì„œê¸°, ê°ì •í‘œí˜„ë“± )
 		case SKILL_BASE_ACTION:
 			{
 				m_pCommand = (CCommand*) g_QuickCommandPool[ COMMAND_COMMAND ];
@@ -130,7 +130,7 @@ bool CSkill::Execute()
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief ÁÖ ¿ëµµ´Â ½ºÅ³ µô·¹ÀÌ Å¸ÀÓÀÇ ÁøÇàÀÌ´Ù.
+/// @brief ì£¼ ìš©ë„ëŠ” ìŠ¤í‚¬ ë”œë ˆì´ íƒ€ì„ì˜ ì§„í–‰ì´ë‹¤.
 //----------------------------------------------------------------------------------------------------
 
 int CSkill::Process()
@@ -181,7 +181,7 @@ void CSkill::SetSkillSlot( int iSlot )
 { 
 	m_iSkillSlot = iSlot; 
 
-	/// ¸ğµç Skill °´Ã¼°¡ ÄÄ¸Çµå °´Ã¼¸¦ °¡Áö´Â°ÍÀÌ ¾Æ´Ï¶ó °øÀ¯ÇÑ´Ù.. ¸Å È£Ãâ½Ã¸¶´Ù ¸É¹ö ¼¼ÆÃÇØ¶ó..
+	/// ëª¨ë“  Skill ê°ì²´ê°€ ì»´ë§¨ë“œ ê°ì²´ë¥¼ ê°€ì§€ëŠ”ê²ƒì´ ì•„ë‹ˆë¼ ê³µìœ í•œë‹¤.. ë§¤ í˜¸ì¶œì‹œë§ˆë‹¤ ë§´ë²„ ì„¸íŒ…í•´ë¼..
 	////if( m_pCommand )
 	////	m_pCommand->SetMember( iSlot );
 	////else
@@ -410,7 +410,7 @@ void CFireSkill::Action( CObjCHAR* pAttacker, CObjCHAR* pTarget )
 	{
 		g_pBltMGR->Add_BULLET( pAttacker, pTarget, iBulletIDX );
 
-		/// Å¸°İ»ç¿îµå Ãâ·Â
+		/// íƒ€ê²©ì‚¬ìš´ë“œ ì¶œë ¥
 
 	}
 }
@@ -458,7 +458,7 @@ void CFireToPositionSkill::Action( CObjCHAR* pAttacker, CObjCHAR* pTarget )
 	{
 		g_pBltMGR->Add_BULLET( pAttacker, pTarget, iBulletIDX );
 
-		/// Å¸°İ»ç¿îµå Ãâ·Â
+		/// íƒ€ê²©ì‚¬ìš´ë“œ ì¶œë ¥
 
 	}
 }
@@ -612,11 +612,11 @@ CSkill* CSkillManager::CreateNewSkill( int iSkillSlotType, short nSkillIdx, char
 	CSkill* pSkill = NULL;
 	int iSkillType = SKILL_TYPE( nSkillIdx );
 
-	/// ÈÄ¿¡ Àû´çÇÑ ÆÑÅä¸®·Î ±³Ã¼ÇÏÀÚ..
+	/// í›„ì— ì ë‹¹í•œ íŒ©í† ë¦¬ë¡œ êµì²´í•˜ì..
 	switch( iSkillType )
 	{
 		case SKILL_EMOTION_ACTION:
-		case SKILL_BASE_ACTION:					///< ±âº» ¸í·É( ¾É±â, ¼­±â, Áİ±â... )
+		case SKILL_BASE_ACTION:					///< ê¸°ë³¸ ëª…ë ¹( ì•‰ê¸°, ì„œê¸°, ì¤ê¸°... )
 			{
 				pSkill = new CBaseActionSkill();
 				pSkill->Create( iSkillSlotType, nSkillIdx, iSkillType, cSkillLevel );
@@ -630,7 +630,7 @@ CSkill* CSkillManager::CreateNewSkill( int iSkillSlotType, short nSkillIdx, char
 			break;
 
 
-		case SKILL_ACTION_IMMEDIATE:			///< ±ÙÁ¢ Áï½Ã ¹ßµ¿.( Áï½Ã ¸ğ¼Ç ±³Ã¼ )
+		case SKILL_ACTION_IMMEDIATE:			///< ê·¼ì ‘ ì¦‰ì‹œ ë°œë™.( ì¦‰ì‹œ ëª¨ì…˜ êµì²´ )
 			{
 				pSkill = new CImmediateActionSkill();
 				pSkill->Create( iSkillSlotType, nSkillIdx, iSkillType, cSkillLevel );
@@ -638,7 +638,7 @@ CSkill* CSkillManager::CreateNewSkill( int iSkillSlotType, short nSkillIdx, char
 			break;
 
 		case SKILL_ACTION_ENFORCE_BULLET:
-		case SKILL_ACTION_FIRE_BULLET:			///< ¹ß»ç.
+		case SKILL_ACTION_FIRE_BULLET:			///< ë°œì‚¬.
 			{
 				pSkill = new CFireSkill();
 				pSkill->Create( iSkillSlotType, nSkillIdx, iSkillType, cSkillLevel );
@@ -653,9 +653,9 @@ CSkill* CSkillManager::CreateNewSkill( int iSkillSlotType, short nSkillIdx, char
 			break;
 
 		/// Self bound
-		case SKILL_ACTION_SELF_BOUND_DURATION:	///< ÀÚ½Å¿¡°Ô ¹ßµ¿ Áö¼Ó ¸¶¹ı.( Ä³½ºÆÃ À¯ ) ´É·ÂÄ¡ 
-		case SKILL_ACTION_SELF_BOUND:			///< ÀÚ½Å¿¡°Ô ¹ßµ¿.( Ä³½ºÆÃ À¯ )
-		case SKILL_ACTION_SELF_STATE_DURATION:	///< ÀÚ½Å¿¡°Ô ¹ßµ¿ Áö¼Ó ¸¶¹ı.( Ä³½ºÆÃ À¯ ) »óÅÂ°ü·Ã
+		case SKILL_ACTION_SELF_BOUND_DURATION:	///< ìì‹ ì—ê²Œ ë°œë™ ì§€ì† ë§ˆë²•.( ìºìŠ¤íŒ… ìœ  ) ëŠ¥ë ¥ì¹˜ 
+		case SKILL_ACTION_SELF_BOUND:			///< ìì‹ ì—ê²Œ ë°œë™.( ìºìŠ¤íŒ… ìœ  )
+		case SKILL_ACTION_SELF_STATE_DURATION:	///< ìì‹ ì—ê²Œ ë°œë™ ì§€ì† ë§ˆë²•.( ìºìŠ¤íŒ… ìœ  ) ìƒíƒœê´€ë ¨
 		case SKILL_ACTION_SELF_DAMAGE:
 		case SKILL_ACTION_SUMMON_PET:
 			{
@@ -665,10 +665,10 @@ CSkill* CSkillManager::CreateNewSkill( int iSkillSlotType, short nSkillIdx, char
 			break;
 
 		/// Target bound
-		case SKILL_ACTION_TARGET_BOUND_DURATION:	///< »ó´ë¿¡°Ô ¹ßµ¿ Áö¼Ó ¸¶¹ı.( Ä³½ºÆÃ À¯ ) ´É·ÂÄ¡ 
-		case SKILL_ACTION_TARGET_BOUND:				///< »ó´ë¿¡°Ô ¹ßµ¿.( Ä³½ºÆÃ À¯ )
-		case SKILL_ACTION_TARGET_STATE_DURATION:	///< »ó´ë¿¡°Ô ¹ßµ¿ Áö¼Ó ¸¶¹ı.( Ä³½ºÆÃ À¯ ) »óÅÂ°ü·Ã
-		case SKILL_ACTION_SELF_AND_TARGET:			///< Å¸°Ù¿¡°Ô ¿µÇâÀ» ÁÖ´Âµ¿½Ã¿¡ ³ª¿¡°Ô ¿µÇâÀ» ÁÜ
+		case SKILL_ACTION_TARGET_BOUND_DURATION:	///< ìƒëŒ€ì—ê²Œ ë°œë™ ì§€ì† ë§ˆë²•.( ìºìŠ¤íŒ… ìœ  ) ëŠ¥ë ¥ì¹˜ 
+		case SKILL_ACTION_TARGET_BOUND:				///< ìƒëŒ€ì—ê²Œ ë°œë™.( ìºìŠ¤íŒ… ìœ  )
+		case SKILL_ACTION_TARGET_STATE_DURATION:	///< ìƒëŒ€ì—ê²Œ ë°œë™ ì§€ì† ë§ˆë²•.( ìºìŠ¤íŒ… ìœ  ) ìƒíƒœê´€ë ¨
+		case SKILL_ACTION_SELF_AND_TARGET:			///< íƒ€ê²Ÿì—ê²Œ ì˜í–¥ì„ ì£¼ëŠ”ë™ì‹œì— ë‚˜ì—ê²Œ ì˜í–¥ì„ ì¤Œ
 		case SKILL_ACTION_RESURRECTION:
 			{
 				pSkill = new CTargetBoundSkill();
@@ -688,39 +688,39 @@ CSkill* CSkillManager::CreateNewSkill( int iSkillSlotType, short nSkillIdx, char
 }
 
 
-/// ½ºÅ³ÀÇ ¾×¼Ç Å¸ÀÔ¿¡ µû¸¥ Å¸°Ù Å¸ÀÔÀ» ±¸ÇÑ´Ù.
+/// ìŠ¤í‚¬ì˜ ì•¡ì…˜ íƒ€ì…ì— ë”°ë¥¸ íƒ€ê²Ÿ íƒ€ì…ì„ êµ¬í•œë‹¤.
 /*static*/ int	CSkillManager::GetSkillTargetType( int iSkillIndex )
 {
 	switch( SKILL_TYPE( iSkillIndex ) )
 	{
-		case SKILL_BASE_ACTION:						///< ±âº» ¸í·É( ¾É±â, ¼­±â, Áİ±â... ), °¨Á¤Ç¥Çö		
-		case SKILL_CREATE_WINDOW:					///< Ã¢»ı¼º( Á¦Á¶, ÆÄÆ¼, °³ÀÎ»óÁ¡... )	
-		case SKILL_ACTION_SELF_BOUND_DURATION:		///< ÀÚ½Å¿¡°Ô ¹ßµ¿ Áö¼Ó ¸¶¹ı.( Ä³½ºÆÃ À¯ ) ´É·ÂÄ¡ 
-		case SKILL_ACTION_SELF_BOUND:				///< ÀÚ½Å¿¡°Ô ¹ßµ¿ ¹Ù·Î ¾÷ ¸¶¹ı.( Ä³½ºÆÃ À¯ ) ´É·ÂÄ¡
-		case SKILL_ACTION_SELF_STATE_DURATION:		///< ÀÚ½Å¿¡°Ô ¹ßµ¿ Áö¼Ó ¸¶¹ı.( Ä³½ºÆÃ À¯ ) »óÅÂ°ü·Ã
-		case SKILL_ACTION_SUMMON_PET:				///< ÆÖ ¼ÒÈ¯ ½ºÅ³
-		case SKILL_ACTION_PASSIVE:					///< ÆĞ½Ãºê..
-		case SKILL_ACTION_SELF_DAMAGE:				///< ÀÚ½ÅÁÖÀ§·Î µ¥¹ÌÁö¸¦ ÁÖ´Â ½ºÅ³..( ÀÌ°Ç ¼¿ÇÁ·Î ¾ÈµÇ³ª? ) ¹°·Ğ ¹üÀ§..
+		case SKILL_BASE_ACTION:						///< ê¸°ë³¸ ëª…ë ¹( ì•‰ê¸°, ì„œê¸°, ì¤ê¸°... ), ê°ì •í‘œí˜„		
+		case SKILL_CREATE_WINDOW:					///< ì°½ìƒì„±( ì œì¡°, íŒŒí‹°, ê°œì¸ìƒì ... )	
+		case SKILL_ACTION_SELF_BOUND_DURATION:		///< ìì‹ ì—ê²Œ ë°œë™ ì§€ì† ë§ˆë²•.( ìºìŠ¤íŒ… ìœ  ) ëŠ¥ë ¥ì¹˜ 
+		case SKILL_ACTION_SELF_BOUND:				///< ìì‹ ì—ê²Œ ë°œë™ ë°”ë¡œ ì—… ë§ˆë²•.( ìºìŠ¤íŒ… ìœ  ) ëŠ¥ë ¥ì¹˜
+		case SKILL_ACTION_SELF_STATE_DURATION:		///< ìì‹ ì—ê²Œ ë°œë™ ì§€ì† ë§ˆë²•.( ìºìŠ¤íŒ… ìœ  ) ìƒíƒœê´€ë ¨
+		case SKILL_ACTION_SUMMON_PET:				///< íŒ» ì†Œí™˜ ìŠ¤í‚¬
+		case SKILL_ACTION_PASSIVE:					///< íŒ¨ì‹œë¸Œ..
+		case SKILL_ACTION_SELF_DAMAGE:				///< ìì‹ ì£¼ìœ„ë¡œ ë°ë¯¸ì§€ë¥¼ ì£¼ëŠ” ìŠ¤í‚¬..( ì´ê±´ ì…€í”„ë¡œ ì•ˆë˜ë‚˜? ) ë¬¼ë¡  ë²”ìœ„..
 		
-			/// Å¸°ÙÀÌ ÇÊ¿ä¾ø´Â °ÍµéÀÌ´Ù.
+			/// íƒ€ê²Ÿì´ í•„ìš”ì—†ëŠ” ê²ƒë“¤ì´ë‹¤.
 			return SKILL_TARGET_NONE;
 
-		case SKILL_ACTION_ENFORCE_WEAPON:			///< ¹«±â»óÅÂ º¯°æ( °­È­, È¿°ú ¿¬Ãâ( Á¤·ÉÅº? ) )
-			/// ÀÌ°ÇÁ» ¸ğÈ£ÇÏ±º..
+		case SKILL_ACTION_ENFORCE_WEAPON:			///< ë¬´ê¸°ìƒíƒœ ë³€ê²½( ê°•í™”, íš¨ê³¼ ì—°ì¶œ( ì •ë ¹íƒ„? ) )
+			/// ì´ê±´ì¢€ ëª¨í˜¸í•˜êµ°..
 			return SKILL_TARGET_OBJECT;
 
-		case SKILL_ACTION_IMMEDIATE:				///< ±ÙÁ¢ Áï½Ã ¹ßµ¿.( Áï½Ã ¸ğ¼Ç ±³Ã¼ )				
+		case SKILL_ACTION_IMMEDIATE:				///< ê·¼ì ‘ ì¦‰ì‹œ ë°œë™.( ì¦‰ì‹œ ëª¨ì…˜ êµì²´ )				
 			return SKILL_TARGET_OBJECT;
 
-		case SKILL_ACTION_ENFORCE_BULLET:			///< °­È­ÃÑ¾Ë º¯°æ ¹ß»ç. ( ¾ÆÀÌ½º ¾Ö·Î¿ì.. ½ÇÁ¦ È­»ìÀÌ º¯ÇÏ´Â.. )		
-		case SKILL_ACTION_FIRE_BULLET:				///< ¹ß»ç.( ÆÄÀÌ¾îº¼ )		
-		case SKILL_ACTION_TARGET_BOUND_DURATION:	///< Å¸°Ù¿¡°Ô ¹ßµ¿ Áö¼Ó ¸¶¹ı.( Ä³½ºÆÃ À¯ ) ´É·ÂÄ¡
-		case SKILL_ACTION_TARGET_BOUND:				///< Å¸°Ù¿¡°Ô ¹ßµ¿ ¹Ù·Î ¾÷ ¸¶¹ı.( Ä³½ºÆÃ À¯ ) ´É·ÂÄ¡
-		case SKILL_ACTION_TARGET_STATE_DURATION:	///< ÀÚ½Å¿¡°Ô ¹ßµ¿ Áö¼Ó ¸¶¹ı.( Ä³½ºÆÃ À¯ ) »óÅÂ°ü·Ã
+		case SKILL_ACTION_ENFORCE_BULLET:			///< ê°•í™”ì´ì•Œ ë³€ê²½ ë°œì‚¬. ( ì•„ì´ìŠ¤ ì• ë¡œìš°.. ì‹¤ì œ í™”ì‚´ì´ ë³€í•˜ëŠ”.. )		
+		case SKILL_ACTION_FIRE_BULLET:				///< ë°œì‚¬.( íŒŒì´ì–´ë³¼ )		
+		case SKILL_ACTION_TARGET_BOUND_DURATION:	///< íƒ€ê²Ÿì—ê²Œ ë°œë™ ì§€ì† ë§ˆë²•.( ìºìŠ¤íŒ… ìœ  ) ëŠ¥ë ¥ì¹˜
+		case SKILL_ACTION_TARGET_BOUND:				///< íƒ€ê²Ÿì—ê²Œ ë°œë™ ë°”ë¡œ ì—… ë§ˆë²•.( ìºìŠ¤íŒ… ìœ  ) ëŠ¥ë ¥ì¹˜
+		case SKILL_ACTION_TARGET_STATE_DURATION:	///< ìì‹ ì—ê²Œ ë°œë™ ì§€ì† ë§ˆë²•.( ìºìŠ¤íŒ… ìœ  ) ìƒíƒœê´€ë ¨
 		case SKILL_ACTION_RESURRECTION:
 			return SKILL_TARGET_OBJECT;
 		
-		case SKILL_ACTION_AREA_TARGET:				///< Áö¿ª °ø°İ¸¶¹ı( ´ç±Ù ¹üÀ§.. )!!! Çã³ª Áö±İÀº UI¹®Á¦·Î Å¸°Ù ¿ÀºêÁ§Æ®ÀÇ À§Ä¡·Î ½ÃÀü..
+		case SKILL_ACTION_AREA_TARGET:				///< ì§€ì—­ ê³µê²©ë§ˆë²•( ë‹¹ê·¼ ë²”ìœ„.. )!!! í—ˆë‚˜ ì§€ê¸ˆì€ UIë¬¸ì œë¡œ íƒ€ê²Ÿ ì˜¤ë¸Œì íŠ¸ì˜ ìœ„ì¹˜ë¡œ ì‹œì „..
 			return SKILL_TARGET_OBJECT;
 	}
 
@@ -728,16 +728,16 @@ CSkill* CSkillManager::CreateNewSkill( int iSkillSlotType, short nSkillIdx, char
 }
 
 ///
-/// @todo ÀûÀıÇÑ ¸Ş¼¼Áö¸¦ ¼­¹ö¿¡ ³¯·Á¶ó.. <= ÇöÀç´Â ¼­¹ö¿¡¼­ ¸í·ÉÀ» ÇÏ´Ş¹ŞÀ½.. ±×·¯´Ï ³¯¸± ÇÊ¿ä¾øÁö..
-/// ÇöÀç ½ÇÁ¦ ¾×¼ÇÀº °¢ ½ºÅ³ Å¬·¡½º ÀÚÃ¼¿¡¼­..
+/// @todo ì ì ˆí•œ ë©”ì„¸ì§€ë¥¼ ì„œë²„ì— ë‚ ë ¤ë¼.. <= í˜„ì¬ëŠ” ì„œë²„ì—ì„œ ëª…ë ¹ì„ í•˜ë‹¬ë°›ìŒ.. ê·¸ëŸ¬ë‹ˆ ë‚ ë¦´ í•„ìš”ì—†ì§€..
+/// í˜„ì¬ ì‹¤ì œ ì•¡ì…˜ì€ ê° ìŠ¤í‚¬ í´ë˜ìŠ¤ ìì²´ì—ì„œ..
 bool CSkillManager::ActionSkill( short nSkillIdx, CObjCHAR* pSrc, CObjCHAR* pTarget, D3DXVECTOR3 PosTo, bool bTargetPos )
 {
-	/// ÇàÀ§ ¹æ½Ä¿¡ µû¶ó¼­...
+	/// í–‰ìœ„ ë°©ì‹ì— ë”°ë¼ì„œ...
 	int iSkillActionType = GetSkillActionType( nSkillIdx );
 
 	switch( iSkillActionType )
 	{
-		case SKILL_BASE_ACTION:					///< ±âº» ¸í·É( ¾É±â, ¼­±â, Áİ±â... )
+		case SKILL_BASE_ACTION:					///< ê¸°ë³¸ ëª…ë ¹( ì•‰ê¸°, ì„œê¸°, ì¤ê¸°... )
 			break;
 
 		case SKILL_CREATE_WINDOW:			
@@ -755,13 +755,13 @@ bool CSkillManager::ActionSkill( short nSkillIdx, CObjCHAR* pSrc, CObjCHAR* pTar
 					if( pBullet )
 						pBullet->SetSkillIDX( nSkillIdx );
 					
-					/// Å¸°İ»ç¿îµå Ãâ·Â
+					/// íƒ€ê²©ì‚¬ìš´ë“œ ì¶œë ¥
 
 				}
 			}
 			break;
 
-		/// Áö¿ª°ø°İ ¸¶¹ı
+		/// ì§€ì—­ê³µê²© ë§ˆë²•
 		case SKILL_ACTION_AREA_TARGET:
 			{
 				if( bTargetPos )
@@ -770,7 +770,7 @@ bool CSkillManager::ActionSkill( short nSkillIdx, CObjCHAR* pSrc, CObjCHAR* pTar
 					if ( iBulletIDX ) 
 					{
 						short nEffectFileIDX = EFFECT_BULLET_NORMAL( iBulletIDX );
-						/// Áö¿ª°ø°İ¸¶¹ıÀº ÃÑ¾ËÀ» ½î´Â°Ô ¾Æ´Ï¶ó Å¸°Ù¿¡ ÀÌÆåÆ®¸¦ ºÙÀÎ´Ù.
+						/// ì§€ì—­ê³µê²©ë§ˆë²•ì€ ì´ì•Œì„ ì˜ëŠ”ê²Œ ì•„ë‹ˆë¼ íƒ€ê²Ÿì— ì´í™íŠ¸ë¥¼ ë¶™ì¸ë‹¤.
 						CEffect *pHitEFT = g_pEffectLIST->Add_EffectWithIDX( nEffectFileIDX, true );
 						if ( pHitEFT ) 
 						{	
@@ -790,15 +790,15 @@ bool CSkillManager::ActionSkill( short nSkillIdx, CObjCHAR* pSrc, CObjCHAR* pTar
 			}
 			break;
 
-		///< ÀÚ½Å¿¡°Ô ¹ßµ¿.( Ä³½ºÆÃ À¯ )
+		///< ìì‹ ì—ê²Œ ë°œë™.( ìºìŠ¤íŒ… ìœ  )
 		case SKILL_ACTION_SELF_BOUND_DURATION:
 		case SKILL_ACTION_SELF_BOUND:
 		case SKILL_ACTION_SELF_STATE_DURATION:
 		case SKILL_ACTION_SELF_DAMAGE:
 			{
-				/// Self ½ºÅ³ÀÇ °æ¿ì¿¡´Â ÃÑ¾ËÈ¿°ú, Å¸°İÈ¿°ú¸¦ ¸ğµÎ ³ªÇÑÅ× ºÙ¿©ÁØ´Ù.
+				/// Self ìŠ¤í‚¬ì˜ ê²½ìš°ì—ëŠ” ì´ì•Œíš¨ê³¼, íƒ€ê²©íš¨ê³¼ë¥¼ ëª¨ë‘ ë‚˜í•œí…Œ ë¶™ì—¬ì¤€ë‹¤.
 
-				/// ÃÑ¾Ë È¿°ú..
+				/// ì´ì•Œ íš¨ê³¼..
 				int iShotEffectIDX = SKILL_BULLET_NO( nSkillIdx );
 				int iEffectIDX = EFFECT_BULLET_NORMAL( iShotEffectIDX );
 
@@ -813,7 +813,7 @@ bool CSkillManager::ActionSkill( short nSkillIdx, CObjCHAR* pSrc, CObjCHAR* pTar
 					pEffect->InsertToScene ();
 				}
 
-				/// Å¸°İ È¿°ú..				
+				/// íƒ€ê²© íš¨ê³¼..				
 				int iHitEffectIDX = SKILL_HIT_EFFECT( nSkillIdx );
 
 				pEffect = g_pEffectLIST->Add_EffectWithIDX( iHitEffectIDX, true );				
@@ -829,7 +829,7 @@ bool CSkillManager::ActionSkill( short nSkillIdx, CObjCHAR* pSrc, CObjCHAR* pTar
 			}
 			break;	
 
-			///< ÀÚ½Å¿¡°Ô ¹ßµ¿.( Ä³½ºÆÃ À¯ )
+			///< ìì‹ ì—ê²Œ ë°œë™.( ìºìŠ¤íŒ… ìœ  )
 		case SKILL_ACTION_TARGET_BOUND_DURATION:
 		case SKILL_ACTION_TARGET_BOUND:
 		case SKILL_ACTION_TARGET_STATE_DURATION:
@@ -842,7 +842,7 @@ bool CSkillManager::ActionSkill( short nSkillIdx, CObjCHAR* pSrc, CObjCHAR* pTar
 					if( pBullet )
 						pBullet->SetSkillIDX( nSkillIdx );
 					
-					/// Å¸°İ»ç¿îµå Ãâ·Â
+					/// íƒ€ê²©ì‚¬ìš´ë“œ ì¶œë ¥
 
 				}
 
@@ -866,24 +866,24 @@ bool CSkillManager::ActionSkill( short nSkillIdx, CObjCHAR* pSrc, CObjCHAR* pTar
 	return true;
 }
 
-/// ½ºÅ³ ¹ßµ¿ Á¶°Ç Ã¼Å©..
+/// ìŠ¤í‚¬ ë°œë™ ì¡°ê±´ ì²´í¬..
 bool CSkillManager::CheckConditionForFireSkill( int iSkillIDX, int iCurrentTarget )
 {
-	/// ½ºÅ³ »ç¿ë Á¶°Ç( Å¸°ÙÆÃ ) Ã¼Å©..
+	/// ìŠ¤í‚¬ ì‚¬ìš© ì¡°ê±´( íƒ€ê²ŸíŒ… ) ì²´í¬..
 	if( CSkillManager::CheckCastingTarget( iSkillIDX, g_pAVATAR, iCurrentTarget ) == false )
 	{
 		g_itMGR.AppendChatMsg( CStr::Printf("%s[ %d ]", STR_NOTIFY_05, CSkillManager::GetSkillTargetType( iSkillIDX ) ), IT_MGR::CHAT_TYPE_SYSTEM );
 		return false;
 	}
 
-	/// Å¸°Ù ÇÊÅÍ¸µ °Ë»ç	
+	/// íƒ€ê²Ÿ í•„í„°ë§ ê²€ì‚¬	
 	if( CSkillManager::CheckCastingTargetFilter( iSkillIDX, g_pAVATAR, iCurrentTarget ) == false )
 	{
 		g_itMGR.AppendChatMsg( CStr::Printf("%s[ %d ]", STR_NOTIFY_05, CSkillManager::GetSkillTargetType( iSkillIDX ) ), IT_MGR::CHAT_TYPE_SYSTEM );
 		return false;
 	}
 
-	/// ¼ÒÈ¯¸÷ Á¶°Ç Ã¼Å©
+	/// ì†Œí™˜ëª¹ ì¡°ê±´ ì²´í¬
 	if( CSkillManager::CheckSummonCapacity( iSkillIDX, g_pAVATAR, iCurrentTarget ) == false )
 	{	
 		g_itMGR.AppendChatMsg( STR_CANT_SUMMON_NPC, IT_MGR::CHAT_TYPE_SYSTEM);
@@ -891,7 +891,7 @@ bool CSkillManager::CheckConditionForFireSkill( int iSkillIDX, int iCurrentTarge
 	}
 
 
-	/// ½ºÅ³ »ç¿ë Á¶°Ç Ã¼Å©..
+	/// ìŠ¤í‚¬ ì‚¬ìš© ì¡°ê±´ ì²´í¬..
 	if( CSkillManager::CheckCastingCondition( iSkillIDX, g_pAVATAR, iCurrentTarget ) == false )
 	{
 		g_itMGR.AppendChatMsg( CStr::Printf("%s", STR_NOTIFY_06 ),IT_MGR::CHAT_TYPE_SYSTEM);
@@ -899,7 +899,7 @@ bool CSkillManager::CheckConditionForFireSkill( int iSkillIDX, int iCurrentTarge
 	}
 
 	
-	/// Áßº¹ ½ºÅ³ Àû¿ë ¿©ºÎ Ã¼Å©..
+	/// ì¤‘ë³µ ìŠ¤í‚¬ ì ìš© ì—¬ë¶€ ì²´í¬..
 	if( CSkillManager::CheckDuplicatable( iSkillIDX, g_pAVATAR, iCurrentTarget ) == false )
 	{
 		g_itMGR.AppendChatMsg( CStr::Printf("%s", STR_NOTIFY_CANT_DUPLICATE ), IT_MGR::CHAT_TYPE_SYSTEM);
@@ -913,19 +913,19 @@ bool CSkillManager::CheckConditionForFireSkill( int iSkillIDX, int iCurrentTarge
 
 ///----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief ½ºÅ³ ¹ßµ¿.. CSkill::Exec¿¡¼­ È£ÃâÇÑ´Ù. ½ÇÁ¦ ½ºÅ³ ¹ßµ¿À» ¼­¹ö¿¡ ¿äÃ»ÇÏ°í ¹ßµ¿Àü Á¶°Ç Ã¼Å©µîÀ» ÇÑ´Ù.
+/// @brief ìŠ¤í‚¬ ë°œë™.. CSkill::Execì—ì„œ í˜¸ì¶œí•œë‹¤. ì‹¤ì œ ìŠ¤í‚¬ ë°œë™ì„ ì„œë²„ì— ìš”ì²­í•˜ê³  ë°œë™ì „ ì¡°ê±´ ì²´í¬ë“±ì„ í•œë‹¤.
 ///----------------------------------------------------------------------------------------------------
 bool CSkillManager::FireSkill( int iSkillSlotIDX, int iTargetObj, D3DXVECTOR3 &PosTO )
 {
 
-	/// ÇöÀç º¡¾î¸® »óÅÂÀÌ¸é »ç¿ëºÒ°¡
+	/// í˜„ì¬ ë²™ì–´ë¦¬ ìƒíƒœì´ë©´ ì‚¬ìš©ë¶ˆê°€
 	if( g_pAVATAR->m_EndurancePack.GetStateValue( ING_DUMB ) )
 	{
 		///AddMsgToChatWND( STR_DOING_SKILL_ACTION,  g_dwRED ,CChatDLG::CHAT_TYPE_SYSTEM);
 		return false;
 	}
 
-	/// ÇöÀç ½ºÅ³ ½Ãµµ ÁßÀÏ¶§´Â ½ºÅ³ »ç¿ëºÒ°¡..	
+	/// í˜„ì¬ ìŠ¤í‚¬ ì‹œë„ ì¤‘ì¼ë•ŒëŠ” ìŠ¤í‚¬ ì‚¬ìš©ë¶ˆê°€..	
 	if( g_pAVATAR->CanApplyCommand() == false )
 	{
 		g_itMGR.AppendChatMsg( STR_DOING_SKILL_ACTION,  IT_MGR::CHAT_TYPE_SYSTEM);
@@ -943,7 +943,7 @@ bool CSkillManager::FireSkill( int iSkillSlotIDX, int iTargetObj, D3DXVECTOR3 &P
 		return false;
 	
 	//----------------------------------------------------------------------------------------------------
-	/// ÇöÀç »ç¿ëÇÏ·Á´Â ½ºÅ³ÀÌ ¿äÃ»µÈ ½ºÅ³°ú °°Àº°ÍÀÌ¶ó¸é ¹«½Ã..( ¿¬Å¸.. ¹æÁö )
+	/// í˜„ì¬ ì‚¬ìš©í•˜ë ¤ëŠ” ìŠ¤í‚¬ì´ ìš”ì²­ëœ ìŠ¤í‚¬ê³¼ ê°™ì€ê²ƒì´ë¼ë©´ ë¬´ì‹œ..( ì—°íƒ€.. ë°©ì§€ )
 	//----------------------------------------------------------------------------------------------------	
 	if( g_pAVATAR->m_nToDoSkillIDX == pSkill->GetSkillIndex() )
 	{
@@ -951,11 +951,11 @@ bool CSkillManager::FireSkill( int iSkillSlotIDX, int iTargetObj, D3DXVECTOR3 &P
 	}
 
 	//----------------------------------------------------------------------------------------------------
-	/// PVP °¡´ÉÁ¸ÀÌ¶ó¸é ¼ÒÈ¯¸÷ ¼ÒÈ¯±İÁö
+	/// PVP ê°€ëŠ¥ì¡´ì´ë¼ë©´ ì†Œí™˜ëª¹ ì†Œí™˜ê¸ˆì§€
 	/// 204/12/6   
 	if( ZONE_PVP_STATE( g_pTerrain->GetZoneNO() ) == 2 )
 	{
-		/// ¼ÒÈ¯¸÷ ¹øÈ£°¡ ¼¼ÆÃµÈ ½ºÅ³Àº ¸ğµÎ ±İÁö
+		/// ì†Œí™˜ëª¹ ë²ˆí˜¸ê°€ ì„¸íŒ…ëœ ìŠ¤í‚¬ì€ ëª¨ë‘ ê¸ˆì§€
 		if( SKILL_SUMMON_PET( pSkill->GetSkillIndex() ) )
 		{
 			g_itMGR.AppendChatMsg( STR_CANT_SUMMON_IN_PVPZONE,  IT_MGR::CHAT_TYPE_SYSTEM);
@@ -966,7 +966,7 @@ bool CSkillManager::FireSkill( int iSkillSlotIDX, int iTargetObj, D3DXVECTOR3 &P
 
 	int iSkillType = CSkillManager::GetSkillActionType( pSkill->GetSkillIndex() );
 	//----------------------------------------------------------------------------------------------------
-	/// ¾ÆÁöÆ®¶ó¸é Á¦ÇÑµÈ »ç¿ë..
+	/// ì•„ì§€íŠ¸ë¼ë©´ ì œí•œëœ ì‚¬ìš©..
 	/// 204/12/6   
 	if( ZONE_PVP_STATE( g_pTerrain->GetZoneNO() ) == 11 )
 	{
@@ -981,12 +981,12 @@ bool CSkillManager::FireSkill( int iSkillSlotIDX, int iTargetObj, D3DXVECTOR3 &P
 
 
 	//----------------------------------------------------------------------------------------------------
-	/// pet Å¾½Â½Ã¿¡´Â..
-	/// µå¶óÀÌºê ½ºÅ³(17¹ø½ºÅ³, ÆÖ Å¸±â/³»¸®±â), ÅÂ¿ì±â(25¹ø ½ºÅ³) µîÀÇ ÆÖ°ü·Ã ½ºÅ³ °¡´ÉÇÔ
+	/// pet íƒ‘ìŠ¹ì‹œì—ëŠ”..
+	/// ë“œë¼ì´ë¸Œ ìŠ¤í‚¬(17ë²ˆìŠ¤í‚¬, íŒ» íƒ€ê¸°/ë‚´ë¦¬ê¸°), íƒœìš°ê¸°(25ë²ˆ ìŠ¤í‚¬) ë“±ì˜ íŒ»ê´€ë ¨ ìŠ¤í‚¬ ê°€ëŠ¥í•¨
 	//----------------------------------------------------------------------------------------------------		
 	
 	//-----------------------------------------------------------------------------------------------------
-	///¹ÚÁöÈ£::´ë¸¸ ¹öÀüÀÌ ¾Æ´Ï¶ó¸é...
+	///ë°•ì§€í˜¸::ëŒ€ë§Œ ë²„ì „ì´ ì•„ë‹ˆë¼ë©´...
 #ifndef _GBC
 		if( g_pAVATAR->GetPetMode() >= 0 )
 		{		
@@ -1030,7 +1030,7 @@ bool CSkillManager::FireSkill( int iSkillSlotIDX, int iTargetObj, D3DXVECTOR3 &P
 				{
 					//if( g_GameDATA.m_iPvPState == PVP_CANT )
 					//{
-					//	/// Àû´ë°ü°è¸¦ À¯¹ßÇÏ´Â ½ºÅ³Àº ¾Æ¹ÙÅ¸¿¡°Ô °É¼ö ¾ø´Ù.
+					//	/// ì ëŒ€ê´€ê³„ë¥¼ ìœ ë°œí•˜ëŠ” ìŠ¤í‚¬ì€ ì•„ë°”íƒ€ì—ê²Œ ê±¸ìˆ˜ ì—†ë‹¤.
 					//	if( SKILL_HARM( pSkill->GetSkillIndex() ) != 0 )
 					//		return false;
 					//}				
@@ -1042,7 +1042,7 @@ bool CSkillManager::FireSkill( int iSkillSlotIDX, int iTargetObj, D3DXVECTOR3 &P
 	
 	int iCurrentTarget = g_UserInputSystem.GetCurrentTarget();		
 	
-	//Å¸ÄÏ¿¡ ´ëÇÑ ÆÇº°
+	//íƒ€ì¼“ì— ëŒ€í•œ íŒë³„
 	if( CSkillManager::CheckConditionForFireSkill( pSkill->GetSkillIndex(), iCurrentTarget ) == false )
 			return false;
 
@@ -1067,7 +1067,7 @@ bool CSkillManager::FireSkill( int iSkillSlotIDX, int iTargetObj, D3DXVECTOR3 &P
 	return true;
 }
 
-/// ÇöÀç È°¼ºÈ­µÈ ½ºÅ³ ¹ßµ¿..
+/// í˜„ì¬ í™œì„±í™”ëœ ìŠ¤í‚¬ ë°œë™..
 bool CSkillManager::ActionActiveSkill( int iTargetObj, D3DXVECTOR3 &PosTO )
 {
 	int iCurrentActiveSkillSlot = g_UserInputSystem.GetCurrentActiveSkillSlot();
@@ -1081,15 +1081,15 @@ bool CSkillManager::ActionActiveSkill( int iTargetObj, D3DXVECTOR3 &PosTO )
 
 /*static*/ void CSkillManager::UpdateUseProperty( CObjAI* pObjAI, int iSkillIdx )
 {	
-	/// ÇàÀ§ ¹æ½Ä¿¡ µû¶ó¼­...
+	/// í–‰ìœ„ ë°©ì‹ì— ë”°ë¼ì„œ...
 	int iSkillActionType = GetSkillActionType( iSkillIdx );
 
-	/// Ã¢»ı¼º ½ºÅ³ÀÇ °æ¿ì´Â ¸¶³ª¸¦ ¾È±ï´Â´Ù..
+	/// ì°½ìƒì„± ìŠ¤í‚¬ì˜ ê²½ìš°ëŠ” ë§ˆë‚˜ë¥¼ ì•ˆê¹ëŠ”ë‹¤..
 	if( iSkillActionType == SKILL_CREATE_WINDOW )
 		return;
 
 
-	/// À¯Á®ÀÏ°æ¿ì´Â..
+	/// ìœ ì ¸ì¼ê²½ìš°ëŠ”..
 	if( pObjAI->IsA( OBJ_USER ) )
 	{
 		g_pAVATAR->Skill_UseAbilityValue( iSkillIdx );
@@ -1123,36 +1123,36 @@ bool CSkillManager::ActionActiveSkill( int iTargetObj, D3DXVECTOR3 &PosTO )
 /* static */ bool CSkillManager::CheckCastingCondition(int iSkillIDX,CObjCHAR* pCaster,int iTargetObjIDX)
 {
 
-	//¹ÚÁöÈ£::½ºÅ³¿¡ ¸Â´Â ¹«±â Ã¼Å© Àû¿ë
+	//ë°•ì§€í˜¸::ìŠ¤í‚¬ì— ë§ëŠ” ë¬´ê¸° ì²´í¬ ì ìš©
 	if(!g_pAVATAR->Skill_ActionCondition( iSkillIDX ))
 		return FALSE;
 
-	/// Âø¿ë Àåºñ¿¡ ´ëÇÑ Ã¼Å©( ½ºÅ³ »ç¿ë°¡´ÉÇÑ Àåºñ¸¦ Âø¿ëÇÏ°í ÀÖ´Â°¡?
+	/// ì°©ìš© ì¥ë¹„ì— ëŒ€í•œ ì²´í¬( ìŠ¤í‚¬ ì‚¬ìš©ê°€ëŠ¥í•œ ì¥ë¹„ë¥¼ ì°©ìš©í•˜ê³  ìˆëŠ”ê°€?
 	if(CSkillManager::CheckNeedWeapon( iSkillIDX, pCaster ) == false )
 	{
 		g_itMGR.AppendChatMsg( STR_WEAPON_MISMATCH, g_dwRED );
 		return false;
 	}
 
-	/// ¼­¹öÂÊ¿¡¼­ Á¤ÀÇÇÑ ÇÔ¼ö¸¦ »ç¿ëÇÑ´Ù.
+	/// ì„œë²„ìª½ì—ì„œ ì •ì˜í•œ í•¨ìˆ˜ë¥¼ ì‚¬ìš©í•œë‹¤.
 	//return g_pAVATAR->Skill_ActionCondition( iSkillIDX );
 
 	/*
-	/// ¼Ò¸ğ ¸¶³ª, HP Ã¼Å©..
+	/// ì†Œëª¨ ë§ˆë‚˜, HP ì²´í¬..
 	if( CSkillManager::CheckNeedProperty( iSkillIDX, pCaster ) == false )
 	{
 		g_itMGR.AppendChatMsg( STR_NOT_ENOUGH_MANA, g_dwRED );
 		return false;
 	}
 
-	/// ÇØ´ç ½ºÅ³¿¡ ´ëÇÑ Å¸°Ù À¯È¿¼ºÀ» °ËÁ¤ÇÑ´Ù.
+	/// í•´ë‹¹ ìŠ¤í‚¬ì— ëŒ€í•œ íƒ€ê²Ÿ ìœ íš¨ì„±ì„ ê²€ì •í•œë‹¤.
 	if( CSkillManager::CheckCastingTarget( iSkillIDX, pCaster, iTargetObjIDX ) == false )
 	{
 		g_itMGR.AppendChatMsg( STR_INVALID_TARGET, g_dwRED );
 		return false;
 	}
 
-	/// Âø¿ë Àåºñ¿¡ ´ëÇÑ Ã¼Å©( ½ºÅ³ »ç¿ë°¡´ÉÇÑ Àåºñ¸¦ Âø¿ëÇÏ°í ÀÖ´Â°¡?
+	/// ì°©ìš© ì¥ë¹„ì— ëŒ€í•œ ì²´í¬( ìŠ¤í‚¬ ì‚¬ìš©ê°€ëŠ¥í•œ ì¥ë¹„ë¥¼ ì°©ìš©í•˜ê³  ìˆëŠ”ê°€?
 	if( CSkillManager::CheckNeedWeapon( iSkillIDX, pCaster ) == false )
 	{
 		g_itMGR.AppendChatMsg( STR_WEAPON_MISMATCH, g_dwRED );
@@ -1163,8 +1163,8 @@ bool CSkillManager::ActionActiveSkill( int iTargetObj, D3DXVECTOR3 &PosTO )
 	return true;
 }
 
-/// Å¸ÀÌ¸Ó Ã¼Å©( ¿¬¼Ó »ç¿ë¿©ºÎ°ü·Ã )..
-/// ³»²¯¸¸ Ã¼Å©ÇÏÁö ³²ÀÇ°Í ÇØÁÙÀÏ¾øÁö???
+/// íƒ€ì´ë¨¸ ì²´í¬( ì—°ì† ì‚¬ìš©ì—¬ë¶€ê´€ë ¨ )..
+/// ë‚´ê»ë§Œ ì²´í¬í•˜ì§€ ë‚¨ì˜ê²ƒ í•´ì¤„ì¼ì—†ì§€???
 /*static*/ bool CSkillManager::CheckSkillTimer( int iActiveSkillSlot )
 {
 	CSkillSlot* pSkillSlot = g_pAVATAR->GetSkillSlot();
@@ -1175,8 +1175,8 @@ bool CSkillManager::ActionActiveSkill( int iTargetObj, D3DXVECTOR3 &PosTO )
 	return true;
 }
 
-/// @todo Å¸°ÙÀÇ HP¸¦ Ã¼Å©ÇØ¾ßÇÏ´Â°¡?
-/// ´ç¿¬È÷ Á×Àº³ğÇÑÅ× ½ò¼ö´Â ¾øÀ¸´Ï ÇØ¾ßµÉµí
+/// @todo íƒ€ê²Ÿì˜ HPë¥¼ ì²´í¬í•´ì•¼í•˜ëŠ”ê°€?
+/// ë‹¹ì—°íˆ ì£½ì€ë†ˆí•œí…Œ ì ìˆ˜ëŠ” ì—†ìœ¼ë‹ˆ í•´ì•¼ë ë“¯
 /*static*/ bool CSkillManager::CheckCastingTarget( int iSkillIDX, CObjCHAR* pCaster, int iTargetObjIDX )
 {
 	if( pCaster == NULL )
@@ -1193,7 +1193,7 @@ bool CSkillManager::ActionActiveSkill( int iTargetObj, D3DXVECTOR3 &PosTO )
 
 	case SKILL_TARGET_OBJECT:	
 		{
-			/// ½ºÅ³ÀÌ ¸®Àı·º¼ÇÀÌ¶ó¸é HPÃ¼Å©¾øÀÌ Å¸°ÙÀ» ¾ò¾îµ·´Ù.
+			/// ìŠ¤í‚¬ì´ ë¦¬ì ˆë ‰ì…˜ì´ë¼ë©´ HPì²´í¬ì—†ì´ íƒ€ê²Ÿì„ ì–»ì–´ëˆë‹¤.
 			if( SKILL_TYPE( iSkillIDX ) == SKILL_ACTION_RESURRECTION )
 			{
 				pTargetCHAR = g_pObjMGR->Get_CharOBJ( iTargetObjIDX, false );
@@ -1226,7 +1226,7 @@ bool CSkillManager::ActionActiveSkill( int iTargetObj, D3DXVECTOR3 &PosTO )
 	return false;
 }
 
-/// Å¸°Ù ÇÊÅÍ¸µ °Ë»ç
+/// íƒ€ê²Ÿ í•„í„°ë§ ê²€ì‚¬
 bool CSkillManager::CheckCastingTargetFilter( int iSkillIDX, CObjCHAR* pCaster, int iTargetObjIDX )
 {
 	if( pCaster == NULL )
@@ -1252,10 +1252,10 @@ bool CSkillManager::CheckCastingTargetFilter( int iSkillIDX, CObjCHAR* pCaster, 
 
 		case SKILL_TARGET_FILTER_GROUP:
 			{	
-				/// Å¸°ÙÀÌ ÀÖÀ»°æ¿ì.. Å¸°ÙÀÌ ¿ì¸®ÆíÀÌ ¾Æ´Ï¸é.. false
+				/// íƒ€ê²Ÿì´ ìˆì„ê²½ìš°.. íƒ€ê²Ÿì´ ìš°ë¦¬í¸ì´ ì•„ë‹ˆë©´.. false
 				if( pTargetCHAR != NULL )
 				{
-					/// ÆÄÆ¼¿øÀÌ ¾Æ´Ï´Ù.
+					/// íŒŒí‹°ì›ì´ ì•„ë‹ˆë‹¤.
 					if( !CParty::GetInstance().IsPartyMember( g_pObjMGR->Get_ServerObjectIndex( iTargetObjIDX ) ))
 					{				
 						g_itMGR.AppendChatMsg( CStr::Printf("%s", STR_SKILL_TARGET_FILTER_NOTIFY_01 ), IT_MGR::CHAT_TYPE_SYSTEM );
@@ -1271,7 +1271,7 @@ bool CSkillManager::CheckCastingTargetFilter( int iSkillIDX, CObjCHAR* pCaster, 
 			break;
 		case SKILL_TARGET_FILTER_FRIEND_ALL:
 			{
-				/// Å¸°ÙÀÌ ÀÖÀ»°æ¿ì ³ª¶û µ¿¸ÍÀÌ ¾Æ´Ò°æ¿ì false
+				/// íƒ€ê²Ÿì´ ìˆì„ê²½ìš° ë‚˜ë‘ ë™ë§¹ì´ ì•„ë‹ê²½ìš° false
 				if( pTargetCHAR != NULL )
 				{
 					if( CUserInputState::IsEnemy( pTargetCHAR ) )
@@ -1311,7 +1311,7 @@ bool CSkillManager::CheckCastingTargetFilter( int iSkillIDX, CObjCHAR* pCaster, 
 				if( pTargetCHAR == NULL )
 					return false;
 
-				/// µ¿¸ÍÀÌ°Å³ª.. ¾Æ¹ÙÅ¸°¡ ¾Æ´Ò°æ¿ì´Â..
+				/// ë™ë§¹ì´ê±°ë‚˜.. ì•„ë°”íƒ€ê°€ ì•„ë‹ê²½ìš°ëŠ”..
 				if( CUserInputState::IsEnemy( pTargetCHAR ) == false || !pTargetCHAR->IsA( OBJ_AVATAR ) )
 				{
 					g_itMGR.AppendChatMsg( CStr::Printf("%s", STR_SKILL_TARGET_FILTER_NOTIFY_05 ), IT_MGR::CHAT_TYPE_SYSTEM );
@@ -1345,10 +1345,10 @@ bool CSkillManager::CheckCastingTargetFilter( int iSkillIDX, CObjCHAR* pCaster, 
 			}
 			break;
 
-		/// Á×Àº À¯Á®ÀÏ °æ¿ì´Â ¾Æ±º¸¸
+		/// ì£½ì€ ìœ ì ¸ì¼ ê²½ìš°ëŠ” ì•„êµ°ë§Œ
 		case SKILL_TARGET_FILTER_DEAD_USER:
 			{
-				/// Å¸°ÙÀÌ ÀÖÀ»°æ¿ì ³ª¶û µ¿¸ÍÀÌ ¾Æ´Ò°æ¿ì false
+				/// íƒ€ê²Ÿì´ ìˆì„ê²½ìš° ë‚˜ë‘ ë™ë§¹ì´ ì•„ë‹ê²½ìš° false
 				if( pTargetCHAR != NULL )
 				{
 					if( CUserInputState::IsEnemy( pTargetCHAR ) )
@@ -1367,7 +1367,7 @@ bool CSkillManager::CheckCastingTargetFilter( int iSkillIDX, CObjCHAR* pCaster, 
 	return true;
 }
 
-/// ¼ÒÈ¯¸÷ capacity °Ë»ç
+/// ì†Œí™˜ëª¹ capacity ê²€ì‚¬
 bool CSkillManager::CheckSummonCapacity( int iSkillIDX, CObjCHAR* pCaster, int iTargetObjIDX )
 {
 	if( SKILL_TYPE( iSkillIDX ) == SKILL_ACTION_SUMMON_PET )
@@ -1375,7 +1375,7 @@ bool CSkillManager::CheckSummonCapacity( int iSkillIDX, CObjCHAR* pCaster, int i
 		int iMobNO = SKILL_SUMMON_PET( iSkillIDX );
 		if( iMobNO )
 		{
-			/// ¼ÒÈ¯·® ÃÊ°ú
+			/// ì†Œí™˜ëŸ‰ ì´ˆê³¼
 			if( ( NPC_NEED_SUMMON_CNT( iMobNO ) + g_pAVATAR->GetCur_SummonUsedCapacity() ) > g_pAVATAR->GetCur_SummonMaxCapacity() )
 				return false;
 		}
@@ -1384,7 +1384,7 @@ bool CSkillManager::CheckSummonCapacity( int iSkillIDX, CObjCHAR* pCaster, int i
 	return true;
 }
 
-/// ÇÊ¿ä ´É·ÂÄ¡ Ã¼Å©..
+/// í•„ìš” ëŠ¥ë ¥ì¹˜ ì²´í¬..
 bool CSkillManager::CheckNeedProperty( int iSkillIDX, CObjCHAR* pCaster )
 {
 	int iCurrentHP = pCaster->Get_HP();	
@@ -1413,7 +1413,7 @@ bool CSkillManager::CheckNeedProperty( int iSkillIDX, CObjCHAR* pCaster )
 	return true;
 }
 
-/// ÇÊ¿äÀåºñ Ã¼Å©..
+/// í•„ìš”ì¥ë¹„ ì²´í¬..
 /*static*/ bool CSkillManager::CheckNeedWeapon( int iSkillIDX, CObjCHAR* pCaster )
 {
 	bool bResult = true;
@@ -1422,7 +1422,7 @@ bool CSkillManager::CheckNeedProperty( int iSkillIDX, CObjCHAR* pCaster )
 
 	for( int i = 0; i < SKILL_NEED_WEAPON_CNT; i++ )
 	{
-		/// Á¶°Ç ¹«±â°¡ ÀÖ´Ù¸é ÀÏ´Ü,false ·Î ¸¸µé°í ¸¸Á·ÇÏ¸é ¹Ù·Î ¸®ÅÏ..
+		/// ì¡°ê±´ ë¬´ê¸°ê°€ ìˆë‹¤ë©´ ì¼ë‹¨,false ë¡œ ë§Œë“¤ê³  ë§Œì¡±í•˜ë©´ ë°”ë¡œ ë¦¬í„´..
 		if( SKILL_NEED_WEAPON( iSkillIDX, i ) )
 		{
 			bResult = false;
@@ -1434,13 +1434,13 @@ bool CSkillManager::CheckNeedProperty( int iSkillIDX, CObjCHAR* pCaster )
 	return bResult;
 }
 
-/// Áßº¹Àû¿ë °¡´É Ã¼Å©...
+/// ì¤‘ë³µì ìš© ê°€ëŠ¥ ì²´í¬...
 /*static*/ bool CSkillManager::CheckDuplicatable( int iSkillIDX, CObjCHAR* pCaster, int iTargetObjIDX )
 {
 	if( pCaster == NULL )
 		return false;	
 
-	/// Áö¼ÓÇü ½ºÅ³ÀÇ °æ¿ì.. Áßº¹¿©ºÎ¸¦ Ã¼Å©ÇÑ´Ù.
+	/// ì§€ì†í˜• ìŠ¤í‚¬ì˜ ê²½ìš°.. ì¤‘ë³µì—¬ë¶€ë¥¼ ì²´í¬í•œë‹¤.
 	if( SKILL_TYPE( iSkillIDX ) == SKILL_ACTION_SELF_BOUND_DURATION ||
 		SKILL_TYPE( iSkillIDX ) == SKILL_ACTION_TARGET_BOUND_DURATION ||
 		SKILL_TYPE( iSkillIDX ) == SKILL_ACTION_SELF_STATE_DURATION ||
@@ -1455,7 +1455,7 @@ bool CSkillManager::CheckNeedProperty( int iSkillIDX, CObjCHAR* pCaster )
 
 		CObjCHAR *pTargetCHAR = NULL;
 		
-		/// ³ªÇÑÅ× °Å´Â°Å¶ó¸é..
+		/// ë‚˜í•œí…Œ ê±°ëŠ”ê±°ë¼ë©´..
 		if( SKILL_TYPE( iSkillIDX ) == SKILL_ACTION_SELF_BOUND_DURATION ||
 			SKILL_TYPE( iSkillIDX ) == SKILL_ACTION_SELF_STATE_DURATION )
 		{
@@ -1477,7 +1477,7 @@ bool CSkillManager::CheckNeedProperty( int iSkillIDX, CObjCHAR* pCaster )
 			iSkillState = STATE_TYPE( iStateSTB );
 			dwSkillStateFlag = c_dwIngFLAG[ iSkillState ];
 
-			/// »óÅÂ ÇØÁö ½ºÅ³Àº Áßº¹»óÅÂ¸¦ Ã¼Å©ÇÏÁö ¾ÊÀ½	
+			/// ìƒíƒœ í•´ì§€ ìŠ¤í‚¬ì€ ì¤‘ë³µìƒíƒœë¥¼ ì²´í¬í•˜ì§€ ì•ŠìŒ	
 			if( ( iSkillState == ING_CLEAR_GOOD ) ||
 				( iSkillState == ING_CLEAR_BAD ) ||
 				( iSkillState == ING_CLEAR_ALL ) )
@@ -1487,10 +1487,10 @@ bool CSkillManager::CheckNeedProperty( int iSkillIDX, CObjCHAR* pCaster )
 
 			dwState = pTargetCHAR->m_EndurancePack.GetStateFlag();			
 
-			/// ÇöÀç °É·Á´Â ½ºÅ³Å¸ÀÔÀÌ ÀÌ¹Ì °É·ÁÀÖ´Ù.
+			/// í˜„ì¬ ê±¸ë ¤ëŠ” ìŠ¤í‚¬íƒ€ì…ì´ ì´ë¯¸ ê±¸ë ¤ìˆë‹¤.
 			if( dwState & dwSkillStateFlag )
 			{
-				/// Áßº¹ºÒ°¡..
+				/// ì¤‘ë³µë¶ˆê°€..
 				if( STATE_CAN_DUPLICATED( iStateSTB ) == 0 )
 				{
 					return false;
@@ -1498,7 +1498,7 @@ bool CSkillManager::CheckNeedProperty( int iSkillIDX, CObjCHAR* pCaster )
 
 				CEnduranceProperty* pEntity = pTargetCHAR->m_EndurancePack.GetEntityByStateType( iSkillState );
 
-				/// »õ·Î ¹ßµ¿ÇÑ ½ºÅ³ÀÌ ÇöÀç °É¸° ½ºÅ³ÀÇ LIST_STATUS.STB »óÀÇ ¹øÈ£°¡ ÀÛÀ»¶§´Â ÆĞ½º..
+				/// ìƒˆë¡œ ë°œë™í•œ ìŠ¤í‚¬ì´ í˜„ì¬ ê±¸ë¦° ìŠ¤í‚¬ì˜ LIST_STATUS.STB ìƒì˜ ë²ˆí˜¸ê°€ ì‘ì„ë•ŒëŠ” íŒ¨ìŠ¤..
 				if( pEntity && iStateSTB < pEntity->GetStateSTBNO() )
 				{
 					return false;
@@ -1512,18 +1512,18 @@ bool CSkillManager::CheckNeedProperty( int iSkillIDX, CObjCHAR* pCaster )
 
 
 ///
-///	½ºÅ³ ½Àµæ°¡´É ¿©ºÎ Ã¼Å©..
+///	ìŠ¤í‚¬ ìŠµë“ê°€ëŠ¥ ì—¬ë¶€ ì²´í¬..
 ///
 
-/// À¯È¿ÇÑ Á÷¾÷ÀÎ°¡?
-/// ¹è¿ï¶§ ÇÊ¿äÇÏ´Ù..
+/// ìœ íš¨í•œ ì§ì—…ì¸ê°€?
+/// ë°°ìš¸ë•Œ í•„ìš”í•˜ë‹¤..
 /*static*/ bool CSkillManager::CheckJobForStudy( int iSkillIDX )
 {
 	
 	return false;
 }
 
-/// ½ºÅ³À» ¹è¿ì±â À§ÇÑ ¼±Çà ½ºÅ³ÀÌ ¸¸Á·ÇÏ´Â°¡?
+/// ìŠ¤í‚¬ì„ ë°°ìš°ê¸° ìœ„í•œ ì„ í–‰ ìŠ¤í‚¬ì´ ë§Œì¡±í•˜ëŠ”ê°€?
 /*static*/ bool CSkillManager::CheckProSkillForStudy( int iSkillIDX )
 {
 	bool bResult = true;	
@@ -1542,7 +1542,7 @@ bool CSkillManager::CheckNeedProperty( int iSkillIDX, CObjCHAR* pCaster )
 	return bResult;	
 }
 
-/// ½ºÅ³À» ¹è¿ì±â À§ÇÑ ±âº» ´É·ÂÄ¡¸¦ ¸¸Á·ÇÏ´Â°¡?
+/// ìŠ¤í‚¬ì„ ë°°ìš°ê¸° ìœ„í•œ ê¸°ë³¸ ëŠ¥ë ¥ì¹˜ë¥¼ ë§Œì¡±í•˜ëŠ”ê°€?
 /*static*/ bool CSkillManager::CheckPropertyForStudy( int iSkillIDX )
 {
 	bool bResult = true;
@@ -1570,8 +1570,8 @@ bool CSkillManager::CheckNeedProperty( int iSkillIDX, CObjCHAR* pCaster )
 
 
 ///
-///	½ºÅ³ »ç¿ëÀ» À§ÇÑ Å¸°Ù ±¸ÇÏ±â
-/// ÀÏ¹İ ½ºÅ³ÀÏ°æ¿ì hpÃ¼Å©¸¦ ÇÏÁö¸¸ ¸®Á°·º¼Ç°°Àº ½ºÅ³ÀÇ °æ¿ì hp Ã¼Å©¸¦ ÇÏÁö ¾Ê´Â´Ù.
+///	ìŠ¤í‚¬ ì‚¬ìš©ì„ ìœ„í•œ íƒ€ê²Ÿ êµ¬í•˜ê¸°
+/// ì¼ë°˜ ìŠ¤í‚¬ì¼ê²½ìš° hpì²´í¬ë¥¼ í•˜ì§€ë§Œ ë¦¬ì¡€ë ‰ì…˜ê°™ì€ ìŠ¤í‚¬ì˜ ê²½ìš° hp ì²´í¬ë¥¼ í•˜ì§€ ì•ŠëŠ”ë‹¤.
 ///
 /*static*/ CObjCHAR* CSkillManager::GetSkillTarget( int iServerObjIDX, int iSkillIDX )
 {

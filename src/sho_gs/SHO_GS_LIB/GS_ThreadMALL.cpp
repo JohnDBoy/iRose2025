@@ -75,7 +75,7 @@ bool GS_CThreadMALL::Run_SqlPACKET( tagQueryDATA *pSqlPACKET )
 		}
 		case REQ_MALL_ITEM_BRING	:
 		{
-			// SQL¿¡¼­ Á¤»ó ¸®ÅÏµÇ¸é »ç¿ëÀÚ ÀÎº¥¿¡ Ãß°¡...
+			// SQLì—ì„œ ì •ìƒ ë¦¬í„´ë˜ë©´ ì‚¬ìš©ìž ì¸ë²¤ì— ì¶”ê°€...
 			this->Bring_MallITEM ( pSqlPACKET, 
 						pPacket->m_cli_MALL_ITEM_REQ.m_btInvIDX[0],
 						pPacket->m_cli_MALL_ITEM_REQ.m_nDupCnt );
@@ -155,7 +155,7 @@ bool GS_CThreadMALL::Give_MallITEM ( tagQueryDATA *pSqlPACKET, BYTE btMallInvIDX
 			pCPacket->m_gsv_MALL_ITEM_REPLY.m_btReplyTYPE = REPLY_MALL_ITME_GIVE_SUCCESS;
 			pCPacket->m_gsv_MALL_ITEM_REPLY.m_btCntOrIdx  = btMallInvIDX;
 
-			// º¯°æµÈ ¸ô¾ÆÀÌÅÛ..
+			// ë³€ê²½ëœ ëª°ì•„ì´í…œ..
 			pCPacket->m_gsv_MALL_ITEM_REPLY.m_BringITEM[0].m_btInvIDX = btMallInvIDX;
 			pCPacket->m_gsv_MALL_ITEM_REPLY.m_BringITEM[0].m_ITEM = pUSER->m_MALL.m_ITEMS[ btMallInvIDX ].m_ITEM;
 
@@ -188,7 +188,7 @@ bool GS_CThreadMALL::Bring_MallITEM ( tagQueryDATA *pSqlPACKET, BYTE btMallInvID
 					nItemType	= this->m_pSQL->GetInteger(0);
 					nItemNo		= this->m_pSQL->GetInteger(1);
 					nDupCnt		= this->m_pSQL->GetInteger(2);
-					nRemainCnt	= this->m_pSQL->GetInteger(3);		// µðºñ¿¡ ³²Àº °³¼ö
+					nRemainCnt	= this->m_pSQL->GetInteger(3);		// ë””ë¹„ì— ë‚¨ì€ ê°œìˆ˜
 				}
 			}
 		}
@@ -216,11 +216,11 @@ bool GS_CThreadMALL::Bring_MallITEM ( tagQueryDATA *pSqlPACKET, BYTE btMallInvID
 				sOutItem.m_nLife = MAX_ITEM_LIFE;
 			}
 
-			pUSER->Set_ItemSN( sOutItem );	// ¼îÇÎ¸ô¿¡¼­ ±¸ÀÔ½Ã...
+			pUSER->Set_ItemSN( sOutItem );	// ì‡¼í•‘ëª°ì—ì„œ êµ¬ìž…ì‹œ...
 			nUserInvIDX = pUSER->Add_ITEM( sOutItem );
 			if ( nUserInvIDX <= 0 ) {
-				// 30ºÐ * 2 * 10 -> 10½Ã°£
-				pUSER->Save_ItemToFILED( sOutItem, ITEM_OBJ_DROP_TIME*2*10 );	// ¸ô ±¸ÀÔÈÄ ÀÎº¥Åä¸®°¡ Ãß°¡°¡ ºÒ°¡´ÉÇØ¼­ ¹Û¿¡ 30ºÐ°£ º¸°ü...
+				// 30ë¶„ * 2 * 10 -> 10ì‹œê°„
+				pUSER->Save_ItemToFILED( sOutItem, ITEM_OBJ_DROP_TIME*2*10 );	// ëª° êµ¬ìž…í›„ ì¸ë²¤í† ë¦¬ê°€ ì¶”ê°€ê°€ ë¶ˆê°€ëŠ¥í•´ì„œ ë°–ì— 30ë¶„ê°„ ë³´ê´€...
 			}
 		} else {
 			// failed
@@ -236,11 +236,11 @@ bool GS_CThreadMALL::Bring_MallITEM ( tagQueryDATA *pSqlPACKET, BYTE btMallInvID
 				pCPacket->m_HEADER.m_nSize = sizeof(gsv_MALL_ITEM_REPLY) + sizeof(tag_SET_INVITEM)*2;
 				pCPacket->m_gsv_MALL_ITEM_REPLY.m_btReplyTYPE = REPLY_MALL_ITEM_BRING_SUCCESS;
 
-				// »ç¿ëÀÚ ÀÎº¥...
+				// ì‚¬ìš©ìž ì¸ë²¤...
 				pCPacket->m_gsv_MALL_ITEM_REPLY.m_BringITEM[0].m_btInvIDX = static_cast<BYTE>( nUserInvIDX );
 				pCPacket->m_gsv_MALL_ITEM_REPLY.m_BringITEM[0].m_ITEM = sOutItem;
 
-				// º¯°æµÈ ¸ô¾ÆÀÌÅÛ..
+				// ë³€ê²½ëœ ëª°ì•„ì´í…œ..
 				pCPacket->m_gsv_MALL_ITEM_REPLY.m_BringITEM[1].m_btInvIDX = btMallInvIDX;
 				pCPacket->m_gsv_MALL_ITEM_REPLY.m_BringITEM[1].m_ITEM     = pUSER->m_MALL.m_ITEMS[ btMallInvIDX ].m_ITEM;
 			} else {
@@ -289,7 +289,7 @@ bool GS_CThreadMALL::List_MallITEM( int iScoketIDX, char *szAccount )
 
 		classPACKET *pCPacket = Packet_AllocNLock ();
 		if ( pCPacket ) {
-			// ¸ñ·Ï ½ÃÀÛ...
+			// ëª©ë¡ ì‹œìž‘...
 			this->Send_gsv_MALL_ITEM_REPLAY( pUSER, REPLY_MALL_ITEM_LIST_START );
 	
 			pCPacket->m_HEADER.m_wType = GSV_MALL_ITEM_REPLY;
@@ -310,7 +310,7 @@ bool GS_CThreadMALL::List_MallITEM( int iScoketIDX, char *szAccount )
 				// btWorldIDX  = this->m_pSQL->GetInteger(7);
 				// btChannelIDX= this->m_pSQL->GetInteger(8);
 
-				// ¼±¹° ÇÑ ¾ÆÀÌÅÛÀÌ´Ù. ¿ùµå°¡ Æ²¸®¸é ¾ÈµÇÁö~~~
+				// ì„ ë¬¼ í•œ ì•„ì´í…œì´ë‹¤. ì›”ë“œê°€ í‹€ë¦¬ë©´ ì•ˆë˜ì§€~~~
 				//if ( pFROM && btWorldIDX != xxx ) 
 				//	continue;
 				//}
@@ -358,7 +358,7 @@ bool GS_CThreadMALL::List_MallITEM( int iScoketIDX, char *szAccount )
 			}
 			Packet_ReleaseNUnlock( pCPacket );
 
-			// ¸ñ·Ï³¡...
+			// ëª©ë¡ë...
 			this->Send_gsv_MALL_ITEM_REPLAY( pUSER, REPLY_MALL_ITEM_LIST_END );
 
 			return true;

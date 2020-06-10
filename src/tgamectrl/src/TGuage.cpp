@@ -33,7 +33,7 @@ bool CTGuage::Create( int iScrX, int iScrY, int iWidth, int iHeight, int iGraphi
 	m_iHeight				 = 15;	
 
 //	m_bAutoIncrement		 = false;
-//	m_iAutoIncrementValue	 = 0;///√ ¥Á ¡ı∞°«“ % ( 1 ~ 100 )
+//	m_iAutoIncrementValue	 = 0;///Ï¥àÎãπ Ï¶ùÍ∞ÄÌï† % ( 1 ~ 100 )
 //	m_iAutoIncrementMaxValue = 0;
 	m_iModuleID				 = iModuleID;
 	m_iBGImageID			 = iBGraphicID;

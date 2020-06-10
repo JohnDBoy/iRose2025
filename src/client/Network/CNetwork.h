@@ -19,7 +19,7 @@ enum {
 
 class CNetwork : public CRecvPACKET, public CSendPACKET {
 private :
-	bool	bAllInONE;		/// ¿ùµå/Á¸¼­¹ö°¡ °°Àº ¼­¹ö³Ä?
+	bool	bAllInONE;		/// ì›”ë“œ/ì¡´ì„œë²„ê°€ ê°™ì€ ì„œë²„ëƒ?
 	void Send_PACKET(t_PACKET *pSendPacket, bool bSendToWorld=false)
 	{
 	#ifdef	__VIRTUAL_SERVER
@@ -52,14 +52,14 @@ public  :
 	CshoClientSOCK	m_WorldSOCKET;
 	CshoClientSOCK	m_ZoneSOCKET;
 #endif
-	bool m_bWarping;	// Á¸ ¿öÇÁ ÁßÀÎ°¡...
+	bool m_bWarping;	// ì¡´ ì›Œí”„ ì¤‘ì¸ê°€...
 
 	static CNetwork *Instance (HINSTANCE hInstance);
 	void Destroy ();
 
 	bool ConnectToServer (char *szServerIP, WORD wTcpPORT, short nProcLEVEL=0);
 	void DisconnectFromServer (short nProcLEVEL=0);
-	// ¹Ú ÁöÈ£ 
+	// ë°• ì§€í˜¸ 
 	void Send_AuthMsg (void);
 
 	// Playing packet ..

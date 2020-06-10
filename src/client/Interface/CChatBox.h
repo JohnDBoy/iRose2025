@@ -46,7 +46,7 @@ public:
 
 
 
-/// Avata ¸Ó¸®À§ Ãª ¹Ú½º
+/// Avata ë¨¸ë¦¬ìœ„ ì±— ë°•ìŠ¤
 class CChatBox
 {
 private:
@@ -55,7 +55,7 @@ private:
 	/// Display time    
 	int					m_iDisplayTime;
 
-	/// Ãª ´ëÈ­..
+	/// ì±— ëŒ€í™”..
 	std::string			m_strText;
 	DWORD				m_Color;
 

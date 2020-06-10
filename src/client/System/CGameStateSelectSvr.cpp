@@ -53,7 +53,7 @@ int CGameStateSelectSvr::Update( bool bLostFocus )
 	// processing  ...
 	if ( !bLostFocus ) 
 	{
-		if ( ::beginScene() ) //  ╣П╧ыюл╫╨╟║ ╪у╫г╣х ╩Себ╤С╦И 0ю╩ ╦╝еого╧г╥н, ╦П╣Г ╥╩╢У╦╣ ╫╨е╣
+		if ( ::beginScene() ) //  К■■К╟■Л²╢Л┼╓Й╟─ Л├░Л▀╓К░° Л┐│М┐°К²╪К╘╢ 0Л²└ К╕╛М└╢М∙≤К╞─К║°, К╙╗К⌠═ К═▄К█■К╖│ Л┼╓М┌╣
 		{
 			::clearScreen();
 			::renderScene();

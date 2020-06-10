@@ -1,7 +1,7 @@
 /**
  * \ingroup SHO_GS
  * \file	ZoneLIST.h
- * \brief	ÀüÃ¼ Á¸ °ü¸® Å¬·¡½º
+ * \brief	ì „ì²´ ì¡´ ê´€ë¦¬ í´ëž˜ìŠ¤
  */
 #ifndef	__ZONELIST_H
 #define	__ZONELIST_H
@@ -10,15 +10,15 @@
 //-------------------------------------------------------------------------------------------------
 
 
-#define	AGIT_ZONE_TYPE						11		// ZONE_PVP_STATE°ªÀÌ 11ÀÌ¸é ¾ÆÁöÆ® Á¸ÀÌ´Ù...
+#define	AGIT_ZONE_TYPE						11		// ZONE_PVP_STATEê°’ì´ 11ì´ë©´ ì•„ì§€íŠ¸ ì¡´ì´ë‹¤...
 
 
 /**
  * \ingroup SHO_GS_LIB
  * \class	CZoneLIST
  * \author	wookSang.Jo
- * \brief	ÀüÃ¼ Á¸(zone)°ü¸®ÇÏ´Â Å¬·¡½º
-			¿ùµå º¯¼ö Å¬·¡½º CWorldVAR¸¦ »ó¼Ó¹ÞÀ½
+ * \brief	ì „ì²´ ì¡´(zone)ê´€ë¦¬í•˜ëŠ” í´ëž˜ìŠ¤
+			ì›”ë“œ ë³€ìˆ˜ í´ëž˜ìŠ¤ CWorldVARë¥¼ ìƒì†ë°›ìŒ
  */
 class CZoneLIST : public CWorldVAR {
 private:

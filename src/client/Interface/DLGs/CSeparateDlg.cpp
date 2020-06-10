@@ -27,7 +27,7 @@ CSeparateDlg::CSeparateDlg(void)
 		pt.y += 46;
 	}
 	
-	///Á¦Á¶ÇÒ ¾ÆÀÌÅÛÀÌ µé¾î°¥ Slot
+	///ì œì¡°í•  ì•„ì´í…œì´ ë“¤ì–´ê°ˆ Slot
 	m_pDragItem = new CDragItem;
 	CTCommand* pCmd = new CTCmdTakeOutItemFromSeparateDlg;
 
@@ -115,7 +115,7 @@ unsigned CSeparateDlg::Process( unsigned uiMsg, WPARAM wParam, LPARAM lParam )
 
 					CSeparate& Separate = CSeparate::GetInstance();
 					CIcon* pIcon = m_MaterialItemSlot.GetIcon();
-					if( pIcon == NULL )///Àç·á°¡ ¾ø´Ù¸é Disable
+					if( pIcon == NULL )///ì¬ë£Œê°€ ì—†ë‹¤ë©´ Disable
 					{
 						g_itMGR.OpenMsgBox(STR_SEPARATE_EMPTY_TARGETITEM);
 						break;
@@ -223,14 +223,14 @@ void CSeparateDlg::Show()
 }
 
 //*-------------------------------------------------------------------/
-/// ºĞ¸®/ºĞÇØÈÄ ¾ÆÀÌÅÛÀÌ µé¾î°¥ ÀÚ¸®°¡ ÃæºĞÈ÷ ÀÖ´Â°¡?
+/// ë¶„ë¦¬/ë¶„í•´í›„ ì•„ì´í…œì´ ë“¤ì–´ê°ˆ ìë¦¬ê°€ ì¶©ë¶„íˆ ìˆëŠ”ê°€?
 //*-------------------------------------------------------------------/
 bool CSeparateDlg::HasEnoughInventoryEmptySlot( CIconItem* pItemIcon, std::vector<CSlot>& OutputItems )
 {
 	assert( pItemIcon );
 	if( pItemIcon == NULL ) return false;
 
-	///ÀÏ´Ü ¸ğµç Å¸ÀÔÀÇ ºó ½½·ÔÀ» ±¸ÇÑ´Ù.
+	///ì¼ë‹¨ ëª¨ë“  íƒ€ì…ì˜ ë¹ˆ ìŠ¬ë¡¯ì„ êµ¬í•œë‹¤.
 	short nEmptySlotCount[ MAX_INV_TYPE ];
 
 	CInventory* pInven = g_pAVATAR->GetInventory();
@@ -240,7 +240,7 @@ bool CSeparateDlg::HasEnoughInventoryEmptySlot( CIconItem* pItemIcon, std::vecto
 		nEmptySlotCount[i] = pInven->GetEmptyInvenSlotCount( (t_InvTYPE)i );
 
 
-	/// ºĞ¸®/ºĞÇØÇÒ ¾ÆÀÌÅÛÀÇ ÀÚ¸®¸¦ ºó½½·ÔÀ¸·Î °è»êÇÑ´Ù( °³¼ö°¡ ¾ø°Å³ª °³¼ö°¡ ÀÖÁö¸¸ 1°³ÀÏ°æ¿ì)
+	/// ë¶„ë¦¬/ë¶„í•´í•  ì•„ì´í…œì˜ ìë¦¬ë¥¼ ë¹ˆìŠ¬ë¡¯ìœ¼ë¡œ ê³„ì‚°í•œë‹¤( ê°œìˆ˜ê°€ ì—†ê±°ë‚˜ ê°œìˆ˜ê°€ ìˆì§€ë§Œ 1ê°œì¼ê²½ìš°)
 	tagITEM& Item = pItemIcon->GetItem();
 	if( (Item.IsEnableDupCNT() && Item.GetQuantity() == 1 ) || !Item.IsEnableDupCNT() )
 		nEmptySlotCount[ CInventory::GetInvPageTYPE( Item ) ]++;
@@ -276,7 +276,7 @@ void CSeparateDlg::Draw()
 		SetRect( &rcDraw, -130, 21, -17, 39 );
 		drawFont( g_GameDATA.m_hFONT[ FONT_NORMAL ], true, &rcDraw ,g_dwWHITE,DT_CENTER | DT_VCENTER, pIcon->GetName() );
 
-		///ÇÊ¿ä MP or ÁÙ¸®
+		///í•„ìš” MP or ì¤„ë¦¬
 		D3DXMATRIX mat;	
 		D3DXMatrixTranslation( &mat, (float)m_sPosition.x, (float)m_sPosition.y,0.0f);
 		::setTransformSprite( mat );

@@ -35,8 +35,8 @@ CLogin::CLogin()
 
 	m_pEUIManager    = NULL;
 
-	m_hCopyRight	= 0;///ÀúÀÛ±Ç
-	m_hUserGrade	= 0;///»ç¿ëÀÚ µî±Þ
+	m_hCopyRight	= 0;///ì €ìž‘ê¶Œ
+	m_hUserGrade	= 0;///ì‚¬ìš©ìž ë“±ê¸‰
 
 }
 
@@ -252,7 +252,7 @@ void CLogin::SendLoginReq( )
 	
 	if( CGame::GetInstance().IsActiveRouteComboBox() )
 	{
-		///ÄÞº¸ ¹Ú½º¿¡¼­ ÇöÀç ¼±ÅÃµÈ ¾ÆÀÌÅÛÀÇ value¸¦ ±¸ÇØ¿Â´Ù.
+		///ì½¤ë³´ ë°•ìŠ¤ì—ì„œ í˜„ìž¬ ì„ íƒëœ ì•„ì´í…œì˜ valueë¥¼ êµ¬í•´ì˜¨ë‹¤.
 		CWinCtrl* pComponent = Find( IID_COMBOBOX_ROUTE );
 		if( pComponent && pComponent->GetControlType() == CTRL_JCOMBOBOX )
 		{
@@ -306,8 +306,8 @@ void CLogin::Show()
 	{
 		pEditBox = (CTEditBox*)pCtrl;
 	/*
-	 05. 10. 24 - ±èÁÖÇö
-	 ¼­¹ö µð½ºÄÁ³ØÆ® ÈÄ¿¡ Àç·Î±×ÀÎÇÏ¸é ·Î±×ÀÎ Ã¢¿¡ ¾ÆµÚ¶û ºñ¹øÀÌ ÀûÇôÀÖ´Â °ü°è·Î;; ¸·À½.
+	 05. 10. 24 - ê¹€ì£¼í˜„
+	 ì„œë²„ ë””ìŠ¤ì»¨ë„¥íŠ¸ í›„ì— ìž¬ë¡œê·¸ì¸í•˜ë©´ ë¡œê·¸ì¸ ì°½ì— ì•„ë’¤ëž‘ ë¹„ë²ˆì´ ì í˜€ìžˆëŠ” ê´€ê³„ë¡œ;; ë§‰ìŒ.
 
 		pEditBox->SetText( g_GameDATA.m_Account.Get() );
 	*/
@@ -318,15 +318,15 @@ void CLogin::Show()
 	{
 		pEditBox = (CTEditBox*)pCtrl;
 	/*
-	 05. 10. 24 - ±èÁÖÇö
-	 ¼­¹ö µð½ºÄÁ³ØÆ® ÈÄ¿¡ Àç·Î±×ÀÎÇÏ¸é ·Î±×ÀÎ Ã¢¿¡ ¾ÆµÚ¶û ºñ¹øÀÌ ÀûÇôÀÖ´Â °ü°è·Î;; ¸·À½.
+	 05. 10. 24 - ê¹€ì£¼í˜„
+	 ì„œë²„ ë””ìŠ¤ì»¨ë„¥íŠ¸ í›„ì— ìž¬ë¡œê·¸ì¸í•˜ë©´ ë¡œê·¸ì¸ ì°½ì— ì•„ë’¤ëž‘ ë¹„ë²ˆì´ ì í˜€ìžˆëŠ” ê´€ê³„ë¡œ;; ë§‰ìŒ.
 
 		pEditBox->SetText( g_GameDATA.m_Password.Get() );
 	*/
 	}
 
 	
-	///ÀúÀÛ±Ç
+	///ì €ìž‘ê¶Œ
 	m_hCopyRight = loadTexture ( "3DData\\Control\\Res\\copyright.dds", 
 								"3DData\\Control\\Res\\copyright.dds",
 								1, 
@@ -540,7 +540,7 @@ bool CLogin::ConnectLoginServer()
 
 	CTCommand* pCmd = new CTCmdExit;
 	g_EUILobby.ShowMsgBox(STR_WAIT_CONNECT_LOGIN_SERVER,CTMsgBox::BT_CANCEL ,true ,EUI_LOGIN ,NULL, pCmd );
-	// ¼­¹ö Æ÷Æ® ÀÓÀÇ ¼³Á¤ °¡´ÉÇÏµµ·Ï ¼öÁ¤...
+	// ì„œë²„ í¬íŠ¸ ìž„ì˜ ì„¤ì • ê°€ëŠ¥í•˜ë„ë¡ ìˆ˜ì •...
 	// if ( !g_pNet->ConnectToServer( g_GameDATA.m_ServerIP.Get(), TCP_LSV_PORT, NS_CON_TO_LSV ) )
 	if ( !g_pNet->ConnectToServer( g_GameDATA.m_ServerIP.Get(), g_GameDATA.m_wServerPORT, NS_CON_TO_LSV ) )
 	{

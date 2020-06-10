@@ -148,7 +148,7 @@ void CQuestDlg::Update( POINT ptMouse )
 	if( iSelectQuestIdx < 0 )
 		return;
 
-	///NPC ´ëÈ­Ã¢ÀÌ ¿­·ÁÀÖ´Â µ¿¾È¿¡´Â Æ÷±â¸¦ ÇÒ¼ö ¾ø´Ù.
+	///NPC ëŒ€í™”ì°½ì´ ì—´ë ¤ìˆëŠ” ë™ì•ˆì—ëŠ” í¬ê¸°ë¥¼ í• ìˆ˜ ì—†ë‹¤.
 	CDialogDlg* pDlg = (CDialogDlg*)g_itMGR.FindDlg( DLG_TYPE_DIALOG );
 	CWinCtrl* pCtrl = FindChildInPane(IID_PANE_QUESTINFO, IID_BTN_ABANDON);
 	if( pDlg && pDlg->IsVision() )
@@ -163,7 +163,7 @@ void CQuestDlg::Update( POINT ptMouse )
 	}
 
 
-	///ÀÌÇÏ ÅøÆÁ Ç¥½Ã
+	///ì´í•˜ íˆ´íŒ í‘œì‹œ
 	CTDialog* pTDlg = CTDialog::GetProcessMouseOverDialog();
 	if( pTDlg && pTDlg != (CTDialog*)this )
 			return ;
@@ -330,13 +330,13 @@ void CQuestDlg::UpdateQuestList()
 		}
 	}
 
-	///ÀÌÀü ¼±ÅÃµÇ¾îÁø QuestIndex°¡ ¸®½ºÆ®¿¡ ¾ø´Ù¸é ¸Ç ¹Ø¿¡ ÀÖ´Â Äù½ºÆ®·Î ÀÌµ¿
+	///ì´ì „ ì„ íƒë˜ì–´ì§„ QuestIndexê°€ ë¦¬ìŠ¤íŠ¸ì— ì—†ë‹¤ë©´ ë§¨ ë°‘ì— ìˆëŠ” í€˜ìŠ¤íŠ¸ë¡œ ì´ë™
 	if( iSelectItemIndex == -1 )
 		iSelectItemIndex = pList->GetSize() - 1;
 
-	if( pList->GetSize() )///1°³ ÀÌ»ó µî·ÏµÈ Quest°¡ ÀÖÀ»¶§¸¸
+	if( pList->GetSize() )///1ê°œ ì´ìƒ ë“±ë¡ëœ Questê°€ ìˆì„ë•Œë§Œ
 	{
-		///½ºÅ©·Ñ¹Ù¿Í ¸®½ºÆ®¸¦ Èû²² ÀÌµ¿½ÃÅ°±â À§ÇØ¼­
+		///ìŠ¤í¬ë¡¤ë°”ì™€ ë¦¬ìŠ¤íŠ¸ë¥¼ í˜ê»˜ ì´ë™ì‹œí‚¤ê¸° ìœ„í•´ì„œ
 		pCtrl = FindChildInPane( IID_PANE_QUESTLIST, IID_ZLIST_SCROLLBAR );
 		if( pCtrl && pCtrl->GetControlType() == CTRL_SCROLLBAR )
 		{
@@ -445,7 +445,7 @@ void CQuestDlg::Hide()
 	if( m_pSelectedQuestItem )
 		m_pSelectedQuestItem->Hide();
 
-	// È«±Ù.	
+	// í™ê·¼.	
 	ActiveListBoxMoveBegin();
 }
 
@@ -509,8 +509,8 @@ void CQuestDlg::Maximize()
 }
 
 //*-------------------------------------------------------------------------------------*/
-/// È«±Ù
-/// @brief ÇöÀç È°¼ºÈ­µÈ(¼±ÅÃµÈÅÇ) ¸®½ºÆ®¹Ú½º¸¦ ½ÃÀÛÀ¸·Î ÀÌµ¿½ÃÅ²´Ù
+/// í™ê·¼
+/// @brief í˜„ì¬ í™œì„±í™”ëœ(ì„ íƒëœíƒ­) ë¦¬ìŠ¤íŠ¸ë°•ìŠ¤ë¥¼ ì‹œì‘ìœ¼ë¡œ ì´ë™ì‹œí‚¨ë‹¤
 //*-------------------------------------------------------------------------------------*/
 void CQuestDlg::ActiveListBoxMoveBegin()
 {

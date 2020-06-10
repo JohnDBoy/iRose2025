@@ -27,10 +27,10 @@ CBGMManager::~CBGMManager(void)
 {
 }
 
-/// ¹ã³· º¯°æ¿¡ µû¸¥ ¹è°æÀ½¾Ç ÀüÀÌ..
+/// ë°¤ë‚® ë³€ê²½ì— ë”°ë¥¸ ë°°ê²½ìŒì•… ì „ì´..
 void CBGMManager::ChangeBGMMusicWithDayAndNight( int iZoneNO, bool bToNight )
 {	
-	/// ¹ãÀ¸·Î º¯ÇÏ´Â°Å¶ó¸é..
+	/// ë°¤ìœ¼ë¡œ ë³€í•˜ëŠ”ê±°ë¼ë©´..
 	//if( bToNight )
 	//{		
 	//	CMusicMgr::GetSingleton().Play ( ZONE_BG_MUSIC_DAY( iZoneNO ) );
@@ -71,7 +71,7 @@ void CBGMManager::Proc()
 
 	m_dwElapsedTime += dwElapsedPrevFrame;
 
-	/// 1ÃÊ¿¡ ÇÑ¹ø¾¿ °»½Ì
+	/// 1ì´ˆì— í•œë²ˆì”© ê°±ì‹±
 
 	if( m_dwElapsedTime > 1000 )
 	{
@@ -86,7 +86,7 @@ void CBGMManager::Proc()
 				m_bToFadeOut	= false;
 				m_iStartVolumeIdx	= 0;
 
-				/// ¹ãÀ¸·Î º¯ÇÏ´Â°Å¶ó¸é..
+				/// ë°¤ìœ¼ë¡œ ë³€í•˜ëŠ”ê±°ë¼ë©´..
 				if( m_bToNight )
 				{		
 					CMusicMgr::GetSingleton().Play ( ZONE_BG_MUSIC_NIGHT( m_iZoneNO ) );

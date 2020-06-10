@@ -38,7 +38,7 @@ protected:
 	bool							 m_bManageSocketVerify;
 
 public	:
-	// worker thread °¹¼ö = CPU°¹¼ö * btMulCPUT + cAddCPUT
+	// worker thread ê°¯ìˆ˜ = CPUê°¯ìˆ˜ * btMulCPUT + cAddCPUT
 	IOCPSocketSERVER (char *szName, BYTE btMulCPU, char cAddCPU, bool bManageSocketVerify);
 	~IOCPSocketSERVER ();
 
@@ -46,10 +46,10 @@ public	:
 
 	char *GetServerNAME()		{	return this->m_ServerName.Get();	}
 
-	virtual iocpSOCKET*	AllocClientSOCKET()=0;					// ¸Ş¸ğ¸®ÇÒ´ç
-	virtual void InitClientSOCKET( iocpSOCKET *pCLIENT )		{	/* nop */	}	// Á¢¼Ó ¿Ï·á.. ÃÊ±âÈ­ ÇÒ°Å ÀÖÀ½ ÇØ¶ó..
-	virtual void FreeClientSOCKET( iocpSOCKET *pCLIENT )=0;		// °ËÁõ¾øÀÌ ¸Ş¸ğ¸® ÇØÁ¦
-	virtual void ClosedClientSOCKET( iocpSOCKET *pCLIENT )=0;	// ¼ÒÄÏÀÌ »èÁ¦µÆ´Ù.. ¾Ë¾Æ¼­ ¸Ş¸ğ¸® ÇØÁ¦ÇÒ°Í...
+	virtual iocpSOCKET*	AllocClientSOCKET()=0;					// ë©”ëª¨ë¦¬í• ë‹¹
+	virtual void InitClientSOCKET( iocpSOCKET *pCLIENT )		{	/* nop */	}	// ì ‘ì† ì™„ë£Œ.. ì´ˆê¸°í™” í• ê±° ìˆìŒ í•´ë¼..
+	virtual void FreeClientSOCKET( iocpSOCKET *pCLIENT )=0;		// ê²€ì¦ì—†ì´ ë©”ëª¨ë¦¬ í•´ì œ
+	virtual void ClosedClientSOCKET( iocpSOCKET *pCLIENT )=0;	// ì†Œì¼“ì´ ì‚­ì œëë‹¤.. ì•Œì•„ì„œ ë©”ëª¨ë¦¬ í•´ì œí• ê²ƒ...
 
 	void LockLIST ()		{	this->Lock ();		}
 	void UnlockLIST ()		{	this->Unlock ();	}
@@ -73,7 +73,7 @@ public	:
 			return m_pSocketIDX->GetUsedSlotCNT();
 		return 0;
 	}
-	// ¸ğµç ¾²·¹µå µ¿ÀÛ...
+	// ëª¨ë“  ì“°ë ˆë“œ ë™ì‘...
 	bool Active (int iListenTCPPortNO, DWORD dwMaxSocketCount, int iKeepAliveSec);
 	void Shutdown ()
 	{
@@ -82,7 +82,7 @@ public	:
 		this->ShutdownSOCKET ();
 	}
 
-	// Á¢¼ÓµÈ ¼ÒÄÏ ¸ğµÎ Á¾·á
+	// ì ‘ì†ëœ ì†Œì¼“ ëª¨ë‘ ì¢…ë£Œ
 	void ShutdownSOCKET ();
 
 	void StartACCEPT (int iListenTCPPortNO, int iKeepAliveSec);

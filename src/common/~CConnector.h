@@ -15,7 +15,7 @@ private  :
     int ReceiveBuf  (void *pBuf, int iCount);
 
 protected:
-    short                           m_nRecvByte;            // ÇöÀç±îÁö ¼ÒÄÏ¿¡¼­ ÀĞÀº ¹ÙÀÌÆ®¼ö...
+    short                           m_nRecvByte;            // í˜„ì¬ê¹Œì§€ ì†Œì¼“ì—ì„œ ì½ì€ ë°”ì´íŠ¸ìˆ˜...
     t_PACKET                       *m_pRecvPket;
     short                           m_nSendByte;
 
@@ -33,7 +33,7 @@ public   :
         inline void UnlockSENDq()   {   ;   }
     #endif
 
-    bool                            m_bIsWritable;          // ¼ÒÄÏÀÌ ¾²±â °¡´ÉÇÑ »óÅÂÀÎ°¡ ??
+    bool                            m_bIsWritable;          // ì†Œì¼“ì´ ì“°ê¸° ê°€ëŠ¥í•œ ìƒíƒœì¸ê°€ ??
     DWORD                           m_dwLastActionTime;
     bool                            m_bCloseSocket;
 
@@ -98,7 +98,7 @@ void CConnectorLIST<dType>::FreeLIST ()
                 pNode->DATA.m_pSocket->Close ();
             }
 
-            // Event FD_COLSOE ¹ß»ı¿¡ ÀÇÇØ À¯Àú ³ëµå°¡ »èÁ¦µÉ°ÍÀÌ´Ù.
+            // Event FD_COLSOE ë°œìƒì— ì˜í•´ ìœ ì € ë…¸ë“œê°€ ì‚­ì œë ê²ƒì´ë‹¤.
 
             pNode = m_LIST.GetHeadNode ();
         }

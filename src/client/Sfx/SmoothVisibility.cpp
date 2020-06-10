@@ -6,8 +6,8 @@
 CSmoothVisibility::CSmoothVisibility(void)
 {
 	m_fCurrentVisibility	= 1.0f;
-	m_bToDisappear			= false;		/// »ç¶óÁö´Â ÁßÀÌ³Ä? ³ªÅ¸³ª´Â ÁßÀÌ³Ä?
-	m_dwTransitionTime		= 0;			/// º¯È­¿¡ °É¸®´Â ½Ã°£
+	m_bToDisappear			= false;		/// ì‚¬ë¼ì§€ëŠ” ì¤‘ì´ëƒ? ë‚˜íƒ€ë‚˜ëŠ” ì¤‘ì´ëƒ?
+	m_dwTransitionTime		= 0;			/// ë³€í™”ì— ê±¸ë¦¬ëŠ” ì‹œê°„
 
 	m_dwStartTime			= g_GameDATA.GetGameTime();	
 	m_dwTotalElapsedTime	= 0;				/// Elapsed time until now.
@@ -22,8 +22,8 @@ CSmoothVisibility::~CSmoothVisibility(void)
 void CSmoothVisibility::Start( DWORD dwTransitionTime, bool bToDisappear )
 {
 	m_fCurrentVisibility	= ( bToDisappear )? 1.0f:0.0f;
-	m_bToDisappear			= bToDisappear;				/// »ç¶óÁö´Â ÁßÀÌ³Ä? ³ªÅ¸³ª´Â ÁßÀÌ³Ä?
-	m_dwTransitionTime		= dwTransitionTime;			/// º¯È­¿¡ °É¸®´Â ½Ã°£
+	m_bToDisappear			= bToDisappear;				/// ì‚¬ë¼ì§€ëŠ” ì¤‘ì´ëƒ? ë‚˜íƒ€ë‚˜ëŠ” ì¤‘ì´ëƒ?
+	m_dwTransitionTime		= dwTransitionTime;			/// ë³€í™”ì— ê±¸ë¦¬ëŠ” ì‹œê°„
 
 	m_dwStartTime			= g_GameDATA.GetGameTime();	
 	m_dwTotalElapsedTime	= 0;
@@ -160,7 +160,7 @@ void CSmoothVisibilityCombo::UpdateVisibility()
 }
 
 ///
-/// »ç¶óÁ³´Ù°¡ ³ªÅ¸³­´Ù.
+/// ì‚¬ë¼ì¡Œë‹¤ê°€ ë‚˜íƒ€ë‚œë‹¤.
 ///
 void CSmoothVisibilityCombo::UpdateDisappearCombo()
 {
@@ -203,7 +203,7 @@ void CSmoothVisibilityCombo::UpdateDisappearCombo()
 }
 
 ///
-/// ³ªÅ¸³µ´Ù°¡ »ç¶óÁü
+/// ë‚˜íƒ€ë‚¬ë‹¤ê°€ ì‚¬ë¼ì§
 ///
 void CSmoothVisibilityCombo::UpdateAppearCombo()
 {
@@ -247,7 +247,7 @@ void CSmoothVisibilityCombo::UpdateAppearCombo()
 }
 
 ///
-/// ±ôºıÀÓ
+/// ê¹œë¹¡ì„
 ///
 void CSmoothVisibilityCombo::UpdateFlashCombo()
 {

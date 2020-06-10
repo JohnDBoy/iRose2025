@@ -34,7 +34,7 @@ void CObjITEM::InitItemOBJ (classUSER *pDropper, tPOINTF &PosCUR, POINTS &PosSEC
 	}
 
 	if ( pDropper ) {
-		// ·Î±×¸¦ ³²±æ ¸¸ÇÑ °¡Ä¡°¡ ÀÖ´Â ¾ÆÀÌÅÛÀÎ°¡´Â ·Î±×¿¡¼­ ÆÇ´Ü..
+		// ë¡œê·¸ë¥¼ ë‚¨ê¸¸ ë§Œí•œ ê°€ì¹˜ê°€ ìžˆëŠ” ì•„ì´í…œì¸ê°€ëŠ” ë¡œê·¸ì—ì„œ íŒë‹¨..
 		m_DropperACCOUNT.Set( pDropper->Get_ACCOUNT() );
 		m_DropperNAME.Set( pDropper->Get_NAME() );
 		m_DropperIP.Set( pDropper->Get_IP() );
@@ -49,14 +49,14 @@ void CObjITEM::InitItemOBJ (classUSER *pDropper, tPOINTF &PosCUR, POINTS &PosSEC
 	if ( bActive )
 		m_iRemainTIME = ITEM_OBJ_LIVE_TIME;
 	else
-		m_iRemainTIME = 0;		// ¸÷Á×À»¶§ µå·ÓµÇ´Â °æ¿ì µ¥¹ÌÁö ÆÐÅ¶°ú °°ÀÌ °¡µµ·Ï...
+		m_iRemainTIME = 0;		// ëª¹ì£½ì„ë•Œ ë“œë¡­ë˜ëŠ” ê²½ìš° ë°ë¯¸ì§€ íŒ¨í‚·ê³¼ ê°™ì´ ê°€ë„ë¡...
 }
 
 //-------------------------------------------------------------------------------------------------
 void CObjITEM::SetACTIVE ()
 {
 	if ( m_pOwnerPARTY ) {
-		// ÆÄÆ¼ ¼ÒÀ¯ ¾ÆÀÌÅÛÀÏ°æ¿ì ¼ÒÀ¯±Ç ±æ°Ô...
+		// íŒŒí‹° ì†Œìœ  ì•„ì´í…œì¼ê²½ìš° ì†Œìœ ê¶Œ ê¸¸ê²Œ...
 		m_iRemainTIME = ITEM_OBJ_LIVE_TIME + ( ITEM_OBJ_LIVE_TIME-ITEM_OBJ_FREE_TIME );
 	} else
 		m_iRemainTIME = ITEM_OBJ_LIVE_TIME;
@@ -65,7 +65,7 @@ void CObjITEM::SetACTIVE ()
 //-------------------------------------------------------------------------------------------------
 void CObjITEM::Update_OwnerObjIDX ( classUSER *pUSER )
 {
-	// ÀÌ ÆÐÅ¶À» ¹ÞÀ» ³ÑÀÌ ¿À³Ê³Ä ???
+	// ì´ íŒ¨í‚·ì„ ë°›ì„ ë„˜ì´ ì˜¤ë„ˆëƒ ???
 	if ( pUSER->m_dwDBID == this->m_dwOwnerDBID ) {
 		this->m_iOwnerObjIDX = pUSER->Get_INDEX();
 	}
@@ -93,7 +93,7 @@ bool CObjITEM::Make_gsv_ADD_OBJECT( classPACKET *pCPacket )
 //-------------------------------------------------------------------------------------------------
 int	 CObjITEM::Proc (void)
 {
-	// »ý¼ºµÈÈÄ ÀÏÁ¤ ½Ã°£ÀÌ °æ°ú µÇ¸é ÇÊµå¿¡¼­ »èÁ¦ÇÑ´Ù...
+	// ìƒì„±ëœí›„ ì¼ì • ì‹œê°„ì´ ê²½ê³¼ ë˜ë©´ í•„ë“œì—ì„œ ì‚­ì œí•œë‹¤...
 	m_iRemainTIME -= (this->GetZONE())->GetPassTIME ();
 	if ( m_iRemainTIME < 0 ) {
 		if ( m_bDropperIsUSER ) {

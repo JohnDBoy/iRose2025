@@ -11,7 +11,7 @@ CMakeStateWait::~CMakeStateWait(void)
 
 void CMakeStateWait::Draw()
 {
-	/// Guage ±×¸®±â
+	/// Guage ê·¸ë¦¬ê¸°
 }
 
 void CMakeStateWait::Init()

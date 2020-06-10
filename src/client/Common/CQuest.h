@@ -7,9 +7,9 @@
 const BYTE g_btSwitchBitMask[8] = { 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80	};
 
 
-#define	QUEST_SWITCH_PER_QUEST		32	// Äù½ºÆ®´ç ½ºÀ§Ä¡
-#define	QUEST_VAR_PER_QUEST			10	// Äù½ºÆ®´ç º¯¼ö
-#define	QUEST_ITEM_PER_QUEST		6	// Äù½ºÆ®´ç ÀÎº¥Åä¸® ¼ö
+#define	QUEST_SWITCH_PER_QUEST		32	// í€˜ìŠ¤íŠ¸ë‹¹ ìŠ¤ìœ„ì¹˜
+#define	QUEST_VAR_PER_QUEST			10	// í€˜ìŠ¤íŠ¸ë‹¹ ë³€ìˆ˜
+#define	QUEST_ITEM_PER_QUEST		6	// í€˜ìŠ¤íŠ¸ë‹¹ ì¸ë²¤í† ë¦¬ ìˆ˜
 
 typedef	short				t_qstvar;
 
@@ -20,10 +20,10 @@ private:
 	// Total 2 + 2 + 2*10 + 1*4 = 28 bytes !!!
 #pragma pack (push, 1)
 	WORD		m_wID;
-	DWORD		m_dwExpirationTIME;							// ¸¸±â ½Ã°£...	0ÀÌ¸é ¹«Á¦ÇÑ
-	t_qstvar    m_pVAR[ QUEST_VAR_PER_QUEST ];				// 10°³ º¯¼ö
+	DWORD		m_dwExpirationTIME;							// ë§Œê¸° ì‹œê°„...	0ì´ë©´ ë¬´ì œí•œ
+	t_qstvar    m_pVAR[ QUEST_VAR_PER_QUEST ];				// 10ê°œ ë³€ìˆ˜
 	union {
-		BYTE	m_btSWITCHES[ QUEST_SWITCH_PER_QUEST/8 ];	// 32°³ ½ºÀ§Ä¡
+		BYTE	m_btSWITCHES[ QUEST_SWITCH_PER_QUEST/8 ];	// 32ê°œ ìŠ¤ìœ„ì¹˜
 		DWORD	m_dwSWITCHES;
 	} ;
 	tagBaseITEM	m_ITEMs[ QUEST_ITEM_PER_QUEST ];

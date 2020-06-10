@@ -32,7 +32,7 @@ void CMailBoxListItem::Draw()
 	D3DXMatrixTranslation( &mat, (float)m_sPosition.x, (float)m_sPosition.y,0.0f);
 	::setTransformSprite( mat );
 
-	///Èû
+	///íž˜
 	if( IsSelected() )
 		::drawFont( g_GameDATA.m_hFONT[ FONT_NORMAL_BOLD ], true, 0, 0, g_dwYELLOW, 
 		CStr::Printf("From %s(%d/%d/%d)",m_strName.c_str(), m_RecvTime.wMonth, m_RecvTime.wDay , m_RecvTime.wHour ));

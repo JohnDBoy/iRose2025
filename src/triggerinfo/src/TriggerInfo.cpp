@@ -1,4 +1,4 @@
-// TriggerInfo.cpp : DLL ÀÀ¿ë ÇÁ·Î±×·¥¿¡ ´ëÇÑ ÁøÀÔÁ¡À» Á¤ÀÇÇÕ´Ï´Ù.
+// TriggerInfo.cpp : DLL ì‘ìš© í”„ë¡œê·¸ë¨ì— ëŒ€í•œ ì§„ì…ì ì„ ì •ì˜í•©ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -10,13 +10,13 @@
 
 
 /*************************************************************
- * Adapter Á¤º¸¸¦ ¾ò±â À§ÇÑ Å¬·¡½º, ReleaseAdapterInfo ·Î callÇØ¾ß
- * delete µÊ
+ * Adapter ì •ë³´ë¥¼ ì–»ê¸° ìœ„í•œ í´ë˜ìŠ¤, ReleaseAdapterInfo ë¡œ callí•´ì•¼
+ * delete ë¨
  */
 static CAdapterInfo * g_pAdInfo = NULL;
 
 /************************************************************
- * ½Ã½ºÅÛ Á¤º¸¸¦ ÀúÀåÇÏ´Â ¹®ÀÚ¿­
+ * ì‹œìŠ¤í…œ ì •ë³´ë¥¼ ì €ì¥í•˜ëŠ” ë¬¸ìì—´
  */
 static string g_Info;
 static string g_InfoForWeb;
@@ -40,7 +40,7 @@ BOOL APIENTRY DllMain( HANDLE hModule,
 #endif
 
 /******************************************************************
- * ÇöÀç DectectµÇ¾î ÀÖ´Â Á¤º¸¸¦ ¸®ÅÏÇÑ´Ù
+ * í˜„ì¬ Dectectë˜ì–´ ìˆëŠ” ì •ë³´ë¥¼ ë¦¬í„´í•œë‹¤
  */
 TRIGGERINFO_API const char * TI_GetSysInfo (void)
 {
@@ -53,7 +53,7 @@ TRIGGERINFO_API const char * TI_GetSysInfoForWeb (void)
 }
 
 /******************************************************************
- * ½Ã½ºÅÛ Á¤º¸¸¦ DectectÇÑ´Ù
+ * ì‹œìŠ¤í…œ ì •ë³´ë¥¼ Dectectí•œë‹¤
  */
 TRIGGERINFO_API const char * TI_GatherSysInfo (void)
 {
@@ -92,7 +92,7 @@ TRIGGERINFO_API const char * TI_GatherSysInfo (void)
 }
 
 /******************************************************************
- * DectectµÇ¾î ÀÖ´Â Á¤º¸¸¦ ÀúÀåÇÏ°í ÀÖ´Â ÆÄÀÏ¿¡¼­ Á¤º¸¸¦ ÀĞ¾î¿Â´Ù
+ * Dectectë˜ì–´ ìˆëŠ” ì •ë³´ë¥¼ ì €ì¥í•˜ê³  ìˆëŠ” íŒŒì¼ì—ì„œ ì •ë³´ë¥¼ ì½ì–´ì˜¨ë‹¤
  */
 TRIGGERINFO_API const char * TI_ReadSysInfoFile (void)
 {
@@ -121,7 +121,7 @@ TRIGGERINFO_API const char * TI_ReadSysInfoFile (void)
 bool SaveSysResolution (const char * FileName, AdapterInformation * pInfo)
 {
 	/********************************************************************
-	* ÆÄÀÏ¿¡ ÀúÀå
+	* íŒŒì¼ì— ì €ì¥
 	*/
 	if(pInfo)
 	{
@@ -167,7 +167,7 @@ bool SaveSysResolution (const char * FileName, AdapterInformation * pInfo)
 AdapterInformation * ReadSysResolution (const char * FileName)
 {
 	/********************************************************************
-	* ÆÄÀÏ¿¡ ÀúÀå
+	* íŒŒì¼ì— ì €ì¥
 	*/
 
 	FILE * fp = fopen (FileName, "rb");

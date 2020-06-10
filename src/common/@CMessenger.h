@@ -29,7 +29,7 @@ struct tagFriend_H {
 	BYTE		m_btSTATUS;
 } ;
 
-// ³»°¡ µî·ÏÇÑ Ä£±¸ ¸®½ºÆ®
+// ë‚´ê°€ ë“±ë¡í•œ ì¹œêµ¬ ë¦¬ìŠ¤íŠ¸
 struct tagMyFriend : public tagFriend_H {
 	CMessenger *m_pUSER;
 	CStrVAR		m_Name;
@@ -54,12 +54,12 @@ public :
 		m_bFriendUPDATE = false;
 	}
 
-	bool MSGR_IsUPDATE ()					{	return m_bFriendUPDATE;	}	// db °»½ÅÇØ¾ß ÇÏ³Ä?
+	bool MSGR_IsUPDATE ()					{	return m_bFriendUPDATE;	}	// db ê°±ì‹ í•´ì•¼ í•˜ëƒ?
 
-	bool MSGR_Add( CWS_Client *pFriend );	// Ä£±¸ Ãß°¡
+	bool MSGR_Add( CWS_Client *pFriend );	// ì¹œêµ¬ ì¶”ê°€
 	
-	void MSGR_Del( DWORD dwDBID );			// Ä£±¸ »èÁ¦
-	void MSGR_Ban( DWORD dwDBID );			// Ã¤ÆÃ Â÷´Ü
+	void MSGR_Del( DWORD dwDBID );			// ì¹œêµ¬ ì‚­ì œ
+	void MSGR_Ban( DWORD dwDBID );			// ì±„íŒ… ì°¨ë‹¨
 	void MSGR_Status( DWORD dwDBID, BYTE btNewStatus );
 
 	void MSGR_LogIN (int iCount, BYTE *pLIST);

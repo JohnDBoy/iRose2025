@@ -5,7 +5,7 @@
 #include "NET_Prototype.h"
 //---------------------------------------------------------------------------
 
-// °°Àº ³»¿ëÀÇ ÆÐÅ¶À» ¿©·¯¸íÇÑÅ× Àü¼ÛÇÒ¼öÀÖÀ¸¹Ç·Î ÀÓ°è¿µ¿ª°ú ÂüÁ¶ Ä«¿îÆ®¸¦ µÖ¼­ °ü¸®
+// ê°™ì€ ë‚´ìš©ì˜ íŒ¨í‚·ì„ ì—¬ëŸ¬ëª…í•œí…Œ ì „ì†¡í• ìˆ˜ìžˆìœ¼ë¯€ë¡œ ìž„ê³„ì˜ì—­ê³¼ ì°¸ì¡° ì¹´ìš´íŠ¸ë¥¼ ë‘¬ì„œ ê´€ë¦¬
 class CPacket : public t_PACKET {
 private :
 	CRITICAL_SECTION			m_csPACKET;

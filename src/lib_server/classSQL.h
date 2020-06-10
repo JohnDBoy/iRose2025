@@ -56,7 +56,7 @@ public   :
 	virtual bool	Fetch ()=0;
 	virtual bool	BindPARAM (short nParamIDX, BYTE *pData, unsigned int uiDataSize)=0;
 	virtual DWORD	MakeQuery (char *szCommand, ...)=0;
-	virtual int		ExecSQLBuffer ()=0;		// ¿µÇâ ¹ŞÀº ·¹ÄÚµå Ä«¿îÆ® ¸®ÅÏ... :: ¿À·ù½Ã -1¸®ÅÏ.
+	virtual int		ExecSQLBuffer ()=0;		// ì˜í–¥ ë°›ì€ ë ˆì½”ë“œ ì¹´ìš´íŠ¸ ë¦¬í„´... :: ì˜¤ë¥˜ì‹œ -1ë¦¬í„´.
 	virtual int		ExecSQLPacket (char *szQuery, ULONG ulLength)=0;
 
 	virtual int		ExecSQLBuffer (char *szQuery)=0;

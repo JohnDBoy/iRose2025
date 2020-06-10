@@ -102,7 +102,7 @@ private :
 	CWS_Server	*m_ppChannelSERVER[ MAX_CHANNEL_SERVER ];
 
 public :
-	// Worker Thread °¹¼ö = CPU * 1 + 1
+	// Worker Thread ê°¯ìˆ˜ = CPU * 1 + 1
 	CWS_ListSERVER( UINT uiInitDataCNT, UINT uiIncDataCNT );
 	~CWS_ListSERVER();
 
@@ -138,7 +138,7 @@ public :
 	/// Inherited from IOCPSocketSERVER
 	iocpSOCKET*	AllocClientSOCKET()
 	{
-		// ¸Þ¸ð¸®ÇÒ´ç
+		// ë©”ëª¨ë¦¬í• ë‹¹
 		CWS_Server *pSOCKET = this->Pool_Alloc ();
 		if ( pSOCKET ) {
 			pSOCKET->Init ();
@@ -165,7 +165,7 @@ public :
 						this->GetPoolNAME(), 
 						this->GetUsedCNT()-1 );
 
-		// °ËÁõ¾øÀÌ ¸Þ¸ð¸® ÇØÁ¦
+		// ê²€ì¦ì—†ì´ ë©”ëª¨ë¦¬ í•´ì œ
 		((CWS_Server*)pSOCKET)->Free ();
 		this->Pool_Free( (CWS_Server*)pSOCKET );
 	}

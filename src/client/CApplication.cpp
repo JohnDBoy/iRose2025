@@ -68,13 +68,13 @@ LRESULT CApplication::MessageProc ( HWND hWnd, UINT uiMsg, WPARAM wParam, LPARAM
 	if( CTIme::GetInstance().Process( hWnd, uiMsg, wParam, lParam ) )
 		return S_OK;
 
-	// Å°º¸µå ¸Ş¼¼Áö ÀúÀå
+	// í‚¤ë³´ë“œ ë©”ì„¸ì§€ ì €ì¥
 	if ( CGame::GetInstance().AddWndMsgQ(uiMsg, wParam, lParam) )
 		return 0;
 	
     switch( uiMsg ) 
 	{
-		case WM_SYSCHAR:///systemkey¿Í ÀÏ¹İ Å°¸¦ Á¶ÇÕÇØ¼­ ´©¸¦¶§ "¶ò"¼Ò¸® ¾ø¾Ö±â
+		case WM_SYSCHAR:///systemkeyì™€ ì¼ë°˜ í‚¤ë¥¼ ì¡°í•©í•´ì„œ ëˆ„ë¥¼ë•Œ "ëµ"ì†Œë¦¬ ì—†ì• ê¸°
 			return 0;
 		case WM_SETCURSOR:						
 			if( CCursor::GetInstance().RefreshCursor() )
@@ -82,7 +82,7 @@ LRESULT CApplication::MessageProc ( HWND hWnd, UINT uiMsg, WPARAM wParam, LPARAM
 			break;
 		case WM_ACTIVATE :
 			{
-				m_wActive = ( ( LOWORD( wParam ) != WA_INACTIVE ) && ( HIWORD( wParam ) == 0 ) ); // INVACIVE °¡ ¾Æ´Ï°í, ¹Ì´Ï¸¶ÀÌÁîµµ ¾Æ´Ñ °æ¿ì¿¡¸¸ È°¼ºÈ­
+				m_wActive = ( ( LOWORD( wParam ) != WA_INACTIVE ) && ( HIWORD( wParam ) == 0 ) ); // INVACIVE ê°€ ì•„ë‹ˆê³ , ë¯¸ë‹ˆë§ˆì´ì¦ˆë„ ì•„ë‹Œ ê²½ìš°ì—ë§Œ í™œì„±í™”
 				//m_wActive = true;
 				
 				LogString( LOG_DEBUG, "WM_ACTIVATE: [%s]\n",
@@ -131,7 +131,7 @@ LRESULT CApplication::MessageProc ( HWND hWnd, UINT uiMsg, WPARAM wParam, LPARAM
 			return 0;
 
 		case WM_ERASEBKGND:
-		case WM_SYSKEYUP   :					// ALTÅ° ´­·¶À»¶§ ¸ØÃã ¹æÁö !!!
+		case WM_SYSKEYUP   :					// ALTí‚¤ ëˆŒë €ì„ë•Œ ë©ˆì¶¤ ë°©ì§€ !!!
 		case WM_PALETTECHANGED :
 		case WM_QUERYNEWPALETTE :
 			return 0;
@@ -287,7 +287,7 @@ bool CApplication::ParseArgument (char *pStr)
 				g_GameDATA.m_nSightRange = atoi( pToken );
 			}
 		}
-		if ( !strcmpi( pToken, "_noui" ) ) { // ÀÎÅÍÆäÀÌ½º °¨Ãß±â. - zho
+		if ( !strcmpi( pToken, "_noui" ) ) { // ì¸í„°í˜ì´ìŠ¤ ê°ì¶”ê¸°. - zho
 			g_GameDATA.m_bNoUI = true;
 		}
 		
@@ -324,7 +324,7 @@ bool CApplication::ParseArgument (char *pStr)
 		if( !strcmpi( pToken, "_dup" ) )
 			g_GameDATA.m_bCheckDupRUN = false;
 
-		/// ÀÌÇÏ ÀÏº» NHN JAPANÀ» À§ÇÑ Argument Setting( 2005/5/18 )
+		/// ì´í•˜ ì¼ë³¸ NHN JAPANì„ ìœ„í•œ Argument Setting( 2005/5/18 )
 		if( !strcmpi( pToken,"_RCODE_JP_HG" ) )
 			g_GameDATA.m_is_NHN_JAPAN = true;
 
@@ -375,11 +375,11 @@ bool CApplication::ParseArgument (char *pStr)
 }
 
 //-----------------------------------------------------------------------------------------------------------------
-/// 1. resetScreen()ÀÌ MoveWindowº¸´Ù ¸ÕÀú È£ÃâµÇ¾î¾ß client WindowÀÇ Sizeº¯°æÀÌ Á¦´ë·Î µÈ´Ù.
-/// resetScreenÀÌ MoveWindowº¸´Ù ³ªÁß¿¡ µÉ°æ¿ì MoveWindow¿¡¼­ Sizeº¯°æÀÌ  Window°¡ º¯°æµÉ¼ö ÀÖ´Â ÃÖ´ë»çÀÌÁî°¡
-/// ³»°¡ ¿øÇÏ´Â °ªº¸´Ù ÀÛ°Ô µÇ¾î Size º¯°æ¿¡ ½ÇÆĞÇÑ´Ù( navy : 2005/3/11 )
-/// 2. ÇöÀç À©µµ¿ìÁîÀÇ ÇØ»óµµº¸´Ù ÀÏÁ¤Å©±â ÀÌ»óÀ¸·Î À©µµ¿ì¸¦ »ı¼ºÇÏ°Å³ª »çÀÌÁî º¯°æÀÌ µÇÁö ¾Ê´Â´Ù.
-///		- ÇöÀç À©µµ¿ìÁî ÇØ»óµµ¸¦ ±¸ÇØ¼­ º¯°æÇÏ°íÀÚÇÏ´Â Å©±â¸¦ ºñ±³ÇÏÀÚ
+/// 1. resetScreen()ì´ MoveWindowë³´ë‹¤ ë¨¼ì € í˜¸ì¶œë˜ì–´ì•¼ client Windowì˜ Sizeë³€ê²½ì´ ì œëŒ€ë¡œ ëœë‹¤.
+/// resetScreenì´ MoveWindowë³´ë‹¤ ë‚˜ì¤‘ì— ë ê²½ìš° MoveWindowì—ì„œ Sizeë³€ê²½ì´  Windowê°€ ë³€ê²½ë ìˆ˜ ìˆëŠ” ìµœëŒ€ì‚¬ì´ì¦ˆê°€
+/// ë‚´ê°€ ì›í•˜ëŠ” ê°’ë³´ë‹¤ ì‘ê²Œ ë˜ì–´ Size ë³€ê²½ì— ì‹¤íŒ¨í•œë‹¤( navy : 2005/3/11 )
+/// 2. í˜„ì¬ ìœˆë„ìš°ì¦ˆì˜ í•´ìƒë„ë³´ë‹¤ ì¼ì •í¬ê¸° ì´ìƒìœ¼ë¡œ ìœˆë„ìš°ë¥¼ ìƒì„±í•˜ê±°ë‚˜ ì‚¬ì´ì¦ˆ ë³€ê²½ì´ ë˜ì§€ ì•ŠëŠ”ë‹¤.
+///		- í˜„ì¬ ìœˆë„ìš°ì¦ˆ í•´ìƒë„ë¥¼ êµ¬í•´ì„œ ë³€ê²½í•˜ê³ ìí•˜ëŠ” í¬ê¸°ë¥¼ ë¹„êµí•˜ì
 //-----------------------------------------------------------------------------------------------------------------
 void CApplication::ResizeWindowByClientSize( int& iClientWidth, int& iClientHeight, int iDepth , bool update_engine)
 {
@@ -438,7 +438,7 @@ void CApplication::ResizeWindowByClientSize( int& iClientWidth, int& iClientHeig
 	UpdateWindow( m_hWND );
 
 
-//	// À©µµ¿ì »çÀÌÁî¸¦ ÁöÁ¤ ÇØ»óµµ¿¡ ¸Âµµ·Ï ÀçÁ¶Á¤
+//	// ìœˆë„ìš° ì‚¬ì´ì¦ˆë¥¼ ì§€ì • í•´ìƒë„ì— ë§ë„ë¡ ì¬ì¡°ì •
 //    int iScreenWidth  = GetSystemMetrics (SM_CXSCREEN);
 //    int iScreenHeight = GetSystemMetrics (SM_CYSCREEN);
 //

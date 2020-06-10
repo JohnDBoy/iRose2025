@@ -1,7 +1,7 @@
 /**
  * \ingroup SHO_GS
  * \file	CUserData.h
- * \brief	°³ÀÎ »ç¿ëÀÚÀÇ ÄÉ¸¯ÅÍÀÇ µ¥ÀÌÅÍ º¸°ü, °ü¸®
+ * \brief	ê°œì¸ ì‚¬ìš©ìì˜ ì¼€ë¦­í„°ì˜ ë°ì´í„° ë³´ê´€, ê´€ë¦¬
  */
 #ifndef	__CUSERDATA_H
 #define	__CUSERDATA_H
@@ -28,18 +28,18 @@ extern DWORD Get_ServerMaxLevel ();
  * \ingroup SHO_GS_LIB
  * \class	tagBasicINFO
  * \author	wookSang.Jo
- * \brief	»ç¿ëÀÚ ÄÉ¸¯ÅÍÀÇ ±âº» Á¤º¸ µ¥ÀÌÅ¸ º¸°ü ±¸Á¶Ã¼
+ * \brief	ì‚¬ìš©ì ì¼€ë¦­í„°ì˜ ê¸°ë³¸ ì •ë³´ ë°ì´íƒ€ ë³´ê´€ êµ¬ì¡°ì²´
  */
 struct tagBasicINFO {
 	// NAME
 	// SEX
-	char	m_cBirthStone;		///< Åº»ı¼®
-	char	m_cFaceIDX;			///< ¾ó±¼ ¸ğ¾ç
-	char	m_cHairIDX;			///< ¸Ó¸® ¸ğ¾ç
-	short	m_nClass;			///< Á÷¾÷ ( 1~30 )
-	char	m_cUnion;			///< ¼Ò¼Ó Á¶ÇÕ ( 1~20 )
-	char	m_cRank;			///< °è±Ş ( 1~15 )
-	char	m_cFame;			///< ¸í¼º ( 0 ~ 99 )
+	char	m_cBirthStone;		///< íƒ„ìƒì„
+	char	m_cFaceIDX;			///< ì–¼êµ´ ëª¨ì–‘
+	char	m_cHairIDX;			///< ë¨¸ë¦¬ ëª¨ì–‘
+	short	m_nClass;			///< ì§ì—… ( 1~30 )
+	char	m_cUnion;			///< ì†Œì† ì¡°í•© ( 1~20 )
+	char	m_cRank;			///< ê³„ê¸‰ ( 1~15 )
+	char	m_cFame;			///< ëª…ì„± ( 0 ~ 99 )
 	void Init (char cBirthStone, char cFaceIDX, char cHairIDX)
 	{
 		m_cBirthStone = cBirthStone;		
@@ -57,17 +57,17 @@ struct tagBasicINFO {
  * \ingroup SHO_GS_LIB
  * \class	tagBasicAbility
  * \author	wookSang.Jo
- * \brief	»ç¿ëÀÚ ÄÉ¸¯ÅÍÀÇ ±âº» ´É·ÂÄ¡ µ¥ÀÌÅ¸ º¸°ü ±¸Á¶Ã¼
+ * \brief	ì‚¬ìš©ì ì¼€ë¦­í„°ì˜ ê¸°ë³¸ ëŠ¥ë ¥ì¹˜ ë°ì´íƒ€ ë³´ê´€ êµ¬ì¡°ì²´
  */
 struct tagBasicAbility {
 	union {
 		struct {
-			short	m_nSTR;			///< ±Ù·Â 1~200
-			short	m_nDEX;			///< ¹ÎÃ¸ 1~200
-			short	m_nINT;			///< Áö·Â 1~200
-			short	m_nCON;			///< concentration ÁıÁß·Â 1~200
-			short	m_nCHARM;		///< ¸Å·Â 1~200
-			short	m_nSENSE;		///< °¨°¢ 1~200
+			short	m_nSTR;			///< ê·¼ë ¥ 1~200
+			short	m_nDEX;			///< ë¯¼ì²© 1~200
+			short	m_nINT;			///< ì§€ë ¥ 1~200
+			short	m_nCON;			///< concentration ì§‘ì¤‘ë ¥ 1~200
+			short	m_nCHARM;		///< ë§¤ë ¥ 1~200
+			short	m_nSENSE;		///< ê°ê° 1~200
 		} ;
 		short		m_nBasicA[ BA_MAX ];
 	} ;
@@ -84,24 +84,24 @@ struct tagBasicAbility {
 
 // #ifdef __SHO_GS1
 // #include "../LIB_gsMAIN.h"
-// #define	MAX_BASIC_ABLITY		::Get_ServerMaxStats()//CLIB_GameSRV::GetInstance()->GetMaxStats()//400		/// 250 ±âº» ´É·ÂÄ¡ ÃÖ´ëÄ¡¸¦ 300À¸·Î ¼öÁ¤
-// #define	MAX_LEVEL				::Get_ServerMaxLevel()//CLIB_GameSRV::GetInstance()->GetMaxLevel()//220		/// 200 ÃÖ´ë ·¹º§À» 250À¸·Î ¼öÁ¤
+// #define	MAX_BASIC_ABLITY		::Get_ServerMaxStats()//CLIB_GameSRV::GetInstance()->GetMaxStats()//400		/// 250 ê¸°ë³¸ ëŠ¥ë ¥ì¹˜ ìµœëŒ€ì¹˜ë¥¼ 300ìœ¼ë¡œ ìˆ˜ì •
+// #define	MAX_LEVEL				::Get_ServerMaxLevel()//CLIB_GameSRV::GetInstance()->GetMaxLevel()//220		/// 200 ìµœëŒ€ ë ˆë²¨ì„ 250ìœ¼ë¡œ ìˆ˜ì •
 // #else
 #if defined(FRAROSE)
-	#define	MAX_BASIC_ABLITY		410		// 250 ±âº» ´É·ÂÄ¡ ÃÖ´ëÄ¡¸¦ 300À¸·Î ¼öÁ¤
-	#define	MAX_LEVEL				255		// 200 ÃÖ´ë ·¹º§À» 250À¸·Î ¼öÁ¤
+	#define	MAX_BASIC_ABLITY		410		// 250 ê¸°ë³¸ ëŠ¥ë ¥ì¹˜ ìµœëŒ€ì¹˜ë¥¼ 300ìœ¼ë¡œ ìˆ˜ì •
+	#define	MAX_LEVEL				255		// 200 ìµœëŒ€ ë ˆë²¨ì„ 250ìœ¼ë¡œ ìˆ˜ì •
 #else
-	#define	MAX_BASIC_ABLITY		300		// 250 ±âº» ´É·ÂÄ¡ ÃÖ´ëÄ¡¸¦ 300À¸·Î ¼öÁ¤
-	#define	MAX_LEVEL				210		// 200 ÃÖ´ë ·¹º§À» 250À¸·Î ¼öÁ¤
+	#define	MAX_BASIC_ABLITY		300		// 250 ê¸°ë³¸ ëŠ¥ë ¥ì¹˜ ìµœëŒ€ì¹˜ë¥¼ 300ìœ¼ë¡œ ìˆ˜ì •
+	#define	MAX_LEVEL				210		// 200 ìµœëŒ€ ë ˆë²¨ì„ 250ìœ¼ë¡œ ìˆ˜ì •
 #endif
 //#endif
 #define	MAX_EXPERIENCE			0x7FFFFFFFFFFFFFFF
 
 #define	MAX_STAMINA					5000
 //#define	MAX_STAMINA				20000
-//#define	GREEN_STAMINA			10000	// ÀÌ»óÀÌ¸é ¿¬µÎ»ö
-//#define	YELLOW_STAMINA			3000	// ÀÌ»óÀÌ¸é ³ë¶õ»ö
-//#define	RED_STAMINA				0		// ÀÌ»óÀÌ¸é ºÓÀº»ö
+//#define	GREEN_STAMINA			10000	// ì´ìƒì´ë©´ ì—°ë‘ìƒ‰
+//#define	YELLOW_STAMINA			3000	// ì´ìƒì´ë©´ ë…¸ë€ìƒ‰
+//#define	RED_STAMINA				0		// ì´ìƒì´ë©´ ë¶‰ì€ìƒ‰
 
 
 #define	MAX_MAINTAIN_STATUS		40		// 8 * 50 = 400
@@ -117,12 +117,12 @@ struct tagMaintainSTATUS {
 //	{
 //		short nIndex = iAbilityType - (int)AT_MAINTAIN_ABILITY;
 //		if ( nIndex >= 0 && nIndex < MAX_MAINTAIN_STATUS ) {
-//			// ÇöÀç½Ã°£ + ÀÔ·Â°ª * 10ºĞ
+//			// í˜„ì¬ì‹œê°„ + ì…ë ¥ê°’ * 10ë¶„
 //			if ( this->m_STATUS[ nIndex ].m_dwExpiredSEC > dwCurAbsSEC ) {
-//				// ½Ã°£ Ãß°¡...
+//				// ì‹œê°„ ì¶”ê°€...
 //				this->m_STATUS[ nIndex ].m_dwExpiredSEC += ( i10Min * 10 * 60 );
 //			} else {
-//				// ½Ã°£ °»½Å...
+//				// ì‹œê°„ ê°±ì‹ ...
 //				this->m_STATUS[ nIndex ].m_dwExpiredSEC = dwCurAbsSEC + ( i10Min * 10 * 60 );
 //			}
 //			this->m_STATUS[ nIndex ].m_nValue = nValue;
@@ -150,7 +150,7 @@ struct tagMaintainSTATUS {
  * \ingroup SHO_GS_LIB
  * \class	tagGrowAbility_old
  * \author	wookSang.Jo
- * \brief	»ç¿ëÀÚ ÄÉ¸¯ÅÍÀÇ ¼ºÀå ´É·ÂÄ¡ µ¥ÀÌÅ¸ º¸°ü ±¸Á¶Ã¼
+ * \brief	ì‚¬ìš©ì ì¼€ë¦­í„°ì˜ ì„±ì¥ ëŠ¥ë ¥ì¹˜ ë°ì´íƒ€ ë³´ê´€ êµ¬ì¡°ì²´
  */
 struct tagGrowAbility_old {
 	union {
@@ -158,30 +158,30 @@ struct tagGrowAbility_old {
 			short	m_nHP;				///< 0~2000
 			short	m_nMP;				///< 0~1000
 
-			long	m_lEXP;				///< °æÇèÄ¡ 1~100000
+			long	m_lEXP;				///< ê²½í—˜ì¹˜ 1~100000
 			short	m_nLevel;			///< 0~250
 			short	m_nBonusPoint;		///< 1~999
 			short	m_nSkillPoint;		///< 1~
-			BYTE	m_btBodySIZE;		///< ¸öÅëÅ©±â
-			BYTE	m_btHeadSIZE;		///< ¸Ó¸®Å©±â
-			long	m_lPenalEXP;		///< Ãß°¡ °æÇèÄ¡...
+			BYTE	m_btBodySIZE;		///< ëª¸í†µí¬ê¸°
+			BYTE	m_btHeadSIZE;		///< ë¨¸ë¦¬í¬ê¸°
+			long	m_lPenalEXP;		///< ì¶”ê°€ ê²½í—˜ì¹˜...
 
-			short	m_nFameG;			///< ¼±ÇàÁö¼ö	: Äù½ºÆ®¿¡ ÀÇÇØ Áõ°¨µÊ	: 2004.5.27 Ãß°¡
-			short	m_nFameB;			///< ¼±ÇàÁö¼ö : Äù½ºÆ®¿¡ ÀÇÇØ Áõ°¨µÊ	: 2004.5.27 Ãß°¡
-			short	m_nJoHapPOINT[ MAX_UNION_COUNT ];	// Á¶ÇÕ Æ÷ÀÎÆ®		: 2004.5.27 Ãß°¡
+			short	m_nFameG;			///< ì„ í–‰ì§€ìˆ˜	: í€˜ìŠ¤íŠ¸ì— ì˜í•´ ì¦ê°ë¨	: 2004.5.27 ì¶”ê°€
+			short	m_nFameB;			///< ì„ í–‰ì§€ìˆ˜ : í€˜ìŠ¤íŠ¸ì— ì˜í•´ ì¦ê°ë¨	: 2004.5.27 ì¶”ê°€
+			short	m_nJoHapPOINT[ MAX_UNION_COUNT ];	// ì¡°í•© í¬ì¸íŠ¸		: 2004.5.27 ì¶”ê°€
 
-			//int	m_iGuildNO;			///< ±æµå ¹øÈ£	: 2004.5.27 Ãß°¡
-			//short	m_nGuildCNTRB;		///< ±æµå ±â¿©µµ	: 2004.5.27 Ãß°¡
-			//BYTE	m_btGuildPOS;		///< ±æµå Á÷À§	: 2004.5.27 Ãß°¡
+			//int	m_iGuildNO;			///< ê¸¸ë“œ ë²ˆí˜¸	: 2004.5.27 ì¶”ê°€
+			//short	m_nGuildCNTRB;		///< ê¸¸ë“œ ê¸°ì—¬ë„	: 2004.5.27 ì¶”ê°€
+			//BYTE	m_btGuildPOS;		///< ê¸¸ë“œ ì§ìœ„	: 2004.5.27 ì¶”ê°€
 			int		m_iNULL1;
 			short	m_nNULL2;
 			BYTE	m_btNULL3;
 
-			short	m_nPKFlag;			// 2004. 6. 17 Ãß°¡..
-			short	m_nSTAMINA;			// 2004. 7. 23 Ãß°¡..
+			short	m_nPKFlag;			// 2004. 6. 17 ì¶”ê°€..
+			short	m_nSTAMINA;			// 2004. 7. 23 ì¶”ê°€..
 		/*
-			char	m_cChaos;			// ¼ºÇâ
-			short	m_nBattle_LV;		// º£Æ²·¹º§
+			char	m_cChaos;			// ì„±í–¥
+			short	m_nBattle_LV;		// ë² í‹€ë ˆë²¨
 			short	m_nPK_LV;			//
 		*/
 //#ifdef	__INC_PLATINUM
@@ -195,7 +195,7 @@ struct tagGrowAbility_old {
  * \ingroup SHO_GS_LIB
  * \class	tagGrowAbility
  * \author	wookSang.Jo
- * \brief	»ç¿ëÀÚ ÄÉ¸¯ÅÍÀÇ ¼ºÀå ´É·ÂÄ¡ µ¥ÀÌÅ¸ º¸°ü ±¸Á¶Ã¼
+ * \brief	ì‚¬ìš©ì ì¼€ë¦­í„°ì˜ ì„±ì¥ ëŠ¥ë ¥ì¹˜ ë°ì´íƒ€ ë³´ê´€ êµ¬ì¡°ì²´
  */
 struct tagGrowAbility {
 	union {
@@ -203,30 +203,30 @@ struct tagGrowAbility {
 			short	m_nHP;				///< 0~2000
 			short	m_nMP;				///< 0~1000
 
-			__int64	m_lEXP;				///< °æÇèÄ¡ 1~100000
+			__int64	m_lEXP;				///< ê²½í—˜ì¹˜ 1~100000
 			short	m_nLevel;			///< 0~250
 			short	m_nBonusPoint;		///< 1~999
 			short	m_nSkillPoint;		///< 1~
-			BYTE	m_btBodySIZE;		///< ¸öÅëÅ©±â
-			BYTE	m_btHeadSIZE;		///< ¸Ó¸®Å©±â
-			__int64	m_lPenalEXP;		///< Ãß°¡ °æÇèÄ¡...
+			BYTE	m_btBodySIZE;		///< ëª¸í†µí¬ê¸°
+			BYTE	m_btHeadSIZE;		///< ë¨¸ë¦¬í¬ê¸°
+			__int64	m_lPenalEXP;		///< ì¶”ê°€ ê²½í—˜ì¹˜...
 
-			short	m_nFameG;			///< ¼±ÇàÁö¼ö	: Äù½ºÆ®¿¡ ÀÇÇØ Áõ°¨µÊ	: 2004.5.27 Ãß°¡
-			short	m_nFameB;			///< ¼±ÇàÁö¼ö : Äù½ºÆ®¿¡ ÀÇÇØ Áõ°¨µÊ	: 2004.5.27 Ãß°¡
-			short	m_nJoHapPOINT[ MAX_UNION_COUNT ];	// Á¶ÇÕ Æ÷ÀÎÆ®		: 2004.5.27 Ãß°¡
+			short	m_nFameG;			///< ì„ í–‰ì§€ìˆ˜	: í€˜ìŠ¤íŠ¸ì— ì˜í•´ ì¦ê°ë¨	: 2004.5.27 ì¶”ê°€
+			short	m_nFameB;			///< ì„ í–‰ì§€ìˆ˜ : í€˜ìŠ¤íŠ¸ì— ì˜í•´ ì¦ê°ë¨	: 2004.5.27 ì¶”ê°€
+			short	m_nJoHapPOINT[ MAX_UNION_COUNT ];	// ì¡°í•© í¬ì¸íŠ¸		: 2004.5.27 ì¶”ê°€
 
-			//int	m_iGuildNO;			///< ±æµå ¹øÈ£	: 2004.5.27 Ãß°¡
-			//short	m_nGuildCNTRB;		///< ±æµå ±â¿©µµ	: 2004.5.27 Ãß°¡
-			//BYTE	m_btGuildPOS;		///< ±æµå Á÷À§	: 2004.5.27 Ãß°¡
+			//int	m_iGuildNO;			///< ê¸¸ë“œ ë²ˆí˜¸	: 2004.5.27 ì¶”ê°€
+			//short	m_nGuildCNTRB;		///< ê¸¸ë“œ ê¸°ì—¬ë„	: 2004.5.27 ì¶”ê°€
+			//BYTE	m_btGuildPOS;		///< ê¸¸ë“œ ì§ìœ„	: 2004.5.27 ì¶”ê°€
 			int		m_iNULL1;
 			short	m_nNULL2;
 			BYTE	m_btNULL3;
 
-			short	m_nPKFlag;			// 2004. 6. 17 Ãß°¡..
-			short	m_nSTAMINA;			// 2004. 7. 23 Ãß°¡..
+			short	m_nPKFlag;			// 2004. 6. 17 ì¶”ê°€..
+			short	m_nSTAMINA;			// 2004. 7. 23 ì¶”ê°€..
 		/*
-			char	m_cChaos;			// ¼ºÇâ
-			short	m_nBattle_LV;		// º£Æ²·¹º§
+			char	m_cChaos;			// ì„±í–¥
+			short	m_nBattle_LV;		// ë² í‹€ë ˆë²¨
 			short	m_nPK_LV;			//
 		*/
 //#ifdef	__INC_PLATINUM
@@ -247,8 +247,8 @@ struct tagGrowAbility {
 
 		m_nLevel = 1;
 		m_lEXP = 0;
-		m_btBodySIZE = 100;		// ¸öÅëÅ©±â
-		m_btHeadSIZE = 100;		// ¸Ó¸®Å©±â
+		m_btBodySIZE = 100;		// ëª¸í†µí¬ê¸°
+		m_btHeadSIZE = 100;		// ë¨¸ë¦¬í¬ê¸°
 		m_nSTAMINA = MAX_STAMINA;
 
 #ifndef	__SERVER
@@ -269,12 +269,12 @@ struct tagGrowAbility {
 	{
 		short nIndex = iAbilityType - (int)AT_MAINTAIN_ABILITY;
 		if ( nIndex >= 0 && nIndex < MAX_MAINTAIN_STATUS ) {
-			// ÇöÀç½Ã°£ + ÀÔ·Â°ª * 10ºĞ
+			// í˜„ì¬ì‹œê°„ + ì…ë ¥ê°’ * 10ë¶„
 			if ( this->m_STATUS[ nIndex ].m_dwExpiredSEC > dwCurAbsSEC ) {
-				// ½Ã°£ Ãß°¡...
+				// ì‹œê°„ ì¶”ê°€...
 				this->m_STATUS[ nIndex ].m_dwExpiredSEC += ( i10Min * 10 * 60 );
 			} else {
-				// ½Ã°£ °»½Å...
+				// ì‹œê°„ ê°±ì‹ ...
 				this->m_STATUS[ nIndex ].m_dwExpiredSEC = dwCurAbsSEC + ( i10Min * 10 * 60 );
 			}
 			this->m_STATUS[ nIndex ].m_nValue = nValue;
@@ -332,7 +332,7 @@ struct tagGrowAbility {
 } ;
 
 
-/// ¾Æ¹ÙÅ¸ º¸À¯½ºÅ³ - ¿©ºĞÀ¸·Î 120À¸·Î ¼³Á¤ ±âÈ¹¼­»ó »ç¿ëÀº 90°³
+/// ì•„ë°”íƒ€ ë³´ìœ ìŠ¤í‚¬ - ì—¬ë¶„ìœ¼ë¡œ 120ìœ¼ë¡œ ì„¤ì • ê¸°íšì„œìƒ ì‚¬ìš©ì€ 90ê°œ
 #define	MAX_LEARNED_SKILL_CNT			120
 #define	MAX_LEARNED_SKILL_PAGE			4
 #define	MAX_LEARNED_SKILL_PER_PAGE		( MAX_LEARNED_SKILL_CNT/MAX_LEARNED_SKILL_PAGE )
@@ -340,45 +340,45 @@ struct tagGrowAbility {
 struct tagSkillAbility {
 	union {
 		short	m_nSkillINDEX[ MAX_LEARNED_SKILL_CNT ];
-		short	m_nPageIndex [ MAX_LEARNED_SKILL_PAGE ][ MAX_LEARNED_SKILL_PER_PAGE ];	// ÀüÅõ, »ó¾÷/Á¦Á¶, ÆĞ½Ãºê ½ºÅ³ °¢°¢ 10°³±îÁö º¸À¯.
+		short	m_nPageIndex [ MAX_LEARNED_SKILL_PAGE ][ MAX_LEARNED_SKILL_PER_PAGE ];	// ì „íˆ¬, ìƒì—…/ì œì¡°, íŒ¨ì‹œë¸Œ ìŠ¤í‚¬ ê°ê° 10ê°œê¹Œì§€ ë³´ìœ .
 	} ;
 	void Init ()
 	{
 		::ZeroMemory( m_nSkillINDEX,	sizeof(short) * MAX_LEARNED_SKILL_CNT );
 
-		m_nSkillINDEX[ 0 ] = 11;	// ¾É±â
-		m_nSkillINDEX[ 1 ] = 12;	// Áİ±â
-		m_nSkillINDEX[ 2 ] = 16;	// ÀÏ¹İ°ø°İ
-		m_nSkillINDEX[ 3 ] = 20;	// °Å·¡½ÅÃ»
-		m_nSkillINDEX[  4 ] = 49;	// È­³²
-		m_nSkillINDEX[  5 ] = 50;	// ¹Ú¼ö
-		m_nSkillINDEX[  6 ] = 48;	// Àı±Ô
-		m_nSkillINDEX[  7 ] = 47;	// ÆÄÀÌÆÃ
-		m_nSkillINDEX[  8 ] = 46;	// ¿ô±â
-		m_nSkillINDEX[  9 ] = 43;	// ÀÎ»ç
-		m_nSkillINDEX[ 10 ] = 42;	// ÀÎ»ç
-		m_nSkillINDEX[ 11 ] = 41;	// ÀÎ»ç
-		m_nSkillINDEX[ 12 ] = 181;	// ÀÎ»ç
-		m_nSkillINDEX[ 13 ] = 22;	// º»ÀÎ Å¸°ÙÆÃ
+		m_nSkillINDEX[ 0 ] = 11;	// ì•‰ê¸°
+		m_nSkillINDEX[ 1 ] = 12;	// ì¤ê¸°
+		m_nSkillINDEX[ 2 ] = 16;	// ì¼ë°˜ê³µê²©
+		m_nSkillINDEX[ 3 ] = 20;	// ê±°ë˜ì‹ ì²­
+		m_nSkillINDEX[  4 ] = 49;	// í™”ë‚¨
+		m_nSkillINDEX[  5 ] = 50;	// ë°•ìˆ˜
+		m_nSkillINDEX[  6 ] = 48;	// ì ˆê·œ
+		m_nSkillINDEX[  7 ] = 47;	// íŒŒì´íŒ…
+		m_nSkillINDEX[  8 ] = 46;	// ì›ƒê¸°
+		m_nSkillINDEX[  9 ] = 43;	// ì¸ì‚¬
+		m_nSkillINDEX[ 10 ] = 42;	// ì¸ì‚¬
+		m_nSkillINDEX[ 11 ] = 41;	// ì¸ì‚¬
+		m_nSkillINDEX[ 12 ] = 181;	// ì¸ì‚¬
+		m_nSkillINDEX[ 13 ] = 22;	// ë³¸ì¸ íƒ€ê²ŸíŒ…
 	}
 } ;
 
-/// Äù½ºÆ® µ¥ÀÌÅÍ ...
+/// í€˜ìŠ¤íŠ¸ ë°ì´í„° ...
 
 // #define	__APPLY_EXTAND_QUEST_VAR
 
-#define	QUEST_PER_PLAYER			10			// °³ÀÎ´ç ÃÖ´ë µî·Ï °¡´É Äù½ºÆ®¼ö...
+#define	QUEST_PER_PLAYER			10			// ê°œì¸ë‹¹ ìµœëŒ€ ë“±ë¡ ê°€ëŠ¥ í€˜ìŠ¤íŠ¸ìˆ˜...
 
-#define	QUEST_EPISODE_VAR_CNT		5			// ¿¡ÇÇ¼Òµå ÁøÇà º¯¼ö °¹¼ö
-#define	QUEST_JOB_VAR_CNT			3			// Á÷¾÷º° ÁøÇà º¯¼ö °¹¼ö
-#define	QUEST_PLANET_VAR_CNT		7			// Çà¼ºº°...
-#define	QUEST_UNION_VAR_CNT			10			// Á¶ÇÕº°...
+#define	QUEST_EPISODE_VAR_CNT		5			// ì—í”¼ì†Œë“œ ì§„í–‰ ë³€ìˆ˜ ê°¯ìˆ˜
+#define	QUEST_JOB_VAR_CNT			3			// ì§ì—…ë³„ ì§„í–‰ ë³€ìˆ˜ ê°¯ìˆ˜
+#define	QUEST_PLANET_VAR_CNT		7			// í–‰ì„±ë³„...
+#define	QUEST_UNION_VAR_CNT			10			// ì¡°í•©ë³„...
 
 #ifdef	__APPLY_EXTAND_QUEST_VAR
 	#define	QUEST_ETC_VAR_CNT			53
-	#define	QUEST_SWITCH_CNT			(512+512)	// ÀüÃ¼ Äù½ºÆ® ÁøÇà ½ºÀ§Ä¡¼ö..
+	#define	QUEST_SWITCH_CNT			(512+512)	// ì „ì²´ í€˜ìŠ¤íŠ¸ ì§„í–‰ ìŠ¤ìœ„ì¹˜ìˆ˜..
 #else
-	#define	QUEST_SWITCH_CNT			(512    )	// ÀüÃ¼ Äù½ºÆ® ÁøÇà ½ºÀ§Ä¡¼ö..
+	#define	QUEST_SWITCH_CNT			(512    )	// ì „ì²´ í€˜ìŠ¤íŠ¸ ì§„í–‰ ìŠ¤ìœ„ì¹˜ìˆ˜..
 #endif
 #define	QUEST_SWITCH_GROUP_CNT	  ( QUEST_SWITCH_CNT/sizeof(DWORD) )
 
@@ -387,7 +387,7 @@ struct tagSkillAbility {
  * \ingroup SHO_GS_LIB
  * \class	tagQuestData
  * \author	wookSang.Jo
- * \brief	»ç¿ëÀÚ ÄÉ¸¯ÅÍ°¡ ÁøÇàÁßÀÌ°Å³ª ¿Ï·áµÈ Äù½ºÆ®ÀÇ µ¥ÀÌÅ¸ º¸°ü ±¸Á¶Ã¼
+ * \brief	ì‚¬ìš©ì ì¼€ë¦­í„°ê°€ ì§„í–‰ì¤‘ì´ê±°ë‚˜ ì™„ë£Œëœ í€˜ìŠ¤íŠ¸ì˜ ë°ì´íƒ€ ë³´ê´€ êµ¬ì¡°ì²´
  */
 struct tagQuestData {
 private:
@@ -506,7 +506,7 @@ public :
  * \ingroup SHO_GS_LIB
  * \class	tagSkillAbility
  * \author	wookSang.Jo
- * \brief	»ç¿ëÀÚ ÄÉ¸¯ÅÍÀÇ Ã¢°í µ¥ÀÌÅ¸ º¸°ü ±¸Á¶Ã¼
+ * \brief	ì‚¬ìš©ì ì¼€ë¦­í„°ì˜ ì°½ê³  ë°ì´íƒ€ ë³´ê´€ êµ¬ì¡°ì²´
  */
 struct tagBankData {
 	tagITEM		m_ItemLIST[	BANKSLOT_TOTAL ];
@@ -529,12 +529,12 @@ struct tagBankData {
 } ;
 
 
-#define	MAX_WISH_ITEMS			30				// ±¸ÀÔ Èñ¸ÁÇÏ´Â Âò ¾ÆÀÌÅÛ ÃÖ´ë °¹¼ö
+#define	MAX_WISH_ITEMS			30				// êµ¬ì… í¬ë§í•˜ëŠ” ì°œ ì•„ì´í…œ ìµœëŒ€ ê°¯ìˆ˜
 /**
  * \ingroup SHO_GS_LIB
  * \class	tagWishLIST
  * \author	wookSang.Jo
- * \brief	»ç¿ëÀÚ ÄÉ¸¯ÅÍÀÇ ±¸ÀÔ Èñ¸Á ¸ñ·Ï µ¥ÀÌÅ¸ º¸°ü ±¸Á¶Ã¼
+ * \brief	ì‚¬ìš©ì ì¼€ë¦­í„°ì˜ êµ¬ì… í¬ë§ ëª©ë¡ ë°ì´íƒ€ ë³´ê´€ êµ¬ì¡°ì²´
  */
 struct tagWishLIST {
 	tagBaseITEM	m_WishITEM[ MAX_WISH_ITEMS ];
@@ -561,32 +561,32 @@ struct tagWishLIST {
  * \ingroup SHO_GS_LIB
  * \class	tagBattleAbility
  * \author	wookSang.Jo
- * \brief	»ç¿ëÀÚ ÄÉ¸¯ÅÍÀÇ ÀüÅõ ´É·ÂÄ¡ µ¥ÀÌÅÍ º¸°ü ±¸Á¶Ã¼ - µğºñ¿¡ ÀúÀåµÇÁö ¾Ê°í ½Ç½Ã°£ °è»êµÊ
+ * \brief	ì‚¬ìš©ì ì¼€ë¦­í„°ì˜ ì „íˆ¬ ëŠ¥ë ¥ì¹˜ ë°ì´í„° ë³´ê´€ êµ¬ì¡°ì²´ - ë””ë¹„ì— ì €ì¥ë˜ì§€ ì•Šê³  ì‹¤ì‹œê°„ ê³„ì‚°ë¨
  */
 struct tagBattleAbility {
 	short	m_nMaxHP;
 	short	m_nMaxMP;
-	short	m_nATT;			///< °ø°İ·Â 1~200
-	short	m_nDEF;			///< ¹æ¾î·Â 1~200
-	short	m_nMAG;			///< ¸¶¹ı·Â 1~200
-	short	m_nHIT;			///< ¸íÁß·Â 1~500
-	short	m_nRES;			///< Ç×¸¶·Â 1~200
-	short	m_nAVOID;		///< È¸ÇÇ·Â 1~999
-	short	m_nSPD;			///< ÀÌµ¿·Â 1~50
-	short	m_nMaxWEIGHT;	///< weight ¾ÆÀÌÅÛ¼ÒÁö·®.
-	short	m_nWEIGHT;		///< ÇöÀç ¼ÒÁöÇÑ·®
+	short	m_nATT;			///< ê³µê²©ë ¥ 1~200
+	short	m_nDEF;			///< ë°©ì–´ë ¥ 1~200
+	short	m_nMAG;			///< ë§ˆë²•ë ¥ 1~200
+	short	m_nHIT;			///< ëª…ì¤‘ë ¥ 1~500
+	short	m_nRES;			///< í•­ë§ˆë ¥ 1~200
+	short	m_nAVOID;		///< íšŒí”¼ë ¥ 1~999
+	short	m_nSPD;			///< ì´ë™ë ¥ 1~50
+	short	m_nMaxWEIGHT;	///< weight ì•„ì´í…œì†Œì§€ëŸ‰.
+	short	m_nWEIGHT;		///< í˜„ì¬ ì†Œì§€í•œëŸ‰
 
-//	int		m_iDefQuality;	///< ÀüÃ¼ ¹æ¾î±¸ Ç°Áú
-	int		m_iDefDurabity;	///< ÀüÃ¼ ¹æ¾î±¸ ³»±¸µµÇÕ
-	int		m_iDefGrade;	///< ÀüÃ¼ ¹æ¾î±¸ µî±ŞÇÕ
+//	int		m_iDefQuality;	///< ì „ì²´ ë°©ì–´êµ¬ í’ˆì§ˆ
+	int		m_iDefDurabity;	///< ì „ì²´ ë°©ì–´êµ¬ ë‚´êµ¬ë„í•©
+	int		m_iDefGrade;	///< ì „ì²´ ë°©ì–´êµ¬ ë“±ê¸‰í•©
 
-	int		m_iCritical;	///< Å©¸®Æ¼ÄÃ ¼öÄ¡
-	float	m_fRateUseMP;	///< MP Àı°¨ ºñÀ²·Î °è»êµÇ¾îÁø MP ¼Ò¸ğµÉ ºñÀ².
+	int		m_iCritical;	///< í¬ë¦¬í‹°ì»¬ ìˆ˜ì¹˜
+	float	m_fRateUseMP;	///< MP ì ˆê° ë¹„ìœ¨ë¡œ ê³„ì‚°ë˜ì–´ì§„ MP ì†Œëª¨ë  ë¹„ìœ¨.
 #ifdef __KCHS_BATTLECART__
 	short	m_nPatMaxHP;
 #endif
 #ifdef	__APPLY_2ND_JOB
-	short	m_nImmunity;	///< ¸é¿ª·Â
+	short	m_nImmunity;	///< ë©´ì—­ë ¥
 #endif
 } ;
 
@@ -597,7 +597,7 @@ struct tagBattleAbility {
  * \ingroup SHO_GS_LIB
  * \class	CUserDATA
  * \author	wookSang.Jo
- * \brief	»ç¿ëÀÚ ÄÉ¸¯ÅÍÀÇ ±âº» µ¥ÀÌÅÍ º¸°ü ±¸Á¶Ã¼
+ * \brief	ì‚¬ìš©ì ì¼€ë¦­í„°ì˜ ê¸°ë³¸ ë°ì´í„° ë³´ê´€ êµ¬ì¡°ì²´
  */
 class CUserDATA {
 private:
@@ -649,27 +649,27 @@ protected :
 	int		Cal_ATTACK ();
 
 public :
-	short GetCur_HP ()				{	return	this->m_GrowAbility.m_nHP;			}	/// »ı¸í·Â
+	short GetCur_HP ()				{	return	this->m_GrowAbility.m_nHP;			}	/// ìƒëª…ë ¥
 	short GetCur_MP ()				{	return	this->m_GrowAbility.m_nMP;			}
 	virtual short GetCur_WEIGHT ()			{	return	this->m_Battle.m_nWEIGHT;			}
 
 	int	  GetCur_LEVEL ()			{	return	this->m_GrowAbility.m_nLevel;		}
 
-	int	  GetDef_ATK ()				{	return	this->m_Battle.m_nATT;				}	/// °ø°İ·Â
-	int	  GetDef_DEF ()				{	return	this->m_Battle.m_nDEF;				}	/// ¹æ¾î·Â
-	int	  GetDef_RES ()				{	return	this->m_Battle.m_nRES;				}	/// Ç×¸¶·Â
+	int	  GetDef_ATK ()				{	return	this->m_Battle.m_nATT;				}	/// ê³µê²©ë ¥
+	int	  GetDef_DEF ()				{	return	this->m_Battle.m_nDEF;				}	/// ë°©ì–´ë ¥
+	int	  GetDef_RES ()				{	return	this->m_Battle.m_nRES;				}	/// í•­ë§ˆë ¥
 	int	  GetDef_HIT ()				{	return	this->m_Battle.m_nHIT;				}
-	int	  GetDef_AVOID ()			{	return	this->m_Battle.m_nAVOID;			}	/// È¸ÇÇ·Â
+	int	  GetDef_AVOID ()			{	return	this->m_Battle.m_nAVOID;			}	/// íšŒí”¼ë ¥
 	int	  GetDef_CRITICAL()			{	return	this->m_Battle.m_iCritical;			}
 #ifdef	__APPLY_2ND_JOB
-	int	  GetDef_IMMUNITY()			{	return	this->m_Battle.m_nImmunity;			}	/// ¸é¿ª·Â
+	int	  GetDef_IMMUNITY()			{	return	this->m_Battle.m_nImmunity;			}	/// ë©´ì—­ë ¥
 #endif
 
-	int	  GetCur_BIRTH()			{	return  this->m_BasicINFO.m_cBirthStone;	}	/// Åº»ı¼®
-	int	  GetCur_RANK()				{	return	this->m_BasicINFO.m_cRank;			}	/// °è±Ş
-	int	  GetCur_JOHAP ()			{	return	this->m_BasicINFO.m_cUnion;			}	/// ¼Ò¼Ó
-	int	  GetCur_FAME ()			{	return	this->m_BasicINFO.m_cFame;			}	/// ¸í¼º
-	int	  GetCur_JOB ()				{	return	this->m_BasicINFO.m_nClass;			}	/// Á÷¾÷
+	int	  GetCur_BIRTH()			{	return  this->m_BasicINFO.m_cBirthStone;	}	/// íƒ„ìƒì„
+	int	  GetCur_RANK()				{	return	this->m_BasicINFO.m_cRank;			}	/// ê³„ê¸‰
+	int	  GetCur_JOHAP ()			{	return	this->m_BasicINFO.m_cUnion;			}	/// ì†Œì†
+	int	  GetCur_FAME ()			{	return	this->m_BasicINFO.m_cFame;			}	/// ëª…ì„±
+	int	  GetCur_JOB ()				{	return	this->m_BasicINFO.m_nClass;			}	/// ì§ì—…
 
 	__int64	  GetCur_EXP ()				{	return	this->m_GrowAbility.m_lEXP;			}
 	int	  GetCur_BonusPOINT ()		{	return	this->m_GrowAbility.m_nBonusPoint;	}
@@ -677,13 +677,13 @@ public :
 	BYTE  GetCur_HeadSIZE()			{	return	this->m_GrowAbility.m_btHeadSIZE;	}
 	BYTE  GetCur_BodySIZE()			{	return	this->m_GrowAbility.m_btBodySIZE;	}
 
-	/// ±âº» ´É·ÂÄ¡...
-	int	  GetDef_STR ()				{	return	this->m_BasicAbility.m_nSTR;		}	/// ±Ù·Â
-	int	  GetDef_DEX ()				{	return	this->m_BasicAbility.m_nDEX;		}	/// ¹ÎÃ¸
-	int	  GetDef_INT ()				{	return	this->m_BasicAbility.m_nINT;		}	/// Áö·Â
-	int	  GetDef_CON ()				{	return	this->m_BasicAbility.m_nCON;		}	/// ÁıÁß
-	int	  GetDef_CHARM ()			{	return	this->m_BasicAbility.m_nCHARM;		}	/// ¸Å·Â
-	int	  GetDef_SENSE ()			{	return	this->m_BasicAbility.m_nSENSE;		}	/// °¨°¢
+	/// ê¸°ë³¸ ëŠ¥ë ¥ì¹˜...
+	int	  GetDef_STR ()				{	return	this->m_BasicAbility.m_nSTR;		}	/// ê·¼ë ¥
+	int	  GetDef_DEX ()				{	return	this->m_BasicAbility.m_nDEX;		}	/// ë¯¼ì²©
+	int	  GetDef_INT ()				{	return	this->m_BasicAbility.m_nINT;		}	/// ì§€ë ¥
+	int	  GetDef_CON ()				{	return	this->m_BasicAbility.m_nCON;		}	/// ì§‘ì¤‘
+	int	  GetDef_CHARM ()			{	return	this->m_BasicAbility.m_nCHARM;		}	/// ë§¤ë ¥
+	int	  GetDef_SENSE ()			{	return	this->m_BasicAbility.m_nSENSE;		}	/// ê°ê°
 
 	void  SetDef_STR(short nValue)	{	this->m_BasicAbility.m_nSTR=nValue;			}
 	void  SetDef_DEX(short nValue)	{	this->m_BasicAbility.m_nDEX=nValue;			}
@@ -692,25 +692,25 @@ public :
 	void  SetDef_CHARM(short nValue){	this->m_BasicAbility.m_nCHARM=nValue;		}
 	void  SetDef_SENSE(short nValue){	this->m_BasicAbility.m_nSENSE=nValue;		}
 
-	int	  GetCur_STR ()				{	return	( GetDef_STR()   + m_iAddValue[ AT_STR		] + m_PassiveAbilityFromRate[ AT_STR  -AT_STR ] );	}	// ±Ù·Â
-	int	  GetCur_DEX ()				{	return	( GetDef_DEX()   + m_iAddValue[ AT_DEX		] + m_PassiveAbilityFromRate[ AT_DEX  -AT_STR ] );	}	// ¹ÎÃ¸
-	int	  GetCur_INT ()				{	return	( GetDef_INT()   + m_iAddValue[ AT_INT		] + m_PassiveAbilityFromRate[ AT_INT  -AT_STR ] );	}	// Áö·Â
-	int	  GetCur_CON ()				{	return	( GetDef_CON()   + m_iAddValue[ AT_CON		] + m_PassiveAbilityFromRate[ AT_CON  -AT_STR ] );	}	// ÁıÁß
-	int	  GetCur_CHARM ()			{	return	( GetDef_CHARM() + m_iAddValue[ AT_CHARM	] + m_PassiveAbilityFromRate[ AT_CHARM-AT_STR ] );	}	// ¸Å·Â
-	int	  GetCur_SENSE ()			{	return	( GetDef_SENSE() + m_iAddValue[ AT_SENSE	] + m_PassiveAbilityFromRate[ AT_SENSE-AT_STR ] );	}	// °¨°¢
+	int	  GetCur_STR ()				{	return	( GetDef_STR()   + m_iAddValue[ AT_STR		] + m_PassiveAbilityFromRate[ AT_STR  -AT_STR ] );	}	// ê·¼ë ¥
+	int	  GetCur_DEX ()				{	return	( GetDef_DEX()   + m_iAddValue[ AT_DEX		] + m_PassiveAbilityFromRate[ AT_DEX  -AT_STR ] );	}	// ë¯¼ì²©
+	int	  GetCur_INT ()				{	return	( GetDef_INT()   + m_iAddValue[ AT_INT		] + m_PassiveAbilityFromRate[ AT_INT  -AT_STR ] );	}	// ì§€ë ¥
+	int	  GetCur_CON ()				{	return	( GetDef_CON()   + m_iAddValue[ AT_CON		] + m_PassiveAbilityFromRate[ AT_CON  -AT_STR ] );	}	// ì§‘ì¤‘
+	int	  GetCur_CHARM ()			{	return	( GetDef_CHARM() + m_iAddValue[ AT_CHARM	] + m_PassiveAbilityFromRate[ AT_CHARM-AT_STR ] );	}	// ë§¤ë ¥
+	int	  GetCur_SENSE ()			{	return	( GetDef_SENSE() + m_iAddValue[ AT_SENSE	] + m_PassiveAbilityFromRate[ AT_SENSE-AT_STR ] );	}	// ê°ê°
 
-	int	  GetCur_SaveMP ()	// MP Àı°¨ ºñÀ²
+	int	  GetCur_SaveMP ()	// MP ì ˆê° ë¹„ìœ¨
 	{
 		return  ( GetPassiveSkillValue( AT_PSV_SAVE_MP ) + m_iAddValue[ AT_SAVE_MP ] + (short)(m_iAddValue[ AT_SAVE_MP ]*GetPassiveSkillRate( AT_PSV_SAVE_MP )/100.f) );	
 	}
-	//int GetCur_DropRATE()			{	return  ( GetPassiveSkillValue( AT_PSV_DROP_RATE ) + m_iAddValue[ AT_DROP_RATE ] );	}	// µå·Ó È®·ü
-	int	  GetCur_DropRATE()			{	return  m_iDropRATE;	}	// µå·Ó È®·ü
-	void  Cal_DropRATE ()	// µå·Ó È®·ü		
+	//int GetCur_DropRATE()			{	return  ( GetPassiveSkillValue( AT_PSV_DROP_RATE ) + m_iAddValue[ AT_DROP_RATE ] );	}	// ë“œë¡­ í™•ë¥ 
+	int	  GetCur_DropRATE()			{	return  m_iDropRATE;	}	// ë“œë¡­ í™•ë¥ 
+	void  Cal_DropRATE ()	// ë“œë¡­ í™•ë¥ 		
 	{
 		m_iDropRATE = GetPassiveSkillValue( AT_PSV_DROP_RATE ) + m_iAddValue[ AT_DROP_RATE ] + (short)(m_iAddValue[ AT_DROP_RATE ]*GetPassiveSkillRate( AT_PSV_DROP_RATE )/100.f);	
 	}
 
-	int	  GetMax_SummonCNT()		{	return	( 50+GetPassiveSkillValue( AT_PSV_SUMMON_MOB_CNT ) );						}	// ÃÖ´ë ¼ÒÈ¯ °¡´É ¸÷ °³¼ö
+	int	  GetMax_SummonCNT()		{	return	( 50+GetPassiveSkillValue( AT_PSV_SUMMON_MOB_CNT ) );						}	// ìµœëŒ€ ì†Œí™˜ ê°€ëŠ¥ ëª¹ ê°œìˆ˜
 
 	int	  GetCur_JoHapPOINT( char btUnionIDX )					{	return btUnionIDX>=1 ?this->m_GrowAbility.m_nJoHapPOINT[ btUnionIDX-1 ] : 0;		}
 	virtual void  SetCur_JoHapPOINT( BYTE btUnionIDX, short nValue ) = 0;//	{	if ( btUnionIDX >=1 ) this->m_GrowAbility.m_nJoHapPOINT[ btUnionIDX-1 ] = nValue;	}
@@ -742,7 +742,7 @@ public :
 	short GetDef_MaxMP ()			{	return	this->m_Battle.m_nMaxMP;			}
 
 	short GetCur_MaxWEIGHT ()		{	return	this->m_Battle.m_nMaxWEIGHT;		}
-	int	  GetCur_MAG ()				{	return	this->m_Battle.m_nMAG;				}	// ¸¶¹ı·Â
+	int	  GetCur_MAG ()				{	return	this->m_Battle.m_nMAG;				}	// ë§ˆë²•ë ¥
 
 //	int	  GetTot_DEF_QUALITY()		{	return	this->m_Battle.m_iDefQuality;		}
 	int	  GetTot_DEF_DURABITY()		{	return	this->m_Battle.m_iDefDurabity;		}
@@ -751,10 +751,10 @@ public :
 	float GetCur_RateUseMP()		{	return	this->m_Battle.m_fRateUseMP;		}
 
 	void	SetCur_MONEY (__int64 iMoney)	{	this->m_Inventory.m_i64Money=iMoney;	}
-	__int64 GetCur_MONEY ()					{	return	this->m_Inventory.m_i64Money;	}	// µ·
+	__int64 GetCur_MONEY ()					{	return	this->m_Inventory.m_i64Money;	}	// ëˆ
 	void	Add_CurMONEY (int iMoney)		{	this->m_Inventory.m_i64Money+=iMoney;	}
 	void	Sub_CurMONEY (int iMoney)		{	this->m_Inventory.m_i64Money-=iMoney;	}
-	void  SetCur_HP (short nValue);// »ı¸í·Â
+	void  SetCur_HP (short nValue);// ìƒëª…ë ¥
 	void  SetCur_MP (short nValue)	{	this->m_GrowAbility.m_nMP=nValue;				}
 
 	int   AddCur_HP (short nValue)	
@@ -803,29 +803,29 @@ public :
 	void  SetCur_BonusPOINT(short nValue)	{	this->m_GrowAbility.m_nBonusPoint=nValue;	}
 	void  SetCur_SkillPOINT(short nValue)	{	this->m_GrowAbility.m_nSkillPoint=nValue;	}
 
-	tagBasicINFO		m_BasicINFO;					///< ±âº» Á¤º¸ µ¥ÀÌÅÍ...	
-	tagBasicAbility		m_BasicAbility;					///< ±âº» ´É·ÂÄ¡ µ¥ÀÌÅÍ...
-	tagGrowAbility		m_GrowAbility;					///< ¼ºÀå ´É·ÂÄ¡ µ¥ÀÌÅÍ ...
-	tagSkillAbility		m_Skills;						///< ¾Æ¹ÙÅ¸ º¸À¯½ºÅ³
+	tagBasicINFO		m_BasicINFO;					///< ê¸°ë³¸ ì •ë³´ ë°ì´í„°...	
+	tagBasicAbility		m_BasicAbility;					///< ê¸°ë³¸ ëŠ¥ë ¥ì¹˜ ë°ì´í„°...
+	tagGrowAbility		m_GrowAbility;					///< ì„±ì¥ ëŠ¥ë ¥ì¹˜ ë°ì´í„° ...
+	tagSkillAbility		m_Skills;						///< ì•„ë°”íƒ€ ë³´ìœ ìŠ¤í‚¬
 
 	tagQuestData		m_Quests;						///< quest
 	CInventory			m_Inventory;					///< inventory
-	CHotICONS			m_HotICONS;						///< ´ÜÃà¾ÆÀÌÄÜ µî·Ï Á¤º¸...
-	tagBankData			m_Bank;							///< ÀºÇà µ¥ÀÌÅ¸.
-	tagWishLIST			m_WishLIST;						///< °³ÀÎ »óÁ¡¿¡¼­ ¹°°Ç ±¸ÀÔ½Ã »ç¿ëÇÒ ±¸ÀÔÈñ¸Á ¾ÆÀÌÅÛ¸ñ·Ï.
+	CHotICONS			m_HotICONS;						///< ë‹¨ì¶•ì•„ì´ì½˜ ë“±ë¡ ì •ë³´...
+	tagBankData			m_Bank;							///< ì€í–‰ ë°ì´íƒ€.
+	tagWishLIST			m_WishLIST;						///< ê°œì¸ ìƒì ì—ì„œ ë¬¼ê±´ êµ¬ì…ì‹œ ì‚¬ìš©í•  êµ¬ì…í¬ë§ ì•„ì´í…œëª©ë¡.
 
-	tagBattleAbility	m_Battle;						///< ÀüÅõ ´É·ÂÄ¡ µ¥ÀÌÅÍ - °è»êµÇ¾îÁ® ¾òÀ½
+	tagBattleAbility	m_Battle;						///< ì „íˆ¬ ëŠ¥ë ¥ì¹˜ ë°ì´í„° - ê³„ì‚°ë˜ì–´ì ¸ ì–»ìŒ
 
-	int					m_iAddValue	  [ AT_MAX ];		///< ÀåÂø ¾ÆÀÌÅÛ¿¡ ÀÇÇØ Áõ°¡µÈ ¼öÄ¡ : °è»êµÇ¾îÁü.
-	short				m_nPassiveRate[ AT_MAX ];		///< ÆĞ½Ãºê ½ºÅ³¿¡ ÀÇÇØ º¸Á¤µÈ ºñÀ²
+	int					m_iAddValue	  [ AT_MAX ];		///< ì¥ì°© ì•„ì´í…œì— ì˜í•´ ì¦ê°€ëœ ìˆ˜ì¹˜ : ê³„ì‚°ë˜ì–´ì§.
+	short				m_nPassiveRate[ AT_MAX ];		///< íŒ¨ì‹œë¸Œ ìŠ¤í‚¬ì— ì˜í•´ ë³´ì •ëœ ë¹„ìœ¨
 
 	BYTE				m_btRecoverHP;					///< == m_PassiveSkill[ PST_RECOVER_HP ] + this->m_iAddValue[ AT_RECOVER_HP ]
 	BYTE				m_btRecoverMP;					///< == m_PassiveSkill[ PST_RECOVER_MP ] + this->m_iAddValue[ AT_RECOVER_MP ]
 
-	int					m_iDropRATE;					///< µå·Ó È®·ü
+	int					m_iDropRATE;					///< ë“œë¡­ í™•ë¥ 
 
-	short				m_PassiveAbilityFromValue[ BA_MAX ];	///< ±âº» ´É·ÂÄ¡ :: ¼öÄ¡ ÆĞ½Ãºê ½ºÅ³¿¡ ÀÇÇØ º¸Á¤µÈ °ª
-	short				m_PassiveAbilityFromRate [ BA_MAX ];	///< ±âº» ´É·ÂÄ¡ :: ºñÀ² ÆĞ½Ãºê ½ºÅ³¿¡ ÀÇÇØ º¸Á¤µÈ °ª
+	short				m_PassiveAbilityFromValue[ BA_MAX ];	///< ê¸°ë³¸ ëŠ¥ë ¥ì¹˜ :: ìˆ˜ì¹˜ íŒ¨ì‹œë¸Œ ìŠ¤í‚¬ì— ì˜í•´ ë³´ì •ëœ ê°’
+	short				m_PassiveAbilityFromRate [ BA_MAX ];	///< ê¸°ë³¸ ëŠ¥ë ¥ì¹˜ :: ë¹„ìœ¨ íŒ¨ì‹œë¸Œ ìŠ¤í‚¬ì— ì˜í•´ ë³´ì •ëœ ê°’
 	short				m_nPassiveAttackSpeed;
 
 	short				m_nPatHP_Mode;
@@ -861,9 +861,9 @@ public :
 	}
 
 #endif
-	/// Áö¼Ó ½ºÅ³¿¡ ÀÇÇØ º¸Á¤µÈ °ªÀ» ¸®ÅÏÇÒ ÇÔ¼ö...
+	/// ì§€ì† ìŠ¤í‚¬ì— ì˜í•´ ë³´ì •ëœ ê°’ì„ ë¦¬í„´í•  í•¨ìˆ˜...
 	virtual void  SetCur_SEX( char cValue ) = 0;
-	virtual short GetCur_RACE() = 0;            /// Á¾Á·,,,, gsv_SELECT_CHAR.m_btCharRACE °ª ¸®ÅÏÇÏ¸éµÊ
+	virtual short GetCur_RACE() = 0;            /// ì¢…ì¡±,,,, gsv_SELECT_CHAR.m_btCharRACE ê°’ ë¦¬í„´í•˜ë©´ë¨
 	virtual short GetCur_ATK_SPD () = 0;
 	virtual float GetCur_MOVE_SPEED () = 0;
 	virtual int	  GetCur_ATK() = 0;
@@ -873,8 +873,8 @@ public :
 	virtual int	  GetCur_AVOID() = 0;
 	virtual int	  GetCur_CRITICAL() = 0;
 
-	virtual int	  GetCur_MaxHP () = 0;			/// ½ºÅ³¿¡ ÀÇÇØ º¸Á¤µÈ °ªÀÌ ÀÖÀ»°æ¿ì ´õÇØÁ®¼­ ¸®ÅÏÇÒ ÇÔ¼ö
-	virtual int	  GetCur_MaxMP () = 0;	        /// ½ºÅ³¿¡ ÀÇÇØ º¸Á¤µÈ °ªÀÌ ÀÖÀ»°æ¿ì ´õÇØÁ®¼­ ¸®ÅÏÇÒ ÇÔ¼ö
+	virtual int	  GetCur_MaxHP () = 0;			/// ìŠ¤í‚¬ì— ì˜í•´ ë³´ì •ëœ ê°’ì´ ìˆì„ê²½ìš° ë”í•´ì ¸ì„œ ë¦¬í„´í•  í•¨ìˆ˜
+	virtual int	  GetCur_MaxMP () = 0;	        /// ìŠ¤í‚¬ì— ì˜í•´ ë³´ì •ëœ ê°’ì´ ìˆì„ê²½ìš° ë”í•´ì ¸ì„œ ë¦¬í„´í•  í•¨ìˆ˜
 	virtual void  UpdateCur_Ability() = 0;
 	virtual BYTE  GetCur_MOVE_MODE ()			{	return 0;	}
 
@@ -905,7 +905,7 @@ public :
 			this->m_GrowAbility.m_nSTAMINA = 0;
 	}
 
-	virtual void  AddCur_EXP ( int /*iValue*/ )	{	/* nop */	}	// È£ÃâµÉ°æ¿ì ¼­¹ö¿¡¼­ Àü¼ÛµÊ.
+	virtual void  AddCur_EXP ( int /*iValue*/ )	{	/* nop */	}	// í˜¸ì¶œë ê²½ìš° ì„œë²„ì—ì„œ ì „ì†¡ë¨.
 	void	AddCur_BonusPOINT (short nValue)	{	this->m_GrowAbility.m_nBonusPoint+=nValue;	}
 	void	AddCur_SkillPOINT (short nValue)	{	this->m_GrowAbility.m_nSkillPoint+=nValue;	}
 
@@ -915,7 +915,7 @@ public :
 	bool	Set_AbilityValue (WORD nType, int iValue);
 	void	Add_AbilityValue (WORD nType, int iValue);
 
-	virtual int	GetCur_SummonCNT() = 0;                         /// ÇöÀç Á¸¿¡ ¼ÒÈ¯µÇ¾î ÀÖ´Â NPC°¹¼ö(Á×À»¶§, Á¸ ¿öÇÁ½Ã 0À¸·Î ¸®¼ÂÇÔ)
+	virtual int	GetCur_SummonCNT() = 0;                         /// í˜„ì¬ ì¡´ì— ì†Œí™˜ë˜ì–´ ìˆëŠ” NPCê°¯ìˆ˜(ì£½ì„ë•Œ, ì¡´ ì›Œí”„ì‹œ 0ìœ¼ë¡œ ë¦¬ì…‹í•¨)
 #ifdef	__SERVER
 	virtual int GetCur_AbilityValue (WORD nType) = 0;
 //			int GetOri_AbilityValue (WORD nType);
@@ -923,7 +923,7 @@ public :
 	int		GetCur_AbilityValue (WORD nType)						{	return Get_AbilityValue(nType);		}
 	int		Get_AbilityValue (WORD nType);
 	void	RefreshLookUpTable()									{   m_Inventory.MakeItemIndexList();	}
-	virtual void  UpdateModelData() = 0{ *(int*)0 = 10; }		/// ¸ğµ¨ µ¥ÀÌÅÍ °»½Å..
+	virtual void  UpdateModelData() = 0{ *(int*)0 = 10; }		/// ëª¨ë¸ ë°ì´í„° ê°±ì‹ ..
 #endif
 
 	bool	Use_ITEM (WORD wUseItemNO);
@@ -949,74 +949,74 @@ public :
 		return (short)( m_BasicAbility.m_nBasicA[ BasicAbilityType ] * 0.2 );
 	}
 
-	/// skill stbÀÇ ÄÃ·³°ªÀ» »ç¿ëÇÏ´Â°ÍÀ¸·Î...
+	/// skill stbì˜ ì»¬ëŸ¼ê°’ì„ ì‚¬ìš©í•˜ëŠ”ê²ƒìœ¼ë¡œ...
 	short Get_NeedPoint2SkillUP (short nSkillSLOT);
 
 	//  -------------------------------------------------------------------------------------------
-	/// ½ºÅ³ Á¶°Ç °ü·Ã ÇÔ¼ö...
+	/// ìŠ¤í‚¬ ì¡°ê±´ ê´€ë ¨ í•¨ìˆ˜...
 	virtual int		GetCur_R_WEAPON () = 0;
 	virtual int		GetCur_L_WEAPON () = 0;
 	virtual int		GetCur_PET_BODY () = 0;
 	virtual DWORD	GetCur_IngStatusFLAG() = 0;
 
-	/// ½ºÅ³ÀÇ ºó ½º·Ô Ã£±â
+	/// ìŠ¤í‚¬ì˜ ë¹ˆ ìŠ¤ë¡¯ ì°¾ê¸°
 	short Skill_FindEmptySlot( short nSkillIDX );
 
-	/// ½ÀµæÇÑ ½ºÅ³ÀÇ ·¹º§À» ¾ò´Â´Ù.
+	/// ìŠµë“í•œ ìŠ¤í‚¬ì˜ ë ˆë²¨ì„ ì–»ëŠ”ë‹¤.
 	short Skill_FindLearnedLevel( short nSkillIDX );
 
-	/// ½ÀµæÇÑ ½ºÅ³ÀÇ ½½·ÔÀ» Ã£´Â´Ù.
+	/// ìŠµë“í•œ ìŠ¤í‚¬ì˜ ìŠ¬ë¡¯ì„ ì°¾ëŠ”ë‹¤.
 	short Skill_FindLearnedSlot ( short nSkillIDX );
 
-	/// ´É·ÂÄ¡ ¾ò´Â ÇÔ¼ö°¡ ÀÖÁö¸¸ ½ºÅ³¿¡¼­ »ç¿ëÇÏ´Â ´É·ÂÄ¡´Â ¼Ò¼ö¿¡ ºÒ°ú ÇÔÀ¸·Î
-	/// ¼Óµµ¸¦ ³ôÀÌ±â À§ÇØ¼­ ½ºÅ³¿¡ »ç¿ëÇÏ´Â ´É·ÂÄ¡¸¸ Àû¿ëÇÑ ÇÔ¼ö...
+	/// ëŠ¥ë ¥ì¹˜ ì–»ëŠ” í•¨ìˆ˜ê°€ ìˆì§€ë§Œ ìŠ¤í‚¬ì—ì„œ ì‚¬ìš©í•˜ëŠ” ëŠ¥ë ¥ì¹˜ëŠ” ì†Œìˆ˜ì— ë¶ˆê³¼ í•¨ìœ¼ë¡œ
+	/// ì†ë„ë¥¼ ë†’ì´ê¸° ìœ„í•´ì„œ ìŠ¤í‚¬ì— ì‚¬ìš©í•˜ëŠ” ëŠ¥ë ¥ì¹˜ë§Œ ì ìš©í•œ í•¨ìˆ˜...
 	int   Skill_GetAbilityValue( short nAbilityType );
 
-	/// ½ºÅ³¿¡¼­ ¼Ò¸ğµÇ´Â ¼öÄ¡ Àû¿ë...
+	/// ìŠ¤í‚¬ì—ì„œ ì†Œëª¨ë˜ëŠ” ìˆ˜ì¹˜ ì ìš©...
 	int   Skill_ToUseAbilityVALUE(short nSKillIDX, short nPropertyIDX );
 	bool  Skill_UseAbilityValue( short nSkillIDX );
 
 
-	bool Skill_CheckJOB( short nSkillIDX );				/// ½Àµæ, ·¾¾÷µî¿¡¼­ Á÷¾÷ Ã¼Å© 
-	bool Skill_CheckLearnedSKILL( short nSkillIDX );	/// ½Àµæ, ·¾¾÷µî¿¡¼­ ÀÌ¹Ì ½ÀµæÇÑ ½ºÅ³ Ã¼Å© 
-	bool Skill_CheckNeedABILITY( short nSkillIDX );		/// ½Àµæ, ·¾¾÷µî¿¡¼­ »ç¿ëÀÚ ´É·ÂÄ¡ Ã¼Å©..
+	bool Skill_CheckJOB( short nSkillIDX );				/// ìŠµë“, ë ™ì—…ë“±ì—ì„œ ì§ì—… ì²´í¬ 
+	bool Skill_CheckLearnedSKILL( short nSkillIDX );	/// ìŠµë“, ë ™ì—…ë“±ì—ì„œ ì´ë¯¸ ìŠµë“í•œ ìŠ¤í‚¬ ì²´í¬ 
+	bool Skill_CheckNeedABILITY( short nSkillIDX );		/// ìŠµë“, ë ™ì—…ë“±ì—ì„œ ì‚¬ìš©ì ëŠ¥ë ¥ì¹˜ ì²´í¬..
 
-	/// ½ºÅ³ Ã³À½ ½Àµæ Á¶°Ç Ã¼Å© ÇÔ¼ö
+	/// ìŠ¤í‚¬ ì²˜ìŒ ìŠµë“ ì¡°ê±´ ì²´í¬ í•¨ìˆ˜
 	BYTE  Skill_LearnCondition( short nSkillIDX );		
 
-	/// ½ºÅ³ ·¹º§¾÷ Á¶°Ç Ã¼Å© ÇÔ¼ö
+	/// ìŠ¤í‚¬ ë ˆë²¨ì—… ì¡°ê±´ ì²´í¬ í•¨ìˆ˜
 	BYTE  Skill_LevelUpCondition( short nCurLevelSkillIDX, short nNextLevelSkillIDX );
 
-	/// ½ºÅ³ »ç¿ë Á¶°Ç Ã¼Å© ÇÔ¼ö
+	/// ìŠ¤í‚¬ ì‚¬ìš© ì¡°ê±´ ì²´í¬ í•¨ìˆ˜
 	bool  Skill_ActionCondition( short nSkillIDX );
 
-	/// ½ºÅ³ ½Àµæ :: ½ÀµæÀÌ³ª ·¹º§¾÷½Ã È£ÃâÇØ¾ß ÆĞ½Ãºê ½ºÅ³ Àû¿ëµÊ..
+	/// ìŠ¤í‚¬ ìŠµë“ :: ìŠµë“ì´ë‚˜ ë ˆë²¨ì—…ì‹œ í˜¸ì¶œí•´ì•¼ íŒ¨ì‹œë¸Œ ìŠ¤í‚¬ ì ìš©ë¨..
 	BYTE  Skill_LEARN( short nSkillSLOT, short nSkillIDX, bool bSubPOINT=true );
 
-	/// ½ÀµæÇÑ ½ºÅ³À» »èÁ¦ÇÑ´Ù.
+	/// ìŠµë“í•œ ìŠ¤í‚¬ì„ ì‚­ì œí•œë‹¤.
 	bool  Skill_DELETE( short nSkillSLOT, short nSkillIDX );
 
-	/// ÆĞ½Ãºê ½ºÅ³ °ü·Ã ÇÔ¼ö.
-	void  InitPassiveSkill ();				/// ¼­¹ö·Î ºÎÅÍ ½ºÅ³ µ¥ÀÌÅ¸ ¹ŞÀ¸¸é ÇÑ¹ø È£ÃâÇØ¾ßÇÔ...
+	/// íŒ¨ì‹œë¸Œ ìŠ¤í‚¬ ê´€ë ¨ í•¨ìˆ˜.
+	void  InitPassiveSkill ();				/// ì„œë²„ë¡œ ë¶€í„° ìŠ¤í‚¬ ë°ì´íƒ€ ë°›ìœ¼ë©´ í•œë²ˆ í˜¸ì¶œí•´ì•¼í•¨...
 //	short GetPassiveSkillAttackSpeed()		{	return m_nPassiveAttackSpeed + m_iAddValue[ AT_ATK_SPD ];	}
 
 	short GetBuySkillVALUE()				{	return GetPassiveSkillValue( AT_PSV_BUYING  );	}
 	short GetSellSkillVALUE()				{	return GetPassiveSkillValue( AT_PSV_SELLING );	}
 
 	//  -------------------------------------------------------------------------------------------
-	/// Äù½ºÆ® Á¶°Ç °ü·Ã ÇÔ¼ö...
+	/// í€˜ìŠ¤íŠ¸ ì¡°ê±´ ê´€ë ¨ í•¨ìˆ˜...
 #ifdef	__SERVER
-	virtual bool Quest_IsPartyLEADER() = 0;						    /// ÆÄÆ¼ Â¯ÀÌ³Ä ?
-	virtual int	 Quest_GetPartyLEVEL() = 0;						    /// ÇöÀç ÆÄÆ¼ ·¹º§
-	virtual int	 Quest_GetZoneNO() = 0;							    /// ÇöÀç Á¸ ¹øÈ£
-	virtual int	 Quest_DistanceFrom(int iX, int iY, int iZ) = 0;	/// ÇöÀçÀ§Ä¡±îÁö °Å¸®
-	virtual int	 Quest_PartyMemberCNT() = 0;                        /// ÆÄÆ¼ ÀÎ¿ø¼ö
+	virtual bool Quest_IsPartyLEADER() = 0;						    /// íŒŒí‹° ì§±ì´ëƒ ?
+	virtual int	 Quest_GetPartyLEVEL() = 0;						    /// í˜„ì¬ íŒŒí‹° ë ˆë²¨
+	virtual int	 Quest_GetZoneNO() = 0;							    /// í˜„ì¬ ì¡´ ë²ˆí˜¸
+	virtual int	 Quest_DistanceFrom(int iX, int iY, int iZ) = 0;	/// í˜„ì¬ìœ„ì¹˜ê¹Œì§€ ê±°ë¦¬
+	virtual int	 Quest_PartyMemberCNT() = 0;                        /// íŒŒí‹° ì¸ì›ìˆ˜
 #else
-	virtual bool Quest_IsPartyLEADER() = 0							{	*(int*)0 = 10; return false;		}	/// ÆÄÆ¼ Â¯ÀÌ³Ä ?
-	virtual int	 Quest_GetPartyLEVEL() = 0							{	*(int*)0 = 10; return -1;			}	/// ÇöÀç ÆÄÆ¼ ·¹º§
-	virtual int	 Quest_GetZoneNO() = 0								{	*(int*)0 = 10; return 0;			}	/// ÇöÀç Á¸ ¹øÈ£
-	virtual int	 Quest_DistanceFrom(int iX, int iY, int iZ) = 0		{	*(int*)0 = 10; return 999999999;	}	/// ÇöÀçÀ§Ä¡±îÁö °Å¸®
-	virtual int	 Quest_PartyMemberCNT() = 0							{	*(int*)0 = 10; return 0;			}	/// ÆÄÆ¼ ÀÎ¿ø¼ö
+	virtual bool Quest_IsPartyLEADER() = 0							{	*(int*)0 = 10; return false;		}	/// íŒŒí‹° ì§±ì´ëƒ ?
+	virtual int	 Quest_GetPartyLEVEL() = 0							{	*(int*)0 = 10; return -1;			}	/// í˜„ì¬ íŒŒí‹° ë ˆë²¨
+	virtual int	 Quest_GetZoneNO() = 0								{	*(int*)0 = 10; return 0;			}	/// í˜„ì¬ ì¡´ ë²ˆí˜¸
+	virtual int	 Quest_DistanceFrom(int iX, int iY, int iZ) = 0		{	*(int*)0 = 10; return 999999999;	}	/// í˜„ì¬ìœ„ì¹˜ê¹Œì§€ ê±°ë¦¬
+	virtual int	 Quest_PartyMemberCNT() = 0							{	*(int*)0 = 10; return 0;			}	/// íŒŒí‹° ì¸ì›ìˆ˜
 #endif
 
 	BYTE    Quest_GetRegistered( int iQuestIDX );
@@ -1063,7 +1063,7 @@ public :
 #endif
 	}
 
-	/// Äù½ºÆ® º¸»ó °ü·Ã ÇÔ¼ö
+	/// í€˜ìŠ¤íŠ¸ ë³´ìƒ ê´€ë ¨ í•¨ìˆ˜
 #ifdef	__SERVER
 	virtual bool Reward_WARP( int iZoneNO, tPOINTF &PosGOTO) = 0;
 #endif

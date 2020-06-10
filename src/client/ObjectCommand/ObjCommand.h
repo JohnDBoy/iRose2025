@@ -47,7 +47,7 @@ public:
 	int					GetCommandCount();	
 	void				PushCommand( CObjCommand* pObjCommand );
 
-	CObjCommand*		GetLastInvalidSkillCommand();			/// °¡ÀåÃÖ½Å¿¡ ¹ŞÀº ½ºÅ³ ¸í·ÉÀ» ¾ò¾î¿Â´Ù.( result ¸¦ ¹ŞÁö ¸øÇÑ )
+	CObjCommand*		GetLastInvalidSkillCommand();			/// ê°€ì¥ìµœì‹ ì— ë°›ì€ ìŠ¤í‚¬ ëª…ë ¹ì„ ì–»ì–´ì˜¨ë‹¤.( result ë¥¼ ë°›ì§€ ëª»í•œ )
 	void				SetValidFlag();
 	void				SetValidResultOfSkill();
 	CObjCommand*		PopCommand( bool& bSkillCommand );
@@ -77,10 +77,10 @@ protected:
 	CObjCHAR*			m_pOwner;
 	int					m_iType;
 
-	/// skill ÀÇ °æ¿ì.. start_of_skill À» ¹Ş¾Ò´Â°¡?
+	/// skill ì˜ ê²½ìš°.. start_of_skill ì„ ë°›ì•˜ëŠ”ê°€?
 	friend				CObjCommandManager;
 	bool				m_bValid;
-	bool				m_bGetResultOfSkill;	/// skill ÀÇ °æ¿ì result of skill À» ¹Ş¾Ò´Â°¡?
+	bool				m_bGetResultOfSkill;	/// skill ì˜ ê²½ìš° result of skill ì„ ë°›ì•˜ëŠ”ê°€?
 
 
 public:
@@ -116,7 +116,7 @@ public:
 //----------------------------------------------------------------------------------------------------
 /// Class CObjAttackCommand
 /// @brief command class for object attack command
-///			SetCMD_Attack °¡ µÎ°³³×? ÇÏ³ª´Â CObjAI, CObjCHAR   ÀÌ»óÇÏ¸é È®ÀÎÇØºÁ¶ó..
+///			SetCMD_Attack ê°€ ë‘ê°œë„¤? í•˜ë‚˜ëŠ” CObjAI, CObjCHAR   ì´ìƒí•˜ë©´ í™•ì¸í•´ë´ë¼..
 //----------------------------------------------------------------------------------------------------
 
 class CObjAttackCommand : public CObjCommand

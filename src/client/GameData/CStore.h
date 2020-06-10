@@ -13,9 +13,9 @@ class CTCmdOpenNumberInputDlg;
 
 
 /**
-* NPC»óÁ¡ÀÌ¿ë½ÃÀÇ DataClass
+* NPCìƒì ì´ìš©ì‹œì˜ DataClass
 *
-* @Author		ÃÖÁ¾Áø
+* @Author		ìµœì¢…ì§„
 * @Date			2005/9/15
 */
 class CStore : public CObservable

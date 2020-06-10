@@ -116,8 +116,8 @@ void CClanDlg::OnLButtonUp( unsigned uiProcID, WPARAM wParam, LPARAM lParam )
 	case IID_BTN_PREVIEW:
 		{
 			m_ClanMarkPreView.Free();
-			///Mark.bmp∏¶ ∑ŒµÂ«ÿº≠ CClanMarkUserDefinedø° ≥÷¥¬¥Ÿ.
-			///CClanMarkTransfer::RegisterMarkToServer()øÕ ∫ÒΩ¡«— √º≈©∑Á∆æ¿Ã « ø‰«œ¥Ÿ.
+			///Mark.bmpÎ•º Î°úÎìúÌï¥ÏÑú CClanMarkUserDefinedÏóê ÎÑ£ÎäîÎã§.
+			///CClanMarkTransfer::RegisterMarkToServer()ÏôÄ ÎπÑÏä∑Ìïú Ï≤¥ÌÅ¨Î£®Ìã¥Ïù¥ ÌïÑÏöîÌïòÎã§.
 			HANDLE hBmpFile = CreateFile( CClanMarkUserDefined::NewClanMarkFileName.c_str(), GENERIC_READ,FILE_SHARE_READ, NULL,OPEN_EXISTING,FILE_ATTRIBUTE_READONLY,NULL );
 			if( hBmpFile == INVALID_HANDLE_VALUE )
 			{
@@ -163,7 +163,7 @@ void CClanDlg::OnLButtonUp( unsigned uiProcID, WPARAM wParam, LPARAM lParam )
 			CClan& Clan = CClan::GetInstance();
 			if( Clan.GetClanNo() )
 			{
-				///≈¨∑£ ∏∂Ω∫≈Õ¿œ∞ÊøÏø°∏∏
+				///ÌÅ¥Îûú ÎßàÏä§ÌÑ∞ÏùºÍ≤ΩÏö∞ÏóêÎßå
 				if( CClan::GetInstance().GetClass() >= CClan::CLAN_MASTER )
 					g_itMGR.OpenDialog( DLG_TYPE_CLAN_NOTICE );
 				else
@@ -172,7 +172,7 @@ void CClanDlg::OnLButtonUp( unsigned uiProcID, WPARAM wParam, LPARAM lParam )
 		}
 		break;
 	case IID_BTN_DELETE_NOTICE:
-		///≈¨∑£ ∏∂Ω∫≈Õ¿œ∞ÊøÏø°∏∏
+		///ÌÅ¥Îûú ÎßàÏä§ÌÑ∞ÏùºÍ≤ΩÏö∞ÏóêÎßå
 		break;
 	case IID_BTN_WITHDRAWAL:
 		{
@@ -187,7 +187,7 @@ void CClanDlg::OnLButtonUp( unsigned uiProcID, WPARAM wParam, LPARAM lParam )
 			{
 				if( CClan::GetInstance().GetClass() < CClan::CLAN_MASTER )
 				{
-					///≈¨∑£ ∏∂Ω∫≈Õ∞° æ∆¥“∞ÊøÏø°∏∏
+					///ÌÅ¥Îûú ÎßàÏä§ÌÑ∞Í∞Ä ÏïÑÎãêÍ≤ΩÏö∞ÏóêÎßå
 					g_pNet->Send_cli_CLAN_COMMAND( GCMD_QUIT , NULL );
 					CClan::GetInstance().Clear();
 					g_pAVATAR->ResetClan();
@@ -395,7 +395,7 @@ void CClanDlg::DrawInfomation()
 		if( CClan::GetInstance().GetClass() <= CClan::CLAN_PENALTY )
 			dwColor = g_dwRED;
 
-		::drawFont( g_GameDATA.m_hFONT[ FONT_NORMAL ], true, 84,288, dwColor, CStringManager::GetSingleton().GetClanClass( CClan::GetInstance().GetClass() ) );///¿⁄Ω≈¿« ¡˜¿ß
+		::drawFont( g_GameDATA.m_hFONT[ FONT_NORMAL ], true, 84,288, dwColor, CStringManager::GetSingleton().GetClanClass( CClan::GetInstance().GetClass() ) );///ÏûêÏã†Ïùò ÏßÅÏúÑ
 		::drawFontf( g_GameDATA.m_hFONT[ FONT_NORMAL ], true, 84,309, g_dwWHITE, "%d",Clan.GetMyClanPoint() );
 
 
@@ -809,7 +809,7 @@ void CClanDlg::Hide()
 void CClanDlg::Show()
 {
 	CTDialog::Show();
-	///≥ª∞° ∏∂Ω∫≈Õ ¿ÃªÛ¿Ã∞Ì µÓ∑œµ» ∏∂≈© ¿ÃπÃ¡ˆ∏¶ ªÁøÎ«—¥Ÿ∏È
+	///ÎÇ¥Í∞Ä ÎßàÏä§ÌÑ∞ Ïù¥ÏÉÅÏù¥Í≥† Îì±Î°ùÎêú ÎßàÌÅ¨ Ïù¥ÎØ∏ÏßÄÎ•º ÏÇ¨Ïö©ÌïúÎã§Î©¥
 	SYSTEMTIME clanmark_regtime = CClan::GetInstance().GetClanMarkRegTime();
 	if( g_pAVATAR && g_pAVATAR->GetClanPos() >= CClan::CLAN_MASTER && g_pAVATAR->GetClanMarkBack() == 0 && clanmark_regtime.wYear == 0 )
 		g_pNet->Send_cli_CLANMARK_REG_TIME();

@@ -36,13 +36,13 @@ BOOL classTHREAD::SetPriority( int iPriority)
 {
 /*
 tpIdle	        The thread executes only when the system is idle. Windows won't interrupt other threads to execute a thread with tpIdle priority.
-tpLowest	    The thread's priority is two points below normal.
+tpLowest	The thread's priority is two points below normal.
 tpLower	        The thread's priority is one point below normal.
-tpNormal	    The thread has normal priority.
-tpHigher	    The thread's priority is one point above normal.
-tpHighest	    The thread's priority is two points above normal.
+tpNormal	The thread has normal priority.
+tpHigher	The thread's priority is one point above normal.
+tpHighest	The thread's priority is two points above normal.
 tpTimeCritical	The thread gets highest priority.
-Warning:		Boosting the thread priority of a CPU intensive operation may “starve?other threads in the application. Only apply priority boosts to threads that spend most of their time waiting for external events.
+Warning:		Boosting the thread priority of a CPU intensive operation may â€œstarveâ€ other threads in the application. Only apply priority boosts to threads that spend most of their time waiting for external events.
 */
 
 /*
@@ -88,7 +88,7 @@ unsigned __stdcall ThreadFunc( void* lpParameter )
 	pCThread->m_bFinished = true;
 	return 0;
 
-//	DWORD dwResult;		// ¾Æ·¡ ÇÔ¼öµéÀ» »ç¿ëÇØ¼­ »ðÁúÀ» -_-;
+//	DWORD dwResult;		// ì•„ëž˜ í•¨ìˆ˜ë“¤ì„ ì‚¬ìš©í•´ì„œ ì‚½ì§ˆì„ -_-;
 //	::GetExitCodeThread( pCThread->m_hThread, &dwResult );
 //	::ExitThread ( dwResult );
 //	return dwResult;

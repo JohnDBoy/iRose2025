@@ -31,7 +31,7 @@ public:
 	CCommand() : m_iSlotNO(0){};
 	virtual ~CCommand(){};
 
-	/// Å¬·¡½º »óÅÂ ÃÊ±âÈ­.
+	/// í´ë˜ìŠ¤ ìƒíƒœ ì´ˆê¸°í™”.
 	void			SetMember( int iSlotNO )
 	{		
 		m_iSlotNO = iSlotNO;

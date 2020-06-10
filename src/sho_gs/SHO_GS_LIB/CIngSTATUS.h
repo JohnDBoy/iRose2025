@@ -1,13 +1,13 @@
 /**
  * \ingroup SHO_GS
  * \file	CIngSTATUS.h
- * \brief	ÄÉ¸¯ÅÍ¿¡ Àû¿ëµÈ Áö¼Ó»óÅÂ Ã³¸®¹× Àû¿ë
+ * \brief	ì¼€ë¦­í„°ì— ì ìš©ëœ ì§€ì†ìƒíƒœ ì²˜ë¦¬ë° ì ìš©
  */
 #ifndef	__CINGSTATUS_H
 #define	__CINGSTATUS_H
 //-------------------------------------------------------------------------------------------------
 
-#define	FLAG_CHEAT_INVINCIBLE			0x80000000		/// ¼­¹ö¿¡¼­¸¸ »ç¿ë
+#define	FLAG_CHEAT_INVINCIBLE			0x80000000		/// ì„œë²„ì—ì„œë§Œ ì‚¬ìš©
 
 //-------------------------------------------------------------------------------------------------
 #define	IDX_ING_STB_DEC_LIFE_TIME		43
@@ -19,7 +19,7 @@ class CObjCHAR;
  * \ingroup SHO_GS_LIB
  * \class	CIngSTATUS
  * \author	wookSang.Jo
- * \brief	ÄÉ¸¯ÅÍ¿¡°Ô Àû¿ëµÈ Áö¼ÓÇü »óÅÂ°ü¸® Å¬·¡½º
+ * \brief	ì¼€ë¦­í„°ì—ê²Œ ì ìš©ëœ ì§€ì†í˜• ìƒíƒœê´€ë¦¬ í´ëž˜ìŠ¤
  */
 class CIngSTATUS {
 private :
@@ -27,7 +27,7 @@ private :
 	const static BYTE m_btSwitchBitMask[8];// = { 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80	};
 	enum {	BIT_SHIFT=3, WHICH_BIT=0x07 };
 	union {
-		BYTE	m_btSWITCHES[ sizeof(DWORD)*2 ];	// 32°³ ½ºÀ§Ä¡
+		BYTE	m_btSWITCHES[ sizeof(DWORD)*2 ];	// 32ê°œ ìŠ¤ìœ„ì¹˜
 		DWORD	m_dwSWITCHES[ 2 ];
 		struct {
 			DWORD	m_dwIngStatusFLAG1;
@@ -59,19 +59,19 @@ private :
 		short	m_nTotVALUE;
 	} m_POTION[ FLAG_ING_MP+1 ] ;
 
-	short	m_nTICKs    [ ING_MAX_STATUS ];			// ³²Àº ½Ã°£
-	short	m_nIngSKILL [ ING_MAX_STATUS ];			// Àû¿ëµÈ ½ºÅ³¹øÈ£
-	short	m_nAdjVALUE [ ING_MAX_STATUS ];			// Àû¿ëµÈ ¼öÄ¡
-	short	m_nIngSTBIdx[ ING_MAX_STATUS ];			// Áßº¹ Àû¿ë½Ã ºñ±³À§ÇØ¼­...
-	int		m_iTargetOBJ[ ING_MAX_STATUS ];			// ´ë»ó ¿ÀºêÁ§Æ® ¹øÈ£
+	short	m_nTICKs    [ ING_MAX_STATUS ];			// ë‚¨ì€ ì‹œê°„
+	short	m_nIngSKILL [ ING_MAX_STATUS ];			// ì ìš©ëœ ìŠ¤í‚¬ë²ˆí˜¸
+	short	m_nAdjVALUE [ ING_MAX_STATUS ];			// ì ìš©ëœ ìˆ˜ì¹˜
+	short	m_nIngSTBIdx[ ING_MAX_STATUS ];			// ì¤‘ë³µ ì ìš©ì‹œ ë¹„êµìœ„í•´ì„œ...
+	int		m_iTargetOBJ[ ING_MAX_STATUS ];			// ëŒ€ìƒ ì˜¤ë¸Œì íŠ¸ ë²ˆí˜¸
 
-	DWORD	m_dwAccTIME;							// ´©Àû ½Ã°£
+	DWORD	m_dwAccTIME;							// ëˆ„ì  ì‹œê°„
 
 	short   Proc_IngPOTION(tagIngPOTION *pPOTION, DWORD dwPassTIME);
 
 public :
 	union {
-		// ¿©½Å ¹öÇÁ½Ã º¸Á¤µÇ´Â °ª
+		// ì—¬ì‹  ë²„í”„ì‹œ ë³´ì •ë˜ëŠ” ê°’
 		short		m_nAruaVALUE[ 9 ];
 		struct {
 			short	m_nAruaAtkSPD;
@@ -127,7 +127,7 @@ public :
 			m_dwSubStatusFLAG = 0;
 			::ZeroMemory( m_nAruaVALUE, sizeof(m_nAruaVALUE) );
 		} else
-			m_dwSubStatusFLAG &= FLAG_SUB_ARUA_FAIRY;		// ¾Æ·ç¾Æ ¿äÁ¤ ¹öÇÁ¸¦ Á¦¿ÜÇÑ ³ª¸ÓÁö »èÁ¦~
+			m_dwSubStatusFLAG &= FLAG_SUB_ARUA_FAIRY;		// ì•„ë£¨ì•„ ìš”ì • ë²„í”„ë¥¼ ì œì™¸í•œ ë‚˜ë¨¸ì§€ ì‚­ì œ~
 
 		m_dwAccTIME = 0;
 		m_dwIngStatusFLAG = 0;
@@ -137,7 +137,7 @@ public :
 	void	ClearALL( DWORD dwAndMask=0 )
 	{
 		m_dwAccTIME = 0;
-		m_dwIngStatusFLAG &= dwAndMask;	// FLAG_ING_CLEAR ¼ÒÈ¯¸÷ Áö¼Ó½Ã°£, ¹«Àû »óÅÂ Á¦¿Ü, »óÁ¡»óÅÂ
+		m_dwIngStatusFLAG &= dwAndMask;	// FLAG_ING_CLEAR ì†Œí™˜ëª¹ ì§€ì†ì‹œê°„, ë¬´ì  ìƒíƒœ ì œì™¸, ìƒì ìƒíƒœ
 		::ZeroMemory( m_nAdjVALUE, sizeof(short) * ING_MAX_STATUS );
 	}
 	void	ClearAllGOOD ()
@@ -147,7 +147,7 @@ public :
 				this->m_nAdjVALUE[ nI ] = 0;
 			}
 		}
-		// ºñÆ® »èÁ¦~
+		// ë¹„íŠ¸ ì‚­ì œ~
 		this->ClearStatusFLAG( FLAG_ING_GOOD );
 	}
 //	void	SetALL( DWORD dwIngStatus )			{	m_dwIngStatusFLAG = dwIngStatus;				}

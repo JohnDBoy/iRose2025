@@ -22,7 +22,7 @@
 #define	TEST_ZONE_NO 100
 #define	DB_INI_STRING		30
 
-// ÃÖ´ë °ÔÀÓ °´Ã¼¼ö ( »ç¿ëÀÚ Æ÷ÇÔ )
+// ìµœëŒ€ ê²Œìž„ ê°ì²´ìˆ˜ ( ì‚¬ìš©ìž í¬í•¨ )
 #define	MAX_GAME_OBJECTS			65535
 #define	DEF_GAME_USER_POOL_SIZE		8192
 #define	INC_GAME_USER_POOL_SIZE		1024
@@ -71,8 +71,8 @@ STBDATA			 g_TblZONE;
 
 STBDATA			*g_pTblSTBs[ ITEM_TYPE_RIDE_PART+1 ];
 
-STBDATA			 g_TblAVATAR;		// ¾Æ¹ÙÅ¸ ÃÊ±â ¼³Á¤ µ¥ÀÌÅ¸..
-STBDATA			 g_TblSTATE;		/// Ä³¸¯ÅÍÀÇ »óÅÂ¸¦ º¯°æÇÏ´Â Á¤º¸.
+STBDATA			 g_TblAVATAR;		// ì•„ë°”íƒ€ ì´ˆê¸° ì„¤ì • ë°ì´íƒ€..
+STBDATA			 g_TblSTATE;		/// ìºë¦­í„°ì˜ ìƒíƒœë¥¼ ë³€ê²½í•˜ëŠ” ì •ë³´.
 
 STBDATA			 g_TblUnion;
 STBDATA			 g_TblClass;
@@ -165,7 +165,7 @@ VOID CALLBACK GS_TimerProc (HWND hwnd/* handle to window */, UINT uMsg/* WM_TIME
 			g_pZoneLIST->Inc_WorldTIME ();
 
 			switch( g_pZoneLIST->m_dwAccTIME % 6 ) {
-				case 0 : case 3 :		// 30ÃÊ¿¡ ÇÑ¹ø¾¿ Ã¼Å©...	
+				case 0 : case 3 :		// 30ì´ˆì— í•œë²ˆì”© ì²´í¬...	
 					g_pUserLIST->Check_SocketALIVE ();
 					break;
 				case 1 : // case 4 :
@@ -261,7 +261,7 @@ CLIB_GameSRV::~CLIB_GameSRV ()
 		g_pThreadSQL->Free ();
 		SAFE_DELETE( g_pThreadSQL );
 	}
-	if ( g_pThreadLOG ) {	// Ç×»ó g_pThreadSQLº¸´Ù µÚ¿¡...
+	if ( g_pThreadLOG ) {	// í•­ìƒ g_pThreadSQLë³´ë‹¤ ë’¤ì—...
 		g_pThreadLOG->Free ();
 		SAFE_DELETE( g_pThreadLOG );
 	}
@@ -384,7 +384,7 @@ bool CLIB_GameSRV::CheckSTB_UseITEM ()
 			
 			assert( 0 != STATE_APPLY_ABILITY_VALUE( nIngSTB, nI ) );
 
-			// ÃÑ Áõ°¡ÇÒ ¼öÄ¡.
+			// ì´ ì¦ê°€í•  ìˆ˜ì¹˜.
 			nDuringTime = USEITEM_ADD_DATA_VALUE( nD ) / STATE_APPLY_ABILITY_VALUE( nIngSTB, nI );
 		}
 	}
@@ -414,7 +414,7 @@ bool CLIB_GameSRV::CheckSTB_NPC ()
 				SET_NPC_DEAD_EVENT(nI,NULL);
 			} else {
 				do {
-					pQuestTrigger->m_iOwerNpcIDX = nI;	// Á×À»¶§ ¹ß»ýµÇ´Â Æ®¸®°Å´Ù.
+					pQuestTrigger->m_iOwerNpcIDX = nI;	// ì£½ì„ë•Œ ë°œìƒë˜ëŠ” íŠ¸ë¦¬ê±°ë‹¤.
 					pQuestTrigger = pQuestTrigger->m_pNextTrigger;
 				} while( pQuestTrigger );
 			}
@@ -426,7 +426,7 @@ bool CLIB_GameSRV::CheckSTB_NPC ()
 bool CLIB_GameSRV::CheckSTB_DropITEM ()
 {
 //	/*
-	//¾ÆÀÌÅÛ µå·Ó °è»ê¹æ½ÄÀÌ ¹Ù²î¸é¼­ stbÂüÁ¶ °ªÀÌ Æ²·ÁÁ³´Ù.
+	//ì•„ì´í…œ ë“œë¡­ ê³„ì‚°ë°©ì‹ì´ ë°”ë€Œë©´ì„œ stbì°¸ì¡° ê°’ì´ í‹€ë ¤ì¡Œë‹¤.
 	int iDropITEM;
 	tagITEM sITEM;
 
@@ -449,10 +449,10 @@ bool CLIB_GameSRV::CheckSTB_DropITEM ()
 
 			if( iDropITEM <= 1000 ) {
 				if ( iDropITEM >= 1 && iDropITEM <= 4 ) {
-					// ´Ù½Ã °è»ê
-					int iDropTblIDX = 26 + (iDropITEM * 5) + 4/*RANDOM(5)ÀÇ ÃÖ´ë°ª 4 */;
+					// ë‹¤ì‹œ ê³„ì‚°
+					int iDropTblIDX = 26 + (iDropITEM * 5) + 4/*RANDOM(5)ì˜ ìµœëŒ€ê°’ 4 */;
 					if ( iDropTblIDX >= g_TblDropITEM.m_nColCnt ) {
-						// Å×ÀÌºí ÄÃ·³ °¹¼ö ÃÊ°ú...
+						// í…Œì´ë¸” ì»¬ëŸ¼ ê°¯ìˆ˜ ì´ˆê³¼...
 						g_LOG.CS_ODS ( 0xffff, "This drop item[ %d %d ] may be too big\n", nI, nC);
 					}
 					continue;
@@ -529,8 +529,8 @@ bool CLIB_GameSRV::CheckSTB_ListPRODUCT ()
 				if ( !sOutITEM.IsValidITEM() ) {
 					_ASSERT( 0 );
 				}
-				// Àç·á ¾ÆÀÌÅÛ ¹øÈ£
-				_ASSERT( PRODUCT_NEED_ITEM_CNT( nI, nS) > 0 );	// ÆÓ¿ä °¹¼ö
+				// ìž¬ë£Œ ì•„ì´í…œ ë²ˆí˜¸
+				_ASSERT( PRODUCT_NEED_ITEM_CNT( nI, nS) > 0 );	// íŒ°ìš” ê°¯ìˆ˜
 			}
 		}
 	}
@@ -547,7 +547,7 @@ void CLIB_GameSRV::TranslateNameWithDescKey( STBDATA *pOri, char *szStbFile, int
 	int iKeyCol = 0;
 
 	STBDATA	tmpTBL;
-	// ¾ÆÀÌÅÛ ÀÌ¸§¸¸ ÀÐÀ½ :: ÀÌ¸§ ÄÃ·³Àº 1, 3, 5 ... ¼³¸í ÄÃ·³Àº 2, 4, 6 ...
+	// ì•„ì´í…œ ì´ë¦„ë§Œ ì½ìŒ :: ì´ë¦„ ì»¬ëŸ¼ì€ 1, 3, 5 ... ì„¤ëª… ì»¬ëŸ¼ì€ 2, 4, 6 ...
 	if ( !tmpTBL.LoadWSTB( true, CStr::Printf("%s%s", BASE_DATA_DIR, szStbFile), iKeyCol, iLangCol, -1 ) )
 		return;
 	STBDATA *pLang = &tmpTBL;
@@ -594,7 +594,7 @@ void CLIB_GameSRV::TranslateNameWithColoumKey ( STBDATA *pOri, char *szStbFile, 
 
 	STBDATA	tmpTBL;
 
-	// ¾ÆÀÌÅÛ ÀÌ¸§¸¸ ÀÐÀ½ :: ÀÌ¸§ ÄÃ·³Àº 1, 3, 5 ... ¼³¸í ÄÃ·³Àº 2, 4, 6 ...
+	// ì•„ì´í…œ ì´ë¦„ë§Œ ì½ìŒ :: ì´ë¦„ ì»¬ëŸ¼ì€ 1, 3, 5 ... ì„¤ëª… ì»¬ëŸ¼ì€ 2, 4, 6 ...
 	if ( !tmpTBL.LoadWSTB( true, CStr::Printf("%s%s", BASE_DATA_DIR, szStbFile), iKeyCol, iLangCol, -1 ) )
 		return;
 	STBDATA *pLang = &tmpTBL;
@@ -766,7 +766,7 @@ bool CLIB_GameSRV::Load_BasicDATA ()
 	g_pTblSTBs[ ITEM_TYPE_QUEST		] = &g_TblQUESTITEM;
 	g_pTblSTBs[ ITEM_TYPE_RIDE_PART ] = &g_PatITEM.m_ItemDATA;
 	
-	// ¾ÆÀÌÅÛ ÀÌ¸§¸¸ ÀÐÀ½ :: ÀÌ¸§ ÄÃ·³Àº 1, 3, 5 ... ¼³¸í ÄÃ·³Àº 2, 4, 6 ...
+	// ì•„ì´í…œ ì´ë¦„ë§Œ ì½ìŒ :: ì´ë¦„ ì»¬ëŸ¼ì€ 1, 3, 5 ... ì„¤ëª… ì»¬ëŸ¼ì€ 2, 4, 6 ...
 	this->TranslateNameWithDescKey( g_pTblSTBs[ ITEM_TYPE_FACE_ITEM  ], "Language\\LIST_FACEITEM_s.STB",	1+2*m_iLangTYPE );
 	this->TranslateNameWithDescKey( g_pTblSTBs[ ITEM_TYPE_HELMET	 ], "Language\\LIST_CAP_s.STB",			1+2*m_iLangTYPE );
 	this->TranslateNameWithDescKey( g_pTblSTBs[ ITEM_TYPE_ARMOR		 ], "Language\\LIST_BODY_s.STB",		1+2*m_iLangTYPE );
@@ -784,7 +784,7 @@ bool CLIB_GameSRV::Load_BasicDATA ()
 
 	this->TranslateNameWithDescKey(&g_SkillList.m_SkillDATA,			"Language\\LIST_SKILL_s.stb",		1+2*m_iLangTYPE );
 
-	// ÀÌ¸§ ÄÃ·³Àº 1,2,3 ...
+	// ì´ë¦„ ì»¬ëŸ¼ì€ 1,2,3 ...
 	this->TranslateNameWithColoumKey( &g_TblNPC, "Language\\LIST_NPC_s.STB",	1+m_iLangTYPE, NPC_NAME_STR_COLUMN, NPC_STRING_ID_COLOUM);
 
 
@@ -826,7 +826,7 @@ bool CLIB_GameSRV::Load_BasicDATA ()
 }
 void CLIB_GameSRV::Free_BasicDATA ()
 {
-	// STBDATA´Â ÀÚµ¿ Ç®¸²..
+	// STBDATAëŠ” ìžë™ í’€ë¦¼..
 	g_PatITEM.Free ();
 	g_QuestList.Free ();	
 	g_SkillList.Free ();
@@ -917,7 +917,7 @@ bool CLIB_GameSRV::ConnectSERVER( char *szDBServerIP,		char *szDBName,
 		m_LogPW.Set( szLogPW );
 	}
 
-	g_pThreadSQL = new GS_CThreadSQL;	// suspend ¸ðµå·Î ½ÃÀÛµÊ.
+	g_pThreadSQL = new GS_CThreadSQL;	// suspend ëª¨ë“œë¡œ ì‹œìž‘ë¨.
 	if ( !g_pThreadSQL->Connect( USE_MY_SQL_AGENT ? USE_MY_SQL:USE_ODBC, szDBServerIP, szDBUser, szDBPassword, szDBName, 32, 1024*8) ) {
 		return false;
 	}
@@ -1035,7 +1035,7 @@ bool CLIB_GameSRV::Start( HWND hMainWND, char *szServerName, char *szClientListe
 	m_pWorldTIMER = new CTimer( m_hMainWND, GS_TIMER_WORLD_TIME, WORLD_TIME_TICK, (TIMERPROC)GS_TimerProc );
 	m_pWorldTIMER->Start ();
 
-	g_pUserLIST->Active( m_iListenPortNO, MAX_ZONE_USER_BUFF, 5*60 );	// 5ºÐ ´ë±â.
+	g_pUserLIST->Active( m_iListenPortNO, MAX_ZONE_USER_BUFF, 5*60 );	// 5ë¶„ ëŒ€ê¸°.
 
 	return true;
 }
@@ -1043,7 +1043,7 @@ bool CLIB_GameSRV::Start( HWND hMainWND, char *szServerName, char *szClientListe
 //-------------------------------------------------------------------------------------------------
 void CLIB_GameSRV::Shutdown ()
 {
-	SAFE_DELETE( m_pWorldTIMER );	// Å¸ÀÌ¸Ó »èÁ¦°¡ ¾Õ¼­µµ·Ï...
+	SAFE_DELETE( m_pWorldTIMER );	// íƒ€ì´ë¨¸ ì‚­ì œê°€ ì•žì„œë„ë¡...
 
 	g_pUserLIST->ShutdownACCEPT ();
 
@@ -1055,13 +1055,13 @@ void CLIB_GameSRV::Shutdown ()
 	g_pUserLIST->ShutdownWORKER ();
 	g_pUserLIST->ShutdownSOCKET ();
 
-	// sql threadÀÇ ¸ðµç ³»¿ëÀÌ ±â·Ï µÉµ¿¾È ´ë±â...
+	// sql threadì˜ ëª¨ë“  ë‚´ìš©ì´ ê¸°ë¡ ë ë™ì•ˆ ëŒ€ê¸°...
 	if ( g_pThreadSQL ) {
 		_ASSERT( g_pThreadSQL );
 		g_pThreadSQL->Set_EVENT();
 		do {
 			::Sleep( 200 );		// wait 0.2 sec
-		} while( !g_pThreadSQL->IsWaiting() || g_pThreadSQL->WaitUserCNT() > 0 ) ;	// Ã³¸®ÁßÀÌ¸é ´ë±â..
+		} while( !g_pThreadSQL->IsWaiting() || g_pThreadSQL->WaitUserCNT() > 0 ) ;	// ì²˜ë¦¬ì¤‘ì´ë©´ ëŒ€ê¸°..
 	}
 
     SAFE_DELETE( g_pObjMGR );

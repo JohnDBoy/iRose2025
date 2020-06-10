@@ -36,7 +36,7 @@ bool CSoundSYSTEM::KEY_PlaySound (unsigned int uiKEY)
 	t_sounddata *pSD = Get_DATAUseKEY( uiKEY );
 
 	if ( NULL == pSD ) {
-		// »ç¿îµåÆÄÀÏ¸®½ºÆ® ¿¡ µî·Ï µÇÁö ¾Ê´Â »ç¿îµå ÆÄÀÏÀÌ´Ù.
+		// ì‚¬ìš´ë“œíŒŒì¼ë¦¬ìŠ¤íŠ¸ ì— ë“±ë¡ ë˜ì§€ ì•ŠëŠ” ì‚¬ìš´ë“œ íŒŒì¼ì´ë‹¤.
 		return false;
 	}
 
@@ -50,7 +50,7 @@ bool CSoundSYSTEM::IDX_PlaySound (short nIndex)
 	t_sounddata *pSD = Get_DATAUseIDX( nIndex );
 
 	if ( NULL == pSD ) {
-		// »ç¿îµåÆÄÀÏ¸®½ºÆ® ¿¡ µî·Ï µÇÁö ¾Ê´Â »ç¿îµå ÆÄÀÏÀÌ´Ù.
+		// ì‚¬ìš´ë“œíŒŒì¼ë¦¬ìŠ¤íŠ¸ ì— ë“±ë¡ ë˜ì§€ ì•ŠëŠ” ì‚¬ìš´ë“œ íŒŒì¼ì´ë‹¤.
 		return false;
 	}
 

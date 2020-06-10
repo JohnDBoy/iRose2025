@@ -65,7 +65,7 @@ void CNetwork::Destroy ()
 //-------------------------------------------------------------------------------------------------
 bool CNetwork::ConnectToServer (char *szServerIP, WORD wTcpPORT, short nProcLEVEL)
 {
-	// World ¼ÒÄÏ...
+	// World ì†Œì¼“...
 	if( m_nProcLEVEL == nProcLEVEL )
 		return true;
 
@@ -86,11 +86,11 @@ void CNetwork::DisconnectFromServer (short nProcLEVEL)
 void CNetwork::MoveZoneServer ()
 {
 	if ( NETWORK_STATUS_CONNECT == m_btZoneSocketSTATUS ) {
-		// Á¸ ¼­¹ö ¼ÒÄÏÀ» ²÷°í »õ·Î Á¢¼ÓÇÑ´Ù...
+		// ì¡´ ì„œë²„ ì†Œì¼“ì„ ëŠê³  ìƒˆë¡œ ì ‘ì†í•œë‹¤...
 		m_bMoveingZONE = true;
 		m_ZoneSOCKET.Close();
 	} else {
-		// ¹Ù·Î Á¢¼Ó...
+		// ë°”ë¡œ ì ‘ì†...
 		m_bMoveingZONE = false;
 		m_ZoneSOCKET.Connect( CSocketWND::GetInstance()->GetWindowHandle(), m_GSV_IP.Get(), m_wGSV_PORT, WM_ZONE_SOCKET_NOTIFY );
 	}
@@ -114,14 +114,14 @@ void CNetwork::Proc_WorldPacket ()
 					}
 					case NETWORK_STATUS_CONNECT		:
 					{
-						// ¼­¹ö¿Í ¿¬°áµÆ´Ù...
+						// ì„œë²„ì™€ ì—°ê²°ëë‹¤...
 						switch( m_nProcLEVEL ) {
-							case NS_CON_TO_WSV :	// ¿ùµå ¼­¹ö¿¡ Á¢¼ÓÇß´Ù.
+							case NS_CON_TO_WSV :	// ì›”ë“œ ì„œë²„ì— ì ‘ì†í–ˆë‹¤.
 								Send_cli_JOIN_SERVER_REQ (m_dwWSV_ID, true);
 								m_bWarping = false;
 								bAllInONE = true;
 								break;
-							case NS_CON_TO_LSV :	// ·Î±ä ¼­¹ö¿¡ Á¢¼ÓÇß´Ù.
+							case NS_CON_TO_LSV :	// ë¡œê¸´ ì„œë²„ì— ì ‘ì†í–ˆë‹¤.
 								pSocket->mF_Init( PACKET_SEED );
 								Send_cli_HEADER( CLI_ACCEPT_REQ ,true );
 
@@ -132,7 +132,7 @@ void CNetwork::Proc_WorldPacket ()
 						//g_pCApp->SetCaption ( "ROSE online" );
 						g_pCApp->SetCaption("ROSE Online"); 
 					#ifdef	__VIRTUAL_SERVER
-						g_pCApp->ErrorBOX( "°¡»ó ¼­¹ö°¡ ¼³Á¤µÇ¾î ÀÖÀ½..", "ERROR !!!", MB_OK);
+						g_pCApp->ErrorBOX( "ê°€ìƒ ì„œë²„ê°€ ì„¤ì •ë˜ì–´ ìˆìŒ..", "ERROR !!!", MB_OK);
 					#endif
 						continue;
 					}
@@ -141,7 +141,7 @@ void CNetwork::Proc_WorldPacket ()
 						// g_pCApp->SetCaption ( "Disconnected" );
 
 						if ( NS_DIS_FORM_LSV  == m_nProcLEVEL ) {
-							// °ÔÀÓ ¼­¹ö¿¡ ÀçÁ¢¼Ó ÇÑ´Ù...
+							// ê²Œì„ ì„œë²„ì— ì¬ì ‘ì† í•œë‹¤...
 							this->ConnectToServer( m_WSV_IP.Get(), m_wWSV_PORT, NS_CON_TO_WSV );
 							continue;
 						}
@@ -160,15 +160,15 @@ void CNetwork::Proc_WorldPacket ()
 				}
 
 				//CGame::GetInstance().ProcWndMsg( WM_USER_SERVER_DISCONNECTED,0,0 );
-				// ¼­¹ö¿Í Á¢¼Ó ½ÇÆĞ Çß´Ù.
-				LogString (LOG_NORMAL,"¼­¹ö¿ÍÀÇ Á¢¼Ó¿¡ ½ÇÆĞÇß½À´Ï´Ù.\n");
+				// ì„œë²„ì™€ ì ‘ì† ì‹¤íŒ¨ í–ˆë‹¤.
+				LogString (LOG_NORMAL,"ì„œë²„ì™€ì˜ ì ‘ì†ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.\n");
 				break;
 			}
 			case SRV_ERROR :
 				Recv_srv_ERROR ();
 				break;
 
-			case SRV_JOIN_SERVER_REPLY :	// ¿ùµå ¼­¹ö¿¡ Á¢¼ÓÇß´Ù.
+			case SRV_JOIN_SERVER_REPLY :	// ì›”ë“œ ì„œë²„ì— ì ‘ì†í–ˆë‹¤.
 			{
 				DWORD dwRet = Recv_srv_JOIN_SERVER_REPLY ();
 				if ( dwRet ) {
@@ -199,7 +199,7 @@ void CNetwork::Proc_WorldPacket ()
 			case LSV_CHANNEL_LIST_REPLY :
 				Recv_lsv_CHANNEL_LIST_REPLY ();
 				break;
-			// Ä³¸¯ÅÍ ¸®½ºÆ® ¹Ş¾ÒÀ½
+			// ìºë¦­í„° ë¦¬ìŠ¤íŠ¸ ë°›ì•˜ìŒ
 			case WSV_CHAR_LIST :
 				Recv_wsv_CHAR_LIST ();			
 				break;
@@ -207,7 +207,7 @@ void CNetwork::Proc_WorldPacket ()
 			case WSV_DELETE_CHAR :
 				Recv_wsv_DELETE_CHAR ();
 				break;
-			// Ä³¸¯ÅÍ »ı¼º¿äÃ» °á°ú Åëº¸¹ŞÀ½
+			// ìºë¦­í„° ìƒì„±ìš”ì²­ ê²°ê³¼ í†µë³´ë°›ìŒ
 			case WSV_CREATE_CHAR :
 				Recv_wsv_CREATE_CHAR (); 
 					
@@ -230,7 +230,7 @@ void CNetwork::Proc_WorldPacket ()
 			case WSV_CHAR_CHANGE:
 				Recv_wsv_CHAR_CHANGE();
 				break;
-			// Á¸ ¼­¹ö¸¦ ÀÌµ¿ÇØ¶ó...
+			// ì¡´ ì„œë²„ë¥¼ ì´ë™í•´ë¼...
 			case WSV_MOVE_SERVER :
 			{
 				bAllInONE = false;
@@ -331,7 +331,7 @@ void CNetwork::Proc_ZonePacket ()
 				Recv_gsv_GM_COMMAND ();
 				break;
 
-			// Ä³¸¯ÅÍ ¼±ÅÃ °á°ú Åëº¸¹ŞÀ½
+			// ìºë¦­í„° ì„ íƒ ê²°ê³¼ í†µë³´ë°›ìŒ
 			case GSV_SELECT_CHAR :
 				Recv_gsv_SELECT_CHAR ();
 
@@ -511,7 +511,7 @@ void CNetwork::Proc_ZonePacket ()
 				Recv_gsv_SPEED_CHANGED ();
 				break;
 
-			/// ¾ÆÀÌÅÛÀ» »ç¿ëÇß´Ù.
+			/// ì•„ì´í…œì„ ì‚¬ìš©í–ˆë‹¤.
 			case GSV_USE_ITEM:
 				Recv_gsv_USE_ITEM ();
 				break;
@@ -523,7 +523,7 @@ void CNetwork::Proc_ZonePacket ()
 				Recv_gsv_SET_MONEYnINV ();
 				break;
 
-			case GSV_REWARD_ITEM  :		/// Äù½ºÆ® º¸»ó¿¡ ÀÇÇØ ¾ÆÀÌÅÛÀÌ º¯°æ
+			case GSV_REWARD_ITEM  :		/// í€˜ìŠ¤íŠ¸ ë³´ìƒì— ì˜í•´ ì•„ì´í…œì´ ë³€ê²½
 			{
 				Recv_gsv_REWARD_ITEM();
 			}
@@ -651,14 +651,14 @@ void CNetwork::Proc_ZonePacket ()
 			}
 
 			//----------------------------------------------------------------------------------------------------			
-			/// @brief ¾ÆÀÌÅÛ Àç¹Ö°ü·Ã
+			/// @brief ì•„ì´í…œ ì¬ë°ê´€ë ¨
 			//----------------------------------------------------------------------------------------------------
 			case GSV_CRAFT_ITEM_REPLY:
 				Recv_gsv_CRAFT_ITEM_REPLY();
 				break;
 
 			//----------------------------------------------------------------------------------------------------			
-			/// @brief ÀÌº¥Æ® ¿ÀºêÁ§Æ® °ü·Ã
+			/// @brief ì´ë²¤íŠ¸ ì˜¤ë¸Œì íŠ¸ ê´€ë ¨
 			//----------------------------------------------------------------------------------------------------
 			case GSV_ADD_EVENTOBJ:
 				Recv_gsv_ADD_EVENTOBJ();
@@ -726,8 +726,8 @@ void CNetwork::Proc ()
 					}
 					case NETWORK_STATUS_CONNECT		:
 					{
-						// Á¸ ¼­¹ö¿Í ¿¬°áµÆ´Ù...
-						// ÄÉ¸¯ÅÍ ¼±ÅÃÈÄ ½ÇÁ¦ Á¸¿¡ µé¾î°£´Ù.
+						// ì¡´ ì„œë²„ì™€ ì—°ê²°ëë‹¤...
+						// ì¼€ë¦­í„° ì„ íƒí›„ ì‹¤ì œ ì¡´ì— ë“¤ì–´ê°„ë‹¤.
 						m_bWarping = false;
 						pSocket->mF_Init( m_dwGSV_IDs[1] );
 						this->Send_cli_JOIN_SERVER_REQ( m_dwGSV_IDs[0] );
@@ -735,7 +735,7 @@ void CNetwork::Proc ()
 					}
 					case NETWORK_STATUS_DISCONNECT:
 					{
-						// ¼­¹ö¸¦ ¿Å±â±â À§ÇØ Á¢¼ÓÀ» ²÷Àº°ÍÀÎ°¡ ? ²÷±ä°ÍÀÎ°¡ ?
+						// ì„œë²„ë¥¼ ì˜®ê¸°ê¸° ìœ„í•´ ì ‘ì†ì„ ëŠì€ê²ƒì¸ê°€ ? ëŠê¸´ê²ƒì¸ê°€ ?
 						if ( m_bMoveingZONE ) {
 							this->MoveZoneServer ();
 							continue;
@@ -749,16 +749,16 @@ void CNetwork::Proc ()
 					}
 				}
 
-				LogString (LOG_NORMAL,"Á¸ ¼­¹ö¿ÍÀÇ Á¢¼Ó¿¡ ½ÇÆĞÇß½À´Ï´Ù.\n");
+				LogString (LOG_NORMAL,"ì¡´ ì„œë²„ì™€ì˜ ì ‘ì†ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.\n");
 				break;
 			}
 
-			case SRV_JOIN_SERVER_REPLY :	// Á¸ ¼­¹ö¿¡ Á¢¼ÓÇß´Ù.
+			case SRV_JOIN_SERVER_REPLY :	// ì¡´ ì„œë²„ì— ì ‘ì†í–ˆë‹¤.
 			{
 				DWORD dwRet = Recv_srv_JOIN_SERVER_REPLY ();
 				if ( dwRet ) {
 					pSocket->OnAccepted( (int*)&dwRet );
-					// Ã³À½ Á¢¼ÓÇÑ Á¸ ¼­¹ö? ¸é...
+					// ì²˜ìŒ ì ‘ì†í•œ ì¡´ ì„œë²„? ë©´...
 
 					CLiveCheck::GetSingleton().ResetTime();
 				} else {

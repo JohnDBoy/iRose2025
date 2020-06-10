@@ -58,11 +58,11 @@ CDigitEffect::CDigitEffect()
 
 CDigitEffect::~CDigitEffect()
 {
-	/// ¿£Áø ÆÄ±«ÈÄ¿¡ È£ÃâµÇ±â¶§¹®¿¡..
+	/// ì—”ì§„ íŒŒê´´í›„ì— í˜¸ì¶œë˜ê¸°ë•Œë¬¸ì—..
 	//ClearAll();
 }
 
-/// ÀÛ¾÷ °´Ã¼µé ÃÊ±âÈ­..
+/// ì‘ì—… ê°ì²´ë“¤ ì´ˆê¸°í™”..
 bool CDigitEffect::Init()
 {
 	ClearAll();
@@ -127,7 +127,7 @@ bool CDigitEffect::Init()
 
 
 		::setMaterialUseAlpha( hMat, 1 );
-		::setMaterialUseLight( hMat, 0 ); // ¶óÀÌÆÃ Àû¿ë ¾ÈÇÔ.
+		::setMaterialUseLight( hMat, 0 ); // ë¼ì´íŒ… ì ìš© ì•ˆí•¨.
 		
 		//::setMaterialUseAlphaTest( hMat, 1 );
 		//::setMaterialZWrite( hMat, 1 );
@@ -145,7 +145,7 @@ bool CDigitEffect::Init()
 		
 		//::insertToScene( hDummy );
 		//----------------------------------------------------------------------------------------------------	
-		/// @brief CHILDÀÇInsertToSceneÁ¦°Å
+		/// @brief CHILDì˜InsertToSceneì œê±°
 		//----------------------------------------------------------------------------------------------------
 		//::insertToScene( hAnimatable );
 	}
@@ -160,7 +160,7 @@ bool CDigitEffect::Init()
 	if( m_DigitTex[ DIGIT_NORMAL ] == NULL )
 	{
 			g_pCApp->ErrorBOX( "Chatbox load failed !!", "File open error" );
-			//½ÇÆĞÇÑ ÀÌÀ¯¸¦ Àû¾îÁØ´Ù..
+			//ì‹¤íŒ¨í•œ ì´ìœ ë¥¼ ì ì–´ì¤€ë‹¤..
 			ClearAll();
 			return false;
 	}
@@ -174,7 +174,7 @@ bool CDigitEffect::Init()
 	if( m_DigitTex[ DIGIT_ATTACKED ] == NULL )
 	{
 		g_pCApp->ErrorBOX( "Chatbox load failed !!", "File open error" );
-		//½ÇÆĞÇÑ ÀÌÀ¯¸¦ Àû¾îÁØ´Ù..
+		//ì‹¤íŒ¨í•œ ì´ìœ ë¥¼ ì ì–´ì¤€ë‹¤..
 		ClearAll();
 		return false;
 	}
@@ -191,7 +191,7 @@ bool CDigitEffect::Init()
 	if( m_DigitClearTex == NULL )
 	{
 			g_pCApp->ErrorBOX( "m_DigitClearTex load failed !!", "File open error" );
-			//½ÇÆĞÇÑ ÀÌÀ¯¸¦ Àû¾îÁØ´Ù..
+			//ì‹¤íŒ¨í•œ ì´ìœ ë¥¼ ì ì–´ì¤€ë‹¤..
 			ClearAll();
 			return false;
 	}
@@ -206,7 +206,7 @@ bool CDigitEffect::Init()
 	if( m_DigitMissTex == NULL )
 	{
 		g_pCApp->ErrorBOX( "m_DigitMissTex load failed !!", "File open error" );
-		//½ÇÆĞÇÑ ÀÌÀ¯¸¦ Àû¾îÁØ´Ù..
+		//ì‹¤íŒ¨í•œ ì´ìœ ë¥¼ ì ì–´ì¤€ë‹¤..
 		ClearAll();
 		return false;
 	}
@@ -232,7 +232,7 @@ void CDigitEffect::ClearAll()
 		if( m_DigitNode[ i ].m_hAnimatable != NULL )
 		{
 			//----------------------------------------------------------------------------------------------------	
-			/// @brief CHILDÀÇRemoveToSceneÁ¦°Å
+			/// @brief CHILDì˜RemoveToSceneì œê±°
 			//----------------------------------------------------------------------------------------------------
 			//::removeFromScene( m_DigitNode[ i ].m_hAnimatable );
 			::unloadAnimatable( m_DigitNode[ i ].m_hAnimatable );
@@ -284,7 +284,7 @@ void CDigitEffect::ClearAll()
 	}
 }
 
-/// Animation ÀÌ ³¡³­³ğµéÀº ¾Èº¸ÀÌ°Ô ÇÑ´Ù.
+/// Animation ì´ ëë‚œë†ˆë“¤ì€ ì•ˆë³´ì´ê²Œ í•œë‹¤.
 void CDigitEffect::Refresh()
 {
 	for( int i = 0; i < MAX_DIGIT_EFFECT ; i++ )
@@ -296,7 +296,7 @@ void CDigitEffect::Refresh()
 			if( iState == 0 )
 			{
 				//----------------------------------------------------------------------------------------------------	
-				/// @brief Visibility ·Î Á¶Á¤ÇÏ´Â°Ô ¾Æ´Ï¶ó ¾Æ¿¹ Scene¿¡¼­ »«´Ù.
+				/// @brief Visibility ë¡œ ì¡°ì •í•˜ëŠ”ê²Œ ì•„ë‹ˆë¼ ì•„ì˜ˆ Sceneì—ì„œ ëº€ë‹¤.
 				//----------------------------------------------------------------------------------------------------
 				::removeFromScene( m_DigitNode[ i ].m_hPositionDummy );
 				m_DigitNode[ i ].m_bVisible = false;
@@ -307,7 +307,7 @@ void CDigitEffect::Refresh()
 	}
 }
 
-/// ÇöÀç »ç¿ëÁßÀÌÁö ¾ÊÀº ³ëµå¸¦ ±¸ÇÑ´Ù.
+/// í˜„ì¬ ì‚¬ìš©ì¤‘ì´ì§€ ì•Šì€ ë…¸ë“œë¥¼ êµ¬í•œë‹¤.
 int CDigitEffect::GetEmptyNode()
 {
 	for( int i = 0; i < MAX_DIGIT_EFFECT ; i++ )
@@ -331,7 +331,7 @@ int CDigitEffect::GetEmptyNode()
 	return INVALID_EFFECTNODE;
 }
 
-/// ÃÖ´ë 4ÀÚ¸® Å¸°İÄ¡¸¦ Ç¥ÇöÇÑ´Ù.. ( 32 * 32 * 4 )
+/// ìµœëŒ€ 4ìë¦¬ íƒ€ê²©ì¹˜ë¥¼ í‘œí˜„í•œë‹¤.. ( 32 * 32 * 4 )
 void CDigitEffect::CreateDigitEffect(int iPoint,float x,float y,float z, bool bIsUSER )
 {
 	int iEmptyNode = GetEmptyNode();
@@ -341,7 +341,7 @@ void CDigitEffect::CreateDigitEffect(int iPoint,float x,float y,float z, bool bI
 
 
 
-	/// °¢ ÀÚ¸´¼ö¸¦ ±¸ÇÑ´Ù..
+	/// ê° ìë¦¿ìˆ˜ë¥¼ êµ¬í•œë‹¤..
 	int iDigit[ 4 ];
 	iPoint = iPoint % 10000;
 	iDigit[ 0 ] = iPoint / 1000;
@@ -349,7 +349,7 @@ void CDigitEffect::CreateDigitEffect(int iPoint,float x,float y,float z, bool bI
 	iDigit[ 2 ] = ( iPoint % 100 ) / 10;
 	iDigit[ 3 ] = ( iPoint % 10 );
 
-	/// ¸î°³ÀÇ ¼ıÀÚ¸¦ Ç¥½ÃÇØ¾ßÇÏ´Â°¡?
+	/// ëª‡ê°œì˜ ìˆ«ìë¥¼ í‘œì‹œí•´ì•¼í•˜ëŠ”ê°€?
 	int iDigitCount = 4;
 	for( int i = 0; i < 4 ; i++ )
 	{
@@ -359,7 +359,7 @@ void CDigitEffect::CreateDigitEffect(int iPoint,float x,float y,float z, bool bI
 			break;
 	}	
 	
-	/// Ãâ·ÂÇÒ ¼ıÀÚ°¡ ¾ø´Ù..
+	/// ì¶œë ¥í•  ìˆ«ìê°€ ì—†ë‹¤..
 	if( iDigitCount == 0 )
 	{
 		LPD3DTEXTURE		workTexture = (LPD3DTEXTURE) ::getTexture( m_DigitNode[ iEmptyNode ].m_hMat, 0 );
@@ -368,16 +368,16 @@ void CDigitEffect::CreateDigitEffect(int iPoint,float x,float y,float z, bool bI
 		LPDIRECT3DSURFACE9 psurfWork = NULL;		
 		LPDIRECT3DSURFACE9 psurfMiss = NULL;
 
-		if (!workTexture || !MissTexture ) return; // ÅØ½ºÃÄ°¡ ¾ÆÁ÷ ·ÎµùµÇÁö ¾ÊÀº »óÅÂ¶ó¸é °Ç³Ê¶Ü.
+		if (!workTexture || !MissTexture ) return; // í…ìŠ¤ì³ê°€ ì•„ì§ ë¡œë”©ë˜ì§€ ì•Šì€ ìƒíƒœë¼ë©´ ê±´ë„ˆëœ€.
 
 		HRESULT hr = S_OK;
 
-		/// ÀÛ¾÷ ÅØ½ºÃÄ..
+		/// ì‘ì—… í…ìŠ¤ì³..
 		hr = workTexture->GetSurfaceLevel(0, &psurfWork);
 		if( FAILED( hr ) )
 			return;		
 
-		/// Miss ÅØ½ºÃÄ..
+		/// Miss í…ìŠ¤ì³..
 		hr = MissTexture->GetSurfaceLevel(0, &psurfMiss);
 		if( FAILED( hr ) )
 			return;
@@ -399,7 +399,7 @@ void CDigitEffect::CreateDigitEffect(int iPoint,float x,float y,float z, bool bI
 		::controlAnimatable( m_DigitNode[ iEmptyNode ].m_hAnimatable, 1 );
 
 		//----------------------------------------------------------------------------------------------------	
-		/// @brief Visibility ·Î Á¶Á¤ÇÏ´Â°Ô ¾Æ´Ï¶ó ¾Æ¿¹ Scene¿¡¼­ ³Ö°Ô »©±â...
+		/// @brief Visibility ë¡œ ì¡°ì •í•˜ëŠ”ê²Œ ì•„ë‹ˆë¼ ì•„ì˜ˆ Sceneì—ì„œ ë„£ê²Œ ë¹¼ê¸°...
 		//----------------------------------------------------------------------------------------------------
 		::insertToScene( m_DigitNode[ iEmptyNode ].m_hPositionDummy );
 		m_DigitNode[ iEmptyNode ].m_bVisible = true;
@@ -416,7 +416,7 @@ void CDigitEffect::CreateDigitEffect(int iPoint,float x,float y,float z, bool bI
 
 		LPD3DTEXTURE		workTexture = (LPD3DTEXTURE) ::getTexture( m_DigitNode[ iEmptyNode ].m_hMat, 0 );
 
-		/// ³»°¡ ¸÷À» ¶§·ÈÀ»¶§¶û, ¾Æ¹ÙÅ¸°¡ ¸÷À» ¶§¸°°Å¶ûÀº Æ²¸®´Ù »öÀÌ.
+		/// ë‚´ê°€ ëª¹ì„ ë•Œë ¸ì„ë•Œë‘, ì•„ë°”íƒ€ê°€ ëª¹ì„ ë•Œë¦°ê±°ë‘ì€ í‹€ë¦¬ë‹¤ ìƒ‰ì´.
 		LPD3DTEXTURE		DigitTexture = NULL;
 		if( bIsUSER )
 			DigitTexture = (LPD3DTEXTURE) ::getTexturePointer( m_DigitTex[ DIGIT_ATTACKED ] );
@@ -429,21 +429,21 @@ void CDigitEffect::CreateDigitEffect(int iPoint,float x,float y,float z, bool bI
 		LPDIRECT3DSURFACE9 psurfDigit = NULL;
 		LPDIRECT3DSURFACE9 psurfClear = NULL;
 		
-		if (!workTexture || !DigitTexture || !ClearTexture) return; // ÅØ½ºÃÄ°¡ ¾ÆÁ÷ ·ÎµùµÇÁö ¾ÊÀº »óÅÂ¶ó¸é °Ç³Ê¶Ü.
+		if (!workTexture || !DigitTexture || !ClearTexture) return; // í…ìŠ¤ì³ê°€ ì•„ì§ ë¡œë”©ë˜ì§€ ì•Šì€ ìƒíƒœë¼ë©´ ê±´ë„ˆëœ€.
 
 		HRESULT hr = S_OK;
 
-		/// ÀÛ¾÷ ÅØ½ºÃÄ..
+		/// ì‘ì—… í…ìŠ¤ì³..
 		hr = workTexture->GetSurfaceLevel(0, &psurfWork);
 		if( FAILED( hr ) )
 			return;
 
-		/// ¼ıÀÚ ÅØ½ºÃÄ..
+		/// ìˆ«ì í…ìŠ¤ì³..
 		hr = DigitTexture->GetSurfaceLevel(0, &psurfDigit);
 		if( FAILED( hr ) )
 			return;
 
-		/// Clear ÅØ½ºÃÄ..
+		/// Clear í…ìŠ¤ì³..
 		hr = ClearTexture->GetSurfaceLevel(0, &psurfClear);
 		if( FAILED( hr ) )
 			return;
@@ -459,7 +459,7 @@ void CDigitEffect::CreateDigitEffect(int iPoint,float x,float y,float z, bool bI
 									psurfWork,
 									&DestinationPoint );	
 
-		/// ¼¾Å¸·Î À§Ä¡
+		/// ì„¼íƒ€ë¡œ ìœ„ì¹˜
 		int iStartPos = ( ( DIGIT_COUNT - iDigitCount ) * DIGIT_WIDTH ) / 2;
 
 		for( int i = 0; i < iDigitCount ; i++ )
@@ -484,7 +484,7 @@ void CDigitEffect::CreateDigitEffect(int iPoint,float x,float y,float z, bool bI
 		::controlAnimatable( m_DigitNode[ iEmptyNode ].m_hAnimatable, 1 );
 
 		//----------------------------------------------------------------------------------------------------	
-		/// @brief Visibility ·Î Á¶Á¤ÇÏ´Â°Ô ¾Æ´Ï¶ó ¾Æ¿¹ Scene¿¡¼­ ³Ö°Ô »©±â...
+		/// @brief Visibility ë¡œ ì¡°ì •í•˜ëŠ”ê²Œ ì•„ë‹ˆë¼ ì•„ì˜ˆ Sceneì—ì„œ ë„£ê²Œ ë¹¼ê¸°...
 		//----------------------------------------------------------------------------------------------------
 		::insertToScene( m_DigitNode[ iEmptyNode ].m_hPositionDummy );
 		m_DigitNode[ iEmptyNode ].m_bVisible = true;

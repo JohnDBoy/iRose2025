@@ -85,7 +85,7 @@ void CAvatarStoreDlg::Hide()
 		g_itMGR.CloseDialog( DLG_TYPE_N_INPUT );
 
 
-	///ÃÊ±âÈ­
+	///ì´ˆê¸°í™”
 	for( int i = 0 ; i < c_iAvatarStoreMaxSlotCount; ++i )
 	{
 		m_SellSlots[i].DetachIcon();
@@ -289,7 +289,7 @@ void CAvatarStoreDlg::AddItem2BuyList( tagPS_SLOT_PRICE& SlotITEM )
 /*
 * SlotITEM.m_btSLOT == WishList Index ??
 *
-* @Warning	¾Æ´Ò°æ¿ì¿¡´Â ¼öÁ¤ÇÊ¿äÇÏ´Ù.
+* @Warning	ì•„ë‹ê²½ìš°ì—ëŠ” ìˆ˜ì •í•„ìš”í•˜ë‹¤.
 */
 void CAvatarStoreDlg::UpdateBuyList( tagPS_SLOT_ITEM& SlotITEM )
 {
@@ -347,8 +347,8 @@ void CAvatarStoreDlg::UpdateSellList( tagPS_SLOT_ITEM& SlotITEM )
 
 
 /**
-* »óÁ¡ÁÖÀÎÀÌ »ç±â¸¦ ¿øÇÏ´Â ¾ÆÀÌÅÛÀÎ°¡?
-* @return »ç±âÀ» ¿øÇÏ´Â ¾ÆÀÌÅÛÀÏ°æ¿ì °³¼ö, ¾Æ´Ï¶ó¸é 0
+* ìƒì ì£¼ì¸ì´ ì‚¬ê¸°ë¥¼ ì›í•˜ëŠ” ì•„ì´í…œì¸ê°€?
+* @return ì‚¬ê¸°ì„ ì›í•˜ëŠ” ì•„ì´í…œì¼ê²½ìš° ê°œìˆ˜, ì•„ë‹ˆë¼ë©´ 0
 */
 int CAvatarStoreDlg::IsBuyItem( tagITEM& Item )
 {
@@ -410,7 +410,7 @@ int CAvatarStoreDlg::IsBuyItem( tagITEM& Item )
 			return pItem->GetQuantity();
 		}
 	}
-	if( bFound && bCheckError )						/// »óÁ¡¿¡¼­ ±¸ÀÔÀ» ¿øÇÏ´Â ¾ÆÀÌÅÛÀÇ ¿É¼Ç( ¿É¼Ç, Á¦·Ãµî±Þ, ³»±¸µµ, ¼ÒÄÏÀ¯¹«) ºñ±³
+	if( bFound && bCheckError )						/// ìƒì ì—ì„œ êµ¬ìž…ì„ ì›í•˜ëŠ” ì•„ì´í…œì˜ ì˜µì…˜( ì˜µì…˜, ì œë ¨ë“±ê¸‰, ë‚´êµ¬ë„, ì†Œì¼“ìœ ë¬´) ë¹„êµ
 	{
 		switch( iErrCode )
 		{
@@ -434,8 +434,8 @@ int CAvatarStoreDlg::IsBuyItem( tagITEM& Item )
 }
 
 /**
-* ÇØ´ç ¹°Ç°À» »ç°í ½Í´Ù°í ¿Ã¸° ¾ÆÀÌÅÛÀÇ WishList Index¸¦ ±¸ÇÑ´Ù., ¾øÀ¸¸é -1
-*			Áßº¹µÈ ¾ÆÀÌÅÛÀÌ ÀÖÀ»°æ¿ì Á¦ÀÏ ºñ½Ñ °¡°ÝÀ¸·Î ¿Ã¸° ¾ÆÀÌÅÛºÎÅÍ 
+* í•´ë‹¹ ë¬¼í’ˆì„ ì‚¬ê³  ì‹¶ë‹¤ê³  ì˜¬ë¦° ì•„ì´í…œì˜ WishList Indexë¥¼ êµ¬í•œë‹¤., ì—†ìœ¼ë©´ -1
+*			ì¤‘ë³µëœ ì•„ì´í…œì´ ìžˆì„ê²½ìš° ì œì¼ ë¹„ì‹¼ ê°€ê²©ìœ¼ë¡œ ì˜¬ë¦° ì•„ì´í…œë¶€í„° 
 * @return WishListIndex or -1
 */
 int CAvatarStoreDlg::GetWishIndex( tagITEM& Item , int& iUnitPrice )

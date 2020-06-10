@@ -14,23 +14,23 @@ enum e_LogTYPE {
 	GSLOG_LOGIN=0,
 	GSLOG_LOGOUT,
 
-	GSLOG_DEADBY,		// Á×À½
+	GSLOG_DEADBY,		// ì£½ìŒ
 
-	GSLOG_PICK,			// ¾ÆÀÌÅÛÀ» Áİ±â
-	GSLOG_DROP,			// ¾ÆÀÌÅÛÀ» ¹Ù´Ú¿¡ ¶³±À
-	GSLOG_DELETED,		// ÇÊµå ¾ÆÀÌÅÛÀÌ »ç¶óÁü
+	GSLOG_PICK,			// ì•„ì´í…œì„ ì¤ê¸°
+	GSLOG_DROP,			// ì•„ì´í…œì„ ë°”ë‹¥ì— ë–¨êµ¼
+	GSLOG_DELETED,		// í•„ë“œ ì•„ì´í…œì´ ì‚¬ë¼ì§
 
-	GSLOG_CREATED,		// ¾ÆÀÌÅÛ Á¦ÀÛÇØ¼­ »ı¼ºµÊ.
-	GSLOG_DESTROYED,	// ¾ÆÀÌÅÛ Á¦ÀÛ½Ã ½ÇÆĞÇØ¼­ ¼Ò¸êµÊ.
+	GSLOG_CREATED,		// ì•„ì´í…œ ì œì‘í•´ì„œ ìƒì„±ë¨.
+	GSLOG_DESTROYED,	// ì•„ì´í…œ ì œì‘ì‹œ ì‹¤íŒ¨í•´ì„œ ì†Œë©¸ë¨.
 
-	GSLOG_SELL,			// ¾ÆÀÌÅÛÀ» ÆÇ¸Å
-	GSLOG_USE,			// ¾ÆÀÌÅÛÀ» »ç¿ëÇØ¼­ ¼Ò¸êµÊ
+	GSLOG_SELL,			// ì•„ì´í…œì„ íŒë§¤
+	GSLOG_USE,			// ì•„ì´í…œì„ ì‚¬ìš©í•´ì„œ ì†Œë©¸ë¨
 
-	GSLOG_GIVE,			// ¾ÆÀÌÅÛÀ» °Ç³×ÁÜ
-	GSLOG_RECV,			// ¾ÆÀÌÅÛÀ» ¹ŞÀ½
+	GSLOG_GIVE,			// ì•„ì´í…œì„ ê±´ë„¤ì¤Œ
+	GSLOG_RECV,			// ì•„ì´í…œì„ ë°›ìŒ
 
-	GSLOG_DEPOSIT,		// Ã¢°í¿¡ º¸°ü
-	GSLOG_WITHDRAW,		// Ã¢°í¿¡¼­ Ã£À½
+	GSLOG_DEPOSIT,		// ì°½ê³ ì— ë³´ê´€
+	GSLOG_WITHDRAW,		// ì°½ê³ ì—ì„œ ì°¾ìŒ
 } ;
 */
 
@@ -40,7 +40,7 @@ bool GS_CThreadLOG::When_ERROR ( classUSER *pUSER, char *szFile, int iLine, char
 {
 	m_csSQL.Lock ();
 	{
-		// ½Ã°£, ÄÉ¸¯, µ¿ÀÛ, À§Ä¡, IP
+		// ì‹œê°„, ì¼€ë¦­, ë™ì‘, ìœ„ì¹˜, IP
 		this->m_QuerySTR.Printf("INSERT tblGS_ERROR ( dateREG, txtIP, txtACCOUNT, txtCHAR, txtFILE, intLINE, txtDESC ) VALUES( \'%s\',\'%s\',\'%s\',\'%s\',\'%s\',%d,\'%s\' );",
 				this->GetCurDateTimeSTR(),
 				pUSER->Get_IP(),
@@ -106,9 +106,9 @@ bool GS_CThreadLOG::When_LogIN ( classUSER *pUSER )
 	m_csSQL.Lock ();
 	{
 		this->m_ItemSTR.Printf("Channel:%d, Money: %I64d, LEV: %d, EXP: %d, BP: %d, SP: %d", CLIB_GameSRV::GetInstance()->GetChannelNO(), pUSER->Get_MONEY(), pUSER->Get_LEVEL(), pUSER->Get_EXP(), pUSER->GetCur_BonusPOINT(), pUSER->GetCur_SkillPOINT() );
-		// ½Ã°£, ÄÉ¸¯, µ¿ÀÛ, À§Ä¡, IP
+		// ì‹œê°„, ì¼€ë¦­, ë™ì‘, ìœ„ì¹˜, IP
 		this->m_QuerySTR.Printf(SP_M_LOGInOut,
-				(__int64)0,		// Å¸ÀÔÄÉ½ºÆ® ¾øÀÌ 0À» Á÷Á¢ ÀÔ·ÂÇÏ´Ï SP¿¡¼­ ¿À·ù³ª³× ...,
+				(__int64)0,		// íƒ€ì…ì¼€ìŠ¤íŠ¸ ì—†ì´ 0ì„ ì§ì ‘ ì…ë ¥í•˜ë‹ˆ SPì—ì„œ ì˜¤ë¥˜ë‚˜ë„¤ ...,
 				pUSER->Get_NAME(),
 				pUSER->Get_ACCOUNT(),
 				pUSER->Get_IP(),
@@ -216,31 +216,31 @@ bool GS_CThreadLOG::When_DeleteCHAR ( classUSER *pSourAVT, char *szCharNAME )
 #endif
 
 /*
-	@iDupCnt ±âÁØ °Å·¡ °¹¼ö
+	@iDupCnt ê¸°ì¤€ ê±°ë˜ ê°¯ìˆ˜
 */
 char *GS_CThreadLOG::MakeItemDESC( CStrVAR *pStrVAR, tagITEM *pITEM, int iItmePrice, int iDupCnt, int iMoneyAmout, DWORD dwTradeMoney, int iTradeCnt )
 {
 	if ( pITEM->IsEnableDupCNT() ) {
-		// ¼Ò¸ğ/±âÅ¸
+		// ì†Œëª¨/ê¸°íƒ€
 		if ( dwTradeMoney < CHECK_TRADE_MONEY_AMOUNT && 
 			 ITEM_BASE_PRICE( pITEM->GetTYPE(), pITEM->GetItemNO() ) * iDupCnt < iItmePrice ) {
-			// µ·À¸·Î´Â Àû¾î¼­ ·Î±×¸¦ ³²±æÇÊ¿ä ¾ø´Ù.
+			// ëˆìœ¼ë¡œëŠ” ì ì–´ì„œ ë¡œê·¸ë¥¼ ë‚¨ê¸¸í•„ìš” ì—†ë‹¤.
 			if ( (iTradeCnt && iTradeCnt < iDupCnt) || pITEM->GetQuantity() < iDupCnt )
-				return NULL;	// ±âÁØ °Å·¡ °¹¼ö ¹Ì´Ş...
+				return NULL;	// ê¸°ì¤€ ê±°ë˜ ê°¯ìˆ˜ ë¯¸ë‹¬...
 		}
 
 		pStrVAR->Printf("[%d:%d]%s : %dEA, TradeZ: %d", pITEM->GetTYPE(), pITEM->GetItemNO(), ITEM_NAME( pITEM->GetTYPE(), pITEM->GetItemNO() ), iTradeCnt ? iTradeCnt : pITEM->GetQuantity(), dwTradeMoney );
 	} else
 	if ( ITEM_TYPE_MONEY == pITEM->GetTYPE() ) {
-		// µ·
+		// ëˆ
 		if ( dwTradeMoney < CHECK_TRADE_MONEY_AMOUNT && pITEM->GetMoney() < iMoneyAmout )
 			return NULL;
 
 		pStrVAR->Printf("ZULY: %d, TradeZ: %d", pITEM->GetMoney(), dwTradeMoney );
 	} else {
-		// Àåºñ
-		// if ( pITEM->IsCreated() ||	// Á¦Á¶µÈ ¾ÆÀÌÅÛÀÌ³Ä ???
-		if ( dwTradeMoney >= CHECK_TRADE_MONEY_AMOUNT || ITEM_BASE_PRICE( pITEM->GetTYPE(), pITEM->GetItemNO() ) >= iItmePrice )	// ºñ½Ñ ÀÏ¹İ Àåºñ.
+		// ì¥ë¹„
+		// if ( pITEM->IsCreated() ||	// ì œì¡°ëœ ì•„ì´í…œì´ëƒ ???
+		if ( dwTradeMoney >= CHECK_TRADE_MONEY_AMOUNT || ITEM_BASE_PRICE( pITEM->GetTYPE(), pITEM->GetItemNO() ) >= iItmePrice )	// ë¹„ì‹¼ ì¼ë°˜ ì¥ë¹„.
 		{
 			pStrVAR->Printf("TradeZ: %d, [%d:%d]%s, G:%d,D:%d,L:%d, O:%d/%s S:%d:, A:%d, SN:%I64d", 
 					dwTradeMoney,
@@ -294,7 +294,7 @@ bool GS_CThreadLOG::When_NpcTRADE ( classUSER *pSourAVT, tagITEM *pITEM, CObjCHA
 }
 bool GS_CThreadLOG::When_P2PTRADE ( classUSER *pSourAVT, tagITEM *pITEM, classUSER *pDestAVT, DWORD dwTradeMoney )
 {
-	// pSour°¡ pITEMÀ» pDest¿¡°Ô dwTradeMoney¿¡ ÆÈ¾Ò´Ù.
+	// pSourê°€ pITEMì„ pDestì—ê²Œ dwTradeMoneyì— íŒ”ì•˜ë‹¤.
 	m_csSQL.Lock ();
 	{
 	if ( this->GetItemINFO( pITEM, 3000, 5, 5000, dwTradeMoney ) ) {
@@ -322,7 +322,7 @@ bool GS_CThreadLOG::When_P2PTRADE ( classUSER *pSourAVT, tagITEM *pITEM, classUS
 }
 bool GS_CThreadLOG::When_GiveITEM ( classUSER *pSourAVT, tagITEM *pITEM, classUSER *pDestAVT, short nTradeSlotNO )
 {
-	// pSour°¡ pDest¿¡°Ô Áá´Ù.
+	// pSourê°€ pDestì—ê²Œ ì¤¬ë‹¤.
 	m_csSQL.Lock ();
 	{
 	if ( this->GetItemINFO( pITEM, 3000, 5, 5000 ) ) {
@@ -350,7 +350,7 @@ bool GS_CThreadLOG::When_GiveITEM ( classUSER *pSourAVT, tagITEM *pITEM, classUS
 }
 bool GS_CThreadLOG::When_RecvITEM ( classUSER *pSourAVT, tagITEM *pITEM, classUSER *pDestAVT, short nTradeSlotNO )
 {
-	// pSour°¡ pDest·Î ºÎÅÍ ¹Ş¾Ò´Ù.
+	// pSourê°€ pDestë¡œ ë¶€í„° ë°›ì•˜ë‹¤.
 	m_csSQL.Lock ();
 	{
 		if ( this->GetItemINFO( pITEM, 3000, 5, 5000 ) ) {
@@ -417,8 +417,8 @@ bool GS_CThreadLOG::When_WithDRAW ( classUSER *pSourAVT, tagITEM *pITEM )
 }
 #endif
 //-------------------------------------------------------------------------------------------------
-// @param:: btMakeOrBreak: 0:Á¦Á¶, 1:ºĞ¸®
-//          btSucOrFail: 0:¼º°ø, 1:½ÇÆĞ
+// @param:: btMakeOrBreak: 0:ì œì¡°, 1:ë¶„ë¦¬
+//          btSucOrFail: 0:ì„±ê³µ, 1:ì‹¤íŒ¨
 #ifdef	__NEW_LOG
 bool GS_CThreadLOG::When_CreateOrDestroyITEM ( classUSER *pSourAVT, tagITEM *pOutItem, tagITEM *pUseItem, short nUseCNT, BYTE btMakeOrBreak, BYTE btSucOrFail )
 {
@@ -468,7 +468,7 @@ bool GS_CThreadLOG::When_CreateOrDestroyITEM ( classUSER *pSourAVT, tagITEM *pOu
 #endif
 
 #ifndef	__NEW_LOG
-// Á¦Á¶½Ã »ı¼ºµÈ ¾ÆÀÌÅÛ
+// ì œì¡°ì‹œ ìƒì„±ëœ ì•„ì´í…œ
 bool GS_CThreadLOG::When_CreatedITEM ( classUSER *pSourAVT, tagITEM *pITEM )
 {
 	m_csSQL.Lock ();
@@ -489,7 +489,7 @@ bool GS_CThreadLOG::When_CreatedITEM ( classUSER *pSourAVT, tagITEM *pITEM )
 
 	return true;
 }
-// Á¦Á¶½Ã ¼Ò¸ğµÈ ¾ÆÀÌÅÛ
+// ì œì¡°ì‹œ ì†Œëª¨ëœ ì•„ì´í…œ
 bool GS_CThreadLOG::When_DestroyedITEM ( classUSER *pSourAVT, tagITEM *pITEM )
 {
 	m_csSQL.Lock ();
@@ -556,7 +556,7 @@ bool GS_CThreadLOG::When_DieBY ( CObjCHAR *pKillOBJ, classUSER *pDeadAVT )
 }
 
 //-------------------------------------------------------------------------------------------------
-// ·¹º§¾÷
+// ë ˆë²¨ì—…
 bool GS_CThreadLOG::When_LevelUP ( classUSER *pSourAVT, int iGetEXP  )
 {
 	// LogString(LOG_NORMAL, ">>> %s LEVEL UP to %d,  CurEXP: %d, GetEXP: %d\n", pSourAVT->Get_NAME(), pSourAVT->Get_LEVEL(), pSourAVT->m_GrowAbility.m_lEXP, iGetEXP);
@@ -596,7 +596,7 @@ bool GS_CThreadLOG::When_LevelUP ( classUSER *pSourAVT, int iGetEXP  )
 }
 
 //-------------------------------------------------------------------------------------------------
-// ½ºÅ³...
+// ìŠ¤í‚¬...
 bool GS_CThreadLOG::When_LearnSKILL ( classUSER *pSourAVT, short nSkillIDX )
 {
 	m_csSQL.Lock ();
@@ -660,7 +660,7 @@ bool GS_CThreadLOG::When_LevelUpSKILL ( classUSER *pSourAVT, short nSkillIDX )
 //-------------------------------------------------------------------------------------------------
 
 #ifdef	__NEW_LOG
-// @param:: btLogType: 0:ºÎ¿©, 1:¼öÇà, 2:Æ÷±â
+// @param:: btLogType: 0:ë¶€ì—¬, 1:ìˆ˜í–‰, 2:í¬ê¸°
 bool GS_CThreadLOG::When_QuestLOG ( classUSER *pSourAVT, int iQuestIDX, BYTE btLogType )
 {
 	m_csSQL.Lock ();
@@ -681,7 +681,7 @@ bool GS_CThreadLOG::When_QuestLOG ( classUSER *pSourAVT, int iQuestIDX, BYTE btL
 #endif
 
 #ifndef	__NEW_LOG
-// Äù½ºÆ®...
+// í€˜ìŠ¤íŠ¸...
 bool GS_CThreadLOG::When_RecvQUEST ( classUSER *pSourAVT, int iQuestIDX )
 {
 	m_csSQL.Lock ();
@@ -847,7 +847,7 @@ bool GS_CThreadLOG::When_UngemmingITEM	( classUSER *pSourAVT, tagITEM *pEquipITE
 				pEquipITEM->HasSocket(), pEquipITEM->IsAppraisal() );
 
 		if ( NULL == pJewelITEM ) {
-			// ºĞ¸® ½ÇÆĞ ..º¸¼® »èÁ¦µÊ.
+			// ë¶„ë¦¬ ì‹¤íŒ¨ ..ë³´ì„ ì‚­ì œë¨.
 			m_DescSTR.Printf("Failed, Jewel item cleared");
 		} else {
 			m_DescSTR.Printf("[%d:%d]%s", pJewelITEM->GetTYPE(), pJewelITEM->GetItemNO(), ITEM_NAME( pJewelITEM->GetTYPE(), pJewelITEM->GetItemNO() ) );
@@ -990,7 +990,7 @@ bool GS_CThreadLOG::When_PointUNION	( classUSER *pSourAVT, int iCurUnion, int iC
 	#ifdef	__NEW_LOG
 		m_csSQL.Lock ();
 		{
-			// Á¶ÇÕ Æ÷ÀÎÆ®·Î Á¶ÇÕ»óÁ¡¿¡¼­ ¾ÆÀÌÅÛ ±¸¸Å½Ã ITEM log¿Í ÇÔ²² Á¶ÇÕ Æ÷ÀÎÆ® ·Î±×°¡ °°ÀÌ ³²´Â´Ù...
+			// ì¡°í•© í¬ì¸íŠ¸ë¡œ ì¡°í•©ìƒì ì—ì„œ ì•„ì´í…œ êµ¬ë§¤ì‹œ ITEM logì™€ í•¨ê»˜ ì¡°í•© í¬ì¸íŠ¸ ë¡œê·¸ê°€ ê°™ì´ ë‚¨ëŠ”ë‹¤...
 			short nAction;
 			if ( iNewPoint > iCurPoint ) {
 				nAction = NEWLOG_UNION_ADD_POINT;
@@ -1020,7 +1020,7 @@ bool GS_CThreadLOG::When_PointUNION	( classUSER *pSourAVT, int iCurUnion, int iC
 
 
 //-------------------------------------------------------------------------------------------------
-// ¹é¾÷ ·Î±×.
+// ë°±ì—… ë¡œê·¸.
 bool GS_CThreadLOG::When_BackUP ( classUSER *pSourAVT,  char *szBackUpType )
 {
 	m_csSQL.Lock ();
@@ -1124,10 +1124,10 @@ bool GS_CThreadLOG::When_ItemHACKING ( classUSER *pSourAVT, tagITEM *pHackITEM, 
 //-------------------------------------------------------------------------------------------------
 /*
 [Success] Column
-	 0 : Å¬·£ »ı¼º ½ÃÀÛ
-	 1 : Å¬·£ »ı¼º ¼º°ø
-	 2 : Å¬·£ »ı¼º ½ÇÆĞ
-	 3 : Å¬·£ ÇØÃ¼
+	 0 : í´ëœ ìƒì„± ì‹œì‘
+	 1 : í´ëœ ìƒì„± ì„±ê³µ
+	 2 : í´ëœ ìƒì„± ì‹¤íŒ¨
+	 3 : í´ëœ í•´ì²´
 */
 bool GS_CThreadLOG::When_gs_CLAN ( classUSER *pSourAVT, char *szLogType, BYTE btSucType )
 {
@@ -1168,26 +1168,26 @@ bool GS_CThreadLOG::When_gs_CLAN ( classUSER *pSourAVT, char *szLogType, BYTE bt
 bool GS_CThreadLOG::Check_ItemLogFilter( tagITEM *pITEM, short nQuantity, __int64 biZuly )
 {
 	if ( pITEM->IsEnableDupCNT() ) {
-		// ¼Ò¸ğ/±âÅ¸
+		// ì†Œëª¨/ê¸°íƒ€
 		if ( biZuly < CHECK_TRADE_MONEY_AMOUNT && 
 			 ITEM_BASE_PRICE( pITEM->GetTYPE(), pITEM->GetItemNO() ) * nQuantity < CHECK_TRADE_MONEY_AMOUNT ) {
-			return false;	// ±âÁØ °Å·¡ °¹¼ö ¹Ì´Ş...
+			return false;	// ê¸°ì¤€ ê±°ë˜ ê°¯ìˆ˜ ë¯¸ë‹¬...
 		}
 	} else
 	if ( ITEM_TYPE_MONEY == pITEM->GetTYPE() ) {
-		// µ·
+		// ëˆ
 		if ( biZuly < CHECK_TRADE_MONEY_AMOUNT && pITEM->GetMoney() < CHECK_TRADE_MONEY_AMOUNT )
 			return false;
 	} else {
-		// Àåºñ
+		// ì¥ë¹„
 		__int64 biTotPrice = ITEM_BASE_PRICE( pITEM->GetTYPE(), pITEM->GetItemNO() );
 		if ( /* pITEM->m_bHasSocket && */ pITEM->GetGemNO() > 300 ) {
-			// ¼ÒÄÏ¿¡ ¹ÚÈù º¸¼®ÀÌ ÀÖÀ¸¸é...°¡°İ µûÁ®¼­...
+			// ì†Œì¼“ì— ë°•íŒ ë³´ì„ì´ ìˆìœ¼ë©´...ê°€ê²© ë”°ì ¸ì„œ...
 			biTotPrice += GEMITEM_BASE_PRICE( pITEM->GetGemNO() );
 		}
 
-		// if ( pITEM->IsCreated() ||	// Á¦Á¶µÈ ¾ÆÀÌÅÛÀÌ³Ä ???
-		if ( biZuly >= CHECK_TRADE_MONEY_AMOUNT || biTotPrice >= CHECK_TRADE_MONEY_AMOUNT )	{	// ºñ½Ñ Àåºñ.
+		// if ( pITEM->IsCreated() ||	// ì œì¡°ëœ ì•„ì´í…œì´ëƒ ???
+		if ( biZuly >= CHECK_TRADE_MONEY_AMOUNT || biTotPrice >= CHECK_TRADE_MONEY_AMOUNT )	{	// ë¹„ì‹¼ ì¥ë¹„.
 			;
 		} else
 			return false;
@@ -1196,7 +1196,7 @@ bool GS_CThreadLOG::Check_ItemLogFilter( tagITEM *pITEM, short nQuantity, __int6
 	return true;
 }
 
-// bForce °ªÀÌ true¸é ¾ÆÀÌÅÛ °ª¾îÄ¡ µûÁöÁö ¾Ê°í Ç×»ó ³²±è
+// bForce ê°’ì´ trueë©´ ì•„ì´í…œ ê°’ì–´ì¹˜ ë”°ì§€ì§€ ì•Šê³  í•­ìƒ ë‚¨ê¹€
 bool GS_CThreadLOG::When_TagItemLOG( int iAction, classUSER *pSourAVT, tagITEM *pItem, short nQuantity, __int64 biTradeZuly, classUSER *pDestAVT, bool bForce)
 {
 	m_csSQL.Lock ();
@@ -1209,18 +1209,18 @@ bool GS_CThreadLOG::When_TagItemLOG( int iAction, classUSER *pSourAVT, tagITEM *
 				}
 
 				if ( !bForce && !this->Check_ItemLogFilter( pItem, nQuantity, biTradeZuly ) ) {				
-					// µ·ÀÏ °æ¿ì´Â ÀÛÀº ±İ¾×ÀÌ´Ï±î ¿©±â µé¾î¿Ô°í ¹«Á¶°Ç return. ¾È ±×·¯¸é ITEM_USE_RESTRICTION¿¡¼­ »¶³²
+					// ëˆì¼ ê²½ìš°ëŠ” ì‘ì€ ê¸ˆì•¡ì´ë‹ˆê¹Œ ì—¬ê¸° ë“¤ì–´ì™”ê³  ë¬´ì¡°ê±´ return. ì•ˆ ê·¸ëŸ¬ë©´ ITEM_USE_RESTRICTIONì—ì„œ ë»‘ë‚¨
 					if( pItem->GetTYPE() == ITEM_TYPE_MONEY )
 					{
 						m_csSQL.Unlock ();	
 						return true;
 					}
 
-					// ·Î±× ±âÁØ ¹Ì´Ş...
+					// ë¡œê·¸ ê¸°ì¤€ ë¯¸ë‹¬...
 					/*				
-					1È¸¿ë ÆøÁ×ÀÌ³ª, 1È¸¿ë ¸ğ¼Ç ¾ÆÀÌÅÛ ¸»°í, ´Ù¸¥ ¸¶ÀÏ¸®Áö ¾ÆÀÌÅÛÀº 3¹øÄ®·³(»ç¿ëÁ¦ÇÑ)ÀÌ 6
-					6ÀÏ°æ¿ì ±³È¯Àº ¾ÈµÇµµ °èÁ¤Ã¢°í¿¡ ÀúÀåÀº °¡´ÉÇÏ°Ô µû¶ó¼­ 6ÀÏ°æ¿ì¿¡ ¸¶ÀÏ¸®Áö ¾ÆÀÌÅÛÀ¸·Î ÆÇ´Ü */
-					// if ( pItem != ¸¶ÀÏ¸®Áö ¾ÆÀÌÅÛ ) 
+					1íšŒìš© í­ì£½ì´ë‚˜, 1íšŒìš© ëª¨ì…˜ ì•„ì´í…œ ë§ê³ , ë‹¤ë¥¸ ë§ˆì¼ë¦¬ì§€ ì•„ì´í…œì€ 3ë²ˆì¹¼ëŸ¼(ì‚¬ìš©ì œí•œ)ì´ 6
+					6ì¼ê²½ìš° êµí™˜ì€ ì•ˆë˜ë„ ê³„ì •ì°½ê³ ì— ì €ì¥ì€ ê°€ëŠ¥í•˜ê²Œ ë”°ë¼ì„œ 6ì¼ê²½ìš°ì— ë§ˆì¼ë¦¬ì§€ ì•„ì´í…œìœ¼ë¡œ íŒë‹¨ */
+					// if ( pItem != ë§ˆì¼ë¦¬ì§€ ì•„ì´í…œ ) 
 					if( ITEM_USE_RESTRICTION( pItem->GetTYPE(), pItem->GetItemNO() ) != 6 )
 					{
 						m_csSQL.Unlock ();	
@@ -1285,7 +1285,7 @@ bool GS_CThreadLOG::When_TagItemLOG( int iAction, classUSER *pSourAVT, tagITEM *
 				}
 			} else {
 				if ( biTradeZuly < 10000 ) {
-					// ·Î±× ±âÁØ ¹Ì´Ş...
+					// ë¡œê·¸ ê¸°ì¤€ ë¯¸ë‹¬...
 					m_csSQL.Unlock ();
 					return true;
 				}
@@ -1366,7 +1366,7 @@ bool GS_CThreadLOG::When_ObjItemLOG( int iAction, classUSER *pSourAVT, CObjITEM 
 			}
 
 			if ( !this->Check_ItemLogFilter( &pItemOBJ->m_ITEM, nQuantity, biTradeZuly ) ) {
-				// ·Î±× ±âÁØ ¹Ì´Ş...
+				// ë¡œê·¸ ê¸°ì¤€ ë¯¸ë‹¬...
 				m_csSQL.Unlock ();
 				return true;
 			}
@@ -1431,7 +1431,7 @@ bool GS_CThreadLOG::When_ObjItemLOG( int iAction, classUSER *pSourAVT, CObjITEM 
 
 bool GS_CThreadLOG::When_DeletedITEM ( CObjITEM *pItemOBJ )
 {
-	// »ç¿ëÀÚ°¡ ¹ö¸° ÇÊµå ¾ÆÀÌÅÛ »ç¶óÁü.
+	// ì‚¬ìš©ìê°€ ë²„ë¦° í•„ë“œ ì•„ì´í…œ ì‚¬ë¼ì§.
 	m_csSQL.Lock ();
 	{
 #ifndef	__NEW_LOG
@@ -1463,7 +1463,7 @@ bool GS_CThreadLOG::When_DeletedITEM ( CObjITEM *pItemOBJ )
 				nQuantity = 0;
 			}
 			if ( !this->Check_ItemLogFilter( &pItemOBJ->m_ITEM, nQuantity, biTradeZuly ) ) {
-				// ·Î±× ±âÁØ ¹Ì´Ş...
+				// ë¡œê·¸ ê¸°ì¤€ ë¯¸ë‹¬...
 				m_csSQL.Unlock ();
 				return true;
 			}
@@ -1493,7 +1493,7 @@ bool GS_CThreadLOG::When_DeletedITEM ( CObjITEM *pItemOBJ )
 							pItemOBJ->m_DropperIP.Get(),		// @SbjIP varchar(15),
 							NULL );								// @ObjIP varchar(15)
 			} else {
-				// µ·ÀÌ´Ù...¾ÆÀÌÅÛ ÀÌ¸§ ¾ø°í...
+				// ëˆì´ë‹¤...ì•„ì´í…œ ì´ë¦„ ì—†ê³ ...
 				m_ItemSTR.Printf("%d:%d", pItemOBJ->m_ITEM.GetTYPE(), 0 );
 				this->m_QuerySTR.Printf( SP_AddItemLog,			// [AddItemLog]
 							LIA_TIMEOUT,						// @Action int,

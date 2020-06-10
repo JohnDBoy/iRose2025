@@ -192,7 +192,7 @@ void CCharacterDLG::Update( POINT ptMouse )
 	//	iterSlots->second.Update( ptMouse );
 
 
-	/// º¸³Ê½º Æ÷ÀÎÆ®¿¡ µû¸¥ ÄÁÅÍ·Ñ È°¼ºÈ­..
+	/// ë³´ë„ˆìŠ¤ í¬ì¸íŠ¸ì— ë”°ë¥¸ ì»¨í„°ë¡¤ í™œì„±í™”..
 	/*if( g_pAVATAR )
 	{
 		int iNeedPoint = 0;
@@ -281,7 +281,7 @@ void CCharacterDLG::Update( POINT ptMouse )
 		}
 	case ABILITY_INFO:
 		{
-			///ÀÌÇÏ ÅøÆÁ Ç¥½Ã
+			///ì´í•˜ íˆ´íŒ í‘œì‹œ
 			CTDialog* pDlg = CTDialog::GetProcessMouseOverDialog();
 			if( pDlg && pDlg != this )
 					return ;
@@ -342,20 +342,20 @@ void CCharacterDLG::DrawBasicInfo()
 	D3DXMatrixTranslation( &mat, (float)m_sPosition.x, (float)m_sPosition.y,0.0f);
 	::setTransformSprite( mat );
 
-	///ÀÌ¸§
+	///ì´ë¦„
 	::drawFont( g_GameDATA.m_hFONT[ FONT_NORMAL_BOLD ], true, 59,67, D3DCOLOR_XRGB( 0, 255, 42 ),  g_pAVATAR->Get_NAME() );		
-	///Å¬·¡½º(Á÷¾÷)
+	///í´ëž˜ìŠ¤(ì§ì—…)
 	::drawFont( g_GameDATA.m_hFONT[ FONT_NORMAL ], true, 59,88, D3DCOLOR_XRGB( 0, 210, 255), CStringManager::GetSingleton().GetJobName( g_pAVATAR->Get_JOB() ) );		
 
 	if( CClan::GetInstance().GetName() )
 		::drawFont( g_GameDATA.m_hFONT[ FONT_NORMAL ], true, 59,109, g_dwWHITE, CClan::GetInstance().GetName() );		
 
-	//·¹º§	
+	//ë ˆë²¨	
 	::drawFontf( g_GameDATA.m_hFONT[ FONT_NORMAL_BOLD ], true, 59,172, D3DCOLOR_XRGB( 255, 255, 0 ), "%d", g_pAVATAR->Get_LEVEL());		
-	//°æÇèÄ¡	
+	//ê²½í—˜ì¹˜	
 	::drawFontf( g_GameDATA.m_hFONT[ FONT_NORMAL ], true, 59,193, D3DCOLOR_XRGB( 0, 210, 255), "%d / %d", g_pAVATAR->Get_EXP(), g_pAVATAR->Get_NeedEXP(g_pAVATAR->Get_LEVEL()) );
 
-	///214 - ½ºÅ×¹Ì³ª °ÔÀÌÁö
+	///214 - ìŠ¤í…Œë¯¸ë‚˜ ê²Œì´ì§€
 	//::drawFontf( g_GameDATA.m_hFONT[ FONT_NORMAL ], true, 59,214, D3DCOLOR_XRGB( 0, 210, 255), "%d / %d", g_pAVATAR->GetCur_STAMINA(),c_iMaxStamina );
 }
 
@@ -365,39 +365,39 @@ void CCharacterDLG::DrawAbilityInfo()
 	D3DXMatrixTranslation( &mat, (float)m_sPosition.x, (float)m_sPosition.y,0.0f);
 	::setTransformSprite( mat );
 
-	///Èû
+	///íž˜
 	::drawFontf( g_GameDATA.m_hFONT[ FONT_NORMAL_BOLD ], true, 58, 67, D3DCOLOR_XRGB( 0, 255, 42), "%d",g_pAVATAR->Get_STR());		
-	///¹ÎÃ¸
+	///ë¯¼ì²©
 	::drawFontf( g_GameDATA.m_hFONT[ FONT_NORMAL_BOLD ], true, 58, 88, D3DCOLOR_XRGB( 0, 255, 42), "%d",g_pAVATAR->Get_DEX());		
-	///Áö·Â
+	///ì§€ë ¥
 	::drawFontf( g_GameDATA.m_hFONT[ FONT_NORMAL_BOLD ], true, 58,109, D3DCOLOR_XRGB( 0, 255, 42), "%d",g_pAVATAR->Get_INT());		
-	///ÁýÁß
+	///ì§‘ì¤‘
 	::drawFontf( g_GameDATA.m_hFONT[ FONT_NORMAL_BOLD ], true, 58,130, D3DCOLOR_XRGB( 0, 255, 42), "%d",g_pAVATAR->Get_CON());
-	///¸Å·Â
+	///ë§¤ë ¥
 	::drawFontf( g_GameDATA.m_hFONT[ FONT_NORMAL_BOLD ], true, 58,151, D3DCOLOR_XRGB( 0, 255, 42), "%d",g_pAVATAR->Get_CHARM());
-	///°¨°¢
+	///ê°ê°
 	::drawFontf( g_GameDATA.m_hFONT[ FONT_NORMAL_BOLD ], true, 58,172, D3DCOLOR_XRGB( 0, 255, 42), "%d",g_pAVATAR->Get_SENSE());
 
 
-	///°ø°Ý·Â
+	///ê³µê²©ë ¥
 	::drawFontf( g_GameDATA.m_hFONT[ FONT_NORMAL_BOLD ], true, 171,  67, g_dwWHITE, "%d",g_pAVATAR->Get_ATK() );				
-	///¹æ¾î·Â
+	///ë°©ì–´ë ¥
 	::drawFontf( g_GameDATA.m_hFONT[ FONT_NORMAL_BOLD ], true, 171,  88, g_dwWHITE, "%d",g_pAVATAR->Get_DEF() );
-	///¸¶¹ýÀúÇ×
+	///ë§ˆë²•ì €í•­
 	::drawFontf( g_GameDATA.m_hFONT[ FONT_NORMAL_BOLD ], true, 171, 109, g_dwWHITE, "%d",g_pAVATAR->Get_RES() );
-	///¸íÁß·Â
+	///ëª…ì¤‘ë ¥
 	::drawFontf( g_GameDATA.m_hFONT[ FONT_NORMAL_BOLD ], true, 171, 130, g_dwWHITE, "%d",g_pAVATAR->Get_HIT() );
-	///Å©¸®Æ¼ÄÃ
+	///í¬ë¦¬í‹°ì»¬
 	::drawFontf( g_GameDATA.m_hFONT[ FONT_NORMAL_BOLD ], true, 171, 151, g_dwWHITE, "%d",g_pAVATAR->Get_CRITICAL() );
-	///È¸ÇÇ·Â
+	///íšŒí”¼ë ¥
 	::drawFontf( g_GameDATA.m_hFONT[ FONT_NORMAL_BOLD ], true, 171, 172, g_dwWHITE, "%d",g_pAVATAR->Get_AVOID() );
-	///°ø°Ý¼Óµµ
+	///ê³µê²©ì†ë„
 	::drawFontf( g_GameDATA.m_hFONT[ FONT_NORMAL_BOLD ], true, 171, 193, g_dwWHITE, "%d",g_pAVATAR->GetCur_ATK_SPD() );
-	///ÀÌµ¿¼Óµµ
+	///ì´ë™ì†ë„
 	::drawFontf( g_GameDATA.m_hFONT[ FONT_NORMAL_BOLD ], true, 171, 214, g_dwWHITE, "%.0f",g_pAVATAR->GetCur_MOVE_SPEED() );
 
 
-	///Æ÷ÀÎÆ®
+	///í¬ì¸íŠ¸
 	::drawFontf( g_GameDATA.m_hFONT[ FONT_NORMAL_BOLD ], true, 69,211, D3DCOLOR_XRGB( 0, 255, 42),"%d", g_pAVATAR->Get_BonusPOINT());			
 }
 
@@ -407,7 +407,7 @@ void CCharacterDLG::DrawUnionInfo()
 	D3DXMatrixTranslation( &mat, (float)m_sPosition.x, (float)m_sPosition.y,0.0f);
 	::setTransformSprite( mat );
 
-	///Å¬·£
+	///í´ëžœ
 	::drawFont( g_GameDATA.m_hFONT[ FONT_NORMAL_BOLD ], true, 90,67, g_dwCOLOR[ UNION_COLOR(g_pAVATAR->Get_UNION()) ],  UNION_NAME(g_pAVATAR->Get_UNION()) );
 
 	int iAbility = AT_UNION_POINT1;

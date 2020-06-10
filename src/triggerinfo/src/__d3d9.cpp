@@ -22,7 +22,7 @@ IDirect3D9 *		CD3D9::s_pID3D			= NULL;
 CD3D9::CD3D9 ()
 {
 	/*************************
-	* Static Member ÃÊ±âÈ­
+	* Static Member ì´ˆê¸°í™”
 	*/
 	m_pDxDiagProvider = NULL;
     m_pDxDiagRoot = NULL;
@@ -39,7 +39,7 @@ CD3D9::~CD3D9()
 
 /**********************************************************
  *
- * Direct3D¸¦ ÃÊ±âÈ­ ÇÑ´Ù
+ * Direct3Dë¥¼ ì´ˆê¸°í™” í•œë‹¤
  *
  */
 
@@ -51,7 +51,7 @@ BOOL CD3D9::Init (void)
 	s_pID3D = Direct3DCreate9 (D3D_SDK_VERSION);
 
 ////////////////////////////////////////////////////////////////////////////////////
-/// Ãß°¡ÄÚµå   2005. 06. 14 - kjhpower
+/// ì¶”ê°€ì½”ë“œ   2005. 06. 14 - kjhpower
 ///////////////////////////////////////////////////////////////////////////////////
 
     HRESULT       hr;
@@ -91,7 +91,7 @@ BOOL CD3D9::Init (void)
     if( FAILED(hr) )
         goto LCleanup;
 //------------------------------------------------------------------------------
-	return (s_pID3D != NULL);// <-- ¿ø·¡ ÀÖ´ø ÄÚµå.
+	return (s_pID3D != NULL);// <-- ì›ëž˜ ìžˆë˜ ì½”ë“œ.
 
 
 	LCleanup:
@@ -116,23 +116,23 @@ void CD3D9::Release (void)
 
 
 /**********************************************************
- * ¿¡·¯¸¦ Ã¼Å©ÇÑ´Ù
- * @param hr Ã¼Å©ÇÒ HRSEULT °ª
+ * ì—ëŸ¬ë¥¼ ì²´í¬í•œë‹¤
+ * @param hr ì²´í¬í•  HRSEULT ê°’
  */
 bool CD3D9::__CheckError (HRESULT hr)
 {
 	switch (hr)
 	{
 		case D3D_OK:
-			// ¼º°ø
+			// ì„±ê³µ
 			return true;
 
 		case D3DERR_INVALIDCALL:
-			// ½Ã½ºÅÛ¿¡ ÀÖ´Â µð½ºÇÃ·¹ÀÌ ¾î´ðÅÍ °¹¼ö¸¦ ÃÊ°ú ÇÏ°Å³ª °°´Ù. (uiAdapter°¡ Æ²¸° °ª)
+			// ì‹œìŠ¤í…œì— ìžˆëŠ” ë””ìŠ¤í”Œë ˆì´ ì–´ëŒ‘í„° ê°¯ìˆ˜ë¥¼ ì´ˆê³¼ í•˜ê±°ë‚˜ ê°™ë‹¤. (uiAdapterê°€ í‹€ë¦° ê°’)
 			return false;
 
 		case D3DERR_NOTAVAILABLE:
-			// surface formatÀÌ Áö¿øµÇÁö ¾Ê°Å³ª , ÁÖ¾ðÁö Æ÷¸ËÀ» ÇÏµå¿þ¾î°¡ Áö¿øÇÏÁö ¾ÊÀ½
+			// surface formatì´ ì§€ì›ë˜ì§€ ì•Šê±°ë‚˜ , ì£¼ì–¸ì§€ í¬ë§·ì„ í•˜ë“œì›¨ì–´ê°€ ì§€ì›í•˜ì§€ ì•ŠìŒ
 			return false;
 
 		case D3DERR_OUTOFVIDEOMEMORY: 
@@ -215,7 +215,7 @@ HRESULT CD3D9::GetSystemInfo( SystemInformation** ppSysInfo )
         goto LCleanup;
     }
 //=======================================================================================================	
-// 2005. 06. 15 kjhpower    ÇÊ¿ä ¾ø´Â Á¤º¸´Â ÁÖ¼®Ã³¸®.
+// 2005. 06. 15 kjhpower    í•„ìš” ì—†ëŠ” ì •ë³´ëŠ” ì£¼ì„ì²˜ë¦¬.
 //=======================================================================================================
 
     //if( FAILED( hr = GetUIntValue( pObject, L"dwOSMajorVersion", &pSysInfo->m_dwOSMajorVersion ) ) )
@@ -417,7 +417,7 @@ HRESULT CD3D9::GetDisplayInfo( vector<DisplayInfo*>& vDisplayInfo )
         }
 
 //=======================================================================================================	
-// 2005. 06. 15 kjhpower    ÇÊ¿ä ¾ø´Â Á¤º¸´Â ÁÖ¼®Ã³¸®.
+// 2005. 06. 15 kjhpower    í•„ìš” ì—†ëŠ” ì •ë³´ëŠ” ì£¼ì„ì²˜ë¦¬.
 //=======================================================================================================
         //if( FAILED( hr = GetStringValue( pObject, L"szDeviceName", EXPAND(pDisplayInfo->m_szDeviceName) ) ) )
         //    goto LCleanup; nCurCount++;

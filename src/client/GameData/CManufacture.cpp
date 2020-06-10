@@ -119,13 +119,13 @@ int CManufacture::GetEstimateProbability(int iItemDif, int iItemQuality, int iMa
 	int   iP_Lv = m_iSkillLevel;
 	int   iA_Lv = g_pAVATAR->Get_LEVEL();
 
-	///¼º°øÁ¡
+	///ì„±ê³µì 
 	int iSucPoint1 = GetSuccessPoint( 1, iItemDif, iItemQuality, iNumMat );
 	int iSucPoint2 = GetSuccessPoint( 2, iItemDif, iItemQuality, iNumMat );
 	int iSucPoint3 = GetSuccessPoint( 3, iItemDif, iItemQuality, iNumMat );
 	int iSucPoint4 = GetSuccessPoint( 4, iItemDif, iItemQuality, iNumMat );
 
-	///ÁøÇàÆ÷ÀÎÆ®
+	///ì§„í–‰í¬ì¸íŠ¸
 	double fProPoint1 = ( iMatQuality * ( 50 + 70) * ( iCon / 2 + iItemDif/ 2 + 530 ) * nWorldProd ) / 800000.;
 	double fProPoint2 = ( (iMatQuality + iItemDif / 2) * (( 50 + 100 ) * (iSen / 2 + iP_Lv*6 + iMatQuality*2 + 770 ))) / (iNumMat + 7 ) / 1600.;
 	double fProPoint3 = ( (fProPoint1 / 5 + iItemQuality) * ( 50 + 80) * (iCon / 2 + iP_Lv * 5 + iMatQuality * 2 + 630 ) ) / ( iNumMat + 7 ) / 2000.;
@@ -193,7 +193,7 @@ int CManufacture::GetSuccessPoint( int iSlot, int iItemDif, int iItemQuality , i
 	}
 	return iSuccessPoint;
 }
-///rand()ÇÔ¼öÀÇ ¸®ÅÏ°ªÀº ÃÖ´ë shortÀÌ¾ú´Âµ¥ ???? Áö±İÀº Å×½ºÆ® ÇÊ¿ä ÀÏ´Ü short¶ó°í »ı°¢ÇÔ
+///rand()í•¨ìˆ˜ì˜ ë¦¬í„´ê°’ì€ ìµœëŒ€ shortì´ì—ˆëŠ”ë° ???? ì§€ê¸ˆì€ í…ŒìŠ¤íŠ¸ í•„ìš” ì¼ë‹¨ shortë¼ê³  ìƒê°í•¨
 short CManufacture::GetRandShort( short nMin, short nMax )
 {
 	return rand() % ( nMax - nMin + 1 ) + nMin;
@@ -223,7 +223,7 @@ bool CManufacture::IsRequireMaterialItem( int iInvenIdx )
 	{
 		if( m_RequireMaterials[i].IsEmpty() )
 		{
-			if( m_RequireMaterials[i].GetItemClass() )///Á¾·ùÀÏ°æ¿ì
+			if( m_RequireMaterials[i].GetItemClass() )///ì¢…ë¥˜ì¼ê²½ìš°
 			{
 				if( m_RequireMaterials[i].GetItemClass() == ITEM_TYPE( Item.GetTYPE(), Item.GetItemNO() ) )
 					return true;
@@ -239,8 +239,8 @@ bool CManufacture::IsRequireMaterialItem( int iInvenIdx )
 	return false;
 }
 
-///0¹øÂ° ½½·ÔºÎÅÍ ÀÎÀÚ·Î ³Ñ¾î¿Â Slot±îÁö ItemÀ» ¾ÆÀÌÅÛ Á¦Á¶¿¡ ÇÊ¿äÇÑ ¾ç¸¸Å­ »©¹ö¸°´Ù.
-///Inventory¿¡¼­µµ »«´Ù.
+///0ë²ˆì§¸ ìŠ¬ë¡¯ë¶€í„° ì¸ìë¡œ ë„˜ì–´ì˜¨ Slotê¹Œì§€ Itemì„ ì•„ì´í…œ ì œì¡°ì— í•„ìš”í•œ ì–‘ë§Œí¼ ë¹¼ë²„ë¦°ë‹¤.
+///Inventoryì—ì„œë„ ëº€ë‹¤.
 void CManufacture::SubItemsAfterRecvResult( int iSlotNum )
 {	
 	if( iSlotNum > m_iNumMat )
@@ -251,13 +251,13 @@ void CManufacture::SubItemsAfterRecvResult( int iSlotNum )
 	{
 		if( m_pFragmentItems[i] )
 		{
-			///ÀÎº¥Åä¸®¿¡¼­ °³¼ö¸¦ »«´Ù.
+			///ì¸ë²¤í† ë¦¬ì—ì„œ ê°œìˆ˜ë¥¼ ëº€ë‹¤.
 			pItem = m_pFragmentItems[i]->GetInnerCItem();
 
 			if( pItem->GetQuantity() > m_pFragmentItems[i]->GetQuantity() )
 			{
 				pItem->SubQuantity( m_pFragmentItems[i]->GetQuantity() );
-				///Á¦Á¶¿¡ »ç¿ëµÈ ¾ÆÀÌÅÛÀ» Data&UI¿¡¼­ »èÁ¦
+				///ì œì¡°ì— ì‚¬ìš©ëœ ì•„ì´í…œì„ Data&UIì—ì„œ ì‚­ì œ
 				RemoveMaterialItem( m_pFragmentItems[i] );
 			}
 			else
@@ -285,7 +285,7 @@ int CManufacture::GetMaterialIndex( CItem* pItem )
 			return i;
 	}
 
-	assert( pItem && "Àç·á ¸®½ºÆ®¿¡ ¾ø´Â CItemÀÇ ÀÎµ¦½º¸¦ ±¸ÇÏ·Á°í ÇÕ´Ï´Ù@CManufacture::GetMaterialIndex" );
+	assert( pItem && "ì¬ë£Œ ë¦¬ìŠ¤íŠ¸ì— ì—†ëŠ” CItemì˜ ì¸ë±ìŠ¤ë¥¼ êµ¬í•˜ë ¤ê³  í•©ë‹ˆë‹¤@CManufacture::GetMaterialIndex" );
 	return -1;
 }
 
@@ -295,7 +295,7 @@ void CManufacture::SetMaterialItem( CItem* pItem  )
 	{
 		if( !m_RequireMaterials[i].IsEmpty() )
 		{
-			if( m_RequireMaterials[i].GetItemClass() )///Á¾·ùÀÏ°æ¿ì
+			if( m_RequireMaterials[i].GetItemClass() )///ì¢…ë¥˜ì¼ê²½ìš°
 			{
 				if( m_RequireMaterials[i].GetItemClass() == ITEM_TYPE( pItem->GetItem().GetTYPE(), pItem->GetItem().GetItemNO() ) )
 				{
@@ -310,7 +310,7 @@ void CManufacture::SetMaterialItem( CItem* pItem  )
 					}
 				}
 			}
-			else///Æ¯Á¤ Å¸ÀÔÀÏ°æ¿ì
+			else///íŠ¹ì • íƒ€ì…ì¼ê²½ìš°
 			{
 				if( m_RequireMaterials[i].GetItemType() == pItem->GetItem().GetTYPE() &&
 					m_RequireMaterials[i].GetItemNo()   == pItem->GetItem().GetItemNO() )
@@ -361,7 +361,7 @@ void CManufacture::RemoveMaterialItem( CItem* pItem )
 			return;
 		}
 	}
-	assert( 0 && "¾Ë¼ö ¾ø´Â CItemFragment¸¦ Áö¿ì·Á°í ÇÕ´Ï´Ù @CManufacture::RemoveMaterialItem ");
+	assert( 0 && "ì•Œìˆ˜ ì—†ëŠ” CItemFragmentë¥¼ ì§€ìš°ë ¤ê³  í•©ë‹ˆë‹¤ @CManufacture::RemoveMaterialItem ");
 }
 
 void CManufacture::AddMaterialItem( CItem* pItem, int index, int iQuantity )
@@ -382,8 +382,8 @@ void CManufacture::AddMaterialItem( CItem* pItem, int index, int iQuantity )
 	SetChanged();
 	NotifyObservers( m_pEvent );
 
-	///¿øÀç·á¾ÆÀÌÅÛÀÌ º¯°æµÇ¾úÀ»¶§
-	if( index == 0 )///¿¹»óÈ®·üÀ» Àç°è»êÇÑ´Ù.
+	///ì›ì¬ë£Œì•„ì´í…œì´ ë³€ê²½ë˜ì—ˆì„ë•Œ
+	if( index == 0 )///ì˜ˆìƒí™•ë¥ ì„ ì¬ê³„ì‚°í•œë‹¤.
 	{
 		tagITEM& Item = pItem->GetItem();
 		int	iMatQuality = ITEM_QUALITY( Item.GetTYPE(), Item.GetItemNO() );
@@ -583,9 +583,9 @@ int CManufacture::LoadItemsFromSTB( t_eITEM itemType, int iClass, int iMakeNo, i
 		{
 			if( iClass == ITEM_TYPE( itemType,i ) )
 			{
-				///ÄŞº¸¿¡ Ãß°¡
+				///ì½¤ë³´ì— ì¶”ê°€
 				Item.Clear();
-				///º°µµ·Î Item InfoÀúÀå
+				///ë³„ë„ë¡œ Item Infoì €ì¥
 				Item.m_nItemNo = i;
 				Item.m_cType   = itemType;
 
@@ -609,9 +609,9 @@ int CManufacture::LoadGemItemsFromSTB( t_eITEM itemType, int iLineNo, int iMakeN
 		iMakeLv  = ITEM_SKILL_LEV( itemType, i );
 		if( iMakeNo == ITEM_MAKE_NUM( itemType, i ) && iSkillLv >= iMakeLv )
 		{
-			///ÄŞº¸¿¡ Ãß°¡
+			///ì½¤ë³´ì— ì¶”ê°€
 			Item.Clear();
-			///º°µµ·Î Item InfoÀúÀå
+			///ë³„ë„ë¡œ Item Infoì €ì¥
 			Item.m_nItemNo = i;
 			Item.m_cType   = itemType;
 
@@ -648,7 +648,7 @@ void CManufacture::SetMakeItem( tagITEM& Item )
 		if( m_pMakeItem->GetItem().GetTYPE() == Item.GetTYPE() &&
 			m_pMakeItem->GetItem().GetItemNO() == Item.GetItemNO() )
 		{
-			///°°Àº ¾ÆÀÌÅÛÀÌ ¼±ÅÃµÇ¾ú´Ù.
+			///ê°™ì€ ì•„ì´í…œì´ ì„ íƒë˜ì—ˆë‹¤.
 			return;
 		}
 
@@ -666,7 +666,7 @@ void CManufacture::SetMakeItem( tagITEM& Item )
 	NotifyObservers( m_pEvent );
 
 
-	///±âÁ¸¿¡ ÀÖ´ø Àç·áµé ´Ù »«´Ù.
+	///ê¸°ì¡´ì— ìˆë˜ ì¬ë£Œë“¤ ë‹¤ ëº€ë‹¤.
 	for( int i = 0 ; i < g_iMaxCountMaterial; ++i )
 	{
 		if( m_pFragmentItems[i] )
@@ -676,7 +676,7 @@ void CManufacture::SetMakeItem( tagITEM& Item )
 	}
 	
 	
-	///2. ¼º°øÈ®·üÀº 0
+	///2. ì„±ê³µí™•ë¥ ì€ 0
 	m_iSuccessRate = 0;	
 
 	m_iSuccessPoints[0] = 0;
@@ -688,16 +688,16 @@ void CManufacture::SetMakeItem( tagITEM& Item )
 	m_iItemQuality	= ITEM_QUALITY( Item.GetTYPE(), Item.GetItemNO()); 
 	m_iNumMat		= 0;
 
-	///3. ÇÊ¿ä Àç·á Reload;
+	///3. í•„ìš” ì¬ë£Œ Reload;
 
-	/////¾ÆÀÌÅÛÀ» Á¦Á¶ÇÏ±â À§ÇÏ¿© ÇÊ¿äÇÑ Àç·áµé
-	int iMaterialNo			= ITEM_PRODUCT_IDX( Item.GetTYPE(), Item.GetItemNO() );///¾ÆÀÌÅÛÀ» ¸¸µé±â À§ÇÏ¿© ÇÊ¿äÇÑ Àç·áµéÀÌ ÀÖ´Â STBÀÇ Line Number
+	/////ì•„ì´í…œì„ ì œì¡°í•˜ê¸° ìœ„í•˜ì—¬ í•„ìš”í•œ ì¬ë£Œë“¤
+	int iMaterialNo			= ITEM_PRODUCT_IDX( Item.GetTYPE(), Item.GetItemNO() );///ì•„ì´í…œì„ ë§Œë“¤ê¸° ìœ„í•˜ì—¬ í•„ìš”í•œ ì¬ë£Œë“¤ì´ ìˆëŠ” STBì˜ Line Number
 	int iMaterialItemNo		= 0;
 	int iMaterialItemCount	= 0;
 
 
 
-	/////Ã¹¹øÂ° ½½·ÔÀÇ °æ¿ì´Â ¿øÀç·áColumn°ú ÀÏ¹İÀç·áColumn°øÀ¯
+	/////ì²«ë²ˆì§¸ ìŠ¬ë¡¯ì˜ ê²½ìš°ëŠ” ì›ì¬ë£ŒColumnê³¼ ì¼ë°˜ì¬ë£ŒColumnê³µìœ 
 	iMaterialItemNo		= PRODUCT_RAW_MATERIAL( iMaterialNo );
 	if( iMaterialItemNo <= 0 )
 		iMaterialItemNo	= PRODUCT_NEED_ITEM_NO( iMaterialNo, 0 );
@@ -725,7 +725,7 @@ void CManufacture::SetMakeItem( tagITEM& Item )
 		++m_iNumMat;
 	}
 
-	///µÎ¹øÂ° ½½·Ô ºÎÅÍ
+	///ë‘ë²ˆì§¸ ìŠ¬ë¡¯ ë¶€í„°
 	for( int i = 1; i < g_iMaxCountMaterial; ++i )
 	{
 		iMaterialItemNo		= PRODUCT_RAW_MATERIAL( iMaterialNo );
@@ -797,21 +797,21 @@ int CManufacture::IsValidSendMakeItemReq()
 {
 	CIcon* pIcon = NULL;
 
-	///Á¦Á¶ÇÒ ¾ÆÀÌÅÛÀÌ ¼±ÅÃµÇ¾î ÀÖ´Â°¡?
+	///ì œì¡°í•  ì•„ì´í…œì´ ì„ íƒë˜ì–´ ìˆëŠ”ê°€?
 	if( m_pMakeItem == NULL )
 		return 1;
 
-	///ºó°ø°£ Ã¼Å©
+	///ë¹ˆê³µê°„ ì²´í¬
 	tagITEM sItem = m_pMakeItem->GetItem();
 	t_InvTYPE Type = g_pAVATAR->m_Inventory.GetInvPageTYPE( sItem );
 	if( g_pAVATAR->m_Inventory.GetEmptyInvenSlotCount( Type ) <= 0 )
 		return 2;
 
-	///¸¶³ª Ã¼Å© 
+	///ë§ˆë‚˜ ì²´í¬ 
 	if( g_pAVATAR->Get_MP() < m_iConsumeMP )
 		return 3;
 
-	///Àç·á ¾ÆÀÌÅÛ Ã¼Å©
+	///ì¬ë£Œ ì•„ì´í…œ ì²´í¬
 	for( int i = 0 ; i < g_iMaxCountMaterial; ++i )
 	{
 		if( !m_RequireMaterials[i].IsEmpty() )
@@ -834,7 +834,7 @@ int CManufacture::GetMaterialCount()
 {
 	return m_iNumMat;
 }
-/// CItemSlotÀÇ Update È£ÃâMethod
+/// CItemSlotì˜ Update í˜¸ì¶œMethod
 //////////////////////////////////////////////////////////////////////////
 /// @param pObj is CItem
 //////////////////////////////////////////////////////////////////////////

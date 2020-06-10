@@ -1,7 +1,7 @@
 /**
  * \ingroup SHO_GS
  * \file	GS_USER.h
- * \brief	CObjAVT¸¦ »ó¼Ó¹ÞÀ¸¸ç »ç¿ëÀÚÀÇ ÆÐÅ¶À» Ã³¸®
+ * \brief	CObjAVTë¥¼ ìƒì†ë°›ìœ¼ë©° ì‚¬ìš©ìžì˜ íŒ¨í‚·ì„ ì²˜ë¦¬
  */
 #ifndef __GS_USER_H
 #define __GS_USER_H
@@ -16,10 +16,10 @@
 
 extern CPacketCODEC *g_pPacketCODEC;
 
-#define	SOCKET_KEEP_ALIVE_TIME	( 5 * 60 * 1000 )		// 5ºÐ
+#define	SOCKET_KEEP_ALIVE_TIME	( 5 * 60 * 1000 )		// 5ë¶„
 
-#define	PENALTY_EXP_TOWN	3	// ¸¶À» ºÎÈ° ÆÐ³ÎÆ¼ °æÇèÄ¡ 5%
-#define	PENALTY_EXP_FIELD	5	// ÇÊµå ºÎÈ° ÆÐ³ÎÄ¡ °æÇèÄ¡ 8%
+#define	PENALTY_EXP_TOWN	3	// ë§ˆì„ ë¶€í™œ íŒ¨ë„í‹° ê²½í—˜ì¹˜ 5%
+#define	PENALTY_EXP_FIELD	5	// í•„ë“œ ë¶€í™œ íŒ¨ë„ì¹˜ ê²½í—˜ì¹˜ 8%
 
 enum {
 	CHEAT_INVALID=0,
@@ -29,23 +29,23 @@ enum {
 } ;
 
 // #define	RIGHT_MM			0x00010
-#define	RIGHT_TWG			0x00080			// Å¸ÀÌ¿Ï GM ( 256 °ú 512ÀÇ »çÀÌ.. )
-#define	RIGHT_NG			0x00100			// ÀÏ¹Ý GM
-#define	RIGHT_MG			0x00200			// ¸¶½ºÅ¸ GM
-#define	RIGHT_DEV			0x00400			// °³¹ßÀÚ È¸¿ø
-#define	RIGHT_MASTER		0x00800			// ¸¶½ºÅ¸..
+#define	RIGHT_TWG			0x00080			// íƒ€ì´ì™„ GM ( 256 ê³¼ 512ì˜ ì‚¬ì´.. )
+#define	RIGHT_NG			0x00100			// ì¼ë°˜ GM
+#define	RIGHT_MG			0x00200			// ë§ˆìŠ¤íƒ€ GM
+#define	RIGHT_DEV			0x00400			// ê°œë°œìž íšŒì›
+#define	RIGHT_MASTER		0x00800			// ë§ˆìŠ¤íƒ€..
 
 #define	IS_HACKING(pUSER, fn)		pUSER->IsHacking(fn, __FILE__, __LINE__)
 
 
-#define	CHECK_ITEM_LOG_PRICE	10000		// ¾ÆÀÌÅÛ ·Î±× ³²±â´Â Àåºñ °¡°Ý
-#define	CHECK_ITEM_SN_PRICE		10000		// ¾ÆÀÌÅÛ SN ºÙ´Â Àåºñ °¡°Ý
-#define	CHECK_ITEM_MONEY		5000		// ·Î±× ³²±â´Â µå·Ó °¡°Ý
-#define	CHECK_ITEM_LOG_CNT		10			// ·Î±× ³²±â´Â µå·Ó °¹¼ö
+#define	CHECK_ITEM_LOG_PRICE	10000		// ì•„ì´í…œ ë¡œê·¸ ë‚¨ê¸°ëŠ” ìž¥ë¹„ ê°€ê²©
+#define	CHECK_ITEM_SN_PRICE		10000		// ì•„ì´í…œ SN ë¶™ëŠ” ìž¥ë¹„ ê°€ê²©
+#define	CHECK_ITEM_MONEY		5000		// ë¡œê·¸ ë‚¨ê¸°ëŠ” ë“œë¡­ ê°€ê²©
+#define	CHECK_ITEM_LOG_CNT		10			// ë¡œê·¸ ë‚¨ê¸°ëŠ” ë“œë¡­ ê°¯ìˆ˜
 
-#define	BIT_TRADE_READY			0x01	// 1 : 1 °Å·¡½Ã
-#define	BIT_TRADE_DONE			0x02	// 1 : 1 °Å·¡½Ã
-#define BIT_TRADE_P_STORE		0x04	// °³ÀÎ »óÁ¡ °Å·¡½Ã..
+#define	BIT_TRADE_READY			0x01	// 1 : 1 ê±°ëž˜ì‹œ
+#define	BIT_TRADE_DONE			0x02	// 1 : 1 ê±°ëž˜ì‹œ
+#define BIT_TRADE_P_STORE		0x04	// ê°œì¸ ìƒì  ê±°ëž˜ì‹œ..
 struct tagTradeITEM {
 	short		m_nInvIDX;
 	tagITEM		m_Item;
@@ -144,7 +144,7 @@ private:
     bool  Recv_cli_WHISPER( t_PACKET *pPacket );
 	short Recv_cli_PARTY_CHAT( t_PACKET *pPacket );
 
-	void LogCHAT( const char * szMSG, const char * pDestCHAR, const char * szMsgTYPE ); // Ã¤ÆÃÀ» ÆÄÀÏ¿¡ ·Î±×·Î ³²±è ( ´ë¸¸ÀÏ °æ¿ì¿¡¸¸ )
+	void LogCHAT( const char * szMSG, const char * pDestCHAR, const char * szMsgTYPE ); // ì±„íŒ…ì„ íŒŒì¼ì— ë¡œê·¸ë¡œ ë‚¨ê¹€ ( ëŒ€ë§Œì¼ ê²½ìš°ì—ë§Œ )
 
 	short Recv_cli_ALLIED_CHAT( t_PACKET *pPacket );
 	short Recv_cli_ALLIED_SHOUT( t_PACKET *pPacket );
@@ -259,7 +259,7 @@ private:
 	bool  Recv_mon_SERVER_STATUS_REQ( t_PACKET *pPacket );
 	bool  Recv_mon_SERVER_ANNOUNCE( t_PACKET *pPacket );
 	
-	/// À¯Àú ·Î±×¾Æ¿ô
+	/// ìœ ì € ë¡œê·¸ì•„ì›ƒ
 	bool  Recv_ost_SERVER_USERLOGOUT( t_PACKET* pPacket );
 	bool  Send_gsv_SERVER_USERLOGOUT_REPLY( const char * szAccount , bool bLogOuted  );
 
@@ -370,15 +370,15 @@ public :
 	}
 	bool Add_ItemNSend( tagITEM &sITEM )
 	{
-		this->Set_ItemSN( sITEM );		// Äù½ºÆ® º¸»ó¿¡ ÀÇÇØ...
+		this->Set_ItemSN( sITEM );		// í€˜ìŠ¤íŠ¸ ë³´ìƒì— ì˜í•´...
 
 		short nInvIDX = this->Add_ITEM( sITEM );
 		if ( nInvIDX >= MAX_EQUIP_IDX ) {
-			// µé¾î°¬´Ù..
+			// ë“¤ì–´ê°”ë‹¤..
 			this->Check_ItemEventMSG( sITEM );
 			return this->Send_gsv_SET_INV_ONLY( (BYTE)nInvIDX, &sITEM, GSV_REWARD_ITEM );
 		} else {
-			// Äù½ºÆ®¿¡¼­ ºÎ¿©µÇ´Â ¾ÆÀÌÅÛ... ¹Ù´Û¿¡ ¶³±À
+			// í€˜ìŠ¤íŠ¸ì—ì„œ ë¶€ì—¬ë˜ëŠ” ì•„ì´í…œ... ë°”ë‹¦ì— ë–¨êµ¼
 			this->Save_ItemToFILED( sITEM );
 		}
 
@@ -426,7 +426,7 @@ public :
 		this->SendPacket( pCPacket );
 		Packet_ReleaseNUnlock( pCPacket );
 
-		// º¯°æ½Ã ÁÖÀ§¿¡ Åëº¸ ÇÊ¿äÇÑ°Íµé....
+		// ë³€ê²½ì‹œ ì£¼ìœ„ì— í†µë³´ í•„ìš”í•œê²ƒë“¤....
 		switch( wAbilityType ) {
 			case AT_FACE		:	
 				this->m_sFaceIDX.m_nItemNo = iValue;
@@ -490,8 +490,8 @@ public :
 	{	
 		this->m_BasicINFO.m_nClass=nValue;
 		this->UpdateAbility ();
-		// ÀüÁ÷ÈÄ maxhp, maxmp°¡ Æ²·ÁÁø´Ù.
-		// ÆÄÆ¼ÁßÀÏ°æ¿ì´Â ÆÄÆ¼¿ø¿¡°Å Àü´Þ...
+		// ì „ì§í›„ maxhp, maxmpê°€ í‹€ë ¤ì§„ë‹¤.
+		// íŒŒí‹°ì¤‘ì¼ê²½ìš°ëŠ” íŒŒí‹°ì›ì—ê±° ì „ë‹¬...
 		if ( this->GetPARTY() ) {
 			this->GetPARTY()->Change_ObjectIDX( this );
 		}
@@ -508,7 +508,7 @@ public :
 
 	DWORD			m_dwLSID;
 	DWORD			m_dwWSID;
-	DWORD			m_dwDBID;	// db¿¡ ÀúÀåµÈ °ªÀº 2147483647±îÁö..
+	DWORD			m_dwDBID;	// dbì— ì €ìž¥ëœ ê°’ì€ 2147483647ê¹Œì§€..
 	DWORD			m_dwItemSN;
 
 	t_HASHKEY		m_HashACCOUNT;
@@ -524,11 +524,11 @@ public :
 
 	BYTE			m_btTradeBIT;
 	int				m_iTradeUserIDX;
-	tagTradeITEM	m_TradeITEM[ MAX_TRADE_ITEM_SLOT ];		// °Å·¡½Ã »ó´ë¹æ¿¡°Ô °Ç³»ÁÙ ¾ÆÀÌÅÛ
+	tagTradeITEM	m_TradeITEM[ MAX_TRADE_ITEM_SLOT ];		// ê±°ëž˜ì‹œ ìƒëŒ€ë°©ì—ê²Œ ê±´ë‚´ì¤„ ì•„ì´í…œ
 	short			m_nCreateItemEXP;
 	int				m_iLastEventNpcIDX;
 
-	// PVPµî¿¡¼­ »ç¿ëµÇ´Â ÀÓ½Ã ÇöÀçÁ¸ ºÎÈ°À§Ä¡...
+	// PVPë“±ì—ì„œ ì‚¬ìš©ë˜ëŠ” ìž„ì‹œ í˜„ìž¬ì¡´ ë¶€í™œìœ„ì¹˜...
 	bool			m_bSetImmediateRevivePOS;
 	tPOINTF			m_PosImmediateRivive;
 
@@ -543,15 +543,15 @@ public :
 	struct tagUserSTORE {
 		bool	m_bActive;
 
-		BYTE	m_btSellCNT;									// µî·ÏµÈ ÆÇ¸Å Ç°¸ñ °¹¼ö
-		short	m_nInvIDX			[ MAX_P_STORE_ITEM_SLOT ];	// ÆÇ¸Å½Ã ÆÈ·Á´Â ¾ÆÀÌÅÛÀÇ ÀÎº¥Åä¸® À§Ä¡.
-		tagITEM	m_SellITEM			[ MAX_P_STORE_ITEM_SLOT ];	// ÆÇ¸Å, ±¸ÀÔ Èñ¸Á ¾ÆÀÌÅÛ(°¹¼ö Æ÷ÇÔ)
-		DWORD	m_dwSellPricePerEA	[ MAX_P_STORE_ITEM_SLOT ];	// 1°³´ç Èñ¸Á °¡°Ý
+		BYTE	m_btSellCNT;									// ë“±ë¡ëœ íŒë§¤ í’ˆëª© ê°¯ìˆ˜
+		short	m_nInvIDX			[ MAX_P_STORE_ITEM_SLOT ];	// íŒë§¤ì‹œ íŒ”ë ¤ëŠ” ì•„ì´í…œì˜ ì¸ë²¤í† ë¦¬ ìœ„ì¹˜.
+		tagITEM	m_SellITEM			[ MAX_P_STORE_ITEM_SLOT ];	// íŒë§¤, êµ¬ìž… í¬ë§ ì•„ì´í…œ(ê°¯ìˆ˜ í¬í•¨)
+		DWORD	m_dwSellPricePerEA	[ MAX_P_STORE_ITEM_SLOT ];	// 1ê°œë‹¹ í¬ë§ ê°€ê²©
 
-		BYTE	m_btWishCNT;									// ±¸ÀÔ Èñ¸¸ Ç°¸ñ °¹¼ö
-		BYTE	m_btWishIDX			[ MAX_P_STORE_ITEM_SLOT ];	// ±¸ÀÔ ÇÏ·Á´Â ¾ÆÀÌÅÛÀÇ ½½·Ô ¹øÈ£
-		tagITEM	m_WishITEM			[ MAX_P_STORE_ITEM_SLOT ];	// ±¸ÀÔ Èñ¸Á ¾ÆÀÌÅÛ(°¹¼ö Æ÷ÇÔ)
-		DWORD	m_dwWishPricePerEA	[ MAX_P_STORE_ITEM_SLOT ];	// 1°³´ç Èñ¸Á °¡°Ý
+		BYTE	m_btWishCNT;									// êµ¬ìž… í¬ë§Œ í’ˆëª© ê°¯ìˆ˜
+		BYTE	m_btWishIDX			[ MAX_P_STORE_ITEM_SLOT ];	// êµ¬ìž… í•˜ë ¤ëŠ” ì•„ì´í…œì˜ ìŠ¬ë¡¯ ë²ˆí˜¸
+		tagITEM	m_WishITEM			[ MAX_P_STORE_ITEM_SLOT ];	// êµ¬ìž… í¬ë§ ì•„ì´í…œ(ê°¯ìˆ˜ í¬í•¨)
+		DWORD	m_dwWishPricePerEA	[ MAX_P_STORE_ITEM_SLOT ];	// 1ê°œë‹¹ í¬ë§ ê°€ê²©
 		BYTE	m_btWishIdx2StoreIDX[ MAX_P_STORE_ITEM_SLOT ];
 	} m_STORE;
 
@@ -562,9 +562,9 @@ public :
 	void	AddTradeItemToINV (classUSER *pTradeUSER/*tagTradeITEM *pTradeITEM*/, classPACKET *pCPacket);
 
 
-	#define	BANK_UNLOADED	0x00	// ÀûÀç µÇÁö ¾Ê¾Ò´Ù
-	#define	BANK_LOADED		0x01	// ÀûÀç µÆ´Ù
-	#define	BANK_CHANGED	0x02	// ÀºÇà ³»¿ëÀÌ ¹Ù²î¾ú´Ù.
+	#define	BANK_UNLOADED	0x00	// ì ìž¬ ë˜ì§€ ì•Šì•˜ë‹¤
+	#define	BANK_LOADED		0x01	// ì ìž¬ ëë‹¤
+	#define	BANK_CHANGED	0x02	// ì€í–‰ ë‚´ìš©ì´ ë°”ë€Œì—ˆë‹¤.
 	BYTE		m_btBankData;
 
 	BYTE		m_btShotTYPE;
@@ -625,11 +625,11 @@ x	//CDLList< tagPartyUSER >::tagNODE *m_pPartyNODE;
 		   bool SendPacketToTARGET( CObjCHAR *pAtkCHAR, classPACKET *pCPacket )	
 		   {
 			   if ( NULL == pAtkCHAR->GetPARTY() || pAtkCHAR->GetPARTY() != this->GetPARTY() ) {
-				   // ¶§¸° »ç¶÷ ÇÑÅ× Àü¼Û... ÆÄÆ¼°¡ ¾ø°Å³ª, °°Àº ÆÄÆ¼¿øÀÌ ¾Æ´Ï¸é...
+				   // ë•Œë¦° ì‚¬ëžŒ í•œí…Œ ì „ì†¡... íŒŒí‹°ê°€ ì—†ê±°ë‚˜, ê°™ì€ íŒŒí‹°ì›ì´ ì•„ë‹ˆë©´...
 				   pAtkCHAR->SendPacket( pCPacket );
 			   }
 
-			   // ¸ÂÀº »ç¶÷ÇÑÅ× Àü¼Û...
+			   // ë§žì€ ì‚¬ëžŒí•œí…Œ ì „ì†¡...
 			   return this->SendPacketToPARTY( pCPacket );
 		   }
 
@@ -663,7 +663,7 @@ x	//CDLList< tagPartyUSER >::tagNODE *m_pPartyNODE;
 		this->Set_NAME( NULL );
 		m_HashCHAR = 0;
 
-		this->Clear_SummonCNT ();		// ¼ÒÈ¯µÈ °¹¼ö 0À¸·Î..
+		this->Clear_SummonCNT ();		// ì†Œí™˜ëœ ê°¯ìˆ˜ 0ìœ¼ë¡œ..
 
 		m_IngSTATUS.Reset(true );
 
@@ -765,7 +765,7 @@ public :
 	{	
 		if ( this->m_pShotITEM ) {
 			if ( this->m_pShotITEM->GetQuantity() < btShotCnt ) {
-				// ÃÑ¾ËÀÌ ¸ðÀÚ¸£´Ù..
+				// ì´ì•Œì´ ëª¨ìžë¥´ë‹¤..
 				return false;
 			}
 		}
@@ -776,17 +776,17 @@ public :
 	{	
 		if ( this->GetCur_MOVE_MODE() <= MOVE_MODE_RUN && this->m_pShotITEM ) {
 			if ( this->m_pShotITEM->GetQuantity() < btShotCnt ) {
-				// ÃÑ¾ËÀÌ ¸ðÀÚ¸£´Ù..
+				// ì´ì•Œì´ ëª¨ìžë¥´ë‹¤..
 				return false;
 			}
 
 			m_pShotITEM->m_uiQuantity -= btShotCnt;
 			if ( m_pShotITEM->GetQuantity() <= 0 ) {
-				// ¾ÆÀÌÅÛ »èÁ¦...
+				// ì•„ì´í…œ ì‚­ì œ...
 				m_pShotITEM->m_uiQuantity = 0;
 				m_pShotITEM->Clear ();
 
-				// ÃÑ¾Ë ¾ø´Ù...°ø°Ý·Â Àç°è»ê.
+				// ì´ì•Œ ì—†ë‹¤...ê³µê²©ë ¥ ìž¬ê³„ì‚°.
 				this->Cal_ATTACK ();
 
 				return this->Send_gsv_SET_BULLET( this->m_btShotTYPE );
@@ -800,13 +800,13 @@ public :
 	}
 	void	Set_ShotITEM( t_eSHOT eShotTYPE )
 	{
-		// ÇöÀç ÀåÂøµÈ ¿À¸¥¼Õ ¹«±âÀÇ ÇÊ¿ä ÃÑ¾Ë ¹øÈ£ ¾ò±â..
+		// í˜„ìž¬ ìž¥ì°©ëœ ì˜¤ë¥¸ì† ë¬´ê¸°ì˜ í•„ìš” ì´ì•Œ ë²ˆí˜¸ ì–»ê¸°..
 		if ( eShotTYPE < MAX_SHOT_TYPE ) {
-			// ÇöÀç ¼Ò¸ðÅº ¼³Á¤...
+			// í˜„ìž¬ ì†Œëª¨íƒ„ ì„¤ì •...
 			this->m_btShotTYPE = eShotTYPE;
 			this->m_pShotITEM = &this->m_Inventory.m_ItemSHOT[ eShotTYPE ];
 
-			// ÃÑ¾Ë ¾ø´Ù...°ø°Ý·Â Àç°è»ê.
+			// ì´ì•Œ ì—†ë‹¤...ê³µê²©ë ¥ ìž¬ê³„ì‚°.
 			this->Cal_ATTACK ();
 		} else {
 			this->m_pShotITEM = NULL;
@@ -814,7 +814,7 @@ public :
 	}
 	void	Set_ShotITEM ()
 	{
-		// ÇöÀç ÀåÂøµÈ ¿À¸¥¼Õ ¹«±âÀÇ ÇÊ¿ä ÃÑ¾Ë ¹øÈ£ ¾ò±â..
+		// í˜„ìž¬ ìž¥ì°©ëœ ì˜¤ë¥¸ì† ë¬´ê¸°ì˜ í•„ìš” ì´ì•Œ ë²ˆí˜¸ ì–»ê¸°..
 		t_eSHOT eShotTYPE = this->m_Inventory.m_ItemEQUIP[ EQUIP_IDX_WEAPON_R ].GetShotTYPE();
 		this->Set_ShotITEM( eShotTYPE );
 	}

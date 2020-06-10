@@ -47,8 +47,8 @@ CChangeActionMode::~CChangeActionMode(void)
 
 
 //----------------------------------------------------------------------------------------------------
-/// @param int iActionMode ∏Ò¿˚ æ◊º« ≈∏¿‘
-/// @brief æ◊º« ∏µÂ ¿¸»Ø( ≥Î∏÷ -> æÓ≈√∏µÂ, æÓ≈√ -> ≥Î∏÷ )
+/// @param int iActionMode Î™©Ï†Å Ïï°ÏÖò ÌÉÄÏûÖ
+/// @brief Ïï°ÏÖò Î™®Îìú Ï†ÑÌôò( ÎÖ∏Î©Ä -> Ïñ¥ÌÉùÎ™®Îìú, Ïñ¥ÌÉù -> ÎÖ∏Î©Ä )
 //----------------------------------------------------------------------------------------------------
 
 void CChangeActionMode::ChangeActionMode( int iActionMode )
@@ -57,7 +57,7 @@ void CChangeActionMode::ChangeActionMode( int iActionMode )
 	{		
 		case AVATAR_NORMAL_MODE:
 			{
-				/// Attack -> Normal mode ∑Œ ¡¯¿‘
+				/// Attack -> Normal mode Î°ú ÏßÑÏûÖ
 				if( m_iAvatarActionMode == AVATAR_ATTACK_MODE )
 					AttackEnd();				
 				else
@@ -66,7 +66,7 @@ void CChangeActionMode::ChangeActionMode( int iActionMode )
 			break;		
 		case AVATAR_ATTACK_MODE:
 			{
-				/// Normal mode -> Attack Mode  ∑Œ ¡¯¿‘
+				/// Normal mode -> Attack Mode  Î°ú ÏßÑÏûÖ
 				if( m_iAvatarActionMode == AVATAR_NORMAL_MODE )
 					AttackStart();
 
@@ -79,7 +79,7 @@ void CChangeActionMode::ChangeActionMode( int iActionMode )
 
 
 //----------------------------------------------------------------------------------------------------
-/// @param int iActionIdx æ◊º« ¿Œµ¶Ω∫
+/// @param int iActionIdx Ïï°ÏÖò Ïù∏Îç±Ïä§
 /// @brief Get proper motion by action mode
 //----------------------------------------------------------------------------------------------------
 

@@ -31,8 +31,8 @@ public :
 	BYTE	m_btPartyLEV;
 	int		m_iPartyEXP;
 
-	int		m_iAverageLEV;		// Æò±Õ ÆÄÆ¼¿ø ·¹º§
-	int		m_iTotalLEV;		// ¸ðµç ÆÄÆ¼¿ø ·¹º§ ÇÕ
+	int		m_iAverageLEV;		// í‰ê·  íŒŒí‹°ì› ë ˆë²¨
+	int		m_iTotalLEV;		// ëª¨ë“  íŒŒí‹°ì› ë ˆë²¨ í•©
 
 	CWS_Party () : CCriticalSection( 4000 )		{	;	}
 

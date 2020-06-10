@@ -4,7 +4,7 @@
 #include "../../Common/CItem.h"
 
 
-/// ItemÀÌµ¿½Ã ¼ıÀÚÀÔ·ÂÀÌ ¿ä±¸µÉ¼ö ÀÖ´Â Ã³¸®¿¡ ´ëÇÑ Command
+/// Itemì´ë™ì‹œ ìˆ«ìì…ë ¥ì´ ìš”êµ¬ë ìˆ˜ ìˆëŠ” ì²˜ë¦¬ì— ëŒ€í•œ Command
 class CTCmdNumberInput : public CTCommand
 {
 public:
@@ -18,7 +18,7 @@ protected:
 };
 
 
-/// ÀÎº¥Åä¸®¿¡¼­ ¹Ù´ÚÀ¸·Î ¾ÆÀÌÅÛ ¹ö¸°´Ù
+/// ì¸ë²¤í† ë¦¬ì—ì„œ ë°”ë‹¥ìœ¼ë¡œ ì•„ì´í…œ ë²„ë¦°ë‹¤
 class CTCmdDropItem : public CTCmdNumberInput
 {
 public:
@@ -27,7 +27,7 @@ public:
 	virtual bool	Exec( CTObject* pObj);
 };
 
-/// @breief ÀÎº¥Åä¸®¿¡¼­ ¹Ù´ÚÀ¸·Î ¾ÆÀÌÅÛ µ·À» ¹ö¸°´Ù.
+/// @breief ì¸ë²¤í† ë¦¬ì—ì„œ ë°”ë‹¥ìœ¼ë¡œ ì•„ì´í…œ ëˆì„ ë²„ë¦°ë‹¤.
 class CTCmdDropMoney : public CTCmdNumberInput
 {
 public:
@@ -36,7 +36,7 @@ public:
 	virtual bool Exec( CTObject* pObj );
 };
 
-///1:1 °Å·¡½Ã ÀÎº¥Åä¸®¿¡¼­ °Å·¡Ã¢À¸·ÎÀÇ ¾ÆÀÌÅÛ ÀÌµ¿
+///1:1 ê±°ë˜ì‹œ ì¸ë²¤í† ë¦¬ì—ì„œ ê±°ë˜ì°½ìœ¼ë¡œì˜ ì•„ì´í…œ ì´ë™
 class CTCmdAddMyItem2Exchange : public CTCmdNumberInput
 {
 public:
@@ -45,7 +45,7 @@ public:
 	virtual bool	Exec( CTObject* pObj );
 };
 
-/// 1:1°Å·¡½Ã °Å·¡Ã¢¿¡¼­ ÀÎº¥Åä¸®·Î ¾ÆÀÌÅÛ ÀÌµ¿
+/// 1:1ê±°ë˜ì‹œ ê±°ë˜ì°½ì—ì„œ ì¸ë²¤í† ë¦¬ë¡œ ì•„ì´í…œ ì´ë™
 class CTCmdRemoveMyItemFromExchange : public CTCmdNumberInput
 {
 public:
@@ -54,7 +54,7 @@ public:
 	virtual bool	Exec( CTObject* pObj );
 };
 
-/// 1:1 °Å·¡½Ã ÀÎº¥Åä¸®¿¡¼­ °Å·¡Ã¢À¸·Î µ· ÀÌµ¿
+/// 1:1 ê±°ë˜ì‹œ ì¸ë²¤í† ë¦¬ì—ì„œ ê±°ë˜ì°½ìœ¼ë¡œ ëˆ ì´ë™
 class CTCmdAddMyMoney2Exchange : public CTCmdNumberInput
 {
 public:
@@ -63,7 +63,7 @@ public:
 	virtual bool Exec( CTObject* pObj );
 };
 
-/// 1:1 °Å·¡½Ã °Å·¡Ã¢¿¡¼­ ÀÎº¥Åä¸®·Îµ·À» »«´Ù.
+/// 1:1 ê±°ë˜ì‹œ ê±°ë˜ì°½ì—ì„œ ì¸ë²¤í† ë¦¬ë¡œëˆì„ ëº€ë‹¤.
 class CTCmdRemoveMyMoneyFromExchange : public CTCmdNumberInput
 {
 public:
@@ -74,7 +74,7 @@ public:
 };
 
 
-/// ÀÎº¥Åä¸®¿¡¼­ Ã¢°í·Î ¾ÆÀÌÅÛ ÀÌµ¿
+/// ì¸ë²¤í† ë¦¬ì—ì„œ ì°½ê³ ë¡œ ì•„ì´í…œ ì´ë™
 class CTCmdMoveItemInv2Bank : public CTCmdNumberInput
 {
 public:
@@ -83,7 +83,7 @@ public:
 	virtual bool Exec( CTObject* pObj );
 };
 
-/// Ã¢°í¿¡¼­ ÀÎº¥Åä¸®·Î ¾ÆÀÌÅÛ ÀÌµ¿
+/// ì°½ê³ ì—ì„œ ì¸ë²¤í† ë¦¬ë¡œ ì•„ì´í…œ ì´ë™
 class CTCmdMoveItemBank2Inv : public CTCmdNumberInput
 {
 public:
@@ -92,7 +92,7 @@ public:
 	virtual bool Exec( CTObject* pObj );
 };
 
-/// NPC»óÁ¡ °Å·¡½Ã ÀÎº¥Åä¸®¿¡¼­ °Å·¡Ã¢À¸·Î ¾ÆÀÌÅÛ ÀÌµ¿
+/// NPCìƒì  ê±°ë˜ì‹œ ì¸ë²¤í† ë¦¬ì—ì„œ ê±°ë˜ì°½ìœ¼ë¡œ ì•„ì´í…œ ì´ë™
 class CTCmdAddItem2DealFromInventory : public CTCmdNumberInput
 {
 public:
@@ -101,7 +101,7 @@ public:
 	virtual bool Exec( CTObject* pObj );
 };
 
-/// NPC »óÁ¡ °Å·¡½Ã »óÁ¡¿¡¼­ °Å·¡Ã¢À¸·Î ¾ÆÀÌÅÛ ÀÌµ¿
+/// NPC ìƒì  ê±°ë˜ì‹œ ìƒì ì—ì„œ ê±°ë˜ì°½ìœ¼ë¡œ ì•„ì´í…œ ì´ë™
 class CTCmdAddItem2DealFromStore : public CTCmdNumberInput
 {
 public:
@@ -110,7 +110,7 @@ public:
 	virtual bool Exec(CTObject* pObj );
 };
 
-/// NPC»óÁ¡°Å·¡½Ã »óÁ¡¿¡¼­ ¾ÆÀÌÅÛÀ» Á÷Á¢ µå·¡±×&µå¶øÇÏ¿© ¾ÆÀÌÅÛ ±¸ÀÔ½Ã »ç¿ëµÇ´Â Command
+/// NPCìƒì ê±°ë˜ì‹œ ìƒì ì—ì„œ ì•„ì´í…œì„ ì§ì ‘ ë“œë˜ê·¸&ë“œëí•˜ì—¬ ì•„ì´í…œ êµ¬ì…ì‹œ ì‚¬ìš©ë˜ëŠ” Command
 class CTCmdBuyItem : public CTCmdNumberInput
 {
 public:
@@ -119,7 +119,7 @@ public:
 	virtual bool Exec(CTObject* pObj );
 };
 
-/// NPC»óÁ¡°Å·¡½Ã ÀÎº¥Åä¸®¿¡¼­ ¾ÆÀÌÅÛÀ» Á÷Á¢ µå·¡±×&µå¶øÇÏ¿© ¾ÆÀÌÅÛ ÆÇ¸Å½Ã »ç¿ëµÇ´Â Command
+/// NPCìƒì ê±°ë˜ì‹œ ì¸ë²¤í† ë¦¬ì—ì„œ ì•„ì´í…œì„ ì§ì ‘ ë“œë˜ê·¸&ë“œëí•˜ì—¬ ì•„ì´í…œ íŒë§¤ì‹œ ì‚¬ìš©ë˜ëŠ” Command
 class CTCmdSellItem : public CTCmdNumberInput
 {
 public:
@@ -128,7 +128,7 @@ public:
 	virtual bool Exec(CTObject* pObj );
 };
 
-/// °³ÀÎ»óÁ¡¿¡¼­ ¾ÆÀÌÅÛÀ» »ê´Ù.
+/// ê°œì¸ìƒì ì—ì„œ ì•„ì´í…œì„ ì‚°ë‹¤.
 class CTCmdBuyItemAtAvatarStore : public CTCmdNumberInput
 {
 public:
@@ -137,7 +137,7 @@ public:
 	virtual bool Exec( CTObject* pObj );
 };
 
-/// °³ÀÎ»óÁ¡¿¡ ¾ÆÀÌÅÛÀ» ÆÇ´Ù.
+/// ê°œì¸ìƒì ì— ì•„ì´í…œì„ íŒë‹¤.
 class CTCmdSellItem2AvatarStore : public CTCmdNumberInput
 {
 public:
@@ -146,7 +146,7 @@ public:
 	virtual bool Exec( CTObject* pObj );
 };
 
-/// ¸¶ÀÏ¸®Áö Ã¢°í¿¡¼­ ¾ÆÀÌÅÛÀ» °¡Á®¿Â´Ù.
+/// ë§ˆì¼ë¦¬ì§€ ì°½ê³ ì—ì„œ ì•„ì´í…œì„ ê°€ì ¸ì˜¨ë‹¤.
 class CTCmdBringItemFromMall : public CTCmdNumberInput
 {
 public:

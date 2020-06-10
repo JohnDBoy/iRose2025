@@ -68,7 +68,7 @@ public :
 	SQLHSTMT	m_hSTMT1;
 
 	SQLSMALLINT m_nResultColCnt;
-	SQLINTEGER  m_iResultRowCnt;		// Update, Delete, Insert¸í·É½Ã ¿µÇâ¹ŞÀº ·¹ÄÚµå °¹¼ö¸¦ ±¸ÇØ¿Â´Ù.
+	SQLINTEGER  m_iResultRowCnt;		// Update, Delete, Insertëª…ë ¹ì‹œ ì˜í–¥ë°›ì€ ë ˆì½”ë“œ ê°¯ìˆ˜ë¥¼ êµ¬í•´ì˜¨ë‹¤.
 
 public  :
 	RETCODE	m_RetCode;

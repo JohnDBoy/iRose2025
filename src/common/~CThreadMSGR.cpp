@@ -126,7 +126,7 @@ bool CThreadMSGR::Run_MessengerPACKET( tagMSGR_CMD *pMsgCMD )
 			return true;
 
 		case MSGR_CMD_CHANGE_STATUS	:
-			// ³»»óÅÂ º¯°æ... µî·ÏµÈ ¸ğµç Ä£±¸¿¡°Ô...
+			// ë‚´ìƒíƒœ ë³€ê²½... ë“±ë¡ëœ ëª¨ë“  ì¹œêµ¬ì—ê²Œ...
 			pMsgCMD->m_pPacket->m_cli_MCMD_STATUS_REQ.m_btStatus;
 			break;
 		case 0x0ff :
@@ -166,7 +166,7 @@ bool CThreadMSGR::LogIN (int iSocketIDX)
 			delete pMSGR;
 			return true;
 		}
-		// Ä£±¸ ¾ø´Ù.
+		// ì¹œêµ¬ ì—†ë‹¤.
 	} else {
 		int iFriendCNT = this->m_pSQL->GetInteger( 0 );
 		if ( iFriendCNT > 0 ) {
@@ -203,7 +203,7 @@ void CThreadMSGR::LogOUT (CMessenger *pMSGR)
 															MQ_PARAM_END );
 		}
 		if ( this->m_pSQL->ExecSQLBuffer() < 0 ) {
-			// °íÄ¡±â ½ÇÆĞ !!!
+			// ê³ ì¹˜ê¸° ì‹¤íŒ¨ !!!
 			g_LOG.CS_ODS(LOG_NORMAL, "SQL Exec ERROR:: UPDATE messenger:%d %s \n", pMSGR->Get_DBID(), m_pSQL->GetERROR() );
 		}
 	}
@@ -252,10 +252,10 @@ void CMessenger::MSGR_LogIN (int iCount, BYTE *pLIST)
 
 		pLIST += ( sizeof(tagFriend_H)+pNODE->m_VALUE.m_Name.BuffLength()+1 );
 
-		// ³»°¡ ·Î±×¾Æ¿ô Áß¿¡ Ä£±¸°¡ ³ª¸¦ »èÁ¦ÇÑ °æ¿ì...
-		// »èÁ¦ ÇÃ·¹±×°¡ ¼³Á¤µÇÁö ¾Ê¾Æ Ä£±¸¸¦ ³» ¸®½ºÆ®¿¡ µî·ÏÇß´Âµ¥...
-		// Ä£±¸°¡ ³ª°¡¸é¼­ ³ª¿¡°Ô ·Î±×¾Æ¿ôÀ» Àü¼ÛÇÏÁö ¾Ê¾Æ ³» ¸ñ·Ï¿¡ ·Î±×ÀÎ »óÅÂÀÌ¸ç,
-		// ÀÌÈÄ Ä£±¸°¡ ¸ÕÀú ·Î±×¾Æ¿ôÇÏ°í, ³»°¡ Ä£±¸¸¦ »èÁ¦ÇÒ°æ¿ì »¶~~~~
+		// ë‚´ê°€ ë¡œê·¸ì•„ì›ƒ ì¤‘ì— ì¹œêµ¬ê°€ ë‚˜ë¥¼ ì‚­ì œí•œ ê²½ìš°...
+		// ì‚­ì œ í”Œë ˆê·¸ê°€ ì„¤ì •ë˜ì§€ ì•Šì•„ ì¹œêµ¬ë¥¼ ë‚´ ë¦¬ìŠ¤íŠ¸ì— ë“±ë¡í–ˆëŠ”ë°...
+		// ì¹œêµ¬ê°€ ë‚˜ê°€ë©´ì„œ ë‚˜ì—ê²Œ ë¡œê·¸ì•„ì›ƒì„ ì „ì†¡í•˜ì§€ ì•Šì•„ ë‚´ ëª©ë¡ì— ë¡œê·¸ì¸ ìƒíƒœì´ë©°,
+		// ì´í›„ ì¹œêµ¬ê°€ ë¨¼ì € ë¡œê·¸ì•„ì›ƒí•˜ê³ , ë‚´ê°€ ì¹œêµ¬ë¥¼ ì‚­ì œí• ê²½ìš° ë»‘~~~~
 		if ( !(FRIEND_STATUS_REFUSED & pNODE->m_VALUE.m_btSTATUS) ) {
 			#ifdef	__SHO_GS
 			pClient = g_pUserLIST->Find_CHAR( pName );
@@ -265,19 +265,19 @@ void CMessenger::MSGR_LogIN (int iCount, BYTE *pLIST)
 			#endif
 
 			if ( pClient && pClient->m_pMessenger ) {
-				// Ä£±¸ÀÇ ¸ñ·Ï¿¡ ³»°¡ ·Î±äµÈ°É·Î ¼³Á¤ ³ª¿¡´ëÇÑ »óÅÂ¸¦ ¸®ÅÏÇÑ´Ù.
+				// ì¹œêµ¬ì˜ ëª©ë¡ì— ë‚´ê°€ ë¡œê¸´ëœê±¸ë¡œ ì„¤ì • ë‚˜ì—ëŒ€í•œ ìƒíƒœë¥¼ ë¦¬í„´í•œë‹¤.
 				pNODE->m_VALUE.m_btSTATUS = pClient->m_pMessenger->MSGR_OnOffLine( pToFR, this, this->Get_DBID(), FRIEND_STATUS_ONLINE );
 				if ( FRIEND_STATUS_DELETED != pNODE->m_VALUE.m_btSTATUS ) {
-					// 2004. 7. 22 ³ª¸¦ »èÁ¦ÇÏÁö ¾Ê¾Ò´Ù¸é... ³ÑÀÌ ³ª¸¦ »èÁ¦Çß´Ù¸é ³ÑÀÌ ·Î±×¾Æ¿ô ÇÏ¸é¼­
-					// ³ªÇÑÅ× Åëº¸¸¦ ¾ÈÇÏ°í, ³»°¡ ³ÑÀ» »èÁ¦½Ã »¶~~~~¹ß»ı
+					// 2004. 7. 22 ë‚˜ë¥¼ ì‚­ì œí•˜ì§€ ì•Šì•˜ë‹¤ë©´... ë„˜ì´ ë‚˜ë¥¼ ì‚­ì œí–ˆë‹¤ë©´ ë„˜ì´ ë¡œê·¸ì•„ì›ƒ í•˜ë©´ì„œ
+					// ë‚˜í•œí…Œ í†µë³´ë¥¼ ì•ˆí•˜ê³ , ë‚´ê°€ ë„˜ì„ ì‚­ì œì‹œ ë»‘~~~~ë°œìƒ
 					pNODE->m_VALUE.m_pFRIEND  = pClient->m_pMessenger;
 				}
 			} else {
 				pNODE->m_VALUE.m_btSTATUS = FRIEND_STATUS_OFFLINE;
 			}
 		} /* else {
-			// ³ª¸¦ »èÁ¦ÇÏ°Å³ª ³»°¡ Â÷´ÜÇÑ³ÑÀÌ±â ¶«¿¡ ³» »óÅÂ Åëº¸ÇÒ ÇÊ¿ä¾ø´Ù.
-			// ³ªµµ ÀÌ³ÑÀ» ·Î±×¾Æ¿ô »óÅÂ·Î º¸ÀÌ°ÔÇÔ...
+			// ë‚˜ë¥¼ ì‚­ì œí•˜ê±°ë‚˜ ë‚´ê°€ ì°¨ë‹¨í•œë„˜ì´ê¸° ë•œì— ë‚´ ìƒíƒœ í†µë³´í•  í•„ìš”ì—†ë‹¤.
+			// ë‚˜ë„ ì´ë„˜ì„ ë¡œê·¸ì•„ì›ƒ ìƒíƒœë¡œ ë³´ì´ê²Œí•¨...
 		} */
 
 		sFrStatus.m_dwDBID   = pNODE->m_VALUE.m_dwDBID;
@@ -298,9 +298,9 @@ void CMessenger::MSGR_LogIN (int iCount, BYTE *pLIST)
 
 //-------------------------------------------------------------------------------------------------
 /*
-2. ·Î±×¾Æ¿ô½Ã
-	. ³ª°¡ µî·ÏÇÑ Ä£±¸¸®½ºÆ® Á¶È¸..
-		NODE->m_VALUE.m_pUSER != NULL ÀÌ¸é ·Î±×¾Æ¿ô Àü¼Û.
+2. ë¡œê·¸ì•„ì›ƒì‹œ
+	. ë‚˜ê°€ ë“±ë¡í•œ ì¹œêµ¬ë¦¬ìŠ¤íŠ¸ ì¡°íšŒ..
+		NODE->m_VALUE.m_pUSER != NULL ì´ë©´ ë¡œê·¸ì•„ì›ƒ ì „ì†¡.
 */
 int CMessenger::MSGR_LogOUT (BYTE *pOutBUFF)
 {
@@ -332,7 +332,7 @@ int CMessenger::MSGR_LogOUT (BYTE *pOutBUFF)
 		pOutBUFF[ iBuffLEN++ ] = 0;
 
 		if ( !(FRIEND_STATUS_REFUSED & pNODE->m_VALUE.m_btSTATUS) ) {
-			if ( pNODE->m_VALUE.m_pFRIEND ) {	// 2007. 7. 17 ¾Æ·¡ ÇÔ¼ö¿¡¼­ ¹«ÇÑ·çÇÁ... NULL == pNODE->m_VALUE.m_pFRIENDµÇ¾ß µÇ´Â »óÈ²¿¡¼­..
+			if ( pNODE->m_VALUE.m_pFRIEND ) {	// 2007. 7. 17 ì•„ë˜ í•¨ìˆ˜ì—ì„œ ë¬´í•œë£¨í”„... NULL == pNODE->m_VALUE.m_pFRIENDë˜ì•¼ ë˜ëŠ” ìƒí™©ì—ì„œ..
 				pNODE->m_VALUE.m_pFRIEND->MSGR_OnOffLine( pCPacket, NULL, this->Get_DBID(), FRIEND_STATUS_OFFLINE );
 			}
 		}
@@ -354,7 +354,7 @@ bool CMessenger::MSGR_Add( CMessenger *pFriend )
 	pNODE = m_ListFRIEND.GetHeadNode ();
 	while( pNODE ) {
 		if ( pNODE->m_VALUE.m_dwDBID == pFriend->Get_DBID() ) {
-			// ÀÌ¹Ì µî·ÏµÈ »ç¿ëÀÚ´Ù... »èÁ¦µÇ¾ú´ø³ÑÀÌ ´Ù½Ã Ãß°¡ÇÒ °æ¿ì..
+			// ì´ë¯¸ ë“±ë¡ëœ ì‚¬ìš©ìë‹¤... ì‚­ì œë˜ì—ˆë˜ë„˜ì´ ë‹¤ì‹œ ì¶”ê°€í•  ê²½ìš°..
 			pNODE->m_VALUE.m_btSTATUS   = pFriend->m_btMsgrSTATUS;
 			pNODE->m_VALUE.m_pFRIEND	= pFriend;
 			return true;
@@ -395,9 +395,9 @@ void CMessenger::MSGR_Del( DWORD dwDBID )
 	pNODE = m_ListFRIEND.GetHeadNode ();
 	while( pNODE ) {
 		if ( dwDBID == pNODE->m_VALUE.m_dwDBID ) {
-			// "¿À³Ê´Â ¾Ë¾Æ¼­ »èÁ¦ÇÏ¶ó°í...
+			// "ì˜¤ë„ˆëŠ” ì•Œì•„ì„œ ì‚­ì œí•˜ë¼ê³ ...
 			if ( pNODE->m_VALUE.m_pFRIEND ) {
-				// "´ë»óÀº »èÁ¦µÈ»óÅÂ·Î ¼³Á¤ÇÏ°í ¹İµå½Ã m_pFRIEND = NULL·Î ¸¸µé¾î¾ß...... " )
+				// "ëŒ€ìƒì€ ì‚­ì œëœìƒíƒœë¡œ ì„¤ì •í•˜ê³  ë°˜ë“œì‹œ m_pFRIEND = NULLë¡œ ë§Œë“¤ì–´ì•¼...... " )
 				pNODE->m_VALUE.m_pFRIEND->MSGR_Status2ONE( this->Get_DBID(), FRIEND_STATUS_DELETED, NULL );
 			}
 
@@ -416,7 +416,7 @@ void CMessenger::MSGR_Ban( DWORD dwDBID )
 	pNODE = m_ListFRIEND.GetHeadNode ();
 	while( pNODE ) {
 		if ( dwDBID == pNODE->m_VALUE.m_dwDBID ) {
-			// ÀÌ³ÑÀÇ ¸Ş¼¼Áö Â÷´Ü..
+			// ì´ë„˜ì˜ ë©”ì„¸ì§€ ì°¨ë‹¨..
 			if ( FRIEND_STATUS_DELETED != pNODE->m_VALUE.m_btSTATUS ) {
 				if ( FRIEND_STATUS_REFUSED & pNODE->m_VALUE.m_btSTATUS ) {
 					if ( pNODE->m_VALUE.m_pFRIEND )
@@ -427,7 +427,7 @@ void CMessenger::MSGR_Ban( DWORD dwDBID )
 					pNODE->m_VALUE.m_btSTATUS = FRIEND_STATUS_REFUSED;
 			}
 
-			#pragma COMPILE_TIME_MSG ( " ¹Ù²ï »óÅÂ Àü¼Û??? " )
+			#pragma COMPILE_TIME_MSG ( " ë°”ë€ ìƒíƒœ ì „ì†¡??? " )
 
 			break;
 		}
@@ -442,11 +442,11 @@ BYTE CMessenger::MSGR_OnOffLine ( classPACKET *pCPacket, CMessenger *pFriend, DW
 
 	pNODE = m_ListFRIEND.GetHeadNode ();
 	while( pNODE ) {
-		if ( dwDBID == pNODE->m_VALUE.m_dwDBID ) {	// 2004. 7. 22 LogOUT->MSGR_LogOUT->MSGR_OnOffLine »¶~
+		if ( dwDBID == pNODE->m_VALUE.m_dwDBID ) {	// 2004. 7. 22 LogOUT->MSGR_LogOUT->MSGR_OnOffLine ë»‘~
 			pNODE->m_VALUE.m_pFRIEND = pFriend;
 
 			if ( !( FRIEND_STATUS_REFUSED & pNODE->m_VALUE.m_btSTATUS ) ) {
-				// ³»°¡ °ÅºÎÇß°Å³ª, ³ª¸¦ »èÁ¦ÇÑ ³ÑÀÌ¾Æ´Ï¸é...
+				// ë‚´ê°€ ê±°ë¶€í–ˆê±°ë‚˜, ë‚˜ë¥¼ ì‚­ì œí•œ ë„˜ì´ì•„ë‹ˆë©´...
 				pNODE->m_VALUE.m_btSTATUS = btNewStatus;
 				this->m_pOWNER->SendPacket( pCPacket );
 				return this->m_btMsgrSTATUS;
@@ -488,17 +488,17 @@ void CMessenger::MSGR_Status2ALL( BYTE btNewStatus )
 
 void CMessenger::MSGR_Status2ONE( DWORD dwDBID, BYTE btNewStatus, CMessenger *pMessenger )
 {
-	// ³»¸ñ·Ï¿¡¼­ dwDBID¸¦ Ã£¾Æ btNewStatus»óÅÂ·Î ¹Ù²Û´Ù.
-	// dwDBID°¡ ³ª¸¦ »èÁ¦ÇÑ°ÍÀÌ¶ó¸é... ³» ¸ñ·ÏÀÇ m_pFRIEND¸¦ NULL !!!·Î ¼³Á¤ÇØ¾ßÇÔ.
+	// ë‚´ëª©ë¡ì—ì„œ dwDBIDë¥¼ ì°¾ì•„ btNewStatusìƒíƒœë¡œ ë°”ê¾¼ë‹¤.
+	// dwDBIDê°€ ë‚˜ë¥¼ ì‚­ì œí•œê²ƒì´ë¼ë©´... ë‚´ ëª©ë¡ì˜ m_pFRIENDë¥¼ NULL !!!ë¡œ ì„¤ì •í•´ì•¼í•¨.
 	CDLList< tagMyFriend >::tagNODE *pNODE;
 
 	pNODE = m_ListFRIEND.GetHeadNode ();
 	while( pNODE ) {
 		if ( dwDBID == pNODE->m_VALUE.m_dwDBID ) {
-			pNODE->m_VALUE.m_pFRIEND = pMessenger;	// ³ª¸¦ »èÁ¦ÇÒ¶§´Â pMessenger = NULL·Î ¿Å
+			pNODE->m_VALUE.m_pFRIEND = pMessenger;	// ë‚˜ë¥¼ ì‚­ì œí• ë•ŒëŠ” pMessenger = NULLë¡œ ì˜®
 
 			if ( !(FRIEND_STATUS_REFUSED & pNODE->m_VALUE.m_btSTATUS ) ) {
-				// ³»°¡ °ÅºÎÇÑ »óÅÂ°Å³ª, ³ÑÀÌ ³ª¸¦ »èÁ¦ÇÑ »óÅÂ°¡ ¾Æ´Ï¸é??? (³ª¸¦ »èÁ¦ÇÑ ³ÑÀÌ ³ªÇÑÅ× º¸³»-»èÁ¦ÇÒ ´ç½Ã)
+				// ë‚´ê°€ ê±°ë¶€í•œ ìƒíƒœê±°ë‚˜, ë„˜ì´ ë‚˜ë¥¼ ì‚­ì œí•œ ìƒíƒœê°€ ì•„ë‹ˆë©´??? (ë‚˜ë¥¼ ì‚­ì œí•œ ë„˜ì´ ë‚˜í•œí…Œ ë³´ë‚´-ì‚­ì œí•  ë‹¹ì‹œ)
 				this->m_bFriendUPDATE = ( FRIEND_STATUS_REFUSED & ( pNODE->m_VALUE.m_btSTATUS | btNewStatus ) ) ? true : false;
 				pNODE->m_VALUE.m_btSTATUS = btNewStatus;
 

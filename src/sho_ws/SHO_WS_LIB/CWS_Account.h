@@ -50,7 +50,7 @@ public :
 	}
 	void Add_GSBit (DWORD dwGSID )
 	{
-		// GS¿¡¼­ ÀÎÁõ ¿äÃ»¿À¸é ...
+		// GSì—ì„œ ì¸ì¦ ìš”ì²­ì˜¤ë©´ ...
 		m_dwGSID = dwGSID;
 		m_btLoginBIT |= BIT_LOGIN_GS;
 	}

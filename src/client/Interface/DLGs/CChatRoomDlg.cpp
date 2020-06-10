@@ -128,8 +128,8 @@ void CChatRoomDlg::OnLButtonUp( unsigned uiProcID, WPARAM wParam, LPARAM lParam 
 				if( pszPwd && strlen( pszPwd ) < 1 )
 					pszPwd = NULL;
 
-#pragma message( "ÇöÀç ¸ðµç Ã¤ÆÃ¹æÀº °ø°³¹æÀ¸·ÎÇÑ´Ù.")
-				pszPwd = NULL;///ÇöÀç ¸ðµç Ã¤ÆÃ¹æÀº °ø°³¹æ
+#pragma message( "í˜„ìž¬ ëª¨ë“  ì±„íŒ…ë°©ì€ ê³µê°œë°©ìœ¼ë¡œí•œë‹¤.")
+				pszPwd = NULL;///í˜„ìž¬ ëª¨ë“  ì±„íŒ…ë°©ì€ ê³µê°œë°©
 
 				pCtrl = pContainer->Find( IID_COMBOBOX_MAXUSER );
 				assert( pCtrl );
@@ -197,7 +197,7 @@ void CChatRoomDlg::Draw()
 	D3DXMATRIX mat;	
 	D3DXMatrixTranslation( &mat, (float)m_sPosition.x, (float)m_sPosition.y,0.0f);
 	::setTransformSprite( mat );
-	//¸â¹ö ¾ÆÀÌµð ±×¸®±â
+	//ë©¤ë²„ ì•„ì´ë”” ê·¸ë¦¬ê¸°
 
 	const char* pszTitle = CChatRoom::GetInstance().GetTitle();
 	if( pszTitle )
@@ -345,7 +345,7 @@ void CChatRoomDlg::SendChatMsg()
 		}
 		pEditBox->clear_text();
 
-		///³»°¡ Ã¤ÆÃ ¸Þ¼¼Áö¸¦ º¸³»¸é Ç×»ó ¸®½ºÆ®´Â ¸Ç¹ØÀ¸·Î ÀÌµ¿
+		///ë‚´ê°€ ì±„íŒ… ë©”ì„¸ì§€ë¥¼ ë³´ë‚´ë©´ í•­ìƒ ë¦¬ìŠ¤íŠ¸ëŠ” ë§¨ë°‘ìœ¼ë¡œ ì´ë™
 		CWinCtrl* pCtrl = FindChildInPane( IID_PANE_BOTTOM, IID_CHAT_LIST);
 		if( pCtrl )
 		{

@@ -16,7 +16,7 @@ bool WS_logSOCKET::Insert_WorldVAR ()
 	/*
 	m_csSQL.Lock ();
 	{
-		// ¼­¹ö ÀÌ¸§@VAR
+		// ì„œë²„ ì´ë¦„@VAR
 		this->m_TmpSTR.Printf (KEY_WORLD_VAR, SHO_WS::GetInstance()->GetServerName() );
 
 		this->m_pSQL->BindPARAM( 1, (BYTE*)&this->m_sBE,	sizeof( tagBasicETC )		);
@@ -38,7 +38,7 @@ bool WS_logSOCKET::Update_WorldVAR ()
 	m_csSQL.Lock ();
 	{
 	/*
-		// ¼­¹ö ÀÌ¸§@VAR
+		// ì„œë²„ ì´ë¦„@VAR
 		this->m_TmpSTR.Printf ("%s_@VAR", SHO_WS::GetInstance()->GetServerName() );
 		m_dwBuffLEN = this->m_pSQL->MakeQuery("INSERT tblWS_VAR ( txtNAME, binDATA ) VALUES (",
 											MQ_PARAM_STR,	this->GetCurDateTimeSTR(),

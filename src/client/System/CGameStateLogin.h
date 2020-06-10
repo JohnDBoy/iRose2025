@@ -4,10 +4,10 @@
 
 
 /**
-* ·Î±×ÀÎ State Class
+* ë¡œê·¸ì¸ State Class
 *	- Next State : CGameStateSelectSvr
 *
-* @Author		ÃÖÁ¾Áø
+* @Author		ìµœì¢…ì§„
 * @Date			2005/9/15
 */
 class CGameStateLogin :	public CGameState

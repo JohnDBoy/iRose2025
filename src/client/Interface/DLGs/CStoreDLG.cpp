@@ -46,18 +46,18 @@ CStoreDLG::CStoreDLG( int iType )
 	POINT ptOffset;
 
 	m_pDragItem = new CDragItem;
-	///¸Å¸ÅÃ¢À¸·ÎÀÇ ÀÌµ¿
+	///ë§¤ë§¤ì°½ìœ¼ë¡œì˜ ì´ë™
 	CTCmdNumberInput* pNumberCmd = new CTCmdAddItem2DealFromStore;
 	CTCmdOpenNumberInputDlg* pOpenCmd = new CTCmdOpenNumberInputDlg;
 	pOpenCmd->SetCommand( pNumberCmd );
 	m_pDragItem->AddTarget( DLG_TYPE_DEAL, pOpenCmd );
-	///ÀÎº¥Åä¸®·Î ÀÌµ¿
+	///ì¸ë²¤í† ë¦¬ë¡œ ì´ë™
 	pNumberCmd = new CTCmdBuyItem;
 	pOpenCmd = new CTCmdOpenNumberInputDlg;
 	pOpenCmd->SetCommand( pNumberCmd );
 	m_pDragItem->AddTarget( DLG_TYPE_ITEM, pOpenCmd );
 
-	///°³ÀÎ»óÁ¡À¸·ÎÀÇ ÀÌµ¿ = Wish List¿¡ Ãß°¡
+	///ê°œì¸ìƒì ìœ¼ë¡œì˜ ì´ë™ = Wish Listì— ì¶”ê°€
 	CTCommand* pCmd = new CTCmdDragItem2WishList;
 	m_pDragItem->AddTarget( DLG_TYPE_PRIVATESTORE, pCmd );
 
@@ -198,7 +198,7 @@ void CStoreDLG::SetTabButtonText( short iIndex, const char* szText )
 void CStoreDLG::Show()
 {
 	CTDialog::Show();
-	/////Tab1 È°¼ºÈ­, ³ª¸ÓÁö False;
+	/////Tab1 í™œì„±í™”, ë‚˜ë¨¸ì§€ False;
 	CWinCtrl* pCtrl = Find( IID_RADIOBOX );
 
 	m_nInvType = 0;	
@@ -296,7 +296,7 @@ void CStoreDLG::Update( POINT ptMouse )
 
 	CObjCHAR* pObjChar = g_pObjMGR->Get_CharOBJ( CStore::GetInstance().GetNpcObjIndex(), false );
 
-	///Object°¡ ¾ø°Å³ª °Å¸®°¡ ÀÏÁ¤ÀÌ»óÀÌ¸é ´İ¾Æ¹ö·Á¶ó.
+	///Objectê°€ ì—†ê±°ë‚˜ ê±°ë¦¬ê°€ ì¼ì •ì´ìƒì´ë©´ ë‹«ì•„ë²„ë ¤ë¼.
 	if( pObjChar == NULL )
 		g_itMGR.Close_store();
 	else if( g_pAVATAR->Get_DISTANCE( pObjChar ) >= 1000 )
@@ -314,7 +314,7 @@ int	 CStoreDLG::IsInValidShow()
 	if( g_itMGR.IsDlgOpened( DLG_TYPE_EXCHANGE ) )
 		return DLG_TYPE_EXCHANGE;
 
-//	if( g_itMGR.IsDlgOpened( DLG_TYPE_QUERY )) // »óÁ¡Àº QueryÃ¢¿¡¼­ ºÒ·ÁÁø´Ù.
+//	if( g_itMGR.IsDlgOpened( DLG_TYPE_QUERY )) // ìƒì ì€ Queryì°½ì—ì„œ ë¶ˆë ¤ì§„ë‹¤.
 //		return DLG_TYPE_QUERY;
 
 	if( g_itMGR.IsDlgOpened( DLG_TYPE_MAKE ))
@@ -338,7 +338,7 @@ void CStoreDLG::Update( CObservable* pObservable, CTObject* pObj )
 	int iSlot = pItem->GetIndex() % c_iSlotCountPerTab;
 	CIcon* pIcon = m_Slots[iTab][iSlot].GetIcon();
 
-	if( pItem->IsEmpty() ) //»èÁ¦, °°Àº Index¸¦ Ã£¾Æ¼­ Áö¿ö¶ó
+	if( pItem->IsEmpty() ) //ì‚­ì œ, ê°™ì€ Indexë¥¼ ì°¾ì•„ì„œ ì§€ì›Œë¼
 	{
 		if( pIcon )
 		{
@@ -349,20 +349,20 @@ void CStoreDLG::Update( CObservable* pObservable, CTObject* pObj )
 			}
 			else
 			{
-				assert( 0 && "ÇØ´ç½½·Ô¿¡ ´Ù¸¥ ÀÎµ¦½º¸¦ °¡Áø ¾ÆÀÌÄÜÀÌ ÀÖ´Ù @CStore::Update");
+				assert( 0 && "í•´ë‹¹ìŠ¬ë¡¯ì— ë‹¤ë¥¸ ì¸ë±ìŠ¤ë¥¼ ê°€ì§„ ì•„ì´ì½˜ì´ ìˆë‹¤ @CStore::Update");
 			}
 		}
 		else
 		{
-			assert( pIcon && "¾ø´Â ¾ÆÀÌÅÛÀ» Áö¿ì·Á°í ÇÑ´Ù. @CStoreDLG::Update" );
+			assert( pIcon && "ì—†ëŠ” ì•„ì´í…œì„ ì§€ìš°ë ¤ê³  í•œë‹¤. @CStoreDLG::Update" );
 		}
 		
 	}
-	else///Ãß°¡
+	else///ì¶”ê°€
 	{
 		if( pIcon )
 		{
-			assert( 0 && "Ãß°¡ÇÒ ½½·Ô¿¡ ÀÌ¹Ì ¾ÆÀÌÄÜÀÌ ÀÖ´Ù @CStore::Update") ;
+			assert( 0 && "ì¶”ê°€í•  ìŠ¬ë¡¯ì— ì´ë¯¸ ì•„ì´ì½˜ì´ ìˆë‹¤ @CStore::Update") ;
 		}
 		else
 		{

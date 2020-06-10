@@ -125,7 +125,7 @@ int	CBank::GetNpcClientIndex()
 
 bool CBank::HasEmptySlot(  bool bPlatinum )
 {
-	///³ªÁß¿¡ Á¤È®ÇÏ°Ô Ã³¸®ÇÏÀÚ.
+	///ë‚˜ì¤‘ì— ì •í™•í•˜ê²Œ ì²˜ë¦¬í•˜ì.
 	//if( bPlatinum )
 	//{
 

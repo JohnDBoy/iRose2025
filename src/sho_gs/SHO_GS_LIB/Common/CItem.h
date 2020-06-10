@@ -1,23 +1,23 @@
 /**
  * \ingroup SHO_GS
  * \file	CItem.h
- * \brief	°³°³ÀÇ ¾ÆÀÌÅÛ µ¥ÀÌÅ¸, Å¬¶óÀÌ¾ğÆ®´Â 6¹ÙÀÌÆ®, ¼­¹ö´Â 6+8¹ÙÀÌÆ®(¾ÆÀÌÅÛ°íÀ¯ID)
+ * \brief	ê°œê°œì˜ ì•„ì´í…œ ë°ì´íƒ€, í´ë¼ì´ì–¸íŠ¸ëŠ” 6ë°”ì´íŠ¸, ì„œë²„ëŠ” 6+8ë°”ì´íŠ¸(ì•„ì´í…œê³ ìœ ID)
  * <pre>
- * µ·(MONEY)	ÁöÁ¤¹øÈ£ : 40	(0 ~ 999,999)
- * ¾ÆÀÌÅÛ Á¾·ù(ITEM_CLASS)		(1 ~ 20)		: 5  bit  0~31		
- * ¾Æ¾ÆÅÛ ¹øÈ£(ITEM_ID)		(0 ~ 999)		: 10 bit  0~1023	
+ * ëˆ(MONEY)	ì§€ì •ë²ˆí˜¸ : 40	(0 ~ 999,999)
+ * ì•„ì´í…œ ì¢…ë¥˜(ITEM_CLASS)		(1 ~ 20)		: 5  bit  0~31		
+ * ì•„ì•„í…œ ë²ˆí˜¸(ITEM_ID)		(0 ~ 999)		: 10 bit  0~1023	
  * 
- * Àç¹Ö ¹øÈ£1(JAMMING1)		(0~120)			: 7  bit  0~127
- * Àç¹Ö ¹øÈ£2(JAMMING2)		(0~120)         : 7  bit  0~127
- * Àç¹Ö ¹øÈ£3(JAMMING3)		(0~120)         : 7  bit  0~127
+ * ì¬ë° ë²ˆí˜¸1(JAMMING1)		(0~120)			: 7  bit  0~127
+ * ì¬ë° ë²ˆí˜¸2(JAMMING2)		(0~120)         : 7  bit  0~127
+ * ì¬ë° ë²ˆí˜¸3(JAMMING3)		(0~120)         : 7  bit  0~127
  * 
- * °­È­ µî±Ş(RESMELT)			(0~9)			: 4  bit  0~15		Àåºñ ¾ÆÀÌÅÛÀÏ °æ¿ì¸¸..
- * Ç°Áú(QUALITY)				(0~120)			: 7  bit  0~127		Àåºñ ¾ÆÀÌÅÛÀÏ °æ¿ì¸¸..
- * °³¼ö(QUANTITY)				(1~999)			: 10 bit  0~1023	¼Ò¸ğ, ±âÅ¸ ¾ÆÀÌÅÛÀÏ °æ¿ì
+ * ê°•í™” ë“±ê¸‰(RESMELT)			(0~9)			: 4  bit  0~15		ì¥ë¹„ ì•„ì´í…œì¼ ê²½ìš°ë§Œ..
+ * í’ˆì§ˆ(QUALITY)				(0~120)			: 7  bit  0~127		ì¥ë¹„ ì•„ì´í…œì¼ ê²½ìš°ë§Œ..
+ * ê°œìˆ˜(QUANTITY)				(1~999)			: 10 bit  0~1023	ì†Œëª¨, ê¸°íƒ€ ì•„ì´í…œì¼ ê²½ìš°
  * 
- *   Àåºñ : 5 + 10 + 21 + 11 ==> 15+33 : 48   6 bytes
- *   ±âÅ¸ : 5 + 10 + 10      ==> 15+10
- *   µ·   : 5 + 10 + xx
+ *   ì¥ë¹„ : 5 + 10 + 21 + 11 ==> 15+33 : 48   6 bytes
+ *   ê¸°íƒ€ : 5 + 10 + 10      ==> 15+10
+ *   ëˆ   : 5 + 10 + xx
  * </pre>
  */
 #ifndef	__CITEM_H
@@ -25,53 +25,53 @@
 #pragma warning (disable:4201)
 //-------------------------------------------------------------------------------------------------
 
-#define	MAX_ITEM_LIFE			1000		/// ÃÖ´ë ¾ÆÀÌÅÛ ¼ö¸í
-#define	MAX_DUP_ITEM_QUANTITY	999			/// ÃÖ´ë ÁßÃ¸ °¡´ÉÇÑ ¾ÆÀÌÅÛ °¹¼ö
+#define	MAX_ITEM_LIFE			1000		/// ìµœëŒ€ ì•„ì´í…œ ìˆ˜ëª…
+#define	MAX_DUP_ITEM_QUANTITY	999			/// ìµœëŒ€ ì¤‘ì²© ê°€ëŠ¥í•œ ì•„ì´í…œ ê°¯ìˆ˜
 
 #pragma pack (push, 1)
 struct tagPartITEM {
-	unsigned int	m_nItemNo		: 10;	///< 0~1023	¾Æ¾ÆÅÛ ¹øÈ£(ITEM_ID)		(0 ~ 999)
-	unsigned int	m_nGEM_OP		: 9;	///< 0~512	º¸¼®¹øÈ£(m_bHasSocket==1) ¶Ç´Â ¿É¼Ç ¹øÈ£(m_bHasSocket==0)
-	unsigned int	m_bHasSocket	: 1;	///< 0~1		º¸¼® ¼ÒÄÏ ¿©ºÎ
-	unsigned int	m_cGrade	    : 4;	///< 0~15		µî±Ş						(0~9)
+	unsigned int	m_nItemNo		: 10;	///< 0~1023	ì•„ì•„í…œ ë²ˆí˜¸(ITEM_ID)		(0 ~ 999)
+	unsigned int	m_nGEM_OP		: 9;	///< 0~512	ë³´ì„ë²ˆí˜¸(m_bHasSocket==1) ë˜ëŠ” ì˜µì…˜ ë²ˆí˜¸(m_bHasSocket==0)
+	unsigned int	m_bHasSocket	: 1;	///< 0~1		ë³´ì„ ì†Œì¼“ ì—¬ë¶€
+	unsigned int	m_cGrade	    : 4;	///< 0~15		ë“±ê¸‰						(0~9)
 } ;
 
 
 #ifndef	__SERVER
 #define	tagITEM		tagBaseITEM
 #endif
-// ÃÑ 48 bits, 6 bytes
+// ì´ 48 bits, 6 bytes
 struct tagBaseITEM {
 	union {
-		/// Àåºñ ¾ÆÀÌÅÛ ±¸Á¶
+		/// ì¥ë¹„ ì•„ì´í…œ êµ¬ì¡°
 		struct {	
 			// LSB ::
-			// ¾Æ·¡ µÑÁß ÇÏ³ª´Â ºñÆ® ´Ã·Áµµ µÊ.
-			unsigned short	m_cType			: 5;	///< 0~31		¾ÆÀÌÅÛ Á¾·ù(ITEM_CLASS)		(1 ~ 20)
-			unsigned short	m_nItemNo		: 10;	///< 0~1023	¾Æ¾ÆÅÛ ¹øÈ£(ITEM_ID)		(0 ~ 999)
-			unsigned short	m_bCreated		: 1;	///< 0~1		Á¦Á¶µÈ ¾ÆÀÌÅÛÀÎ°¡ ?
+			// ì•„ë˜ ë‘˜ì¤‘ í•˜ë‚˜ëŠ” ë¹„íŠ¸ ëŠ˜ë ¤ë„ ë¨.
+			unsigned short	m_cType			: 5;	///< 0~31		ì•„ì´í…œ ì¢…ë¥˜(ITEM_CLASS)		(1 ~ 20)
+			unsigned short	m_nItemNo		: 10;	///< 0~1023	ì•„ì•„í…œ ë²ˆí˜¸(ITEM_ID)		(0 ~ 999)
+			unsigned short	m_bCreated		: 1;	///< 0~1		ì œì¡°ëœ ì•„ì´í…œì¸ê°€ ?
 
-			unsigned int	m_nGEM_OP		: 9;	///< 0~512	º¸¼®¹øÈ£(m_bHasSocket==1) ¶Ç´Â ¿É¼Ç ¹øÈ£(m_bHasSocket==0)
-			unsigned int	m_cDurability	: 7;	///< 0~127	³»±¸µµ
+			unsigned int	m_nGEM_OP		: 9;	///< 0~512	ë³´ì„ë²ˆí˜¸(m_bHasSocket==1) ë˜ëŠ” ì˜µì…˜ ë²ˆí˜¸(m_bHasSocket==0)
+			unsigned int	m_cDurability	: 7;	///< 0~127	ë‚´êµ¬ë„
 
-			unsigned int	m_nLife			: 10;	///< 0~1023	¼ö¸í
-			unsigned int	m_bHasSocket	: 1;	///< 0~1		º¸¼® ¼ÒÄÏ ¿©ºÎ
-			unsigned int	m_bIsAppraisal	: 1;	///< 0~1		¿É¼Ç °ËÁõ ¿©ºÎ
-			unsigned int	m_cGrade	    : 4;	///< 0~15		µî±Ş						(0~9)
+			unsigned int	m_nLife			: 10;	///< 0~1023	ìˆ˜ëª…
+			unsigned int	m_bHasSocket	: 1;	///< 0~1		ë³´ì„ ì†Œì¼“ ì—¬ë¶€
+			unsigned int	m_bIsAppraisal	: 1;	///< 0~1		ì˜µì…˜ ê²€ì¦ ì—¬ë¶€
+			unsigned int	m_cGrade	    : 4;	///< 0~15		ë“±ê¸‰						(0~9)
 
 			// 16 + 16 + 16 => 48
 			// MSB ::
 		} ;
 
-		/// ¼Ò¸ğ, ±âÅ¸ ¾ÆÀÌÅÛ ±¸Á¶
+		/// ì†Œëª¨, ê¸°íƒ€ ì•„ì´í…œ êµ¬ì¡°
 		struct {
-			unsigned short	m_cType_1		: 5;	///< 0~31		¾ÆÀÌÅÛ Á¾·ù(ITEM_CLASS)		(1 ~ 20)
-			unsigned short	m_nItemNo_1		: 10;	///< 0~1023	¾Æ¾ÆÅÛ ¹øÈ£(ITEM_ID)		(0 ~ 999)
+			unsigned short	m_cType_1		: 5;	///< 0~31		ì•„ì´í…œ ì¢…ë¥˜(ITEM_CLASS)		(1 ~ 20)
+			unsigned short	m_nItemNo_1		: 10;	///< 0~1023	ì•„ì•„í…œ ë²ˆí˜¸(ITEM_ID)		(0 ~ 999)
 
-			unsigned int	m_uiQuantity	: 32;	///< °¹¼ö(µ·)
+			unsigned int	m_uiQuantity	: 32;	///< ê°¯ìˆ˜(ëˆ)
 		} ;
 
-		/// µ· ¾ÆÀÌÅÛ ±¸Á¶
+		/// ëˆ ì•„ì´í…œ êµ¬ì¡°
 		struct {
 			unsigned short	m_cType_2		: 5;	///< 0~31
 			unsigned short	m_nReserved1	: 11;
@@ -102,7 +102,7 @@ struct tagBaseITEM {
 
 	unsigned short GetTYPE ()			{	return	m_cType;				}
 	unsigned short GetItemNO ()			{	return	m_nItemNo;				}
-	unsigned short GetHEADER ()			{	return (m_wHeader & 0x7fff);	}	/// m_bCreated :: Çì´õ ºñ±³½Ã Á¦Á¶ºñÆ® ¾øÀÌ...
+	unsigned short GetHEADER ()			{	return (m_wHeader & 0x7fff);	}	/// m_bCreated :: í—¤ë” ë¹„êµì‹œ ì œì¡°ë¹„íŠ¸ ì—†ì´...
 
 	unsigned short GetGrade ()			{	return	m_cGrade;		}
 	unsigned short GetOption ()			{	return  m_nGEM_OP;		}
@@ -117,9 +117,9 @@ struct tagBaseITEM {
 	bool IsAppraisal()					{	return (0!=m_bIsAppraisal);		}
 	bool HasSocket()					{	return (0!=m_bHasSocket);		}
 
-	bool IsEnableDROP ();					/// ¹ö¸®±â°¡ °¡´ÉÇÑ ¾ÆÀÌÅÛÀÎ°¡ ?
-	bool IsEnableSELL ();					/// ÆÈ±â°¡ °¡´ÉÇÑ ¾ÆÀÌÅÛÀÎ°¡ ?
-	bool IsEnableKEEPING ();				/// ÀºÇà¿¡ º¸°ü °¡´ÉÇÑ ¾ÆÀÌÅÛÀÎ°¡ ?
+	bool IsEnableDROP ();					/// ë²„ë¦¬ê¸°ê°€ ê°€ëŠ¥í•œ ì•„ì´í…œì¸ê°€ ?
+	bool IsEnableSELL ();					/// íŒ”ê¸°ê°€ ê°€ëŠ¥í•œ ì•„ì´í…œì¸ê°€ ?
+	bool IsEnableKEEPING ();				/// ì€í–‰ì— ë³´ê´€ ê°€ëŠ¥í•œ ì•„ì´í…œì¸ê°€ ?
 
 	static bool IsValidITEM (DWORD wType, DWORD wItemNO);
 	static bool IsValidITEM (tagBaseITEM *pItem)		{	return tagBaseITEM::IsValidITEM( pItem->GetTYPE(), pItem->GetItemNO() );	}
@@ -127,12 +127,12 @@ struct tagBaseITEM {
 
 	static bool IsEnableDupCNT( unsigned short cType )		
 	{	
-		// Áßº¹ °¹¼öÀû¿ë ¾ÆÀÌÅÛÀÌ³Ä???
+		// ì¤‘ë³µ ê°¯ìˆ˜ì ìš© ì•„ì´í…œì´ëƒ???
 		return (cType>=ITEM_TYPE_USE && cType<ITEM_TYPE_RIDE_PART);
 	}
 	bool IsEnableDupCNT()				{	return IsEnableDupCNT(m_cType);	}
 	bool IsCreated()					{	return (1==m_bCreated);			}
-	bool IsEquipITEM()					{	return ( m_cType && m_cType < ITEM_TYPE_USE );					}	/// ÀåÂø ¾ÆÀÌÅÛÀÎ°¡?
+	bool IsEquipITEM()					{	return ( m_cType && m_cType < ITEM_TYPE_USE );					}	/// ì¥ì°© ì•„ì´í…œì¸ê°€?
 	bool IsEtcITEM()					{	return ( m_cType>ITEM_TYPE_USE && m_cType<ITEM_TYPE_QUEST);		}
 
 	bool IsTwoHands ();
@@ -143,11 +143,11 @@ struct tagBaseITEM {
 	unsigned int	GetQuantity ()		{	return	m_uiQuantity;			}
 #else
 	unsigned int	GetQuantity ();
-	short			Subtract( tagITEM &sITEM );		/// ÁÖ¾îÁø ¾ÆÀÌÅÛ ¸¸Å­ ´ú¾î ³»°í ºüÁø°á°ú´Â sITEM¿¡ µé¾î ÀÖ´Ù.
-	void			SubtractOnly (tagITEM &sITEM);	/// ÁÖ¾îÁø ¾ÆÀÌÅÛ ¸¸Å­ ´ú¾î ³½´Ù.
+	short			Subtract( tagITEM &sITEM );		/// ì£¼ì–´ì§„ ì•„ì´í…œ ë§Œí¼ ëœì–´ ë‚´ê³  ë¹ ì§„ê²°ê³¼ëŠ” sITEMì— ë“¤ì–´ ìˆë‹¤.
+	void			SubtractOnly (tagITEM &sITEM);	/// ì£¼ì–´ì§„ ì•„ì´í…œ ë§Œí¼ ëœì–´ ë‚¸ë‹¤.
 
-	bool			IsEnableAppraisal ();			/// °¨Á¤°¡´ÉÇÑ ¾ÆÀÌÅÛÀÎ°¡?
-	bool			IsEnableExchange ();			/// ¹ö¸®±â°¡ °¡´ÉÇÑ ¾ÆÀÌÅÛÀÎ°¡ ?
+	bool			IsEnableAppraisal ();			/// ê°ì •ê°€ëŠ¥í•œ ì•„ì´í…œì¸ê°€?
+	bool			IsEnableExchange ();			/// ë²„ë¦¬ê¸°ê°€ ê°€ëŠ¥í•œ ì•„ì´í…œì¸ê°€ ?
 	bool			IsEnableSeparate ();
 	bool			IsEnableUpgrade ();
 	bool			HasLife();
@@ -157,10 +157,10 @@ struct tagBaseITEM {
 	char*			GettingMESSAGE ();
 	char*			GettingQuestMESSAGE();
 	char*			SubtractQuestMESSAGE();
-	///¼Ò¸ğÅº¾ÆÀÌÅÛÀÇ ShotTypeÀ» ¾ò±â
+	///ì†Œëª¨íƒ„ì•„ì´í…œì˜ ShotTypeì„ ì–»ê¸°
 	static t_eSHOT GetNaturalBulletType( int iItemNo );
 	t_eSHOT GetBulletType();
-	///¸íÁß·Â
+	///ëª…ì¤‘ë ¥
 	int				GetHitRate();
 	int				GetAvoidRate();
 	bool			IsEqual( int iType, int iItemNo );
@@ -180,9 +180,9 @@ struct tagITEM : public tagBaseITEM {
 		__int64	m_iSN;
 	} ;
 
-	/// ÇöÀç ¾ÆÀÌÅÛ¿¡¼­ ÁÖ¾îÁø ¾ÆÀÌÅÛ ¸¸Å­ »«ÈÄ, ºüÁø ¹«°Ô¸¦ ¸®ÅÏÇÑ´Ù.
-	short	Subtract( tagITEM &sITEM );		/// ÁÖ¾îÁø ¾ÆÀÌÅÛ ¸¸Å­ ´ú¾î ³»°í ºüÁø°á°ú´Â sITEM¿¡ µé¾î ÀÖ´Ù.
-	void	SubtractOnly (tagITEM &sITEM);	/// ÁÖ¾îÁø ¾ÆÀÌÅÛ ¸¸Å­ ´ú¾î ³½´Ù.
+	/// í˜„ì¬ ì•„ì´í…œì—ì„œ ì£¼ì–´ì§„ ì•„ì´í…œ ë§Œí¼ ëº€í›„, ë¹ ì§„ ë¬´ê²Œë¥¼ ë¦¬í„´í•œë‹¤.
+	short	Subtract( tagITEM &sITEM );		/// ì£¼ì–´ì§„ ì•„ì´í…œ ë§Œí¼ ëœì–´ ë‚´ê³  ë¹ ì§„ê²°ê³¼ëŠ” sITEMì— ë“¤ì–´ ìˆë‹¤.
+	void	SubtractOnly (tagITEM &sITEM);	/// ì£¼ì–´ì§„ ì•„ì´í…œ ë§Œí¼ ëœì–´ ë‚¸ë‹¤.
 
 	bool SubQuantity ()		{	
 		if ( GetQuantity() > 0 ) {

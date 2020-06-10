@@ -104,7 +104,7 @@ void CClientStorage::Load()
 	m_CommunityOption.iMessanger = GetPrivateProfileInt("COMMUNITY","MESSANGER",1,g_szIniFileName );
 
 	
-	/// °¢ DialogµéÀÇ À§Ä¡
+	/// ê° Dialogë“¤ì˜ ìœ„ì¹˜
 	ZeroMemory( m_DialogPos, sizeof( m_DialogPos ));
 	if( GetPrivateProfileStruct( "DIALOG", "POSITION", m_DialogPos, sizeof( m_DialogPos ), g_szIniFileName ) )
 		m_bHasSavedDialogPos = true;
@@ -216,7 +216,7 @@ void CClientStorage::Save()
 
 //	WritePrivateProfileStruct(m_strAvatarName.c_str(),"INVENTORY", m_VirtualInventory, sizeof( m_VirtualInventory ),g_szIniFileName );
 
-	m_DialogPos[DLG_TYPE_MAX].nPosX = -999;///³¡±îÁö ¸ðµç DialogµéÀÇ À§Ä¡°¡ ÀúÀåµÇ¾î ÀÖ´Â°¡¸¦ ÆÇ´ÜÇÏ±â À§ÇÑ °ª
+	m_DialogPos[DLG_TYPE_MAX].nPosX = -999;///ëê¹Œì§€ ëª¨ë“  Dialogë“¤ì˜ ìœ„ì¹˜ê°€ ì €ìž¥ë˜ì–´ ìžˆëŠ”ê°€ë¥¼ íŒë‹¨í•˜ê¸° ìœ„í•œ ê°’
 	m_DialogPos[DLG_TYPE_MAX].nPosY = -999;
 	WritePrivateProfileStruct("DIALOG","POSITION", m_DialogPos, sizeof( m_DialogPos ),g_szIniFileName );
 	m_bHasSavedDialogPos = true;
@@ -281,7 +281,7 @@ void  CClientStorage::SetSavedDialogPos( int iDialogID ,POINT pt )
 
 void CClientStorage::ApplyCameraOption( short i )
 {
-	/// ÇöÀç Á¸ÀÇ Ä«¸Þ¶ó¼ÂÀ¸·Î º¯È¯
+	/// í˜„ìž¬ ì¡´ì˜ ì¹´ë©”ë¼ì…‹ìœ¼ë¡œ ë³€í™˜
 	if( g_pTerrain )
 	{
 		int iZoneType = g_pTerrain->GetZoneNO();

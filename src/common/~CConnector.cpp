@@ -42,7 +42,7 @@ bool CConnector::_Init (TCustomWinSocket *pSocket)
 void CConnector::_Free (void)
 {
 /*
-	// *** ÀÌ¹Ì Å¬¶óÀÌ¾ðÆ® ¸®½ºÆ®¿¡¼­ Á¦°ÅµÇ¾î SendPacket loop¿¡¼­ Àý¶§·ç È£Ãâ ¾ÈµÈ´Ù.
+	// *** ì´ë¯¸ í´ë¼ì´ì–¸íŠ¸ ë¦¬ìŠ¤íŠ¸ì—ì„œ ì œê±°ë˜ì–´ SendPacket loopì—ì„œ ì ˆë•Œë£¨ í˜¸ì¶œ ì•ˆëœë‹¤.
 	this->LockSENDq ();		// classCLIENT::Client_Free
 		classDLLNODE <classPACKET *> *pPketNode;
 		pPketNode = m_SendPketQ.GetHeadNode ();
@@ -187,7 +187,7 @@ bool CConnector::AppendSendPacket (classPACKET *pCPacket)
     this->LockSENDq ();	// classCLIENT::AppendSendPacket
         m_SendPketQ.AppendNode (pNewNode);
         if ( m_SendPketQ.GetNodeCount() == 1 ) {
-            // ºñ¾î ÀÖ´ø Å¥´Ù
+            // ë¹„ì–´ ìžˆë˜ íë‹¤
         }
     this->UnlockSENDq ();
 
@@ -202,10 +202,10 @@ bool CConnector::SendPacket ()
     dwCurrentTime = timeGetTime ();
 
     if ( !m_bIsWritable ) {
-        // ¾²±â »óÅÂ°¡ ¾Æ´Ï´Ù...
+        // ì“°ê¸° ìƒíƒœê°€ ì•„ë‹ˆë‹¤...
         /*
         if ( dwCurrentTime - this->m_dwLastActionTime >= TIMEOUT_DISCONNECT ) {
-            // ¹Ù·Î pClientNode->DATA.m_pSocket->Close () ¸¦ È£ÃâÇÏ¸é µ¥µå¶ô °É¸°´Ù.
+            // ë°”ë¡œ pClientNode->DATA.m_pSocket->Close () ë¥¼ í˜¸ì¶œí•˜ë©´ ë°ë“œë½ ê±¸ë¦°ë‹¤.
             WM_CloseSOCKET( pClientNode->DATA.m_pSocket, 3 );
         }
         */
@@ -242,7 +242,7 @@ bool CConnector::SendPacket ()
                     break;
                 }
 
-                /* TODO : Á¢¼Ó ²÷¾î¾ß ÇÑ´Ù. */
+                /* TODO : ì ‘ì† ëŠì–´ì•¼ í•œë‹¤. */
                 /*
                 this->m_pSocket->Disconnect( m_pSocket->SocketHandle ); // Disconnect(FSocket);
                 */

@@ -73,7 +73,10 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">
     <PreBuildEvent>
       <Message>Increasing Build Count</Message>
-      <Command>cd $(ProjectDir)include</Command>
+      <Command>cd $(SolutionDir)src\engine\include
+$(SolutionDir)bin\release\thirdparty\lua5.exe -e debug=1 ./zz_build_count.lua
+$(SolutionDir)bin\release\thirdparty\lua5.exe -e debug=1 ./zz_script_lua.lua
+</Command>
     </PreBuildEvent>
     <ClCompile>
       <Optimization>Disabled</Optimization>
@@ -112,7 +115,10 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release|Win32'">
     <PreBuildEvent>
       <Message>Increasing Build Count</Message>
-      <Command>cd $(ProjectDir)include</Command>
+      <Command>cd $(SolutionDir)src\engine\include
+$(SolutionDir)bin\release\thirdparty\lua5.exe -e debug=1 ./zz_build_count.lua
+$(SolutionDir)bin\release\thirdparty\lua5.exe -e debug=1 ./zz_script_lua.lua
+</Command>
     </PreBuildEvent>
     <CustomBuildStep>
       <Command>
@@ -295,7 +301,6 @@
     <ClInclude Include="include\zz_visible.h" />
     <ClInclude Include="include\zz_waiting_line.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="bitmap1.bmp" />

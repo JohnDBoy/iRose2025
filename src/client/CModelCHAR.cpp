@@ -96,7 +96,7 @@ void CCharMODEL::SetMeshMOTION (HNODE **pphPartVIS, short nAniIdx)
 
 
 ///
-/// .Txt ´ÜÀ§ÀÇ ¿ÀºêÁ§Æ® ·Îµå
+/// .Txt ë‹¨ìœ„ì˜ ì˜¤ë¸Œì íŠ¸ ë¡œë“œ
 ///
 HNODE *CCharMODEL::CreatePART (char *szName, HNODE hModelNODE, short nPartIdx, short nLinkDummyIdx)
 {
@@ -117,9 +117,9 @@ HNODE *CCharMODEL::CreatePART (char *szName, HNODE hModelNODE, short nPartIdx, s
 			pVIS[ nI ] = pCharPART->m_pParts[ nI ].Load_ZMODEL( pStr, hModelNODE );
 			if ( pVIS[ nI ] ) 
 			{
-				::setCollisionLevel( pVIS[ nI ], 0 );	// Ä³¸¯ÅÍ Ãæµ¹Àº ¸ðµ¨¸¸ ÇÑ´Ù.
+				::setCollisionLevel( pVIS[ nI ], 0 );	// ìºë¦­í„° ì¶©ëŒì€ ëª¨ë¸ë§Œ í•œë‹¤.
 			}
-			else /// ½ºÅ°´× µÇ´Â ¿ÀºêÁ§Æ®ÀÏ °æ¿ì..
+			else /// ìŠ¤í‚¤ë‹ ë˜ëŠ” ì˜¤ë¸Œì íŠ¸ì¼ ê²½ìš°..
 			{
 				m_RenderUnitPart[ nPartIdx ].push_back( m_iRenderUnitOrder );
 				m_iRenderUnitOrder++;
@@ -190,12 +190,12 @@ bool CCharMODEL::Load_MOBorNPC ( CFileSystem* pFileSystem, t_HASHKEY *pSkelKEY, 
 	pFileSystem->ReadInt16( &nCnt );
 	for (nI=0; nI<nCnt; nI++) 
 	{
-		// nAniIDX == 0 ÀÎ Á¤Áö°¡ ¾Èµé¾î ¿Â´Ù..
+		// nAniIDX == 0 ì¸ ì •ì§€ê°€ ì•ˆë“¤ì–´ ì˜¨ë‹¤..
 		pFileSystem->ReadInt16( &nAniIDX );
 		pFileSystem->ReadInt16( &nIndex );
 
 		if ( nAniIDX < 0 ) {
-			// »ç¿ëÇÏÁö ¾Ê´Â´Ù...
+			// ì‚¬ìš©í•˜ì§€ ì•ŠëŠ”ë‹¤...
 			continue;
 		}
 
@@ -250,7 +250,7 @@ CEffect** CCharMODEL::CreateBoneEFFECT (HNODE hMODEL)
 	return ppEffect;
 }
 
-/// @Bug g_pEffectLIST->Add_EFFECT( .., default false ) ·Î Ãß°¡ÇÑ ÀÌÆåÆ®´Â ¸®½ºÆ®¿¡ Ãß°¡µÇÁö ¾Ê±â¶§¹®¿¡ Á÷Á¢ Áö¿ö¾ßÇÑ´Ù.
+/// @Bug g_pEffectLIST->Add_EFFECT( .., default false ) ë¡œ ì¶”ê°€í•œ ì´íŽ™íŠ¸ëŠ” ë¦¬ìŠ¤íŠ¸ì— ì¶”ê°€ë˜ì§€ ì•Šê¸°ë•Œë¬¸ì— ì§ì ‘ ì§€ì›Œì•¼í•œë‹¤.
 /// 
 ///
 void CCharMODEL::DeleteBoneEFFECT (CEffect **ppEffect)
@@ -350,12 +350,12 @@ bool CCharModelDATA::Load_MOBorNPC (char *szFileName)
 		m_pMODELS[ nI ].Load_MOBorNPC (pFileSystem, pSkelKEY, pAniKEY, pEftKEY);
 
 		if ( NPC_R_WEAPON( nI ) ) {
-			// ¿À¸¥¼Õ ±âº» ¹«±â
+			// ì˜¤ë¥¸ì† ê¸°ë³¸ ë¬´ê¸°
 			m_pMODELS[ nI ].SetPartMODEL( BODY_PART_WEAPON_R, NPC_R_WEAPON( nI ) );
 		}
 
 		if ( NPC_L_WEAPON( nI ) ) {
-			// ¿Þ¼Õ ¹æÆÐor¹«±â
+			// ì™¼ì† ë°©íŒ¨orë¬´ê¸°
 			m_pMODELS[ nI ].SetPartMODEL( BODY_PART_WEAPON_L, NPC_L_WEAPON( nI ) );
 		}
 	}

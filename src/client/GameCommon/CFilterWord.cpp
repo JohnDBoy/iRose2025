@@ -122,7 +122,7 @@ std::string& CFilterWord::GetChangedString()
 	return m_strChangedString;
 }
 //*------------------------------------------------------------------------------/
-/// ¿©·¯ ´Ü¾î°¡ °É¸±°æ¿ì Á¦ÀÏ ¸¶Áö¸·¿¡ °É¸° ´Ü¾î°¡ ÀúÀåµÈ´Ù.
+/// ì—¬ëŸ¬ ë‹¨ì–´ê°€ ê±¸ë¦´ê²½ìš° ì œì¼ ë§ˆì§€ë§‰ì— ê±¸ë¦° ë‹¨ì–´ê°€ ì €ìž¥ëœë‹¤.
 //*------------------------------------------------------------------------------/
 std::string& CFilterWord::GetCheckedWord()
 {
@@ -184,7 +184,7 @@ int CFilterWord::Wide2MultyByteString( wstring& wstrWide , string& strMultyByte 
 }
 
 //----------------------------------------------------------------------------------------------------
-/// @brief Unicode·ÎºÎÅÍ ÇØ´ç ¾ð¾îÀÎ°¡¸¦ ÆÇº°ÇÑ´Ù.
+/// @brief Unicodeë¡œë¶€í„° í•´ë‹¹ ì–¸ì–´ì¸ê°€ë¥¼ íŒë³„í•œë‹¤.
 //----------------------------------------------------------------------------------------------------
 bool CFilterWord::IsEnglish( wchar_t wchar )
 {
@@ -210,11 +210,11 @@ bool CFilterWord::IsKorean( wchar_t wchar )
 	if( wchar >= 0xAC00 && wchar <= 0xD7A3 )
 		return true;
 
-	//¿Ï¼º¾ÈµÈ ÀÚ¸ð´Â false·Î Ãë±ÞÇÑ´Ù.
+	//ì™„ì„±ì•ˆëœ ìžëª¨ëŠ” falseë¡œ ì·¨ê¸‰í•œë‹¤.
 	return false;
 }
 
-///È÷¶ó°¡³ª, °¡Å¸°¡³ª
+///ížˆë¼ê°€ë‚˜, ê°€íƒ€ê°€ë‚˜
 bool CFilterWord::IsJapanese( wchar_t wchar )
 {
 	if( wchar >= 0x3040 && wchar <= 0x30FF )
@@ -222,7 +222,7 @@ bool CFilterWord::IsJapanese( wchar_t wchar )
 
 	return false;
 }
-///ÇÑÀÚ
+///í•œìž
 bool CFilterWord::IsHanja( wchar_t wchar )
 {
 	if( wchar >= 0x4E00 && wchar <= 0x9FFF )
@@ -259,8 +259,8 @@ bool CFilterWord::IsValidName( char* szName )
 	{
 		WORD wPrimaryLang =  CGameUtil::GetPrimaryLanguage();
 
-		//¿µ¾î¹®ÀÚ±Ç¿¡¼­´Â ¿µ¾î, ¼ýÀÚ·Î¸¸ ¾µ¼öÀÖ°Ô
-		//Å°º¸µå ¾ð¾î ¼ÂÆÃ°ú´Â °ü°è¾øÀÌ Å¬¶óºôµå ¹öÀüÀ¸·Î °Ë»çÇÑ´Ù.
+		//ì˜ì–´ë¬¸ìžê¶Œì—ì„œëŠ” ì˜ì–´, ìˆ«ìžë¡œë§Œ ì“¸ìˆ˜ìžˆê²Œ
+		//í‚¤ë³´ë“œ ì–¸ì–´ ì…‹íŒ…ê³¼ëŠ” ê´€ê³„ì—†ì´ í´ë¼ë¹Œë“œ ë²„ì „ìœ¼ë¡œ ê²€ì‚¬í•œë‹¤.
 #if defined(_USA) || defined(_PHILIPPIN) || defined(_EU)
 		return CheckEnglish( wstrName );		
 #endif

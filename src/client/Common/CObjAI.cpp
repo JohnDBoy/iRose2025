@@ -1,12 +1,12 @@
 /*
-	** ÁÖÀÇ »çÇ× !!!
-	common/*.cpp, *.h ÆÄÀÏµéÀº ¼­¹ö¿Í ¼Ò½º¸¦ °øÀ¯ÇÔÀ¸·Î
-	Å¬¶óÀÌ¾ðÆ®¸¸ »ý°¢ÇØ¼­ °íÄ¡¸é Àý´ë·Î ¾ÈµÊ !!!! ***
+	** ì£¼ì˜ ì‚¬í•­ !!!
+	common/*.cpp, *.h íŒŒì¼ë“¤ì€ ì„œë²„ì™€ ì†ŒìŠ¤ë¥¼ ê³µìœ í•¨ìœ¼ë¡œ
+	í´ë¼ì´ì–¸íŠ¸ë§Œ ìƒê°í•´ì„œ ê³ ì¹˜ë©´ ì ˆëŒ€ë¡œ ì•ˆë¨ !!!! ***
 
 	$Header: /Client/Common/CObjAI.cpp 234   05-09-30 10:57a Gioend $
 
 	** 2004/4/28 **
-	¼­¹ö¿ÍÀÇ ÄÚµå ºÐ¸®·Î.. CObjAI ´Â ÀÌÁ¦ Å¬¶óÀÌ¾ðÆ®¿¡¼­¸¸ »ç¿ëÇÔ..
+	ì„œë²„ì™€ì˜ ì½”ë“œ ë¶„ë¦¬ë¡œ.. CObjAI ëŠ” ì´ì œ í´ë¼ì´ì–¸íŠ¸ì—ì„œë§Œ ì‚¬ìš©í•¨..
 */
 #include "stdAFX.h"
 #include "CObjCHAR.h"
@@ -50,7 +50,7 @@ CObjAI::CObjAI ()
 	m_bCastingSTART	= false;
 	SetCastingState( false );
 
-	m_bRunMODE		= false;	// ±âº»Àº °È±â ¸ðµå...
+	m_bRunMODE		= false;	// ê¸°ë³¸ì€ ê±·ê¸° ëª¨ë“œ...
 	m_btMoveMODE	= 0;
 
 	m_fRunAniSPEED  = 1.0f;
@@ -80,7 +80,7 @@ CObjAI::~CObjAI ()
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief 	ÇöÀç ¿ùµå ½Ã°£À» ¸®ÅÏÇÑ´Ù...
+/// @brief 	í˜„ìž¬ ì›”ë“œ ì‹œê°„ì„ ë¦¬í„´í•œë‹¤...
 //----------------------------------------------------------------------------------------------------
 int	CObjAI::Get_WorldTIME(void) 
 { 
@@ -91,9 +91,9 @@ int	CObjAI::Get_WorldTIME(void)
 
 //--------------------------------------------------------------------------------
 /// class : CObAI
-/// @param short nRightWeaponItemNO ÇöÀç ¿À¸¥¼Õ ¹«±â¹øÈ£
-/// @brief  : °ø½ÄÀÌ ¹Ù²ð°æ¿ì ¼­¹ö¶û ¸ÂÃß±â À§ÇØ ÀÌ°÷À¸·Î ¿Å±è... 2004. 2. 6
-///				¹«±â ¹øÈ£·Î °ø°Ý¼Óµµ¸¦ °è»ê : ¸÷/NPCÁ¦¿Ü : ¾Æ¹ÙÅ¸/À¯Àú¸¸ ÇØ´ç.
+/// @param short nRightWeaponItemNO í˜„ìž¬ ì˜¤ë¥¸ì† ë¬´ê¸°ë²ˆí˜¸
+/// @brief  : ê³µì‹ì´ ë°”ë€”ê²½ìš° ì„œë²„ëž‘ ë§žì¶”ê¸° ìœ„í•´ ì´ê³³ìœ¼ë¡œ ì˜®ê¹€... 2004. 2. 6
+///				ë¬´ê¸° ë²ˆí˜¸ë¡œ ê³µê²©ì†ë„ë¥¼ ê³„ì‚° : ëª¹/NPCì œì™¸ : ì•„ë°”íƒ€/ìœ ì €ë§Œ í•´ë‹¹.
 //--------------------------------------------------------------------------------
 
 int	CObjAI::Cal_AtkAniSPEED( short nRightWeaponItemNO )
@@ -105,7 +105,7 @@ int	CObjAI::Cal_AtkAniSPEED( short nRightWeaponItemNO )
 //--------------------------------------------------------------------------------
 /// class : CObAI
 /// @param tagMOTION* pMotion
-/// @brief  : »õ·Î¿î ¸ð¼ÇÀ» ÇöÀç ¸ð¼ÇÀ¸·Î ¼¼ÆÃ, ÇÁ·¹ÀÓ ¸®¼Â.
+/// @brief  : ìƒˆë¡œìš´ ëª¨ì…˜ì„ í˜„ìž¬ ëª¨ì…˜ìœ¼ë¡œ ì„¸íŒ…, í”„ë ˆìž„ ë¦¬ì…‹.
 /// 
 //--------------------------------------------------------------------------------
 
@@ -120,7 +120,7 @@ bool CObjAI::Set_CurMOTION( tagMOTION* pMotion )
 //--------------------------------------------------------------------------------
 /// class : CObAI
 /// @param tagMOTION* pMotion
-/// @brief  : ÇöÀç ¸ð¼ÇÀ» ¹Ù²Û´Ù.( ÀÌÀü ¸ð¼ÇÀÌ¶û °°À¸¸é ±×³É ÆÐ½º )
+/// @brief  : í˜„ìž¬ ëª¨ì…˜ì„ ë°”ê¾¼ë‹¤.( ì´ì „ ëª¨ì…˜ì´ëž‘ ê°™ìœ¼ë©´ ê·¸ëƒ¥ íŒ¨ìŠ¤ )
 //--------------------------------------------------------------------------------
 
 bool CObjAI::Chg_CurMOTION( tagMOTION* pMotion )
@@ -137,8 +137,8 @@ bool CObjAI::Chg_CurMOTION( tagMOTION* pMotion )
 
 //--------------------------------------------------------------------------------
 /// class : CObAI
-/// @param CObjCHAR *pTarget Å¸°Ù ¿ÀºêÁ§Æ®
-/// @brief  : °ø°Ý½ÃÀÛ.
+/// @param CObjCHAR *pTarget íƒ€ê²Ÿ ì˜¤ë¸Œì íŠ¸
+/// @brief  : ê³µê²©ì‹œìž‘.
 //--------------------------------------------------------------------------------
 
 void CObjAI::Start_ATTACK (CObjCHAR *pTarget)
@@ -147,7 +147,7 @@ void CObjAI::Start_ATTACK (CObjCHAR *pTarget)
 
 //---------------------------------------------------------------------------------
 #if defined(_GBC)
-   //¹ÚÁöÈ£::Æê¸ðµåÀÏ¶§´Â È¸ÀüÀ» ½ÃÅ°Áö ¾Ê´Â´Ù.
+   //ë°•ì§€í˜¸::íŽ«ëª¨ë“œì¼ë•ŒëŠ” íšŒì „ì„ ì‹œí‚¤ì§€ ì•ŠëŠ”ë‹¤.
    if((GetPetMode() < 0) && pTarget )
 		Set_ModelDIR( pTarget->m_PosCUR );
 #else
@@ -155,11 +155,11 @@ void CObjAI::Start_ATTACK (CObjCHAR *pTarget)
 #endif
 //---------------------------------------------------------------------------------
 
-	/// °ø°Ý ¸í·ÉÁß¿¡ ½ÇÇàµÉ ½ºÅ³ÀÌ ÀÖ´Â°¡ ???
+	/// ê³µê²© ëª…ë ¹ì¤‘ì— ì‹¤í–‰ë  ìŠ¤í‚¬ì´ ìžˆëŠ”ê°€ ???
 	/*if ( this->Do_SKILL( Get_TargetIDX(), pTarget ) )
 		return;*/
 
-	/// ÀÏ¹Ý °ø°Ý½ÃÀÛ »óÅÂ ¼³Á¤.
+	/// ì¼ë°˜ ê³µê²©ì‹œìž‘ ìƒíƒœ ì„¤ì •.
 	m_wState = CS_ATTACK;
 	m_iActiveObject = g_pObjMGR->Get_ClientObjectIndex( Get_TargetIDX() );
 
@@ -168,12 +168,12 @@ void CObjAI::Start_ATTACK (CObjCHAR *pTarget)
 
 	if ( Attack_START( pTarget ) )
 	{
-		// °ø°Ý ¾Ö´Ï¸ÞÀÌ¼Ç & ¼Óµµ ¼³Á¤. :: Å©¸®Æ¼ÄÃ °ø°ÝÀÏ °æ¿ì ¸ð¼ÇÀ» º°µµ·Î Á¸ÀçÇÏÁö ¾Ê°í È¿°ú·Î Ãâ·ÂÇÑ´Ù.
+		// ê³µê²© ì• ë‹ˆë©”ì´ì…˜ & ì†ë„ ì„¤ì •. :: í¬ë¦¬í‹°ì»¬ ê³µê²©ì¼ ê²½ìš° ëª¨ì…˜ì„ ë³„ë„ë¡œ ì¡´ìž¬í•˜ì§€ ì•Šê³  íš¨ê³¼ë¡œ ì¶œë ¥í•œë‹¤.
 		this->Set_MOTION( this->GetANI_Attack(), 0, this->Get_fAttackSPEED(), true );
 	
 		#if defined(_DEBUG) && !defined(__SERVER)
 			if ( m_pCurMOTION->m_nActionPointCNT <= 0 ) {
-				char *szMsg = CStr::Printf("%s °ø°Ý Å¸Á¡ ÇÁ·¹ÀÓ ¼³Á¤ ÇÊ¿ä!!!", Get_NAME());
+				char *szMsg = CStr::Printf("%s ê³µê²© íƒ€ì  í”„ë ˆìž„ ì„¤ì • í•„ìš”!!!", Get_NAME());
 				g_pCApp->ErrorBOX( szMsg, "ERROR" );
 				LogString (LOG_DEBUG, szMsg);
 			}
@@ -183,18 +183,18 @@ void CObjAI::Start_ATTACK (CObjCHAR *pTarget)
 
 //--------------------------------------------------------------------------------
 /// class : CObAI
-/// @param int iServerTarget Å¸°ÙÀÇ ¼­¹ö ÀÎµ¦½º
-/// @param CObjCHAR *pTarget Å¸°Ù ¿ÀºêÁ§Æ®
+/// @param int iServerTarget íƒ€ê²Ÿì˜ ì„œë²„ ì¸ë±ìŠ¤
+/// @param CObjCHAR *pTarget íƒ€ê²Ÿ ì˜¤ë¸Œì íŠ¸
 /// @brief  : casting
 //--------------------------------------------------------------------------------
 
 char CObjAI::Do_SKILL (int iServerTarget, CObjCHAR *pTarget)
 {
-	/// Ä³½ºÆÃ Áß¿¡´Â °è¼Ó Å¸°ÙÀ» ¹Ù¶óº»´Ù...
-	/// Å¸°Ù ¹æÇâÀ¸·Î ¸öÀ» µ¹¸°´Ù.
+	/// ìºìŠ¤íŒ… ì¤‘ì—ëŠ” ê³„ì† íƒ€ê²Ÿì„ ë°”ë¼ë³¸ë‹¤...
+	/// íƒ€ê²Ÿ ë°©í–¥ìœ¼ë¡œ ëª¸ì„ ëŒë¦°ë‹¤.
 //---------------------------------------------------------------------------------
 #if defined(_GBC)
-   //¹ÚÁöÈ£::Æê¸ðµåÀÏ¶§´Â È¸ÀüÀ» ½ÃÅ°Áö ¾Ê´Â´Ù.
+   //ë°•ì§€í˜¸::íŽ«ëª¨ë“œì¼ë•ŒëŠ” íšŒì „ì„ ì‹œí‚¤ì§€ ì•ŠëŠ”ë‹¤.
    if((GetPetMode() < 0) && pTarget )
 		Set_ModelDIR( pTarget->m_PosCUR );
 #else 
@@ -206,15 +206,15 @@ char CObjAI::Do_SKILL (int iServerTarget, CObjCHAR *pTarget)
 	switch( m_SkillActionState )
 	{
 		case SKILL_CASTING_STATE:
-			/// Á¤»óÀûÀ¸·Î Ä³½ºÆÃ µ¿ÀÛÀ» ¼öÇàÇß´Ù¸é Ä³½ºÆÃ ·çÇÁ µ¿ÀÛÀ¸·Î ÀüÀÌ
-			/// 5´Â ³ª¸¸ÀÇ »óÂ¡Àû Á¤»ó ÁøÇà ¼ö.. ^^;
+			/// ì •ìƒì ìœ¼ë¡œ ìºìŠ¤íŒ… ë™ìž‘ì„ ìˆ˜í–‰í–ˆë‹¤ë©´ ìºìŠ¤íŒ… ë£¨í”„ ë™ìž‘ìœ¼ë¡œ ì „ì´
+			/// 5ëŠ” ë‚˜ë§Œì˜ ìƒì§•ì  ì •ìƒ ì§„í–‰ ìˆ˜.. ^^;
 			if( ProcSkillCastingAction( iServerTarget, pTarget ) == 5 )
 			{
-				/// ¸í·É ÇÊÅÍ¸µÀ» À§ÇØ ÀúÀåµÈ ¸í·É Å¬¸®¾î
+				/// ëª…ë ¹ í•„í„°ë§ì„ ìœ„í•´ ì €ìž¥ëœ ëª…ë ¹ í´ë¦¬ì–´
 				g_CommandFilter.SetPrevCommand( NULL );
-				/// Ä³½ºÆÃ µ¿ÀÛÀÌ ÀÖ´Âµ¥ º°¹®Á¦ ¾øÀ»¶§..
+				/// ìºìŠ¤íŒ… ë™ìž‘ì´ ìžˆëŠ”ë° ë³„ë¬¸ì œ ì—†ì„ë•Œ..
 			}
-			/// Ä³½ºÆÃ µ¿ÀÛÀÌ ¾Æ¿¹ ¾ø°Å³ª.. È¤Àº µ¥ÀÌÅÍ°¡ ¾øÀ»¶§.
+			/// ìºìŠ¤íŒ… ë™ìž‘ì´ ì•„ì˜ˆ ì—†ê±°ë‚˜.. í˜¹ì€ ë°ì´í„°ê°€ ì—†ì„ë•Œ.
 			m_SkillActionState = SKILL_CASTING_LOOP_STATE;							
 			return 1;
 
@@ -227,7 +227,7 @@ char CObjAI::Do_SKILL (int iServerTarget, CObjCHAR *pTarget)
 
 		case SKILL_ACTION_STATE:
 			ProcSkillAction( pTarget );
-			/// ÇÑ¹ø ¾×¼Ç ¼öÇàÈÄ¿¡´Â ¸ðµç ½ºÅ³Á¤º¸ ÇØÁö..
+			/// í•œë²ˆ ì•¡ì…˜ ìˆ˜í–‰í›„ì—ëŠ” ëª¨ë“  ìŠ¤í‚¬ì •ë³´ í•´ì§€..
 			m_SkillActionState = SKILL_NONE_STATE;
 
 			Casting_END ();	
@@ -243,20 +243,20 @@ char CObjAI::Do_SKILL (int iServerTarget, CObjCHAR *pTarget)
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief ½ºÅ³ÀÇ Ä³½ºÆÃ µ¿ÀÛÀ» Ã³¸®..
+/// @brief ìŠ¤í‚¬ì˜ ìºìŠ¤íŒ… ë™ìž‘ì„ ì²˜ë¦¬..
 //----------------------------------------------------------------------------------------------------
 
 int CObjAI::ProcSkillCastingAction( int iServerTarget, CObjCHAR* pTarget )
 {
 	if ( m_nToDoSkillIDX ) 
 	{
-		/// ¼³Á¤µÈ ½ºÅ³ÀÌ ÀÖ´Ù..
+		/// ì„¤ì •ëœ ìŠ¤í‚¬ì´ ìžˆë‹¤..
 		if ( !Casting_START( NULL ) )
 			return 0;
 		//----------------------------------------------------------------------------------------------------
-		/// ½ºÅ³ ÁÖ¹® µ¿ÀÛ !!!
-		/// Casting ½ÃÀÛ »óÅÂ ¼³Á¤.
-		/// ½ºÅ³ µ¿ÀÛÁß¿¡´Â ¸Â´Â µ¿ÀÛµµ Àû¿ë ¾ÈµÈ´Ù.
+		/// ìŠ¤í‚¬ ì£¼ë¬¸ ë™ìž‘ !!!
+		/// Casting ì‹œìž‘ ìƒíƒœ ì„¤ì •.
+		/// ìŠ¤í‚¬ ë™ìž‘ì¤‘ì—ëŠ” ë§žëŠ” ë™ìž‘ë„ ì ìš© ì•ˆëœë‹¤.
 		//----------------------------------------------------------------------------------------------------
 		this->m_wState = CS_CASTING;
 
@@ -271,7 +271,7 @@ int CObjAI::ProcSkillCastingAction( int iServerTarget, CObjCHAR* pTarget )
 		if ( this->GetANI_Casting() || this->IsA( OBJ_MOB ) ) 
 		{			
 			this->Set_MOTION( this->GetANI_Casting(), 0, g_SkillList.Get_CastingAniSPEED( m_nActiveSkillIDX ), false, 1 );			
-			Log_String( LOG_NORMAL, "½ºÅ³ Ä³½ºÆÃµ¿ÀÛ ¼¼ÆÃ[%d]\n", this->GetANI_Casting() );
+			Log_String( LOG_NORMAL, "ìŠ¤í‚¬ ìºìŠ¤íŒ…ë™ìž‘ ì„¸íŒ…[%d]\n", this->GetANI_Casting() );
 			return 5;
 		}else
 			assert( 0 && "Invalid Casting animation" );
@@ -283,32 +283,32 @@ int CObjAI::ProcSkillCastingAction( int iServerTarget, CObjCHAR* pTarget )
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief Ä³½ºÆÃ µ¿ÀÛ°ú ½ÇÁ¦ µ¿ÀÛ»çÀÌÀÇ ·çÇÁ¸¦ Ã¤¿ì´Â µ¿ÀÛÀ» Ã³¸®ÇÑ´Ù.
+/// @brief ìºìŠ¤íŒ… ë™ìž‘ê³¼ ì‹¤ì œ ë™ìž‘ì‚¬ì´ì˜ ë£¨í”„ë¥¼ ì±„ìš°ëŠ” ë™ìž‘ì„ ì²˜ë¦¬í•œë‹¤.
 //----------------------------------------------------------------------------------------------------
 
 int CObjAI::ProcSkillCastingLoop( CObjCHAR *pTarget )
 {
-	/// Àû¿ëÇÒ ½ºÅ³¿¡ ´ëÇÑ °á°ú°¡ ¼­¹ö·Î ºÎÅÍ ³¯¶ó¿Ô´Ù¸é ¾×¼ÇÁøÀÔ ¾Æ´Ï¶ó¸é ·çÇÁ
+	/// ì ìš©í•  ìŠ¤í‚¬ì— ëŒ€í•œ ê²°ê³¼ê°€ ì„œë²„ë¡œ ë¶€í„° ë‚ ë¼ì™”ë‹¤ë©´ ì•¡ì…˜ì§„ìž… ì•„ë‹ˆë¼ë©´ ë£¨í”„
 	if( SKILL_TYPE( m_nActiveSkillIDX ) >= SKILL_ACTION_FIRE_BULLET ||
 		SKILL_TYPE( m_nActiveSkillIDX ) == SKILL_ACTION_IMMEDIATE )
 		//&& SKILL_TYPE( m_nActiveSkillIDX ) <= SKILL_ACTION_TARGET_STATE_DURATION )
 	{
 
 		/*
-		*  Å¸°ÙÀÌ ¾øÀ¸¸é ¹Ù·Î Ä³½ºÆÃ µ¿ÀÛÀ¸·Î µé¾î°£´Ù..
-		*	½ºÅ³½ÃÀüÁß Ä³¸¯ÅÍ ¸ð¼ÇÀÌ Á¤ÁöÇÏ´Â ¹ö±×°¡ ÀÌ°Å¶û ¿¬°üÀÌ ÀÖ´Â°¡?
-		*   ¾îÂ·´ø ³»°¡ Á×´øÁö ÀûÀÌ Á×´øÁö¿¡ ¹ö±×°¡ ÀÖ´Ù - 04/5/25
+		*  íƒ€ê²Ÿì´ ì—†ìœ¼ë©´ ë°”ë¡œ ìºìŠ¤íŒ… ë™ìž‘ìœ¼ë¡œ ë“¤ì–´ê°„ë‹¤..
+		*	ìŠ¤í‚¬ì‹œì „ì¤‘ ìºë¦­í„° ëª¨ì…˜ì´ ì •ì§€í•˜ëŠ” ë²„ê·¸ê°€ ì´ê±°ëž‘ ì—°ê´€ì´ ìžˆëŠ”ê°€?
+		*   ì–´ì¨Œë˜ ë‚´ê°€ ì£½ë˜ì§€ ì ì´ ì£½ë˜ì§€ì— ë²„ê·¸ê°€ ìžˆë‹¤ - 04/5/25
 		*/
 
-		/// Å¸°ÙÀÌ ¼³Á¤µÇ¾î¾ß¸¸ ÇÏ´Â ½ºÅ³ÀÎµ¥ Å¸°ÙÀÌ ¾ø´Ù¸é..
+		/// íƒ€ê²Ÿì´ ì„¤ì •ë˜ì–´ì•¼ë§Œ í•˜ëŠ” ìŠ¤í‚¬ì¸ë° íƒ€ê²Ÿì´ ì—†ë‹¤ë©´..
 		if( ( CSkillManager::GetSkillTargetType( m_nActiveSkillIDX ) != SKILL_TARGET_NONE ) &&
 			( pTarget == NULL ) )
 		{
 			SetEffectedSkillFlag( true );
 		}else
 		{
-			if( ( !bCanActionActiveSkill() )				||	/// ¼­¹ö·ÎºÎÅÍ °á°ú¸¦ ¸ø¹Þ¾Ò°Å³ª
-				( SKILL_ANI_CASTING_REPEAT_CNT( m_nActiveSkillIDX ) != 0 ) )	/// Ä³½ºÆÃ µ¿ÀÛ ·çÇÁ°¡ ¼³Á¤‰çÀ»°æ¿ì..
+			if( ( !bCanActionActiveSkill() )				||	/// ì„œë²„ë¡œë¶€í„° ê²°ê³¼ë¥¼ ëª»ë°›ì•˜ê±°ë‚˜
+				( SKILL_ANI_CASTING_REPEAT_CNT( m_nActiveSkillIDX ) != 0 ) )	/// ìºìŠ¤íŒ… ë™ìž‘ ë£¨í”„ê°€ ì„¤ì •Â‰ç‘›ëºåš¥?.
 			{
 				if( ( m_iWaitLoopCnt < 10 ) )
 				{
@@ -317,12 +317,12 @@ int CObjAI::ProcSkillCastingLoop( CObjCHAR *pTarget )
 						m_iWaitLoopCnt++;
 						if ( this->GetANI_CastingRepeat() ) 
 						{				
-							/// ½ºÅ³ ÁÖ¹® µ¿ÀÛ !!!
-							/// Casting ½ÃÀÛ »óÅÂ ¼³Á¤.
-							/// ½ºÅ³ µ¿ÀÛÁß¿¡´Â ¸Â´Â µ¿ÀÛµµ Àû¿ë ¾ÈµÈ´Ù.
+							/// ìŠ¤í‚¬ ì£¼ë¬¸ ë™ìž‘ !!!
+							/// Casting ì‹œìž‘ ìƒíƒœ ì„¤ì •.
+							/// ìŠ¤í‚¬ ë™ìž‘ì¤‘ì—ëŠ” ë§žëŠ” ë™ìž‘ë„ ì ìš© ì•ˆëœë‹¤.
 							this->m_wState = CS_CASTING;
 							this->Set_MOTION( this->GetANI_CastingRepeat(), 0, g_SkillList.Get_CastingAniSPEED( m_nActiveSkillIDX ), false, 1 );
-							Log_String( LOG_NORMAL, "½ºÅ³ ¹Ýº¹µ¿ÀÛ ¼¼ÆÃ[%d][Count:%d]\n", this->GetANI_CastingRepeat(), m_iWaitLoopCnt );
+							Log_String( LOG_NORMAL, "ìŠ¤í‚¬ ë°˜ë³µë™ìž‘ ì„¸íŒ…[%d][Count:%d]\n", this->GetANI_CastingRepeat(), m_iWaitLoopCnt );
 							return 1;
 						}			
 					}
@@ -341,7 +341,7 @@ int CObjAI::ProcSkillCastingLoop( CObjCHAR *pTarget )
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief  Ä³½ºÆÃ ¿Ï·áµÈ ½ºÅ³ÀÇ ½ÇÁ¦ µ¿ÀÛ ¸ð¼Ç...
+/// @brief  ìºìŠ¤íŒ… ì™„ë£Œëœ ìŠ¤í‚¬ì˜ ì‹¤ì œ ë™ìž‘ ëª¨ì…˜...
 //----------------------------------------------------------------------------------------------------
 
 int CObjAI::ProcSkillAction( CObjCHAR *pTarget )
@@ -350,15 +350,15 @@ int CObjAI::ProcSkillAction( CObjCHAR *pTarget )
 	{			
 		if ( this->Skill_START( pTarget ) ) 
 		{
-			/// ½ºÅ³ µ¿ÀÛÁß¿¡´Â ¸Â´Â µ¿ÀÛµµ Àû¿ë ¾ÈµÈ´Ù.
+			/// ìŠ¤í‚¬ ë™ìž‘ì¤‘ì—ëŠ” ë§žëŠ” ë™ìž‘ë„ ì ìš© ì•ˆëœë‹¤.
 			m_wState = CS_NEXT_STOP2;
 			this->Set_MOTION( this->GetANI_Skill(), 0, g_SkillList.Get_ActionAniSPEED( m_nActiveSkillIDX ), true, 1 );
-			Log_String( LOG_NORMAL, "½ºÅ³ ¾×¼Çµ¿ÀÛ ¼¼ÆÃ[%d]\n", this->GetANI_Skill() );
+			Log_String( LOG_NORMAL, "ìŠ¤í‚¬ ì•¡ì…˜ë™ìž‘ ì„¸íŒ…[%d]\n", this->GetANI_Skill() );
 		
 			SetNewCommandAfterSkill( m_nActiveSkillIDX );
 		
 
-			/// Casting_END ·Î ÀÌµ¿.. ¸ðµç ½ºÅ³ÀÌ ³¡³ª¸é ¸®¼ÂµÈ´Ù. 
+			/// Casting_END ë¡œ ì´ë™.. ëª¨ë“  ìŠ¤í‚¬ì´ ëë‚˜ë©´ ë¦¬ì…‹ëœë‹¤. 
 			m_nDoingSkillIDX = m_nActiveSkillIDX;			
 			
 
@@ -379,8 +379,8 @@ int CObjAI::ProcSkillAction( CObjCHAR *pTarget )
 //--------------------------------------------------------------------------------
 /// class : CObAI
 /// @param 
-/// @brief  : ½ºÅ³½ÃÀüÈÄ »õ·Î¿î ¸í·É ¼¼ÆÃ
-/// @todo ÀÓÀÇ·Î 17¹øÅ¸ÀÔÀº »ç¿ëÈÄ ¼­°Ô ¸¸µé¾ú´Ù.
+/// @brief  : ìŠ¤í‚¬ì‹œì „í›„ ìƒˆë¡œìš´ ëª…ë ¹ ì„¸íŒ…
+/// @todo ìž„ì˜ë¡œ 17ë²ˆíƒ€ìž…ì€ ì‚¬ìš©í›„ ì„œê²Œ ë§Œë“¤ì—ˆë‹¤.
 //--------------------------------------------------------------------------------
 
 void CObjAI::SetNewCommandAfterSkill( int iSkillNO )
@@ -388,7 +388,7 @@ void CObjAI::SetNewCommandAfterSkill( int iSkillNO )
 	
 //--------------------------------------------------------------------------
 #if defined(_GBC)
-	//¹ÚÁöÈ£::Æê¸ðµåÀÏ¶§ ½ºÅ³ ¸¶Á÷¸· Ä«Æ®ÀÇ ¸¶Áö¸· µ¿ÀÛÀ¸·Î Ã³¸®ÇÑ´Ù. 
+	//ë°•ì§€í˜¸::íŽ«ëª¨ë“œì¼ë•Œ ìŠ¤í‚¬ ë§ˆì§ë§‰ ì¹´íŠ¸ì˜ ë§ˆì§€ë§‰ ë™ìž‘ìœ¼ë¡œ ì²˜ë¦¬í•œë‹¤. 
 	if(GetPetMode() >= 0)
 	{
 		SetNewCommandAfterSkill_PET(iSkillNO);
@@ -407,14 +407,14 @@ void CObjAI::SetNewCommandAfterSkill( int iSkillNO )
 			break;
 		case SA_ATTACK:
 			{
-				/// °ø°Ý¼³Á¤ÀÌ µÇ¾ú´õ¶óµµ, Å¸°ÙÀÌ ¾ø´Ù¸é STOP~
+				/// ê³µê²©ì„¤ì •ì´ ë˜ì—ˆë”ë¼ë„, íƒ€ê²Ÿì´ ì—†ë‹¤ë©´ STOP~
 				if( this->Get_TargetOBJ() != NULL )
 				{
 					m_wCommand = CMD_ATTACK;
 
 
 					CObjCHAR* pDestCHAR = (CObjCHAR*)(this->Get_TargetOBJ());
-					/// ³ªÀÏ°æ¿ì PVPÁ¸ÀÌ ¾Æ´ÑÁ¸¿¡¼­ À¯Á®°ø°Ý¸í·ÉÀº Ãë¼ÒÇÑ´Ù.
+					/// ë‚˜ì¼ê²½ìš° PVPì¡´ì´ ì•„ë‹Œì¡´ì—ì„œ ìœ ì ¸ê³µê²©ëª…ë ¹ì€ ì·¨ì†Œí•œë‹¤.
 					if( this->IsA( OBJ_USER ) && pDestCHAR->IsUSER() )
 					{
 						if( !g_pTerrain->IsPVPZone() || g_GameDATA.m_iPvPState == PVP_CANT )
@@ -435,14 +435,14 @@ void CObjAI::SetNewCommandAfterSkill( int iSkillNO )
 				m_wCommand = m_wBeforeCMD;
 				m_wBeforeCMD = CMD_STOP;
 
-				/// °ø°Ý¸í·É º¹±¸½ÃÅ³¶§´Â Å¸°Ù Á¶»ç..
+				/// ê³µê²©ëª…ë ¹ ë³µêµ¬ì‹œí‚¬ë•ŒëŠ” íƒ€ê²Ÿ ì¡°ì‚¬..
 				if( m_wCommand == CMD_ATTACK )
 				{
 					CObjCHAR* pDestCHAR = (CObjCHAR*)(this->Get_TargetOBJ());
 
 					if( pDestCHAR )
 					{
-						/// ³ªÀÏ°æ¿ì PVPÁ¸ÀÌ ¾Æ´ÑÁ¸¿¡¼­ À¯Á®°ø°Ý¸í·ÉÀº Ãë¼ÒÇÑ´Ù.
+						/// ë‚˜ì¼ê²½ìš° PVPì¡´ì´ ì•„ë‹Œì¡´ì—ì„œ ìœ ì ¸ê³µê²©ëª…ë ¹ì€ ì·¨ì†Œí•œë‹¤.
 						if( this->IsA( OBJ_USER ) && pDestCHAR->IsUSER() )
 						{
 							if( !g_pTerrain->IsPVPZone() || g_GameDATA.m_iPvPState == PVP_CANT )
@@ -465,7 +465,7 @@ void CObjAI::SetNewCommandAfterSkill( int iSkillNO )
 /// @param 
 /// @brief  : Move vector reset
 ///				1. Normalize DirVEC, 2. DirVEC * Move Speed
-///				¸ó½ºÅÍ Áß¿¡´Â ÀÌµ¿¼Óµµ 0ÀÎ°Ô ÀÖÀ½..
+///				ëª¬ìŠ¤í„° ì¤‘ì—ëŠ” ì´ë™ì†ë„ 0ì¸ê²Œ ìžˆìŒ..
 //--------------------------------------------------------------------------------
 
 void CObjAI::Reset_MoveVEC ()
@@ -486,7 +486,7 @@ void CObjAI::Reset_MoveVEC ()
 		_ASSERT( m_MoveVEC.x != 0 || m_MoveVEC.y != 0 );
 	} else 
 	{
-		// ÀÌµ¿ÇÒ ÇÊ¿ä°¡ ¾ø´Âµ¥...
+		// ì´ë™í•  í•„ìš”ê°€ ì—†ëŠ”ë°...
 		m_MoveVEC.x = 0;
 		m_MoveVEC.y = 0;
 	}
@@ -495,10 +495,10 @@ void CObjAI::Reset_MoveVEC ()
 
 //--------------------------------------------------------------------------------
 /// class : CObAI
-/// @param float fSpeed ÀÌµ¿¼Óµµ
+/// @param float fSpeed ì´ë™ì†ë„
 /// @brief  :  Start move
-///				ÇöÀç ÀÌµ¿ÁßÀÌ¸é °Å¸® °è»êÇÏ°í, MoveVEC ¸¸ ¸®¼Â.
-///				ÀÌµ¿ÁßÀÌ ¾Æ´Ï¶ó¸é ¸ð¼Ç ¼¼ÆÃ ¹× ÀÌµ¿ ½ÃÀÛ ³ôÀÌ ¼³Á¤.
+///				í˜„ìž¬ ì´ë™ì¤‘ì´ë©´ ê±°ë¦¬ ê³„ì‚°í•˜ê³ , MoveVEC ë§Œ ë¦¬ì…‹.
+///				ì´ë™ì¤‘ì´ ì•„ë‹ˆë¼ë©´ ëª¨ì…˜ ì„¸íŒ… ë° ì´ë™ ì‹œìž‘ ë†’ì´ ì„¤ì •.
 //--------------------------------------------------------------------------------
 
 void CObjAI::Start_MOVE( float fSpeed )
@@ -517,11 +517,11 @@ void CObjAI::Start_MOVE( float fSpeed )
 
 	this->Reset_MoveVEC ();
 	if ( Get_STATE() != CS_MOVE ) {
-		// ÀÌµ¿ÁßÀÌ ¾Æ´Ï´Ù.
+		// ì´ë™ì¤‘ì´ ì•„ë‹ˆë‹¤.
 		m_wState  = CS_MOVE;
 		this->Set_MOTION( this->GetANI_Move(), m_fCurMoveSpeed, this->Get_MoveAniSPEED() );
 
-		Reset_Position(); // ÀÌµ¿ ½ÃÀÛ ³ôÀÌ ¼³Á¤. ¼­¹ö¿ÍÀÇ ³ôÀÌ ÁÂÇ¥¸¦ ¿©±â¿¡¼­ ¸ÂÃá´Ù.
+		Reset_Position(); // ì´ë™ ì‹œìž‘ ë†’ì´ ì„¤ì •. ì„œë²„ì™€ì˜ ë†’ì´ ì¢Œí‘œë¥¼ ì—¬ê¸°ì—ì„œ ë§žì¶˜ë‹¤.
 	}
 
 	this->MoveStart();
@@ -530,17 +530,17 @@ void CObjAI::Start_MOVE( float fSpeed )
 
 //--------------------------------------------------------------------------------
 /// class : CObAI
-/// @param t_POSITION &PosGOTO ÀÌµ¿ ¸ñÀûÁö
+/// @param t_POSITION &PosGOTO ì´ë™ ëª©ì ì§€
 /// @brief  : Restart move
-///			ÃÖÁ¾ÁÂÇ¥°¡ ¹Ù²îÁö ¾Ê¾Ò´Ù¸é ±×´ë·Î °í.
-///			ÃÖÁ¾ÁÂÇ¥°¡ ¼öÁ¤µÇ¾ú´Ù¸é, ´Ù½Ã ½ºÅ¸Æ®.
+///			ìµœì¢…ì¢Œí‘œê°€ ë°”ë€Œì§€ ì•Šì•˜ë‹¤ë©´ ê·¸ëŒ€ë¡œ ê³ .
+///			ìµœì¢…ì¢Œí‘œê°€ ìˆ˜ì •ë˜ì—ˆë‹¤ë©´, ë‹¤ì‹œ ìŠ¤íƒ€íŠ¸.
 //--------------------------------------------------------------------------------
 
 void CObjAI::Restart_MOVE (t_POSITION &PosGOTO)
 {
 	if ( Get_STATE() == CS_MOVE && ( abs( PosGOTO.x - m_PosGOTO.x ) < 0.0001 ) && ( abs( PosGOTO.x - m_PosGOTO.x ) < 0.0001 ) ) 
 	{
-		// ‡åÃÖÁ¾ ÁÂÇ¥°¡ ¹Ù²îÁö ¾Ê¾Ò´Ù.
+		// Â‡æš˜é€ž?ì¢Œí‘œê°€ ë°”ë€Œì§€ ì•Šì•˜ë‹¤.
 		return;
 	}
 
@@ -562,7 +562,7 @@ void CObjAI::Restart_MOVE_AL (t_POSITION &PosGOTO)
 //--------------------------------------------------------------------------------
 /// class : CObAI
 /// @param 
-/// @brief  : ¾É±â ¸í·É ¼¼ÆÃ
+/// @brief  : ì•‰ê¸° ëª…ë ¹ ì„¸íŒ…
 //--------------------------------------------------------------------------------
 
 void CObjAI::SetCMD_SIT (void)
@@ -575,7 +575,7 @@ void CObjAI::SetCMD_SIT (void)
 		g_CommandFilter.SetPrevCommand( pObjCommand );
 	}
 
-/// ÇöÀç ¸í·ÉÀÌ µé¾î°¥¼ö ÀÖ³ª?
+/// í˜„ìž¬ ëª…ë ¹ì´ ë“¤ì–´ê°ˆìˆ˜ ìžˆë‚˜?
 	if( this->CanApplyCommand() == false )
 	{
 		this->PushCommandSit();
@@ -593,7 +593,7 @@ void CObjAI::SetCMD_SIT (void)
 //--------------------------------------------------------------------------------
 /// class : CObAI
 /// @param 
-/// @brief  : ¼­±â ¸í·É ¼¼ÆÃ
+/// @brief  : ì„œê¸° ëª…ë ¹ ì„¸íŒ…
 //--------------------------------------------------------------------------------
 
 void CObjAI::SetCMD_STAND (void)
@@ -606,7 +606,7 @@ void CObjAI::SetCMD_STAND (void)
 		g_CommandFilter.SetPrevCommand( pObjCommand );
 	}
 
-	/// ÇöÀç ¸í·ÉÀÌ µé¾î°¥¼ö ÀÖ³ª?
+	/// í˜„ìž¬ ëª…ë ¹ì´ ë“¤ì–´ê°ˆìˆ˜ ìžˆë‚˜?
 	if( this->CanApplyCommand() == false )
 	{
 		this->PushCommandStand();
@@ -624,7 +624,7 @@ void CObjAI::SetCMD_STAND (void)
 //--------------------------------------------------------------------------------
 /// class : CObAI
 /// @param 
-/// @brief  : Stop command ¼¼ÆÃ.
+/// @brief  : Stop command ì„¸íŒ….
 ///				I must set "m_iTargetObject" to 0??? if My state is STOP
 //--------------------------------------------------------------------------------
 
@@ -638,19 +638,19 @@ bool CObjAI::SetCMD_STOP (void)
 		g_CommandFilter.SetPrevCommand( pObjCommand );
 	}
 	
-	/// ÇöÀç ¸í·ÉÀÌ µé¾î°¥¼ö ÀÖ³ª?
+	/// í˜„ìž¬ ëª…ë ¹ì´ ë“¤ì–´ê°ˆìˆ˜ ìžˆë‚˜?
 	if( this->CanApplyCommand() == false )
 	{
 		this->PushCommandStop();
 		return false;
 	}
 
-	/// Ä³½ºÆÃÁß.. ½ºÅ³Ãë¼Ò³ª ±âÅ¸ ÀÌÀ¯¿¡ ÀÇÇØ¼­ STOP¸í·ÉÀÌ ¼³Á¤µÉ°æ¿ì¿¡´Â Ä³½ºÆÃÀ» Á¾·áÇÑ´Ù.
+	/// ìºìŠ¤íŒ…ì¤‘.. ìŠ¤í‚¬ì·¨ì†Œë‚˜ ê¸°íƒ€ ì´ìœ ì— ì˜í•´ì„œ STOPëª…ë ¹ì´ ì„¤ì •ë ê²½ìš°ì—ëŠ” ìºìŠ¤íŒ…ì„ ì¢…ë£Œí•œë‹¤.
 	this->Casting_END();
 
 //------------------------------------------------------------------------------------
 #if defined(_GBC)
-	//¹ÚÁöÈ£::Ä«Æ® ½ºÅ³ »ç¿ë ÈÄ ¾Æ¹ÙÅ¸ ¾ÉÈ÷±â À§ÇØ¼­...
+	//ë°•ì§€í˜¸::ì¹´íŠ¸ ìŠ¤í‚¬ ì‚¬ìš© í›„ ì•„ë°”íƒ€ ì•‰ížˆê¸° ìœ„í•´ì„œ...
  	/// If this char is under pet mode, pass the command to pet.
 	if( this->GetPetMode() >= 0 )
 	{
@@ -673,10 +673,10 @@ bool CObjAI::SetCMD_STOP (void)
 
 //--------------------------------------------------------------------------------
 /// class : CObAI
-/// @param float fPosX ÀÌµ¿¸ñÀûÁö X ÁÂÇ¥
-/// @param float fPosY ÀÌµ¿¸ñÀûÁö Y ÁÂÇ¥
+/// @param float fPosX ì´ë™ëª©ì ì§€ X ì¢Œí‘œ
+/// @param float fPosY ì´ë™ëª©ì ì§€ Y ì¢Œí‘œ
 /// @param BYTE btRunMODE
-/// @brief  : Move command ¼¼ÆÃ.
+/// @brief  : Move command ì„¸íŒ….
 //--------------------------------------------------------------------------------
 
 bool CObjAI::SetCMD_MOVE2D (float fPosX, float fPosY, BYTE btRunMODE)
@@ -694,10 +694,10 @@ bool CObjAI::SetCMD_MOVE2D (float fPosX, float fPosY, BYTE btRunMODE)
 
 //--------------------------------------------------------------------------------
 /// class : CObAI
-/// @param const D3DVECTOR& PosTO ÀÌµ¿¸ñÀûÁö ÁÂÇ¥
+/// @param const D3DVECTOR& PosTO ì´ë™ëª©ì ì§€ ì¢Œí‘œ
 /// @param BYTE btRunMODE
-/// @brief  : Move command ¼¼ÆÃ.
-///				SetCMD_MOVE (tPOINTF &PosCUR, tPOINTF &PosTO, int iTargetObjIDX) È£Ãâ
+/// @brief  : Move command ì„¸íŒ….
+///				SetCMD_MOVE (tPOINTF &PosCUR, tPOINTF &PosTO, int iTargetObjIDX) í˜¸ì¶œ
 //--------------------------------------------------------------------------------
 
 bool CObjAI::SetCMD_MOVE (const D3DVECTOR& PosTO, BYTE btRunMODE)
@@ -710,7 +710,7 @@ bool CObjAI::SetCMD_MOVE (const D3DVECTOR& PosTO, BYTE btRunMODE)
 		g_CommandFilter.SetPrevCommand( pObjCommand );
 	}
 
-	/// ÇöÀç ¸í·ÉÀÌ µé¾î°¥¼ö ÀÖ³ª?
+	/// í˜„ìž¬ ëª…ë ¹ì´ ë“¤ì–´ê°ˆìˆ˜ ìžˆë‚˜?
 	if( this->CanApplyCommand() == false )
 	{
 		this->PushCommandMove( PosTO, btRunMODE );
@@ -743,10 +743,10 @@ bool CObjAI::SetCMD_MOVE (const D3DVECTOR& PosTO, BYTE btRunMODE)
 
 //--------------------------------------------------------------------------------
 /// class : CObAI
-/// @param tPOINTF &PosFROM ÀÌµ¿ Ãâ¹ßÁö
-/// @param tPOINTF &PosTO   ÀÌµ¿ ¸ñÀûÁö
-/// @param int iServerTarget Å¸°ÙÀÇ ¼­¹ö ÀÎµ¦½º
-/// @brief  : Move command ¼¼ÆÃ.
+/// @param tPOINTF &PosFROM ì´ë™ ì¶œë°œì§€
+/// @param tPOINTF &PosTO   ì´ë™ ëª©ì ì§€
+/// @param int iServerTarget íƒ€ê²Ÿì˜ ì„œë²„ ì¸ë±ìŠ¤
+/// @brief  : Move command ì„¸íŒ….
 //--------------------------------------------------------------------------------
 
 void CObjAI::SetCMD_MOVE ( WORD wSrvDIST, const D3DVECTOR& PosTO, int iServerTarget )
@@ -759,7 +759,7 @@ void CObjAI::SetCMD_MOVE ( WORD wSrvDIST, const D3DVECTOR& PosTO, int iServerTar
 		g_CommandFilter.SetPrevCommand( pObjCommand );
 	}
 
-	/// ÇöÀç ¸í·ÉÀÌ µé¾î°¥¼ö ÀÖ³ª?
+	/// í˜„ìž¬ ëª…ë ¹ì´ ë“¤ì–´ê°ˆìˆ˜ ìžˆë‚˜?
 	if( this->CanApplyCommand() == false )
 	{
 		this->PushCommandMove( wSrvDIST, PosTO, iServerTarget );
@@ -778,10 +778,10 @@ void CObjAI::SetCMD_MOVE ( WORD wSrvDIST, const D3DVECTOR& PosTO, int iServerTar
 	m_wCommand = CMD_MOVE;
 
 	CGameOBJ *pDestOBJ = g_pObjMGR->Get_ClientOBJECT( iServerTarget );
-	/// Å¸°Ù ¿ÀºêÁ§Æ®°¡ ÀÖ´Ù¸é. Å¸°Ù ¿ÀºêÁ§Æ®·Î ÀÌµ¿.
+	/// íƒ€ê²Ÿ ì˜¤ë¸Œì íŠ¸ê°€ ìžˆë‹¤ë©´. íƒ€ê²Ÿ ì˜¤ë¸Œì íŠ¸ë¡œ ì´ë™.
 	if ( pDestOBJ ) 
 	{
-		/// ´ë»óÀÌ ¾ÆÀÌÅÛÀÌ¶ó¸é CMD_PICK_ITEM ¸í·É.
+		/// ëŒ€ìƒì´ ì•„ì´í…œì´ë¼ë©´ CMD_PICK_ITEM ëª…ë ¹.
 		if ( pDestOBJ->Get_TYPE() == OBJ_ITEM )
 			m_wCommand = CMD_PICK_ITEM;
 
@@ -793,7 +793,7 @@ void CObjAI::SetCMD_MOVE ( WORD wSrvDIST, const D3DVECTOR& PosTO, int iServerTar
 		this->Set_TargetIDX( 0 );
 	}
 
-	// Å¬¶óÀÌ¾ðÆ®¿¡¼­´Â Å¸°Ù À¯Áö..
+	// í´ë¼ì´ì–¸íŠ¸ì—ì„œëŠ” íƒ€ê²Ÿ ìœ ì§€..
 	m_iServerTarget = iServerTarget;
 	this->Adj_MoveSPEED( wSrvDIST, PosTO );
 
@@ -809,16 +809,16 @@ void CObjAI::SetCMD_MOVE ( WORD wSrvDIST, const D3DVECTOR& PosTO, int iServerTar
 
 //--------------------------------------------------------------------------------
 /// class : CObAI
-/// @param int iServerTarget Å¸°ÙÀÇ ¼­¹ö ÀÎµ¦½º
-/// @brief  : Attack command ¼¼ÆÃ.
-///				Å¸°ÙÀÌ ¾ø´Â °æ¿ì´Â?( Á×¾ú³ª? )
+/// @param int iServerTarget íƒ€ê²Ÿì˜ ì„œë²„ ì¸ë±ìŠ¤
+/// @brief  : Attack command ì„¸íŒ….
+///				íƒ€ê²Ÿì´ ì—†ëŠ” ê²½ìš°ëŠ”?( ì£½ì—ˆë‚˜? )
 //--------------------------------------------------------------------------------
 
 bool CObjAI::SetCMD_ATTACK (int iServerTarget)
 {	
 
-	/// ÇöÀç ¸í·ÉÀÌ µé¾î°¥¼ö ÀÖ³ª?
-	/// ¾Æ·¡ ºÎºÐµµ CObjCHAR::SetCMD_Attack( .., .., .. ) ·Î °£´Ù.
+	/// í˜„ìž¬ ëª…ë ¹ì´ ë“¤ì–´ê°ˆìˆ˜ ìžˆë‚˜?
+	/// ì•„ëž˜ ë¶€ë¶„ë„ CObjCHAR::SetCMD_Attack( .., .., .. ) ë¡œ ê°„ë‹¤.
 	/*if( this->CanApplyCommand() == false )
 	{
 		this->PushCommandAttack( iServerTarget );
@@ -826,8 +826,8 @@ bool CObjAI::SetCMD_ATTACK (int iServerTarget)
 	}*/
 
 
-	/// SetCMD_ATTACK ´Â CObjAI °¡ ¾Æ´Ï¶ó ÃÖÃÊ ¸í·ÉÀº
-	/// CObjCHAR ÀÇ SetCMD_ATTACK( .., .., .. );  ÀÌ ¹Þ´Â´Ù.
+	/// SetCMD_ATTACK ëŠ” CObjAI ê°€ ì•„ë‹ˆë¼ ìµœì´ˆ ëª…ë ¹ì€
+	/// CObjCHAR ì˜ SetCMD_ATTACK( .., .., .. );  ì´ ë°›ëŠ”ë‹¤.
 
 	this->Casting_END();
 
@@ -845,7 +845,7 @@ bool CObjAI::SetCMD_ATTACK (int iServerTarget)
 		this->Set_TargetIDX( iServerTarget );
 
 
-		/// ³ªÀÏ°æ¿ì PVPÁ¸ÀÌ ¾Æ´ÑÁ¸¿¡¼­ À¯Á®°ø°Ý¸í·ÉÀº Ãë¼ÒÇÑ´Ù.
+		/// ë‚˜ì¼ê²½ìš° PVPì¡´ì´ ì•„ë‹Œì¡´ì—ì„œ ìœ ì ¸ê³µê²©ëª…ë ¹ì€ ì·¨ì†Œí•œë‹¤.
 		if( this->IsA( OBJ_USER ) && pDestCHAR->IsUSER() )
 		{
 			if( !g_pTerrain->IsPVPZone() || g_GameDATA.m_iPvPState == PVP_CANT )
@@ -859,14 +859,14 @@ bool CObjAI::SetCMD_ATTACK (int iServerTarget)
 
 	} else 
 	{
-		/// Å¬¶óÀÌ¾ðÆ®¿¡¼­´Â Å¸°ÙÀÌ ¾ø¾îµµ °ø°Ý ¸í·É°ú ¼­¹ö Å¸°ÙÀ» À¯ÁöÇÑ´Ù.
+		/// í´ë¼ì´ì–¸íŠ¸ì—ì„œëŠ” íƒ€ê²Ÿì´ ì—†ì–´ë„ ê³µê²© ëª…ë ¹ê³¼ ì„œë²„ íƒ€ê²Ÿì„ ìœ ì§€í•œë‹¤.
 		m_wCommand		= CMD_ATTACK;
 		m_iServerTarget = iServerTarget;
 	}
 
 	ChangeActionMode( AVATAR_ATTACK_MODE );
 
-	/// »óÅÂ¿¡ º¯È­°¡ »ý°å´Ù.
+	/// ìƒíƒœì— ë³€í™”ê°€ ìƒê²¼ë‹¤.
 	return true;
 }
 
@@ -874,9 +874,9 @@ bool CObjAI::SetCMD_ATTACK (int iServerTarget)
 //--------------------------------------------------------------------------------
 /// class : CObAI
 /// @param 
-/// @brief  : Die command ¼¼ÆÃ.
-///			ÇöÀç ¸í·ÉÀÌ µé¾î°¥¼ö ÀÖ³ª?
-///			Á×´Â°Ç ¹Ù·Î Àû¿ëÇØº¸ÀÚ.( Command Å¥¿¡ ³ÖÁö ¾ÊÀ½ ) ( 04/4/28 )
+/// @brief  : Die command ì„¸íŒ….
+///			í˜„ìž¬ ëª…ë ¹ì´ ë“¤ì–´ê°ˆìˆ˜ ìžˆë‚˜?
+///			ì£½ëŠ”ê±´ ë°”ë¡œ ì ìš©í•´ë³´ìž.( Command íì— ë„£ì§€ ì•ŠìŒ ) ( 04/4/28 )
 //--------------------------------------------------------------------------------
 
 void CObjAI::SetCMD_DIE ()
@@ -886,8 +886,8 @@ void CObjAI::SetCMD_DIE ()
 		g_CommandFilter.SetPrevCommand( NULL );
 	}
 
-	/// ÇöÀç ¸í·ÉÀÌ µé¾î°¥¼ö ÀÖ³ª?
-	/// Á×´Â°Ç ¹Ù·Î Àû¿ëÇØº¸ÀÚ
+	/// í˜„ìž¬ ëª…ë ¹ì´ ë“¤ì–´ê°ˆìˆ˜ ìžˆë‚˜?
+	/// ì£½ëŠ”ê±´ ë°”ë¡œ ì ìš©í•´ë³´ìž
 	/*if( this->CanApplyCommand() == false )
 	{
 		this->PushCommandDie( );
@@ -906,8 +906,8 @@ void CObjAI::SetCMD_DIE ()
 
 //--------------------------------------------------------------------------------
 /// class : CObAI
-/// @param BYTE btTYPE ÇöÀç Åä±Û Å¸ÀÔ
-/// @brief  : »óÅÂ Åä±Û( ¶Ù±â, °È±â Åä±Û.. ¾É±â ¼­±â Åä±Û )
+/// @param BYTE btTYPE í˜„ìž¬ í† ê¸€ íƒ€ìž…
+/// @brief  : ìƒíƒœ í† ê¸€( ë›°ê¸°, ê±·ê¸° í† ê¸€.. ì•‰ê¸° ì„œê¸° í† ê¸€ )
 //--------------------------------------------------------------------------------
 
 bool CObjAI::SetCMD_TOGGLE (BYTE btTYPE)
@@ -917,14 +917,14 @@ bool CObjAI::SetCMD_TOGGLE (BYTE btTYPE)
 		g_CommandFilter.SetPrevCommand( NULL );
 	}
 
-	/// ÇöÀç ¸í·ÉÀÌ µé¾î°¥¼ö ÀÖ³ª?
+	/// í˜„ìž¬ ëª…ë ¹ì´ ë“¤ì–´ê°ˆìˆ˜ ìžˆë‚˜?
 	if( this->CanApplyCommand() == false )
 	{
 		this->PushCommandToggle( btTYPE );
 		return false;
 	}
 
-	/// Move Mode ¿¡ º¯È­°¡ ÀÖ´Ù..
+	/// Move Mode ì— ë³€í™”ê°€ ìžˆë‹¤..
 	if( btTYPE >= TOGGLE_TYPE_DRIVE )
 	{
 		btTYPE -= TOGGLE_TYPE_DRIVE;
@@ -946,7 +946,7 @@ bool CObjAI::SetCMD_TOGGLE (BYTE btTYPE)
 					if( !(Get_STATE() == CS_SIT || Get_STATE() == CS_SITTING) )
 					{
 						this->m_bRunMODE = false;
-						this->ToggleRunMODE ( fAdjRate );			/// m_bRunMode ¼¼ÆÃÈÄ¿¡ È£ÃâÇØ¾ßµÈ´Ù.
+						this->ToggleRunMODE ( fAdjRate );			/// m_bRunMode ì„¸íŒ…í›„ì— í˜¸ì¶œí•´ì•¼ëœë‹¤.
 					}
 				}
 				break;
@@ -1003,17 +1003,17 @@ bool CObjAI::SetCMD_TOGGLE (BYTE btTYPE)
 
 //--------------------------------------------------------------------------------
 /// class : CObAI
-/// @brief  : ½ºÅ³ µô·¹ÀÌ¸¦ ¼¼ÆÃÇÑ´Ù.
+/// @brief  : ìŠ¤í‚¬ ë”œë ˆì´ë¥¼ ì„¸íŒ…í•œë‹¤.
 ///			
 //--------------------------------------------------------------------------------
 void CObjAI::SetSkillDelay( int iSkillIdx )
 {
 	//--------------------------------------------------------------------------------
-	/// À¯Á®ÀÏ°æ¿ì´Â Å¸ÀÌ¸Ó¸¦ ¼¼ÆÃÇÑ´Ù.
+	/// ìœ ì ¸ì¼ê²½ìš°ëŠ” íƒ€ì´ë¨¸ë¥¼ ì„¸íŒ…í•œë‹¤.
 	//--------------------------------------------------------------------------------
 	if( this->IsA( OBJ_USER ) )
 	{
-		/// Å¸ÀÌ¸Ó ¼³Á¤
+		/// íƒ€ì´ë¨¸ ì„¤ì •
 		CSkillSlot* pSkillSlot = g_pAVATAR->GetSkillSlot();
 		CSkill* pSkill = pSkillSlot->GetSkillBySkillIDX( iSkillIdx );
 		if( pSkill )
@@ -1025,14 +1025,14 @@ void CObjAI::SetSkillDelay( int iSkillIdx )
 
 //--------------------------------------------------------------------------------
 /// class : CObAI
-/// @param short nSkillIDX ½ºÅ³ÀÎµ¦½º
+/// @param short nSkillIDX ìŠ¤í‚¬ì¸ë±ìŠ¤
 /// @brief  : SetCMD_Skill2SELF
-///				4/28 ´É·ÂÄ¡ ¼Ò¸ð¸¦ Result_Of_skill ¿¡¼­ Ã³¸®ÇÏ°Ô ¿Å±è
+///				4/28 ëŠ¥ë ¥ì¹˜ ì†Œëª¨ë¥¼ Result_Of_skill ì—ì„œ ì²˜ë¦¬í•˜ê²Œ ì˜®ê¹€
 //--------------------------------------------------------------------------------
 
 void CObjAI::SetCMD_Skill2SELF (short nSkillIDX)
 {
-	/// 2005/7/25 CObjUSER·Î ÀÌµ¿ : nAvy
+	/// 2005/7/25 CObjUSERë¡œ ì´ë™ : nAvy
 	//if( this->IsA( OBJ_USER ) )
 	//{
 	//	CObjSkill2SelfCommand* pObjCommand = (CObjSkill2SelfCommand*)g_CommandFilter.GetCommandObject( OBJECT_COMMAND_Skill2SELF );
@@ -1042,7 +1042,7 @@ void CObjAI::SetCMD_Skill2SELF (short nSkillIDX)
 	//}
 
 
-	/// ÇöÀç ¸í·ÉÀÌ µé¾î°¥¼ö ÀÖ³ª?
+	/// í˜„ìž¬ ëª…ë ¹ì´ ë“¤ì–´ê°ˆìˆ˜ ìžˆë‚˜?
 	if( this->CanApplyCommand() == false )
 	{
 		this->PushCommandSkill2Self( nSkillIDX );
@@ -1062,7 +1062,7 @@ void CObjAI::SetCMD_Skill2SELF (short nSkillIDX)
 	SetSkillDelay( m_nToDoSkillIDX );
 
 	//----------------------------------------------------------------------------------------------------	
-	/// @brief º¹±¸ÇÒ ¸í·É ¼³Á¤
+	/// @brief ë³µêµ¬í•  ëª…ë ¹ ì„¤ì •
 	//----------------------------------------------------------------------------------------------------
 	switch( m_wCommand )
 	{
@@ -1078,12 +1078,12 @@ void CObjAI::SetCMD_Skill2SELF (short nSkillIDX)
     
 	m_wCommand = CMD_SKILL2SELF;
 
-	/// ÀÏ´Ü ¿©±â¼­ ±ïÀÚ..¼Ò¸ðÄ¡
-	/// ¸í·ÉÀ» ¼¼ÆÃÇÒ¶§ ±ïÀ»±î³ª?
+	/// ì¼ë‹¨ ì—¬ê¸°ì„œ ê¹ìž..ì†Œëª¨ì¹˜
+	/// ëª…ë ¹ì„ ì„¸íŒ…í• ë•Œ ê¹ì„ê¹Œë‚˜?
 	///CSkillManager::UpdateUseProperty( this, nSkillIDX );
 
 	//-----------------------------------------------------------------------------------------
-	/// Ã³À½ ½ÃÀÛ»óÅÂ´Â Ä³½ºÆÃ »óÅÂºÎÅÍ ½ÃÀÛ..
+	/// ì²˜ìŒ ì‹œìž‘ìƒíƒœëŠ” ìºìŠ¤íŒ… ìƒíƒœë¶€í„° ì‹œìž‘..
 	//-----------------------------------------------------------------------------------------
 	m_SkillActionState = SKILL_CASTING_STATE;
 }
@@ -1091,13 +1091,13 @@ void CObjAI::SetCMD_Skill2SELF (short nSkillIDX)
 
 //--------------------------------------------------------------------------------
 /// class : CObAI
-/// @param int iServerTarget Å¸°ÙÀÇ ¼­¹ö ÀÎµ¦½º
-/// @param short nSkillIDX	 ½ºÅ³ ÀÎµ¦½º
-/// @brief  : ¿ÀºêÁ§Æ®Å¸°Ù ½ºÅ³
+/// @param int iServerTarget íƒ€ê²Ÿì˜ ì„œë²„ ì¸ë±ìŠ¤
+/// @param short nSkillIDX	 ìŠ¤í‚¬ ì¸ë±ìŠ¤
+/// @brief  : ì˜¤ë¸Œì íŠ¸íƒ€ê²Ÿ ìŠ¤í‚¬
 //--------------------------------------------------------------------------------
 bool CObjAI::SetCMD_Skill2OBJ ( WORD wSrvDIST, const D3DVECTOR& PosTO, int iServerTarget, short nSkillIDX)
 {
-	/// 2005/7/25 CObjUSER·Î ÀÌµ¿ : nAvy
+	/// 2005/7/25 CObjUSERë¡œ ì´ë™ : nAvy
 	//if( this->IsA( OBJ_USER ) )
 	//{
 	//	CObjSkill2ObjCommand* pObjCommand = (CObjSkill2ObjCommand*)g_CommandFilter.GetCommandObject( OBJECT_COMMAND_Skill2OBJ );
@@ -1108,7 +1108,7 @@ bool CObjAI::SetCMD_Skill2OBJ ( WORD wSrvDIST, const D3DVECTOR& PosTO, int iServ
 
 
 	//-----------------------------------------------------------------------------------------
-	/// ÇöÀç ¸í·ÉÀÌ µé¾î°¥¼ö ÀÖ³ª?
+	/// í˜„ìž¬ ëª…ë ¹ì´ ë“¤ì–´ê°ˆìˆ˜ ìžˆë‚˜?
 	//-----------------------------------------------------------------------------------------
 	if( this->CanApplyCommand() == false )
 	{
@@ -1120,10 +1120,10 @@ bool CObjAI::SetCMD_Skill2OBJ ( WORD wSrvDIST, const D3DVECTOR& PosTO, int iServ
 	 Log_String( LOG_NORMAL, "SetCMD_Skill2OBJ\n" );
 
 	 //-----------------------------------------------------------------------------------------
-	/// ÀÏ´Ü ¿©±â¼­ ±ïÀÚ..¼Ò¸ðÄ¡
-	/// ¸í·ÉÀ» ¼¼ÆÃÇÒ¶§ ±ïÀ»±î³ª?
+	/// ì¼ë‹¨ ì—¬ê¸°ì„œ ê¹ìž..ì†Œëª¨ì¹˜
+	/// ëª…ë ¹ì„ ì„¸íŒ…í• ë•Œ ê¹ì„ê¹Œë‚˜?
 
-	/// 04/4/27 ½ºÅ³ Ã³¸® °á°ú¸¦ ¹Þ¾ÒÀ»¶§ Ã³¸®...
+	/// 04/4/27 ìŠ¤í‚¬ ì²˜ë¦¬ ê²°ê³¼ë¥¼ ë°›ì•˜ì„ë•Œ ì²˜ë¦¬...
 	//CSkillManager::UpdateUseProperty( this, nSkillIDX );
 	 //-----------------------------------------------------------------------------------------
 
@@ -1133,7 +1133,7 @@ bool CObjAI::SetCMD_Skill2OBJ ( WORD wSrvDIST, const D3DVECTOR& PosTO, int iServ
 	//	m_wState = CS_STOP;
 
 	//----------------------------------------------------------------------------------------------------	
-	/// @brief º¹±¸ÇÒ ¸í·É ¼³Á¤
+	/// @brief ë³µêµ¬í•  ëª…ë ¹ ì„¤ì •
 	//----------------------------------------------------------------------------------------------------
 	switch( m_wCommand )
 	{
@@ -1172,8 +1172,8 @@ bool CObjAI::SetCMD_Skill2OBJ ( WORD wSrvDIST, const D3DVECTOR& PosTO, int iServ
 	else 
 	{
 		//-----------------------------------------------------------------------------------------
-		// TODO:: Å¸°ÙÀ» ¸øÃ£¾ÒÀ»¶§...
-		/// Å¬¶óÀÌ¾ðÆ®¿¡¼­´Â Å¸°ÙÀÌ ¾ø¾îµµ °ø°Ý ¸í·É°ú ¼­¹ö Å¸°ÙÀ» À¯ÁöÇÑ´Ù.
+		// TODO:: íƒ€ê²Ÿì„ ëª»ì°¾ì•˜ì„ë•Œ...
+		/// í´ë¼ì´ì–¸íŠ¸ì—ì„œëŠ” íƒ€ê²Ÿì´ ì—†ì–´ë„ ê³µê²© ëª…ë ¹ê³¼ ì„œë²„ íƒ€ê²Ÿì„ ìœ ì§€í•œë‹¤.
 		//-----------------------------------------------------------------------------------------
 		m_wCommand		= CMD_SKILL2OBJ;
 		m_iServerTarget = iServerTarget;
@@ -1185,7 +1185,7 @@ bool CObjAI::SetCMD_Skill2OBJ ( WORD wSrvDIST, const D3DVECTOR& PosTO, int iServ
 
 
 	//-----------------------------------------------------------------------------------------
-	/// Ã³À½ ½ÃÀÛ»óÅÂ´Â Ä³½ºÆÃ »óÅÂºÎÅÍ ½ÃÀÛ..
+	/// ì²˜ìŒ ì‹œìž‘ìƒíƒœëŠ” ìºìŠ¤íŒ… ìƒíƒœë¶€í„° ì‹œìž‘..
 	//-----------------------------------------------------------------------------------------
 	m_SkillActionState = SKILL_CASTING_STATE;
 
@@ -1196,14 +1196,14 @@ bool CObjAI::SetCMD_Skill2OBJ ( WORD wSrvDIST, const D3DVECTOR& PosTO, int iServ
 
 //--------------------------------------------------------------------------------
 /// class : CObAI
-/// @param tPOINTF &PosGOTO	 Å¸°ÙÀÇ À§Ä¡
-/// @param short nSkillIDX	 ½ºÅ³ ÀÎµ¦½º
-/// @brief  : Áö¿ª Å¸°Ù ½ºÅ³
+/// @param tPOINTF &PosGOTO	 íƒ€ê²Ÿì˜ ìœ„ì¹˜
+/// @param short nSkillIDX	 ìŠ¤í‚¬ ì¸ë±ìŠ¤
+/// @brief  : ì§€ì—­ íƒ€ê²Ÿ ìŠ¤í‚¬
 //--------------------------------------------------------------------------------
 
 void CObjAI::SetCMD_Skill2POS (const D3DVECTOR& PosGOTO, short nSkillIDX)
 {
-	/// 2005/7/25 CObjUSER·Î ÀÌµ¿ : nAvy
+	/// 2005/7/25 CObjUSERë¡œ ì´ë™ : nAvy
 	//if( this->IsA( OBJ_USER ) )
 	//{
 	//	CObjSkill2PosCommand* pObjCommand = (CObjSkill2PosCommand*)g_CommandFilter.GetCommandObject( OBJECT_COMMAND_Skill2POS );
@@ -1212,7 +1212,7 @@ void CObjAI::SetCMD_Skill2POS (const D3DVECTOR& PosGOTO, short nSkillIDX)
 	//	g_CommandFilter.SetPrevCommand( pObjCommand );
 	//}
 
-	/// ÇöÀç ¸í·ÉÀÌ µé¾î°¥¼ö ÀÖ³ª?
+	/// í˜„ìž¬ ëª…ë ¹ì´ ë“¤ì–´ê°ˆìˆ˜ ìžˆë‚˜?
 	if( this->CanApplyCommand() == false )
 	{
 		this->PushCommandSkill2Pos( PosGOTO, nSkillIDX );
@@ -1223,8 +1223,8 @@ void CObjAI::SetCMD_Skill2POS (const D3DVECTOR& PosGOTO, short nSkillIDX)
 	SetEffectedSkillFlag( false );
 	Log_String( LOG_NORMAL, "SetCMD_Skill2POS\n" );
 
-	/// ÀÏ´Ü ¿©±â¼­ ±ïÀÚ..¼Ò¸ðÄ¡
-	/// ¸í·ÉÀ» ¼¼ÆÃÇÒ¶§ ±ïÀ»±î³ª?
+	/// ì¼ë‹¨ ì—¬ê¸°ì„œ ê¹ìž..ì†Œëª¨ì¹˜
+	/// ëª…ë ¹ì„ ì„¸íŒ…í• ë•Œ ê¹ì„ê¹Œë‚˜?
 	///CSkillManager::UpdateUseProperty( this, nSkillIDX );
 
 
@@ -1234,7 +1234,7 @@ void CObjAI::SetCMD_Skill2POS (const D3DVECTOR& PosGOTO, short nSkillIDX)
 		m_wState = CS_STOP;
 
 	//----------------------------------------------------------------------------------------------------	
-	/// @brief º¹±¸ÇÒ ¸í·É ¼³Á¤
+	/// @brief ë³µêµ¬í•  ëª…ë ¹ ì„¤ì •
 	//----------------------------------------------------------------------------------------------------
 	switch( m_wCommand )
 	{
@@ -1259,7 +1259,7 @@ void CObjAI::SetCMD_Skill2POS (const D3DVECTOR& PosGOTO, short nSkillIDX)
 	this->Set_TargetIDX( 0 );
 
 	//-----------------------------------------------------------------------------------------
-	/// Ã³À½ ½ÃÀÛ»óÅÂ´Â Ä³½ºÆÃ »óÅÂºÎÅÍ ½ÃÀÛ..
+	/// ì²˜ìŒ ì‹œìž‘ìƒíƒœëŠ” ìºìŠ¤íŒ… ìƒíƒœë¶€í„° ì‹œìž‘..
 	//-----------------------------------------------------------------------------------------
 	m_SkillActionState = SKILL_CASTING_STATE;
 }
@@ -1267,7 +1267,7 @@ void CObjAI::SetCMD_Skill2POS (const D3DVECTOR& PosGOTO, short nSkillIDX)
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief µð¹ö±ë¿ë ½ºÅ³ ½ºÅ¸Æ® Å¸ÀÓ ±â·Ï..
+/// @brief ë””ë²„ê¹…ìš© ìŠ¤í‚¬ ìŠ¤íƒ€íŠ¸ íƒ€ìž„ ê¸°ë¡..
 //----------------------------------------------------------------------------------------------------
 
 void CObjAI::SetCastingState( bool bStart )
@@ -1293,13 +1293,13 @@ void CObjAI::SetCastingState( bool bStart )
 
 bool CObjAI::ProcOneActionFrame( int iIndex )
 {
-	/// ÀÌ°Ç ÇÊ¿ä¾ø´Â°Í °°Àºµ¥..
+	/// ì´ê±´ í•„ìš”ì—†ëŠ”ê²ƒ ê°™ì€ë°..
 	if ( m_pCurMOTION && m_pCurMOTION->m_nActionPointCNT ) 
 	{
 		if ( m_pCurMOTION->m_pFrameEvent[ iIndex ] ) 
 		{
-			/// @bug :: vd_ClientÀÏ°æ¿ì ¾È¿¡¼­ AI Action¿¡ ÀÇÇØ m_pCurMOTIONÀÌ ¹Ù²î¾î ¿À´Â °æ¿ì°¡ »ý°Ü »¶~~~~~~~ 
-			//    ±¸Á¶¸¦ ¹Ù²ã¾ß...
+			/// @bug :: vd_Clientì¼ê²½ìš° ì•ˆì—ì„œ AI Actionì— ì˜í•´ m_pCurMOTIONì´ ë°”ë€Œì–´ ì˜¤ëŠ” ê²½ìš°ê°€ ìƒê²¨ ë»‘~~~~~~~ 
+			//    êµ¬ì¡°ë¥¼ ë°”ê¿”ì•¼...
 			ActionEVENT( m_pCurMOTION->m_pFrameEvent[ iIndex ] );
 
 			return true;
@@ -1311,10 +1311,10 @@ bool CObjAI::ProcOneActionFrame( int iIndex )
 
 //--------------------------------------------------------------------------------
 /// class : CObAI
-/// @param tPOINTF &PosGOTO	 Å¸°ÙÀÇ À§Ä¡
-/// @param short nSkillIDX	 ½ºÅ³ ÀÎµ¦½º
-/// @brief  : ¾Ö´Ï¸ÅÀÌ¼Ç ÁøÇà..
-/// @bug -->¾È¿¡¼­ AI Action¿¡ ÀÇÇØ m_pCurMOTIONÀÌ ¹Ù²î¾î ¿À´Â °æ¿ì°¡ »ý°Ü »¶~~~~~~~
+/// @param tPOINTF &PosGOTO	 íƒ€ê²Ÿì˜ ìœ„ì¹˜
+/// @param short nSkillIDX	 ìŠ¤í‚¬ ì¸ë±ìŠ¤
+/// @brief  : ì• ë‹ˆë§¤ì´ì…˜ ì§„í–‰..
+/// @bug -->ì•ˆì—ì„œ AI Actionì— ì˜í•´ m_pCurMOTIONì´ ë°”ë€Œì–´ ì˜¤ëŠ” ê²½ìš°ê°€ ìƒê²¨ ë»‘~~~~~~~
 //--------------------------------------------------------------------------------
 
 bool CObjAI::ProcMotionFrame (void)
@@ -1331,18 +1331,18 @@ bool CObjAI::ProcMotionFrame (void)
 	_ASSERT( iFrame <= m_pCurMOTION->m_wTotalFrame );
 	_ASSERT( m_iCurMotionFRAME >= 0 );
 
-	/// CS_BIT_CHK ¿¡ ÀÇÇØ Ã¼Å©µÈ°ÍÀº ÀÌÈÄ¿¡ MOV ¶§ ÀÌº¥Æ® Ã¼Å©¸¦ ÇÏ¸é ¾ÈµÈ´Ù.
+	/// CS_BIT_CHK ì— ì˜í•´ ì²´í¬ëœê²ƒì€ ì´í›„ì— MOV ë•Œ ì´ë²¤íŠ¸ ì²´í¬ë¥¼ í•˜ë©´ ì•ˆëœë‹¤.
 	bool bCheckedActionFrame = false;
 
-	/// µ¿ÀÛÇÁ·¹ÀÓÀ» Ã¼Å© ÇØ¾ßµÈ´Ù¸é..
+	/// ë™ìž‘í”„ë ˆìž„ì„ ì²´í¬ í•´ì•¼ëœë‹¤ë©´..
 	if ( m_wState & CS_BIT_CHK ) 
 	{
 		if ( m_pCurMOTION && m_pCurMOTION->m_nActionPointCNT ) 
 		{
 
 			//----------------------------------------------------------------------------------------------------			
-			/// @brief iFrame < m_iCurMotionFRAME ÀÏ°æ¿ì ³»ÀçµÈ ¹ö±×°¡ ÀÖ´Ù.
-			///        ±×·¡¼­ µÎ °æ¿ì¸¦ ºÐ¸®ÇØ¼­ Ã³¸®
+			/// @brief iFrame < m_iCurMotionFRAME ì¼ê²½ìš° ë‚´ìž¬ëœ ë²„ê·¸ê°€ ìžˆë‹¤.
+			///        ê·¸ëž˜ì„œ ë‘ ê²½ìš°ë¥¼ ë¶„ë¦¬í•´ì„œ ì²˜ë¦¬
 			//----------------------------------------------------------------------------------------------------
 			if( iFrame >= m_iCurMotionFRAME )
 			{
@@ -1353,13 +1353,13 @@ bool CObjAI::ProcMotionFrame (void)
 				}
 			}else
 			{				
-				/// ¸ÕÀú ³¡ÇÁ·¹ÀÓ±îÁö ÁøÇàÇÑ ÈÄ¿¡.
+				/// ë¨¼ì € ëí”„ë ˆìž„ê¹Œì§€ ì§„í–‰í•œ í›„ì—.
 				for( int iL = m_iCurMotionFRAME ; iL < m_pCurMOTION->Get_TotalFRAME() ; iL++ ) 
 				{
 					bCheckedActionFrame = ProcOneActionFrame( iL );
 				}
 			
-				/// Ã¹ÇÁ·¹ÀÓºÎÅÍ iFrame ±îÁö Ã³¸®
+				/// ì²«í”„ë ˆìž„ë¶€í„° iFrame ê¹Œì§€ ì²˜ë¦¬
 				for( int iL = 0 ; iL < iFrame ; iL++ ) 
 				{
 					bCheckedActionFrame = ProcOneActionFrame( iL );
@@ -1367,13 +1367,13 @@ bool CObjAI::ProcMotionFrame (void)
 			}
 		}
 
-		/// ÇÑ¹ø¸¸ Ã¼Å©
+		/// í•œë²ˆë§Œ ì²´í¬
 		if ( m_wState & CS_BIT_ONE ) 
 		{
-			/// iFrame < m_iCurMotionFRAME ¾Ö´Ï¸ÅÀÌ¼ÇÀÌ ÇÑ¹Ù±Í µ¹¾Æ iFrameÀÌ ¸®¼Â‰çÀ»°æ¿ìÁö
+			/// iFrame < m_iCurMotionFRAME ì• ë‹ˆë§¤ì´ì…˜ì´ í•œë°”ê·€ ëŒì•„ iFrameì´ ë¦¬ì…‹Â‰ç‘›ëºåš¥ï§¨?
 			if ( iFrame < m_iCurMotionFRAME || m_iCurMotionFRAME >= ( m_pCurMOTION->m_wTotalFrame - 1 ) ) 
 			{
-				// ¸ð¼ÇÀÌ ¿Ï·á µÆ´Ù.
+				// ëª¨ì…˜ì´ ì™„ë£Œ ëë‹¤.
 				m_iCurMotionFRAME = 0;
 				m_wState &= ~CS_BIT_INT;
 				return false;
@@ -1383,13 +1383,13 @@ bool CObjAI::ProcMotionFrame (void)
 
 
 	//--------------------------------------------------------------------------------
-	///// ¹ßÀÚ±¹ ¼Ò¸®¶§¹®¿¡ ÀÌµ¿½Ã¿¡µµ ÇÁ·¹ÀÓ Ã¼Å©
+	///// ë°œìžêµ­ ì†Œë¦¬ë•Œë¬¸ì— ì´ë™ì‹œì—ë„ í”„ë ˆìž„ ì²´í¬
 	//--------------------------------------------------------------------------------
 	if( !bCheckedActionFrame && m_wState & CS_MOVE )
 	{
 		//----------------------------------------------------------------------------------------------------			
-		/// @brief iFrame < m_iCurMotionFRAME ÀÏ°æ¿ì ³»ÀçµÈ ¹ö±×°¡ ÀÖ´Ù.
-		///        ±×·¡¼­ µÎ °æ¿ì¸¦ ºÐ¸®ÇØ¼­ Ã³¸®
+		/// @brief iFrame < m_iCurMotionFRAME ì¼ê²½ìš° ë‚´ìž¬ëœ ë²„ê·¸ê°€ ìžˆë‹¤.
+		///        ê·¸ëž˜ì„œ ë‘ ê²½ìš°ë¥¼ ë¶„ë¦¬í•´ì„œ ì²˜ë¦¬
 		//----------------------------------------------------------------------------------------------------
 		if( iFrame >= m_iCurMotionFRAME )
 		{
@@ -1400,13 +1400,13 @@ bool CObjAI::ProcMotionFrame (void)
 			}
 		}else
 		{				
-			/// ¸ÕÀú ³¡ÇÁ·¹ÀÓ±îÁö ÁøÇàÇÑ ÈÄ¿¡.
+			/// ë¨¼ì € ëí”„ë ˆìž„ê¹Œì§€ ì§„í–‰í•œ í›„ì—.
 			for( int iL = m_iCurMotionFRAME ; iL < m_pCurMOTION->Get_TotalFRAME() ; iL++ ) 
 			{
 				bCheckedActionFrame = ProcOneActionFrame( iL );
 			}
 		
-			/// Ã¹ÇÁ·¹ÀÓºÎÅÍ iFrame ±îÁö Ã³¸®
+			/// ì²«í”„ë ˆìž„ë¶€í„° iFrame ê¹Œì§€ ì²˜ë¦¬
 			for( int iL = 0 ; iL < iFrame ; iL++ ) 
 			{
 				bCheckedActionFrame = ProcOneActionFrame( iL );
@@ -1415,9 +1415,9 @@ bool CObjAI::ProcMotionFrame (void)
 	}	
 
 	
-	/// @todo m_iCurMotionFRAME = iFrame;	  ÀÌ°É ³Ö¾ú´Âµ¥ ¾î¶³Áö..
-	/// ¸ð¼ÇÀÌ ³¡³µ´Ù.
-	/// iFrame < m_iCurMotionFRAME ¾Ö´Ï¸ÅÀÌ¼ÇÀÌ ÇÑ¹Ù±Í µ¹¾Æ iFrameÀÌ ¸®¼Â‰çÀ»°æ¿ìÁö
+	/// @todo m_iCurMotionFRAME = iFrame;	  ì´ê±¸ ë„£ì—ˆëŠ”ë° ì–´ë–¨ì§€..
+	/// ëª¨ì…˜ì´ ëë‚¬ë‹¤.
+	/// iFrame < m_iCurMotionFRAME ì• ë‹ˆë§¤ì´ì…˜ì´ í•œë°”ê·€ ëŒì•„ iFrameì´ ë¦¬ì…‹Â‰ç‘›ëºåš¥ï§¨?
 	if ( iFrame < m_iCurMotionFRAME || m_iCurMotionFRAME >= ( m_pCurMOTION->m_wTotalFrame - 1 ) ) 
 	{
 		m_iCurMotionFRAME = iFrame;	
@@ -1432,23 +1432,23 @@ bool CObjAI::ProcMotionFrame (void)
 
 //--------------------------------------------------------------------------------
 /// class : CObAI
-/// @param CObjCHAR *pTarget	Å¸°Ù ¿ÀºêÁ§Æ®
-/// @param int iRange			¹üÀ§( °Å¸® )
-/// @brief  : Å¸°ÙÀ¸·Î ÀÌµ¿
+/// @param CObjCHAR *pTarget	íƒ€ê²Ÿ ì˜¤ë¸Œì íŠ¸
+/// @param int iRange			ë²”ìœ„( ê±°ë¦¬ )
+/// @brief  : íƒ€ê²Ÿìœ¼ë¡œ ì´ë™
 //--------------------------------------------------------------------------------
 
 bool CObjAI::Goto_TARGET( CObjCHAR *pTarget, int iRange )
 {
 	if ( IsInRANGE( pTarget, iRange ) ) 
 	{
-		/// °Å¸®¾È¿¡ µé¾î ¿Ô´Ù...
+		/// ê±°ë¦¬ì•ˆì— ë“¤ì–´ ì™”ë‹¤...
 		this->m_PosGOTO = this->m_PosCUR;
 		this->Move_COMPLETED ();
 		return true;
 	}
 	
-	// ÃÖÁ¾ À§Ä¡°¡ ¹Ù²î¾úÀ¸¸é ÀÌµ¿ º¤ÅÍ ´Ù½Ã °è»ê...
-	// ÀÌµ¿ÁßÀÌ ¾Æ´Ñ »óÅÂ¸é...ÀÌµ¿ÇÏÁö ¾Ê´Â´Ù.
+	// ìµœì¢… ìœ„ì¹˜ê°€ ë°”ë€Œì—ˆìœ¼ë©´ ì´ë™ ë²¡í„° ë‹¤ì‹œ ê³„ì‚°...
+	// ì´ë™ì¤‘ì´ ì•„ë‹Œ ìƒíƒœë©´...ì´ë™í•˜ì§€ ì•ŠëŠ”ë‹¤.
 	this->Restart_MOVE( pTarget->m_PosCUR );
 
 	return false;
@@ -1457,22 +1457,22 @@ bool CObjAI::Goto_TARGET( CObjCHAR *pTarget, int iRange )
 
 //--------------------------------------------------------------------------------
 /// class : CObAI
-/// @param int iRange			¹üÀ§( °Å¸® )
-/// @brief  :  ÀÌ°Å ¹¹ÇÏ´Âµ¥ »ç¿ëÇÏ´Â°ÅÁö?
+/// @param int iRange			ë²”ìœ„( ê±°ë¦¬ )
+/// @brief  :  ì´ê±° ë­í•˜ëŠ”ë° ì‚¬ìš©í•˜ëŠ”ê±°ì§€?
 //--------------------------------------------------------------------------------
 
 bool CObjAI::Goto_POSITION (int iRange)
 {
 	if ( !(Get_STATE() & CS_BIT_MOV) )
 	{
-		// ÀÌµ¿ÁßÀÌ ¾Æ´Ï¸é ÀÌµ¿ ½ÃÀÛ...
+		// ì´ë™ì¤‘ì´ ì•„ë‹ˆë©´ ì´ë™ ì‹œìž‘...
 		this->Start_MOVE( this->Get_MoveSPEED() );
 	}
 
 	int iDistance = CD3DUtil::distance ((int)m_PosCUR.x, (int)m_PosCUR.y, (int)m_PosMoveSTART.x, (int)m_PosMoveSTART.y);
 	if ( iDistance+iRange >= m_iMoveDistance ) 
 	{
-		/// °Å¸®¾È¿¡ µé¾î ¿Ô´Ù...
+		/// ê±°ë¦¬ì•ˆì— ë“¤ì–´ ì™”ë‹¤...
 		this->m_PosGOTO = this->m_PosCUR;
 		this->Move_COMPLETED ();		
 		return true;
@@ -1484,7 +1484,7 @@ bool CObjAI::Goto_POSITION (int iRange)
 
 //--------------------------------------------------------------------------------
 /// class : CObAI
-/// @brief  : sit ÄÄ¸Çµå Ã³¸® ÇÔ¼ö
+/// @brief  : sit ì»´ë§¨ë“œ ì²˜ë¦¬ í•¨ìˆ˜
 //--------------------------------------------------------------------------------
 
 int CObjAI::ProcCMD_SIT ()
@@ -1500,8 +1500,8 @@ int CObjAI::ProcCMD_SIT ()
 
 //--------------------------------------------------------------------------------
 /// class : CObAI
-/// @brief  : Stop command Ã³¸® ÇÔ¼ö
-///			¼­¹ö¿Í ¿¬°á»óÅÂ¿¡¼­´Â Do_StopAI È£ÃâÀº ¹«ÀÇ¹Ì ÇÏ´Ù..
+/// @brief  : Stop command ì²˜ë¦¬ í•¨ìˆ˜
+///			ì„œë²„ì™€ ì—°ê²°ìƒíƒœì—ì„œëŠ” Do_StopAI í˜¸ì¶œì€ ë¬´ì˜ë¯¸ í•˜ë‹¤..
 //--------------------------------------------------------------------------------
 
 int CObjAI::ProcCMD_STOP ()
@@ -1518,8 +1518,8 @@ int CObjAI::ProcCMD_STOP ()
 
 //--------------------------------------------------------------------------------
 /// class : CObAI
-/// @brief  : ÀÌµ¿ ÇÁ·Î¼¼½º..
-///				ÀÌµ¿Áß ´ë»óÀÌ NPCÀÌ°Å³ª, ITEM ÀÏ °æ¿ì Ã³¸®..
+/// @brief  : ì´ë™ í”„ë¡œì„¸ìŠ¤..
+///				ì´ë™ì¤‘ ëŒ€ìƒì´ NPCì´ê±°ë‚˜, ITEM ì¼ ê²½ìš° ì²˜ë¦¬..
 //--------------------------------------------------------------------------------
 #include "../Interface/Dlgs/CAvatarStoreDlg.h"
 int CObjAI::ProcCMD_MOVE ()
@@ -1537,7 +1537,7 @@ int CObjAI::ProcCMD_MOVE ()
 	{
 		if( pTarget->Is_AVATAR() ) 
 		{
-			/// ´ë»óÀÌ »ç¿ëÀÚ¶ó¸é
+			/// ëŒ€ìƒì´ ì‚¬ìš©ìžë¼ë©´
 			if ( Goto_TARGET( pTarget, AVT_CLICK_EVENT_RANGE ) ) 
 			{
 				
@@ -1564,10 +1564,10 @@ int CObjAI::ProcCMD_MOVE ()
 
 		} else 	if ( pTarget->IsA( OBJ_NPC ) ) 
 		{
-			/// ´ë»óÀÌ NPC¶ó¸é
+			/// ëŒ€ìƒì´ NPCë¼ë©´
 			if ( Goto_TARGET( pTarget, NPC_CLICK_EVENT_RANGE ) ) 
 			{
-				// µµÂøÇß´Ù... ´ëÈ­ !
+				// ë„ì°©í–ˆë‹¤... ëŒ€í™” !
 				pTarget->Check_EVENT( this );
 				SetCMD_STOP ();
 			}
@@ -1576,7 +1576,7 @@ int CObjAI::ProcCMD_MOVE ()
 		}
 	}
 
-	/// m_PosGOTO·Î ÀÌµ¿..
+	/// m_PosGOTOë¡œ ì´ë™..
 	if ( this->Goto_POSITION () ) 
 	{
 		SetCMD_STOP ();
@@ -1588,21 +1588,21 @@ int CObjAI::ProcCMD_MOVE ()
 
 //--------------------------------------------------------------------------------
 /// class : CObAI
-/// @brief  : ÀÌµ¿Áß ¾ÆÀÌÅÛÀÌ ´ë»óÀÏ°æ¿ìÀÇ Ã³¸®..
-///			»ç½Ç ¾ÆÀÌÅÛÀÌ¶û ÀÌ¸§ ºÙ¾úÁö¸¸.. Command °¡ CMD_PICK_ITEM ÀÌ ¾Æ´Ï¸é ÀÏ¹Ý µ¿ÀÛ.
+/// @brief  : ì´ë™ì¤‘ ì•„ì´í…œì´ ëŒ€ìƒì¼ê²½ìš°ì˜ ì²˜ë¦¬..
+///			ì‚¬ì‹¤ ì•„ì´í…œì´ëž‘ ì´ë¦„ ë¶™ì—ˆì§€ë§Œ.. Command ê°€ CMD_PICK_ITEM ì´ ì•„ë‹ˆë©´ ì¼ë°˜ ë™ìž‘.
 //--------------------------------------------------------------------------------
 
 int CObjAI::ProcCMD_PICK_ITEM ()
 {
-	/// m_PosGOTO·Î ÀÌµ¿..
+	/// m_PosGOTOë¡œ ì´ë™..
 	if ( this->Goto_POSITION() ) 
 	{		
-		// µµÂøÇß´Ù.	
+		// ë„ì°©í–ˆë‹¤.	
 		if ( Get_COMMAND() == CMD_PICK_ITEM ) 
 		{
 			SetCMD_STOP ();
 
-			// ¾ÆÀÌÅÛ °®±â¸¦ ¼­¹ö¿¡ ¿äÃ».
+			// ì•„ì´í…œ ê°–ê¸°ë¥¼ ì„œë²„ì— ìš”ì²­.
 			if( g_pNet->Send_cli_GET_FIELDITEM_REQ( this, m_iServerTarget ) )
 			{					
 				this->Set_MOTION( this->GetANI_PickITEM() );
@@ -1612,18 +1612,18 @@ int CObjAI::ProcCMD_PICK_ITEM ()
 	}else
 	{		
 		//----------------------------------------------------------------------------------------------------
-		/// ¾ÆÀÌÅÛ ÁÝ±âÀÇ°æ¿ì¿¡´Â ÀûÁ¤ °Å¸®¾È¿¡ µé¾î¿À¸é µµÂøÇÏÁö ¾Ê¾Æµµ ÁÝ±â ¿äÃ»..
+		/// ì•„ì´í…œ ì¤ê¸°ì˜ê²½ìš°ì—ëŠ” ì ì • ê±°ë¦¬ì•ˆì— ë“¤ì–´ì˜¤ë©´ ë„ì°©í•˜ì§€ ì•Šì•„ë„ ì¤ê¸° ìš”ì²­..
 		//----------------------------------------------------------------------------------------------------
 		const int iPickItemRange = 150;
 		int iDistance = CD3DUtil::distance ((int)m_PosCUR.x, (int)m_PosCUR.y, (int)m_PosMoveSTART.x, (int)m_PosMoveSTART.y);
 		if ( iDistance + iPickItemRange >= m_iMoveDistance ) 
 		{
-			// µµÂøÇß´Ù.	
+			// ë„ì°©í–ˆë‹¤.	
 			if ( Get_COMMAND() == CMD_PICK_ITEM ) 
 			{
 				SetCMD_STOP ();
 
-				// ¾ÆÀÌÅÛ °®±â¸¦ ¼­¹ö¿¡ ¿äÃ».
+				// ì•„ì´í…œ ê°–ê¸°ë¥¼ ì„œë²„ì— ìš”ì²­.
 				if( g_pNet->Send_cli_GET_FIELDITEM_REQ( this, m_iServerTarget ) )
 				{					
 					this->Set_MOTION( this->GetANI_PickITEM() );
@@ -1639,7 +1639,7 @@ int CObjAI::ProcCMD_PICK_ITEM ()
 
 //--------------------------------------------------------------------------------
 /// class : CObAI
-/// @brief  : Attack command Ã³¸®
+/// @brief  : Attack command ì²˜ë¦¬
 ///
 //--------------------------------------------------------------------------------
 
@@ -1647,7 +1647,7 @@ int CObjAI::ProcCMD_ATTACK ()
 {	
 //-------------------------------------------------------------------------------
 #if defined(_GBC)
-	//¹ÚÁöÈ£::......
+	//ë°•ì§€í˜¸::......
 	if(GetPetMode() >= 0)
 		 return 1;
 #endif 
@@ -1658,29 +1658,29 @@ int CObjAI::ProcCMD_ATTACK ()
 	{
 		if ( Get_STATE() & CS_BIT_ATTACK ) 
 		{
-			/// °ø°ÝÁßÀÌ´Ù..
+			/// ê³µê²©ì¤‘ì´ë‹¤..
 			if ( !(Get_STATE() & CS_BIT_INT) ) 
 			{			
-				// TODO :: °°Àº Á¸ÀÇ ´Ù¸¥ À§Ä¡·Î ¿öÇÁ Çß´Ù¸é...
+				// TODO :: ê°™ì€ ì¡´ì˜ ë‹¤ë¥¸ ìœ„ì¹˜ë¡œ ì›Œí”„ í–ˆë‹¤ë©´...
 				if ( !IsInRANGE( pTarget, this->Get_AttackRange() ) ) {
-					// ¹üÀ§¸¦ ¹þ¾î ³µÀ¸¸é ÀÌµ¿...
+					// ë²”ìœ„ë¥¼ ë²—ì–´ ë‚¬ìœ¼ë©´ ì´ë™...
 					m_wState  = CS_STOP;
 					m_PosGOTO = pTarget->m_PosCUR;
 					this->Start_MOVE( this->Get_MoveSPEED() );
 					return 1;
 				}
 
-				// Á×À»¶§ ±îÁö °ø°Ý !!!
+				// ì£½ì„ë•Œ ê¹Œì§€ ê³µê²© !!!
 				this->Start_ATTACK (pTarget);
 			}
 
 			return 1;
 		} 
 
-		/// Å¸°ÙÀ¸·Î ÀÌµ¿...
+		/// íƒ€ê²Ÿìœ¼ë¡œ ì´ë™...
 		if ( this->Goto_TARGET( pTarget, this->Get_AttackRange() ) ) 
 		{
-			// µµÂø ÇßÀ¸¸é °ø°Ý ½ÃÀÛ !!!
+			// ë„ì°© í–ˆìœ¼ë©´ ê³µê²© ì‹œìž‘ !!!
 			this->Start_ATTACK (pTarget);
 		} else 
 		{
@@ -1688,15 +1688,15 @@ int CObjAI::ProcCMD_ATTACK ()
 			{
 				this->Start_MOVE( this->Get_MoveSPEED() );
 			} else
-				this->Do_AttackMoveAI( pTarget );		/// MOB °ø°Ý ÀÌµ¿Áß ÀÎ°øÁö´É Ã³¸®..
+				this->Do_AttackMoveAI( pTarget );		/// MOB ê³µê²© ì´ë™ì¤‘ ì¸ê³µì§€ëŠ¥ ì²˜ë¦¬..
 		}
 
 	} else 
 	{
-		/// Å¸°ÙÀÌ ¾ø´Ù..
+		/// íƒ€ê²Ÿì´ ì—†ë‹¤..
 		ChangeActionMode( AVATAR_NORMAL_MODE );
 
-		/// ³» ¾Æ¹ÙÅ¸ÀÏ°æ¿ì´Â Å¸°ÙÀÌ ¾øÀ»°æ¿ì Á×Àº°ÍÀ¸·Î °£ÁÖ.. STOP ¸í·ÉÀ» ³»¸²
+		/// ë‚´ ì•„ë°”íƒ€ì¼ê²½ìš°ëŠ” íƒ€ê²Ÿì´ ì—†ì„ê²½ìš° ì£½ì€ê²ƒìœ¼ë¡œ ê°„ì£¼.. STOP ëª…ë ¹ì„ ë‚´ë¦¼
 		this->Set_TargetIDX( 0 );
 		m_wCommand      = CMD_STOP;
 
@@ -1709,7 +1709,7 @@ int CObjAI::ProcCMD_ATTACK ()
 			int iDistance = CD3DUtil::distance ((int)m_PosCUR.x, (int)m_PosCUR.y, (int)m_PosMoveSTART.x, (int)m_PosMoveSTART.y);
 			if ( iDistance < m_iMoveDistance )
 			{
-				// Å¬¶óÀÌ¾ðÆ®¿¡¼­´Â ¼­¹ö¿¡¼­ ¹ÞÀº ÃÖÁ¾ ÁÂÇ¥±îÁö ÀÌµ¿ÈÄ ¸í·É À¯Áö...
+				// í´ë¼ì´ì–¸íŠ¸ì—ì„œëŠ” ì„œë²„ì—ì„œ ë°›ì€ ìµœì¢… ì¢Œí‘œê¹Œì§€ ì´ë™í›„ ëª…ë ¹ ìœ ì§€...
 				if ( this->Goto_POSITION() ) 
 				{					
 					m_wState = CS_STOP;
@@ -1733,8 +1733,8 @@ int CObjAI::ProcCMD_ATTACK ()
 
 //--------------------------------------------------------------------------------
 /// class : CObAI
-/// @brief  : ¼¿ÇÁ½ºÅ³ command Ã³¸®
-///				ÇöÀç µ¿ÀÛÈÄ ¹Ù·Î Ã³¸®µÉ ½ºÅ³ --> ½ºÅé »óÅÂ·Î µÈ´Ù.
+/// @brief  : ì…€í”„ìŠ¤í‚¬ command ì²˜ë¦¬
+///				í˜„ìž¬ ë™ìž‘í›„ ë°”ë¡œ ì²˜ë¦¬ë  ìŠ¤í‚¬ --> ìŠ¤í†± ìƒíƒœë¡œ ëœë‹¤.
 //--------------------------------------------------------------------------------
 
 int CObjAI::ProcCMD_Skill2SELF ()
@@ -1749,31 +1749,31 @@ int CObjAI::ProcCMD_Skill2SELF ()
 
 //--------------------------------------------------------------------------------
 /// class : CObAI
-/// @brief  : Áö¿ªÀ¸·Î ÀÌµ¿ÈÄ ½ºÅ³ Ã³¸® --> ½ºÅé »óÅÂ·Î µÈ´Ù.
+/// @brief  : ì§€ì—­ìœ¼ë¡œ ì´ë™í›„ ìŠ¤í‚¬ ì²˜ë¦¬ --> ìŠ¤í†± ìƒíƒœë¡œ ëœë‹¤.
 ///
 //--------------------------------------------------------------------------------
 
 int CObjAI::ProcCMD_Skill2POSITION ()
 {
 	//-----------------------------------------------------------------------------------------
-	/// ¾ÆÁ÷ ½ºÅ³ Ä³½ºÆÃÀ» ½ÃÀÛÇÏÁö ¾Ê¾Ò´Ù¸é..
+	/// ì•„ì§ ìŠ¤í‚¬ ìºìŠ¤íŒ…ì„ ì‹œìž‘í•˜ì§€ ì•Šì•˜ë‹¤ë©´..
 	//-----------------------------------------------------------------------------------------	
 	if ( !m_bCastingSTART )
 	{
 		t_POSITION posTemp = this->m_PosGOTO;
-		// Àå¼Ò·Î ÀÌµ¿... & ½ºÅ³ Àû¿ë
+		// ìž¥ì†Œë¡œ ì´ë™... & ìŠ¤í‚¬ ì ìš©
 		if ( this->Goto_POSITION ( this->Get_AttackRange() ) == false ) 
 		{
 			return 1;		
 		}		
 		///
-		/// Goto_POSITION ³»ºÎ¿¡¼­ ·¹ÀÎÁö¾ÈÀ¸·Î µµÂøÇÒ°æ¿ì PosGOTO¸¦ ÇöÀçÀ§Ä¡·Î¼¼ÆÃÇÑ´Ù.
-		/// ±×·¯³ª Æ÷Áö¼Ç ½ºÅ³ÀÇ °æ¿ì ½ÇÁ¦ ÀÌÆåÆ®°¡ PosGOTO¿¡ Ãâ·ÂµÇ¹Ç·Î ¸®¼ÂµÇ¸é ¾ÈµÈ´Ù.
+		/// Goto_POSITION ë‚´ë¶€ì—ì„œ ë ˆì¸ì§€ì•ˆìœ¼ë¡œ ë„ì°©í• ê²½ìš° PosGOTOë¥¼ í˜„ìž¬ìœ„ì¹˜ë¡œì„¸íŒ…í•œë‹¤.
+		/// ê·¸ëŸ¬ë‚˜ í¬ì§€ì…˜ ìŠ¤í‚¬ì˜ ê²½ìš° ì‹¤ì œ ì´íŽ™íŠ¸ê°€ PosGOTOì— ì¶œë ¥ë˜ë¯€ë¡œ ë¦¬ì…‹ë˜ë©´ ì•ˆëœë‹¤.
 		///
 		this->m_PosGOTO = posTemp;
 	}
 
-	/// Ä³½ºÆÃ ¶Ç´Â ½ÇÁ¦µ¿ÀÛ Àû¿ë...
+	/// ìºìŠ¤íŒ… ë˜ëŠ” ì‹¤ì œë™ìž‘ ì ìš©...
 	if ( 1 != this->Do_SKILL( 0 ) ) 
 	{
 		// casting: 1, cancel: 0, active: 2
@@ -1786,10 +1786,10 @@ int CObjAI::ProcCMD_Skill2POSITION ()
 
 //--------------------------------------------------------------------------------
 /// class : CObAI
-/// @brief  : Å¸°ÙÀ¸·Î ÀÌµ¿ÈÄ ½ºÅ³ Ã³¸® --> ½ºÅé »óÅÂ·Î µÈ´Ù.
-///           04/4/28 Å¸°Ù¿¡ µµÂøÇß´Ù°í Ä³½ºÆÃÀ» ½ÃÀÛÇÏÁö¸»°í ±â´Ù¸®´Ù°¡ ¼­¹ö·Î ºÎÅÍ
-///				start ÆÐÅ¶À» ¹ÞÀ¸¸é Ä³½ºÆÃÀ» ½ÃÀÛÇÏ¶ó.
-///				Å¸°ÙÀÌ ¾øÀ»°æ¿ì.. Cast_end()¸¸ È£ÃâÇÑ°Ô ¾Æ´Ï¶ó ¸ðµç ½ºÅ³ ÀÎµ¦½º·Î ¸®¼Â..
+/// @brief  : íƒ€ê²Ÿìœ¼ë¡œ ì´ë™í›„ ìŠ¤í‚¬ ì²˜ë¦¬ --> ìŠ¤í†± ìƒíƒœë¡œ ëœë‹¤.
+///           04/4/28 íƒ€ê²Ÿì— ë„ì°©í–ˆë‹¤ê³  ìºìŠ¤íŒ…ì„ ì‹œìž‘í•˜ì§€ë§ê³  ê¸°ë‹¤ë¦¬ë‹¤ê°€ ì„œë²„ë¡œ ë¶€í„°
+///				start íŒ¨í‚·ì„ ë°›ìœ¼ë©´ ìºìŠ¤íŒ…ì„ ì‹œìž‘í•˜ë¼.
+///				íƒ€ê²Ÿì´ ì—†ì„ê²½ìš°.. Cast_end()ë§Œ í˜¸ì¶œí•œê²Œ ì•„ë‹ˆë¼ ëª¨ë“  ìŠ¤í‚¬ ì¸ë±ìŠ¤ë¡œ ë¦¬ì…‹..
 //--------------------------------------------------------------------------------
 
 int CObjAI::ProcCMD_Skill2OBJECT ()
@@ -1797,26 +1797,26 @@ int CObjAI::ProcCMD_Skill2OBJECT ()
 	
 //---------------------------------------------------------------------------------	
 #if defined(_GBC)
-	//¹ÚÁöÈ£::Æê¸ðµåÀÏ¶§ ÆêÀ» ÀÌµ¿½ÃÅ°°í,¾Æ¹ÙÅ¸ ½ºÅ³À» Ä³½ºÆÃÇÑ´Ù.
+	//ë°•ì§€í˜¸::íŽ«ëª¨ë“œì¼ë•Œ íŽ«ì„ ì´ë™ì‹œí‚¤ê³ ,ì•„ë°”íƒ€ ìŠ¤í‚¬ì„ ìºìŠ¤íŒ…í•œë‹¤.
 	if(GetPetMode() >= 0)
 		return ProcCMD_Skill2OBJECT_PET();
 #endif 
 //---------------------------------------------------------------------------------
 
-	// Å¸ÄÏÀ¸·Î ÀÌµ¿... & ½ºÅ³ Àû¿ë
+	// íƒ€ì¼“ìœ¼ë¡œ ì´ë™... & ìŠ¤í‚¬ ì ìš©
 	///CObjCHAR *pTarget = (CObjCHAR*)this->Get_TARGET();
 	CObjCHAR *pTarget = CSkillManager::GetSkillTarget( m_iServerTarget, (this->m_nToDoSkillIDX)? this->m_nToDoSkillIDX : this->m_nActiveSkillIDX  );
 	if ( pTarget ) 
 	{ 
 		//-----------------------------------------------------------------------------------------
-		/// ¾ÆÁ÷ ½ºÅ³ Ä³½ºÆÃÀ» ½ÃÀÛÇÏÁö ¾Ê¾Ò´Ù¸é..
+		/// ì•„ì§ ìŠ¤í‚¬ ìºìŠ¤íŒ…ì„ ì‹œìž‘í•˜ì§€ ì•Šì•˜ë‹¤ë©´..
 		//-----------------------------------------------------------------------------------------	
 		if ( !m_bCastingSTART )
 		{
 			int iAttackRange = this->Get_AttackRange();
 			
 			//-----------------------------------------------------------------------------------------	
-			/// Ä³½ºÆÃÁßÀÌ ¾Æ´Ï¸é Å¸°ÙÀ¸·Î ÀÌµ¿...			
+			/// ìºìŠ¤íŒ…ì¤‘ì´ ì•„ë‹ˆë©´ íƒ€ê²Ÿìœ¼ë¡œ ì´ë™...			
 			//-----------------------------------------------------------------------------------------				
 			if( this->Goto_TARGET( pTarget, iAttackRange ) == false )
 			{
@@ -1830,7 +1830,7 @@ int CObjAI::ProcCMD_Skill2OBJECT ()
 			}
 		
 			//-----------------------------------------------------------------------------------------
-			/// ¼­¹ö·ÎºÎÅÍ ½ºÅ³½ÃÀÛÆÐÅ¶À» ¸ø¹Þ¾Æµµ Å¸°ÙÀ¸·Î ÀÌµ¿..
+			/// ì„œë²„ë¡œë¶€í„° ìŠ¤í‚¬ì‹œìž‘íŒ¨í‚·ì„ ëª»ë°›ì•„ë„ íƒ€ê²Ÿìœ¼ë¡œ ì´ë™..
 			//-----------------------------------------------------------------------------------------				
 			if( !bCanStartSkill() ) 
 			{
@@ -1843,24 +1843,24 @@ int CObjAI::ProcCMD_Skill2OBJECT ()
 		
 
 		//-----------------------------------------------------------------------------------------
-		/// Å¸°Ù ¹æÇâÀ¸·Î ¸öÀ» µ¹¸°´Ù.
+		/// íƒ€ê²Ÿ ë°©í–¥ìœ¼ë¡œ ëª¸ì„ ëŒë¦°ë‹¤.
 		//-----------------------------------------------------------------------------------------			
 		Set_ModelDIR( pTarget->m_PosCUR );
 
 
 		//-----------------------------------------------------------------------------------------
-		/// Å¸°ÙÀÌ Á×¾î¹ö·È´Ù...
+		/// íƒ€ê²Ÿì´ ì£½ì–´ë²„ë ¸ë‹¤...
 		//-----------------------------------------------------------------------------------------			
 		if( pTarget->m_bDead )
 		{
 			SetEffectedSkillFlag( true );
 		}
 
-		/// Ä³½ºÆÃ ¶Ç´Â ½ÇÁ¦µ¿ÀÛ Àû¿ë...
+		/// ìºìŠ¤íŒ… ë˜ëŠ” ì‹¤ì œë™ìž‘ ì ìš©...
 		if ( 1 != this->Do_SKILL( this->Get_TargetIDX(), pTarget ) ) 
 		{
 			// casting: 1, cancel: 0, active: 2
-			/// Do_Skill ³»ºÎ¿¡¼­ °áÁ¤
+			/// Do_Skill ë‚´ë¶€ì—ì„œ ê²°ì •
 			//m_wCommand = CMD_STOP;
 			;
 		} 
@@ -1868,10 +1868,10 @@ int CObjAI::ProcCMD_Skill2OBJECT ()
 	} 
 	else
 	//-----------------------------------------------------------------------------------------
-	/// Å¸°ÙÀÌ ¾ø´Ù. ±Ùµ¥.. ÀÌ¹Ì Ä³½ºÆÃÀÌ ½ÃÀÛµÇ¾ú´Âµ¥ Áß°£¿¡ Á×¾î¹ö¸®°Å³ª ÇÑ´Ù¸é?
+	/// íƒ€ê²Ÿì´ ì—†ë‹¤. ê·¼ë°.. ì´ë¯¸ ìºìŠ¤íŒ…ì´ ì‹œìž‘ë˜ì—ˆëŠ”ë° ì¤‘ê°„ì— ì£½ì–´ë²„ë¦¬ê±°ë‚˜ í•œë‹¤ë©´?
 	//-----------------------------------------------------------------------------------------			
 	{
-		/// ³» ¾Æ¹ÙÅ¸ÀÏ°æ¿ì´Â Å¸°ÙÀÌ ¾øÀ»°æ¿ì Á×Àº°ÍÀ¸·Î °£ÁÖ.. STOP ¸í·ÉÀ» ³»¸²
+		/// ë‚´ ì•„ë°”íƒ€ì¼ê²½ìš°ëŠ” íƒ€ê²Ÿì´ ì—†ì„ê²½ìš° ì£½ì€ê²ƒìœ¼ë¡œ ê°„ì£¼.. STOP ëª…ë ¹ì„ ë‚´ë¦¼
 		this->Set_TargetIDX( 0 );
 		m_wCommand      = CMD_STOP;
 
@@ -1879,14 +1879,14 @@ int CObjAI::ProcCMD_Skill2OBJECT ()
 
 
 		//-----------------------------------------------------------------------------------------
-		/// Å¸°ÙÀÌ ¾ø´Ù¸é ½ºÅ³¿¡ ´ëÇÑ ¼³Á¤À» ¹«Á¶°Ç ¸®¼ÂÇÑ´Ù.
+		/// íƒ€ê²Ÿì´ ì—†ë‹¤ë©´ ìŠ¤í‚¬ì— ëŒ€í•œ ì„¤ì •ì„ ë¬´ì¡°ê±´ ë¦¬ì…‹í•œë‹¤.
 		//-----------------------------------------------------------------------------------------
 		SetEffectedSkillFlag( true );
 		m_nActiveSkillIDX = 0;
 		Casting_END();		
 
 		//-----------------------------------------------------------------------------------------
-		/// Á×¾îÀÖ´Â ½ÃÃ¼µµ ¾ø´Ù.
+		/// ì£½ì–´ìžˆëŠ” ì‹œì²´ë„ ì—†ë‹¤.
 		//-----------------------------------------------------------------------------------------
 		if ( !pTarget ) 
 		{
@@ -1894,8 +1894,8 @@ int CObjAI::ProcCMD_Skill2OBJECT ()
 			if ( iDistance < m_iMoveDistance )
 			{
 				//-----------------------------------------------------------------------------------------
-				/// Å¬¶óÀÌ¾ðÆ®¿¡¼­´Â ¼­¹ö¿¡¼­ ¹ÞÀº ÃÖÁ¾ ÁÂÇ¥±îÁö ÀÌµ¿ÈÄ ¸í·É À¯Áö...
-				/// ÀÌ°Å ÀÌ»óÇÏ´Ù.. 
+				/// í´ë¼ì´ì–¸íŠ¸ì—ì„œëŠ” ì„œë²„ì—ì„œ ë°›ì€ ìµœì¢… ì¢Œí‘œê¹Œì§€ ì´ë™í›„ ëª…ë ¹ ìœ ì§€...
+				/// ì´ê±° ì´ìƒí•˜ë‹¤.. 
 				//-----------------------------------------------------------------------------------------
 				if ( this->Goto_POSITION() ) 
 				{					
@@ -1946,18 +1946,18 @@ short CObjAI::Get_RecoverMP( short nRecoverMODE )
 	return nRecoverMP;
 }
 //----------------------------------------------------------------------------------------------------
-/// @brief ¹öÇÁ³ª ÆÐ½Ãºê ½ºÅ³µîÀ¸·Î Ãß°¡µÇ±âÀüÀÇ ¼ø¼ö MaxHP±¸ÇÏ´Â ¸Þ½îµå : 2005/7/13 - nAvy
+/// @brief ë²„í”„ë‚˜ íŒ¨ì‹œë¸Œ ìŠ¤í‚¬ë“±ìœ¼ë¡œ ì¶”ê°€ë˜ê¸°ì „ì˜ ìˆœìˆ˜ MaxHPêµ¬í•˜ëŠ” ë©”ì˜ë“œ : 2005/7/13 - nAvy
 //----------------------------------------------------------------------------------------------------
 int CObjAI::GetOri_MaxHP()
 {
-	_RPT0 ( _CRT_WARN, "GetOri_MaxHP() È£Ãâ½Ã¿¡ ¹®Á¦ »ý±æ¼ö ÀÖ´Ù" );
+	_RPT0 ( _CRT_WARN, "GetOri_MaxHP() í˜¸ì¶œì‹œì— ë¬¸ì œ ìƒê¸¸ìˆ˜ ìžˆë‹¤" );
 	return 0;
 }
 //----------------------------------------------------------------------------------------------------
-/// @brief ¹öÇÁ³ª ÆÐ½Ãºê ½ºÅ³µîÀ¸·Î Ãß°¡µÇ±âÀüÀÇ ¼ø¼ö MaxMP±¸ÇÏ´Â ¸Þ½îµå : 2005/7/13 - nAvy
+/// @brief ë²„í”„ë‚˜ íŒ¨ì‹œë¸Œ ìŠ¤í‚¬ë“±ìœ¼ë¡œ ì¶”ê°€ë˜ê¸°ì „ì˜ ìˆœìˆ˜ MaxMPêµ¬í•˜ëŠ” ë©”ì˜ë“œ : 2005/7/13 - nAvy
 //----------------------------------------------------------------------------------------------------
 int CObjAI::GetOri_MaxMP()
 {
-	_RPT0 ( _CRT_WARN, "GetOri_MaxMP() È£Ãâ½Ã¿¡ ¹®Á¦ »ý±æ¼ö ÀÖ´Ù" );
+	_RPT0 ( _CRT_WARN, "GetOri_MaxMP() í˜¸ì¶œì‹œì— ë¬¸ì œ ìƒê¸¸ìˆ˜ ìžˆë‹¤" );
 	return 0;
 }

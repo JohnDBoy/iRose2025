@@ -80,7 +80,7 @@ STBDATA			*g_pTblSTBs[ ITEM_TYPE_RIDE_PART+1 ];
 STBDATA			 g_TblString;
 STBDATA			 g_TblHitSound;
 
-STBDATA			 g_TblAVATAR;		/// ¾Æ¹ÙÅ¸ ÃÊ±â ¼³Á¤ µ¥ÀÌÅ¸..
+STBDATA			 g_TblAVATAR;		/// ì•„ë°”íƒ€ ì´ˆê¸° ì„¤ì • ë°ì´íƒ€..
 STBDATA			 g_TblResolution;
 STBDATA			 g_TblFoulWord;
 STBDATA			 g_TblBadNames;
@@ -88,12 +88,12 @@ STBDATA			 g_TblBadNames;
 STBDATA			 g_TblSTATE;
 
 STBDATA			g_TblCamera;
-STBDATA			g_TblRangeSet;		/// LOD °Å¸® °ü·Ã Á¤º¸..
+STBDATA			g_TblRangeSet;		/// LOD ê±°ë¦¬ ê´€ë ¨ ì •ë³´..
 STBDATA			g_TblUnion;			
 STBDATA			g_TblClass;
-STBDATA			g_TblStepSound;		/// ¹ßÀÚ±¹¼Ò¸®.
+STBDATA			g_TblStepSound;		/// ë°œìžêµ­ì†Œë¦¬.
 
-STBDATA			g_TblItemGRADE;		/// Àåºñ ¾ÆÀÌÅÛº° µî±Þ Àû¿ë ¼öÄ¡
+STBDATA			g_TblItemGRADE;		/// ìž¥ë¹„ ì•„ì´í…œë³„ ë“±ê¸‰ ì ìš© ìˆ˜ì¹˜
 
 
 const float		g_fMinHeight   =-999999999.f;

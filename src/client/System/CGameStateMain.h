@@ -3,9 +3,9 @@
 #include "cgamestate.h"
 
 /**
-* Ä³¸¯ÅÍ ¼±ÅÃÈÄ ½ÇÁ¦ °ÔÀÓÁßÀÎ »óÅÂ
+* ìºë¦­í„° ì„ íƒí›„ ì‹¤ì œ ê²Œì„ì¤‘ì¸ ìƒíƒœ
 *
-* @Author		ÃÖÁ¾Áø
+* @Author		ìµœì¢…ì§„
 * @Date			2005/9/15
 */
 class CGameStateMain : public CGameState
@@ -34,11 +34,11 @@ protected:
 
 	void UpdateCheckFrame();
 	void Render_GameMENU();
-	/// ÇöÀç ¸¶¿ì½º°¡ ¾î¶² À§Ä¡¿¡ ÀÖ´Â°¡?
+	/// í˜„ì¬ ë§ˆìš°ìŠ¤ê°€ ì–´ë–¤ ìœ„ì¹˜ì— ìˆëŠ”ê°€?
 	int	CheckMouseRegion( int x, int y );
 
-	/// ¸ÅÇÁ·¹ÀÓ ¹º°¡ ÇØ¾ßµÇ´Â °Íµé
-	void UpdateCameraPositionByMouse();///¸¶¿ì½ºÀÇ »óÅÂ¹× À§Ä¡·Î Ä«¸Ş¶ó ÀÌµ¿Ã³¸®
+	/// ë§¤í”„ë ˆì„ ë­”ê°€ í•´ì•¼ë˜ëŠ” ê²ƒë“¤
+	void UpdateCameraPositionByMouse();///ë§ˆìš°ìŠ¤ì˜ ìƒíƒœë° ìœ„ì¹˜ë¡œ ì¹´ë©”ë¼ ì´ë™ì²˜ë¦¬
 	void Pick_POSITION(/*LPARAM	lParam*/);
 
 private:

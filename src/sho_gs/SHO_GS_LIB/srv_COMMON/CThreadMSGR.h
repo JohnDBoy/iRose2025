@@ -1,7 +1,7 @@
 /**
  * \ingroup SHO_GS
  * \file	CThreadMSGR.h
- * \brief	¸Ş½ÅÁ® Ã³¸®°ÔÀÓ ·Î±×¸¦ ·Î±×µğºñ¿¡ ±â·ÏÇÏ´Â ¾²·¹µå Å¬·¡½º
+ * \brief	ë©”ì‹ ì ¸ ì²˜ë¦¬ê²Œì„ ë¡œê·¸ë¥¼ ë¡œê·¸ë””ë¹„ì— ê¸°ë¡í•˜ëŠ” ì“°ë ˆë“œ í´ë˜ìŠ¤
  */
 #ifndef	__CTHREAD_MSGR_H
 #define	__CTHREAD_MSGR_H
@@ -26,7 +26,7 @@ struct tagFriend_H {
 } ;
 #pragma pack (pop)
 
-// ³»°¡ µî·ÏÇÑ Ä£±¸ ¸®½ºÆ®
+// ë‚´ê°€ ë“±ë¡í•œ ì¹œêµ¬ ë¦¬ìŠ¤íŠ¸
 struct tagMyFriend : public tagFriend_H {
 	CMessenger *m_pMSGR;
 	CStrVAR		m_Name;
@@ -41,7 +41,7 @@ struct tagMyFriend : public tagFriend_H {
  * \ingroup SHO_GS_LIB
  * \class	CMessenger
  * \author	wookSang.Jo
- * \brief	1:1 ¸Ş½ÅÁ® Ã³¸® Å¬·¡½º
+ * \brief	1:1 ë©”ì‹ ì ¸ ì²˜ë¦¬ í´ë˜ìŠ¤
  */
 class CMessenger // : public CS
 {
@@ -69,12 +69,12 @@ public :
 	int   Get_FriendCNT()					{	return m_ListFRIEND.GetNodeCount();		}
 	DWORD Get_DBID ()						{	return m_dwDBID;						}
 
-	bool MSGR_IsUPDATE ()					{	return m_bFriendUPDATE;	}	// db °»½ÅÇØ¾ß ÇÏ³Ä?
+	bool MSGR_IsUPDATE ()					{	return m_bFriendUPDATE;	}	// db ê°±ì‹ í•´ì•¼ í•˜ëƒ?
 
-	bool MSGR_Add( CMessenger *pFriend );	// Ä£±¸ Ãß°¡
+	bool MSGR_Add( CMessenger *pFriend );	// ì¹œêµ¬ ì¶”ê°€
 	
-	void MSGR_Del( DWORD dwDBID );			// Ä£±¸ »èÁ¦
-	void MSGR_Ban( DWORD dwDBID );			// Ã¤ÆÃ Â÷´Ü
+	void MSGR_Del( DWORD dwDBID );			// ì¹œêµ¬ ì‚­ì œ
+	void MSGR_Ban( DWORD dwDBID );			// ì±„íŒ… ì°¨ë‹¨
 	void MSGR_Status2ONE( DWORD dwDBID, BYTE btNewStatus, CMessenger *pMessenger );
 	void MSGR_Status2ALL( BYTE btNewStatus );
 	void MSGR_Msg( t_PACKET *pPacket );
@@ -99,7 +99,7 @@ struct tagMSGR_CMD {
  * \ingroup SHO_GS_LIB
  * \class	CThreadMSGR
  * \author	wookSang.Jo
- * \brief	Ä£±¸ ¸ñ·Ï µğºñ¿Í ¿¬°áµÇ´Â ¾²·¡µå Å¬·¡½º
+ * \brief	ì¹œêµ¬ ëª©ë¡ ë””ë¹„ì™€ ì—°ê²°ë˜ëŠ” ì“°ë˜ë“œ í´ë˜ìŠ¤
  */
 class CThreadMSGR : public CSqlTHREAD
 {

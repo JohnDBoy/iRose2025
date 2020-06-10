@@ -7,7 +7,7 @@
 #include "CThreadLOG.h"
 #include "CThreadGUILD.h"
 
-#ifdef __EUROPE // Oct. 6 2005 Ãß°¡ (±ÇÇü±Ù)
+#ifdef __EUROPE // Oct. 6 2005 ì¶”ê°€ (ê¶Œí˜•ê·¼)
 	#define	MAX_CHAR_PER_USER			3
 #else
 	#define	MAX_CHAR_PER_USER			5
@@ -17,7 +17,7 @@
 #define	MAX_CREATE_CHAR_PER_USER		MAX_CHAR_PER_USER
 #define	MAX_AVATAR_NAME	20
 
-#define	DELETE_CHAR_WAIT_TIME		(60*60)		//	60ºĞ
+#define	DELETE_CHAR_WAIT_TIME		(60*60)		//	60ë¶„
 
 #define DATA_VER_2					2
 
@@ -93,7 +93,7 @@ CWS_ThreadSQL::CWS_ThreadSQL () : CSqlTHREAD( true )
 			m_pDefaultINV[ nR ].Clear ();
 			m_pDefaultINV[ nR ].m_i64Money = AVATAR_MONEY( nR );
 
-			// ÃÊ±â ÀåÀÛ ¾ÆÀÌÅÛ...
+			// ì´ˆê¸° ì¥ì‘ ì•„ì´í…œ...
 			m_pDefaultINV[ nR ].SetInventory( EQUIP_IDX_FACE_ITEM,	AVATAR_FACEITEM(nR) );
 			m_pDefaultINV[ nR ].SetInventory( EQUIP_IDX_HELMET,		AVATAR_HELMET(nR)	);
 			m_pDefaultINV[ nR ].SetInventory( EQUIP_IDX_ARMOR,		AVATAR_ARMOR(nR)	);
@@ -103,16 +103,16 @@ CWS_ThreadSQL::CWS_ThreadSQL () : CSqlTHREAD( true )
 			m_pDefaultINV[ nR ].SetInventory( EQUIP_IDX_WEAPON_R,	AVATAR_WEAPON(nR)	);
 			m_pDefaultINV[ nR ].SetInventory( EQUIP_IDX_WEAPON_L,	AVATAR_SUBWPN(nR)	);
 
-			// ÃÊ±â Àåºñ ¾ÆÀÌÅÛ
+			// ì´ˆê¸° ì¥ë¹„ ì•„ì´í…œ
 			for (nJ=0; nJ<10; nJ++)
 				m_pDefaultINV[ nR ].SetInventory( ( INV_WEAPON * INVENTORY_PAGE_SIZE ) + nJ+MAX_EQUIP_IDX,	AVATAR_ITEM_WEAPON(nR,nJ) );
 
-			// ÃÊ±â ¼Ò¸ğ ¾ÆÀÌÅÛ
+			// ì´ˆê¸° ì†Œëª¨ ì•„ì´í…œ
 			for (nJ=0; nJ<5; nJ++) {
 				m_pDefaultINV[ nR ].SetInventory( ( INV_USE * INVENTORY_PAGE_SIZE ) + nJ+MAX_EQUIP_IDX, AVATAR_ITEM_USE(nR,nJ), AVATAR_ITEM_USECNT(nR,nJ) );
 			}
 
-			// ÃÊ±â ±âÅ¸ ¾ÆÀÌÅÛ
+			// ì´ˆê¸° ê¸°íƒ€ ì•„ì´í…œ
 			for (nJ=0; nJ<5; nJ++) {
 				m_pDefaultINV[ nR ].SetInventory( ( INV_ETC * INVENTORY_PAGE_SIZE ) + nJ+MAX_EQUIP_IDX, AVATAR_ITEM_ETC(nR,nJ), AVATAR_ITEM_ETCCNT(nR,nJ) );
 			}
@@ -190,7 +190,7 @@ bool __fastcall CWS_ThreadSQL::ConvertBasicETC ()
 					MQ_PARAM_ADDSTR, "WHERE intCharID=",MQ_PARAM_INT,	iCharID,
 														MQ_PARAM_END );
 		if ( this->m_pSQL->ExecSQLBuffer() < 0 ) {
-			// °íÄ¡±â ½ÇÆĞ !!!
+			// ê³ ì¹˜ê¸° ì‹¤íŒ¨ !!!
 			// log ...
 			g_LOG.CS_ODS(LOG_NORMAL, "SQL Exec ERROR:: UPDATE binBasicE: %d, \n", iCharID, m_pSQL->GetERROR() );
 		} else
@@ -308,7 +308,7 @@ struct tagDelCHAR {
 bool CWS_ThreadSQL::Proc_cli_CHAR_LIST( tagQueryDATA *pSqlPACKET )
 {
 /*
-	//ÁÖÀÇ !!! ÇÁ·ÎÁöÁ®¸¦ ¾µ·Á¸é ÇÁ·Î½ÃÁ®¿¡ intCharID¸¦ Ãß°¡ÇØ¾ß ÇÑ´Ù.
+	//ì£¼ì˜ !!! í”„ë¡œì§€ì ¸ë¥¼ ì“¸ë ¤ë©´ í”„ë¡œì‹œì ¸ì— intCharIDë¥¼ ì¶”ê°€í•´ì•¼ í•œë‹¤.
 	// if ( !this->m_pSQL->QuerySQL( "{call ws_GetCharLIST(\'%s\')}", pSqlPACKET->m_Name.Get() ) ) {
 	this->m_pSQL->MakeQuery( "SELECT txtNAME, binBasicE, binBasicI, binGrowA, dwDelTIME, intCharID FROM tblGS_AVATAR WHERE txtACCOUNT=", 
 							MQ_PARAM_STR, pSqlPACKET->m_Name.Get(), 
@@ -353,14 +353,14 @@ bool CWS_ThreadSQL::Proc_cli_CHAR_LIST( tagQueryDATA *pSqlPACKET )
 				dwDelSEC = this->m_pSQL->GetInteger( 4 );
 
 				if ( dwDelSEC && dwCurAbsSEC >= dwDelSEC ) {
-					// »èÁ¦...
+					// ì‚­ì œ...
 					pNode = new CSLList< tagDelCHAR >::tagNODE;
 					pNode->m_VALUE.m_Name.Set( szCharName );
 					//pNode->m_VALUE.m_dwDBID = this->m_pSQL->GetInteger( 5 );
 					DelList.AppendNode (pNode);
 				} else {
 					if ( dwDelSEC ) {
-						// »èÁ¦ ´ë±â...
+						// ì‚­ì œ ëŒ€ê¸°...
 						dwDelSEC -= dwCurAbsSEC;
 					}
 
@@ -406,7 +406,7 @@ bool CWS_ThreadSQL::Proc_cli_CHAR_LIST( tagQueryDATA *pSqlPACKET )
 		pNode = DelList.GetHeadNode ();
 		while( pNode ) {
 			//if ( this->m_pSQL->ExecSQL("DELETE FROM tblGS_AVATAR WHERE txtNAME=\'%s\'", pNode->m_VALUE.m_Name.Get() ) < 1 ) {
-			//	// ¿À·ù ¶Ç´Â »èÁ¦µÈ°ÍÀÌ ¾ø´Ù.
+			//	// ì˜¤ë¥˜ ë˜ëŠ” ì‚­ì œëœê²ƒì´ ì—†ë‹¤.
 			//	g_LOG.CS_ODS(LOG_NORMAL, "Exec ERROR(DELETE_CHAR:%s):: %s \n", pNode->m_VALUE.m_Name.Get(), m_pSQL->GetERROR() );
 			//}
 
@@ -424,11 +424,11 @@ bool CWS_ThreadSQL::Proc_cli_CHAR_LIST( tagQueryDATA *pSqlPACKET )
 					}
 				}
 				if ( 0 != iResultSP ) {
-					// µğºñÇÁ·Î½ÃÁ® »èÁ¦ ½ÇÆĞ...
+					// ë””ë¹„í”„ë¡œì‹œì ¸ ì‚­ì œ ì‹¤íŒ¨...
 					g_LOG.CS_ODS(LOG_NORMAL, "SP Return ERROR Code:%d (ws_DeleteCHAR:%s):: %s \n", iResultSP, pNode->m_VALUE.m_Name.Get(), m_pSQL->GetERROR() );
 				}
 			} else {
-				// »èÁ¦ ½ÇÆĞ.;
+				// ì‚­ì œ ì‹¤íŒ¨.;
 				g_LOG.CS_ODS(LOG_NORMAL, "Exec ERROR(ws_DeleteCHAR:%s):: %s \n", pNode->m_VALUE.m_Name.Get(), m_pSQL->GetERROR() );
 			}
 
@@ -437,7 +437,7 @@ bool CWS_ThreadSQL::Proc_cli_CHAR_LIST( tagQueryDATA *pSqlPACKET )
 			pNode = DelList.GetHeadNode ();
 		} ;
 	} else {
-		// ÀÌ ¼­¹ö¿¡´Â µî·ÏµÈ ÄÉ¸¯ÅÍ°¡ ¾ø´Ù.
+		// ì´ ì„œë²„ì—ëŠ” ë“±ë¡ëœ ì¼€ë¦­í„°ê°€ ì—†ë‹¤.
 		CWS_Client *pFindUSER = (CWS_Client*)g_pUserLIST->GetSOCKET( pSqlPACKET->m_iTAG );
 		if ( pFindUSER ) {
 			pFindUSER->m_nPlatinumCharCNT = 0;
@@ -453,7 +453,7 @@ bool CWS_ThreadSQL::Proc_cli_CHAR_LIST( tagQueryDATA *pSqlPACKET )
 bool CWS_ThreadSQL::Proc_cli_SELECT_CHAR( tagQueryDATA *pSqlPACKET )
 {
 	/*
-		Á¸ ¹øÈ£¿¡ ÇØ´çµÇ´Â Á¸¼­¹ö·Î ÀÌµ¿ÇÏ¶ó°í ...
+		ì¡´ ë²ˆí˜¸ì— í•´ë‹¹ë˜ëŠ” ì¡´ì„œë²„ë¡œ ì´ë™í•˜ë¼ê³  ...
 	*/
 	t_PACKET *pPacket = (t_PACKET*)pSqlPACKET->m_pPacket;
 
@@ -492,7 +492,7 @@ bool CWS_ThreadSQL::Proc_cli_SELECT_CHAR( tagQueryDATA *pSqlPACKET )
 		}
 	}
 
-	// ÄÉ¸¯ÅÍÀÇ ¼ÒÀ¯ÀÚÀÎÁö ÆÇ´Ü...
+	// ì¼€ë¦­í„°ì˜ ì†Œìœ ìì¸ì§€ íŒë‹¨...
 	this->m_pSQL->MakeQuery( "SELECT txtACCOUNT, binBasicE, intCharID, intDataVER FROM tblGS_AVATAR WHERE txtNAME=", 
 							MQ_PARAM_STR, pCharName, 
 							MQ_PARAM_END);
@@ -501,7 +501,7 @@ bool CWS_ThreadSQL::Proc_cli_SELECT_CHAR( tagQueryDATA *pSqlPACKET )
 		return false;
 	}
 	if ( !this->m_pSQL->GetNextRECORD() ) {
-		// ÄÉ¸¯ÅÍ ¾ø´Ù.
+		// ì¼€ë¦­í„° ì—†ë‹¤.
 		g_LOG.CS_ODS(LOG_NORMAL, "Char[ %s ] not found ...\n", pCharName );
 		return false;
 	}
@@ -518,9 +518,9 @@ bool CWS_ThreadSQL::Proc_cli_SELECT_CHAR( tagQueryDATA *pSqlPACKET )
 		BYTE btCharSlotNO = pBE->m_btCharSlotNO;
 #endif
 		if ( btCharSlotNO ) {
-			// ÇÃ·¹Æ¼³Ñ ÄÉ¸¯ÀÌ¸é ???
+			// í”Œë ˆí‹°ë„˜ ì¼€ë¦­ì´ë©´ ???
 			if ( 0 == ( pUSER->m_dwPayFLAG & PLAY_FLAG_EXTRA_CHAR ) ) {
-				// ¹¹³Ä ???
+				// ë­ëƒ ???
 				pUSER->CloseSocket ();
 				return false;
 			}
@@ -530,11 +530,11 @@ bool CWS_ThreadSQL::Proc_cli_SELECT_CHAR( tagQueryDATA *pSqlPACKET )
 
 		short nZoneNO = pBE->m_nZoneNO;
 		if ( !strcmpi( pUSER->Get_ACCOUNT(), szCharOWNER ) ) {
-			// Á¸ÀÌ 0 ÀÌ¸é ...µğÆúÆ® Á¸À¸·Î..
+			// ì¡´ì´ 0 ì´ë©´ ...ë””í´íŠ¸ ì¡´ìœ¼ë¡œ..
 			g_pUserLIST->Add_CHAR( pUSER, pCharName );
 			if ( pUSER->Send_wsv_MOVE_SERVER( (0==nZoneNO)? AVATAR_ZONE( pBE->m_btCharRACE ) : nZoneNO ) ) 
 			{
-				// µµÂøÇÑ ÂÊÁö Ã¼Å©...
+				// ë„ì°©í•œ ìª½ì§€ ì²´í¬...
 				this->m_pSQL->MakeQuery( "SELECT Count(*) FROM tblWS_MEMO WHERE txtNAME=", 
 										MQ_PARAM_STR, pCharName,
 										MQ_PARAM_END );
@@ -544,12 +544,12 @@ bool CWS_ThreadSQL::Proc_cli_SELECT_CHAR( tagQueryDATA *pSqlPACKET )
 				}
 				
 				if ( m_pSQL->GetNextRECORD() && m_pSQL->GetInteger( 0 ) > 0 ) {
-					// ÂÊÁö °¹¼ö...
+					// ìª½ì§€ ê°¯ìˆ˜...
 					g_pUserLIST->Send_wsv_MEMO( pSqlPACKET->m_iTAG, MEMO_REQ_RECEIVED_CNT, m_pSQL->GetInteger( 0 ) );
 				}
 			}
 		}
-	} // else Á¢¼Ó ²÷°å´Ù.
+	} // else ì ‘ì† ëŠê²¼ë‹¤.
 
 	return false;
 }
@@ -573,7 +573,7 @@ bool CWS_ThreadSQL::Proc_cli_CREATE_CHAR( tagQueryDATA *pSqlPACKET )
 	short nOffset=sizeof(cli_CREATE_CHAR), nOutStrLen;
 	char *pCharName=Packet_GetStringPtr( pPacket, nOffset, nOutStrLen );
 	if ( NULL == pCharName || nOutStrLen < 4) {
-		// Å¬¶óÀÌ¾ğÆ® ¹ö±×·Î ¾öÃ»±ä ÀÌ¸§ÀÌ Àü´ŞµÇ¾î ¿À´Â °æ¿ìÀÖ´Ù.
+		// í´ë¼ì´ì–¸íŠ¸ ë²„ê·¸ë¡œ ì—„ì²­ê¸´ ì´ë¦„ì´ ì „ë‹¬ë˜ì–´ ì˜¤ëŠ” ê²½ìš°ìˆë‹¤.
 		g_pUserLIST->Send_wsv_CREATE_CHAR( pSqlPACKET->m_iTAG, RESULT_CREATE_CHAR_FAILED );
 		return false;
 	}
@@ -633,7 +633,7 @@ bool CWS_ThreadSQL::Proc_cli_CREATE_CHAR( tagQueryDATA *pSqlPACKET )
 	}
 
 	if ( this->m_pSQL->GetNextRECORD () ) {
-		// ÀÌ¹Ì ¸¸µé¾îÁ® ÀÖ´Â ÀÌ¸§ÀÌ´Ù.
+		// ì´ë¯¸ ë§Œë“¤ì–´ì ¸ ìˆëŠ” ì´ë¦„ì´ë‹¤.
 		g_pUserLIST->Send_wsv_CREATE_CHAR( pSqlPACKET->m_iTAG, RESULT_CREATE_CHAR_DUP_NAME );
 		return true;
 	}
@@ -654,19 +654,19 @@ bool CWS_ThreadSQL::Proc_cli_CREATE_CHAR( tagQueryDATA *pSqlPACKET )
 		if ( pFindUSER ) {
 			int iNormalCharCnt = iTotalCharCnt - pFindUSER->m_nPlatinumCharCNT;
 			if ( pFindUSER->m_dwPayFLAG & PLAY_FLAG_EXTRA_CHAR ) {
-				// ÃÖ´ë 5°³
-				if ( iTotalCharCnt >= 2+MAX_CREATE_CHAR_PER_USER )	{ // ÃÖ´ë 5°³
-					// ´õÀÌ»ó ¸ø¸¸µç´Ù.
+				// ìµœëŒ€ 5ê°œ
+				if ( iTotalCharCnt >= 2+MAX_CREATE_CHAR_PER_USER )	{ // ìµœëŒ€ 5ê°œ
+					// ë”ì´ìƒ ëª»ë§Œë“ ë‹¤.
 					g_pUserLIST->Send_wsv_CREATE_CHAR( pSqlPACKET->m_iTAG, RESULT_CREATE_CHAR_NO_MORE_SLOT );
 					return true;
 				}
 				if ( iNormalCharCnt >= MAX_CREATE_CHAR_PER_USER ) { 
-					// ÇÃ·¹Æ¼³Ñ ÄÉ¸¯À¸·Î »ı¼º
+					// í”Œë ˆí‹°ë„˜ ì¼€ë¦­ìœ¼ë¡œ ìƒì„±
 					btCharSlotNO = (BYTE)iNormalCharCnt;
-				} // else ³ë¸» ÄÉ¸¯À¸·ç »ı¼º...
+				} // else ë…¸ë§ ì¼€ë¦­ìœ¼ë£¨ ìƒì„±...
 			} else
-			if ( iNormalCharCnt >= MAX_CREATE_CHAR_PER_USER )	{ // ÃÖ´ë 3°³
-				// ´õÀÌ»ó ¸ø¸¸µç´Ù.
+			if ( iNormalCharCnt >= MAX_CREATE_CHAR_PER_USER )	{ // ìµœëŒ€ 3ê°œ
+				// ë”ì´ìƒ ëª»ë§Œë“ ë‹¤.
 				g_pUserLIST->Send_wsv_CREATE_CHAR( pSqlPACKET->m_iTAG, RESULT_CREATE_CHAR_NO_MORE_SLOT );
 				return true;
 			}
@@ -676,7 +676,7 @@ bool CWS_ThreadSQL::Proc_cli_CREATE_CHAR( tagQueryDATA *pSqlPACKET )
 
 	WORD wPosBeginner = 0;
 	
-	// ¸¸µéÀÚ !!!
+	// ë§Œë“¤ì !!!
 	m_pDefaultBE[ nDefRACE ].m_btCharSlotNO = btCharSlotNO;
 	m_pDefaultBE[ nDefRACE ].m_btCharRACE = (BYTE)nDefRACE;
 
@@ -684,13 +684,13 @@ bool CWS_ThreadSQL::Proc_cli_CREATE_CHAR( tagQueryDATA *pSqlPACKET )
 	//m_pDefaultBE[ nDefRACE ].m_PosSTART   = g_ZoneLIST.Get_StartPOS( nZoneIDX );
 	m_pDefaultBE[ nDefRACE ].m_PosSTART   = s_BeginnerPOS[ wPosBeginner ];
 	
-	// ÃÊ±â ºÎÈ°Àå¼Ò ÁöÁ¤...
+	// ì´ˆê¸° ë¶€í™œì¥ì†Œ ì§€ì •...
 	short nDefReviveZoneNO = BEGINNER_ZONE;
 
 	m_pDefaultBE[ nDefRACE ].m_nReviveZoneNO = nDefReviveZoneNO;
 	m_pDefaultBE[ nDefRACE ].m_PosREVIVE     = g_ZoneLIST.Get_StartRevivePOS( nDefReviveZoneNO );
 
-	// »ç¿ëÀÚ ¼±ÅÃ¿¡ÀÇÇØ º¯È­µÇ´Â °ªµé...
+	// ì‚¬ìš©ì ì„ íƒì—ì˜í•´ ë³€í™”ë˜ëŠ” ê°’ë“¤...
 	m_sBI.Init ( pPacket->m_cli_CREATE_CHAR.m_cBoneSTONE, pPacket->m_cli_CREATE_CHAR.m_cFaceIDX, pPacket->m_cli_CREATE_CHAR.m_cHairIDX );
 
 	m_pDefaultBE[ nDefRACE ].m_PartITEM[ BODY_PART_FACE ].m_nItemNo = m_sBI.m_cFaceIDX;
@@ -728,13 +728,13 @@ bool CWS_ThreadSQL::Proc_cli_CREATE_CHAR( tagQueryDATA *pSqlPACKET )
 				MQ_PARAM_ADDSTR, ");"	,	MQ_PARAM_END);
 #endif
 	if ( this->m_pSQL->ExecSQLBuffer() < 1 ) {
-		// ¿À·ù ¶Ç´Â ¸¸µé¾îÁø°ÍÀÌ ¾ø´Ù.
+		// ì˜¤ë¥˜ ë˜ëŠ” ë§Œë“¤ì–´ì§„ê²ƒì´ ì—†ë‹¤.
 		g_LOG.CS_ODS(LOG_NORMAL, "Exec ERROR(CREATE_CHAR:%s):: %s \n", pCharName, m_pSQL->GetERROR() );
 		g_pUserLIST->Send_wsv_CREATE_CHAR( pSqlPACKET->m_iTAG, RESULT_CREATE_CHAR_FAILED );
 		return true;
 	}
 
-	// ¸¸µé¾î Á³´Ù..
+	// ë§Œë“¤ì–´ ì¡Œë‹¤..
 	CWS_Client *pFindUSER = (CWS_Client*)g_pUserLIST->GetSOCKET( pSqlPACKET->m_iTAG );
 	if ( pFindUSER ) {
 #ifdef	__NEW_LOG
@@ -789,7 +789,7 @@ bool CWS_ThreadSQL::Proc_cli_DELETE_CHAR( tagQueryDATA *pSqlPACKET )
 	DWORD dwCurAbsSEC=0, dwReaminSEC=0;
 
 	if ( pPacket->m_cli_DELETE_CHAR.m_bDelete ) {
-		// »èÁ¦ ´ë±â
+		// ì‚­ì œ ëŒ€ê¸°
 		DWORD dwDelWaitTime;
 		
 		dwDelWaitTime = DELETE_CHAR_WAIT_TIME;
@@ -799,7 +799,7 @@ bool CWS_ThreadSQL::Proc_cli_DELETE_CHAR( tagQueryDATA *pSqlPACKET )
 
 	if ( this->m_pSQL->QuerySQL( "{call ws_ClanCharGET(\'%s\')}", pCharName ) ) {
 		if ( this->m_pSQL->GetNextRECORD() ) {
-			// Å¬·£ ÀÖ´Ù.
+			// í´ëœ ìˆë‹¤.
 			int iClanPOS = this->m_pSQL->GetInteger(2);
 			if ( iClanPOS >= GPOS_MASTER ) {
 				classUSER *pFindUSER = (classUSER*)g_pUserLIST->GetSOCKET( pSqlPACKET->m_iTAG );
@@ -821,7 +821,7 @@ bool CWS_ThreadSQL::Proc_cli_DELETE_CHAR( tagQueryDATA *pSqlPACKET )
 
 
 	if ( this->m_pSQL->ExecSQL("UPDATE tblGS_AVATAR SET dwDelTIME=%u WHERE txtACCOUNT=\'%s\' AND txtNAME=\'%s\'", dwCurAbsSEC, pSqlPACKET->m_Name.Get(), pCharName ) < 1 ) {
-		// ¿À·ù ¶Ç´Â »èÁ¦µÈ°ÍÀÌ ¾ø´Ù.
+		// ì˜¤ë¥˜ ë˜ëŠ” ì‚­ì œëœê²ƒì´ ì—†ë‹¤.
 		g_LOG.CS_ODS(LOG_NORMAL, "Exec ERROR:: %s \n", m_pSQL->GetERROR() );
 	}
 	/*
@@ -830,13 +830,13 @@ bool CWS_ThreadSQL::Proc_cli_DELETE_CHAR( tagQueryDATA *pSqlPACKET )
 			MQ_PARAM_ADDSTR,	" AND txtNAME=",	MQ_PARAM_STR,	pCharName,
 			MQ_PARAM_END );
 	if ( this->m_pSQL->ExecSQLBuffer() < 1 ) {
-		// ¿À·ù ¶Ç´Â »èÁ¦µÈ°ÍÀÌ ¾ø´Ù.
+		// ì˜¤ë¥˜ ë˜ëŠ” ì‚­ì œëœê²ƒì´ ì—†ë‹¤.
 		g_LOG.CS_ODS(LOG_NORMAL, "Exec ERROR(DELETE_CHAR:%s):: %s \n", pCharName, m_pSQL->GetERROR() );
 		return true;
 	}
 	*/
 
-#pragma COMPILE_TIME_MSG( "µî·ÏµÈ ¸ğµç ¸Ş¸ğÀå »èÁ¦ÇÒ°÷..." )
+#pragma COMPILE_TIME_MSG( "ë“±ë¡ëœ ëª¨ë“  ë©”ëª¨ì¥ ì‚­ì œí• ê³³..." )
 
 	CWS_Client *pFindUSER = (CWS_Client*)g_pUserLIST->GetSOCKET( pSqlPACKET->m_iTAG );
 	if ( pFindUSER ) {
@@ -928,7 +928,7 @@ bool CWS_ThreadSQL::Proc_SAVE_WORLDVAR( sql_ZONE_DATA *pSqlZONE )
 			MQ_PARAM_ADDSTR, "WHERE txtNAME=",	MQ_PARAM_STR,		WORLD_VAR,
 												MQ_PARAM_END );
 	if ( this->m_pSQL->ExecSQLBuffer() < 0 ) {
-		// °íÄ¡±â ½ÇÆĞ !!!
+		// ê³ ì¹˜ê¸° ì‹¤íŒ¨ !!!
 		g_LOG.CS_ODS(LOG_NORMAL, "SQL Exec ERROR:: UPDATE %s %s \n", WORLD_VAR, m_pSQL->GetERROR() );
 	}
 
@@ -954,7 +954,7 @@ bool CWS_ThreadSQL::Proc_cli_MEMO( tagQueryDATA *pSqlPACKET )
 
 		case MEMO_REQ_CONTENTS	  :
 		{
-			// ÇÑ¹ø¿¡ 5°³ÀÇ ÂÊÁö ÀĞÀ½
+			// í•œë²ˆì— 5ê°œì˜ ìª½ì§€ ì½ìŒ
 			if ( !this->m_pSQL->QuerySQL("SELECT TOP 5 dwDATE, txtFROM, txtMEMO FROM tblWS_MEMO WHERE txtNAME=\'%s\' ORDER BY dwDATE ASC", pSqlPACKET->m_Name.Get() ) ) {
 				g_LOG.CS_ODS(LOG_NORMAL, "Query ERROR:: %s \n", m_pSQL->GetERROR() );
 				return false;
@@ -985,7 +985,7 @@ bool CWS_ThreadSQL::Proc_cli_MEMO( tagQueryDATA *pSqlPACKET )
 					pCPacket->AppendString( szMemo );
 
 					if ( pCPacket->m_HEADER.m_nSize > MAX_PACKET_SIZE-270 ) {
-						// ²ËÃ¡´Ù... Àü¼Û
+						// ê½‰ì°¼ë‹¤... ì „ì†¡
 						g_pUserLIST->SendPacketToSocketIDX( pSqlPACKET->m_iTAG, pCPacket );
 						Packet_ReleaseNUnlock( pCPacket );
 
@@ -1008,17 +1008,17 @@ bool CWS_ThreadSQL::Proc_cli_MEMO( tagQueryDATA *pSqlPACKET )
 				
 				if ( this->m_pSQL->ExecSQL( "DELETE FROM tblWS_MEMO WHERE (intSN IN (SELECT TOP %d intSN FROM tblWS_MEMO WHERE txtNAME=\'%s\' ORDER BY dwDATE ASC))",
 							iMemoCNT, pSqlPACKET->m_Name.Get() ) < 1 ) {
-					// ¿À·ù ¶Ç´Â »èÁ¦µÈ°ÍÀÌ ¾ø´Ù.
+					// ì˜¤ë¥˜ ë˜ëŠ” ì‚­ì œëœê²ƒì´ ì—†ë‹¤.
 					g_LOG.CS_ODS(LOG_NORMAL, "Exec ERROR(DELETE_MEMO):: %s \n", m_pSQL->GetERROR() );
 					return true;
 				}
-			} // else ÂÊÁö ¾ø´Ù.
+			} // else ìª½ì§€ ì—†ë‹¤.
 			break;
 		}
 		case MEMO_REQ_SEND	  :
 		{
 			/*
-				jeddli¿¡°Ô ¿Â ¸Ş½ÃÁö °¹¼ö ±¸ÇÏ±â. Á¶°Ç jeddli´Â tblgs_avatar¿¡ Á¸ÀçÇØ¾ß ÇÔ
+				jeddliì—ê²Œ ì˜¨ ë©”ì‹œì§€ ê°¯ìˆ˜ êµ¬í•˜ê¸°. ì¡°ê±´ jeddliëŠ” tblgs_avatarì— ì¡´ì¬í•´ì•¼ í•¨
 				=========================================================================================================
 				SELECT count(*) FROM tblws_memo LEFT JOIN tblgs_avatar ON tblws_memo.txtNAME=tblgs_avatar.txtNAME 
 				WHERE tblgs_avatar.txtNAME='jeddli';
@@ -1028,48 +1028,48 @@ bool CWS_ThreadSQL::Proc_cli_MEMO( tagQueryDATA *pSqlPACKET )
 
 			szTargetCHAR = Packet_GetStringPtr( pPacket, nOffset );
 			if ( !szTargetCHAR || strlen(szTargetCHAR) < 1 ) {
-				// Àß¸øµÈ ÄÉ¸¯ ÀÌ¸§
+				// ì˜ëª»ëœ ì¼€ë¦­ ì´ë¦„
 				g_pUserLIST->Send_wsv_MEMO( pSqlPACKET->m_iTAG, MEMO_REPLY_SEND_INVALID_TARGET );
 				return true;
 			}
 			char *szMemo = Packet_GetStringPtr( pPacket, nOffset );
 			if ( !szMemo || strlen(szTargetCHAR) < 2 ) {
-				// ÂÊÁö ³»¿ë ¿À·ù.
+				// ìª½ì§€ ë‚´ìš© ì˜¤ë¥˜.
 				g_pUserLIST->Send_wsv_MEMO( pSqlPACKET->m_iTAG, MEMO_REPLY_SEND_INVALID_CONTENT );
 				return true;
 			}
 
 			#define	OPTION_REFUSE_JJOKJI	0x00000001
-			// ´ë»ó ÄÉ¸¯ÀÇ ÂÊÁö ¼ö½Å °ÅºÎ ¿©ºÎ...
+			// ëŒ€ìƒ ì¼€ë¦­ì˜ ìª½ì§€ ìˆ˜ì‹  ê±°ë¶€ ì—¬ë¶€...
 			if ( !this->m_pSQL->QuerySQL( "SELECT dwOPTION FROM tblGS_AVATAR WHERE txtNAME=\'%s\';", szTargetCHAR ) ) {
 				g_LOG.CS_ODS(LOG_NORMAL, "Query ERROR:: %s \n", m_pSQL->GetERROR() );
 				return false;
 			}
 
 			if ( !m_pSQL->GetNextRECORD() ) {
-				// º¸³¾ ´ë»ó ÄÉ¸¯ ¾ø´Ù.
+				// ë³´ë‚¼ ëŒ€ìƒ ì¼€ë¦­ ì—†ë‹¤.
 				g_pUserLIST->Send_wsv_MEMO( pSqlPACKET->m_iTAG, MEMO_REPLY_SEND_NOT_EXIST );
 				return true;
 			}
 			if ( m_pSQL->GetInteger( 0 ) & OPTION_REFUSE_JJOKJI ) {
-				// °ÅºÎ »óÅÂ
+				// ê±°ë¶€ ìƒíƒœ
 				g_pUserLIST->Send_wsv_MEMO( pSqlPACKET->m_iTAG, MEMO_REPLY_SEND_REFUSED );
 				return true;
 			}
 
 			#define	MAX_RECV_MEMO_CNT	50
-			// ´ë»ó ÄÉ¸¯ÀÌ ¸î°³ÀÇ º¸°üµÈ ÂÊÁö°¡ ÀÖ³Ä?
+			// ëŒ€ìƒ ì¼€ë¦­ì´ ëª‡ê°œì˜ ë³´ê´€ëœ ìª½ì§€ê°€ ìˆëƒ?
 			if ( !this->m_pSQL->QuerySQL( "SELECT Count(*) FROM tblWS_MEMO WHERE txtNAME=\'%s\';", szTargetCHAR ) ) {
 				g_LOG.CS_ODS(LOG_NORMAL, "Query ERROR:: %s \n", m_pSQL->GetERROR() );
 				return false;
 			}
 			if ( m_pSQL->GetNextRECORD() && m_pSQL->GetInteger( 0 ) > MAX_RECV_MEMO_CNT ) {
-				// MAX_RECV_MEMO_CNT °³ ÀÌ»óÀÇ ÂÊÁö¸¦ º¸À¯ ÇÏ°í ÀÖ´Ù¸é...
+				// MAX_RECV_MEMO_CNT ê°œ ì´ìƒì˜ ìª½ì§€ë¥¼ ë³´ìœ  í•˜ê³  ìˆë‹¤ë©´...
 				g_pUserLIST->Send_wsv_MEMO( pSqlPACKET->m_iTAG, MEMO_REPLY_SEND_FULL_MEMO );
 				return true;
 			}
 
-			// ÂÊÁö ÀúÀå..
+			// ìª½ì§€ ì €ì¥..
 			DWORD dwCurAbsSEC = classTIME::GetCurrentAbsSecond();
 			this->m_pSQL->MakeQuery("INSERT tblWS_MEMO (dwDATE, txtNAME, txtFROM, txtMEMO) VALUES(",
 													MQ_PARAM_INT,		dwCurAbsSEC,	
@@ -1078,7 +1078,7 @@ bool CWS_ThreadSQL::Proc_cli_MEMO( tagQueryDATA *pSqlPACKET )
 						MQ_PARAM_ADDSTR, ","	,	MQ_PARAM_STR,		szMemo,
 						MQ_PARAM_ADDSTR, ");"	,	MQ_PARAM_END);
 			if ( this->m_pSQL->ExecSQLBuffer() < 1 ) {
-				// ¸¸µé±â ½ÇÆĞ !!!
+				// ë§Œë“¤ê¸° ì‹¤íŒ¨ !!!
 				g_LOG.CS_ODS(LOG_NORMAL, "SQL Exec ERROR:: INSERT MEMO:%s : %s \n", pSqlPACKET->m_Name.Get(), m_pSQL->GetERROR() );
 				return true;
 			}

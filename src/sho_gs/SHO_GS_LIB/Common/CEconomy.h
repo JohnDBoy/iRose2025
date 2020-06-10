@@ -1,26 +1,26 @@
 /**
  * \ingroup SHO_GS
  * \file	CEconomy.h
- * \brief	°¢ Á¸º¯ °æÁ¦ µ¥ÀÌÅ¸ º¸°ü,Ã³¸®
+ * \brief	ê° ì¡´ë³€ ê²½ì œ ë°ì´íƒ€ ë³´ê´€,ì²˜ë¦¬
  */
 #ifndef	__CECONOMY_H
 #define	__CECONOMY_H
 #include "CItem.h"
 //-------------------------------------------------------------------------------------------------
 struct tagECONOMY {
-	// ÀÔ·Â µ¥ÀÌÅÍ...
+	// ìž…ë ¥ ë°ì´í„°...
 	union {
 		struct {
 #if	defined( __SERVER ) || defined( __VIRTUAL_SERVER )
-			DWORD	m_dwTown_COUNTER;					// Ä«¿îÅÍ 1ºÐ¿¡ 1¾¿ °¨¼Ò.		50~100
+			DWORD	m_dwTown_COUNTER;					// ì¹´ìš´í„° 1ë¶„ì— 1ì”© ê°ì†Œ.		50~100
 
-			short	m_nTown_POP_BASE;					// ±âÁØ ÀÎ±¸¼ö.					100~8000
-			short	m_nTown_DEV_BASE;					// ±âÁØ ¹ßÀüµµ					10~100
-			short	m_nTown_CONSUM[ MAX_PRICE_TYPE ];	// ¾ÆÀÌÅÛº° ¼Òºñ·®
+			short	m_nTown_POP_BASE;					// ê¸°ì¤€ ì¸êµ¬ìˆ˜.					100~8000
+			short	m_nTown_DEV_BASE;					// ê¸°ì¤€ ë°œì „ë„					10~100
+			short	m_nTown_CONSUM[ MAX_PRICE_TYPE ];	// ì•„ì´í…œë³„ ì†Œë¹„ëŸ‰
 
-			short	m_nTownDEV;							// ¸¶À» ¹ßÀüµµ
-			int		m_iTownPOP;							// ¸¶À» ÀÎ±¸.
-			int		m_iTownITEM[ MAX_PRICE_TYPE ];		// ¾ÆÀÌÅÛº° º¸À¯·®				1000~100000
+			short	m_nTownDEV;							// ë§ˆì„ ë°œì „ë„
+			int		m_iTownPOP;							// ë§ˆì„ ì¸êµ¬.
+			int		m_iTownITEM[ MAX_PRICE_TYPE ];		// ì•„ì´í…œë³„ ë³´ìœ ëŸ‰				1000~100000
 
 			DWORD	m_dwCheckTIME;
 			union {
@@ -36,8 +36,8 @@ struct tagECONOMY {
 			DWORD	m_dwUpdateTIME;
 			union {
 				struct {
-					BYTE	m_btTOWN_RATE;						// ¸¶À» ¹°°¡					80~140
-					BYTE	m_btItemRATE[ MAX_PRICE_TYPE ];		// ¾ÆÀÌÅÛº° ¹°°¡				1~127
+					BYTE	m_btTOWN_RATE;						// ë§ˆì„ ë¬¼ê°€					80~140
+					BYTE	m_btItemRATE[ MAX_PRICE_TYPE ];		// ì•„ì´í…œë³„ ë¬¼ê°€				1~127
 					short	m_nCur_WorldPROD;
 					short	m_nCur_WorldRATE;
 				} ;
@@ -53,15 +53,15 @@ struct tagECONOMY {
  * \ingroup SHO_GS_LIB
  * \class	CEconomy
  * \author	wookSang.Jo
- * \brief	°¢ Á¸ÀÇ °æÁ¦ µ¥ÀÌÅ¸ º¸°ü¹× Ã³¸® Å¬·¡½º
- *			ÃÊ±â Á¸ ÆÄÀÏ¿¡¼­ ÀÐ¾îµéÀÌ°Å³ª DB¼­¹ö¿¡¼­ ÀÐ¾î µéÀÎ °æÁ¦ µ¥ÀÌÅ¸ Å¬·¡½º tagECONOMY »ó¼Ó¹ÞÀ½
+ * \brief	ê° ì¡´ì˜ ê²½ì œ ë°ì´íƒ€ ë³´ê´€ë° ì²˜ë¦¬ í´ëž˜ìŠ¤
+ *			ì´ˆê¸° ì¡´ íŒŒì¼ì—ì„œ ì½ì–´ë“¤ì´ê±°ë‚˜ DBì„œë²„ì—ì„œ ì½ì–´ ë“¤ì¸ ê²½ì œ ë°ì´íƒ€ í´ëž˜ìŠ¤ tagECONOMY ìƒì†ë°›ìŒ
  */
 class CEconomy : public tagECONOMY
 {
 private:
 	int m_iTownCounter;
 public :
-	// ¸¶À» ¹°°¡...
+	// ë§ˆì„ ë¬¼ê°€...
 	static bool IsEssentialGoods (int iItemTYPE);
 
 	CEconomy ();
@@ -91,10 +91,10 @@ public :
 #if	defined( __SERVER ) || defined( __VIRTUAL_SERVER )
 		if ( nVarIDX >= 11 && nVarIDX <= 30 ) {
 			if ( nVarIDX <= 20 ) {
-				// º¸À¯·®
+				// ë³´ìœ ëŸ‰
 				return m_iTownITEM [ MIN_PRICE_TYPE + nVarIDX - 11 ];
 			} else {
-				// ¹°°¡..
+				// ë¬¼ê°€..
 				return m_btItemRATE[ MIN_PRICE_TYPE + nVarIDX - 21 ];
 			}
 		}
@@ -121,7 +121,7 @@ public :
 extern short Get_WorldRATE ();
 extern void  Set_WorldRATE (short nWorldRate);
 
-extern short Get_WorldPROD ();					// Á¦Á¶½Ã »ç¿ëµÇ´Â WORLD_PRODUCT
+extern short Get_WorldPROD ();					// ì œì¡°ì‹œ ì‚¬ìš©ë˜ëŠ” WORLD_PRODUCT
 extern void  Set_WorldPROD (short nWorldProd);
 
 //-------------------------------------------------------------------------------------------------

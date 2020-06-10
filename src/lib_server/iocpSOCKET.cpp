@@ -72,7 +72,7 @@ void iocpSOCKET::Clear_LIST (void)
 }
 
 //-------------------------------------------------------------------------------------------------
-// pRecvNode¿¡ ÀÌ¾î ¹Þ±â.
+// pRecvNodeì— ì´ì–´ ë°›ê¸°.
 ePacketRECV iocpSOCKET::Recv_Continue (tagIO_DATA *pRecvDATA)
 {
 	_ASSERT( pRecvDATA->m_pCPacket->GetRefCnt() == 1 );
@@ -90,7 +90,7 @@ ePacketRECV iocpSOCKET::Recv_Continue (tagIO_DATA *pRecvDATA)
             g_LOG.CS_ODS(0xffff, "$$$$$$$  SocketIDX: %d : ERROR[ %d:%s ] ::: ReadFile \n", 
 					this->m_iSocketIDX, dwCode, CUtil::GetLastErrorMsg( dwCode ) );
 			*/
-            // false ¸®ÅÏÇÏ¸é Á¢¼Ó ²÷ÀÚ...
+            // false ë¦¬í„´í•˜ë©´ ì ‘ì† ëŠìž...
 			return eRESULT_PACKET_DISCONNECT;//false;
         } 
 		/* 
@@ -104,7 +104,7 @@ ePacketRECV iocpSOCKET::Recv_Continue (tagIO_DATA *pRecvDATA)
 
 
 //-------------------------------------------------------------------------------------------------
-// »õ·Î ¹Þ±â.
+// ìƒˆë¡œ ë°›ê¸°.
 ePacketRECV iocpSOCKET::Recv_Start (void)
 {
     classDLLNODE<tagIO_DATA> *pRecvNODE;
@@ -121,7 +121,7 @@ ePacketRECV iocpSOCKET::Recv_Start (void)
 
 
 //-------------------------------------------------------------------------------------------------
-// CThreadWORKER::STATUS_ReturnTRUE () ¿¡¼­¸¸ È£ÃâµÈ´Ù.
+// CThreadWORKER::STATUS_ReturnTRUE () ì—ì„œë§Œ í˜¸ì¶œëœë‹¤.
 ePacketRECV iocpSOCKET::Recv_Complete (tagIO_DATA *pRecvDATA)
 {
 	ePacketRECV eResult;
@@ -129,21 +129,21 @@ ePacketRECV iocpSOCKET::Recv_Complete (tagIO_DATA *pRecvDATA)
 	this->LockSOCKET ();
 
     if ( pRecvDATA->m_dwIOBytes < sizeof(t_PACKETHEADER) ) {
-		// µðÄÚµù ¾ÈµÈ ÆÐÅ¶ÀÇ Å©±â´Â 0ÀÌ´Ù !!!
+		// ë””ì½”ë”© ì•ˆëœ íŒ¨í‚·ì˜ í¬ê¸°ëŠ” 0ì´ë‹¤ !!!
 		_ASSERT( 0 == pRecvDATA->m_pCPacket->GetLength() );
-		// ÃÖ¼Ò Å©±âÀÇ ÆÐÅ¶ ¹Þ±â...
-        eResult = this->Recv_Continue( pRecvDATA );	// ÀÌ¾î ¹Þ±â.
+		// ìµœì†Œ í¬ê¸°ì˜ íŒ¨í‚· ë°›ê¸°...
+        eResult = this->Recv_Continue( pRecvDATA );	// ì´ì–´ ë°›ê¸°.
 		goto _JUMP_RETURN;
 	}
 
 	if ( 0 == pRecvDATA->m_pCPacket->GetLength() ) {
-		// µðÄÚµù ¾ÈµÇ¾î ÀÖ´Ù¸é...
+		// ë””ì½”ë”© ì•ˆë˜ì–´ ìžˆë‹¤ë©´...
 		pRecvDATA->m_pCPacket->SetLength( this->D_RecvH( &pRecvDATA->m_pCPacket->m_HEADER ) );
 		if ( 0 == pRecvDATA->m_pCPacket->GetLength() ) {
 			this->UnlockSOCKET ();
 			this->Free_RecvIODATA( pRecvDATA );
 
-			// ºí·¢ ¸®½ºÆ®¿¡ ip µî·Ï...
+			// ë¸”ëž™ ë¦¬ìŠ¤íŠ¸ì— ip ë“±ë¡...
 			g_LOG.CS_ODS( 0xffff, "*** ERROR: Decode recv packet header1, IP[ %s ]\n", this->m_IP.Get() );
 			return eRESULT_PACKET_BLOCK;//false;
 		}
@@ -152,17 +152,17 @@ ePacketRECV iocpSOCKET::Recv_Complete (tagIO_DATA *pRecvDATA)
 	_ASSERT( pRecvDATA->m_pCPacket->GetLength() >= sizeof(t_PACKETHEADER) );
 	
 	if ( (short)pRecvDATA->m_dwIOBytes < pRecvDATA->m_pCPacket->GetLength() ) {
-        eResult = this->Recv_Continue( pRecvDATA );	// ÀÌ¾î ¹Þ±â.
+        eResult = this->Recv_Continue( pRecvDATA );	// ì´ì–´ ë°›ê¸°.
 		goto _JUMP_RETURN;
     } else
     if ( (short)pRecvDATA->m_dwIOBytes == pRecvDATA->m_pCPacket->GetLength() ) {
 		this->UnlockSOCKET ();
-		if ( !this->Recv_Done( pRecvDATA ) )		// Free_RecvIODATA( pRecvDATA ); <-- Recv_done¿¡¼­ È£ÃâµÇ¾î¿È
+		if ( !this->Recv_Done( pRecvDATA ) )		// Free_RecvIODATA( pRecvDATA ); <-- Recv_doneì—ì„œ í˜¸ì¶œë˜ì–´ì˜´
 			return eRESULT_PACKET_DISCONNECT;//false;
         return this->Recv_Start ();	// RecvComplete
     }
 
-    // ¹¶ÃÄ¿Â ÆÐÅ¶ ºÐ¸®.
+    // ë­‰ì³ì˜¨ íŒ¨í‚· ë¶„ë¦¬.
     t_PACKETHEADER *pHEADER;
     short	nRemainBytes, nPacketSIZE;
 
@@ -179,20 +179,20 @@ ePacketRECV iocpSOCKET::Recv_Complete (tagIO_DATA *pRecvDATA)
 				this->Free_RecvIODATA( pRecvDATA );
 				g_LOG.CS_ODS( 0xffff, "*** ERROR: Decode recv packet header2, IP[ %s ]\n", this->m_IP.Get() );
 
-				// ºí·¢ ¸®½ºÆ®¿¡ ip µî·Ï...
+				// ë¸”ëž™ ë¦¬ìŠ¤íŠ¸ì— ip ë“±ë¡...
 				return eRESULT_PACKET_BLOCK;//false;
 			}
 		}
 
 		if ( nRemainBytes == nPacketSIZE ) {
 			this->UnlockSOCKET ();
-			if ( !this->Recv_Done( pRecvDATA ) )		// ¿Ï¼º ÆÐÅ¶ Ãß°¡, Free_RecvIODATA( pRecvDATA );<-- Recv_done¿¡¼­ È£ÃâµÇ¾î¿È
+			if ( !this->Recv_Done( pRecvDATA ) )		// ì™„ì„± íŒ¨í‚· ì¶”ê°€, Free_RecvIODATA( pRecvDATA );<-- Recv_doneì—ì„œ í˜¸ì¶œë˜ì–´ì˜´
 				return eRESULT_PACKET_DISCONNECT;//false;
-			return this->Recv_Start ();					// »õ·Î ¹Þ±â. :: RecvComplete
+			return this->Recv_Start ();					// ìƒˆë¡œ ë°›ê¸°. :: RecvComplete
 		}
 
 		if ( nRemainBytes > nPacketSIZE ) {
-			// Ãß°¡ ÆÐÅ¶ÀÌ ÀÖ´Ù.
+			// ì¶”ê°€ íŒ¨í‚·ì´ ìžˆë‹¤.
 			nRemainBytes -= nPacketSIZE;
 			pHEADER     = (t_PACKETHEADER*) ( pHEADER->m_pDATA + nPacketSIZE );
 			nPacketSIZE = 0;
@@ -200,27 +200,27 @@ ePacketRECV iocpSOCKET::Recv_Complete (tagIO_DATA *pRecvDATA)
 			break;
 	}
 
-    // ¸ðÀÚ¶õ ºÎºÐÀ» ´Ù½Ã ÀÐ¾îµéÀÏ µ¥ÀÌÅ¸ »ý¼º.
+    // ëª¨ìžëž€ ë¶€ë¶„ì„ ë‹¤ì‹œ ì½ì–´ë“¤ì¼ ë°ì´íƒ€ ìƒì„±.
     classDLLNODE<tagIO_DATA> *pNewNODE;
     pNewNODE = this->Alloc_RecvIODATA ();
 	if ( pNewNODE ) {
 		if ( nRemainBytes >= sizeof(t_PACKETHEADER) ) {
-			// Header°¡ Decoding µÇ¾ú´Ù..
+			// Headerê°€ Decoding ë˜ì—ˆë‹¤..
 			pNewNODE->DATA.m_pCPacket->SetLength( this->P_Length( pHEADER ) );
 		}
 		pNewNODE->DATA.m_dwIOBytes = nRemainBytes;
 		::CopyMemory (pNewNODE->DATA.m_pCPacket->m_pDATA, pHEADER, nRemainBytes);
 
-		// ¾ÕºÎºÐÀÇ ¿Ï¼º ÆÐÅ¶µî·Ï.
+		// ì•žë¶€ë¶„ì˜ ì™„ì„± íŒ¨í‚·ë“±ë¡.
 		pRecvDATA->m_dwIOBytes -= nRemainBytes;
 
 		this->UnlockSOCKET ();
 		if ( !this->Recv_Done( pRecvDATA ) ) {
-			// 2003. 11. 04 ¹Ø¿¡ ÇÔ¼ö Ãß°¡... »©¸Ô¾î¼­ ¸Þ¸ð¸® Èê·È¾úÀ½..
+			// 2003. 11. 04 ë°‘ì— í•¨ìˆ˜ ì¶”ê°€... ë¹¼ë¨¹ì–´ì„œ ë©”ëª¨ë¦¬ í˜ë ¸ì—ˆìŒ..
 			this->Free_RecvIODATA( &pNewNODE->DATA );
 			return eRESULT_PACKET_DISCONNECT;//false;
 		}
-		return this->Recv_Continue( &pNewNODE->DATA );	    			// ÀÌ¾î ¹Þ±â.
+		return this->Recv_Continue( &pNewNODE->DATA );	    			// ì´ì–´ ë°›ê¸°.
 	}
 	
 	eResult = eRESULT_PACKET_DISCONNECT;//false;
@@ -232,10 +232,10 @@ _JUMP_RETURN :
 
 
 //-------------------------------------------------------------------------------------------------
-// pSendNode¿¡ ÀÌ¾î º¸³»±â.
+// pSendNodeì— ì´ì–´ ë³´ë‚´ê¸°.
 bool iocpSOCKET::Send_Continue (tagIO_DATA *pSendDATA)
 {
-	// 2004. 10. 25 ¾Æ·¡ assert °É¸²...
+	// 2004. 10. 25 ì•„ëž˜ assert ê±¸ë¦¼...
 	// _ASSERT( pSendDATA->m_pCPacket->GetLength() > pSendDATA->m_dwIOBytes );
 	if ( pSendDATA->m_dwIOBytes >= pSendDATA->m_pCPacket->GetLength() ) {
 		g_LOG.CS_ODS( 0xffff, ">>ERROR:: Sending packet: Len: %d, completed: %d, IP:%s\n", 
@@ -244,7 +244,7 @@ bool iocpSOCKET::Send_Continue (tagIO_DATA *pSendDATA)
 	}
 
 	// 2003. 12. 16
-	// ÇÑ¹ø º¸³»¸é Àü¼Û ¿Ï·á µÇ´ø°¡, ¿À·ù°¡ ¹ß»ýµÇ¾î Á¢¼ÓÀ» ²÷´ø°¡...
+	// í•œë²ˆ ë³´ë‚´ë©´ ì „ì†¡ ì™„ë£Œ ë˜ë˜ê°€, ì˜¤ë¥˜ê°€ ë°œìƒë˜ì–´ ì ‘ì†ì„ ëŠë˜ê°€...
 	this->m_bWritable = false;
     if ( 0 == ::WriteFile((HANDLE)m_Socket,											// HANDLE hFile,                    // handle to file
                     &pSendDATA->m_pCPacket->m_pDATA[ pSendDATA->m_dwIOBytes ],	    // LPCVOID lpBuffer,                // data buffer
@@ -257,22 +257,22 @@ bool iocpSOCKET::Send_Continue (tagIO_DATA *pSendDATA)
             DWORD dwCode = ::GetLastError ();
             g_LOG.CS_ODS(0xffff, "$$$$$$$  SocketIDX: %d : ERROR[ %d:%s ] ::: WriteFile \n", this->m_iSocketIDX, dwCode, CUtil::GetLastErrorMsg( dwCode ));
 			*/
-            // false ¸®ÅÏÇÏ¸é Á¢¼Ó ²÷ÀÚ...
+            // false ë¦¬í„´í•˜ë©´ ì ‘ì† ëŠìž...
 			return false;
 		} /* else 
 			g_LOG.CS_ODS(0xfff, "    %d  WriteFile pending error ..\n", this->m_iSocketIDX); */
 		/*
 		else {
 			// 2003. 12. 16
-			// µ¿½Ã¿¡ ¿©·¯°³ º¸´Â°Íµµ ¾Æ´Ñµ¥ ???
-			// ¾Æ´Ï¸é ´Ù¸¥ ¼ÒÄÏÀÇ ³×Æ®¿÷ »ç¿ë¿¡ ÀÇÇØ ERROR_IO_PENDINGÀÌ ¿Ã¼öÀÖ´Ù¸é...
-			// ÀÌ°æ¿ì °°Àº ÆÐÅ¶À» ÀçÀü¼Û Çß¾ú´Âµ¥...
+			// ë™ì‹œì— ì—¬ëŸ¬ê°œ ë³´ëŠ”ê²ƒë„ ì•„ë‹Œë° ???
+			// ì•„ë‹ˆë©´ ë‹¤ë¥¸ ì†Œì¼“ì˜ ë„¤íŠ¸ì› ì‚¬ìš©ì— ì˜í•´ ERROR_IO_PENDINGì´ ì˜¬ìˆ˜ìžˆë‹¤ë©´...
+			// ì´ê²½ìš° ê°™ì€ íŒ¨í‚·ì„ ìž¬ì „ì†¡ í–ˆì—ˆëŠ”ë°...
 			// #define WSA_IO_PENDING          (ERROR_IO_PENDING)
-			// WSASend()°æ¿ì WSA_IO_PENDING : An overlapped operation was successfully initiated and completion will be indicated at a later time.
+			// WSASend()ê²½ìš° WSA_IO_PENDING : An overlapped operation was successfully initiated and completion will be indicated at a later time.
 		}
 		*/
     }
-	this->m_dwCheckTIME = ::timeGetTime ();	// ¸¶Áö¸·À¸·Î º¸³»±â ½ÃµµÇÑ ½Ã°£...
+	this->m_dwCheckTIME = ::timeGetTime ();	// ë§ˆì§€ë§‰ìœ¼ë¡œ ë³´ë‚´ê¸° ì‹œë„í•œ ì‹œê°„...
 
     return true;
 }
@@ -311,8 +311,8 @@ bool iocpSOCKET::Send_Start (classPACKET *pCPacket)
 		} else { 
 			int iQedCnt = m_SendList.GetNodeCount();
 			if ( iQedCnt > 100 ) {
-				// º¸³»±â ½ÃµµÇÑ ÈÄ ¾ÆÁ÷±îÁö ´ÙÀ½ ÆÐÅ¶À» º¸³»Áö ¸øÇÏ°í ÀÖ´Â³Ñ...
-				// ÆÐÅ¶À» ½×³õ°í ÀÖ´Ù¸é Â©¶ó¹ö·Á¾ßÁö...
+				// ë³´ë‚´ê¸° ì‹œë„í•œ í›„ ì•„ì§ê¹Œì§€ ë‹¤ìŒ íŒ¨í‚·ì„ ë³´ë‚´ì§€ ëª»í•˜ê³  ìžˆëŠ”ë„˜...
+				// íŒ¨í‚·ì„ ìŒ“ë†“ê³  ìžˆë‹¤ë©´ ì§¤ë¼ë²„ë ¤ì•¼ì§€...
 				DWORD dwPassTime = ::timeGetTime() - this->m_dwCheckTIME; 
 				if ( dwPassTime >= 60*1000 || iQedCnt > 2500 ) {
 					g_LOG.CS_ODS( 0xffff, ">>Sending timeout: packet: %d, time: %d, IP:%s\n", iQedCnt, dwPassTime, this->Get_IP() );
@@ -327,31 +327,31 @@ bool iocpSOCKET::Send_Start (classPACKET *pCPacket)
 
 
 //-------------------------------------------------------------------------------------------------
-// CThreadWORKER::STATUS_ReturnTRUE() ¿¡¼­¸¸ È£ÃâµÈ´Ù.
+// CThreadWORKER::STATUS_ReturnTRUE() ì—ì„œë§Œ í˜¸ì¶œëœë‹¤.
 bool iocpSOCKET::Send_Complete (tagIO_DATA *pSendDATA)
 {
     m_csSendQ.Lock ();
 	{
-		if ( 0 == this->m_iSocketIDX ) {	// Á¾·áµÆ´Ù.
+		if ( 0 == this->m_iSocketIDX ) {	// ì¢…ë£Œëë‹¤.
 			// 2004. 10. 3... 
-			// _ASSERT( pHeadNODE == pSendDATA->m_pNODE ); ¿¡¼­ ¿À·ù ¹ß»ý...
-			// m_SendList.GetNodeCount() == 0ÀÎ»óÅÂ¿¡¼­ ÀÌ¸®·Î µé¾î ¿Í¼­ »¶~~~
-			// this->m_iSocketIDX = 0ÀÌ°í, pSendDATA->m_dwIOBytes = 0, pSendDATA->m_pCPacket->GetLength()=10 ÀÌ¾úÁö¸¸
-			// ¾Æ·¡ pSendDATA->m_dwIOBytes == (WORD)pSendDATA->m_pCPacket->GetLength() Á¶°ÇÀ» Åë°úÇß´Ù.
-			// 1. µ¿½Ã¿¡ ¿©·¯ ¿öÄ¿ ¾²·¡µå¿¡¼­ IO¹ß»ý
-			// 2. ´Ù¸¥ ¿öÄ¿¾²·¹µå¿¡¼­ ¼ÒÄÏ Á¾·á => m_SendListÃÊ±âÈ­ µÊ( ÇöÀç pSendDATA°¡ Pool¿¡ ¹Ý³³µÊ )
-			// 3. ÇöÀç ¿öÄ¿¾²·¹µå¿¡¼­ ÀÌ ÇÔ¼ö·Î Á¢±ÙpSendDATA->m_dwIOBytes == (WORD)pSendDATA->m_pCPacket->GetLength() Á¶°ÇÅë°ú.
-			// 4. ´Ù¸¥ ¼ÒÄÏ¿¡ÀÇÇØ pSendDATA°¡ ÇÒ´ç, ÃÖ±âÈ­µÊ.
-			// 5. ÇöÀç ¿öÄ¿¾²·¹µå »¶~~~
+			// _ASSERT( pHeadNODE == pSendDATA->m_pNODE ); ì—ì„œ ì˜¤ë¥˜ ë°œìƒ...
+			// m_SendList.GetNodeCount() == 0ì¸ìƒíƒœì—ì„œ ì´ë¦¬ë¡œ ë“¤ì–´ ì™€ì„œ ë»‘~~~
+			// this->m_iSocketIDX = 0ì´ê³ , pSendDATA->m_dwIOBytes = 0, pSendDATA->m_pCPacket->GetLength()=10 ì´ì—ˆì§€ë§Œ
+			// ì•„ëž˜ pSendDATA->m_dwIOBytes == (WORD)pSendDATA->m_pCPacket->GetLength() ì¡°ê±´ì„ í†µê³¼í–ˆë‹¤.
+			// 1. ë™ì‹œì— ì—¬ëŸ¬ ì›Œì»¤ ì“°ëž˜ë“œì—ì„œ IOë°œìƒ
+			// 2. ë‹¤ë¥¸ ì›Œì»¤ì“°ë ˆë“œì—ì„œ ì†Œì¼“ ì¢…ë£Œ => m_SendListì´ˆê¸°í™” ë¨( í˜„ìž¬ pSendDATAê°€ Poolì— ë°˜ë‚©ë¨ )
+			// 3. í˜„ìž¬ ì›Œì»¤ì“°ë ˆë“œì—ì„œ ì´ í•¨ìˆ˜ë¡œ ì ‘ê·¼pSendDATA->m_dwIOBytes == (WORD)pSendDATA->m_pCPacket->GetLength() ì¡°ê±´í†µê³¼.
+			// 4. ë‹¤ë¥¸ ì†Œì¼“ì—ì˜í•´ pSendDATAê°€ í• ë‹¹, ìµœê¸°í™”ë¨.
+			// 5. í˜„ìž¬ ì›Œì»¤ì“°ë ˆë“œ ë»‘~~~
 			m_csSendQ.Unlock ();
 			return false;
 		}
 
         this->m_bWritable = true;
-		if ( pSendDATA->m_dwIOBytes == (WORD)pSendDATA->m_pCPacket->GetLength() ) {		// ÀüÃ¼ Àü¼Û ¿Ï·á..
-            // ** ¾Æ·¡ ¶óÀÎ¿¡¼­ m_SendList¿¡¼­ pSendNode¸¦ »èÁ¦ÇÏ´Â °úÁ¤¿¡¼­
-            //    ¿À·ù°¡ ³­°ÍÀº pUSER°¡ ÀÌ¹Ì Á¢¼ÓÁ¾·áµÇ¾î ClearIOList() ÇÔ¼ö¸¦
-            //    ½ÇÇàÇÏ¿© m_SendList°¡ ÀÌ¹Ì ºñ¾îÀÖ±â ¶§¹®ÀÌ´Ù.
+		if ( pSendDATA->m_dwIOBytes == (WORD)pSendDATA->m_pCPacket->GetLength() ) {		// ì „ì²´ ì „ì†¡ ì™„ë£Œ..
+            // ** ì•„ëž˜ ë¼ì¸ì—ì„œ m_SendListì—ì„œ pSendNodeë¥¼ ì‚­ì œí•˜ëŠ” ê³¼ì •ì—ì„œ
+            //    ì˜¤ë¥˜ê°€ ë‚œê²ƒì€ pUSERê°€ ì´ë¯¸ ì ‘ì†ì¢…ë£Œë˜ì–´ ClearIOList() í•¨ìˆ˜ë¥¼
+            //    ì‹¤í–‰í•˜ì—¬ m_SendListê°€ ì´ë¯¸ ë¹„ì–´ìžˆê¸° ë•Œë¬¸ì´ë‹¤.
             classDLLNODE<tagIO_DATA> *pHeadNODE = m_SendList.GetHeadNode ();
 			_ASSERT( pHeadNODE == pSendDATA->m_pNODE );
 
@@ -374,7 +374,7 @@ bool iocpSOCKET::Send_Complete (tagIO_DATA *pSendDATA)
 				}
             }
 		} else 
-        if ( pSendDATA->m_dwIOBytes < pSendDATA->m_pCPacket->GetLength() ) {			// ºÎºÐ Àü¼ÛµÊ..
+        if ( pSendDATA->m_dwIOBytes < pSendDATA->m_pCPacket->GetLength() ) {			// ë¶€ë¶„ ì „ì†¡ë¨..
             if ( !this->Send_Continue (pSendDATA) ) {
 			    m_csSendQ.Unlock ();
 				return false;
@@ -392,19 +392,19 @@ bool iocpSOCKET::Send_Complete (tagIO_DATA *pSendDATA)
 //-------------------------------------------------------------------------------------------------
 bool iocpSOCKET::Recv_Done (tagIO_DATA *pRecvDATA)
 {
-	// ¹Ù·Î Ã³¸®ÇÏ´Â ÇÔ¼ö...
+	// ë°”ë¡œ ì²˜ë¦¬í•˜ëŠ” í•¨ìˆ˜...
 	short nTotalPacketLEN;
 
 	t_PACKETHEADER *pPacket = (t_PACKETHEADER*)&pRecvDATA->m_pCPacket->m_pDATA;
     do {
 		nTotalPacketLEN = this->D_RecvB( pPacket );
 		if ( !nTotalPacketLEN ) {
-			// ÆÐÅ¶ÀÌ º¯Á¶µÇ¾î ¿Ô´Ù.
-			// ÇìÅ·ÀÎ°¡ ???
+			// íŒ¨í‚·ì´ ë³€ì¡°ë˜ì–´ ì™”ë‹¤.
+			// í—¤í‚¹ì¸ê°€ ???
 			g_LOG.CS_ODS( 0xffff, "*** ERROR: Decode recv packet body, IP[ %s ]\n", this->m_IP.Get() );
 			this->Free_RecvIODATA( pRecvDATA );
 
-			// ºí·¢ ¸®½ºÆ®¿¡ ip µî·Ï...
+			// ë¸”ëž™ ë¦¬ìŠ¤íŠ¸ì— ip ë“±ë¡...
 
 			return false;
 		}

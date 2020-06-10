@@ -13,7 +13,7 @@
 DWORD CObjFIXED::m_dwCreateOrder=0;
 
 ///
-/// @bug ·çÆ® ³ëµå¸¸ Æ÷Áö¼ÇÀ» ¼¼ÆÃ ÇØ¾ßµÇ´Â°Å ¾Æ´Ñ°¡?
+/// @bug ë£¨íŠ¸ ë…¸ë“œë§Œ í¬ì§€ì…˜ì„ ì„¸íŒ… í•´ì•¼ë˜ëŠ”ê±° ì•„ë‹Œê°€?
 ///
 void  CObjFIXED::SetPOSITION (D3DVECTOR &Position)
 {
@@ -32,7 +32,7 @@ void  CObjFIXED::SetPOSITION (D3DVECTOR &Position)
 }
 
 ///
-/// @bug ÀÌ°Íµµ ÀÌ»ó.. ¸µÅ©¸¦ ¾ù´Ù°¡ °Å´Â°Å¾ß?
+/// @bug ì´ê²ƒë„ ì´ìƒ.. ë§í¬ë¥¼ ì—‡ë‹¤ê°€ ê±°ëŠ”ê±°ì•¼?
 ///
 void  CObjFIXED::LinkNODE (HNODE hTarget, CPointPART *pDummyPoint)
 {
@@ -72,13 +72,13 @@ void CObjFIXED::LinkToModel( HNODE hModel )
 
 //--------------------------------------------------------------------------------
 /// class : CObjFIXED
-/// @param  D3DVECTOR &PosSCR ¾ò¾î¿Ã ½ºÅ©¸°ÁÂÇ¥( ¾Æ¿ôÇ² )
-/// @brief  : ÇöÀç ¿ÀºêÁ§Æ® À§Ä¡ÀÇ ½ºÅ©¸° ÁÂÇ¥¸¦ ¾ò¾î¿È
+/// @param  D3DVECTOR &PosSCR ì–»ì–´ì˜¬ ìŠ¤í¬ë¦°ì¢Œí‘œ( ì•„ì›ƒí’‹ )
+/// @brief  : í˜„ìž¬ ì˜¤ë¸Œì íŠ¸ ìœ„ì¹˜ì˜ ìŠ¤í¬ë¦° ì¢Œí‘œë¥¼ ì–»ì–´ì˜´
 //--------------------------------------------------------------------------------
 
 void CObjFIXED::GetScreenPOS ( D3DVECTOR &PosSCR)
 {	
-	// ¸ðµ¨ÀÇ ÁÂÇ¥¿¡ Å°¸¦ ´õÇÑ À§Ä¡¸¦ ÀÌ¸§Ãâ·Â À§Ä¡·Î ¼³Á¤
+	// ëª¨ë¸ì˜ ì¢Œí‘œì— í‚¤ë¥¼ ë”í•œ ìœ„ì¹˜ë¥¼ ì´ë¦„ì¶œë ¥ ìœ„ì¹˜ë¡œ ì„¤ì •
 	::worldToScreen( m_PosCUR.x, m_PosCUR.y, getPositionZ(GetRootZNODE()), &PosSCR.x, &PosSCR.y, &PosSCR.z );
 }
 
@@ -137,14 +137,14 @@ void CObjFIXED::InsertToScene (void)
 	
 
 	//----------------------------------------------------------------------------------------------------	
-	/// @brief CHILDÀÇInsertToSceneÁ¦°Å
+	/// @brief CHILDì˜InsertToSceneì œê±°
 	//----------------------------------------------------------------------------------------------------
 	//for (short nP=0; nP<m_pMODEL->m_nPartCNT; nP++) {
 	//	if ( m_pHNODES[ nP ] != NULL )
 	//		::insertToScene( m_pHNODES[ nP ] );		// CObjGROUND::RegisterToEZIN
 	//}
 
-	/// ¸µÅ©µÈ ÀÌÆåÆ®´Â InsertToScene¸¦ È£ÃâÇÏÁö ¾Ê´Â´Ù.
+	/// ë§í¬ëœ ì´íŽ™íŠ¸ëŠ” InsertToSceneë¥¼ í˜¸ì¶œí•˜ì§€ ì•ŠëŠ”ë‹¤.
 	/*for ( short nP=0; nP<m_pMODEL->m_nDummyPointCNT; nP++)
 	{
 		if ( m_ppEFFECT[ nP ] ) 
@@ -168,14 +168,14 @@ void CObjFIXED::RemoveFromScene (bool bIncludeEFFECT)
 	::removeFromScene( hNode );
 
 	//----------------------------------------------------------------------------------------------------	
-	/// @brief CHILDÀÇremoveFromSceneÁ¦°Å
+	/// @brief CHILDì˜removeFromSceneì œê±°
 	//----------------------------------------------------------------------------------------------------
 	//for (short nP=0; nP<m_pMODEL->m_nPartCNT; nP++) {
 	//	if ( m_pHNODES[ nP ] != NULL )
 	//		::removeFromScene( m_pHNODES[ nP ] );	// CObjGROUND::UnregisterFromNZIN
 	//}
 
-	/// ¸µÅ©µÈ ÀÌÆåÆ®´Â RemoveFromScene¸¦ È£ÃâÇÏÁö ¾Ê´Â´Ù.
+	/// ë§í¬ëœ ì´íŽ™íŠ¸ëŠ” RemoveFromSceneë¥¼ í˜¸ì¶œí•˜ì§€ ì•ŠëŠ”ë‹¤.
 	/*if ( bIncludeEFFECT && m_ppEFFECT ) 
 	{
 		for (short nP=0; nP<m_pMODEL->m_nDummyPointCNT; nP++) 
@@ -202,7 +202,7 @@ void CObjFIXED::Rotate (D3DXQUATERNION &Rotate)
 	if ( m_pMODEL->m_nRootPART >= 0 ) {
 		::setQuaternion( m_pHNODES[ m_pMODEL->m_nRootPART ] , Rotate.w, Rotate.x, Rotate.y, Rotate.z );
 	} else {
-		// ¸µÅ©µÈ Â÷ÀÏµå´Â µ¹¸± ÇÊ¿ä ¾ø´Ù.
+		// ë§í¬ëœ ì°¨ì¼ë“œëŠ” ëŒë¦´ í•„ìš” ì—†ë‹¤.
 		for (short nP=0; nP<m_pMODEL->m_nPartCNT; nP++) {
 			::setQuaternion( m_pHNODES[ nP ], Rotate.w, Rotate.x, Rotate.y, Rotate.z );
 		}
@@ -273,7 +273,7 @@ bool CObjFIXED::IsInViewFrustum()
 
 //-------------------------------------------------------------------------------------------------
 ///
-/// ..txt ÆÄÀÏ¿¡¼­ ºÎ¸ð, Â÷ÀÏµå. .. µî.. Á¤·ÄµÈ ¶óÀÌÆ®¸Ê µ¥ÀÌÅÍ¿¡ µû¸¥ ¼ø¼­¿¡ ÀÔ°¢ÇÏ¿©, ½ÇÁ¦ ÆÄÆ®¸¦ ±¸ÇÑ´Ù.
+/// ..txt íŒŒì¼ì—ì„œ ë¶€ëª¨, ì°¨ì¼ë“œ. .. ë“±.. ì •ë ¬ëœ ë¼ì´íŠ¸ë§µ ë°ì´í„°ì— ë”°ë¥¸ ìˆœì„œì— ìž…ê°í•˜ì—¬, ì‹¤ì œ íŒŒíŠ¸ë¥¼ êµ¬í•œë‹¤.
 ///
 short CObjFIXED::GetPartIndex (short nPartSeq)
 {
@@ -304,8 +304,8 @@ short CObjFIXED::GetPartIndex (short nPartSeq)
 
 //-------------------------------------------------------------------------------------------------
 ///
-/// ..txt ÆÄÀÏÀ» Åä´ë·Î ¿ÀºêÁ§Æ®¸¦ ¸¸µç´Ù.
-/// Create ÇÔ¼ö·Î ºÎÅÍ È£Ãâ.. ¿ÜºÎ °ø°³°¡ µÇ³ª? 
+/// ..txt íŒŒì¼ì„ í† ëŒ€ë¡œ ì˜¤ë¸Œì íŠ¸ë¥¼ ë§Œë“ ë‹¤.
+/// Create í•¨ìˆ˜ë¡œ ë¶€í„° í˜¸ì¶œ.. ì™¸ë¶€ ê³µê°œê°€ ë˜ë‚˜? 
 ///
 bool CObjFIXED::CreatePart( int iCreateOrder, D3DVECTOR &Position, short nPartIdx )
 {
@@ -313,13 +313,13 @@ bool CObjFIXED::CreatePart( int iCreateOrder, D3DVECTOR &Position, short nPartId
 		return true;
 
 	HNODE hParent=NULL;
-	/// ºÎ¸ð°¡ ÀÖ´Ù¸é..
+	/// ë¶€ëª¨ê°€ ìžˆë‹¤ë©´..
 	if ( m_pMODEL->m_pParts[ nPartIdx ].m_nParent >= 0 ) 
 	{
 		hParent = m_pHNODES[ m_pMODEL->m_pParts[ nPartIdx ].m_nParent ];
 		if ( hParent == NULL ) 
 		{
-			/// ºÎ¸ð°¡ ÀÖ´Âµ¥ Á¸ÀçÇÏÁö ¾ÊÀ»°æ¿ì, »ý¼º.
+			/// ë¶€ëª¨ê°€ ìžˆëŠ”ë° ì¡´ìž¬í•˜ì§€ ì•Šì„ê²½ìš°, ìƒì„±.
 			if ( this->CreatePart(iCreateOrder, Position, m_pMODEL->m_pParts[ nPartIdx ].m_nParent) )
 				hParent = m_pHNODES[ m_pMODEL->m_pParts[ nPartIdx ].m_nParent ];
 			else
@@ -327,7 +327,7 @@ bool CObjFIXED::CreatePart( int iCreateOrder, D3DVECTOR &Position, short nPartId
 		}
 	}
 
-	/// ÇØ´ç ÆÄÆ®¸¦ ·ÎµåÇÑ´Ù.
+	/// í•´ë‹¹ íŒŒíŠ¸ë¥¼ ë¡œë“œí•œë‹¤.
 	char *pName = Make_ZNAME( iCreateOrder, nPartIdx);
 	m_pHNODES[ nPartIdx ] = m_pMODEL->m_pParts[ nPartIdx ].LoadVisible( pName, Position, hParent);
 	if ( NULL == m_pHNODES[ nPartIdx ] ) {
@@ -339,10 +339,10 @@ bool CObjFIXED::CreatePart( int iCreateOrder, D3DVECTOR &Position, short nPartId
 
 //-------------------------------------------------------------------------------------------------
 ///
-/// FIXED ¿ÀºêÁ§Æ®¸¦ »ý¼ºÇÑ´Ù.
-/// @param pMODEl »ý¼ºÇÒ ¸ðµ¨µ¥ÀÌÅÍ. ÀÌ°ÍÀ» ÀÌ¿ëÇØ¼­ FIXED ¿ÀºêÁ§Æ® »ý¼º.
-/// @bCreateEffect ÀÌÆåÆ®°¡ ÀÖ´Ù¸é ºÙÀÎ´Ù. 
-/// @bug ÀÌÆåÆ®¸¦ ·çÆ®¿¡ ºÙÀÏ°Ô ¾Æ´Ï¶ó.. ´õ¹Ì Æ÷ÀÎÅÍ¿¡ ºÙÀÌ´Â°Ô.. ¸ÂÁö ¾È¤©À»±î?
+/// FIXED ì˜¤ë¸Œì íŠ¸ë¥¼ ìƒì„±í•œë‹¤.
+/// @param pMODEl ìƒì„±í•  ëª¨ë¸ë°ì´í„°. ì´ê²ƒì„ ì´ìš©í•´ì„œ FIXED ì˜¤ë¸Œì íŠ¸ ìƒì„±.
+/// @bCreateEffect ì´íŽ™íŠ¸ê°€ ìžˆë‹¤ë©´ ë¶™ì¸ë‹¤. 
+/// @bug ì´íŽ™íŠ¸ë¥¼ ë£¨íŠ¸ì— ë¶™ì¼ê²Œ ì•„ë‹ˆë¼.. ë”ë¯¸ í¬ì¸í„°ì— ë¶™ì´ëŠ”ê²Œ.. ë§žì§€ ì•ˆã„¹ì„ê¹Œ?
 ///
 bool CObjFIXED::Create (CMODEL<CFixedPART> *pMODEL, D3DVECTOR &Position, bool bCreateEffect)
 {
@@ -361,7 +361,7 @@ bool CObjFIXED::Create (CMODEL<CFixedPART> *pMODEL, D3DVECTOR &Position, bool bC
 	::ZeroMemory (m_pHNODES, sizeof(HNODE)*pMODEL->m_nPartCNT);
 	for (short nI=0; nI<pMODEL->m_nPartCNT; nI++) 
 	{
-		/// °¢ ÆÄÆ® »ý¼º.
+		/// ê° íŒŒíŠ¸ ìƒì„±.
 		if ( !this->CreatePart (this->m_dwCreateOrder++, Position, nI) ) 
 		{
 			this->Delete ();
@@ -374,14 +374,14 @@ bool CObjFIXED::Create (CMODEL<CFixedPART> *pMODEL, D3DVECTOR &Position, bool bC
 		}
 	}
 
-	/// Effect °¡ ºÙ¾îÀÖ´Ù¸é..( ºÙÀÌ ´õ¹ÌÆ÷ÀÎÅÍ°¡ ÀÖ°í, ºÙ¿©¾ßÇÑ´Ù¸é )
+	/// Effect ê°€ ë¶™ì–´ìžˆë‹¤ë©´..( ë¶™ì´ ë”ë¯¸í¬ì¸í„°ê°€ ìžˆê³ , ë¶™ì—¬ì•¼í•œë‹¤ë©´ )
 	if ( bCreateEffect && pMODEL->m_nDummyPointCNT ) 
 	{
 		m_ppEFFECT = new CEffect*[ pMODEL->m_nDummyPointCNT ];
 		for (short nI=0; nI<pMODEL->m_nDummyPointCNT; nI++) 
 		{
 			m_ppEFFECT[ nI ] = NULL;
-			/// POINT_LIGHT_CONTAINER ´Â ¸Æ½º¿¡¼­ ¸ÆÀ» ÀÓÆ÷ÅÍ ÇÒ¶§ ¶óÀÌÆ®¸¦ ¼¼ÆÃÇÏ±â À§ÇÑ Æ÷ÀÎÅÍ ÀÌ´Ù.
+			/// POINT_LIGHT_CONTAINER ëŠ” ë§¥ìŠ¤ì—ì„œ ë§¥ì„ ìž„í¬í„° í• ë•Œ ë¼ì´íŠ¸ë¥¼ ì„¸íŒ…í•˜ê¸° ìœ„í•œ í¬ì¸í„° ì´ë‹¤.
 			if( pMODEL->m_pDummyPoints[ nI ].m_nEffectType < POINT_LIGHT_CONTAINER )
 			{
 				m_ppEFFECT[ nI ] = g_pEffectLIST->Add_EFFECT( pMODEL->m_pDummyPoints[ nI ].m_uiEftKEY );
@@ -393,7 +393,7 @@ bool CObjFIXED::Create (CMODEL<CFixedPART> *pMODEL, D3DVECTOR &Position, bool bC
 					m_ppEFFECT[ nI ]->Scale( pMODEL->m_pDummyPoints[ nI ].m_Scale );
 					m_ppEFFECT[ nI ]->LinkNODE( m_pHNODES[ pMODEL->m_pDummyPoints[ nI ].m_nParent ] );
 
-					/// ¹ã,³·¿¡ ÁÂ¿ì ¹Þ´Â ÀÌÆåÆ®¶ó¸é ¹ã,³· ¸Å´ÏÁ®¿¡ µî·Ï
+					/// ë°¤,ë‚®ì— ì¢Œìš° ë°›ëŠ” ì´íŽ™íŠ¸ë¼ë©´ ë°¤,ë‚® ë§¤ë‹ˆì ¸ì— ë“±ë¡
 					if( pMODEL->m_pDummyPoints[ nI ].m_nEffectType == POINT_EFFECT_DAYNNIGHT )
 					{
 						g_DayNNightProc.PushEffect( m_ppEFFECT[ nI ] );
@@ -410,7 +410,7 @@ bool CObjFIXED::Create (CMODEL<CFixedPART> *pMODEL, D3DVECTOR &Position, bool bC
 //-------------------------------------------------------------------------------------------------
 void CObjFIXED::Delete (void)
 {
-	/// Attached µÈ ÀÌÆåÆ® Á¦°Å
+	/// Attached ëœ ì´íŽ™íŠ¸ ì œê±°
 	if ( m_pMODEL ) {
 		if ( m_ppEFFECT ) {
 			for (short nI=0; nI<m_pMODEL->m_nDummyPointCNT; nI++) 
@@ -447,7 +447,7 @@ void CObjFIXED::Delete (void)
 void CObjFIXED::SetLightMap (short nPartSEQ, char *szLightMapFile, int iXPos, int iYPos, int iWidth, int iHeight)
 {
 	/*
-		¶óÀÌÆ®¸ÊÀÌ Àû¿ëµÇ¸é °¢°¢ÀÇ MaterialÀÌ ¸ðµÎ uniqueÇØ¾ß ÇÑ´Ù.
+		ë¼ì´íŠ¸ë§µì´ ì ìš©ë˜ë©´ ê°ê°ì˜ Materialì´ ëª¨ë‘ uniqueí•´ì•¼ í•œë‹¤.
 	*/
 	short nPartIdx = this->GetPartIndex( nPartSEQ );
 	if ( NULL == m_pHNODES[ nPartIdx ] )
@@ -466,7 +466,7 @@ void CObjFIXED::SetLightMap (short nPartSEQ, char *szLightMapFile, int iXPos, in
 	char *szName = CStr::Printf ("@P%dx%d@%s", iXPos, iYPos, szLightMapFile);
 	LogString (LOG_DEBUG, "SET LIGHT MAP map Obj: %d, Part: %d->%d, %s /  %s \n", m_nIndex, nPartSEQ, nPartIdx, szLightMapFile, szName);
 
-	// ±âº» ¸ÞÆ®¸®¾óÀÇ Á¤º¸·Î »õ·Î¿î ¸ÞÆ®ÀÌ¾óÀ» »ý¼ºÇÑ´Ù.
+	// ê¸°ë³¸ ë©”íŠ¸ë¦¬ì–¼ì˜ ì •ë³´ë¡œ ìƒˆë¡œìš´ ë©”íŠ¸ì´ì–¼ì„ ìƒì„±í•œë‹¤.
 	m_pLightMapMaterial[ nPartIdx ] = g_MatFILE.Add_MATERIAL (
 					pMAT->m_DATA->m_RealFileName.Get(),	// char *szFileName, 
 					0,									// short nIsSkin, 

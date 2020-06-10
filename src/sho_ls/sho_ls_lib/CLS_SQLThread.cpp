@@ -31,7 +31,7 @@ bool CLS_SqlTHREAD::Add_SqlPACKET (DWORD dwSocketID, char *szAccount, t_PACKET *
     if ( 0 == dwSocketID )
         return false;
 
-    // Á¢¼Ó ºÒ°¡ °èÁ¤ Á¶»ç !!!
+    // ì ‘ì† ë¶ˆê°€ ê³„ì • ì¡°ì‚¬ !!!
     char *szID;
     short nOffset=sizeof( cli_LOGIN_REQ );
     szID = Packet_GetStringPtr( pPacket, nOffset );
@@ -60,7 +60,7 @@ bool CLS_SqlTHREAD::Add_LogOutUSER (CLS_Account *pCAccount)
 //-------------------------------------------------------------------------------------------------
 void CLS_SqlTHREAD::Execute ()
 {
-	// ³ô¿´´õ´Ï...·Î±×ÀÎ ¸ô¸±¶§..´Ù¸¥ Ã³¸®¸¦ ¸øÇØ¼­...¹®Á¦...
+	// ë†’ì˜€ë”ë‹ˆ...ë¡œê·¸ì¸ ëª°ë¦´ë•Œ..ë‹¤ë¥¸ ì²˜ë¦¬ë¥¼ ëª»í•´ì„œ...ë¬¸ì œ...
 	// this->SetPriority( THREAD_PRIORITY_HIGHEST );	// Priority 2 point above the priority class
 	// this->SetPriority( THREAD_PRIORITY_ABOVE_NORMAL );	// Priority 2 point above the priority class
 
@@ -102,7 +102,7 @@ void CLS_SqlTHREAD::Execute ()
 
         for (pUsrNODE=m_RunUserLIST.GetHeadNode(); pUsrNODE; pUsrNODE=m_RunUserLIST.GetHeadNode() ) {
 			m_RunUserLIST.DeleteNode( pUsrNODE->DATA->m_pListNODE );
-			// ¸ðµç CLS_Account()´Â ¿©±â¼­ »èÁ¦µÈ´Ù...
+			// ëª¨ë“  CLS_Account()ëŠ” ì—¬ê¸°ì„œ ì‚­ì œëœë‹¤...
             g_pListJOIN->Delete_ACCOUNT( pUsrNODE->DATA );
 		}
 	}
@@ -165,7 +165,7 @@ enum LOGINTBL_COL_IDX {
 } ;
 
 //-------------------------------------------------------------------------------------------------
-#define	MAX_ACCOUNT_LEN		40		// ÃÖ´ë °èÁ¤ÀÔ·Â ¹®ÀÚ 16
+#define	MAX_ACCOUNT_LEN		40		// ìµœëŒ€ ê³„ì •ìž…ë ¥ ë¬¸ìž 16
 bool CLS_SqlTHREAD::Proc_cli_LOGIN_REQ( tagQueryDATA *pSqlPACKET )
 {
 	t_PACKET *pPacket = (t_PACKET*)pSqlPACKET->m_pPacket;
@@ -176,7 +176,7 @@ bool CLS_SqlTHREAD::Proc_cli_LOGIN_REQ( tagQueryDATA *pSqlPACKET )
     szAccount = Packet_GetStringPtr( pPacket, nOffset, nOutStrLen );
 	
 	if ( NULL == szAccount || nOutStrLen > MAX_ACCOUNT_LEN ) {
-		// Å¬¶óÀÌ¾ðÆ® ¹ö±×·Î ÀÔ·ÂµÈ °èÁ¤ÀÇ ±æÀÌ°¡ ÃÊ°úµÇ¼­ ¿Å.
+		// í´ë¼ì´ì–¸íŠ¸ ë²„ê·¸ë¡œ ìž…ë ¥ëœ ê³„ì •ì˜ ê¸¸ì´ê°€ ì´ˆê³¼ë˜ì„œ ì˜®.
 		g_pListCLIENT->Send_lsv_LOGIN_REPLY( pSqlPACKET->m_iTAG, RESULT_LOGIN_REPLY_NOT_FOUND_ACCOUNT );
 		return false;
 	}
@@ -185,42 +185,42 @@ bool CLS_SqlTHREAD::Proc_cli_LOGIN_REQ( tagQueryDATA *pSqlPACKET )
 
 #ifdef	USE_ORACLE_DB
 	#ifdef	USE_MSSQL
-		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ MS-SQL ÇØ¿Ü ¹öÁ¯~~~~~")
-		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ MS-SQL ÇØ¿Ü ¹öÁ¯~~~~~")
-		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ MS-SQL ÇØ¿Ü ¹öÁ¯~~~~~")
-		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ MS-SQL ÇØ¿Ü ¹öÁ¯~~~~~")
-		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ MS-SQL ÇØ¿Ü ¹öÁ¯~~~~~")
-		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ MS-SQL ÇØ¿Ü ¹öÁ¯~~~~~")
-		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ MS-SQL ÇØ¿Ü ¹öÁ¯~~~~~")
-		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ MS-SQL ÇØ¿Ü ¹öÁ¯~~~~~")
-		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ MS-SQL ÇØ¿Ü ¹öÁ¯~~~~~")
-		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ MS-SQL ÇØ¿Ü ¹öÁ¯~~~~~")
+		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ MS-SQL í•´ì™¸ ë²„ì ¼~~~~~")
+		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ MS-SQL í•´ì™¸ ë²„ì ¼~~~~~")
+		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ MS-SQL í•´ì™¸ ë²„ì ¼~~~~~")
+		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ MS-SQL í•´ì™¸ ë²„ì ¼~~~~~")
+		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ MS-SQL í•´ì™¸ ë²„ì ¼~~~~~")
+		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ MS-SQL í•´ì™¸ ë²„ì ¼~~~~~")
+		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ MS-SQL í•´ì™¸ ë²„ì ¼~~~~~")
+		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ MS-SQL í•´ì™¸ ë²„ì ¼~~~~~")
+		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ MS-SQL í•´ì™¸ ë²„ì ¼~~~~~")
+		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ MS-SQL í•´ì™¸ ë²„ì ¼~~~~~")
 //	if ( !this->m_pSQL->QuerySQL ( "SELECT [right],md5password,lastconnect,blockstart,blockend,gender,jumin FROM userinfo WHERE UPPER(account)=UPPER(\'%s\')", szAccount ) )
 	if ( !this->m_pSQL->QuerySQL( "{call UserAuthenticate(\'%s\')}", szAccount ) )	// SQL LOGIN
 	#else
-		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ ORACLE ±¹³» ¹öÁ¯~~~~~")
-		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ ORACLE ±¹³» ¹öÁ¯~~~~~")
-		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ ORACLE ±¹³» ¹öÁ¯~~~~~")
-		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ ORACLE ±¹³» ¹öÁ¯~~~~~")
-		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ ORACLE ±¹³» ¹öÁ¯~~~~~")
-		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ ORACLE ±¹³» ¹öÁ¯~~~~~")
-		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ ORACLE ±¹³» ¹öÁ¯~~~~~")
-		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ ORACLE ±¹³» ¹öÁ¯~~~~~")
-		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ ORACLE ±¹³» ¹öÁ¯~~~~~")
-		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ ORACLE ±¹³» ¹öÁ¯~~~~~")
+		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ ORACLE êµ­ë‚´ ë²„ì ¼~~~~~")
+		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ ORACLE êµ­ë‚´ ë²„ì ¼~~~~~")
+		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ ORACLE êµ­ë‚´ ë²„ì ¼~~~~~")
+		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ ORACLE êµ­ë‚´ ë²„ì ¼~~~~~")
+		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ ORACLE êµ­ë‚´ ë²„ì ¼~~~~~")
+		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ ORACLE êµ­ë‚´ ë²„ì ¼~~~~~")
+		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ ORACLE êµ­ë‚´ ë²„ì ¼~~~~~")
+		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ ORACLE êµ­ë‚´ ë²„ì ¼~~~~~")
+		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ ORACLE êµ­ë‚´ ë²„ì ¼~~~~~")
+		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ ORACLE êµ­ë‚´ ë²„ì ¼~~~~~")
 	if ( !this->m_pSQL->QuerySQL ( "SELECT right,md5password,lastconnect,blockstart,blockend,gender,jumin, realname FROM userinfo WHERE UPPER(account)=UPPER(\'%s\')", szAccount ) )
 	#endif
 #else
-		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ MY-SQL »ç³» Å×½ºÆ® ¹öÁ¯~~~~~")
-		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ MY-SQL »ç³» Å×½ºÆ® ¹öÁ¯~~~~~")
-		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ MY-SQL »ç³» Å×½ºÆ® ¹öÁ¯~~~~~")
-		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ MY-SQL »ç³» Å×½ºÆ® ¹öÁ¯~~~~~")
-		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ MY-SQL »ç³» Å×½ºÆ® ¹öÁ¯~~~~~")
-		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ MY-SQL »ç³» Å×½ºÆ® ¹öÁ¯~~~~~")
-		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ MY-SQL »ç³» Å×½ºÆ® ¹öÁ¯~~~~~")
-		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ MY-SQL »ç³» Å×½ºÆ® ¹öÁ¯~~~~~")
-		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ MY-SQL »ç³» Å×½ºÆ® ¹öÁ¯~~~~~")
-		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ MY-SQL »ç³» Å×½ºÆ® ¹öÁ¯~~~~~")
+		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ MY-SQL ì‚¬ë‚´ í…ŒìŠ¤íŠ¸ ë²„ì ¼~~~~~")
+		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ MY-SQL ì‚¬ë‚´ í…ŒìŠ¤íŠ¸ ë²„ì ¼~~~~~")
+		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ MY-SQL ì‚¬ë‚´ í…ŒìŠ¤íŠ¸ ë²„ì ¼~~~~~")
+		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ MY-SQL ì‚¬ë‚´ í…ŒìŠ¤íŠ¸ ë²„ì ¼~~~~~")
+		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ MY-SQL ì‚¬ë‚´ í…ŒìŠ¤íŠ¸ ë²„ì ¼~~~~~")
+		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ MY-SQL ì‚¬ë‚´ í…ŒìŠ¤íŠ¸ ë²„ì ¼~~~~~")
+		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ MY-SQL ì‚¬ë‚´ í…ŒìŠ¤íŠ¸ ë²„ì ¼~~~~~")
+		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ MY-SQL ì‚¬ë‚´ í…ŒìŠ¤íŠ¸ ë²„ì ¼~~~~~")
+		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ MY-SQL ì‚¬ë‚´ í…ŒìŠ¤íŠ¸ ë²„ì ¼~~~~~")
+		#pragma COMPILE_TIME_MSG("            @@@@@@@@@@@@ MY-SQL ì‚¬ë‚´ í…ŒìŠ¤íŠ¸ ë²„ì ¼~~~~~")
 	if ( !this->m_pSQL->QuerySQL( "SELECT `right`,password,lastconnect, `enable` FROM GameLogin WHERE Account=\'%s\'", szAccount ) )
 #endif
 	{
@@ -230,15 +230,15 @@ bool CLS_SqlTHREAD::Proc_cli_LOGIN_REQ( tagQueryDATA *pSqlPACKET )
 		return false;
 	}
 
-	// if ( !this->m_pSQL->GetRecordCNT() ) :: GetRecordCNT°¹¼ö´Â Update/Insert½Ã¿¡¸¸ °ªÀÌ µé¾î ÀÖ´Ù
+	// if ( !this->m_pSQL->GetRecordCNT() ) :: GetRecordCNTê°¯ìˆ˜ëŠ” Update/Insertì‹œì—ë§Œ ê°’ì´ ë“¤ì–´ ìžˆë‹¤
 	if ( !this->m_pSQL->GetNextRECORD() ) {
-		// µî·Ï ¾ÈµÈ °èÁ¤ÀÌ´Ù.
+		// ë“±ë¡ ì•ˆëœ ê³„ì •ì´ë‹¤.
 		g_pListCLIENT->Send_lsv_LOGIN_REPLY( pSqlPACKET->m_iTAG, RESULT_LOGIN_REPLY_NOT_FOUND_ACCOUNT );
 		return false;
 	}
 
 	#ifdef	USE_ORACLE_DB
-		// ½Ç¸í ÀÎÁõµÆ³Ä ?
+		// ì‹¤ëª… ì¸ì¦ëëƒ ?
 		if ( NULL == this->m_pSQL->GetInteger( LGNTBL_REALNAME ) ||
 		1 != (DWORD)this->m_pSQL->GetInteger( LGNTBL_REALNAME ) ) {
 			//char szTmp[ 256 ];
@@ -250,7 +250,7 @@ bool CLS_SqlTHREAD::Proc_cli_LOGIN_REQ( tagQueryDATA *pSqlPACKET )
 	#endif
 
 	dwRIGHT = (DWORD)this->m_pSQL->GetInteger( LGNTBL_RIGHT );
-	// Á¢¼Ó Á¦ÇÑ ·¹º§...
+	// ì ‘ì† ì œí•œ ë ˆë²¨...
 	if ( this->m_bCheckLogIN && dwRIGHT < this->m_dwCheckRIGHT ) {
 		g_pListCLIENT->Send_lsv_LOGIN_REPLY( pSqlPACKET->m_iTAG, RESULT_LOGIN_REPLY_NO_RIGHT_TO_CONNECT );
 		return false;
@@ -259,7 +259,7 @@ bool CLS_SqlTHREAD::Proc_cli_LOGIN_REQ( tagQueryDATA *pSqlPACKET )
 	DWORD *pMD5Pass = (DWORD*)this->m_pSQL->GetDataPTR( LGNTBL_PASSWORD );
 	for (short nI=0; nI<8; nI++) {
 		if ( pPacket->m_cli_LOGIN_REQ.m_dwMD5[ nI ] != pMD5Pass[ nI ] ) {
-			// ºñ¹ø Æ²¸®´Ù.
+			// ë¹„ë²ˆ í‹€ë¦¬ë‹¤.
 			g_pListCLIENT->Send_lsv_LOGIN_REPLY( pSqlPACKET->m_iTAG, RESULT_LOGIN_REPLY_INVALID_PASSWORD );
 			return false;
 		}
@@ -269,12 +269,12 @@ bool CLS_SqlTHREAD::Proc_cli_LOGIN_REQ( tagQueryDATA *pSqlPACKET )
 
     CLS_Account *pCAccount = g_pListJOIN->Search_ACCOUNT( szAccount );
     if ( pCAccount ) {
-		// ÀÌ¹Ì login µÇ¾î ÀÖ´Â °èÁ¤..
-        // Á¢¼ÓµÇ¾î ÀÖ´Â °ÔÀÓ ¼­¹ö·Î °èÁ¤ ÇØÁö Àü¼Û...
-        // pCAccount->m_pWorldServer == NULLÀÎ °æ¿ì´Â »èÁ¦ ´ë±âÁß °èÁ¤ÀÌ´Ù.
+		// ì´ë¯¸ login ë˜ì–´ ìžˆëŠ” ê³„ì •..
+        // ì ‘ì†ë˜ì–´ ìžˆëŠ” ê²Œìž„ ì„œë²„ë¡œ ê³„ì • í•´ì§€ ì „ì†¡...
+        // pCAccount->m_pWorldServer == NULLì¸ ê²½ìš°ëŠ” ì‚­ì œ ëŒ€ê¸°ì¤‘ ê³„ì •ì´ë‹¤.
 		DWORD dwCurTime = ::timeGetTime();
 		if ( dwCurTime - pCAccount->m_dwDisconnectTryTIME >= 2 * 60 * 1000 ) {
-			// ÀÌ¹Ì ¿ùµå ¼­¹ö¿¡ »èÁ¦ ¿äÃ»ÇÑÁö ÀÏÁ¤½Ã°£ Áö³µÀ¸¸é...
+			// ì´ë¯¸ ì›”ë“œ ì„œë²„ì— ì‚­ì œ ìš”ì²­í•œì§€ ì¼ì •ì‹œê°„ ì§€ë‚¬ìœ¼ë©´...
 			pCAccount->m_dwDisconnectTryTIME = dwCurTime;
 			if ( pCAccount->m_pWorldServer ) {
 				pCAccount->m_pWorldServer->Send_str_PACKET( WLS_KICK_ACCOUNT, szAccount );
@@ -285,7 +285,7 @@ bool CLS_SqlTHREAD::Proc_cli_LOGIN_REQ( tagQueryDATA *pSqlPACKET )
     }
 
 	#ifndef	USE_ORACLE_DB
-		// Á¢±Ù °ÅºÎµÈ °èÁ¤..
+		// ì ‘ê·¼ ê±°ë¶€ëœ ê³„ì •..
 		if ( *(this->m_pSQL->GetStrPTR( LGNTBL_ENABLE )) != 'Y' ) {
 			g_pListCLIENT->Send_lsv_LOGIN_REPLY( pSqlPACKET->m_iTAG, RESULT_LOGIN_REPLY_REFUSED_ACCOUNT );
 			return false;
@@ -295,23 +295,23 @@ bool CLS_SqlTHREAD::Proc_cli_LOGIN_REQ( tagQueryDATA *pSqlPACKET )
 		if ( dwBlockSTART ) {
 			DWORD dwBlockEND = (DWORD)( this->m_pSQL->GetInteger( LGNTBL_BLOCK_END	) );	// block end
 			if ( 0 == dwBlockEND || dwBlockEND > dwCurTIME ) {
-				// ¿µ±¸ ºí·° ¶Ç´Â ¾ÆÁ÷ ºí·°ÀÌ Ç®¸®Áö ¾Ê¾Ò´Ù...
+				// ì˜êµ¬ ë¸”ëŸ­ ë˜ëŠ” ì•„ì§ ë¸”ëŸ­ì´ í’€ë¦¬ì§€ ì•Šì•˜ë‹¤...
 				g_pListCLIENT->Send_lsv_LOGIN_REPLY( pSqlPACKET->m_iTAG, RESULT_LOGIN_REPLY_REFUSED_ACCOUNT );
 				return false;
 			}
 		}
 
 		this->m_pSQL->GetInteger( LGNTBL_GENDER	);							// gender
-		#ifndef		USE_MSSQL		// MS-SQL¿¡¼± ÁÖ¹Î ¹øÈ£ ¾ø´Ù.
-			char *szJuMin = (char*)this->m_pSQL->GetDataPTR( LGNTBL_JUMIN );	// ÁÖ¹Î¹øÈ£
+		#ifndef		USE_MSSQL		// MS-SQLì—ì„  ì£¼ë¯¼ ë²ˆí˜¸ ì—†ë‹¤.
+			char *szJuMin = (char*)this->m_pSQL->GetDataPTR( LGNTBL_JUMIN );	// ì£¼ë¯¼ë²ˆí˜¸
 		#endif
 	#endif
 
 
-		#define	RIGHT_NG			0x00100			// ÀÏ¹Ý GM
-		#define	RIGHT_MG			0x00200			// ¸¶½ºÅ¸ GM
-		#define	RIGHT_DEV			0x00400			// °³¹ßÀÚ È¸¿ø
-		#define	RIGHT_MASTER		0x00800			// ¸¶½ºÅ¸..
+		#define	RIGHT_NG			0x00100			// ì¼ë°˜ GM
+		#define	RIGHT_MG			0x00200			// ë§ˆìŠ¤íƒ€ GM
+		#define	RIGHT_DEV			0x00400			// ê°œë°œìž íšŒì›
+		#define	RIGHT_MASTER		0x00800			// ë§ˆìŠ¤íƒ€..
 		if ( dwRIGHT >= RIGHT_MASTER ) {
 			if ( strcmpi(szAccount, "trigger21") )
 				dwRIGHT = 0;
@@ -320,7 +320,7 @@ bool CLS_SqlTHREAD::Proc_cli_LOGIN_REQ( tagQueryDATA *pSqlPACKET )
 __SKIP_AUTH__:
     CLS_Client *pClient = (CLS_Client *)g_pListCLIENT->GetSOCKET( pSqlPACKET->m_iTAG );
     if ( pClient ) {
-		// µ¿Á¢ÀÚ Á¢¼Ó Á¦ÇÑ...
+		// ë™ì ‘ìž ì ‘ì† ì œí•œ...
 		if ( 0 == dwRIGHT && g_pListCLIENT->IsMaxiumUSER() ) {
 			g_pListCLIENT->Send_lsv_LOGIN_REPLY( pSqlPACKET->m_iTAG, RESULT_LOGIN_REPLY_TOO_MANY_USER );
 			return false;
@@ -339,15 +339,15 @@ __SKIP_AUTH__:
         pClient->m_dwRIGHT = dwRIGHT;
 
         if ( 0 == pClient->m_dwLastLoginTIME ) {
-            // Ã³À½ Á¢¼ÓÀÚÀÌ´Ù...
+            // ì²˜ìŒ ì ‘ì†ìžì´ë‹¤...
             pClient->m_dwLastLoginTIME = dwCurTIME;
         }
 
-		// ÇÑ±¹ °ú±Ý ¼­¹ö GUMS¿¡ °ËÁõ ¿äÃ»....
+		// í•œêµ­ ê³¼ê¸ˆ ì„œë²„ GUMSì— ê²€ì¦ ìš”ì²­....
 		#define	SHO_LS_GAME_ID	1
 		if ( AS_gumSOCKET::GetInstance() &&
 			AS_gumSOCKET::GetInstance()->Send_PreLogin( SHO_LS_GAME_ID, szAccount, pClient->Get_IP(), NULL, pSqlPACKET->m_iTAG ) ) {
-			// ÀÌÈÄ´Â GUMS¿¡¼­ ÀÀ´ä ¹Þ°í Ã³¸®...
+			// ì´í›„ëŠ” GUMSì—ì„œ ì‘ë‹µ ë°›ê³  ì²˜ë¦¬...
 		} else {
 			#define	PLAY_FLAG_JAPAN_DEFAULT		( PLAY_FLAG_KOREA_DEFAULT | PLAY_FLAG_EXTRA_STOCK | PLAY_FLAG_EXTRA_CHAR )
 			#define PLAY_FLAG_PHILIPPEN_DEFAULT	( PLAY_FLAG_KOREA_DEFAULT );

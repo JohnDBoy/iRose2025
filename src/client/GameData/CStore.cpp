@@ -81,7 +81,7 @@ bool CStore::ChangeStore( int iNpcObjIndex, bool bSpecialTab )
 
 	
 
-	//»óÁ¡¿¡ ¾ÆÀÌÅÛÀ» µî·ÏÇØÁØ´Ù 
+	//ìƒì ì— ì•„ì´í…œì„ ë“±ë¡í•´ì¤€ë‹¤ 
 	short	nI;
 	short	nItemNo;
 

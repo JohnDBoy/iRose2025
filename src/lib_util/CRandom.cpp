@@ -94,7 +94,7 @@ Returns integer in range [0, 2**16) {0 inclusive, 2**16 exclusive}
 int	CR001::R_VC()
 {
 /*
-//ºñÀı½ºÆ©µğ¿À6.0¿¡¼­ Å×½ºÆ®°á°ú rand()¿Í ¶È°°Àº °á°ú¸¦ ¾ò¾ú½À´Ï´Ù. 
+//ë¹„ì ˆìŠ¤íŠœë””ì˜¤6.0ì—ì„œ í…ŒìŠ¤íŠ¸ê²°ê³¼ rand()ì™€ ë˜‘ê°™ì€ ê²°ê³¼ë¥¼ ì–»ì—ˆìŠµë‹ˆë‹¤. 
 The rand() function in the Microsoft C library v4.0. 
 Definition: 
 

@@ -138,8 +138,8 @@ int	CGameStateMain::Update( bool bLostFocus )
 	CClanMarkManager::GetSingleton().UpdatePool();
 
 
-	::updateSceneTransform ();	// ÀÌµ¿ ¾Ö´Ï¸ŞÀÌ¼Ç Ã³¸®...	
-	::updateSceneEx ();	// ¿¡´Ï¸ŞÀÌ¼Ç Ã³¸®...
+	::updateSceneTransform ();	// ì´ë™ ì• ë‹ˆë©”ì´ì…˜ ì²˜ë¦¬...	
+	::updateSceneEx ();	// ì—ë‹ˆë©”ì´ì…˜ ì²˜ë¦¬...
    	
     
 	g_pObjMGR->ProcOBJECT ();
@@ -148,7 +148,7 @@ int	CGameStateMain::Update( bool bLostFocus )
 
 	::updateSceneExAfter();
 	
-	//¹Ú ÁöÈ£ : ¿©½Å¼ÒÈ¯ ¾÷µ¥ÀÌÆ® 
+	//ë°• ì§€í˜¸ : ì—¬ì‹ ì†Œí™˜ ì—…ë°ì´íŠ¸ 
 	goddessMgr.Update();
 
 	if ( !bLostFocus ) 
@@ -159,14 +159,14 @@ int	CGameStateMain::Update( bool bLostFocus )
 		CSkillCommandDelay::GetSingleton().Proc();   */
 
 
-		if ( ::beginScene() ) // ¼º°øÇÑ °æ¿ì¿¡¸¸ ·»´õ¸µ
+		if ( ::beginScene() ) // ì„±ê³µí•œ ê²½ìš°ì—ë§Œ ë Œë”ë§
 		{
 			::clearScreen();
 			::renderScene();
 
 			
 			if ( !g_GameDATA.m_bNoUI ) 
-			{ // ÀÎÅÍÆäÀÌ½º¸¦ ±×·Á¾ß ÇÑ´Ù¸é... - zho
+			{ // ì¸í„°í˜ì´ìŠ¤ë¥¼ ê·¸ë ¤ì•¼ í•œë‹¤ë©´... - zho
 				Render_GameMENU ();			
 
 			}
@@ -193,7 +193,7 @@ int CGameStateMain::Enter( int iPrevStateID )
 	CGame::GetInstance().ClearWndMsgQ();
 	g_pNet->Send_cli_JOIN_ZONE( g_pAVATAR->GetWeightRate() );	
 
-	///¹«°Ô ÆĞÅ¶ º¸³»ÁÖ´Ù.
+	///ë¬´ê²Œ íŒ¨í‚· ë³´ë‚´ì£¼ë‹¤.
 	g_HelpMgr.Update();	
 
 
@@ -214,7 +214,7 @@ int CGameStateMain::Enter( int iPrevStateID )
 		SIZE  size = getFontTextExtent( g_GameDATA.m_hFONT[ FONT_OUTLINE_18_BOLD ], ZONE_NAME( g_pTerrain->GetZoneNO() ) );
 		draw_width		= size.cx;
 		draw_position.x = g_pCApp->GetWIDTH() / 2 - size.cx / 2;
-		draw_position.y = 150;///ÀÏ´Ü °íÁ¤
+		draw_position.y = 150;///ì¼ë‹¨ ê³ ì •
 
 
 		CEffectString* child = new CEffectString;
@@ -305,12 +305,12 @@ void CGameStateMain::Render_GameMENU()
 						g_pAVATAR->m_bCastingSTART, g_pAVATAR->m_nDoingSkillIDX, g_pAVATAR->Get_COMMAND() );
 
 			//----------------------------------------------------------------------------------------------------
-			/// ÀÓ½Ã ¼ÒÈ¯¸÷ °³¼ö
+			/// ì„ì‹œ ì†Œí™˜ëª¹ ê°œìˆ˜
 			//----------------------------------------------------------------------------------------------------
 			if( g_pAVATAR->GetCur_SummonCNT() > 0 )
 			{
 				::drawFontf( g_GameDATA.m_hFONT[ FONT_LARGE_BOLD ], 
-								false, 5, 150, g_dwYELLOW, "[ ÇöÀç ¼ÒÈ¯µÈ ¸÷ ¼ö[ %d ] , ÇöÀç »ç¿ëÇÑ ¼ÒÈ¯·®[%d] ]/ ÇöÀç ¼ÒÈ¯°¡´ÉÇÑ ¼ÒÈ¯·®[%d]",					
+								false, 5, 150, g_dwYELLOW, "[ í˜„ì¬ ì†Œí™˜ëœ ëª¹ ìˆ˜[ %d ] , í˜„ì¬ ì‚¬ìš©í•œ ì†Œí™˜ëŸ‰[%d] ]/ í˜„ì¬ ì†Œí™˜ê°€ëŠ¥í•œ ì†Œí™˜ëŸ‰[%d]",					
 								g_pAVATAR->GetCur_SummonCNT(), 
 								g_pAVATAR->GetCur_SummonUsedCapacity(),
 								g_pAVATAR->GetCur_SummonMaxCapacity() );
@@ -318,10 +318,10 @@ void CGameStateMain::Render_GameMENU()
 
 			
 			//----------------------------------------------------------------------------------------------------
-			/// ½ºÅÂ¹Ì³Ê
+			/// ìŠ¤íƒœë¯¸ë„ˆ
 			//----------------------------------------------------------------------------------------------------
 			::drawFontf( g_GameDATA.m_hFONT[ FONT_LARGE_BOLD ], 
-							false, 5, 180, g_dwYELLOW, "ÇöÀç ½ºÅÂ¹Ì³Ê[ %d ] \n", g_pAVATAR->m_GrowAbility.m_nSTAMINA );
+							false, 5, 180, g_dwYELLOW, "í˜„ì¬ ìŠ¤íƒœë¯¸ë„ˆ[ %d ] \n", g_pAVATAR->m_GrowAbility.m_nSTAMINA );
 
 			::drawFontf( g_GameDATA.m_hFONT[ FONT_NORMAL ], false, 5, 220, g_dwYELLOW, "Skill command delay %d",
 															CSkillCommandDelay::GetSingleton().GetSkillCommandDelayProgressRatio() );
@@ -348,12 +348,12 @@ void CGameStateMain::Render_GameMENU()
 					g_pEffectLIST->GetCount(),
 					CTERRAIN::m_RegistedPatchCnt );			
 
-			::drawFontf( g_GameDATA.m_hFONT[ FONT_NORMAL ], false, 220, 60, g_dwRED, "( °ø¼Ó: %d, ÀÌ¼Ó: %f ±âº»¼Óµµ: %f )",
+			::drawFontf( g_GameDATA.m_hFONT[ FONT_NORMAL ], false, 220, 60, g_dwRED, "( ê³µì†: %d, ì´ì†: %f ê¸°ë³¸ì†ë„: %f )",
 					( g_pAVATAR->GetPetMode() < 0 )? g_pAVATAR->Get_nAttackSPEED() : g_pAVATAR->m_pObjCART->Get_nAttackSPEED(), 
 					( g_pAVATAR->GetPetMode() < 0 )? g_pAVATAR->Get_MoveSPEED() : g_pAVATAR->m_pObjCART->Get_MoveSPEED(), 
 					( g_pAVATAR->GetPetMode() < 0 )? g_pAVATAR->Get_DefaultSPEED() : g_pAVATAR->m_pObjCART->Get_DefaultSPEED() );
 
-			::drawFontf( g_GameDATA.m_hFONT[ FONT_NORMAL ], false, 220, 80, g_dwRED, "( ¿ùµåÅ¸ÀÔ: %d, Á¸Å¸ÀÓ:%d, ºí·£µùºñÀ²:%f )",
+			::drawFontf( g_GameDATA.m_hFONT[ FONT_NORMAL ], false, 220, 80, g_dwRED, "( ì›”ë“œíƒ€ì…: %d, ì¡´íƒ€ì„:%d, ë¸”ëœë”©ë¹„ìœ¨:%f )",
 															g_DayNNightProc.GetWorldTime(), g_DayNNightProc.GetZoneTime(), g_DayNNightProc.GetBlendFactor() );
 
 			::drawFontf( g_GameDATA.m_hFONT[ FONT_NORMAL ], false, 220, 100, g_dwRED, "( WorldRATE: %d, WorldPROD:%d, Country Code:%d )",
@@ -427,7 +427,7 @@ int CGameStateMain::ProcKeyboardInput(UINT uiMsg, WPARAM wParam, LPARAM lParam )
 				g_GameDATA.m_bShowDropItemInfo = false;
 				break;
 
-			case 0x5A://z : ¾É±â/¼­±â Åä±Û
+			case 0x5A://z : ì•‰ê¸°/ì„œê¸° í† ê¸€
 				if(	CTControlMgr::GetInstance()->GetKeyboardInputType() == CTControlMgr::INPUTTYPE_NORMAL &&
 					NULL == CTEditBox::s_pFocusEdit )
 				{
@@ -455,8 +455,8 @@ int CGameStateMain::ProcKeyboardInput(UINT uiMsg, WPARAM wParam, LPARAM lParam )
 						pSkill->Execute();
 				}
 				break;
-#pragma message("ÀÏº»¾îÀÇ °æ¿ì º¯È¯Å°¿Í Áßº¹µÇÁö ¾Ê´ÂÁö Å×½ºÆ®ÇØº¸¾Æ¾ß ÇÑ´Ù")
-			case 192://` : Áİ±â
+#pragma message("ì¼ë³¸ì–´ì˜ ê²½ìš° ë³€í™˜í‚¤ì™€ ì¤‘ë³µë˜ì§€ ì•ŠëŠ”ì§€ í…ŒìŠ¤íŠ¸í•´ë³´ì•„ì•¼ í•œë‹¤")
+			case 192://` : ì¤ê¸°
 				break;
 			case VK_SHIFT://
 				if(CTControlMgr::GetInstance()->GetKeyboardInputType() == CTControlMgr::INPUTTYPE_NORMAL && 
@@ -537,7 +537,7 @@ int CGameStateMain::ProcKeyboardInput(UINT uiMsg, WPARAM wParam, LPARAM lParam )
 					///ScreenFadeInStart( 25, 0, 0, 0, 0, 0 ); 
 				break;
 
-				/// ÃÔ¿µ¸ğµå ÀüÈ¯..
+				/// ì´¬ì˜ëª¨ë“œ ì „í™˜..
 				case 0x35:	// 5
 					{	
 						if( CGame::GetInstance().GetRight() >= CHEAT_GM )
@@ -551,7 +551,7 @@ int CGameStateMain::ProcKeyboardInput(UINT uiMsg, WPARAM wParam, LPARAM lParam )
 					}
 					break;
 
-				/// ¸¶¿ì½º Ä¿¼­ ¼û±â±â
+				/// ë§ˆìš°ìŠ¤ ì»¤ì„œ ìˆ¨ê¸°ê¸°
 				case 0x36:	// 6
 					{		
 						if( CGame::GetInstance().GetRight() >= CHEAT_GM )
@@ -732,14 +732,14 @@ int CGameStateMain::ProcKeyboardInput(UINT uiMsg, WPARAM wParam, LPARAM lParam )
 #endif //_DEBUG
 bool CGameStateMain::On_WM_KEYDOWN (WPARAM wParam, LPARAM lParam)
 {
-	/// ¸í·É¿¡ °ü·ÃµÈ ¸Ş¼¼Áö Ã³¸®...
+	/// ëª…ë ¹ì— ê´€ë ¨ëœ ë©”ì„¸ì§€ ì²˜ë¦¬...
 	g_UserInputSystem.OnKeyDown( wParam, lParam );
 
 	static float s_fScale = 1.0f;   
 
 	if ( lParam & 0x40000000 ) 
 	{
-		// ÀÌÀü¿¡ ´­·Á ÀÖ´ø Å°´Ù....
+		// ì´ì „ì— ëˆŒë ¤ ìˆë˜ í‚¤ë‹¤....
 		return false;
 	}
 
@@ -848,7 +848,7 @@ bool CGameStateMain::On_WM_CHAR (WPARAM wParam, LPARAM lParam)
 #ifdef	__USE_IME
 			m_IME.ClearString();
 			m_IME.SetActive ( true );
-			m_IME.ToggleInputMode ( true );	// °­Á¦·Î ÇÑ±Û·Î ÀüÈ¯ ½ÃÅ²´Ù.
+			m_IME.ToggleInputMode ( true );	// ê°•ì œë¡œ í•œê¸€ë¡œ ì „í™˜ ì‹œí‚¨ë‹¤.
 #endif
 			return true;
 	}
@@ -872,7 +872,7 @@ bool CGameStateMain::On_WM_LBUTTONDOWN (WPARAM wParam, LPARAM lParam)
 		return true;
 
 	
-	/// ÀÔ·ÂÀº ¼­¹öÀÇ °á°ú¿Í´Â »ó°ü¾ø´Ù.
+	/// ì…ë ¥ì€ ì„œë²„ì˜ ê²°ê³¼ì™€ëŠ” ìƒê´€ì—†ë‹¤.
 	if( g_pAVATAR->bCanUserInput() )
 	{
 		g_UserInputSystem.ClickObject( this->m_iPickedOBJ, this->m_PosPICK, wParam  );			
@@ -888,7 +888,7 @@ bool CGameStateMain::On_WM_LBUTTONDOWN (WPARAM wParam, LPARAM lParam)
 //----------------------------------------------------------------------------------------------------
 /// @param
 /// @brief WM_RBUTTONDOWN 
-//    9/14 ÇöÀç ±â´ÉÁ¦°Å.. (Ä«¸Ş¶ó ¿öÅ©¿Í Ãæµ¹ )
+//    9/14 í˜„ì¬ ê¸°ëŠ¥ì œê±°.. (ì¹´ë©”ë¼ ì›Œí¬ì™€ ì¶©ëŒ )
 //----------------------------------------------------------------------------------------------------
 
 bool CGameStateMain::On_WM_RBUTTONDOWN (WPARAM wParam, LPARAM lParam)
@@ -903,7 +903,7 @@ bool CGameStateMain::On_WM_RBUTTONDOWN (WPARAM wParam, LPARAM lParam)
 		return true;
 
 	
-	/// ÀÔ·ÂÀº ¼­¹öÀÇ °á°ú¿Í´Â »ó°ü¾ø´Ù.
+	/// ì…ë ¥ì€ ì„œë²„ì˜ ê²°ê³¼ì™€ëŠ” ìƒê´€ì—†ë‹¤.
 	if( g_pAVATAR->bCanUserInput() )
 	{
 		g_UserInputSystem.RButtonDown( this->m_iPickedOBJ, this->m_PosPICK, wParam  );	
@@ -969,7 +969,7 @@ bool CGameStateMain::On_WM_LBUTTONDBCLICK (WPARAM wParam, LPARAM lParam)
 		return true;
 
 	
-	/// ÀÔ·ÂÀº ¼­¹öÀÇ °á°ú¿Í´Â »ó°ü¾ø´Ù.
+	/// ì…ë ¥ì€ ì„œë²„ì˜ ê²°ê³¼ì™€ëŠ” ìƒê´€ì—†ë‹¤.
 	if( g_pAVATAR->bCanUserInput() )
 	{
 		g_UserInputSystem.DBClickObject( this->m_iPickedOBJ, this->m_PosPICK, wParam  );			
@@ -1017,23 +1017,23 @@ void CGameStateMain::Pick_POSITION (/*LPARAM	lParam*/)
 
 	D3DXVECTOR3 PosPICKTerrain;
 
-#pragma message( " TODO : ÀÌµ¿½ÃÀÇ ÁöÇü°ú ¿ÀºêÁ§Æ® Ãæµ¹ ÀÌ»óÇÏ´Ù" )
+#pragma message( " TODO : ì´ë™ì‹œì˜ ì§€í˜•ê³¼ ì˜¤ë¸Œì íŠ¸ ì¶©ëŒ ì´ìƒí•˜ë‹¤" )
 
 	float fDistanceTerrain = g_fMaxDistance;
 	float fDistanceObject = g_fMaxDistance;
 
 	//----------------------------------------------------------------------------------------------------	
-	/// @brief ¸ÕÀú ³ª¿Í Ãæµ¹ÇÑ ¿ÀºêÁ§Æ®µé( ¹â°í ÀÖ´Â ¿ÀºêÁ§Æ® )ºÎÅÍ Âó¾î³½´Ù.
+	/// @brief ë¨¼ì € ë‚˜ì™€ ì¶©ëŒí•œ ì˜¤ë¸Œì íŠ¸ë“¤( ë°Ÿê³  ìˆëŠ” ì˜¤ë¸Œì íŠ¸ )ë¶€í„° ì°ì–´ë‚¸ë‹¤.
 	//----------------------------------------------------------------------------------------------------
 	///m_iPickedOBJ = g_pTerrain->Pick_NearObject( m_PosPICK, fDistanceObject );
 	
 	//----------------------------------------------------------------------------------------------------	
-	/// ÁöÇü°úÀÇ Ãæµ¹ Ã¼Å©
+	/// ì§€í˜•ê³¼ì˜ ì¶©ëŒ ì²´í¬
 	//----------------------------------------------------------------------------------------------------	
 	fDistanceTerrain = g_pTerrain->Pick_POSITION( PosPICKTerrain );
 
 	//----------------------------------------------------------------------------------------------------	
-	/// ³ª¿Í Ãæµ¹µÈ ³ğÀÌ ÂóÇû´Ù¸é ÁöÇü°ú Ãæµ¹À» °Ë»çÈÄ¿¡ °¡±î¿î³ğ ÂÊÀ¸·Î ÇÇÅ·ÆÇÁ¤
+	/// ë‚˜ì™€ ì¶©ëŒëœ ë†ˆì´ ì°í˜”ë‹¤ë©´ ì§€í˜•ê³¼ ì¶©ëŒì„ ê²€ì‚¬í›„ì— ê°€ê¹Œìš´ë†ˆ ìª½ìœ¼ë¡œ í”¼í‚¹íŒì •
 	//----------------------------------------------------------------------------------------------------	
     /*if( m_iPickedOBJ )
 	{
@@ -1046,16 +1046,16 @@ void CGameStateMain::Pick_POSITION (/*LPARAM	lParam*/)
 	}else*/
 	{
 		//----------------------------------------------------------------------------------------------------	
-		/// ¸ÕÀú ¿ÀºêÁ§Æ® Ãæµ¹ °Ë»ç
+		/// ë¨¼ì € ì˜¤ë¸Œì íŠ¸ ì¶©ëŒ ê²€ì‚¬
 		//----------------------------------------------------------------------------------------------------	
 		m_iPickedOBJ = g_pTerrain->Pick_OBJECT( m_PosPICK, fDistanceObject );
 		//----------------------------------------------------------------------------------------------------	
-		/// ¿ÀºêÁ§Æ®°¡ ÂóÇû´Ù¸é ÁöÇü°ú Ãæµ¹À» °Ë»çÈÄ¿¡ °¡±î¿î³ğ ÂÊÀ¸·Î ÇÇÅ·ÆÇÁ¤
+		/// ì˜¤ë¸Œì íŠ¸ê°€ ì°í˜”ë‹¤ë©´ ì§€í˜•ê³¼ ì¶©ëŒì„ ê²€ì‚¬í›„ì— ê°€ê¹Œìš´ë†ˆ ìª½ìœ¼ë¡œ í”¼í‚¹íŒì •
 		//----------------------------------------------------------------------------------------------------	
 		if( m_iPickedOBJ )
 		{
 			m_bPickedPOS = true;
-			/// ÁöÇüÀÌ Ãæµ¹Çß°í, ÁöÇü°úÀÇ Ãæµ¹°Å¸®°¡ ¿ÀºêÁ§Æ®¿ÍÀÇ Ãæµ¹°Å¸®º¸´Ù ´õ °¡±õ´Ù¸é..
+			/// ì§€í˜•ì´ ì¶©ëŒí–ˆê³ , ì§€í˜•ê³¼ì˜ ì¶©ëŒê±°ë¦¬ê°€ ì˜¤ë¸Œì íŠ¸ì™€ì˜ ì¶©ëŒê±°ë¦¬ë³´ë‹¤ ë” ê°€ê¹ë‹¤ë©´..
 			if( ( fDistanceTerrain > 0 ) && ( fDistanceObject > fDistanceTerrain ) )
 			{
 				m_PosPICK = PosPICKTerrain;
@@ -1064,14 +1064,14 @@ void CGameStateMain::Pick_POSITION (/*LPARAM	lParam*/)
 		} 
 		else 
 		{
-			/// ¿ÀºêÁ§Æ®¿Í´Â Ãæµ¹ÀÌ ¾ø°í ÁöÇü°ú¸¸ Ãæµ¹ÀÌ ÀÖÀ½.
+			/// ì˜¤ë¸Œì íŠ¸ì™€ëŠ” ì¶©ëŒì´ ì—†ê³  ì§€í˜•ê³¼ë§Œ ì¶©ëŒì´ ìˆìŒ.
 			if( fDistanceTerrain > 0 )
 			{
 				m_PosPICK = PosPICKTerrain;
 				m_bPickedPOS = true;
 			}else
 			{
-				/// SKY ¿ÍÀÇ Ãæµ¹ Ã¼Å©
+				/// SKY ì™€ì˜ ì¶©ëŒ ì²´í¬
 				HNODE hSky = CSkyDOME::GetHNODE();
 				float fDistanceSky = g_fMaxDistance;
 				const float fDefaultSkyDistance = 3000.0f;
@@ -1107,13 +1107,13 @@ void CGameStateMain::UpdateCheckFrame()
 
 		CTargetManager::GetSingleton().SetMouseTargetObject( 0 );
 		
-		/// ÇöÀç ¸¶¿ì½º Ä¿¼­¸¦ °»½ÅÇÑ´Ù.
+		/// í˜„ì¬ ë§ˆìš°ìŠ¤ ì»¤ì„œë¥¼ ê°±ì‹ í•œë‹¤.
 
-		// ÇÇÅ·ÀÌ Á¦´ë·Î ¼öÇà‰ç´ÂÁöµµ ÇÔ²² Ã¼Å©.
-		// this->m_iPickedOBJ ÀÌ 0ÀÌ¶ó¸é À¯È¿ÇÏÁö ¾ÊÀº °Ç°¡?
+		// í”¼í‚¹ì´ ì œëŒ€ë¡œ ìˆ˜í–‰Â‰æ¦®ì©å±¤?í•¨ê»˜ ì²´í¬.
+		// this->m_iPickedOBJ ì´ 0ì´ë¼ë©´ ìœ íš¨í•˜ì§€ ì•Šì€ ê±´ê°€?
 		// - 2004.01.17.zho
-		// - 2004.02.25.nAvy : ÇöÀç ¸¶¿ì½º°¡ ÀÎÅÍÆäÀÌ½º¿¡¼­ »ç¿ëÁßÀÏ¶§´Â Default
-		// - 2004.07.13 nAvy : ¼ö¸®¸ğµåÀÏ°æ¿ì Ç×»ó ¼ö¸®Ä¿¼­·Î
+		// - 2004.02.25.nAvy : í˜„ì¬ ë§ˆìš°ìŠ¤ê°€ ì¸í„°í˜ì´ìŠ¤ì—ì„œ ì‚¬ìš©ì¤‘ì¼ë•ŒëŠ” Default
+		// - 2004.07.13 nAvy : ìˆ˜ë¦¬ëª¨ë“œì¼ê²½ìš° í•­ìƒ ìˆ˜ë¦¬ì»¤ì„œë¡œ
 		if( refGame.GetRepairMode() )
 		{
 			refCursor.SetCursorType( CCursor::CURSOR_REPAIR );
@@ -1215,20 +1215,20 @@ int CGameStateMain::CheckMouseRegion( int x, int y )
 {
 	int iCheckFlag = 0;
 
-	/// ¿ŞÂÊ 
+	/// ì™¼ìª½ 
 	if( x < SCREEN_CHECK_WIDTH )	
 		iCheckFlag |= SCREEN_LEFT;
 
-	/// ¿À¸¥ÂÊ
+	/// ì˜¤ë¥¸ìª½
 	if( x > ( g_pCApp->GetWIDTH() - 1 - SCREEN_CHECK_WIDTH ) )	
 		iCheckFlag |= SCREEN_RIGHT;
 
 	/*
-	/// À­ÂÊ
+	/// ìœ—ìª½
 	if( y < SCREEN_CHECK_WIDTH )	
 		iCheckFlag |= SCREEN_UP;
 
-	/// ¾Æ·¨ÂÊ
+	/// ì•„ë¬ìª½
 	if( y > ( g_GameDATA.m_nScrHeight - SCREEN_CHECK_WIDTH ) )	
 		iCheckFlag |= SCREEN_DOWN;
 	*/

@@ -128,7 +128,7 @@ bool CDB_Socket::WndPROC ( WPARAM wParam, LPARAM lParam )
 		{
 			this->OnReceive( nErrorCode );
 
-			// ¹ÞÀº ÆÐÅ¶ Ã³¸®..
+			// ë°›ì€ íŒ¨í‚· ì²˜ë¦¬..
 			while( this->Peek_Packet( m_pRecvPket, true ) ) {
 				LogString( LOG_DEBUG, "Handle LS Packet: Type[ 0x%x ], Size[ %d ]\n", m_pRecvPket->m_HEADER.m_wType, m_pRecvPket->m_HEADER.m_nSize);
 			}
@@ -160,7 +160,7 @@ bool CDB_Socket::WndPROC ( WPARAM wParam, LPARAM lParam )
 			}
 			break;
 		}
-		case FD_CLOSE:		// Close()ÇÔ¼ö¸¦ È£ÃâÇØ¼­ Á¾·áµÉ¶§´Â ¹ß»ý ¾ÈÇÑ´Ù.
+		case FD_CLOSE:		// Close()í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•´ì„œ ì¢…ë£Œë ë•ŒëŠ” ë°œìƒ ì•ˆí•œë‹¤.
 		{
 			this->OnClose ( nErrorCode );
 

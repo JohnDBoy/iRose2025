@@ -14,7 +14,7 @@ CObjCART::CObjCART(void)
 	m_iOldCartState		= CART_STATE_STOP;
 
 //----------------------------------------------------------------
-//¹ÚÁöÈ£
+//ë°•ì§€í˜¸
 	m_pRideUser = NULL;
 
 //----------------------------------------------------------------
@@ -39,7 +39,7 @@ CObjCART::~CObjCART(void)
 	this->StopSound( m_iOldCartState );
 
 //-----------------------------------------------------------------
-//¹ÚÁöÈ£
+//ë°•ì§€í˜¸
 	m_pRideUser = NULL;
 //-----------------------------------------------------------------
 
@@ -47,14 +47,14 @@ CObjCART::~CObjCART(void)
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief ³ª¿¡°Ô ¸µÅ©µÈ ¾ÖµéÀ» ¸ğµÎ ºĞ¸®
+/// @brief ë‚˜ì—ê²Œ ë§í¬ëœ ì• ë“¤ì„ ëª¨ë‘ ë¶„ë¦¬
 //----------------------------------------------------------------------------------------------------
 void CObjCART::UnLinkChild(int iStart)
 {
 
 #if defined(_GBC)
 //----------------------------------------------------------------
-//¹ÚÁöÈ£::Ä«Æ®¿¡¼­ Å¾½ÂÇÑ À¯Àú¸¦ ¸µÅ©ÇØÁ¦ ÇÑ´Ù. (¼öÁ¤)
+//ë°•ì§€í˜¸::ì¹´íŠ¸ì—ì„œ íƒ‘ìŠ¹í•œ ìœ ì €ë¥¼ ë§í¬í•´ì œ í•œë‹¤. (ìˆ˜ì •)
 	D3DXVECTOR3 pos = Get_CurPOS();		
 
 	CObjCHAR* pClass[] = { m_pObjParent, m_pRideUser };
@@ -77,7 +77,7 @@ void CObjCART::UnLinkChild(int iStart)
 			pClass[i]->ResetCUR_POS( pos );
 			pClass[i]->SetResetPosZ( true, pos.z );
 		}
-		//µŞ¿¡ Å¾½ÂÇÑ À¯Àú´Â Á¶±İ µÚ¿¡ À§Ä¡¸¦ Å¾½ÂÇÑ´Ù. 
+		//ë’·ì— íƒ‘ìŠ¹í•œ ìœ ì €ëŠ” ì¡°ê¸ˆ ë’¤ì— ìœ„ì¹˜ë¥¼ íƒ‘ìŠ¹í•œë‹¤. 
 		else
 		{
 			D3DXVECTOR3 ruDir;
@@ -141,7 +141,7 @@ bool CObjCART::Create ( CObjCHAR* pParent, int iCartType, D3DVECTOR &Position )
 
 	float fDir = ::getModelDirection( pParent->GetZMODEL() );
 
-	/// CObjCHARÀÇ ¸Ş½îµå »ç¿ëÀ» À§ÇØ¼­( InserToScene µûÀ§ )
+	/// CObjCHARì˜ ë©”ì˜ë“œ ì‚¬ìš©ì„ ìœ„í•´ì„œ( InserToScene ë”°ìœ„ )
 	m_pCharMODEL = &m_CharMODEL;
 
 	m_pObjParent = pParent;
@@ -165,8 +165,8 @@ bool CObjCART::Create ( CObjCHAR* pParent, int iCartType, D3DVECTOR &Position )
 		this->LinkDummy( hChild, 0 );					
 		this->Set_ModelDIR( fDir, 1 );  
 
-		/// CObjCHAR::CreateCHAR ³»ºÎ¿¡¼­ DropFromSky ÇÔ¼ö¸¦ È£ÃâÇÏ±â ¶§¹®¿¡ ´Ù½Ã ¸®¼ÂÀ» ÇØÁà¾ßµÈ´Ù.
-		/// ÀÌ°Í¶§¹®¿¡ Å¸°í ³»¸±¶§ ´Ù¸®¾Æ·¡¿¡¼­ Å¸°í ³»¸®¸é ¹®Á¦°¡ ÀÖ¾ú´Ù. ¾Æ·¡¿¡¼­ ÅÀ´Âµ¥ ´Ù¸® À§·Î ¿Ã¶ó°¡ ¹ö¸®´Â..
+		/// CObjCHAR::CreateCHAR ë‚´ë¶€ì—ì„œ DropFromSky í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•˜ê¸° ë•Œë¬¸ì— ë‹¤ì‹œ ë¦¬ì…‹ì„ í•´ì¤˜ì•¼ëœë‹¤.
+		/// ì´ê²ƒë•Œë¬¸ì— íƒ€ê³  ë‚´ë¦´ë•Œ ë‹¤ë¦¬ì•„ë˜ì—ì„œ íƒ€ê³  ë‚´ë¦¬ë©´ ë¬¸ì œê°€ ìˆì—ˆë‹¤. ì•„ë˜ì—ì„œ íƒ”ëŠ”ë° ë‹¤ë¦¬ ìœ„ë¡œ ì˜¬ë¼ê°€ ë²„ë¦¬ëŠ”..
 		this->ResetCUR_POS( D3DXVECTOR3( Position.x, Position.y, Position.z ) );
 
 		::setUserData( this->GetZMODEL(), reinterpret_cast< HNODE >( this ) );
@@ -182,7 +182,7 @@ bool CObjCART::Create ( CObjCHAR* pParent, int iCartType, D3DVECTOR &Position )
 
 	LogString (LOG_DEBUG, "Cart create failed .. %d: %s \n", szName );
 
-	/// Ä«Æ® ¹× Ä³½½±â¾î Å©±â 1.2 ¹è È®´ë..
+	/// ì¹´íŠ¸ ë° ìºìŠ¬ê¸°ì–´ í¬ê¸° 1.2 ë°° í™•ëŒ€..
 	::setScale( this->GetZMODEL(), 1.2f, 1.2f, 1.2f );
 
 	return false;
@@ -191,8 +191,8 @@ bool CObjCART::Create ( CObjCHAR* pParent, int iCartType, D3DVECTOR &Position )
 
 
 //----------------------------------------------------------------------------------------------------
-/// @¹ÚÁöÈ£
-/// @¹ÚÁöÈ£::¼±ÅÃµÈ À¯Àú¸¦ Ä«Æ®¿¡ ÅÂ¿î´Ù.
+/// @ë°•ì§€í˜¸
+/// @ë°•ì§€í˜¸::ì„ íƒëœ ìœ ì €ë¥¼ ì¹´íŠ¸ì— íƒœìš´ë‹¤.
 //----------------------------------------------------------------------------------------------------
 bool CObjCART::Create( CObjCHAR* pTarget)
 {
@@ -202,7 +202,7 @@ bool CObjCART::Create( CObjCHAR* pTarget)
 
 	m_pRideUser = pTarget;
 
-	//À§Ä¡ ÃÊ±âÈ­ 
+	//ìœ„ì¹˜ ì´ˆê¸°í™” 
 	pTarget->Set_CurPOS(D3DXVECTOR3(0,0,0));
 	::setPosition(pTarget->GetZMODEL(),0,0,0);
 
@@ -210,7 +210,7 @@ bool CObjCART::Create( CObjCHAR* pTarget)
 		
 	this->LinkDummy(hChild,10);					
 	
-	//È¸Àü ¹× ¸ğ¼Ç ¼³Á¤ 
+	//íšŒì „ ë° ëª¨ì…˜ ì„¤ì • 
 	m_pRideUser->Set_ModelDIR(0.0f,1);  
 	m_pRideUser->Set_MOTION( this->GetRideAniPos() + PETMODE_AVATAR_ANI_STOP1 );
 	
@@ -221,12 +221,12 @@ bool CObjCART::Create( CObjCHAR* pTarget)
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief Cart ÀÇ °æ¿ì´Â ¹«±â¿¡ µû¸¥ ¸ğ¼ÇÀÌ ¾Æ´Ï¶ó ARMS Å×ÀÌºíÀÇ ¸ğ¼Ç Å¸ÀÔ¿¡ ÀÇÁ¸ÇÑ´Ù.
+/// @brief Cart ì˜ ê²½ìš°ëŠ” ë¬´ê¸°ì— ë”°ë¥¸ ëª¨ì…˜ì´ ì•„ë‹ˆë¼ ARMS í…Œì´ë¸”ì˜ ëª¨ì…˜ íƒ€ì…ì— ì˜ì¡´í•œë‹¤.
 //----------------------------------------------------------------------------------------------------
 tagMOTION *CObjCART::Get_MOTION (short nActionIdx)
 {	
 
-//¹ÚÁöÈ£::
+//ë°•ì§€í˜¸::
 #if defined(_GBC)
 	short nFileIDX = FILE_MOTION( PAT_RELATIVE_MOTION_POS( this->m_nWeaponIDX ), nActionIdx );
 #else
@@ -259,8 +259,8 @@ tagMOTION *CObjCART::Get_MOTION (short nActionIdx)
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief Ä«Æ®¿¡ ÀÌÆåÆ® ¼³Á¤
-///		   ÀÏ¹İ ºÎÇ°ÀÇ È¿°ú´Â Ç×»ó ³ª¿À°í, ·¢ÀÇ ºÎÇ°È¿°ú´Â ÀÌµ¿½Ã¿¡¸¸ ³ª¿Â´Ù.
+/// @brief ì¹´íŠ¸ì— ì´í™íŠ¸ ì„¤ì •
+///		   ì¼ë°˜ ë¶€í’ˆì˜ íš¨ê³¼ëŠ” í•­ìƒ ë‚˜ì˜¤ê³ , ë™ì˜ ë¶€í’ˆíš¨ê³¼ëŠ” ì´ë™ì‹œì—ë§Œ ë‚˜ì˜¨ë‹¤.
 //----------------------------------------------------------------------------------------------------
 
 void CObjCART::SetEffect()
@@ -281,7 +281,7 @@ void CObjCART::SetPartEffect( int iPart )
 	{
 		iEffectNO = PAT_ITEM_ATTACHED_EFFECT( m_nPartItemIDX[ iPart ], i );
 
-		/// ¼³Á¤ÇÒ ÀÌÆåÆ®°¡ ÀÖÀ»°æ¿ì..
+		/// ì„¤ì •í•  ì´í™íŠ¸ê°€ ìˆì„ê²½ìš°..
 		if( iEffectNO )
 		{
 			CEffect *pEffect = g_pEffectLIST->Add_EffectWithIDX( iEffectNO, true );
@@ -300,14 +300,14 @@ void CObjCART::SetPartEffect( int iPart )
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief ÀÌµ¿Áß¿¡¸¸ ³ª¿À´Â ÀÌÆåÆ®. È¤Àº ±× ¹İ´ë.
+/// @brief ì´ë™ì¤‘ì—ë§Œ ë‚˜ì˜¤ëŠ” ì´í™íŠ¸. í˜¹ì€ ê·¸ ë°˜ëŒ€.
 //----------------------------------------------------------------------------------------------------
 void CObjCART::SetEffectByMoveState( bool bShow )
 {
 }
 
 ///
-/// Ä«Æ®¿¡ »ç¿îµå ¼³Á¤
+/// ì¹´íŠ¸ì— ì‚¬ìš´ë“œ ì„¤ì •
 ///
 void CObjCART::PlaySound( int iCurrentState )
 {
@@ -342,7 +342,7 @@ void CObjCART::PlayPartSound( int iPart, int iCurrentState )
 					TargetPos.y = this->m_PosGOTO.y;
 					TargetPos.z = 100.0f;
 
-					D3DXVECTOR3 Velocity = TargetPos - Get_CurPOS(); // 1ÃÊ µ¿¾È¿¡ ÀÌµ¿ÇÏ´Â º¤ÅÍ
+					D3DXVECTOR3 Velocity = TargetPos - Get_CurPOS(); // 1ì´ˆ ë™ì•ˆì— ì´ë™í•˜ëŠ” ë²¡í„°
 
 					D3DXVECTOR3 vecWorld = this->Get_CurPOS();
 					g_pSoundLIST->IDX_PlaySound3DLoop( iSoundIDX, vecWorld, &Velocity ); 
@@ -408,7 +408,7 @@ int	CObjCART::GetANI_Attack()	{	return PAT_RELATIVE_MOTION_POS( m_nPartItemIDX[ 
 int	CObjCART::GetANI_Die ()		{	return PAT_RELATIVE_MOTION_POS( m_nPartItemIDX[ RIDE_PART_BODY ] ) +  CART_ANI_DIE;	}
 int	CObjCART::GetANI_Hit()		{	return PAT_RELATIVE_MOTION_POS( m_nPartItemIDX[ RIDE_PART_BODY ] ) +  CART_ANI_STOP1;	}	
 
-//¹ÚÁöÈ£::½ºÅ³ ¾Ö´Ï¸ŞÀÌ¼Ç 
+//ë°•ì§€í˜¸::ìŠ¤í‚¬ ì• ë‹ˆë©”ì´ì…˜ 
 int	CObjCART::GetANI_Casting()	{	return SKILL_ANI_CASTING(m_nActiveSkillIDX);							}	
 int	CObjCART::GetANI_CastingRepeat()	{	return  SKILL_ANI_CASTING_REPEAT(m_nActiveSkillIDX);			}	
 int	CObjCART::GetANI_Skill()	{	return 	SKILL_ANI_ACTION_TYPE(m_nActiveSkillIDX);						}	
@@ -425,13 +425,13 @@ bool CObjCART::SetCMD_MOVE( const D3DVECTOR& PosTO, BYTE btRunMODE )
 	CObjAI::SetCMD_MOVE( PosTO, btRunMODE );
 
 	//----------------------------------------------------------------------------------------------------
-	/// Æê Å¾½ÂÀ» ÇÑ Ä³¸¯ÅÍÀÇ ¸ğ¼ÇÀ» ±³Ã¼ÇÑ´Ù.
+	/// í« íƒ‘ìŠ¹ì„ í•œ ìºë¦­í„°ì˜ ëª¨ì…˜ì„ êµì²´í•œë‹¤.
 	//----------------------------------------------------------------------------------------------------		
 	m_pObjParent->Set_MOTION( this->GetRideAniPos() + PETMODE_AVATAR_ANI_MOVE );
 	
 	//----------------------------------------------------------------------------------------------------
 #if defined(_GBC)
-	//¹ÚÁöÈ£::
+	//ë°•ì§€í˜¸::
 	if(m_pRideUser)
 		m_pRideUser->Set_MOTION( this->GetRideAniPos() + PETMODE_AVATAR_ANI_MOVE );
 #endif
@@ -451,12 +451,12 @@ void CObjCART::SetCMD_MOVE( WORD wSrvDIST, const D3DVECTOR& PosTO, int iServerTa
 	CObjAI::SetCMD_MOVE( wSrvDIST, PosTO, iServerTarget );
 
 	//----------------------------------------------------------------------------------------------------
-	/// Æê Å¾½ÂÀ» ÇÑ Ä³¸¯ÅÍÀÇ ¸ğ¼ÇÀ» ±³Ã¼ÇÑ´Ù.
+	/// í« íƒ‘ìŠ¹ì„ í•œ ìºë¦­í„°ì˜ ëª¨ì…˜ì„ êµì²´í•œë‹¤.
 	//----------------------------------------------------------------------------------------------------		
 	m_pObjParent->Set_MOTION( this->GetRideAniPos() + PETMODE_AVATAR_ANI_MOVE );
 	
 	//----------------------------------------------------------------------------------------------------
-	//¹ÚÁöÈ£::
+	//ë°•ì§€í˜¸::
 #if defined(_GBC)
 	if(m_pRideUser)
 		m_pRideUser->Set_MOTION( this->GetRideAniPos() + PETMODE_AVATAR_ANI_MOVE );
@@ -477,13 +477,13 @@ bool CObjCART::SetCMD_STOP( void )
 	CObjAI::SetCMD_STOP();
 
 	//----------------------------------------------------------------------------------------------------
-	/// Æê Å¾½ÂÀ» ÇÑ Ä³¸¯ÅÍÀÇ ¸ğ¼ÇÀ» ±³Ã¼ÇÑ´Ù.
+	/// í« íƒ‘ìŠ¹ì„ í•œ ìºë¦­í„°ì˜ ëª¨ì…˜ì„ êµì²´í•œë‹¤.
 	//----------------------------------------------------------------------------------------------------		
 	m_pObjParent->Set_MOTION( this->GetRideAniPos() + PETMODE_AVATAR_ANI_STOP1 );
 	
 	//----------------------------------------------------------------------------------------------------
 #if defined(_GBC)
-	//¹ÚÁöÈ£::
+	//ë°•ì§€í˜¸::
 	if(m_pRideUser)
 		m_pRideUser->Set_MOTION( this->GetRideAniPos() + PETMODE_AVATAR_ANI_STOP1 );
 #endif 
@@ -501,8 +501,8 @@ bool CObjCART::SetCMD_STOP( void )
 
 //----------------------------------------------------------------------------------------------------
 /// @param
-/// @brief /*override*/virtual bool	SetCMD_ATTACK ( int iServerTarget ); ´Â Á¤ÀÇÇÒ ÇÊ¿ä¾ø´Ù.
-///			CObjAI::SetCMD_ATTACK °¡ ³»ºÎÀûÀ¸·Î È£ÃâÇÏ´Â ÇÔ¼öÀÌ´Ù.
+/// @brief /*override*/virtual bool	SetCMD_ATTACK ( int iServerTarget ); ëŠ” ì •ì˜í•  í•„ìš”ì—†ë‹¤.
+///			CObjAI::SetCMD_ATTACK ê°€ ë‚´ë¶€ì ìœ¼ë¡œ í˜¸ì¶œí•˜ëŠ” í•¨ìˆ˜ì´ë‹¤.
 //----------------------------------------------------------------------------------------------------
 
 void CObjCART::SetCMD_ATTACK (int iServerTarget, WORD wSrvDIST, const D3DVECTOR& PosGOTO)
@@ -510,13 +510,13 @@ void CObjCART::SetCMD_ATTACK (int iServerTarget, WORD wSrvDIST, const D3DVECTOR&
 	CObjCHAR::SetCMD_ATTACK( iServerTarget, wSrvDIST, PosGOTO );
 
 	//----------------------------------------------------------------------------------------------------
-	/// Æê Å¾½ÂÀ» ÇÑ Ä³¸¯ÅÍÀÇ ¸ğ¼ÇÀ» ±³Ã¼ÇÑ´Ù.
+	/// í« íƒ‘ìŠ¹ì„ í•œ ìºë¦­í„°ì˜ ëª¨ì…˜ì„ êµì²´í•œë‹¤.
 	//----------------------------------------------------------------------------------------------------	
 	
 	//----------------------------------------------------------------------------------------------------
 #if defined(_GBC)
 	m_pObjParent->Set_MOTION( this->GetRideAniPos() + PETMODE_AVATAR_ANI_STOP1 );
-	//¹ÚÁöÈ£::
+	//ë°•ì§€í˜¸::
 	if(m_pRideUser)
 		m_pRideUser->Set_MOTION( this->GetRideAniPos() + PETMODE_AVATAR_ANI_STOP1 );
 #else 
@@ -536,10 +536,10 @@ void CObjCART::SetCMD_ATTACK (int iServerTarget, WORD wSrvDIST, const D3DVECTOR&
 
 
 //----------------------------------------------------------------------------------------------------	
-/// @brief Ä«Æ®°è¿­Àº LIST_PAT ¿¡¼­ °ø°İ°ü·Ã µ¥ÀÌÅÍ´Â ¾ò¾î¿Â´Ù.
-///        Move Speed µîÀº ÆêÀ» Å¿´Ù´Â °¡Á¤ÇÏ¿¡ °è»êÀÌ ºÎ¸ğ¿¡°Ô °è»êÀÌ µÈ´Ù. °á±¹ ºÎ¸ğÀÇ ½ºÇÇµå¸¦ ÀÌ¿ëÇÏ¸éµÈ´Ù.
-///			ÀÌ´Â ºÎ¸ğÀÇ SpeedUpdate ¸¦ ÇÒ¶§ Æê Å¾½Â¿©ºÎ°¡ °í·ÁµÇ¾î¼­ °è»êµÇ±â ¶§¹®ÀÌ´Ù.
-///			±×·¯³ª Attack Speed µûÀ§´Â Æ²¸®´Ù. ÀÌ´Â Å×ÀÌºí¿¡¼­ ¾ò¾î¿Í¾ßÇÑ´Ù.( ¾Æ¹ÙÅ¸´Â ¹«±â¿¡ ÀÇÁ¸ÇÏ°í ±âÅ¸µîµî..
+/// @brief ì¹´íŠ¸ê³„ì—´ì€ LIST_PAT ì—ì„œ ê³µê²©ê´€ë ¨ ë°ì´í„°ëŠ” ì–»ì–´ì˜¨ë‹¤.
+///        Move Speed ë“±ì€ í«ì„ íƒ“ë‹¤ëŠ” ê°€ì •í•˜ì— ê³„ì‚°ì´ ë¶€ëª¨ì—ê²Œ ê³„ì‚°ì´ ëœë‹¤. ê²°êµ­ ë¶€ëª¨ì˜ ìŠ¤í”¼ë“œë¥¼ ì´ìš©í•˜ë©´ëœë‹¤.
+///			ì´ëŠ” ë¶€ëª¨ì˜ SpeedUpdate ë¥¼ í• ë•Œ í« íƒ‘ìŠ¹ì—¬ë¶€ê°€ ê³ ë ¤ë˜ì–´ì„œ ê³„ì‚°ë˜ê¸° ë•Œë¬¸ì´ë‹¤.
+///			ê·¸ëŸ¬ë‚˜ Attack Speed ë”°ìœ„ëŠ” í‹€ë¦¬ë‹¤. ì´ëŠ” í…Œì´ë¸”ì—ì„œ ì–»ì–´ì™€ì•¼í•œë‹¤.( ì•„ë°”íƒ€ëŠ” ë¬´ê¸°ì— ì˜ì¡´í•˜ê³  ê¸°íƒ€ë“±ë“±..
 //----------------------------------------------------------------------------------------------------
 
 float CObjCART::Get_MoveSPEED ()
@@ -573,15 +573,15 @@ int	 CObjCART::Get_AttackRange ()
 }
 
 
-/// Ãæµ¹¿¡ ÇÊ¿äÇÑ À§Ä¡Á¤º¸¸¦ º¹»çÇÑ´Ù.
+/// ì¶©ëŒì— í•„ìš”í•œ ìœ„ì¹˜ì •ë³´ë¥¼ ë³µì‚¬í•œë‹¤.
 void CObjCART::CopyCollisionInformation( bool bRiding )
 {
-	/// Parent ´Â °³³ä»óÀÇ ºÎ¸ğ ½ÇÁ¦·Î´Â ¾Æ¹ÙÅ¸°í Ä«Æ®¿¡ ¸µÅ© µÇ¾î ÀÖ´Ù.
-	/// ¿©±â¼­ Parent ´Â ¾Æ¹ÙÅ¸
+	/// Parent ëŠ” ê°œë…ìƒì˜ ë¶€ëª¨ ì‹¤ì œë¡œëŠ” ì•„ë°”íƒ€ê³  ì¹´íŠ¸ì— ë§í¬ ë˜ì–´ ìˆë‹¤.
+	/// ì—¬ê¸°ì„œ Parent ëŠ” ì•„ë°”íƒ€
 	CObjCHAR_Collision* pCollision = this->GetCollisionUtility();
 	CObjCHAR_Collision* pParentCollision = m_pObjParent->GetCollisionUtility();
  
-	/// Å»¶§´Â ¾Æ¹ÙÅ¸ÀÇ Á¤º¸¸¦ Ä«Æ®¿¡ º¹»ç  
+	/// íƒˆë•ŒëŠ” ì•„ë°”íƒ€ì˜ ì •ë³´ë¥¼ ì¹´íŠ¸ì— ë³µì‚¬  
 	if( bRiding )
 	{
 		if( m_pObjParent )
@@ -595,7 +595,7 @@ void CObjCART::CopyCollisionInformation( bool bRiding )
 		}
 	}else
 	{
-		/// ³»¸±¶§´Â Ä«Æ®ÀÇ Á¤º¸¸¦ ¾Æ¹ÙÅ¸¿¡ º¹»ç
+		/// ë‚´ë¦´ë•ŒëŠ” ì¹´íŠ¸ì˜ ì •ë³´ë¥¼ ì•„ë°”íƒ€ì— ë³µì‚¬
 		if( m_pObjParent )
 		{
 			if( pCollision && pParentCollision )
@@ -611,7 +611,7 @@ void CObjCART::CopyCollisionInformation( bool bRiding )
 }
 
 
-///¹ÚÁöÈ£::Ä«Æ®ÀÇ °¢ ÆÄÆ®¸¦ ºÒÅõ¸íµµ¸¦ ¼³Á¤ÇÑ´Ù. 
+///ë°•ì§€í˜¸::ì¹´íŠ¸ì˜ ê° íŒŒíŠ¸ë¥¼ ë¶ˆíˆ¬ëª…ë„ë¥¼ ì„¤ì •í•œë‹¤. 
 void CObjCART::SetCartPartVisible(float fv)
 {
 

@@ -31,7 +31,7 @@ bool CImageRes::LoadRES( CFileSystem* pFileSystem, const char* strResPath )
 	setDelayedLoad(0);
 	char					szTXFileName[MAX_PATH];
 
-	//RESÆú´õ¿¡ ½ºÇÁ¶óÀÌÆ® ÆÄÀÏ°ú ÅØ½ºÃÄÆÄÀÏÀÌ °°ÀÌ ÀÖ´Ù..		
+	//RESí´ë”ì— ìŠ¤í”„ë¼ì´íŠ¸ íŒŒì¼ê³¼ í…ìŠ¤ì³íŒŒì¼ì´ ê°™ì´ ìˆë‹¤..		
 	stTexture				tempTexture;
 	
 	short nTextureCNT = 0;
@@ -47,7 +47,7 @@ bool CImageRes::LoadRES( CFileSystem* pFileSystem, const char* strResPath )
 	short nTX_ID = 0;
 	for( short nC = 0 ; nC < nTextureCNT ; nC++ ) 
 	{
-		//°°Àº ÀÌ¸§ÀÌ ÀÖÀ¸¸é ·ÎµåÇÏÁö ¾ÊÀ½	
+		//ê°™ì€ ì´ë¦„ì´ ìˆìœ¼ë©´ ë¡œë“œí•˜ì§€ ì•ŠìŒ	
 		bool			bContinue = false;
 
 		ZeroMemory( tempTexture.m_szName, sizeof( tempTexture.m_szName ) );
@@ -56,7 +56,7 @@ bool CImageRes::LoadRES( CFileSystem* pFileSystem, const char* strResPath )
 		pFileSystem->Read( tempTexture.m_szName, sizeof(char) * nLen );
 		pFileSystem->Read( &tempTexture.m_dwColorKey, sizeof( DWORD ) );
 
-		//Áö±İ±îÁö µî·ÏµÈ ÀÌ¸§À» ºñ±³ÇÑ´Ù 
+		//ì§€ê¸ˆê¹Œì§€ ë“±ë¡ëœ ì´ë¦„ì„ ë¹„êµí•œë‹¤ 
 		for(short nB=0 ; nB < nC ; nB++ ) 
 		{
 			if( stricmp( m_TextureVec[ nB ].m_szName, tempTexture.m_szName ) == 0 ) 
@@ -81,7 +81,7 @@ bool CImageRes::LoadRES( CFileSystem* pFileSystem, const char* strResPath )
 		}
 		else 
 		{
-			// ¸®½ºÆ®¿¡ µî·Ï 
+			// ë¦¬ìŠ¤íŠ¸ì— ë“±ë¡ 
 			tempTexture.m_nTXID = nC;
 			m_TextureVec.push_back( tempTexture );			
 		}		
@@ -95,7 +95,7 @@ bool CImageRes::LoadRES( CFileSystem* pFileSystem, const char* strResPath )
 	short nG;
 	short nL;
 	short nI;
-	/// °¢°¢ÀÇ ÅØ½ºÃÄ¿¡ ÇÒ´çµÈ °³¼ö¸¸Å­..
+	/// ê°ê°ì˜ í…ìŠ¤ì³ì— í• ë‹¹ëœ ê°œìˆ˜ë§Œí¼..
 	for( nI = 0, nL = 0 ; nI < nTextureCNT ; nI++ ) 
 	{
 		pFileSystem->ReadInt16( &nLen );
@@ -108,7 +108,7 @@ bool CImageRes::LoadRES( CFileSystem* pFileSystem, const char* strResPath )
 			
 			pFileSystem->Read		( &tempSprite.m_szID, sizeof( tempSprite.m_szID ));			
 
-			//ÀÌÀü¿¡ °°Àº°Ô ÀÖÀ¸¸é ±×¹øÈ£·Î 
+			//ì´ì „ì— ê°™ì€ê²Œ ìˆìœ¼ë©´ ê·¸ë²ˆí˜¸ë¡œ 
 			short nID = tempSprite.m_nTextureID;
 			tempSprite.m_nTextureID = m_TextureVec[ nID ].m_nTXID;
 			
@@ -307,7 +307,7 @@ CImageRes* CImageResManager::GetImageRes( int iType )
 }
 
 
-/// NPC Face Image °ü·Ã
+/// NPC Face Image ê´€ë ¨
 bool CImageResManager::Add_NpcFaceFileInfo( int index, const char* filename )
 {
 	assert( filename );
@@ -361,7 +361,7 @@ HNODE CImageResManager::Load_NpcFace( const char * szName_ )
 {
 	HNODE hNode = false;
 
-// È«±Ù : È÷¾î·Î Äù½ºÆ® Ãß°¡ ±¸Çö.
+// í™ê·¼ : íˆì–´ë¡œ í€˜ìŠ¤íŠ¸ ì¶”ê°€ êµ¬í˜„.
 #ifdef _WORK
 
 	CFileSystem* pFileSystem = (CVFSManager::GetSingleton()).GetFileSystem();
