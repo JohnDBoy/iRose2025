@@ -49,6 +49,9 @@ typedef	LPDIRECT3DVERTEXBUFFER9		LPD3DVERTEXBUFFER;
 #include "Console.hpp"
 #endif
 
+// Added for backward compat for now, but no one wants it ... (should be deleted some day)
+//#define _PRE_EVO
+
 //#define _NEWUI
 //#define __APPLY_EXTAND_QUEST_VAR
 //#define __USE_IME

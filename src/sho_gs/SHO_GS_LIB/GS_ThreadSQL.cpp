@@ -1317,15 +1317,29 @@ bool GS_CThreadSQL::Proc_cli_CREATE_CHAR( tagQueryDATA *pSqlPACKET )
 		return true;
 	}
 
-	WORD wPosBeginner = 0;
+	// 시작 위치..
+	WORD wPosBeginner;
+#ifdef __PRE_EVO
+	wPosBeginner = 0; // 강제로 북쪽~~~
+#else
+	wPosBeginner = pPacket->m_cli_CREATE_CHAR.m_nZoneNO;
+	if (wPosBeginner >= MAX_BEGINNER_POS) {
+		wPosBeginner = RANDOM(MAX_BEGINNER_POS);
+	}
+#endif
 	
 	// 만들자 !!!
 	m_pDefaultBE[ nDefRACE ].m_btCharRACE = (BYTE)nDefRACE;
 	m_pDefaultBE[ nDefRACE ].m_nZoneNO    = BEGINNER_ZONE;
 	//m_pDefaultBE[ nDefRACE ].m_PosSTART   = g_ZoneLIST.Get_StartPOS( nZoneIDX );
 	m_pDefaultBE[ nDefRACE ].m_PosSTART   = s_BeginnerPOS[ wPosBeginner ];
-	
+
+	// 초기 부활장소 지정...
+#ifdef __PRE_EVO
 	short nDefReviveZoneNO = BEGINNER_ZONE;
+#else
+	short nDefReviveZoneNO = ADVENTURE_ZONE;
+#endif
 
 	pZONE = g_pZoneLIST->GetZONE( nDefReviveZoneNO );
 	m_pDefaultBE[ nDefRACE ].m_nReviveZoneNO = pZONE->Get_ZoneNO();
@@ -1379,6 +1393,7 @@ bool GS_CThreadSQL::Proc_cli_CREATE_CHAR( tagQueryDATA *pSqlPACKET )
 				MQ_PARAM_ADDSTR, ","	,	MQ_PARAM_BINDIDX,	8,
 				MQ_PARAM_ADDSTR, ");"	,	MQ_PARAM_END);
 #endif
+
 	if ( this->m_pSQL->ExecSQLBuffer() < 1 ) {
 		// 오류 또는 만들어진것이 없다.
 		g_LOG.CS_ODS(LOG_NORMAL, "Exec ERROR:: %s \n", m_pSQL->GetERROR() );

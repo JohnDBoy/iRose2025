@@ -57,7 +57,7 @@ bool CPartyBUFF::CreatePARTY ( classUSER *pOwner )
 }
 void CPartyBUFF::DeletePARTY (CParty *pCParty)
 {
-	// µ¿½Ã¿¡ DeletePARTYÈ£Ãâ‰é ¸øÇÏµµ·Ï :: 2004. 10. 05 :: 5-3 ¼· ´Ù¿î ¿øÀÎ... 0x8d050
+	// ë™ì‹œì— DeletePARTYí˜¸ì¶œ ?ëª»í•˜ë„ë¡ :: 2004. 10. 05 :: 5-3 ì„­ ë‹¤ìš´ ì›ì¸... 0x8d050
 	this->m_csPartyBUFF.Lock ();
 
 	if ( this->m_pINDEX[ pCParty->m_wPartyWSID ] ) {
@@ -105,14 +105,14 @@ void CParty::OnConnect (classUSER *pUSER)
 			}
 
 			if ( this->m_pPartyUSERs[ nI ]->m_dwDBID == pUSER->m_dwDBID ) {
-				// Á¢¼Ó ²÷±äÈÄ ¾ÆÁ÷ ÆÄÆ¼¿¡ ³²¾Æ ÀÖ´Ù.
+				// ì ‘ì† ëŠê¸´í›„ ì•„ì§ íŒŒí‹°ì— ë‚¨ì•„ ìˆë‹¤.
 				pUSER->m_pPartyBUFF = this;
 				pUSER->m_nPartyPOS = nI;
 
 				this->m_pPartyUSERs[ nI ]->m_pUSER = pUSER;
 				this->m_pPartyUSERs[ nI ]->m_dwDisconnectTIME = 0;
 
-				// Âü¼®ÀÚ¿¡°Ô ±âÁ¸ »ç¿ëÀÚ Á¤º¸ Àü¼Û.
+				// ì°¸ì„ìì—ê²Œ ê¸°ì¡´ ì‚¬ìš©ì ì •ë³´ ì „ì†¡.
 				pUSER->Send_gsv_PARTY_REPLY( 0, PARTY_REPLY_REJOIN );
 				this->Send_PartyUserLIST( pUSER, pUSER->m_dwDBID );
 				break;
@@ -128,8 +128,8 @@ void CParty::OnConnect (classUSER *pUSER)
 //-------------------------------------------------------------------------------------------------
 void CParty::OnDisconnect (classUSER *pUSER)
 {
-	// !!!! SQL ¾²·¡µå¿¡¼­ this->Lock °É·Á µé¾î¿È
-	// ¸ğµÎ µğ½º³­ »óÅÂ¸é ÆÄÆ¼ »Ç°·.
+	// !!!! SQL ì“°ë˜ë“œì—ì„œ this->Lock ê±¸ë ¤ ë“¤ì–´ì˜´
+	// ëª¨ë‘ ë””ìŠ¤ë‚œ ìƒíƒœë©´ íŒŒí‹° ë½€ê°¬.
 	tagPartyUSER *pPU;
 #ifdef	__USE_ARRAY_PARTY_USER
 	pPU = this->m_pPartyUSERs[ pUSER->m_nPartyPOS ];
@@ -139,9 +139,9 @@ void CParty::OnDisconnect (classUSER *pUSER)
 	pPU->m_pUSER  = NULL;
 	pPU->m_dwDisconnectTIME = classTIME::GetCurrentAbsSecond();
 
-	// ÆÄÂ¯ÀÌ¸é ÀÌÈÄ »ç¿ëÀÚ¿¡°Ô ÆÄÂ¯ ¹°¸².
+	// íŒŒì§±ì´ë©´ ì´í›„ ì‚¬ìš©ìì—ê²Œ íŒŒì§± ë¬¼ë¦¼.
 #ifdef	__USE_ARRAY_PARTY_USER
-	if ( 0 == pUSER->m_nPartyPOS ) {	// ÆÄÆ¼ ¿À³Ê°¡ Â©·È³×...
+	if ( 0 == pUSER->m_nPartyPOS ) {	// íŒŒí‹° ì˜¤ë„ˆê°€ ì§¤ë ¸ë„¤...
 		for (short nI=1; nI<this->m_nMemberCNT; nI++) {
 			if ( NULL == this->m_pPartyUSERs[ nI ] ) {
 				g_pThreadLOG->When_SysERR( __FILE__, nI, "OnDisconnect:: NULL == this->m_pPartyUSERs[ nI ]" );
@@ -153,12 +153,12 @@ void CParty::OnDisconnect (classUSER *pUSER)
 				return;
 			}
 		}
-		// ÆÄÂ¯ÀÌ ¾Æ´Ï¶ó´Â°Ç ÆÄÂ¯ÀÌ »ì¾ÆÀÖ´Ù´Â¶æ(ÆÄÂ¯ÀÌ Â©¸®¸é »ìÀº³ÑÇÑÅ× ÆÄÂ¯À» ³Ñ±â±â¶«¿¡..)
+		// íŒŒì§±ì´ ì•„ë‹ˆë¼ëŠ”ê±´ íŒŒì§±ì´ ì‚´ì•„ìˆë‹¤ëŠ”ëœ»(íŒŒì§±ì´ ì§¤ë¦¬ë©´ ì‚´ì€ë„˜í•œí…Œ íŒŒì§±ì„ ë„˜ê¸°ê¸°ë•œì—..)
 		g_pPartyBUFF->DeletePARTY( this );
 		return;
 	}
 
-	// ÆÄÆ¼¿øÀÌ Â©·È´Ù.
+	// íŒŒí‹°ì›ì´ ì§¤ë ¸ë‹¤.
 	this->Send_gsv_PARTY_REPLY2Members( PARTY_REPLY_DISCONNECT, pPU->m_dwDBID );
 	return;
 #else
@@ -218,7 +218,7 @@ bool CParty::SendWhisperToPartyMembers( char *szMessage )
 
 	pCPacket->m_HEADER.m_wType = GSV_WHISPER;
 	pCPacket->m_HEADER.m_nSize = sizeof( gsv_WHISPER );
-	pCPacket->AppendString( "ÆÄÆ¼¿É¼Ç" );
+	pCPacket->AppendString( "íŒŒí‹°ì˜µì…˜" );
 	pCPacket->AppendString( szMessage );
 
 	this->SendToPartyMembers( pCPacket );
@@ -385,10 +385,10 @@ bool CParty::AddEXP( CObjMOB *pMobCHAR, int iTotalEXP, int iPartyExpA, int iPart
 #else
 		x
 #endif
-		if ( iNearUSER > 1 ) {	// ÆÄÆ¼·Î ¼Ö·Î¸µÇÏ´Â°Ç ¾ÈµÅ~~
+		if ( iNearUSER > 1 ) {	// íŒŒí‹°ë¡œ ì†”ë¡œë§í•˜ëŠ”ê±´ ì•ˆë¼~~
 			int iEXP;
 			if ( this->m_btPartyRULE & BIT_PARTY_RULE_EXP_PER_PLAYER ) {
-				// °³ÀÎ ·¹º§¿¡ µû¶ó ºĞ¹è...
+				// ê°œì¸ ë ˆë²¨ì— ë”°ë¼ ë¶„ë°°...
 				for (iD=0; iD<iNearUSER; iD++) {
 					iEXP = (int)( ( iTotalEXP * ( m_btPartyLEV+101 ) ) * ( pNearUSER[ iD ]->Get_LEVEL()+35-m_iAverageLEV ) / (iNearUSER*4+1) / 700 );
 					if ( iEXP > 0 ) {
@@ -398,7 +398,7 @@ bool CParty::AddEXP( CObjMOB *pMobCHAR, int iTotalEXP, int iPartyExpA, int iPart
 						bFindOwner = true;
 				}
 			} else {
-				// ÆÄÆ¼¿ø¿¡°Ô ±Õµî ºĞ¹è...
+				// íŒŒí‹°ì›ì—ê²Œ ê· ë“± ë¶„ë°°...
 				iEXP = (int)( ( iTotalEXP * ( this->m_btPartyLEV+101 ) ) / (iNearUSER*4+1) / 20 );
 				if ( iEXP > 0 ) {
 					for (iD=0; iD<iNearUSER; iD++) {
@@ -413,22 +413,22 @@ bool CParty::AddEXP( CObjMOB *pMobCHAR, int iTotalEXP, int iPartyExpA, int iPart
 	this->Unlock ();
 
 
-	// ÆÄÆ¼ÀåÀÌ °°Àº ·ÎÄÃ Á¸¿¡ ÀÖ³Ä?
+	// íŒŒí‹°ì¥ì´ ê°™ì€ ë¡œì»¬ ì¡´ì— ìˆëƒ?
 	if ( iNearUSER > 1 && bFindOwner && m_btPartyLEV < MAX_PARTY_LEVEL ) {
 		int iCalEXP, iNewEXP;
 		DWORD dwCurTIME = pMobCHAR->GetZONE()->GetCurrentTIME();
 		BYTE btLevelUP=0;
 
-		// ÀÏÁ¤ °£°İ °¨¼ÒµÇ´Â °æÇèÄ¡.
+		// ì¼ì • ê°„ê²© ê°ì†Œë˜ëŠ” ê²½í—˜ì¹˜.
 		iCalEXP = ( m_btPartyLEV/2 + m_nMemberCNT ) * ( dwCurTIME - this->m_dwLastKillTIME ) / PARTY_EXP_UPDATE_TIME;
 		this->m_dwLastKillTIME = dwCurTIME;
 
 		iNewEXP = ( iCalEXP > m_iPartyEXP ) ? 0 : m_iPartyEXP-iCalEXP;
 
-		// ¾ò´Â °æÇèÄ¡
+		// ì–»ëŠ” ê²½í—˜ì¹˜
 		int iDiffLEV = pMobCHAR->Get_LEVEL() - m_iAverageLEV;
 		if ( iDiffLEV >= 0 ) {
-			// ¾ò´Â ÆÄÆ¼ °æÇèÄ¡ = (¸÷·¹º§-ÆÄÆ¼Æò±Õ ·¹º§ + A) * (¸÷·¹º§-ÆÄÆ¼Æò±Õ ·¹º§ + A + 1) * B/10 + 2
+			// ì–»ëŠ” íŒŒí‹° ê²½í—˜ì¹˜ = (ëª¹ë ˆë²¨-íŒŒí‹°í‰ê·  ë ˆë²¨ + A) * (ëª¹ë ˆë²¨-íŒŒí‹°í‰ê·  ë ˆë²¨ + A + 1) * B/10 + 2
 			// iCalEXP = ( iDiffLEV + 2 ) * ( iDiffLEV + 1 ) + 2;
 			iCalEXP = ( iDiffLEV + iPartyExpA ) * ( iDiffLEV + iPartyExpA + 1 ) * iPartyExpB/10 + 2;
 
@@ -437,7 +437,7 @@ bool CParty::AddEXP( CObjMOB *pMobCHAR, int iTotalEXP, int iPartyExpA, int iPart
 			if ( iNewEXP >= iCalEXP ) {
 				iNewEXP -= iCalEXP;
 				m_btPartyLEV ++;
-				// ¸ğµç ÆÄÆ¼¿ø HP/MP ²Ë~~
+				// ëª¨ë“  íŒŒí‹°ì› HP/MP ê½‰~~
 				this->LevelUP ();
 				btLevelUP = 1;
 			}
@@ -533,7 +533,7 @@ bool CParty::Change_PartyOWNER (classUSER *pNewOWNER, BYTE btReply)
 //
 //	if ( this->m_nMaxUserLEV - this->m_nMinUserLEV >= 10 ) {
 //		if ( 0 == ( this->m_btPartyRULE & BIT_PARTY_RULE_EXP_PER_PLAYER ) ) {
-//			// °³ÀÎ ·¹º§¿¡ µû¶ó ºĞ¹è·Î º¯°æ...
+//			// ê°œì¸ ë ˆë²¨ì— ë”°ë¼ ë¶„ë°°ë¡œ ë³€ê²½...
 //			this->Set_PartyRULE( this->m_btPartyRULE );
 //		}
 //	}
@@ -548,7 +548,7 @@ bool CParty::Send_PartyUserLIST( classUSER *pUSER, DWORD dwUserTAG )
 	if ( !pCPacket ) 
 		return false;
 
-	// pUSER¿¡°Ô ±âÁ¸ À¯Àúµé Á¤º¸ Àü¼Û...
+	// pUSERì—ê²Œ ê¸°ì¡´ ìœ ì €ë“¤ ì •ë³´ ì „ì†¡...
 	pCPacket->m_HEADER.m_wType = GSV_PARTY_MEMBER;
 	pCPacket->m_HEADER.m_nSize = sizeof( gsv_PARTY_MEMBER );
 	pCPacket->m_gsv_PARTY_MEMBER.m_btPartyRULE = this->m_btPartyRULE;
@@ -561,13 +561,13 @@ bool CParty::Send_PartyUserLIST( classUSER *pUSER, DWORD dwUserTAG )
 #ifdef	__USE_ARRAY_PARTY_USER
 		for (short nI=0; nI<this->m_nMemberCNT; nI++) {
 			if ( NULL == this->m_pPartyUSERs[ nI ] ) {
-				// ÀÌ·± °æ¿ì´Â ¹¹³Ä ???
+				// ì´ëŸ° ê²½ìš°ëŠ” ë­ëƒ ???
 				g_pThreadLOG->When_SysERR( __FILE__, nI, "Send_PartyUserLIST:: NULL == pCParty->m_pPartyUSERs[ nI ]" );
 				continue;	
 			}
 
 			if ( dwUserTAG != m_pPartyUSERs[ nI ]->m_dwDBID ) {
-				// ºñÁ¤»ó Á¾·áÈÄ Á¢¼Ó½Ã ÀÚ½Å¿¡°Ô ÀÚ½ÅÀÇ Á¤º¸ Àü¼ÛÇÏÁö ¾Êµµ·Ï...
+				// ë¹„ì •ìƒ ì¢…ë£Œí›„ ì ‘ì†ì‹œ ìì‹ ì—ê²Œ ìì‹ ì˜ ì •ë³´ ì „ì†¡í•˜ì§€ ì•Šë„ë¡...
 				if ( m_pPartyUSERs[ nI ]->m_pUSER ) {
 					sMember.m_dwUserTAG		= m_pPartyUSERs[ nI ]->m_pUSER->m_dwDBID;
 					sMember.m_wObjectIDX	= m_pPartyUSERs[ nI ]->m_pUSER->Get_INDEX();
@@ -603,17 +603,21 @@ bool CParty::Send_PartyUserLIST( classUSER *pUSER, DWORD dwUserTAG )
 
 BYTE CParty::Add_PartyUSER (classUSER *pUSER)
 {
-	// 05.05.25 ´ë¸¸ ¿Àº£ÀÌÈÄ´Â ÆÄÆ¼¿øÀº ¹«Á¶°Ç 5¸í !!!
+	// 05.05.25 ëŒ€ë§Œ ì˜¤ë² ì´í›„ëŠ” íŒŒí‹°ì›ì€ ë¬´ì¡°ê±´ 5ëª… !!! = 05.05.25 Taiwan Obeyhu has 5 party members unconditionally
+#ifdef __PRE_EVO
 	short nMaxUser = 6;
+#else
+	short nMaxUser = this->m_btPartyLEV / 5 + 4;
+#endif
 
-	// ±âÁ¸ À¯Àú¿¡°Ô »õ·Î¿î À¯Àú µé¿Ô´Ù°í Àü¼Û...
+	// ê¸°ì¡´ ìœ ì €ì—ê²Œ ìƒˆë¡œìš´ ìœ ì € ë“¤ì™”ë‹¤ê³  ì „ì†¡...
     classPACKET *pCPacket = Packet_AllocNLock ();
 	if ( !pCPacket ) 
 		return 0;
 
 	this->Lock ();
 	{
-		// Á¤¿ø ÃÊ°ú ?
+		// ì •ì› ì´ˆê³¼ ?
 		if ( this->m_nMemberCNT >= nMaxUser || this->m_nMemberCNT >= MAX_PARTY_MEMBERS ) {
 			this->Unlock ();
 			return PARTY_REPLY_FULL_MEMBERS;
@@ -727,10 +731,10 @@ bool CParty::Sub_PartyUSER( short nPartyPOS )
 	this->Unlock ();
 
 	if ( m_nMemberCNT <= 1 ) {
-		// 1¸í ³²¾ÒÀ¸¸é ÆÄÆ¼ »Ç°µ´Ù.
+		// 1ëª… ë‚¨ì•˜ìœ¼ë©´ íŒŒí‹° ë½€ê° ë‹¤.
 		g_pPartyBUFF->DeletePARTY( this );
 	} else {
-		// ³²Àº À¯Àú¿¡°Ô À¯Àú Å»Åğ Åëº¸...
+		// ë‚¨ì€ ìœ ì €ì—ê²Œ ìœ ì € íƒˆí‡´ í†µë³´...
 		classPACKET *pCPacket;
 		pCPacket = Packet_AllocNLock ();
 		if ( !pCPacket ) 
@@ -761,11 +765,11 @@ void CParty::Share_MONEY( int iMoney )
 #ifdef	__USE_ARRAY_PARTY_USER
 		for (short nI=0; nI<this->m_nMemberCNT; nI++) {
 			if ( NULL == this->m_pPartyUSERs[ nI ] ) {
-				// ÀÌ·± °æ¿ì´Â ¹¹³Ä ???
+				// ì´ëŸ° ê²½ìš°ëŠ” ë­ëƒ ???
 				g_pThreadLOG->When_SysERR( __FILE__, nI, "Share_MONEY:: NULL == pCParty->m_pPartyUSERs[ nI ]" );
 				continue;	
 			}
-			if ( this->m_pPartyUSERs[ nI ]->m_pUSER ) {		// 0x0008bce5 ¿À·ù... NULL == this->m_pPartyUSERs[ nI ] ???
+			if ( this->m_pPartyUSERs[ nI ]->m_pUSER ) {		// 0x0008bce5 ì˜¤ë¥˜... NULL == this->m_pPartyUSERs[ nI ] ???
 				this->m_pPartyUSERs[ nI ]->m_pUSER->Add_MoneyNSend( iAdd, GSV_SET_MONEY_ONLY );
 			}
 		}
@@ -804,11 +808,11 @@ bool CParty::Give_Item2ORDER (classUSER *pTryOBJ, CObjITEM *pItemOBJ)
 		BYTE btOrder = m_btItemORDERs[ InvPage ];
 		for (short nI=0; nI<m_nMemberCNT; nI++) {
 			btOrder = (1+btOrder) % m_nMemberCNT;
-			// °°Àº Á¸ÀÌ¸é ¼ø¼­ÀÚ¿¡°Ô...
+			// ê°™ì€ ì¡´ì´ë©´ ìˆœì„œìì—ê²Œ...
 			if ( m_pPartyUSERs[ btOrder ] && m_pPartyUSERs[ btOrder ]->m_pUSER &&
 				m_pPartyUSERs[ btOrder ]->m_pUSER->GetZONE() == pTryOBJ->GetZONE() ) {
 
-				// ÆÄÆ¼¿øµéÇÑÅ× ¾ÆÀÌÅÛ ½Àµæ ¸Ş¼¼Áö...
+				// íŒŒí‹°ì›ë“¤í•œí…Œ ì•„ì´í…œ ìŠµë“ ë©”ì„¸ì§€...
 				this->Send_gsv_PARTY_ITEM( m_pPartyUSERs[ btOrder ]->m_pUSER, pItemOBJ );
 				m_pPartyUSERs[ btOrder ]->m_pUSER->Pick_ITEM( pItemOBJ );
 
@@ -820,7 +824,7 @@ bool CParty::Give_Item2ORDER (classUSER *pTryOBJ, CObjITEM *pItemOBJ)
 	}
 	this->Unlock ();
 
-	// ¸Ö¸® ÀÖ°Å³ª Á¢¼Ó ²÷±ä ³ÑÀÌ¸é ÁİÀº³Ñ ¸Ô±â...
+	// ë©€ë¦¬ ìˆê±°ë‚˜ ì ‘ì† ëŠê¸´ ë„˜ì´ë©´ ì¤ì€ë„˜ ë¨¹ê¸°...
 	return pTryOBJ->Pick_ITEM( pItemOBJ );
 }
 
@@ -903,7 +907,7 @@ void CParty::Set_PartyRULE( BYTE btRULE )
 
 	if ( nMaxUserLEV - nMinUserLEV >= 10 ) {
 		if ( 0 == ( btRULE & BIT_PARTY_RULE_EXP_PER_PLAYER ) ) {
-			// °³ÀÎ ·¹º§¿¡ µû¶ó °­Á¦·Î ¼³Á¤...
+			// ê°œì¸ ë ˆë²¨ì— ë”°ë¼ ê°•ì œë¡œ ì„¤ì •...
 			btRULE |= BIT_PARTY_RULE_EXP_PER_PLAYER;
 		}
 	}
