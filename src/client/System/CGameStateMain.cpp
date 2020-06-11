@@ -888,11 +888,13 @@ bool CGameStateMain::On_WM_LBUTTONDOWN (WPARAM wParam, LPARAM lParam)
 //----------------------------------------------------------------------------------------------------
 /// @param
 /// @brief WM_RBUTTONDOWN 
-//    9/14 현재 기능제거.. (카메라 워크와 충돌 )
+//    9/14 현재 기능제거.. (카메라 워크와 충돌 ) = Removed the current function.. (collision with camera work)
 //----------------------------------------------------------------------------------------------------
-
 bool CGameStateMain::On_WM_RBUTTONDOWN (WPARAM wParam, LPARAM lParam)
 {
+	// @Sefy - we don't want to lose target when just looking around (even the function comment says that it collides with camera)
+	return true;
+
 	if ( NULL == g_pAVATAR )
 		return true;
 
@@ -903,7 +905,7 @@ bool CGameStateMain::On_WM_RBUTTONDOWN (WPARAM wParam, LPARAM lParam)
 		return true;
 
 	
-	/// 입력은 서버의 결과와는 상관없다.
+	/// 입력은 서버의 결과와는 상관없다. = The input is independent of the server's result.
 	if( g_pAVATAR->bCanUserInput() )
 	{
 		g_UserInputSystem.RButtonDown( this->m_iPickedOBJ, this->m_PosPICK, wParam  );	
