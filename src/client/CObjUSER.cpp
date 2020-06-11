@@ -285,9 +285,15 @@ bool CObjUSER::Skill_LevelUp( int iSkillSlotNo, int iSkillIndex )
 
 void CObjUSER::Update_SPEED ()
 {	
-	m_nRunSPEED     = Cal_RunSPEED ();
+	ConsoleLog(MSG_INFO, "CObjUser::Update_Speed (%s) - orig value : %i", (this->forcedSpeed ? "forced" : "calculated"), this->GetOri_RunSPEED());
+
 	/*m_fRunAniSPEED  = Cal_RunAniSPEED( m_nRunSPEED );
 	m_nAtkAniSPEED  = Cal_AtkAniSPEED( Get_R_WEAPON() );	*/
+
+	if (!this->forcedSpeed) {
+		m_nRunSPEED = static_cast<short>(Cal_RunSPEED());
+	}
+
 	if ( this->GetPetMode() < 0 )
 	{
  		m_fRunAniSPEED = Cal_RunAniSPEED( m_nRunSPEED );
@@ -1097,3 +1103,7 @@ void CObjUSER::Set_Block_CartRide(bool ride)
 	GetSkillSlot()->SetActiveSkillEnableByRideState_Aid( ride );
 }
 
+void CObjUSER::setForcedSpeed(bool force)
+{
+	this->forcedSpeed = force;
+}

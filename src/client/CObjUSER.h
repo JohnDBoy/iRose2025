@@ -39,6 +39,7 @@ private:
 
 	static CObjUSER	*m_pInstance;
 
+	bool forcedSpeed = false;
 
 public :
 	static CObjUSER* Instance ();
@@ -468,6 +469,9 @@ public:
 //------------------------------------------------------------------------
 
 	void Set_Block_CartRide(bool ride);
+
+	// @Sefy - added this to handle /speed command : toggle this boolean from server (reset by sending /speed 0)
+	void setForcedSpeed(bool forced);
 
 } ;
 

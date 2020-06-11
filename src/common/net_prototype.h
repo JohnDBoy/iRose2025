@@ -1810,6 +1810,8 @@ struct gsv_SPEED_CHANGED : public t_PACKETHEADER {
 	short	m_nRunSPEED;			// 패시브 상태를 포함, 지속 상태 제외
 	short	m_nPsvAtkSPEED;			// 패시브 값만...
 	BYTE	m_btWeightRate;			// 현재소지량/최대소지량*100
+
+	bool	force; // use pure given speed or recompute ?
 } ;
 
 

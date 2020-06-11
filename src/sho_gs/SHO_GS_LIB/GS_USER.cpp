@@ -3439,12 +3439,17 @@ _RETURN:
 bool classUSER::Send_gsv_SPEED_CHANGED(bool bUpdateSpeed)
 {
 	// 속도 갱신...
-	if (bUpdateSpeed)
+	if (bUpdateSpeed) {
 		this->Update_SPEED();
+	}
 
 	classPACKET* pCPacket = Packet_AllocNLock();
-	if (!pCPacket)
+
+	if (!pCPacket) {
 		return false;
+	}
+
+	LogString(LOG_DEBUG, "GS_USER::Send_gs_SPEED_CHANGED (speed = %i)", this->GetOri_RunSPEED());
 
 	pCPacket->m_HEADER.m_wType = GSV_SPEED_CHANGED;
 	pCPacket->m_HEADER.m_nSize = sizeof(gsv_SPEED_CHANGED);
@@ -3453,6 +3458,8 @@ bool classUSER::Send_gsv_SPEED_CHANGED(bool bUpdateSpeed)
 	pCPacket->m_gsv_SPEED_CHANGED.m_nRunSPEED = this->GetOri_RunSPEED();
 	pCPacket->m_gsv_SPEED_CHANGED.m_nPsvAtkSPEED = this->GetPsv_ATKSPEED();
 	pCPacket->m_gsv_SPEED_CHANGED.m_btWeightRate = this->m_btWeightRate;
+
+	pCPacket->m_gsv_SPEED_CHANGED.force = !bUpdateSpeed;
 
 	this->GetZONE()->SendPacketToSectors(this, pCPacket);
 
@@ -4118,7 +4125,7 @@ bool classUSER::Recv_cli_CREATE_ITEM_REQ(t_PACKET* pPacket)
 #endif
 			return this->Send_gsv_CREATE_ITEM_REPLY(RESULT_CREATE_ITEM_FAILED, nI, fPRO_POINT);
 		}
-	}
+		}
 
 	sOutITEM.Clear();
 
@@ -4180,12 +4187,12 @@ bool classUSER::Recv_cli_CREATE_ITEM_REQ(t_PACKET* pPacket)
 				else
 					sOutITEM.m_nGEM_OP = iITEM_OP % 300;
 			}
-		}
+			}
 		break;
-		}
+	}
 
 		this->Set_ItemSN(sOutITEM);	// 아이템 제조시...
-	}
+		}
 	else {
 		// 무조건 1개 제조된다...
 		sOutITEM.m_uiQuantity = 1;
@@ -4449,7 +4456,7 @@ bool classUSER::Pick_ITEM(CObjITEM* pITEM)
 		pITEM->m_bDropperIsUSER = false;
 
 		return true;
-	}
+}
 
 	classPACKET* pCPacket = Packet_AllocNLock();
 	if (!pCPacket)
@@ -4468,7 +4475,7 @@ bool classUSER::Pick_ITEM(CObjITEM* pITEM)
 
 		if (ITEM_TYPE_MONEY != pITEM->m_ITEM.GetTYPE()) {
 			this->Set_ItemSN(this->m_Inventory.m_ItemLIST[pCPacket->m_gsv_GET_FIELDITEM_REPLY.m_nInventoryListNO] /* pITEM->m_ITEM */);	// 필드에서 습득시...
-		}
+	}
 
 #ifdef	__NEW_LOG
 		g_pThreadLOG->When_ObjItemLOG(LIA_PICK, this, pITEM);
@@ -4734,7 +4741,7 @@ bool classUSER::Recv_cli_MOVE_ITEM(t_PACKET* pPacket)
 		else {
 			// 총 40개 사용
 			nToSlotIDX = this->m_Bank.Add_ITEM(sMoveITEM, 0, BANKSLOT_JPN_DEFAULT);
-		}
+	}
 #else
 #ifndef	__INC_WORLD
 		if ((this->m_dwPayFLAG & PLAY_FLAG_EXTRA_STOCK) && pPacket->m_cli_MOVE_ITEM.m_btUseSpecialTAB == 1) {
@@ -4782,7 +4789,7 @@ bool classUSER::Recv_cli_MOVE_ITEM(t_PACKET* pPacket)
 		pCPacket->m_gsv_MOVE_ITEM.m_nInvIDX = pPacket->m_cli_MOVE_ITEM.m_btFromIDX;
 		pCPacket->m_gsv_MOVE_ITEM.m_nBankIDX = nToSlotIDX;
 		break;
-	}
+		}
 
 	case MOVE_ITEM_TYPE_BANK2INV:
 		// 꺼내 가는건 결제와 상관없다..
@@ -4930,8 +4937,8 @@ short classUSER::Recv_cli_TELEPORT_REQ(t_PACKET * pPacket)
 		if (iDistance > MAX_WARP_OBJECT_DISTANCE) {
 			// 서버의 위치로 클라이언트 복귀...
 			return this->Send_gsv_ADJUST_POS(true);
-		}
 	}
+}
 	else {
 #if defined(_PRE_EVO) && !defined (__INC_WORLD)
 		return RET_OK;	// IS_HACKING( this, "Recv_cli_TELEPORT_REQ-4" );
@@ -6008,7 +6015,7 @@ bool classUSER::Recv_cli_SKILL_LEVELUP_REQ(t_PACKET * pPacket)
 			pCPacket->m_gsv_SKILL_LEVELUP_REPLY.m_btSkillSLOT = pPacket->m_cli_SKILL_LEVELUP_REQ.m_btSkillSLOT;
 			pCPacket->m_gsv_SKILL_LEVELUP_REPLY.m_nSkillINDEX = this->m_Skills.m_nSkillINDEX[pPacket->m_cli_SKILL_LEVELUP_REQ.m_btSkillSLOT];
 		}
-	}
+		}
 	pCPacket->m_gsv_SKILL_LEVELUP_REPLY.m_btResult = btResult;
 	pCPacket->m_gsv_SKILL_LEVELUP_REPLY.m_nSkillPOINT = this->GetCur_SkillPOINT();
 
@@ -6017,7 +6024,7 @@ bool classUSER::Recv_cli_SKILL_LEVELUP_REQ(t_PACKET * pPacket)
 	Packet_ReleaseNUnlock(pCPacket);
 
 	return true;
-}
+	}
 
 //-------------------------------------------------------------------------------------------------
 /// 셀프 스킬인지 체크...
@@ -6192,7 +6199,7 @@ bool classUSER::Recv_cli_SELF_SKILL(t_PACKET * pPacket)
 	}
 
 	return true;
-}
+	}
 
 /// 타겟 스킬 시작 요청 받음
 bool classUSER::Recv_cli_TARGET_SKILL(t_PACKET * pPacket)
@@ -6324,7 +6331,7 @@ bool classUSER::Recv_cli_TARGET_SKILL(t_PACKET * pPacket)
 	}
 
 	return true;
-}
+	}
 
 /// 지역 스킬 요청 받음 
 bool classUSER::Recv_cli_POSITION_SKILL(t_PACKET * pPacket)
@@ -6388,7 +6395,7 @@ bool classUSER::Recv_cli_POSITION_SKILL(t_PACKET * pPacket)
 		this->Send_gsv_WHISPER("POSITION_SKILL", szTmp);
 #endif
 		return true;
-	}
+}
 	if (this->Get_WeightRATE() >= WEIGHT_RATE_CANT_ATK) {
 		// 무겁다.. 명령 불가...
 		if ((SKILL_TYPE(nSkillIDX) >= 3 && SKILL_TYPE(nSkillIDX) <= 13) ||
@@ -6428,7 +6435,7 @@ bool classUSER::Recv_cli_POSITION_SKILL(t_PACKET * pPacket)
 	}
 
 	return true;
-}
+	}
 
 
 //-------------------------------------------------------------------------------------------------
@@ -6990,7 +6997,7 @@ bool classUSER::Recv_cli_MESSENGER(t_PACKET * pPacket)
 
 	default:
 		g_pThreadMSGR->Add_MessengerCMD(this->Get_NAME(), pPacket->m_tag_MCMD_HEADER.m_btCMD, pPacket, this->m_iSocketIDX);
-	} // switch( pPacket->m_tag_MCMD_HEADER.m_btCMD )
+} // switch( pPacket->m_tag_MCMD_HEADER.m_btCMD )
 #endif
 
 	return true;
@@ -7209,7 +7216,7 @@ bool classUSER::Proc_CRAFT_BREAKUP_REQ(t_PACKET * pPacket, bool bUseMP)
 			this->Save_ItemToFILED(sOutITEM);	// 보석 분리후 인벤토리 모자람...
 		}
 		return true;
-	} // if ( !pInITEM->IsEnableDupCNT() && pInITEM->HasSocket() && pInITEM->GetGemNO() > 300 ) 
+		} // if ( !pInITEM->IsEnableDupCNT() && pInITEM->HasSocket() && pInITEM->GetGemNO() > 300 ) 
 	else {
 		// 분해.
 		if (0 == ITEM_PRODUCT_IDX(pInITEM->GetTYPE(), pInITEM->GetItemNO())) {
@@ -7329,7 +7336,7 @@ bool classUSER::Proc_CRAFT_BREAKUP_REQ(t_PACKET * pPacket, bool bUseMP)
 
 
 	return true;
-}
+	}
 /// 아이템 재련 요청
 bool classUSER::Proc_CRAFT_UPGRADE_REQ(t_PACKET * pPacket, bool bUseMP)
 {
@@ -8039,7 +8046,7 @@ bool classUSER::Recv_cli_CHECK_AUTH(t_PACKET * pPacket)
 		return true;		// 개인섭은 짜르지 말자~~
 #endif
 		return false;
-	}
+}
 #endif
 	return true;
 }
@@ -8077,7 +8084,7 @@ bool classUSER::Recv_cli_CLAN_COMMAND(t_PACKET * pPacket)
 			this->Send_wsv_CLAN_COMMAND(RESULT_CLAN_CREATE_NO_CONDITION, NULL);
 			return true;
 		}
-	}
+}
 	return g_pThreadGUILD->Add_ClanCMD(pPacket->m_cli_CLAN_COMMAND.m_btCMD, this->m_iSocketIDX, pPacket);
 #else
 	if (GCMD_CREATE == pPacket->m_cli_CLAN_COMMAND.m_btCMD) {
@@ -8823,7 +8830,7 @@ int classUSER::Proc_ZonePACKET(t_PACKET * pPacket)
 
 	default:
 		g_LOG.CS_ODS(0xffff, "** ERROR( ZONE!=NULL ) : Invalid packet type: 0x%x, Size: %d ", pPacket->m_HEADER.m_wType, pPacket->m_HEADER.m_nSize);
-	} // switch ( pPacket->m_HEADER.m_wType )
+} // switch ( pPacket->m_HEADER.m_wType )
 
 #pragma COMPILE_TIME_MSG( "패킷 걸러서 소켓 종료할곳 :: 클라이언트가 보내면 안되는 패킷을 보내고 있음..." )
 	if ((pPacket->m_HEADER.m_wType & 0x0f00) == 0x0700)
@@ -8996,7 +9003,7 @@ bool classUSER::Recv_cli_CART_RIDE(t_PACKET * pPacket)
 
 	default:
 		return false;
-	} // switch( pPacket->m_cli_CART_RIDE.m_btType )
+} // switch( pPacket->m_cli_CART_RIDE.m_btType )
 
 	return true;
 }
@@ -9292,7 +9299,7 @@ int	 classUSER::Proc(void)
 	// 워프 명령 이후에는 ...
 	// Zone이 NULL이 되어 아래 함수 호출시 뻑~~~~~~~
 	return CObjCHAR::Proc();
-}
+		}
 
 /**
  * \param dwFLAG	:: 상태지속 비트 플래그

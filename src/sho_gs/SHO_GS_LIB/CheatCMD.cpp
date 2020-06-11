@@ -945,26 +945,17 @@ short classUSER::Cheat_regen ( CStrVAR *pStrVAR, char *pArg1, char *pArg2 )
 }
 
 //-------------------------------------------------------------------------------------------------
-// 2005-08-17 : kchs , 현재속도를 fRate(비율)만큼 증가시킴
+// 2005-08-17 : kchs , 현재속도를 fRate(비율)만큼 증가시킴 = Increase the current speed by fRate
+// @Sefy - no longer a rate, plain value (pass 1000 for 1000 mspeed, 0 for reset)
 short classUSER::Cheat_speed ( char * pArg1 )
 {
-	float fRate = (float)atof( pArg1 );
-	//m_nRunSPEED *= fRate;
-	float calcspeed = (float)m_nRunSPEED;
-	calcspeed *= fRate;
-	if(calcspeed > MAX_SHORT)
-	{
-		m_nRunSPEED = (MAX_SHORT);
-	}
-	else if(calcspeed < 100)
-	{
-		m_nRunSPEED = 100;
-	}
-	else
-	{
-		m_nRunSPEED = (short)calcspeed;
-	}
-	Send_gsv_SPEED_CHANGED( false );
+	const float speed = atof(pArg1);
+
+	m_nRunSPEED = speed;
+
+	LogString(LOG_DEBUG, "Cheat speed ! :) gonna fly to %i mph", m_nRunSPEED);
+
+	Send_gsv_SPEED_CHANGED(false);
 
 	return CHEAT_PROCED;
 }

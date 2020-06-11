@@ -3264,11 +3264,22 @@ void CRecvPACKET::Recv_gsv_SPEED_CHANGED ()
 	CObjAVT *pAVTChar = g_pObjMGR->Get_ClientCharAVT( m_pRecvPacket->m_gsv_SPEED_CHANGED.m_wObjectIDX, false);
 
 	if ( pAVTChar ) {
-		pAVTChar->SetOri_RunSPEED( m_pRecvPacket->m_gsv_SPEED_CHANGED.m_nRunSPEED );			// 패시브 상태를 포함, 지속 상태 제외
-		pAVTChar->SetPsv_AtkSPEED( m_pRecvPacket->m_gsv_SPEED_CHANGED.m_nPsvAtkSPEED );			// 패시브 값만...
+		const gsv_SPEED_CHANGED* packetData = &m_pRecvPacket->m_gsv_SPEED_CHANGED;
 
-		if( g_pAVATAR && pAVTChar->IsA( OBJ_USER ))
+		ConsoleLog(MSG_INFO, "RecvPacket <Speed_Changed> (value = %i, forced ? %s)", packetData->m_nRunSPEED, packetData->force ? "Yes" : "No");
+
+		// 패시브 상태를 포함, 지속 상태 제외 = Include passive state, exclude persistent state
+		pAVTChar->SetOri_RunSPEED(packetData->m_nRunSPEED);
+		// 패시브 값만... = Passive value only...
+		pAVTChar->SetPsv_AtkSPEED(packetData->m_nPsvAtkSPEED);
+
+		if (g_pAVATAR && pAVTChar->IsA(OBJ_USER)) {
+			if (packetData->force) {
+				g_pAVATAR->setForcedSpeed(packetData->m_nRunSPEED != 0);
+			}
+
 			g_pAVATAR->UpdateAbility();
+		}
 
 		///TODO::
 		m_pRecvPacket->m_gsv_SPEED_CHANGED.m_btWeightRate;		// 현재소지량/최대소지량*100
