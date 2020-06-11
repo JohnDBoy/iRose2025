@@ -194,7 +194,7 @@ void CUserDATA::Cal_BattleAbility()
 	if (GetCur_HP() > GetCur_MaxHP()) SetCur_HP(GetCur_MaxHP());
 	if (GetCur_MP() > GetCur_MaxMP()) SetCur_MP(GetCur_MaxMP());
 
-#ifdef __PRE_EVO
+#ifdef _PRE_EVO
 	if (this->GetCur_MOVE_MODE() <= MOVE_MODE_RUN) {
 		// 대만 보행모드면...
 		int iCurAbility;
@@ -325,7 +325,7 @@ int CUserDATA::Cal_MaxHP()
 {
 	int iA, iM1, iM2;
 
-#ifdef __PRE_EVO
+#ifdef _PRE_EVO
 	float fC;
 	switch (this->GetCur_JOB()) {
 	case CLASS_SOLDIER_111:	// 솔져(111)		[(LV+5)*SQRT(LV+20)*3.5+(STR*2)] + 아이템 증가치 
@@ -622,7 +622,7 @@ int CUserDATA::Cal_ATTACK()
 			// 소모탄에 따른 공격력 계산...
 			switch (ShotTYPE) {
 			case SHOT_TYPE_ARROW:
-#ifdef __PRE_EVO
+#ifdef _PRE_EVO
 				// 화살장착:[  (DEX*0.52 + STR*0.1 + LV*0.1+총알품질*0.5)+{(무기공격력+ 무기등급추가치) * (DEX*0.04+SEN*0.03+29) / 30} ] + 아이템 증가치
 				iAP = (int)((GetCur_DEX() * 0.52f + GetCur_STR() * 0.1f + GetCur_LEVEL() * 0.1f + nItemQ * 0.5f) +
 					((iWeaponAP + ITEMGRADE_ATK(pRightWPN->GetGrade())) * (GetCur_DEX() * 0.04f + GetCur_SENSE() * 0.03f + 29) / 30));
@@ -637,7 +637,7 @@ int CUserDATA::Cal_ATTACK()
 				//			( ( (iWeaponAP+ITEMGRADE_ATK(pRightWPN->GetGrade()) )+nItemQ*0.6f+8 ) * ( GetCur_CON()*0.03f + GetCur_SENSE()*0.05f+29) / 30 ) );
 				// 2005/ 6 / 29일 필리핀 버젼부터 국내와 대만 버젼계산식 분리
 				
-#ifdef __PRE_EVO
+#ifdef _PRE_EVO
 					iAP = (int)((GetCur_DEX() * 0.3f + GetCur_CON() * 0.47f + GetCur_LEVEL() * 0.1f + nItemQ * 0.8f) +
 						(((iWeaponAP + ITEMGRADE_ATK(pRightWPN->GetGrade()))) * (GetCur_CON() * 0.04f + GetCur_SENSE() * 0.05f + 29) / 30));
 #else
@@ -649,7 +649,7 @@ int CUserDATA::Cal_ATTACK()
 				//iAP = (int)( ( GetCur_STR()*0.52f + GetCur_CON()*0.5f + GetCur_LEVEL()*0.2f + nItemQ ) +
 				//			( ( (iWeaponAP+ITEMGRADE_ATK(pRightWPN->GetGrade()) )+nItemQ+12 ) * ( GetCur_CON()*0.04f + GetCur_SENSE()*0.05f+29) / 30 ) );
 				// 2005/ 6 / 29일 필리핀 버젼부터 국내와 대만 버젼계산식 분리
-#ifdef __PRE_EVO
+#ifdef _PRE_EVO
 					iAP = (int)((GetCur_STR() * 0.32f + GetCur_CON() * 0.45f + GetCur_LEVEL() * 0.1f + nItemQ * 0.8f) +
 						(((iWeaponAP + ITEMGRADE_ATK(pRightWPN->GetGrade()))) * (GetCur_CON() * 0.04f + GetCur_SENSE() * 0.05f + 29) / 30));
 #else

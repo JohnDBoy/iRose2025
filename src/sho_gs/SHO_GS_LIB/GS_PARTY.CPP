@@ -604,7 +604,7 @@ bool CParty::Send_PartyUserLIST( classUSER *pUSER, DWORD dwUserTAG )
 BYTE CParty::Add_PartyUSER (classUSER *pUSER)
 {
 	// 05.05.25 대만 오베이후는 파티원은 무조건 5명 !!! = 05.05.25 Taiwan Obeyhu has 5 party members unconditionally
-#ifdef __PRE_EVO
+#ifdef _PRE_EVO
 	short nMaxUser = 6;
 #else
 	short nMaxUser = this->m_btPartyLEV / 5 + 4;

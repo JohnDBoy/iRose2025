@@ -1281,7 +1281,7 @@ bool GS_CThreadSQL::Proc_cli_CREATE_CHAR( tagQueryDATA *pSqlPACKET )
 	short nDefRACE = pPacket->m_cli_CREATE_CHAR.m_btCharRACE;
 	CZoneTHREAD *pZONE = g_pZoneLIST->GetZONE( AVATAR_ZONE( nDefRACE ) );
 	if ( !pZONE ) {
-		g_LOG.CS_ODS(LOG_NORMAL, "Proc_cli_CREATE_CHAR:: Invalid Zone %d, Race: %d \n", AVATAR_ZONE( nDefRACE ), nDefRACE );
+		LogString(LOG_NORMAL, "GS_ThreadSQL::CreateChar - Invalid Zone %d, Race: %d \n", AVATAR_ZONE( nDefRACE ), nDefRACE );
 		g_pUserLIST->Send_wsv_CREATE_CHAR( pSqlPACKET->m_iTAG, RESULT_CREATE_CHAR_FAILED );
 		return true;
 	}
@@ -1319,7 +1319,7 @@ bool GS_CThreadSQL::Proc_cli_CREATE_CHAR( tagQueryDATA *pSqlPACKET )
 
 	// 시작 위치..
 	WORD wPosBeginner;
-#ifdef __PRE_EVO
+#ifdef _PRE_EVO
 	wPosBeginner = 0; // 강제로 북쪽~~~
 #else
 	wPosBeginner = pPacket->m_cli_CREATE_CHAR.m_nZoneNO;
@@ -1327,6 +1327,8 @@ bool GS_CThreadSQL::Proc_cli_CREATE_CHAR( tagQueryDATA *pSqlPACKET )
 		wPosBeginner = RANDOM(MAX_BEGINNER_POS);
 	}
 #endif
+
+	LogString(LOG_NORMAL, "GSThreadSQL - New user will be born at pos : %i", (int)wPosBeginner);
 	
 	// 만들자 !!!
 	m_pDefaultBE[ nDefRACE ].m_btCharRACE = (BYTE)nDefRACE;
@@ -1335,7 +1337,7 @@ bool GS_CThreadSQL::Proc_cli_CREATE_CHAR( tagQueryDATA *pSqlPACKET )
 	m_pDefaultBE[ nDefRACE ].m_PosSTART   = s_BeginnerPOS[ wPosBeginner ];
 
 	// 초기 부활장소 지정...
-#ifdef __PRE_EVO
+#ifdef _PRE_EVO
 	short nDefReviveZoneNO = BEGINNER_ZONE;
 #else
 	short nDefReviveZoneNO = ADVENTURE_ZONE;

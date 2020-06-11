@@ -37,7 +37,7 @@ __int64 CCal::Get_NeedRawEXP(int iLevel)
 	if (iLevel > MAX_LEVEL)
 		iLevel = MAX_LEVEL;
 
-#ifdef __PRE_EVO
+#ifdef _PRE_EVO
 	// [레벨 15이하일 경우]   필요 경험치 = { (LV + 3) * (LV + 5 ) * (LV + 10) * 0.7 }
 	if (iLevel <= 15)
 		return (__int64)((iLevel + 3) * (iLevel + 5) * (iLevel + 10) * 0.7);
@@ -133,7 +133,7 @@ bool CCal::Get_DropITEM(int iLevelDiff, CObjMOB* pMobCHAR, tagITEM& sITEM, int i
 		if (iLevelDiff >= 10)
 			return false;
 
-#ifdef __PRE_EVO
+#ifdef _PRE_EVO
 	// 대만 6-14 kchs
 	if (iLevelDiff < 9)
 		iDrop_VAR = (int)((::Get_WorldDROP() + NPC_DROP_ITEM(pMobCHAR->Get_CharNO()) - (1 + RANDOM(100)) - ((iLevelDiff + 16) * 3.5f) - 10 + iDropRate) * 0.38f); // * ( NPC_DROP_MONEY( pMobCHAR->Get_CharNO() ) + 30 ) / 130;
@@ -212,7 +212,7 @@ bool CCal::Get_DropITEM(int iLevelDiff, CObjMOB* pMobCHAR, tagITEM& sITEM, int i
 			// 소켓 갯수 :: 05.05.25 대만 오베이후에는 드롭 아이템에 소켓 없다. = Number of sockets :: 05.05.25 There are no sockets on drop items in Obay, Taiwan.
 			short nRareType = ITEM_RARE_TYPE(sITEM.GetTYPE(), sITEM.GetItemNO());
 
-#ifdef __PRE_EVO
+#ifdef _PRE_EVO
 			if (nRareType < 3) {
 				nRareType = 0;
 			}
@@ -277,7 +277,7 @@ bool CCal::Get_DropITEM(int iLevelDiff, CObjMOB* pMobCHAR, tagITEM& sITEM, int i
 			sITEM.m_nLife = iTEMP;
 			sITEM.m_cGrade = 0;
 
-#ifdef __PRE_EVO
+#ifdef _PRE_EVO
 			// 05.05.25 대만 오베 이후에는 재련 없다 There is no refining after Taiwan Obe
 			sITEM.m_cGrade = 0;
 #else
@@ -316,7 +316,7 @@ __int64 CCal::Get_EXP(CObjCHAR* pAtkCHAR, CObjCHAR* pDefCHAR, int iGiveDamage)
 
 	iGAB = pAtkCHAR->Get_LEVEL() - pDefCHAR->Get_LEVEL();
 
-#ifdef __PRE_EVO
+#ifdef _PRE_EVO
 	if (iGiveDamage > pDefCHAR->Get_MaxHP() * 1.15f)
 		iGiveDamage = (int)(pDefCHAR->Get_MaxHP() * 1.15f);
 
@@ -362,7 +362,7 @@ int CCal::Get_SuccessRATE(CObjCHAR* pATK, CObjCHAR* pDEF)	// , int &iCriticalSUC
 		if (pDEF->IsUSER()) {
 			// PVP일경우 성공 확률...
 			iRAND1 = 1 + RANDOM(100);
-#ifdef __PRE_EVO
+#ifdef _PRE_EVO
 			// 대만 2005.06.08 kchs
 			iSuccess = (int)(90 - ((pATK->Get_HIT() + pDEF->Get_AVOID()) / pATK->Get_HIT()) * 40.f + iRAND1);
 #else				// 2005-08-09 kchs : 잘못된 공식 수정 = 2005-08-09 kchs: incorrect formula fix
@@ -380,7 +380,7 @@ int CCal::Get_SuccessRATE(CObjCHAR* pATK, CObjCHAR* pDEF)	// , int &iCriticalSUC
 		}
 	}
 	else {
-#ifdef __PRE_EVO
+#ifdef _PRE_EVO
 		iRAND1 = 1 + RANDOM(100);
 		iSuccess = 138 - ((float)(pATK->Get_HIT() + pDEF->Get_AVOID()) / pATK->Get_HIT()) * 75.0f + iRAND1; // 2005-7-13 kchs 
 #else
@@ -403,7 +403,7 @@ int CCal::Get_CriSuccessRATE(CObjCHAR* pATK)
 {
 	int iCriSuc = 0;
 
-#ifdef __PRE_EVO
+#ifdef _PRE_EVO
 	// 대만적용 (4/23~) * CRIT_SUC = { ( RAN(1~100) * 3 + A_LV + 60 } * 25 / (CRITICAL + 150)
 	// CRIT_SUC = (28-{( CRITICAL /2+ A_LV)/( A_LV +8)}*20)+ RAN(1~100) (대만 2005.06.01)
 	if (pATK->IsUSER())
@@ -439,7 +439,7 @@ WORD CCal::Get_BasicDAMAGE(CObjCHAR* pATK, CObjCHAR* pDEF, WORD wHitCNT, int iSu
 		// Critical damage !!!
 		if (pATK->IsUSER() && pDEF->IsUSER()) {
 			// PVP :: 크리티컬 물리 데미지 = PVP::Critical Physical Damage
-#ifdef __PRE_EVO
+#ifdef _PRE_EVO
 			iDamage = (int)(pATK->Get_ATK() * ((float)pDEF->Get_LEVEL() / pATK->Get_LEVEL()) * (iSuc * 0.05f + 29) * (2.4f * pATK->Get_ATK() - pDEF->Get_DEF() + 180) / (1.1f * pDEF->Get_DEF() + pDEF->Get_AVOID() * 0.3f + 50) / 85.f);
 #else
 			iDamage = (int)(pATK->Get_ATK() * (iSuc * 0.05f + 35) * (pATK->Get_ATK() - pDEF->Get_DEF() + 430) / ((pDEF->Get_DEF() + pDEF->Get_AVOID() * 0.4f + 10) * 300) + 25);
@@ -447,7 +447,7 @@ WORD CCal::Get_BasicDAMAGE(CObjCHAR* pATK, CObjCHAR* pDEF, WORD wHitCNT, int iSu
 		}
 		else {
 			// 몬스터 :: 크리티컬 물리 데미지 = Monster::Critical Physical Damage
-#ifdef __PRE_EVO
+#ifdef _PRE_EVO
 			iDamage = (int)(pATK->Get_ATK() * (iSuc * 0.05f + 29) * (2.4f * pATK->Get_ATK() - pDEF->Get_DEF() + 180) / (1.1f * pDEF->Get_DEF() + pDEF->Get_AVOID() * 0.3f + 50) / 85.f);
 #else
 			iDamage = (int)(pATK->Get_ATK() * (iSuc * 0.05f + 29) * (pATK->Get_ATK() - pDEF->Get_DEF() + 230) / ((pDEF->Get_DEF() + pDEF->Get_AVOID() * 0.3f + 5) * 100));
@@ -482,7 +482,7 @@ WORD CCal::Get_BasicDAMAGE(CObjCHAR* pATK, CObjCHAR* pDEF, WORD wHitCNT, int iSu
 		// Normal damage
 		if (pATK->IsUSER() && pDEF->IsUSER()) {
 			// PVP :: 일반 물리 데미지 = PVP :: General Physical Damage
-#ifdef __PRE_EVO
+#ifdef _PRE_EVO
 			// TW .. (but introduces user level into formula, might be worth a check someday)
 			iDamage = (int)(pATK->Get_ATK() * ((float)pDEF->Get_LEVEL() / pATK->Get_LEVEL()) * (iSuc * 0.03f + 26) * (1.8f * pATK->Get_ATK() - pDEF->Get_DEF() + 150) /
 				(1.1f * pDEF->Get_DEF() + pDEF->Get_AVOID() * 0.4f + 50) / 126.f);
@@ -492,7 +492,7 @@ WORD CCal::Get_BasicDAMAGE(CObjCHAR* pATK, CObjCHAR* pDEF, WORD wHitCNT, int iSu
 		}
 		else {
 			// 몬스터 :: 일반 물리 데미지 = // Monsters :: General Physical Damage
-#ifdef __PRE_EVO
+#ifdef _PRE_EVO
 				// [일반 데미지 계산식] * DMG = A_ATT * (SUC*0.03 + 26) * (A_ATT - D_DEF + 300) / (D_DEF+ D_AVO *0.3+30) /180 
 				// DMG = A_ATT * ( SUC*0.03+26)*(1.8* A_ATT - D_DEF +150) / (1.1* D_DEF + D_AVO *0.4+50)/145  (대만 2005.06.01)
 			iDamage = (int)(pATK->Get_ATK() * (iSuc * 0.03f + 26) * (1.8f * pATK->Get_ATK() - pDEF->Get_DEF() + 150) / (1.1f * pDEF->Get_DEF() + pDEF->Get_AVOID() * 0.4f + 50) / 145.f);
@@ -544,7 +544,7 @@ WORD CCal::Get_MagicDAMAGE(CObjCHAR* pATK, CObjCHAR* pDEF, WORD wHitCNT, int iSu
 		// Critical damage !!!
 		if (pATK->IsUSER() && pDEF->IsUSER()) {	// 마법 크리티컬 PVP = Magic Critical PVP
 			// PVP :: 크리티컬 마법 데미지 = PVP::Critical Magic Damage
-#ifdef __PRE_EVO
+#ifdef _PRE_EVO
 			// DMG = A_ATT* (D_LV/A_LV) *( SUC *0.05+25)*(2.4* A_ATT - D_DEF +180)/(1.1* D_RES + D_AVO *0.3+50)/110  (대만 2005.06.01)
 			iDamage = (int)(pATK->Get_ATK() * ((float)pDEF->Get_LEVEL() / pATK->Get_LEVEL()) * (iSuc * 0.05f + 25) * (2.4f * pATK->Get_ATK() - pDEF->Get_DEF() + 180) / (1.1f * pDEF->Get_RES() + pDEF->Get_AVOID() * 0.3f + 50) / 90.f);	//  (IROSE 2005.05.13)
 #else
@@ -553,7 +553,7 @@ WORD CCal::Get_MagicDAMAGE(CObjCHAR* pATK, CObjCHAR* pDEF, WORD wHitCNT, int iSu
 		}
 		else {
 			// 몬스터 :: 크리티컬 마법 데미지 = Monster :: Critical Magic Damage
-#ifdef __PRE_EVO
+#ifdef _PRE_EVO
 			iDamage = (int)(pATK->Get_ATK() * (iSuc * 0.05f + 25) * (2.4f * pATK->Get_ATK() - pDEF->Get_DEF() + 180) / (1.1f * pDEF->Get_RES() + pDEF->Get_AVOID() * 0.3f + 50) / 90.f);
 #else
 			iDamage = (int)(pATK->Get_ATK() * (iSuc * 0.05f + 33) * (pATK->Get_ATK() - pDEF->Get_DEF() * 0.8f + 310) / ((pDEF->Get_RES() + pDEF->Get_AVOID() * 0.3f + 5) * 200));
@@ -585,7 +585,7 @@ WORD CCal::Get_MagicDAMAGE(CObjCHAR* pATK, CObjCHAR* pDEF, WORD wHitCNT, int iSu
 		// Normal damage
 		if (pATK->IsUSER() && pDEF->IsUSER()) {	// 마법 일반 PVP
 			// PVP :: 일반 마법 데미지
-#ifdef __PRE_EVO
+#ifdef _PRE_EVO
 			iDamage = (int)((float)pATK->Get_ATK() * (pDEF->Get_LEVEL() / pATK->Get_LEVEL()) * (iSuc * 0.03f + 25) * (1.8f * pATK->Get_ATK() - pDEF->Get_DEF() + 150) / (1.1f * pDEF->Get_RES() + pDEF->Get_AVOID() * 0.4f + 50) / 120.f);	// kchs 수정 : 2005-08-12 D_LEV - A_LEV ==> D_LEV / A_LEV
 #else
 			iDamage = (int)((float)pATK->Get_ATK() * (iSuc * 0.06f + 29) * (pATK->Get_ATK() - pDEF->Get_DEF() * 0.8f + 350) / ((pDEF->Get_RES() + pDEF->Get_AVOID() * 0.3f + 5) * 640) + 20);
@@ -593,7 +593,7 @@ WORD CCal::Get_MagicDAMAGE(CObjCHAR* pATK, CObjCHAR* pDEF, WORD wHitCNT, int iSu
 		}
 		else {
 			// 몬스터 :: 일반 마법 데미지 = Monster :: General Magic Damage
-#ifdef __PRE_EVO
+#ifdef _PRE_EVO
 			// [일반 데미지 계산식] * DMG = A_ATT * (SUC*0.03 + 25) * (A_ATT - D_DEF + 300) / (D_RES+ D_AVO * 0.3 + 30) /200 
 			// DMG = A_ATT *( SUC *0.03+25)*(1.8 *A_ATT - D_DEF +150)/(1.1* D_RES + D_AVO *0.4+50)/120  (대만 2005.06.01)
 			iDamage = (int)(pATK->Get_ATK() * (iSuc * 0.03f + 25) * (1.8f * pATK->Get_ATK() - pDEF->Get_DEF() + 150) / (1.1f * pDEF->Get_RES() + pDEF->Get_AVOID() * 0.4f + 50) / 120.f);
@@ -635,7 +635,7 @@ WORD CCal::Get_DAMAGE(CObjCHAR* pATK, CObjCHAR* pDEF, WORD wHitCNT)
 			return 0;
 	}
 
-#ifdef __PRE_EVO
+#ifdef _PRE_EVO
 	// 공격 모션에 타점은 무조건 1개로 취급~ = Only one RBI in attack motion is treated as one~
 	wHitCNT = 1;
 #endif
@@ -646,7 +646,7 @@ WORD CCal::Get_DAMAGE(CObjCHAR* pATK, CObjCHAR* pDEF, WORD wHitCNT)
 	return Get_BasicDAMAGE(pATK, pDEF, wHitCNT, iSuc);
 }
 
-#ifdef __PRE_EVO
+#ifdef _PRE_EVO
 //-------------------------------------------------------------------------------------------------
 int  CCal::Get_WeaponSkillDAMAGE(CObjCHAR* pATK, CObjCHAR* pDEF, short nSkillIDX, int iSuccess)
 {
@@ -704,7 +704,7 @@ WORD CCal::Get_SkillDAMAGE(CObjCHAR* pATK, CObjCHAR* pDEF, short nSkillIDX, WORD
 {
 	int iDamage;
 
-#ifdef __PRE_EVO
+#ifdef _PRE_EVO
 	// 공격 모션에 타점은 무조건 1개로 취급~
 	wHitCNT = 1;
 #endif
@@ -719,7 +719,7 @@ WORD CCal::Get_SkillDAMAGE(CObjCHAR* pATK, CObjCHAR* pDEF, short nSkillIDX, WORD
 		int iRAND2 = 1 + RANDOM(70);
 		iSuccess = (int)(((pATK->Get_LEVEL() + 20) - pDEF->Get_LEVEL() + (iRAND1 /* *0.6f */)) * (pATK->Get_HIT() - pDEF->Get_AVOID() * 0.6f + iRAND2 /* *0.7f */ + 10) / 110.f);
 
-#ifdef __PRE_EVO
+#ifdef _PRE_EVO
 		if (iSuccess < 20)
 			return 0;
 
@@ -760,7 +760,7 @@ WORD CCal::Get_SkillDAMAGE(CObjCHAR* pATK, CObjCHAR* pDEF, short nSkillIDX, WORD
 		int iRAND2 = 1 + RANDOM(70);
 		iSuccess = (int)(((pATK->Get_LEVEL() + 30) - pDEF->Get_LEVEL() + (iRAND1)) * (pATK->Get_HIT() - pDEF->Get_AVOID() * 0.56f + iRAND2 + 10) / 110.f);
 
-#ifdef __PRE_EVO
+#ifdef _PRE_EVO
 		iDamage = Get_MagicSkillDAMAGE(pATK, pDEF, nSkillIDX, iSuccess);
 #else
 		if (iSuccess < 20) {
@@ -837,7 +837,7 @@ WORD CCal::Get_SkillDAMAGE(CObjCHAR* pATK, CObjCHAR* pDEF, short nSkillIDX, WORD
 					(pDEF->Get_DEF() + pDEF->Get_RES() * 0.3f + pDEF->Get_AVOID() * 0.4f + 35) / 400 + 20);
 			}
 			else {
-#ifdef __PRE_EVO
+#ifdef _PRE_EVO
 				// [모션 스킬형] 데미지 계산식
 				//* DMG = { (SKILL_POW+A_CRI*0.15 + 40) * (A_ATT+70) * { RAN(1~30) + A_CRI*0.34 + 35 } * 0.01
 				//			* (200 + A_LV - D_LV ) } / (D_DEF + D_RES*0.5 + D_AVO*0.4 + 40) / 200 + 20
@@ -863,7 +863,7 @@ WORD CCal::Get_SkillDAMAGE(CObjCHAR* pATK, CObjCHAR* pDEF, short nSkillIDX, WORD
 	}
 
 #ifdef	__APPLY_2ND_JOB
-#ifdef __PRE_EVO
+#ifdef _PRE_EVO
 	// 속성 테이블 참조하여 재계산
 	short nSA = SKILL_ATTRIBUTE(nSkillIDX);
 	short nNA = pDEF->Get_ATTRIBUTE();

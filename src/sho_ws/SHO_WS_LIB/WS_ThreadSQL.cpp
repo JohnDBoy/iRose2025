@@ -572,6 +572,7 @@ bool CWS_ThreadSQL::Proc_cli_CREATE_CHAR( tagQueryDATA *pSqlPACKET )
 
 	short nOffset=sizeof(cli_CREATE_CHAR), nOutStrLen;
 	char *pCharName=Packet_GetStringPtr( pPacket, nOffset, nOutStrLen );
+
 	if ( NULL == pCharName || nOutStrLen < 4) {
 		// 클라이언트 버그로 엄청긴 이름이 전달되어 오는 경우있다.
 		g_pUserLIST->Send_wsv_CREATE_CHAR( pSqlPACKET->m_iTAG, RESULT_CREATE_CHAR_FAILED );
@@ -579,7 +580,7 @@ bool CWS_ThreadSQL::Proc_cli_CREATE_CHAR( tagQueryDATA *pSqlPACKET )
 	}
 
 	if ( nOutStrLen > MAX_AVATAR_NAME) {
-		g_LOG.CS_ODS(LOG_NORMAL, "Proc_cli_CREATE_CHAR:: CharName == '%s'\n", pCharName );
+		LogString(LOG_NORMAL, "WS_ThreadSQL::CreateChar - CharName = '%s'\n", pCharName );
 		g_pUserLIST->Send_wsv_CREATE_CHAR( pSqlPACKET->m_iTAG, RESULT_CREATE_CHAR_FAILED );
 		return false;
 	}
@@ -594,7 +595,7 @@ bool CWS_ThreadSQL::Proc_cli_CREATE_CHAR( tagQueryDATA *pSqlPACKET )
 				{
 					if(pCharName[i+1] == ';')
 					{
-						g_LOG.CS_ODS(LOG_NORMAL, "Proc_cli_CREATE_CHAR: 713 SQL injection recv'd and filtered\n");
+						LogString(LOG_NORMAL, "Proc_cli_CREATE_CHAR: 713 SQL injection recv'd and filtered\n");
 						m_Injected = true;
 						pCharName[i] = '\0';
 					}
@@ -674,7 +675,16 @@ bool CWS_ThreadSQL::Proc_cli_CREATE_CHAR( tagQueryDATA *pSqlPACKET )
 			return true;
 	}
 
-	WORD wPosBeginner = 0;
+	// 시작 위치..
+	WORD wPosBeginner;
+#ifdef _PRE_EVO
+	wPosBeginner = 0; // 강제로 북쪽~~~
+#else
+	wPosBeginner = pPacket->m_cli_CREATE_CHAR.m_nZoneNO;
+	if (wPosBeginner >= MAX_BEGINNER_POS) {
+		wPosBeginner = RANDOM(MAX_BEGINNER_POS);
+	}
+#endif
 	
 	// 만들자 !!!
 	m_pDefaultBE[ nDefRACE ].m_btCharSlotNO = btCharSlotNO;
@@ -685,7 +695,11 @@ bool CWS_ThreadSQL::Proc_cli_CREATE_CHAR( tagQueryDATA *pSqlPACKET )
 	m_pDefaultBE[ nDefRACE ].m_PosSTART   = s_BeginnerPOS[ wPosBeginner ];
 	
 	// 초기 부활장소 지정...
+#ifdef _PRE_EVO
 	short nDefReviveZoneNO = BEGINNER_ZONE;
+#else
+	short nDefReviveZoneNO = ADVENTURE_ZONE;
+#endif
 
 	m_pDefaultBE[ nDefRACE ].m_nReviveZoneNO = nDefReviveZoneNO;
 	m_pDefaultBE[ nDefRACE ].m_PosREVIVE     = g_ZoneLIST.Get_StartRevivePOS( nDefReviveZoneNO );
