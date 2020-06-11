@@ -34,7 +34,7 @@ public  :
     void CS_ODS (WORD wLogMODE, char *fmt, ...);         // critical OutputDebugString ...
 } ;
 
-#if	defined( _DEBUG ) || defined( _D_RELEASE )
+#if	defined( _DEBUG ) || defined( _D_RELEASE ) || defined(_FORCE_LOG)
 	#define	LogString		CLOG::OutputString
 	// #define	LogString		g_LOG.CS_ODS	//CLOG::OutputString
 #else

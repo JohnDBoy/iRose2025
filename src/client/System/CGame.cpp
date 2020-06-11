@@ -250,7 +250,7 @@ int CGame::Init()
 
 	::activateLog (true);
 
-#ifdef	_DEBUG
+#if	defined(_DEBUG) || defined(_FORCE_LOG)
 	CLOG::SetLogMODE ( LOG_NORMAL,	LOG_SCR );
 	CLOG::SetLogMODE ( LOG_NORMAL,	LOG_DBGOUT );
 #else

@@ -35,14 +35,10 @@ typedef	LPDIRECT3DTEXTURE9			LPD3DTEXTURE;
 typedef	D3DMATERIAL9				D3DMATERIAL;
 typedef	LPDIRECT3DVERTEXBUFFER9		LPD3DVERTEXBUFFER;
 
-//#define _D_RELEASE
-
 #define	ZZ_MEM_OFF	// not use zz_mem
-//#define FRAROSE
-#ifdef FRAROSE
-	#define _GBC
-#endif
 
+// For easier debug :)
+#define _FORCE_LOG
 #define _CONSOLE
 
 #ifdef _CONSOLE
@@ -52,6 +48,12 @@ typedef	LPDIRECT3DVERTEXBUFFER9		LPD3DVERTEXBUFFER;
 // Added for backward compat for now, but no one wants it ... (should be deleted some day)
 //#define _PRE_EVO
 
+//#define FRAROSE @TODO: see what it does and remove
+#ifdef FRAROSE
+#define _GBC
+#endif
+
+//#define _GBC
 //#define _NEWUI
 //#define __APPLY_EXTAND_QUEST_VAR
 //#define __USE_IME
