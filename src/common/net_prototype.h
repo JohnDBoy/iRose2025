@@ -848,6 +848,10 @@ struct tagCHARINFO {
 	short	m_nLEVEL;
 	short	m_nJOB;
 	DWORD	m_dwRemainSEC;		// 0이 아닐경우 삭제될때까지 남은 시간(초단위)
+
+	// @Sefy - try to add current zone to character list packet
+	short	m_zone;
+
 #ifdef	__INC_PLATINUM
 	BYTE	m_btIsPlatinumCHAR;	// 0이 아닌경우는 플레티넘일 경우만 선택 가능한 케릭이다.
 #endif

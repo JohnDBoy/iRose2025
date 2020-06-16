@@ -6,6 +6,8 @@
 #include "classLOG.h"
 //#include "CRandom.h"
 
+#define _SKIP_PACKET_ENCRYPT
+
 //-------------------------------------------------------------------------------------------------
 #pragma pack (push, 1)
 struct t_PACKETHEADER 
@@ -295,9 +297,16 @@ bool CpC::Init (DWORD dwInitCODE)
 // Encode_SendClientPACKET
 WORD CpC::ESCP (t_PACKETHEADER *pHEADER, int &iSendSEQ)
 {
+	LogString(LOG_NORMAL, "Encode SendClientPacket");
+
+#ifdef _SKIP_PACKET_ENCRYPT
+	return pHEADER->m_nSize;
+#endif
+
 	tagCODEC sEnCODE;
 
 	short nReaminLen = MAX_PACKET_SIZE - pHEADER->m_nSize;
+
 	if ( nReaminLen >= 7 )
 		sEnCODE.m_wAddedDummyLEN = RANDOM( 8 );
 	else
@@ -307,6 +316,7 @@ WORD CpC::ESCP (t_PACKETHEADER *pHEADER, int &iSendSEQ)
 	int iRandIdx = s_wRandINDEX[ iSendSEQ++ ];
 
 	int iRandTbl = ( iSendSEQ + sEnCODE.m_wAddedDummyLEN ) & 0x0f;
+
 	sEnCODE.m_wRandAryIDX = iRandIdx;
 	sEnCODE.m_wRandTblIDX = iRandTbl;
 
@@ -365,6 +375,12 @@ WORD CpC::ESCP (t_PACKETHEADER *pHEADER, int &iSendSEQ)
 // Encode_SendServerPACKET
 WORD CpC::ESSP (t_PACKETHEADER *pHEADER)
 {
+	LogString(LOG_NORMAL, "Encode SendServerPacket");
+
+#ifdef _SKIP_PACKET_ENCRYPT
+	return pHEADER->m_nSize;
+#endif
+
 	tagCODEC sEnCODE;
 
 	int iRandIdx = RANDOM( MAX_RANDOM_INDEX_SIZE+1 );
@@ -437,6 +453,12 @@ WORD CpC::GDPL(t_PACKETHEADER *pPacket)
 // Decode_RecvServerHEADER
 WORD CpC::DRSH(t_PACKETHEADER *pHEADER)
 {
+	LogString(LOG_NORMAL, "Decode_RecvServerHeader");
+
+#ifdef _SKIP_PACKET_ENCRYPT
+	return pHEADER->m_nSize;
+#endif
+
 	tagCODEC sEnCODE;
 
 	sEnCODE.m_R1 = pHEADER->m_SC.m_R1;
@@ -447,7 +469,7 @@ WORD CpC::DRSH(t_PACKETHEADER *pHEADER)
 	// 헤더 복호화...
 	int iSeqRandIDX = sEnCODE.m_wRandAryIDX;
 	for (short nI=0; nI<sizeof(tagCODEC); nI++) {
-		pHEADER->m_pDATA[ nI ] ^= s_iRandTABLE[ nI ][ iSeqRandIDX ];
+		pHEADER->m_pDATA[nI] ^= s_iRandTABLE[nI][iSeqRandIDX];
 	}
 
 	// 사이즈...
@@ -486,6 +508,12 @@ WORD CpC::DRSH(t_PACKETHEADER *pHEADER)
 // Decode_RecvClientHEADER
 WORD CpC::DRCH(t_PACKETHEADER *pHEADER, int &iRecvSEQ)
 {
+	LogString(LOG_NORMAL, "Decode_RecvClientHeader");
+
+#ifdef _SKIP_PACKET_ENCRYPT
+	return pHEADER->m_nSize;
+#endif
+
 	tagCODEC sEnCODE;
 
 	sEnCODE.m_R1 = pHEADER->m_CS.m_R1;
@@ -500,12 +528,12 @@ WORD CpC::DRCH(t_PACKETHEADER *pHEADER, int &iRecvSEQ)
 		return 0;
 	}
 
-	// 헤더 복호화...
+	//// 헤더 복호화... = Decrypt header...
 	for (short nI=0; nI<sizeof(tagCODEC); nI++) {
 		pHEADER->m_pDATA[ nI ] ^= s_iRandTABLE[ nI ][ iSeqRandIDX ];
 	}
 
-	// 사이즈...
+	//// 사이즈... = size...
 	sEnCODE.m_S1 = pHEADER->m_CS.m_S1;
 	sEnCODE.m_S2 = pHEADER->m_CS.m_S2;
 	sEnCODE.m_S3 = pHEADER->m_CS.m_S3;
@@ -515,10 +543,10 @@ WORD CpC::DRCH(t_PACKETHEADER *pHEADER, int &iRecvSEQ)
 	sEnCODE.m_R5 = pHEADER->m_CS.m_R5;
 	sEnCODE.m_R6 = pHEADER->m_CS.m_R6;
 
-	// 더미 사이즈...
+	//// 더미 사이즈... = Dummy size...
 	sEnCODE.m_R7 = pHEADER->m_CS.m_R7;
 
-	// 패킷 크기 검증..
+	//// 패킷 크기 검증.. = Packet size verification..
 	if ( wPacketSize > MAX_PACKET_SIZE ||
 		 wPacketSize - sEnCODE.m_wAddedDummyLEN < sizeof(t_PACKETHEADER) ) {
 		return 0;
@@ -528,7 +556,7 @@ WORD CpC::DRCH(t_PACKETHEADER *pHEADER, int &iRecvSEQ)
 		return 0;
 	}
 
-	// 패킷 타입...
+	//// 패킷 타입... = Packet type...
 	sEnCODE.m_T1 = pHEADER->m_CS.m_T1;
 	sEnCODE.m_T2 = pHEADER->m_CS.m_T2;
 	sEnCODE.m_T3 = pHEADER->m_CS.m_T3;
@@ -545,6 +573,12 @@ WORD CpC::DRCH(t_PACKETHEADER *pHEADER, int &iRecvSEQ)
 // Decode_RecvServerBODY
 short CpC::DRSB (t_PACKETHEADER *pHEADER)
 {
+	LogString(LOG_NORMAL, "Decode_RecvServerBody");
+
+#ifdef _SKIP_PACKET_ENCRYPT
+	return pHEADER->m_nSize;
+#endif
+
 	int iSeqRandTBL, iSeqRandIDX;
 
 	iSeqRandTBL  = pHEADER->m_wRandTblIDX;
@@ -578,6 +612,12 @@ short CpC::DRSB (t_PACKETHEADER *pHEADER)
 // Decode_RecvClientBODY
 short CpC::DRCB (t_PACKETHEADER *pHEADER)
 {
+	LogString(LOG_NORMAL, "Decode_RecvClientBody");
+
+#ifdef _SKIP_PACKET_ENCRYPT
+	return pHEADER->m_nSize;
+#endif
+
 	int iSeqRandTBL, iSeqRandIDX;
 
 	iSeqRandTBL  = pHEADER->m_wRandTblIDX;

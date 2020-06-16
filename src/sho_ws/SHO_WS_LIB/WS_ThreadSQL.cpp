@@ -210,7 +210,7 @@ void CWS_ThreadSQL::Execute ()
 
 	CDLList< tagQueryDATA >::tagNODE *pSqlNODE;
 
-	g_LOG.CS_ODS( 0xffff, ">  > >> CWS_ThreadSQL::Execute() ThreadID: %d(0x%x)\n", this->ThreadID, this->ThreadID );
+	LogString(LOG_NORMAL, ">  > >> CWS_ThreadSQL::Execute() ThreadID: %d(0x%x)\n", this->ThreadID, this->ThreadID );
 
 	this->ConvertBasicETC();
 
@@ -246,11 +246,13 @@ void CWS_ThreadSQL::Execute ()
 
 	g_LOG.CS_ODS( 0xffff, "<<<< CWS_ThreadSQL::Execute() ThreadID: %d(0x%x)\n", this->ThreadID, this->ThreadID );
 }
+
 //-------------------------------------------------------------------------------------------------
 bool CWS_ThreadSQL::Add_SqlPacketWithACCOUNT (CWS_Client *pUSER, t_PACKET *pPacket)
 {
 	return CSqlTHREAD::Add_SqlPACKET((int)pUSER->m_iSocketIDX, pUSER->Get_ACCOUNT(), (BYTE*)pPacket, pPacket->m_HEADER.m_nSize);
 }
+
 bool CWS_ThreadSQL::Add_SqlPacketWithAVATAR (CWS_Client *pUSER, t_PACKET *pPacket)
 {
 	return CSqlTHREAD::Add_SqlPACKET((int)pUSER->m_iSocketIDX, pUSER->Get_NAME(), (BYTE*)pPacket, pPacket->m_HEADER.m_nSize);
@@ -347,6 +349,7 @@ bool CWS_ThreadSQL::Proc_cli_CHAR_LIST( tagQueryDATA *pSqlPACKET )
 		CSLList< tagDelCHAR >  DelList;
 		CSLList< tagDelCHAR >::tagNODE *pNode;
 		DWORD dwDelSEC, dwCurAbsSEC = classTIME::GetCurrentAbsSecond();
+
 		do {
 			if ( this->m_pSQL->GetStrPTR( 0 ) ) {
 				szCharName = this->m_pSQL->GetStrPTR ( 0 );
@@ -376,6 +379,10 @@ bool CWS_ThreadSQL::Proc_cli_CHAR_LIST( tagQueryDATA *pSqlPACKET )
 					sCHAR.m_nJOB			= pBI->m_nClass;
 					sCHAR.m_nLEVEL			= pGA->m_nLevel;
 					sCHAR.m_dwRemainSEC		= dwDelSEC;
+
+					// @Sefy - try to add current zone to "char list" packet
+					sCHAR.m_zone = pBE->m_nZoneNO;
+
 #ifdef	__INC_PLATINUM
 	#ifdef __KCHS_BATTLECART__
 					if( nDataVER < DATA_VER_2 )
@@ -404,6 +411,7 @@ bool CWS_ThreadSQL::Proc_cli_CHAR_LIST( tagQueryDATA *pSqlPACKET )
 		}
 
 		pNode = DelList.GetHeadNode ();
+
 		while( pNode ) {
 			//if ( this->m_pSQL->ExecSQL("DELETE FROM tblGS_AVATAR WHERE txtNAME=\'%s\'", pNode->m_VALUE.m_Name.Get() ) < 1 ) {
 			//	// 오류 또는 삭제된것이 없다.
@@ -444,6 +452,7 @@ bool CWS_ThreadSQL::Proc_cli_CHAR_LIST( tagQueryDATA *pSqlPACKET )
 		}
 		g_pUserLIST->SendPacketToSocketIDX( pSqlPACKET->m_iTAG, pCPacket );
 	}
+
     Packet_ReleaseNUnlock( pCPacket );
 
 	return true;
