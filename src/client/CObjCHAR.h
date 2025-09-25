@@ -848,7 +848,7 @@ public:
 	BOOL				m_bUseCartSkill;				
 	BOOL				m_IsRideUser;				//2인승 탑승유무 
 
-	//아로아 여신상태 
+	//아로아 여신 상태 
 	BOOL				m_IsAroa;					//아로아 설정 유무 
 	BOOL				m_IsCartVA;					//카트 바이브레이션 (흔들기)
 
@@ -1134,6 +1134,10 @@ protected:
 	/// 캐릭터 표정
 	int				m_iExpression;
 
+	/// Move name and level before arrays to prevent corruption
+	std::string		m_Name;
+	int				m_iLevel;
+
 	/// 캐릭터 파츠
 	union {
 		tagPartITEM	m_sPartItemIDX[ MAX_BODY_PART ];
@@ -1158,9 +1162,7 @@ protected:
 
 		
 protected:
-	std::string				m_Name;
-	int						m_iLevel;
-
+	// m_Name and m_iLevel moved above to prevent corruption
 
 	DWORD					m_dwSitTIME;
 	short					m_nPsvAtkSPEED;
@@ -1169,7 +1171,7 @@ protected:
 	short					m_nAtkAniSPEED;
 
 
-	/// 교환할 무기가 세팅되면.. 모션이 끝난후에 바꾼다..
+	/// 교환할 무기가 세팅되면.. 모션이 끝난후에 바꾸난다..
 	int						m_iDoChangeWeaponR;
 	int						m_iDoChangeWeaponL;
 	bool					m_bUpdateMotion;	
@@ -1576,13 +1578,6 @@ public:
 	virtual bool			CanClickable();
 	
 } ;
-
-//-------------------------------------------------------------------------------------------------
-
-
-
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////	
 // 2005. 6. 20	박 지호 
 //

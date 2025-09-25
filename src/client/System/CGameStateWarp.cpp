@@ -127,6 +127,7 @@ int CGameStateWarp::Leave( int iNextStateID )
 #endif 
 //-------------------------------------------------------------------------------------------------
 		g_pAVATAR->CreateCartFromMyData();
+		g_pAVATAR->m_EndurancePack.ClearStateByDriveCart(); // JDOEBOY Clear buff when entering a cart.
 		g_pAVATAR->GetSkillSlot()->SetActiveSkillEnableByRideState( true );
 	}
 	else

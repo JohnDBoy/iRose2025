@@ -13,6 +13,7 @@
 
 #include "Dlgs/ChattingDlg.h"
 #include "../System/CGame.h"
+#include "../Common/IO_Skill.h"
 #include "CTDrawImpl.h"
 
 int CEndurancePack::m_iDrawIconCnt = 0;
@@ -437,8 +438,10 @@ void CEndurancePack::Draw()
 
 				///------------------------------------------------------------------------------
 				/// flash..
-				int iElapsedTime = g_GameDATA.GetGameTime() - pEntity->GetStartTime();
-				int iEnduranceTime = pEntity->GetEnduranceTime() * 1000;
+				
+				// Convert tics to ms: ms = ticks * 1000 / 4800
+				int iElapsedTime = (int)(((g_GameDATA.GetGameTime() - pEntity->GetStartTime()) * 1000.0f) / 4800.0f);
+				int iEnduranceTime = (int)(pEntity->GetEnduranceTime() * 1000.0f);
 				int iRemainedTime = abs( iEnduranceTime - iElapsedTime );
 				int iVisibility = 255;
 				if( iRemainedTime < 10000 || ( iElapsedTime > ( iEnduranceTime ) ) )
@@ -964,8 +967,18 @@ bool CEnduranceSkill::CreateEnduranceEntity( CObjCHAR* pObjCHAR, int iSkillIdx, 
 
 	m_iEnduranceEndityType	= ENDURANCE_TYPE_SKILL;
 	m_iEndityIdx			= iSkillIdx;
-	m_iEnduranceTime		= iEnduranceTime;
+//	m_iEnduranceTime		= iEnduranceTime;
 	m_bExpired				= false;
+
+	// Scale duration by (success rate / 100f) if success rate > 100
+	int iSuccessRate = SKILL_SUCCESS_RATIO(iSkillIdx);
+	float fDuration = static_cast<float>(iEnduranceTime);
+	// Convert from ticks to seconds (1 tick = 1.25s)
+	fDuration = fDuration * 1.25f;
+	if (iSuccessRate > 100) {
+		fDuration = fDuration * (static_cast<float>(iSuccessRate) / 100.0f);
+	}
+	m_iEnduranceTime = static_cast<int>(fDuration);
 
 	m_iStartTime = g_GameDATA.GetGameTime();
 

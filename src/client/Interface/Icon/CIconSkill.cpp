@@ -1214,18 +1214,24 @@ void CIconSkill::AddSkillSuccessRateDuration( int iSkillNo, CInfo& ToolTip )
 {
 	char* pszBuf;
 
-	///80% ~ 100%
+	/// Add Success Rate on its own line
 	if( SKILL_SUCCESS_RATIO( iSkillNo ) )
 	{
-		pszBuf = CStr::Printf( "%s:%d-%d%%  %s:%d%s",
-			STR_SUCCESS_RATE, (int)(SKILL_SUCCESS_RATIO( iSkillNo ) * 0.8),(int)(SKILL_SUCCESS_RATIO( iSkillNo )),
-			STR_CONTINUE_TIME,SKILL_DURATION( iSkillNo) ,STR_SECOND );
+		pszBuf = CStr::Printf("%s:%d-%d%%",
+			STR_SUCCESS_RATE, (int)(SKILL_SUCCESS_RATIO(iSkillNo) * 0.8), (int)(SKILL_SUCCESS_RATIO(iSkillNo)));
+		ToolTip.AddString(pszBuf);
+		pszBuf = CStr::Printf( "%s:%d%s",
+			STR_CONTINUE_TIME, SKILL_DURATION(iSkillNo), STR_SECOND);
+		ToolTip.AddString(pszBuf);
 	}
-	else///성공률이 0일경우 100%로 처리
+	else // If success rate is 0, treat as 100%
 	{
-		pszBuf = CStr::Printf( "%s:%d%%  %s:%d%s",
-			STR_SUCCESS_RATE, 100,
-			STR_CONTINUE_TIME,SKILL_DURATION( iSkillNo) ,STR_SECOND );
+		pszBuf = CStr::Printf("%s:%d%%",
+			STR_SUCCESS_RATE, 100);
+		ToolTip.AddString(pszBuf);
+		pszBuf = CStr::Printf("%s:%d%s",
+			STR_CONTINUE_TIME, SKILL_DURATION(iSkillNo), STR_SECOND);
+		ToolTip.AddString(pszBuf);
 	}
 
 
