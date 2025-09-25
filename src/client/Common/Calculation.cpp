@@ -205,15 +205,16 @@ bool CCal::Get_DropITEM (int iLevelDiff, CObjMOB *pMobCHAR, tagITEM &sITEM, int 
 				sITEM.m_nGEM_OP = 100 + RANDOM(41);
 				break;
 			case 1 :	// 무조건
-				sITEM.m_bHasSocket = 1;
-				sITEM.m_bIsAppraisal = 1;
+				sITEM.m_bHasSocket = 1; // JDOEBOY items with sockets should be visible imediately.
+				sITEM.m_bIsAppraisal = 0; // JDOEBOY items with sockets have no appraisal.
 				break;
 			case 2 :	// 계산
 				if ( ITEM_QUALITY( sITEM.GetTYPE(), sITEM.GetItemNO() ) + 60 - RANDOM(400) > 0 ) {
-					sITEM.m_bHasSocket = 1;
-					sITEM.m_bIsAppraisal = 1;
+					sITEM.m_bHasSocket = 1; // JDOEBOY
+					sITEM.m_bIsAppraisal = 0; // JDOEBOY
 					break;
 				}
+				break; // JDOEBOY FIXED: Prevent fall-through to case 0
 			case 0 :
 			{
 				iTEMP = 1+RANDOM(100);
@@ -237,7 +238,7 @@ bool CCal::Get_DropITEM (int iLevelDiff, CObjMOB *pMobCHAR, tagITEM &sITEM, int 
 							iOption = 73 + RANDOM(81-73);
 						}
 						sITEM.m_nGEM_OP = iOption;
-						sITEM.m_bIsAppraisal = 1;
+						sITEM.m_bIsAppraisal = 0; // JDOEBOY items with appraisal should have their stats hidden.
 					}
 				}
 				break;
