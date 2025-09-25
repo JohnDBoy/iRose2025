@@ -272,12 +272,12 @@ bool CCal::Get_DropITEM (int iLevelDiff, CObjMOB *pMobCHAR, tagITEM &sITEM, int 
 				break;
 			case 1 :	// 무조건
 				sITEM.m_bHasSocket = 1;
-				sITEM.m_bIsAppraisal = 1;
+				sITEM.m_bIsAppraisal = 0;
 				break;
 			case 2 :	// 계산
 				if ( ITEM_QUALITY( sITEM.GetTYPE(), sITEM.GetItemNO() ) + 60 - RANDOM(400) > 0 ) {
 					sITEM.m_bHasSocket = 1;
-					sITEM.m_bIsAppraisal = 1;
+					sITEM.m_bIsAppraisal = 0;
 					break;
 				}
 			case 0 :
