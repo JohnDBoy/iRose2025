@@ -91,8 +91,8 @@ struct tagBasicAbility {
 	#define	MAX_BASIC_ABLITY		410		// 250 기본 능력치 최대치를 300으로 수정
 	#define	MAX_LEVEL				255		// 200 최대 레벨을 250으로 수정
 #else
-	#define	MAX_BASIC_ABLITY		300		// 250 기본 능력치 최대치를 300으로 수정
-	#define	MAX_LEVEL				210		// 200 최대 레벨을 250으로 수정
+	#define	MAX_BASIC_ABLITY		410		// 250 기본 능력치 최대치를 300으로 수정
+	#define	MAX_LEVEL				255		// 200 최대 레벨을 250으로 수정
 #endif
 //#endif
 #define	MAX_EXPERIENCE			0x7FFFFFFFFFFFFFFF

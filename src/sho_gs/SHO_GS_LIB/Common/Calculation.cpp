@@ -14,19 +14,19 @@
 #else
 short Get_WorldDROP_M()
 {
-	return 100;
+	return 500;
 }
 short Get_WorldDROP()
 {
-	return 300;
+	return 800;
 }
 short Get_WorldEXP()
 {
-	return 300;
+	return 100;
 }
 short Get_WorldREWARD()
 {
-	return 100;
+	return 500;
 }
 #endif
 

@@ -604,8 +604,8 @@ short classUSER::Cheat_item ( char *pArg1, char *pArg2, char *pArg3, char *pArg4
 				sITEM.m_bIsAppraisal = 1;
 				if ( 0 == sITEM.m_nGEM_OP ) {
 					// 옵션이 없다..
-					if( pArg4 && ITEM_RARE_TYPE( sITEM.GetTYPE(), sITEM.GetItemNO() ) ) {
-						// 0이 아니면 소켓이 붙을수 있는 아이템이다..
+					if( pArg4 ) {
+						// 소켓을 강제로 설정할 수 있도록 함
 						if ( atoi(pArg4) )
 							sITEM.m_bHasSocket = 1;
 					}

@@ -7061,59 +7061,83 @@ void classUSER::Send_gsv_CRAFT_ITEM_REPLY(classPACKET * pCPacket, BYTE btRESULT,
 	Packet_ReleaseNUnlock(pCPacket);
 }
 
-/// 재밍 요청
+/// Gemming request processing
 bool classUSER::Proc_CRAFT_GEMMING_REQ(t_PACKET * pPacket)
 {
+	// Validate equipment inventory index (must be an equipped slot)
 	if (pPacket->m_cli_CRAFT_GEMMING_REQ.m_btEquipInvIDX >= MAX_EQUIP_IDX)
 		return true;
+	
+	// Validate jewel inventory index (must be in ETC item slots)
 	if (pPacket->m_cli_CRAFT_GEMMING_REQ.m_btJemInvIDX < INVENTORY_ETC_ITEM0 ||
 		pPacket->m_cli_CRAFT_GEMMING_REQ.m_btJemInvIDX >= INVENTORY_SHOT_ITEM0)
 		return false;
 
+	// Get the equipment item from inventory
 	tagITEM* pEquipITEM = &this->m_Inventory.m_ItemLIST[pPacket->m_cli_CRAFT_GEMMING_REQ.m_btEquipInvIDX];
+	
+	// Check if the item is actually equipped
 	if (!pEquipITEM->IsEquipITEM())
 		return true;
 
+	// Get the jewel item from inventory
 	tagITEM* pJewelITEM = &this->m_Inventory.m_ItemLIST[pPacket->m_cli_CRAFT_GEMMING_REQ.m_btJemInvIDX];
+	
+	// Validate jewel: must be gem type, have quantity > 0
 	if (ITEM_TYPE_GEM != pJewelITEM->GetTYPE() || pJewelITEM->GetQuantity() < 1)
 		return true;
+	
+	// Validate jewel item number is within gem table bounds
 	if (pJewelITEM->GetItemNO() >= g_TblGEMITEM.m_nDataCnt) {
 		return false;
 	}
+	
+	// Additional validation for gem item type
 	if (411 != ITEM_TYPE(ITEM_TYPE_GEM, pJewelITEM->GetItemNO())) {
 		return false;
 	}
 
+	// Check if equipment has a socket available
 	if (!pEquipITEM->HasSocket()) {
 		return this->Send_gsv_CRAFT_ITEM_RESULT(CRAFT_GEMMING_NEED_SOCKET);
 	}
+	
+	// Check if socket is already occupied (gem number > 300 indicates socketed)
 	if (pEquipITEM->GetGemNO() > 300) {
 		return this->Send_gsv_CRAFT_ITEM_RESULT(CRAFT_GEMMING_USED_SOCKET);
 	}
 
-	// 재밍 로그..
+	// Log the gemming operation
 	g_pThreadLOG->When_GemmingITEM(this, pEquipITEM, pJewelITEM, NEWLOG_GEMMING, NEWLOG_SUCCESS);
 
-	// 보석 박힌것은 자동 검증...
+	// Apply the gem to the equipment (set gem option)
 	pEquipITEM->m_nGEM_OP = pJewelITEM->GetItemNO();
+	
+	// Update equipped item on character
 	this->SetPartITEM(pPacket->m_cli_CRAFT_GEMMING_REQ.m_btEquipInvIDX);
 
+	// Remove one jewel from inventory
 	pJewelITEM->SubQuantity(1);
 
+	// Prepare response packet
 	classPACKET* pCPacket = this->Init_gsv_CRAFT_ITEM_REPLY();
 	if (!pCPacket)
 		return false;
 
+	// Include updated equipment in response
 	pCPacket->m_gsv_CRAFT_ITEM_REPLY.m_sInvITEM[0].m_btInvIDX = pPacket->m_cli_CRAFT_GEMMING_REQ.m_btEquipInvIDX;
 	pCPacket->m_gsv_CRAFT_ITEM_REPLY.m_sInvITEM[0].m_ITEM = *pEquipITEM;
+	
+	// Include updated jewel in response
 	pCPacket->m_gsv_CRAFT_ITEM_REPLY.m_sInvITEM[1].m_btInvIDX = pPacket->m_cli_CRAFT_GEMMING_REQ.m_btJemInvIDX;
 	pCPacket->m_gsv_CRAFT_ITEM_REPLY.m_sInvITEM[1].m_ITEM = *pJewelITEM;
 
+	// Send success response
 	this->Send_gsv_CRAFT_ITEM_REPLY(pCPacket, CRAFT_GEMMING_SUCCESS, 2);
 
-	// 장착된 장비이므로 주변에 통보 필요...
-	this->UpdateAbility();		// gemming
-	this->InitPassiveSkill();
+	// Notify nearby players of equipment change (since gemming affects appearance/stats)
+	this->UpdateAbility();		// Update abilities due to gemming
+	this->InitPassiveSkill();   // Reinitialize passive skills
 	this->Send_gsv_EQUIP_ITEM(pPacket->m_cli_CRAFT_GEMMING_REQ.m_btEquipInvIDX, pEquipITEM);
 
 	return true;
