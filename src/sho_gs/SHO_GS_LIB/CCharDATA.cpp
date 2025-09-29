@@ -3,7 +3,6 @@
 #include "CCharDATA.h"
 
 
-//-------------------------------------------------------------------------------------------------
 CCharDATA::CCharDATA ()
 {
 	m_nAniCNT = 0;
@@ -15,7 +14,7 @@ CCharDATA::~CCharDATA ()
 }
 
 //-------------------------------------------------------------------------------------------------
-bool CCharDATA::Load_MOBorNPC (FILE *fp, t_HASHKEY *pAniKEY, short nAniCNT)
+bool CCharDATA::Load_MOBorNPC (FILE *fp, t_HASHKEY *pAniKEY, short nAniCNT, short nModelIndex)
 {
 	char cIsValid;
 
@@ -67,7 +66,13 @@ bool CCharDATA::Load_MOBorNPC (FILE *fp, t_HASHKEY *pAniKEY, short nAniCNT)
 		// Load_MOBorNPC함수에서 g_MotionFILE.Add_FILE함수 호출시 nAniIDX값을 이용해서
 		// 모션 파일 이름을 찾자~~~~
 		if ( 0 == m_ppAniFILE[ nAniIDX ] ) {
-			int i=00;
+			char szMsg[256];
+			sprintf(szMsg, "Failed to get motion for model %d, nAniIDX=%d, nIndex=%d, key=%u\n", nModelIndex, nAniIDX, nIndex, pAniKEY[ nIndex ] );
+			FILE *f = fopen("d:\\debug_motion.log", "a");
+			if (f) {
+				fprintf(f, "%s", szMsg);
+				fclose(f);
+			}
 			assert( m_ppAniFILE[ nAniIDX ] );
 		}
 	}
@@ -142,10 +147,28 @@ bool CCharDatLIST::Load_MOBorNPC (char *szBaseDIR, char *szFileName)
 			int i=0;
 		}
 */
+		if ( nI == 1402 ) {
+			char szMsg[512];
+			sprintf(szMsg, "Motion file for nI=1402: %s, full path: %s\n", pStr, pFullPath);
+			FILE *f = fopen("d:\\debug_motion.log", "a");
+			if (f) {
+				fprintf(f, "%s", szMsg);
+				fclose(f);
+			}
+		}
 		if ( !CUtil::Is_FileExist( pFullPath ) ) {
-			::MessageBox( NULL, pFullPath, "모션 파일 없음", MB_OK );
+			::MessageBox( NULL, pFullPath, "Missing Motion File", MB_OK );
 		}
 		pAniKEY[ nI ] = g_MotionFILE.Add_FILE ( pFullPath );
+		if ( nI == 1402 ) {
+			char szMsg[512];
+			sprintf(szMsg, "Add_FILE returned key: %u for nI=1402\n", pAniKEY[ nI ]);
+			FILE *f = fopen("d:\\debug_motion.log", "a");
+			if (f) {
+				fprintf(f, "%s", szMsg);
+				fclose(f);
+			}
+		}
 		assert( pAniKEY[ nI ] );
 	}
 
@@ -160,9 +183,10 @@ bool CCharDatLIST::Load_MOBorNPC (char *szBaseDIR, char *szFileName)
 
 	m_pMODELS = new CCharDATA[ m_nModelCNT ];
 	for (nI=0; nI<m_nModelCNT; nI++) {
+		LogString( LOG_NORMAL, "Loading model %d\n", nI );
 		// LogString( 0xffff, CStr::Printf(">> load model %d \n", nI ) );
 
-		m_pMODELS[ nI ].Load_MOBorNPC (fp, pAniKEY, nAniCNT);
+		m_pMODELS[ nI ].Load_MOBorNPC (fp, pAniKEY, nAniCNT, nI);
 
 		// LogString( 0xffff, CStr::Printf("<< load model %d \n", nI ) );
 	}

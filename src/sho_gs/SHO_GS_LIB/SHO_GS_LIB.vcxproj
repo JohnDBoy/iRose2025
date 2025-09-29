@@ -89,7 +89,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(SolutionDir)src\sho_gs\sho_gs_lib;$(SolutionDir)src\Client\Util;$(SolutionDir)src\LIB_Util;$(SolutionDir)src\LIB_Server;$(SolutionDir)src\SHO_GS\SHO_GS_LIB\Common;$(SolutionDir)src\SHO_GS\SHO_GS_LIB\Network;$(SolutionDir)src\SHO_GS\SHO_GS_LIB\srv_COMMON;$(SolutionDir)src\SHO_GS\SHO_GS_LIB\Ai_lib;$(SolutionDir)src\Common;$(SolutionDir)src\Client\Common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_debug;WIN32;_LIB;__SERVER;__USE_CHEAT;_WIN32_WINNT 0x0500;MAX_LEVEL 210;MAX_BASIC_ABLITY 300;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_debug;WIN32;_LIB;__SERVER;__USE_CHEAT;_WIN32_WINNT 0x0500;MAX_LEVEL 255;MAX_BASIC_ABLITY 410;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadeddebug</RuntimeLibrary>

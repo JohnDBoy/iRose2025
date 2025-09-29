@@ -27,7 +27,7 @@ public :
 	CCharDATA ();
 	~CCharDATA ();
 
-	bool Load_MOBorNPC (FILE *fp, t_HASHKEY *pAniKEY, short nAniCNT);
+	bool Load_MOBorNPC (FILE *fp, t_HASHKEY *pAniKEY, short nAniCNT, short nModelIndex);
 	bool IsValid ()				{	return NULL != m_ppAniFILE;		}
 	tagMOTION *GetMOTION (BYTE btIndex)			
 	{	

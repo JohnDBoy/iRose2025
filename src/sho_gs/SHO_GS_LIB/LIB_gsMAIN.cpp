@@ -527,6 +527,7 @@ bool CLIB_GameSRV::CheckSTB_ListPRODUCT ()
 			if ( PRODUCT_NEED_ITEM_NO( nI, nS) ) {
 				sOutITEM.Init( PRODUCT_NEED_ITEM_NO( nI, nS), 1 );
 				if ( !sOutITEM.IsValidITEM() ) {
+					g_LOG.CS_ODS(LOG_NORMAL, "Invalid product item: nI=%d, nS=%d, itemNO=%d\n", nI, nS, PRODUCT_NEED_ITEM_NO( nI, nS) );
 					_ASSERT( 0 );
 				}
 				// 재료 아이템 번호

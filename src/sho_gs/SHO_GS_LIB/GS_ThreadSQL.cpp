@@ -1685,8 +1685,23 @@ bool GS_CThreadSQL::Proc_LOAD_OBJVAR( tagQueryDATA *pSqlPACKET )
 	else
 		m_TmpSTR.Printf( ZONE_VAR_EVENTOBJ, pSqlPACKET->m_Name.Get() );
 */
+	// Escape single quotes for SQL
+	const char *original = pSqlPACKET->m_Name.Get();
+	int len = strlen(original);
+	char *escaped = new char[len * 2 + 1]; // worst case all '
+	char *pDest = escaped;
+	for( const char *pSrc = original; *pSrc; pSrc++ ) {
+		if( *pSrc == '\'' ) {
+			*pDest++ = '\'';
+			*pDest++ = '\'';
+		} else {
+			*pDest++ = *pSrc;
+		}
+	}
+	*pDest = 0;
+
 	this->m_pSQL->MakeQuery( "SELECT * FROM tblWS_VAR WHERE txtNAME=", 
-							MQ_PARAM_STR, pSqlPACKET->m_Name.Get() /* m_TmpSTR.Get() */,
+							MQ_PARAM_STR, escaped,
 							MQ_PARAM_END);
 	if ( !this->m_pSQL->QuerySQLBuffer() ) {
 		g_LOG.CS_ODS(LOG_NORMAL, "Query ERROR:: %s \n", m_pSQL->GetERROR() );
@@ -1699,12 +1714,13 @@ bool GS_CThreadSQL::Proc_LOAD_OBJVAR( tagQueryDATA *pSqlPACKET )
 		this->m_pSQL->BindPARAM( 1, (BYTE*)pSqlZONE->m_btZoneDATA,	pSqlZONE->m_nDataSIZE );
 
 		this->m_pSQL->MakeQuery("INSERT tblWS_VAR (txtNAME, dateUPDATE, binDATA) VALUES(",
-												MQ_PARAM_STR,		pSqlPACKET->m_Name.Get() /* m_TmpSTR.Get() */,
+												MQ_PARAM_STR,		escaped,
 					MQ_PARAM_ADDSTR, ","	,	MQ_PARAM_STR,		g_pThreadLOG->GetCurDateTimeSTR(),
 					MQ_PARAM_ADDSTR, ","	,	MQ_PARAM_BINDIDX,	1,
 					MQ_PARAM_ADDSTR, ");"	,	MQ_PARAM_END);
 		if ( this->m_pSQL->ExecSQLBuffer() < 1 ) {
-			g_LOG.CS_ODS(LOG_NORMAL, "SQL Exec ERROR:: INSERT %s : %s \n", pSqlPACKET->m_Name.Get()/* m_TmpSTR.Get() */, m_pSQL->GetERROR() );
+			g_LOG.CS_ODS(LOG_NORMAL, "SQL Exec ERROR:: INSERT %s : %s \n", escaped, m_pSQL->GetERROR() );
+			delete[] escaped;
 			return true;
 		}
 	} else {
@@ -1720,6 +1736,7 @@ bool GS_CThreadSQL::Proc_LOAD_OBJVAR( tagQueryDATA *pSqlPACKET )
 		} 
 	}
 
+	delete[] escaped;
 	return true;
 }
 
@@ -1732,18 +1749,34 @@ bool GS_CThreadSQL::Proc_SAVE_OBJVAR( tagQueryDATA *pSqlPACKET )
 	else
 		m_TmpSTR.Printf( ZONE_VAR_EVENTOBJ, pSqlPACKET->m_Name.Get() );
 */
+	// Escape single quotes for SQL
+	const char *original = pSqlPACKET->m_Name.Get();
+	int len = strlen(original);
+	char *escaped = new char[len * 2 + 1]; // worst case all '
+	char *pDest = escaped;
+	for( const char *pSrc = original; *pSrc; pSrc++ ) {
+		if( *pSrc == '\'' ) {
+			*pDest++ = '\'';
+			*pDest++ = '\'';
+		} else {
+			*pDest++ = *pSrc;
+		}
+	}
+	*pDest = 0;
+
 	this->m_pSQL->BindPARAM( 1, (BYTE*)pSqlZONE->m_btZoneDATA,	pSqlZONE->m_nDataSIZE );
 
 	this->m_pSQL->MakeQuery( "UPDATE tblWS_VAR SET dateUPDATE=",
 												MQ_PARAM_STR,		g_pThreadLOG->GetCurDateTimeSTR(),
 			MQ_PARAM_ADDSTR, ",binDATA=",		MQ_PARAM_BINDIDX,	1,
-			MQ_PARAM_ADDSTR, "WHERE txtNAME=",	MQ_PARAM_STR,		pSqlPACKET->m_Name.Get()/* m_TmpSTR.Get() */,
+			MQ_PARAM_ADDSTR, "WHERE txtNAME=",	MQ_PARAM_STR,		escaped,
 												MQ_PARAM_END );
 	if ( this->m_pSQL->ExecSQLBuffer() < 0 ) {
 		// 고치기 실패 !!!
-		g_LOG.CS_ODS(LOG_NORMAL, "SQL Exec ERROR:: UPDATE %s %s \n", pSqlPACKET->m_Name.Get()/* m_TmpSTR.Get() */, m_pSQL->GetERROR() );
+		g_LOG.CS_ODS(LOG_NORMAL, "SQL Exec ERROR:: UPDATE %s %s \n", escaped, m_pSQL->GetERROR() );
 	}
 
+	delete[] escaped;
 	return true;
 }
 

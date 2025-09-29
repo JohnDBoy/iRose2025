@@ -2,7 +2,7 @@
 // 이 파일은 zz_script_lua.lua 스크립트에 의해 자동생성된 코드입니다.
 //
 // 직접 수정하지 마십시오.
-// 생성시간: Wed Jun 10 14:27:03 2020
+// 생성시간: Mon Sep 29 11:45:19 2025
 //--------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------
@@ -1029,6 +1029,21 @@ int zz_lua_getCollisionLevel (lua_State * L)
 }
 
 //--------------------------------------------------------------------------------
+// getCurrentTime
+//--------------------------------------------------------------------------------
+int zz_lua_getCurrentTime (lua_State * L)
+{
+	int param_index = 1;
+	const char where[] = "getCurrentTime";
+	int return_num = 0;
+
+
+	set_param_int( L, return_num, getCurrentTime( ) );
+
+	return return_num;
+}
+
+//--------------------------------------------------------------------------------
 // getDefaultLight
 //--------------------------------------------------------------------------------
 int zz_lua_getDefaultLight (lua_State * L)
@@ -1853,21 +1868,6 @@ int zz_lua_getTexturePointer (lua_State * L)
 	HNODE hTexture = get_param_uint( L, param_index, where );
 
 	set_param_uint( L, return_num, getTexturePointer( hTexture ) );
-
-	return return_num;
-}
-
-//--------------------------------------------------------------------------------
-// getCurrentTime
-//--------------------------------------------------------------------------------
-int zz_lua_getCurrentTime (lua_State * L)
-{
-	int param_index = 1;
-	const char where[] = "getCurrentTime";
-	int return_num = 0;
-
-
-	set_param_int( L, return_num, getCurrentTime( ) );
 
 	return return_num;
 }
@@ -6547,6 +6547,7 @@ void register_api_interfaces (lua_State * L)
 	lua_register( L, "getCameraLight", zz_lua_getCameraLight );
 	lua_register( L, "getCollectNode", zz_lua_getCollectNode );
 	lua_register( L, "getCollisionLevel", zz_lua_getCollisionLevel );
+	lua_register( L, "getCurrentTime", zz_lua_getCurrentTime );
 	lua_register( L, "getDefaultLight", zz_lua_getDefaultLight );
 	lua_register( L, "getDevice", zz_lua_getDevice );
 	lua_register( L, "getDrawPriority", zz_lua_getDrawPriority );
