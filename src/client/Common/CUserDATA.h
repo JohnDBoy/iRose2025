@@ -415,7 +415,7 @@ public :
 	int	  GetCur_FAME ()			{	return	this->m_BasicINFO.m_cFame;			}	// 명성
 	int	  GetCur_JOB ()				{	return	this->m_BasicINFO.m_nClass;			}	// 직업
 
-	__int64	  GetCur_EXP ()				{	return	this->m_GrowAbility.m_lEXP;			}
+	int	  GetCur_EXP ()				{	return	this->m_GrowAbility.m_lEXP;			}
 	int	  GetCur_BonusPOINT ()		{	return	this->m_GrowAbility.m_nBonusPoint;	}
 	int	  GetCur_SkillPOINT ()		{	return	this->m_GrowAbility.m_nSkillPoint;	}
 	BYTE  GetCur_HeadSIZE()			{	return	this->m_GrowAbility.m_btHeadSIZE;	}
@@ -576,7 +576,7 @@ public :
 	short				m_nPassiveAttackSpeed;					// 한국/일본/IRose를 위한 패시브 스킬에 의한 공속 추가
 
 
-	__int64				m_iAppliedPenaltyEXP;			/// 부활시 경험치 복구를 위한 변수..
+	int					m_iAppliedPenaltyEXP;			/// 부활시 경험치 복구를 위한 변수..
 
 
 	tagITEM	Get_EquipITEM (WORD wEquipIDX)							{	return m_Inventory.m_ItemEQUIP[ wEquipIDX ];			}
@@ -676,17 +676,17 @@ public :
 		if ( this->GetCur_LEVEL() >= 10 ) 
 		{
 			// 10렙 이상이면 페널티 적용..
-			__int64 iNeedEXP  = CCal::Get_NeedRawEXP( m_GrowAbility.m_nLevel );
-			__int64 iPenalEXP = (__int64) ( iNeedEXP * btAddPercent / 100.f );
+			int iNeedEXP  = CCal::Get_NeedRawEXP( m_GrowAbility.m_nLevel );
+			int iPenalEXP = (int) ( iNeedEXP * btAddPercent / 100.f );
 			m_iAppliedPenaltyEXP = iPenalEXP;
 
 			if ( m_GrowAbility.m_lEXP >= iPenalEXP ) 
 			{
-				m_GrowAbility.m_lEXP -= (__int64)iPenalEXP;
+				m_GrowAbility.m_lEXP -= iPenalEXP;
 			} else 
 			{
 				iPenalEXP -= m_GrowAbility.m_lEXP;
-				m_GrowAbility.m_lPenalEXP += (__int64)iPenalEXP;
+				m_GrowAbility.m_lPenalEXP += iPenalEXP;
 				m_GrowAbility.m_lEXP = 0;
 
 				if ( m_GrowAbility.m_lPenalEXP > DIV02(iNeedEXP) ) 
@@ -705,7 +705,7 @@ public :
  		if ( this->GetCur_LEVEL() >= 10 && m_iAppliedPenaltyEXP > 0 ) 
 		{
  			// 10렙 이상이면 적용했던 페널티 해제...
- 			m_iAppliedPenaltyEXP = (__int64)(m_iAppliedPenaltyEXP * btPercent / 100.f);
+ 			m_iAppliedPenaltyEXP = (int)( m_iAppliedPenaltyEXP * btPercent / 100.f );
  			if ( m_iAppliedPenaltyEXP ) {
  				m_GrowAbility.m_lEXP += m_iAppliedPenaltyEXP;
  			}

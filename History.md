@@ -2,6 +2,26 @@
 
 This file tracks changes made to the Rose Online codebase and documentation.
 
+## 2025-10-01 - Code Reversion and Calculation Focus Shift
+
+### SQL Syntax Error Resolution
+- **Issue**: "Incorrect syntax near '{'" and "Unclosed quotation mark after the character string ')}'" errors during client login
+- **Root Cause**: Introduced by `_int64` conversions in multiple files, causing SQL parameter handling issues
+- **Fix**: Reverted affected files to restore original code, resolving the SQL errors
+- **Build**: Project compiles successfully in Release|x86 configuration after reversions
+- **Status**: Login functionality restored
+
+### Code Reversion and Lessons Learned
+- **Reverted Changes**: Multiple files modified with `_int64` conversions were reverted due to breaking functionality
+- **Performance Gain**: `_int64` changes sped up server loading significantly but stopped some functionality
+- **Feature Testing**: FRAROSE does not work as-is; mounts do work; EXP/drop boosts not tested
+- **Approach**: Avoided compounding errors from trying too much at once
+
+### New Focus: HP Calculations
+- **Priority**: Match HP calculations between client and server to resolve health desync issues
+- **Scope**: Focus on HP/MP/EXP calculations without enabling additional features
+- **Next Steps**: Investigate calculation mismatches in `Calculation.cpp` and related files
+
 ## 2025-09-30 - Synchronization Issues Documentation Started
 
 ### Documentation Updates

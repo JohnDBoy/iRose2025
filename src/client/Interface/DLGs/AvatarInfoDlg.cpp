@@ -92,7 +92,7 @@ void CAvatarInfoDlg::Draw()
 	ctrl = Find("Info");
 	if( ctrl )	
 	{        
-		((CTStatic*)ctrl)->SetString( CStr::Printf(	"■LEVEL  %d    ■%s    ■WEIGHT  %d / %d    ■EXP  %I64d / %I64d    ■ZULY  %s",
+		((CTStatic*)ctrl)->SetString( CStr::Printf(	"■LEVEL  %d    ■%s    ■WEIGHT  %d / %d    ■EXP  %d / %d    ■ZULY  %s",
 													g_pAVATAR->Get_LEVEL(),													//LEVEL
 													CStringManager::GetSingleton().GetJobName( g_pAVATAR->Get_JOB() ),		//JOB
 													g_pAVATAR->GetCur_WEIGHT(), g_pAVATAR->GetCur_MaxWEIGHT(),					//WEIGHT

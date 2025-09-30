@@ -1,3 +1,11 @@
+## 2025-10-01: MOB Level Display Change (JDOEBOY)
+- Modified `src/client/Interface/CNameBox.cpp` to display MOB (monster) level beside the MOB name in the floating name bar above monsters.
+    - Example: `Lv. 10 Jelly King` now appears above the monster instead of just `Jelly King`.
+    - This change only affects the floating 3D name/HP bar above monsters, not other UI elements.
+- This is currently always enabled for all users.
+- **Planned improvement:** Make this feature toggleable via a client option (e.g., in settings or config file) so players can choose whether to show MOB levels with names.
+
+// JDOEBOY
 # Synchronization Issues Documentation
 
 This document details known synchronization problems between client and server components in the Rose Online codebase, including health desync, EXP issues, and visual glitches from buffer overflows.
@@ -107,6 +115,19 @@ if (iLevel <= 15) {
 - **Client HP values do not match server HP values**
 - **When consuming HP potions, health bar does not properly represent current player health**
 
+**HP Mechanics (Partial Understanding):**
+1. **HP Gain - Sitting**: HP is slowly gained when sitting
+2. **HP Gain - Consumables**: HP is gained at a variable rate (STB entry) when food/potions are consumed
+3. **HP Gain - Healing**: HP is gained when a player is "healed" by another player (buff)
+4. **HP Loss - Damage**: HP is immediately lost when damage received
+5. **HP Loss - Poison**: HP is slowly lost when a player is poisoned (probably STB entry)
+6. **HP Gain - Passive**: HP may or may not be slowly gained passively (unknown at this time)
+7. **HP Capacity - Buffs**: HP capacity is increased when "buffed" with extra temporary stats
+8. **HP Capacity - Gear**: HP capacity is increased through stats on gear, jewelry, maybe more
+9. **HP Loss - Debuffs**: HP can be lost from debuffs or harmful buffs (probably STB value calculated with both players INT/DEX/CON)
+
+**Note:** This understanding may be incomplete or inaccurate - requires verification through code analysis.
+
 **Potential Causes:**
 - **Damage calculation mismatches**: Client and server using different damage formulas
 - **Health update packet timing**: Race conditions in health synchronization
@@ -114,8 +135,8 @@ if (iLevel <= 15) {
 - **Potion effect synchronization**: Client not properly receiving or displaying health restoration updates
 
 **Affected Files:**
-- `Calculation.*` (damage/health formulas)
-- `CObjCHAR.*` (character object management)
+- `Calculation.*` (damage/health formulas) - **Multiple copies exist** (see A/file-duplicates.md)
+- `CObjCHAR.*` (character object management) - **Multiple copies exist**
 - Network packet handlers for health updates
 
 ### Zone Change EXP Overflow

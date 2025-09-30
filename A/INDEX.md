@@ -34,6 +34,7 @@ This index provides navigation to detailed documentation files for the Rose Onli
 - **File Structure**: See main copilot-instructions.md for directory layout
 - **Build Command**: `msbuild All.sln /p:Configuration=Release /p:Platform=x86`
 - **Launch Sequence**: `1-login.bat` → `2-world.bat` → `3-game.bat` → `local.bat`
+- **Current Focus**: Matching HP/MP/EXP calculations between client and server to resolve health desync issues
 
 ## Adding New Documentation
 
