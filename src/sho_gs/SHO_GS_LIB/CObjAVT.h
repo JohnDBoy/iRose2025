@@ -334,7 +334,7 @@ public :
 
 	bool	Is_ClanMASTER(void)			{	return this->GetClanPOS() >= GPOS_MASTER;	}
 
-	int				m_iAppliedPenaltyEXP;
+	__int64			m_iAppliedPenaltyEXP;
 	BYTE			m_btRideMODE;
 	int				m_iLinkedCartObjIDX;	// 존이 동시에 바꿈
 	int				m_iLinkedCartUsrIDX;	// 접속 종료시까지 바뀌지 않음
@@ -426,15 +426,15 @@ public :
 	{
 		if ( this->GetCur_LEVEL() >= 10 ) {
 			// 10렙 이상이면 페널티 적용..
-			int iNeedEXP  = CCal::Get_NeedRawEXP( m_GrowAbility.m_nLevel );
-			int iPenalEXP = (int) ( iNeedEXP * btAddPercent / 100.f );
+			__int64 iNeedEXP  = CCal::Get_NeedRawEXP( m_GrowAbility.m_nLevel );
+			__int64 iPenalEXP = (__int64) ( iNeedEXP * btAddPercent / 100.f );
 
 			m_iAppliedPenaltyEXP = iPenalEXP;
 			if ( m_GrowAbility.m_lEXP >= iPenalEXP ) {
-				m_GrowAbility.m_lEXP -= iPenalEXP;
+				m_GrowAbility.m_lEXP -= (__int64)iPenalEXP;
 			} else {
 				iPenalEXP -= m_GrowAbility.m_lEXP;
-				m_GrowAbility.m_lPenalEXP += iPenalEXP;
+				m_GrowAbility.m_lPenalEXP += (__int64)iPenalEXP;
 				m_GrowAbility.m_lEXP = 0;
 				if ( m_GrowAbility.m_lPenalEXP > DIV02(iNeedEXP) ) {
 					m_iAppliedPenaltyEXP -= ( DIV02(iNeedEXP) - m_GrowAbility.m_lPenalEXP );
@@ -447,7 +447,7 @@ public :
 	{
 		if ( this->GetCur_LEVEL() >= 10 && m_iAppliedPenaltyEXP > 0 ) {
 			// 10렙 이상이면 적용했던 페널티 해제...
-			m_iAppliedPenaltyEXP = (int)( m_iAppliedPenaltyEXP * btPercent / 100.f );
+			m_iAppliedPenaltyEXP = (__int64)(m_iAppliedPenaltyEXP * btPercent / 100.f);
 			if ( m_iAppliedPenaltyEXP ) {
 				m_GrowAbility.m_lEXP += m_iAppliedPenaltyEXP;
 			}

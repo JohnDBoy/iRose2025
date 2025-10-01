@@ -5,8 +5,8 @@ This document catalogs all known build preprocessor defines and their effects on
 ## Major Build Defines
 
 ### FRAROSE
-- **Status**: Commented out by default (`//#define FRAROSE`)
-- **Location**: `src/common/datatype.h` line 173, `src/client/StdAfx.h`, `src/sho_gs/SHO_GS_LIB/Common\CUserDATA.h`
+- **Status**: **NOT CURRENTLY ENABLED** - Causes buffer overflow issues and requires additional STB/STL files
+- **Location**: `src/common/datatype.h` line 173, `src/client/StdAfx.h`, `src/sho_gs/SHO_GS_LIB/Common\CUserDATA.h`, `src/sho_gs/SHO_GS_LIB/Common\DataTYPE.h`, `src/sho_gs/SHO_GS_LIB\CObjAVT.h`, `src/lib_util/lib_util.vcxproj`
 - **Effects**:
   - **Mount System**: Adds 20 mount types (PET_TYPE_MOUNT01 through PET_TYPE_MOUNT20)
   - **EXP/Drop Boosts**: Adds AT_EXP_BOOST, AT_DROP_BOOST, AT_EXP_NONE abilities
@@ -14,9 +14,10 @@ This document catalogs all known build preprocessor defines and their effects on
   - **Client Integration**: When defined, automatically enables _GBC define for extended ride mechanics
   - **Server Support**: Game server has matching mount attribute support and boost calculation functions
   - **Database Impact**: No schema changes required - uses existing maintain status system
-  - **STB Compatibility**: Uses LIST_PAT.STB for mount/pet data (no FRAROSE-specific STB files)
+  - **STB Compatibility**: **REQUIRES NEW STB/STL FILES** - Current LIST_PAT.STB does not contain mount data
+  - **Asset Requirements**: Mount 3D models and textures available but need proper STB/STL integration
   - **Synchronization**: Client and server implementations appear properly synchronized
-  - **Potential Issues**: Could cause sync problems if STB files don't match enabled features
+  - **Known Issues**: **CAUSES BUFFER OVERFLOW** - Character name corruption and potential packet structure problems (possible opcode/packet size changes)
 
 ### __KCHS_BATTLECART__
 - **Status**: Defined in world server (`src/sho_ws/SHO_WS_LIB/StdAfx.h`)
@@ -86,6 +87,27 @@ The following defines appear in the codebase but their effects are not fully doc
 - **Decision Needed**: Which features to enable (mounts, battle carts, etc.)
 - **Impact**: Affects gameplay balance and server performance
 
+## Build Testing Results
+
+### FRAROSE Enablement Testing
+- **Test Date**: Current session
+- **Test Method**: Full project build with FRAROSE enabled across all components
+- **Results**: 
+  - **Compilation**: SUCCESS (0 errors, 1683 warnings)
+  - **Warnings**: Mostly deprecated function warnings (strcmpi, strcpy, sprintf) and type conversion warnings
+  - **Runtime Issues**: **BUFFER OVERFLOW DETECTED** - Character name corruption and potential packet structure problems
+  - **Build Time**: ~2 minutes 29 seconds
+  - **Configuration**: Release build, x86 platform
+- **Files Modified**:
+  - `src/client/StdAfx.h` - Enabled FRAROSE define
+  - `src/common/datatype.h` - FRAROSE already enabled
+  - `src/sho_gs/SHO_GS_LIB/Common\CUserDATA.h` - FRAROSE already enabled
+  - `src/sho_gs/SHO_GS_LIB/Common\DataTYPE.h` - Enabled FRAROSE define
+  - `src/sho_gs/SHO_GS_LIB\CObjAVT.h` - Enabled FRAROSE define
+  - `src/lib_util/lib_util.vcxproj` - Added FRAROSE to preprocessor definitions
+- **Asset Requirements**: Mount assets available but require new STB/STL files for proper integration
+- **Verification**: Database schemas examined (no FRAROSE changes needed), STB structure analyzed (missing mount data), build compilation successful but runtime issues detected
+
 ## Recommendations
 
 1. **Document Effects**: Before enabling any define, test in a development environment
@@ -93,6 +115,9 @@ The following defines appear in the codebase but their effects are not fully doc
 3. **Asset Compatibility**: Ensure STB files match the enabled defines
 4. **Database Migration**: Plan database changes when enabling new features
 5. **Testing**: Each define change requires full server restart and client reconnection
+6. **FRAROSE Enablement**: **NOT SAFE TO ENABLE** - Causes buffer overflow and character name corruption, requires additional STB/STL files for mounts
+7. **Build Verification**: Always run full project build after define changes to catch compilation errors
+8. **Warning Management**: Deprecated function warnings are normal and don't indicate breaking changes
 
 ## Files to Monitor
 

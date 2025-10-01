@@ -7,7 +7,8 @@ This document details known synchronization problems between client and server c
 Synchronization issues occur when client and server states become inconsistent, leading to:
 - **Health desync**: Character health bars showing incorrect values
 - **EXP issues**: Experience gain/loss not properly synchronized (especially late game)
-- **Visual glitches**: Buffer overflow artifacts and rendering problems
+- **Visual glitches**: Buffer overflow artifacts and rendering problems (confirmed with FRAROSE)
+- **Character corruption**: Buffer overflow causing character name corruption (confirmed with FRAROSE)
 - **Combat inconsistencies**: Damage calculations not matching between client/server
 
 ## Root Causes
@@ -23,6 +24,7 @@ Based on analysis, synchronization issues stem from:
 - Incorrect packet parsing or serialization
 - Missing or malformed network messages
 - Race conditions in packet processing
+- **Buffer overflow in packet structures** (confirmed with FRAROSE - causes character name corruption)
 
 ### 3. STB File Column Issues (Possible)
 - Wrong column indices when reading game data files
@@ -102,16 +104,84 @@ if (iLevel <= 15) {
 - Character health bars show incorrect values
 - Players appear to have more/less health than actual
 - Combat becomes unpredictable
+- **Client HP values do not match server HP values**
+- **When consuming HP potions, health bar does not properly represent current player health**
 
 **Potential Causes:**
 - **Damage calculation mismatches**: Client and server using different damage formulas
 - **Health update packet timing**: Race conditions in health synchronization
 - **Buffer overflow in health values**: Memory corruption affecting health storage
+- **Potion effect synchronization**: Client not properly receiving or displaying health restoration updates
 
 **Affected Files:**
 - `Calculation.*` (damage/health formulas)
 - `CObjCHAR.*` (character object management)
 - Network packet handlers for health updates
+
+### Zone Change EXP Overflow
+
+**Symptoms:**
+- **When changing zones, experience from Player Information box overflows to character's floating health bar briefly**
+- EXP bar displays incorrect values during zone transitions
+- Visual artifacts in UI during zone loading
+- **Riding a cart while changing zones causes the same UI issue, but the error persists until disabling the cart**
+
+**Potential Causes:**
+- **UI update timing issues**: EXP bar not properly cleared/reset during zone changes
+- **Packet ordering problems**: Zone change packets arriving before/after EXP update packets
+- **Buffer reuse issues**: UI elements sharing memory that gets corrupted during transitions
+- **Race conditions**: Zone change UI updates conflicting with EXP synchronization
+- **Cart state persistence**: Cart riding state not properly reset during zone transitions
+
+**Affected Files:**
+- Zone change packet handlers
+- UI rendering code for EXP bars
+- Character floating health bar display logic
+- Cart/riding state management code
+
+### Higher Level Character EXP Accumulation
+
+**Symptoms:**
+- **Higher level characters not properly receiving experience**
+- **Experience accumulates to 200%+ without leveling up**
+- EXP bar shows inflated values beyond normal maximum
+- Level progression blocked despite gaining experience
+
+**Potential Causes:**
+- **EXP calculation overflow**: Integer overflow in EXP calculation for high-level characters
+- **Level-based EXP scaling issues**: EXP multipliers or thresholds incorrect for higher levels
+- **Database persistence problems**: EXP values not properly saved/loaded for high-level characters
+- **Packet size limitations**: EXP values exceeding packet data type limits
+- **UI display vs server calculation mismatch**: Server calculates correctly but UI displays wrong values
+
+**Affected Files:**
+- EXP calculation functions (likely in Calculation.* files)
+- Level progression logic
+- EXP packet handlers (client and server)
+- Database EXP storage/retrieval code
+- UI EXP bar rendering code
+
+### Soldier Self Buff Requirements Issue
+
+**Symptoms:**
+- **Soldier Self buff not working**
+- **Shows "unfulfilled requirements" when all requirements are met**
+- Buff activation fails despite meeting skill level, class, and stat requirements
+- Other buffs may work correctly, issue specific to Soldier Self buff
+
+**Potential Causes:**
+- **Requirement validation bug**: Incorrect requirement checking logic for Soldier Self buff
+- **Skill data corruption**: Soldier Self buff data corrupted in STB files or skill definitions
+- **Class validation issues**: Incorrect class checking for Soldier class buffs
+- **Stat requirement miscalculation**: HP/MP/STR/etc requirements not properly validated
+- **Buff ID conflicts**: Soldier Self buff ID conflicting with other skills/buffs
+
+**Affected Files:**
+- Skill validation functions
+- Buff requirement checking code
+- Soldier class skill definitions
+- STB files for skill data
+- Buff activation packet handlers
 
 ### Item Drop Rate Inconsistencies
 
@@ -138,19 +208,21 @@ if (iLevel <= 15) {
 
 ### FRAROSE Build Option Effects
 
-**Symptoms:** (Potential)
-- Mount riding synchronization issues
-- EXP/drop boost effects not properly applied
-- Client/server mount state mismatches
+**Symptoms:** (Confirmed)
+- **Buffer overflow causing character name corruption**
+- **Potential packet structure problems** (opcode/packet size changes)
+- **Mount riding synchronization issues** (when mounts are eventually implemented)
+- **EXP/drop boost effects not properly applied** (requires STB/STL integration)
 
 **Analysis:**
-- **FRAROSE Implementation**: Appears properly synchronized between client and server
-- **Mount System**: Both client and server support 20 mount types with matching data structures
-- **EXP/Drop Boosts**: Server has GetEXPBoost() and GetDropBoost() functions, client has corresponding _GBC define
-- **Ride Attributes**: m_btRideATTR expanded from BYTE to DWORD consistently
+- **FRAROSE Implementation**: **CAUSES BUFFER OVERFLOW** - Character name corruption and potential packet structure problems
+- **Mount System**: Code supports 20 mount types but **requires new STB/STL files** - current LIST_PAT.STB does not contain mount data
+- **EXP/Drop Boosts**: Server has GetEXPBoost() and GetDropBoost() functions, but **asset integration required** for proper functionality
+- **Ride Attributes**: m_btRideATTR expansion from BYTE to DWORD is implemented but **causes buffer overflow**
 - **Database Impact**: No schema changes required, uses existing maintain status system
-- **STB Compatibility**: Uses LIST_PAT.STB for mount data, no FRAROSE-specific files
-- **Potential Issues**: Could cause sync problems if STB files don't match enabled features or if conditional compilation differs between builds
+- **STB Compatibility**: **REQUIRES NEW STB/STL FILES** - no FRAROSE-specific files currently exist
+- **Asset Status**: Mount 3D models available but need proper STB/STL integration
+- **Runtime Issues**: **CONFIRMED BUFFER OVERFLOW** - Character names corrupted when FRAROSE enabled
 
 **Code Evidence:**
 ```cpp
@@ -162,15 +234,15 @@ if (iLevel <= 15) {
 // Server: FRAROSE adds boost functions to tagGrowAbility
 #ifdef FRAROSE
 short GetEXPBoost  (DWORD dwCurAbsSEC) {
-    // Returns 1-3x EXP multiplier
+    // Returns 1-3x EXP multiplier - BUT CAUSES BUFFER OVERFLOW
 }
 short GetDropBoost (DWORD dwCurAbsSEC) {
-    // Returns 1-3x drop multiplier  
+    // Returns 1-3x drop multiplier - BUT CAUSES BUFFER OVERFLOW
 }
 #endif
 ```
 
-**Status:** FRAROSE appears properly implemented but could contribute to sync issues if STB files or build configurations don't match between client and server.
+**Status:** **FRAROSE CAUSES BUFFER OVERFLOW AND IS NOT SAFE TO ENABLE** - Requires complete STB/STL file integration for mounts before it can be safely used. Character name corruption and potential packet issues make it unusable in current state.
 
 ## Investigation Areas
 
@@ -274,6 +346,7 @@ DWORD CalculateEXP(DWORD dwMonsterLevel, DWORD dwPlayerLevel, DWORD dwBaseEXP) {
 2. **Validation checks**: Add client/server state validation
 3. **Packet verification**: Implement packet checksums
 4. **Bounds checking**: Add array bounds validation
+5. **FRAROSE avoidance**: Do not enable FRAROSE until buffer overflow issues are resolved and STB/STL files are integrated
 
 ### Long-term Solutions
 1. **Unified calculations**: Move all calculations to server-side

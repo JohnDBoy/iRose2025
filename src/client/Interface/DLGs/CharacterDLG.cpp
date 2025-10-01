@@ -353,7 +353,7 @@ void CCharacterDLG::DrawBasicInfo()
 	//레벨	
 	::drawFontf( g_GameDATA.m_hFONT[ FONT_NORMAL_BOLD ], true, 59,172, D3DCOLOR_XRGB( 255, 255, 0 ), "%d", g_pAVATAR->Get_LEVEL());		
 	//경험치	
-	::drawFontf( g_GameDATA.m_hFONT[ FONT_NORMAL ], true, 59,193, D3DCOLOR_XRGB( 0, 210, 255), "%d / %d", g_pAVATAR->Get_EXP(), g_pAVATAR->Get_NeedEXP(g_pAVATAR->Get_LEVEL()) );
+	::drawFontf( g_GameDATA.m_hFONT[ FONT_NORMAL ], true, 59,193, D3DCOLOR_XRGB( 0, 210, 255), "%I64d / %I64d", g_pAVATAR->Get_EXP(), g_pAVATAR->Get_NeedEXP(g_pAVATAR->Get_LEVEL()) );
 
 	///214 - 스테미나 게이지
 	//::drawFontf( g_GameDATA.m_hFONT[ FONT_NORMAL ], true, 59,214, D3DCOLOR_XRGB( 0, 210, 255), "%d / %d", g_pAVATAR->GetCur_STAMINA(),c_iMaxStamina );

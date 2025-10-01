@@ -48,6 +48,21 @@
                 }
             ],
             "console": "integratedTerminal"
+        },
+        {
+            "name": "Launch Client (Release)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}\\bin\\release\\trose.exe",
+            "args": ["@TRIGGER_SOFT@", "_server", "127.0.0.1"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}\\game",
+            "environment": [
+                {
+                    "name": "PATH",
+                    "value": "${env:PATH};${workspaceFolder}\\bin\\release"
+                }
+            ],
+            "console": "integratedTerminal"
         }
-    ]
 }

@@ -148,6 +148,14 @@ pAvatar->Set_NAME(charName);
 - Many unused `#define` and preprocessor options exist
 - These may be important for different asset sets and database configurations
 - Need to document and decide which to use (see `A/build-options.md`)
+- **FRAROSE**: Mount/riding system and EXP/drop boosts preprocessor define - **NOT CURRENTLY USED**
+  - All `#define FRAROSE` statements are commented out in header files
+  - Conditional `#ifdef FRAROSE` blocks exist but are inactive
+  - No FRAROSE definitions in project files, solution files, or build scripts
+  - No FRAROSE environment variables set
+  - Mount system, riding mechanics, and boost features are disabled in current build
+  - **Known Issues**: When enabled, causes buffer overflow and character name corruption
+  - **Asset Requirements**: Requires new STB/STL files for mount data (assets available but need integration)
 
 ### Asserts & Debug Code
 - Many asserts exist but may be unreliable or just for breakpoints
@@ -192,7 +200,7 @@ pAvatar->Set_NAME(charName);
 - **Build errors**: Check include paths, ensure Release configuration
 - **Runtime crashes**: Check STB file loading, validate packet sizes
 - **Client connection issues**: Verify server startup order, check firewall
-- **Synchronization bugs**: Health desync, EXP issues, buffer overflow visual glitches
+- **Synchronization bugs**: Health desync, EXP issues, buffer overflow visual glitches, UI display inconsistencies (HP bars, zone change artifacts, potion effects)
 
 ### Debug Configuration
 - Use VSCode debugger with configured tasks.json/launch.json
@@ -231,5 +239,31 @@ game/                 # Client files and assets
 - `History.md` - Change history and tracking
 - `src/common/datatype.h` - Core data type definitions
 - `src/sho_gs/SHO_GS_LIB/LIB_gsMAIN.cpp` - Game server entry point
-- `database/sho.sql` - Main game database schema</content>
+- `database/sho.sql` - Main game database schema
+
+## Client UI Layout
+
+The Rose Online client interface consists of the following key UI elements:
+
+1. **Upper Left - Character Information Box**: Displays player's name, HP (Health), MP (Magic Health), and EXP (Experience) bars
+2. **Right of Character Info - Status Area**: Shows game hints, stat icons (buffs/debuffs), and fuel gauge
+3. **Center - Character Viewport**: Main 3D view where the character model is rendered with attached name tag and health bar above the model
+4. **Bottom Left - Chat Window**: Chat interface and system message output area
+5. **Bottom of Character Info - Menu Button**: Opens menu with access to various client UI boxes, screenshot button, and unknown UI elements
+6. **Upper Right - Mini Map**: Small map showing current zone layout
+7. **Right Click - Camera Control**: Right-clicking allows camera angle manipulation
+8. **Mouse Wheel - Zoom**: Scrolling zooms the camera view in and out
+9. **Party Window**: Floating window that appears during party play, showing all party members' names, health bars, and buff status
+
+**Additional UI Windows**: Character, Item, Skill, Quest, Community, Clan, Help, Info, Options, Exit
+
+**UI Framework**: Handled in source code, possibly using tgamectrl (locations not fully documented)
+
+**Debugging Access**: Can add outputs to client chat window, server debug windows, etc. through source code modifications
+
+### Current UI Issues (without FRAROSE enabled)
+1. **Client HP desync**: Client HP values do not match server HP values
+2. **Zone change EXP overflow**: When changing zones, experience from Player Information box overflows to character's floating health bar briefly
+3. **Health potion display**: When consuming HP potions, health bar does not properly represent current player health</content>
+
 <parameter name="filePath">d:\TestSefy2025\.github\copilot-instructions.md
