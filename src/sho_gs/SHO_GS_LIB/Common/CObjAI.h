@@ -289,7 +289,23 @@ public :
 	int					ProcCMD_Skill2OBJECT ();
 
 	
-	short				Get_RecoverHP( short nRecoverMODE )	{	return ( this->GetAdd_RecoverHP() + ( this->Get_CON()+30 ) / 8 * (nRecoverMODE+3) / 10 );	}
+	// Calculate HP recovery per tick based on current command/state (matches client logic) (JDOEBOY)
+	short Get_RecoverHP( short nRecoverMODE )
+	{
+	    short nRecoverHP = 0;
+	    switch ( Get_COMMAND() )
+	    {
+	        case CMD_SIT:
+	            // Sitting: recover more HP, formula uses CON stat and recovery mode (JDOEBOY)
+	            nRecoverHP = this->GetAdd_RecoverHP() + ( this->Get_CON() + 30 ) / 8 * ( nRecoverMODE + 3 ) / 10;
+	            break;
+	        default:
+	            // Standing/moving: recover less HP, formula uses CON stat (JDOEBOY)
+	            nRecoverHP = ( this->GetAdd_RecoverHP() + ( this->Get_CON() + 40 ) / 6 ) / 6;
+	            break;
+	    }
+	    return nRecoverHP;
+	}
 	short				Get_RecoverMP( short nRecoverMODE )	{	return ( this->GetAdd_RecoverMP() + ( this->Get_CON()+20 ) / 10 * nRecoverMODE / 7 );		}
 
 	

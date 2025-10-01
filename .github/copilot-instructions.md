@@ -243,17 +243,21 @@ game/                 # Client files and assets
 
 ## Client UI Layout
 
+
 The Rose Online client interface consists of the following key UI elements:
 
+
 1. **Upper Left - Character Information Box**: Displays player's name, HP (Health), MP (Magic Health), and EXP (Experience) bars
-2. **Right of Character Info - Status Area**: Shows game hints, stat icons (buffs/debuffs), and fuel gauge
-3. **Center - Character Viewport**: Main 3D view where the character model is rendered with attached name tag and health bar above the model
-4. **Bottom Left - Chat Window**: Chat interface and system message output area
-5. **Bottom of Character Info - Menu Button**: Opens menu with access to various client UI boxes, screenshot button, and unknown UI elements
-6. **Upper Right - Mini Map**: Small map showing current zone layout
-7. **Right Click - Camera Control**: Right-clicking allows camera angle manipulation
-8. **Mouse Wheel - Zoom**: Scrolling zooms the camera view in and out
-9. **Party Window**: Floating window that appears during party play, showing all party members' names, health bars, and buff status
+2. **Directly Under Character Information Box - Regen/Status Icons**: Small icons appear here to indicate when HP or MP is increasing (e.g., from regeneration, food, or potion). These icons are visually similar to the buff/debuff icons but are shown in a separate row directly beneath the Character Information box, not in the main buff area. They provide immediate feedback that HP/MP is actively being restored.
+3. **Right of Character Info - Status Area**: Shows game hints, stat icons (buffs/debuffs), and fuel gauge
+4. **Center - Character Viewport**: Main 3D view where the character model is rendered with attached name tag and health bar above the model
+5. **Bottom Left - Chat Window**: Chat interface and system message output area
+6. **Bottom of Character Info - Menu Button**: Opens menu with access to various client UI boxes, screenshot button, and unknown UI elements
+7. **Upper Right - Mini Map**: Small map showing current zone layout
+8. **Right Click - Camera Control**: Right-clicking allows camera angle manipulation
+9. **Mouse Wheel - Zoom**: Scrolling zooms the camera view in and out
+10. **Party Window**: Floating window that appears during party play, showing all party members' names, health bars, and buff status
+
 
 **Additional UI Windows**: Character, Item, Skill, Quest, Community, Clan, Help, Info, Options, Exit
 

@@ -286,64 +286,49 @@ void CNameBox::DrawMobName( float x, float y, float z, CObjCHAR* pCharOBJ, bool 
 {
 	DWORD dwColor = GetTargetMobNameColor( g_pAVATAR->Get_LEVEL(), pCharOBJ->Get_LEVEL() );
 
-	/// 소환몹일경우에는 무조건 파란색
+	// JDOEBOY: Show mob level beside name
 	if( pCharOBJ->m_EndurancePack.GetStateFlag() & FLAG_ING_DEC_LIFE_TIME )
 		dwColor = g_dwBlueName;
 
-
-	const char* pName = pCharOBJ->Get_NAME();
+	char szMobNameWithLevel[128];
+	snprintf(szMobNameWithLevel, sizeof(szMobNameWithLevel), "Lv. %d %s", pCharOBJ->Get_LEVEL(), pCharOBJ->Get_NAME());
 	int iWidthBackImage = 100;
-	int iWidthGuage		= 100;
+	int iWidthGuage     = 100;
 
 	if( bTargeted )
 	{
 		g_DrawImpl.Draw( x - iWidthBackImage / 2, y - NAMEBOX_HEIGHT / 2 + 4, z, IMAGE_RES_UI, CResourceMgr::GetInstance()->GetImageNID( IMAGE_RES_UI,"UI00_GUAGE_BACKGROUND" ));
-		
+        
 		int iHP = pCharOBJ->Get_HP();
-
 		if ( iHP < 0 ) 
 			iHP = 0;
-
 		int iMaxHP =  pCharOBJ->Get_MaxHP();
 		int iWidth = 0;
 		if( iMaxHP > 0 )
 			iWidth = iWidthGuage * iHP  / iMaxHP;
-			
-		
 		g_DrawImpl.Draw( x - iWidthGuage / 2 , y - NAMEBOX_HEIGHT / 2 + 4 , z, iWidth, IMAGE_RES_UI, CResourceMgr::GetInstance()->GetImageNID( IMAGE_RES_UI,"UI00_GUAGE_RED" ));
 
+		SIZE size = getFontTextExtent( g_GameDATA.m_hFONT[ FONT_NORMAL_OUTLINE ], szMobNameWithLevel );
+		RECT rcDrawName;
+		rcDrawName.left     = x - size.cx / 2 - 5;
+		rcDrawName.top      = y - NAMEBOX_HEIGHT / 2 - 16;
+		rcDrawName.right    = x + size.cx / 2 + 5;
+		rcDrawName.bottom   = rcDrawName.top + size.cy;
 
-		char* pszMobName = pCharOBJ->Get_NAME();
-		if( pszMobName )
-		{
-			SIZE size = getFontTextExtent( g_GameDATA.m_hFONT[ FONT_NORMAL_OUTLINE ], pszMobName );
-
-			RECT rcDrawName;
-			rcDrawName.left		= x - size.cx / 2 - 5;
-			rcDrawName.top		= y - NAMEBOX_HEIGHT / 2 - 16;
-			rcDrawName.right	= x + size.cx / 2 + 5;
-			rcDrawName.bottom	= rcDrawName.top + size.cy;
-
-			RECT rc = { iWidthGuage / 2 - size.cx / 2 - 5, -18, iWidthGuage / 2 + size.cx / 2 + 5, 0 };
-
-			::drawFont( g_GameDATA.m_hFONT[ FONT_NORMAL_OUTLINE ], true, &rc, dwColor, DT_CENTER, pszMobName );
-
-			DrawTargetMark( pCharOBJ, rcDrawName, z);
-		}
-
+		RECT rc = { iWidthGuage / 2 - size.cx / 2 - 5, -18, iWidthGuage / 2 + size.cx / 2 + 5, 0 };
+		::drawFont( g_GameDATA.m_hFONT[ FONT_NORMAL_OUTLINE ], true, &rc, dwColor, DT_CENTER, szMobNameWithLevel );
+		DrawTargetMark( pCharOBJ, rcDrawName, z);
 	}
 	else
 	{
-
-		SIZE size = getFontTextExtent( g_GameDATA.m_hFONT[ FONT_NORMAL_OUTLINE ], pCharOBJ->Get_NAME() );
-
-		D3DXMATRIX mat;	
+		SIZE size = getFontTextExtent( g_GameDATA.m_hFONT[ FONT_NORMAL_OUTLINE ], szMobNameWithLevel );
+		D3DXMATRIX mat;    
 		D3DXMatrixTranslation( &mat, x - size.cx / 2, y - NAMEBOX_HEIGHT / 2 + 4, z );
-		::setTransformSprite( mat );	
-
+		::setTransformSprite( mat );    
 		RECT rc = { 0, 0, size.cx, 18 };
-		::drawFont( g_GameDATA.m_hFONT[ FONT_NORMAL_OUTLINE ], true, &rc, dwColor, DT_CENTER, pCharOBJ->Get_NAME() );
+		::drawFont( g_GameDATA.m_hFONT[ FONT_NORMAL_OUTLINE ], true, &rc, dwColor, DT_CENTER, szMobNameWithLevel );
 	}
+	// JDOEBOY END
 }
 
 void CNameBox::DrawAvatarName( float x, float y, float z, CObjCHAR* pCharOBJ, bool bTargeted )

@@ -2891,18 +2891,27 @@ void CObjCHAR::Reset_Position ()
 
 void CObjCHAR::RecoverHP( short nRecoverMODE )
 {
-	int iRecoverHP = Get_RecoverHP( nRecoverMODE );	
-	int iAruaAddHP = (m_IsAroa)?iRecoverHP >> 1:0;
-
+	// --- INSTANT HP SYNC: Instantly apply any HP revision from server, no smoothing. JDOEBOY
+	int iRecoverHP = Get_RecoverHP( nRecoverMODE );
+	int iAruaAddHP = (m_IsAroa) ? (iRecoverHP >> 1) : 0;
 	Add_HP( iRecoverHP + iAruaAddHP );
-	
-//	_RPT2( _CRT_WARN,"RecoverHP:%d, AruaAddHP:%d\n", iRecoverHP, iAruaAddHP );
 
-	int iReviseConstHP = iRecoverHP;//Get_MaxHP() / 30;///매틱마다 서버와의 차이를 줄이기 위한 보정값
+	// Instantly sync to server HP if needed (JDOEBOY)
+	if( m_ReviseHP != 0 ) {
+		Add_HP( m_ReviseHP );
+		m_ReviseHP = 0;
+	}
+
+	// Clamp HP to max value (JDOEBOY)
+	int iMaxHP = Get_MaxHP();
+	if( Get_HP() > iMaxHP )
+		Set_HP( iMaxHP );
+
+	/*
+	// --- ORIGINAL SMOOTHING LOGIC (DISABLED, see above for instant sync) JDOEBOY
+	int iReviseConstHP = iRecoverHP; // Used to correct HP drift with server
 	if( iReviseConstHP < 10 )
 		iReviseConstHP = 10;
-
-
 	if( m_ReviseHP > 0 )
 	{
 		if( m_ReviseHP > iReviseConstHP )
@@ -2933,10 +2942,7 @@ void CObjCHAR::RecoverHP( short nRecoverMODE )
 			m_ReviseHP = 0;
 		}
 	}
-
-	int iMaxHP = Get_MaxHP();
-	if( Get_HP() > Get_MaxHP() )
-		Set_HP( Get_MaxHP() );					
+	*/
 }
 
 //----------------------------------------------------------------------------------------
@@ -2948,15 +2954,25 @@ void CObjCHAR::RecoverHP( short nRecoverMODE )
 
 void CObjCHAR::RecoverMP( short nRecoverMODE )
 {
+	// --- INSTANT MP SYNC: Instantly apply any MP revision from server, no smoothing. JDOEBOY
 	int iRecoverMP = Get_RecoverMP( nRecoverMODE );
-	int iAruaAddMP = (m_IsAroa)?iRecoverMP >> 1:0;
-
+	int iAruaAddMP = (m_IsAroa) ? (iRecoverMP >> 1) : 0;
 	Add_MP( iRecoverMP + iAruaAddMP );
 
-	int iReviseConstMP = iRecoverMP;//Get_MaxMP() / 30;///매틱마다 서버와의 차이를 줄이기 위한 보정값
+	// Instantly sync to server MP if needed (JDOEBOY)
+	if( m_ReviseMP != 0 ) {
+		Add_MP( m_ReviseMP );
+		m_ReviseMP = 0;
+	}
+
+	if( Get_MP() > Get_MaxMP() )
+		Set_MP( Get_MaxMP() );
+
+	/*
+	// --- ORIGINAL SMOOTHING LOGIC (DISABLED, see above for instant sync) JDOEBOY
+	int iReviseConstMP = iRecoverMP;
 	if( iReviseConstMP < 10 )
 		iReviseConstMP = 10;
-
 	if( m_ReviseMP > 0 )
 	{
 		if( m_ReviseMP > iReviseConstMP )
@@ -2983,9 +2999,7 @@ void CObjCHAR::RecoverMP( short nRecoverMODE )
 			m_ReviseMP = 0;
 		}
 	}
-
-	if( Get_MP() > Get_MaxMP() )
-		Set_MP( Get_MaxMP() );			
+	*/
 }
 
 

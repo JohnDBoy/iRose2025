@@ -171,13 +171,14 @@ void CObjAI::Start_ATTACK (CObjCHAR *pTarget)
 		// 공격 애니메이션 & 속도 설정. :: 크리티컬 공격일 경우 모션을 별도로 존재하지 않고 효과로 출력한다.
 		this->Set_MOTION( this->GetANI_Attack(), 0, this->Get_fAttackSPEED(), true );
 	
-		#if defined(_DEBUG) && !defined(__SERVER)
-			if ( m_pCurMOTION->m_nActionPointCNT <= 0 ) {
-				char *szMsg = CStr::Printf("%s 공격 타점 프레임 설정 필요!!!", Get_NAME());
-				g_pCApp->ErrorBOX( szMsg, "ERROR" );
-				LogString (LOG_DEBUG, szMsg);
-			}
-		#endif
+				#if defined(_DEBUG) && !defined(__SERVER)
+					if ( m_pCurMOTION->m_nActionPointCNT <= 0 ) {
+						// TRANSLATED: "%s needs attack point frame!!!" (JDOEBOY)
+						char *szMsg = CStr::Printf("%s needs attack point frame!!!", Get_NAME());
+						g_pCApp->ErrorBOX( szMsg, "ERROR" );
+						LogString (LOG_DEBUG, szMsg);
+					}
+				#endif
 	}
 }
 
@@ -1914,24 +1915,23 @@ int CObjAI::ProcCMD_Skill2OBJECT ()
 	return 1;
 }
 
-short CObjAI::Get_RecoverHP( short nRecoverMODE )	
+// Calculate HP recovery per tick based on current command/state (JDOEBOY)
+short CObjAI::Get_RecoverHP( short nRecoverMODE )  
 {
-	short nRecoverHP = 0;
+    short nRecoverHP = 0;
 
-	switch ( Get_COMMAND() ) 
-	{
-		case CMD_SIT :
-			{
-				nRecoverHP = this->GetAdd_RecoverHP() + ( this->Get_CON()+30 ) / 8 * (nRecoverMODE+3) / 10;	
-			}
-			break;
-		default:
-			{
-				nRecoverHP = ( this->GetAdd_RecoverHP() + ( this->Get_CON()+40 ) / 6 ) / 6;	
-			}
-			break;	
-	}
-	return nRecoverHP;
+    switch ( Get_COMMAND() ) 
+    {
+	case CMD_SIT :
+	    // Sitting: recover more HP, formula uses CON stat and recovery mode (JDOEBOY)
+	    nRecoverHP = this->GetAdd_RecoverHP() + ( this->Get_CON() + 30 ) / 8 * ( nRecoverMODE + 3 ) / 10;
+	    break;
+	default:
+	    // Standing/moving: recover less HP, formula uses CON stat (JDOEBOY)
+	    nRecoverHP = ( this->GetAdd_RecoverHP() + ( this->Get_CON() + 40 ) / 6 ) / 6;
+	    break;  
+    }
+    return nRecoverHP;
 }
 
 short CObjAI::Get_RecoverMP( short nRecoverMODE )	
@@ -1946,18 +1946,18 @@ short CObjAI::Get_RecoverMP( short nRecoverMODE )
 	return nRecoverMP;
 }
 //----------------------------------------------------------------------------------------------------
-/// @brief 버프나 패시브 스킬등으로 추가되기전의 순수 MaxHP구하는 메쏘드 : 2005/7/13 - nAvy
+/// @brief Method to get the pure MaxHP before it's increased by buffs, passive skills, etc. : 2005/7/13 - nAvy
 //----------------------------------------------------------------------------------------------------
 int CObjAI::GetOri_MaxHP()
 {
-	_RPT0 ( _CRT_WARN, "GetOri_MaxHP() 호출시에 문제 생길수 있다" );
+	_RPT0 ( _CRT_WARN, "A problem may occur when calling GetOri_MaxHP()" );
 	return 0;
 }
 //----------------------------------------------------------------------------------------------------
-/// @brief 버프나 패시브 스킬등으로 추가되기전의 순수 MaxMP구하는 메쏘드 : 2005/7/13 - nAvy
+/// @brief Method to get the pure MaxMP before it's increased by buffs, passive skills, etc. : 2005/7/13 - nAvy
 //----------------------------------------------------------------------------------------------------
 int CObjAI::GetOri_MaxMP()
 {
-	_RPT0 ( _CRT_WARN, "GetOri_MaxMP() 호출시에 문제 생길수 있다" );
+	_RPT0 ( _CRT_WARN, "A problem may occur when calling GetOri_MaxMP()" );
 	return 0;
 }

@@ -29,12 +29,19 @@ This index provides navigation to detailed documentation files for the Rose Onli
 - **[asset-formats.md](asset-formats.md)** - STB, STL, and other game asset formats
 - **[database-schema.md](database-schema.md)** - Database structure and relationships
 
+
 ## Quick References
 
 - **File Structure**: See main copilot-instructions.md for directory layout
 - **Build Command**: `msbuild All.sln /p:Configuration=Release /p:Platform=x86`
 - **Launch Sequence**: `1-login.bat` → `2-world.bat` → `3-game.bat` → `local.bat`
 - **Current Focus**: Matching HP/MP/EXP calculations between client and server to resolve health desync issues
+
+### HP Sync Investigation (2025-10-01, JDOEBOY)
+- Floating HP bar (`CNameBox.cpp`) and Character Info box both use `Get_HP()`/`Get_MaxHP()` from character objects.
+- HP values are set by server packets; client should not do its own HP math.
+- Tracing all HP update paths to ensure no local prediction or math is causing desync.
+- Next: Audit all packet handlers and UI update code for HP.
 
 ## Adding New Documentation
 
