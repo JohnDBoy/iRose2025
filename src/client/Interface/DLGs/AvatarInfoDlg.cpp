@@ -187,22 +187,27 @@ void CAvatarInfoDlg::Update( POINT ptMouse )
 		__int64 i64Value = g_pAVATAR->Get_EXP();
 		if ( i64Value < 0 ) 	i64Value = 0;
 
-		__int64 i64Max = g_pAVATAR->Get_NeedEXP(g_pAVATAR->Get_LEVEL());
-		if( i64Max != 0 )
-		{	
-
-			i64Per = i64Value * 1000 / i64Max;
-			pGuage->SetValue( (int)i64Per );
-
-#ifdef _NEWUI			
-			// 홍근 : 폰트가 스케일이 먹는다.
-			pGuage->SetText( "" );
-#else			
-			pszBuf = CStr::Printf( "%.2f%%", i64Value * 100 / (float)i64Max );
-			pGuage->SetText( pszBuf );
+	__int64 i64Max = g_pAVATAR->Get_NeedEXP(g_pAVATAR->Get_LEVEL());
+	if( i64Max == 0 ) {
+	    // At max level, always show 100% and full gauge. JDOEBOY
+	    i64Per = 1000;
+	    pGuage->SetValue( 1000 );
+#ifdef _NEWUI
+	    pGuage->SetText( "" );
+#else
+	    pszBuf = CStr::Printf( "100.00%%" );
+	    pGuage->SetText( pszBuf );
 #endif
-			
-		}
+	} else {
+	    i64Per = i64Value * 1000 / i64Max;
+	    pGuage->SetValue( (int)i64Per );
+#ifdef _NEWUI            
+	    pGuage->SetText( "" );
+#else            
+	    pszBuf = CStr::Printf( "%.2f%%", i64Value * 100 / (float)i64Max );
+	    pGuage->SetText( pszBuf );
+#endif
+	}
 	}
 
 #ifdef _NEWUI

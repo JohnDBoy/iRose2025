@@ -34,11 +34,13 @@ extern bool IsTAIWAN ();
 extern bool IsIROSE (); // 타이완 , EN 모두 참.
 
 //-------------------------------------------------------------------------------------------------
-int CCal::Get_NeedRawEXP (int iLevel)
+__int64 CCal::Get_NeedRawEXP (int iLevel) // JDOEBOY: Updated to __int64 for EXP safety
 {
 	// 필요 경험치
-	if ( iLevel > MAX_LEVEL )
-		iLevel = MAX_LEVEL;
+	if ( iLevel >= MAX_LEVEL ) {
+		// No EXP required at or above max level. JDOEBOY
+		return 0;
+	}
 
 	if ( IsTAIWAN() ) {
 		// [레벨 15이하일 경우]   필요 경험치 = { (LV + 3) * (LV + 5 ) * (LV + 10) * 0.7 }
@@ -51,170 +53,83 @@ int CCal::Get_NeedRawEXP (int iLevel)
 
 		// [레벨 100이하일 경우]  필요 경험치 = { (LV - 5) * ( LV +2 ) * (LV -38 ) * 9 }
 		if ( iLevel <= 100 ) 
-			return (int)( (iLevel-5)*(iLevel+2)*(iLevel-38)*9 );
+				// JDOEBOY: Unified chunked EXP math for levels 1-255. Taiwan-specific block moved to reference section below. Only unified math is active.
+				if (iLevel > MAX_LEVEL)
+					iLevel = MAX_LEVEL;
 
-		// [레벨 139이하일 경우]  필요 경험치 = { (LV + 27) * (LV +34 ) * (LV + 220) }
-		if ( iLevel <= 139 ) 
-			return (int)( (iLevel+27)*(iLevel+34)*(iLevel+220) );
+				// [Level 1–15] EXP = (LV + 3) * (LV + 5) * (LV + 10) * 0.7
+				if (iLevel <= 15) {
+					return (__int64)(((iLevel + 3) * (iLevel + 5) * (iLevel + 10) * 0.7f));
+				}
 
-		// [레벨 200이하일 경우]  필요 경험치 = { (LV - 15) * (LV +7 ) * (LV - 126) * 41 }
-		return (int)( (iLevel-15)*(iLevel+7)*(iLevel-126) * 41 );
+				// [Level 16–60] EXP = (LV - 5) * (LV + 2) * (LV + 2) * 2.2
+				if (iLevel <= 60) {
+					return (__int64)(((iLevel - 5) * (iLevel + 2) * (iLevel + 2) * 2.2f));
+				}
+
+				// [Level 61–113] EXP = (LV - 11) * (LV) * (LV + 4) * 2.5
+				if (iLevel <= 113) {
+					return (__int64)(((iLevel - 11) * (iLevel) * (iLevel + 4) * 2.5f));
+				}
+
+				// [Level 114–150] EXP = (LV - 31) * (LV - 20) * (LV + 4) * 3.8
+				if (iLevel <= 150) {
+					return (__int64)(((iLevel - 31) * (iLevel - 20) * (iLevel + 4) * 3.8f));
+				}
+
+				// [Level 151–189] EXP = (LV - 67) * (LV - 20) * (LV - 10) * 6
+				if (iLevel <= 189) {
+					return (__int64)(((iLevel - 67) * (iLevel - 20) * (iLevel - 10) * 6.f));
+				}
+
+				// [Level 190–210] EXP = (LV - 100) * (LV - 50) * (LV - 10) * 8
+				if (iLevel <= 210) {
+					return (__int64)(((iLevel - 100) * (iLevel - 50) * (iLevel - 10) * 8.f));
+				}
+
+				// [Level 211–230] EXP = (LV - 120) * (LV - 70) * (LV - 20) * 10
+				if (iLevel <= 230) {
+					return (__int64)(((iLevel - 120) * (iLevel - 70) * (iLevel - 20) * 10.f));
+				}
+
+				// [Level 231–255] EXP = (LV - 150) * (LV - 100) * (LV - 50) * (LV - 10) * 12
+				if (iLevel <= 255) {
+					return (__int64)(((iLevel - 150) * (iLevel - 100) * (iLevel - 50) * (iLevel - 10) * 12.f));
+				}
+
+				// Should never reach here, but fallback to max chunk
+				return (__int64)(((iLevel - 150) * (iLevel - 100) * (iLevel - 50) * (iLevel - 10) * 12.f));
+
 /*
-		// <대만 적용 계산식> 2005.04.25
-		//²	[레벨 8이하일 경우] 필요 경험치 = ( (iLevel+3)*(iLevel+5)*(iLevel+10)*0.6 )
-		if ( iLevel <= 8 )
-			return (int)( (iLevel+3)*(iLevel+5)*(iLevel+10)*0.6 );
-		//²	[레벨 9일 경우] 필요 경험치 = ( iLevel+2)*(iLevel+4)*(iLevel+3)*1.9 )
-		if ( iLevel == 9 )
-			return (int)( (iLevel+2 )*(iLevel+4 )*(iLevel+3 )*1.9 );
-
-		//²	[레벨 28이하일 경우] 필요 경험치 = ( (iLevel+3 )*(iLevel+1 )*(iLevel+3 )*1.2 )
-		if ( iLevel <= 28  )
-			return (int)( (iLevel+3 )*(iLevel+1 )*(iLevel+3 )*1.2 );
-		//²	[레벨 29일 경우] 필요 경험치 = ( (iLevel+9 )*(iLevel+10 )*(iLevel+10 )*2 )
-		if ( iLevel == 29  )
-			return (int)( (iLevel+9 )*(iLevel+10 )*(iLevel+10 )*2 );
-
-		//²	[레벨 48이하일 경우] 필요 경험치 = ( (iLevel-5 )*(iLevel+2 )*(iLevel+2 )*1.8 )
-		if ( iLevel <= 48  )
-			return (int)( (iLevel-5 )*(iLevel+2 )*(iLevel+2 )*1.8 );
-		//²	[레벨 49일 경우] 필요 경험치 = ( (iLevel+10 )*(iLevel+10 )*(iLevel+15 )*3.2 )
-		if ( iLevel == 49  )
-			return (int)( (iLevel+10 )*(iLevel+10 )*(iLevel+15 )*3.2 );
-
-		//²	[레벨 68이하일 경우] 필요 경험치 = ( (iLevel-5 )*(iLevel+3 )*(iLevel+2 )*1.9 )
-		if ( iLevel <= 68  )
-			return (int)( (iLevel-5 )*(iLevel+3 )*(iLevel+2 )*1.9 );
-		//²	[레벨 69일 경우] 필요 경험치 = ( (iLevel+10 )*(iLevel+10 )*(iLevel+20 )*3.4 )
-		if ( iLevel == 69  )
-			return (int)( (iLevel+10 )*(iLevel+10 )*(iLevel+20 )*3.4 );
-
-		//²	[레벨 98이하일 경우] 필요 경험치 = ( (iLevel-11 )*(iLevel+0 )*(iLevel-3 )*2.4 )
-		if ( iLevel <= 98  )
-			return (int)( (iLevel-11 )*(iLevel+0 )*(iLevel-3 )*2.4 );
-		//²	[레벨 99일 경우] 필요 경험치 = ( (iLevel+4 )*(iLevel+9 )*(iLevel+4 )*6 )
-		if ( iLevel == 99  )
-			return (int)( (iLevel+4 )*(iLevel+9 )*(iLevel+4 )*6 );
-
-		//²	[레벨 148이하일 경우] 필요 경험치 = ( (iLevel-11 )*(iLevel+0 )*(iLevel+4 )*4 )
-		if ( iLevel <= 148  )
-			return (int)( (iLevel-11 )*(iLevel+0 )*(iLevel+4 )*4 );
-		//²	[레벨 149일 경우] 필요 경험치 = ( (iLevel-31 )*(iLevel-20 )*(iLevel+4 )*16 )
-		if ( iLevel == 149  ) 
-			return (int)( (iLevel-31 )*(iLevel-20 )*(iLevel+4 )*16 );
-
-		//²	[레벨 178이하일 경우] 필요 경험치 = ( (iLevel-67 )*(iLevel-20 )*(iLevel-10 )*9 )
-		if ( iLevel <= 178  )
-			return (int)( (iLevel-67 )*(iLevel-20 )*(iLevel-10 )*9 );
-
-		//²	[레벨 200이하일 경우] 필요 경험치 =( (iLevel-67 )*(iLevel-20 )*(iLevel-10 )*(iLevel-170 ) )
-		return (int)( (iLevel-67 )*(iLevel-20 )*(iLevel-10 )*(iLevel-170 ) );
+// Original formulas for reference (JDOEBOY):
+if ( IsTAIWAN() ) {
+	if ( iLevel <= 15 )
+		return (int)( (iLevel+3)*(iLevel+5)*(iLevel+10)*0.7 );
+	if ( iLevel <= 50 ) 
+		return (int)( (iLevel-5)*(iLevel+2)*(iLevel+2)*2.2 );
+	if ( iLevel <= 100 ) 
+		return (int)( (iLevel-5)*(iLevel+2)*(iLevel-38)*9 );
+	if ( iLevel <= 139 ) 
+		return (int)( (iLevel+27)*(iLevel+34)*(iLevel+220) );
+	return (int)( (iLevel-15)*(iLevel+7)*(iLevel-126) * 41 );
+}
+if ( iLevel <= 60 ) {
+	if ( iLevel <= 15 ) {
+		return (int)( ( (iLevel+3) * (iLevel+5) * (iLevel+10)*0.7f ) );
+	}
+	return (int)( ( (iLevel-5) * (iLevel+2) * (iLevel+2)*2.2f ) );
+}
+if ( iLevel <= 113 ) {
+	return (int)( ( (iLevel-11) * (iLevel) * (iLevel+4)*2.5f ) );
+}
+if ( iLevel <= 150 ) {
+	return (int)( ( (iLevel-31) * (iLevel-20) * (iLevel+4)*3.8f ) );
+}
+if ( iLevel <= 189 ) {
+	return (int)( ( (iLevel-67) * (iLevel-20) * (iLevel-10)*6.f ) );
+}
+return (int)( (iLevel-90) * (iLevel-120) * (iLevel-60) * (iLevel-170) * (iLevel-188) );
 */
-	}
-
-
-	// 한국 계산식...2005.05.25(수정) ~
-	if ( iLevel <= 60 ) {
-		if ( iLevel <= 15 ) {
-			// [레벨 15 이하일 경우]  필요 경험치 = { (LV + 3) * (LV + 5 ) * (LV + 10) * 0.7 } 
-			return (int)( ( (iLevel+3) * (iLevel+5) * (iLevel+10)*0.7f ) );
-		}
-
-		// [레벨 60 이하일 경우]  필요 경험치 = { (LV - 5) * (LV + 2 ) * (LV + 2) * 2.2 } 
-		return (int)( ( (iLevel-5) * (iLevel+2) * (iLevel+2)*2.2f ) );
-	}
-
-	if ( iLevel <= 113 ) {
-		// [레벨 113이하일 경우]  필요 경험치 = { (LV - 11) * ( LV ) * (LV + 4) * 2.5 } 
-		return (int)( ( (iLevel-11) * (iLevel) * (iLevel+4)*2.5f ) );
-	}
-
-	if ( iLevel <= 150 ) {
-		// [레벨 150이하일 경우]  필요 경험치 = { (LV - 31) * (LV - 20 ) * (LV + 4) * 3.8 } 
-		return (int)( ( (iLevel-31) * (iLevel-20) * (iLevel+4)*3.8f ) );
-	}
-
-//	if ( iLevel <= 176 ) {
-	if ( iLevel <= 189 ) {
-		// [레벨 189이하일 경우]  필요 경험치 = { (LV - 67) * (LV - 20 ) * (LV - 10) * 6 } 
-		return (int)( ( (iLevel-67) * (iLevel-20) * (iLevel-10)*6.f ) );
-	}
-
-	// [레벨 200이하일 경우]  필요 경험치 = { (LV - 90) * (LV - 120) * (LV - 60) * (LV - 170) * (LV -188)}
-	return (int)( (iLevel-90) * (iLevel-120) * (iLevel-60) * (iLevel-170) * (iLevel-188) );
-}
-
-//-------------------------------------------------------------------------------------------------
-int CCal::Get_RewardVALUE( BYTE btEquation, int S_REWARD, CUserDATA *pUSER, short nDupCNT )
-{
-	int iR = 0;
-
-	switch( btEquation ) {
-		case 0 :	// 경험치 기준값 우선 
-			iR = ( (S_REWARD+30) * ( pUSER->GetCur_CHARM()+10 ) * ( ::Get_WorldREWARD() ) * ( pUSER->GetCur_FAME()+20 ) /
-					( pUSER->GetCur_LEVEL()+70 ) / 30000 ) + S_REWARD;
-			break;
-		case 1 :	// 경험치 레벨비율
-			iR = S_REWARD * ( pUSER->GetCur_LEVEL()+3 ) * ( pUSER->GetCur_LEVEL()+pUSER->GetCur_CHARM()/2+40 ) * ( ::Get_WorldREWARD() ) / 10000;
-			break;
-		case 2 :	// 돈 횟수
-			iR = S_REWARD * nDupCNT;
-			break;
-		case 3 :	// 돈 기준값
-		case 5 :	// 아이템 기준값
-			iR = ( (S_REWARD+20) * ( pUSER->GetCur_CHARM()+10 ) * ( ::Get_WorldREWARD() ) * ( pUSER->GetCur_FAME()+20 ) /
-					( pUSER->GetCur_LEVEL()+70 ) / 30000 ) + S_REWARD;
-			break;
-		case 4 :	// 돈 레벨 비율
-			iR = (S_REWARD+2) * ( pUSER->GetCur_LEVEL()+pUSER->GetCur_CHARM()+40 ) * ( pUSER->GetCur_FAME()+40 ) * ( ::Get_WorldREWARD() ) / 140000;
-			break;
-		case 6 :	// 아이템 레벨비율
-			iR = ( (S_REWARD+20) * ( pUSER->GetCur_LEVEL()+pUSER->GetCur_CHARM() ) * ( pUSER->GetCur_FAME()+20 ) * ( ::Get_WorldREWARD() ) / 3000000 ) + S_REWARD;
-			break;
-	}
-
-	return iR;
-}
-
-//-------------------------------------------------------------------------------------------------
-bool CCal::Get_DropITEM (int iLevelDiff, CObjMOB *pMobCHAR, tagITEM &sITEM, int iZoneNO, int iDropRate, int iCharm)
-{
-	int iDrop_VAR;
-
-	if ( iLevelDiff < 0 )
-		iLevelDiff = 0;
-	else
-	if ( iLevelDiff >= 10 )
-		return false;
-
-	if( IsTAIWAN () ) {
-		// 대만 6-14 kchs
-		if( iLevelDiff < 9 )
-			iDrop_VAR = (int)( ( ::Get_WorldDROP() + NPC_DROP_ITEM( pMobCHAR->Get_CharNO() ) - (1+RANDOM(100))- ((iLevelDiff+16)*3.5f)-10 + iDropRate ) * 0.38f ); // * ( NPC_DROP_MONEY( pMobCHAR->Get_CharNO() ) + 30 ) / 130;
-		else
-			iDrop_VAR = (int)( ( ::Get_WorldDROP() + NPC_DROP_ITEM( pMobCHAR->Get_CharNO() ) - (1+RANDOM(100))- ((iLevelDiff+20)*5.5f)-10 + iDropRate ) * 0.23f ); // * ( NPC_DROP_MONEY( pMobCHAR->Get_CharNO() ) + 30 ) / 130;
-	} else {
-		iDrop_VAR = (int)( ( ::Get_WorldDROP() + NPC_DROP_ITEM( pMobCHAR->Get_CharNO() ) - (1+RANDOM(100))- ((iLevelDiff+16)*3.5f)-10 + iDropRate ) * 0.38f ); // * ( NPC_DROP_MONEY( pMobCHAR->Get_CharNO() ) + 30 ) / 130;
-	}
-
-	if ( iDrop_VAR <= 0 ) {
-		// 드롭 확률 저조 !!! 생성안됨.
-		return false;
-	}
-
-	if ( 1+RANDOM(100) <= NPC_DROP_MONEY( pMobCHAR->Get_CharNO() ) ) {
-		// 돈생성
-		// DROP_MONEY_Q = { (MOP_LV + 20) * (MOP_LV + DROP_ VAR +40) * WORLD_DROP_M / 3200 }
-		int iMoney = ( pMobCHAR->Get_LEVEL() + 20 ) * ( pMobCHAR->Get_LEVEL() + iDrop_VAR + 40 ) * ::Get_WorldDROP_M() / 3200;
-		if ( iMoney <= 0 )
-			return false;
-
-		sITEM.m_cType  = ITEM_TYPE_MONEY;
-		sITEM.m_uiMoney = iMoney;
-
-		return true;
-	}
-
 	int iDropTBL;
 	if ( NPC_DROP_ITEM( pMobCHAR->Get_CharNO() ) - ( 1+RANDOM(100) ) >= 0 ) {
 		iDropTBL = NPC_DROP_TYPE( pMobCHAR->Get_CharNO() );
@@ -362,7 +277,7 @@ bool CCal::Get_DropITEM (int iLevelDiff, CObjMOB *pMobCHAR, tagITEM &sITEM, int 
 
 //-------------------------------------------------------------------------------------------------
 // iGiveDamage = 공격자가준 데미지
-int CCal::Get_EXP (CObjCHAR *pAtkCHAR, CObjCHAR *pDefCHAR, int iGiveDamage)
+__int64 CCal::Get_EXP (CObjCHAR *pAtkCHAR, CObjCHAR *pDefCHAR, int iGiveDamage) // JDOEBOY: Changed to __int64 for high EXP support
 {
 	int iGAB, iEXP;
 

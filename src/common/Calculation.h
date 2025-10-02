@@ -1,3 +1,10 @@
+#ifndef MAX_LEVEL
+#define MAX_LEVEL 255 // JDOEBOY: Unified max level for all builds
+#endif
+
+#ifndef MAX_BASIC_ABLITY
+#define MAX_BASIC_ABLITY 410 // JDOEBOY: Unified max basic ability for all builds
+#endif
 /**
  * \ingroup SHO_GS
  * \file	Calculation.h
@@ -25,6 +32,7 @@ class CUserDATA;
  * \brief	클라이언트와 공유되는 전투및 일반 계산 공식 설정 클래스
  */
 class CCal {
+
 private:
 	static int  Get_SuccessRATE(CObjCHAR *pATK, CObjCHAR *pDEF );
 	static WORD Get_BasicDAMAGE (CObjCHAR *pATK, CObjCHAR *pDEF, WORD wHitCNT, int iSuc);
@@ -37,7 +45,7 @@ private:
 
 public :
 	static bool Get_DropITEM (int iLevelDiff, CObjMOB *pMobCHAR, tagITEM &sITEM, int iZoneNO, int iDropRate, int iCharm);
-	static int	Get_EXP (CObjCHAR *pAtkCHAR, CObjCHAR *pDefCHAR, int iGiveDamage);
+	static __int64 Get_EXP (CObjCHAR *pAtkCHAR, CObjCHAR *pDefCHAR, int iGiveDamage); // JDOEBOY: Changed to __int64 for high EXP support
 
 	static WORD Get_DAMAGE (CObjCHAR *pATK, CObjCHAR *pDEF, WORD wHitCNT);
 	static WORD Get_SkillDAMAGE (CObjCHAR *pATK, CObjCHAR *pDEF, short nSkillIDX, WORD wHitCNT);

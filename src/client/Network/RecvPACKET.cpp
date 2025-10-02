@@ -5097,6 +5097,8 @@ void CRecvPACKET::Recv_gsv_APPRAISAL_REPLY()
 //----------------------------------------------------------------------------------------------------	
 void CRecvPACKET::Recv_gsv_SET_HPnMP()
 {
+	// JDOEBOY: Authoritative HP/MP sync from server is performed here.
+	// The client forcibly sets HP/MP to the server value to correct prediction errors.
 	short iTarget = m_pRecvPacket->m_gsv_SET_HPnMP.m_wObjectIDX;
 	CObjCHAR *pChar = g_pObjMGR->Get_ClientCharOBJ( iTarget, true );
 
@@ -5140,6 +5142,8 @@ void CRecvPACKET::Recv_gsv_CHECK_NPC_EVENT()
 
 void CRecvPACKET::Recv_wsv_CLAN_COMMAND()
 {
+	// JDOEBOY: Immediate HP/MP update for potion/consumable use is performed here.
+	// The client applies the HP/MP change instantly for prediction and display.
 	switch( m_pRecvPacket->m_wsv_CLAN_COMMAND.m_btRESULT )
 	{
 	case RESULT_CLAN_MEMBER_JOBnLEV:

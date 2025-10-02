@@ -1,3 +1,10 @@
+#ifndef MAX_LEVEL
+#define MAX_LEVEL 255 // JDOEBOY: Unified max level for all builds
+#endif
+
+#ifndef MAX_BASIC_ABLITY
+#define MAX_BASIC_ABLITY 410 // JDOEBOY: Unified max basic ability for all builds
+#endif
 /**
  * \ingroup SHO_GS
  * \file	Calculation.h

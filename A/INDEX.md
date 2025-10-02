@@ -18,6 +18,7 @@ This index provides navigation to detailed documentation files for the Rose Onli
 - **[server-architecture.md](server-architecture.md)** - Detailed server communication and synchronization
 - **[file-duplicates.md](file-duplicates.md)** - Mapping of duplicate essential files across the codebase
 - **[synchronization-issues.md](synchronization-issues.md)** - Known sync bugs (health desync, EXP issues, buffer overflows)
+- **[client-hpmp-calculation-map.md](client-hpmp-calculation-map.md)** - All client-side HP/MP calculation and modification points (JDOEBOY)
 
 ## Development Guidelines
 

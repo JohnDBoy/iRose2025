@@ -34,60 +34,82 @@ short Get_WorldREWARD()
 __int64 CCal::Get_NeedRawEXP(int iLevel)
 {
 	// 필요 경험치
-	if (iLevel > MAX_LEVEL)
-		iLevel = MAX_LEVEL;
+	if (iLevel >= MAX_LEVEL) {
+		// No EXP required at or above max level. JDOEBOY
+		return 0;
+	}
 
-#ifdef _PRE_EVO
-	// [레벨 15이하일 경우]   필요 경험치 = { (LV + 3) * (LV + 5 ) * (LV + 10) * 0.7 }
-	if (iLevel <= 15)
-		return (__int64)((iLevel + 3) * (iLevel + 5) * (iLevel + 10) * 0.7);
+	// JDOEBOY: Unified chunked EXP math for levels 1-255. Original formulas preserved below for reference.
 
-	// [레벨 50이하일 경우]   필요 경험치 = { (LV - 5) * (LV + 2 ) * (LV + 2) * 2.2 }
-	if (iLevel <= 50)
-		return (__int64)((iLevel - 5) * (iLevel + 2) * (iLevel + 2) * 2.2);
-
-	// [레벨 100이하일 경우]  필요 경험치 = { (LV - 5) * ( LV +2 ) * (LV -38 ) * 9 }
-	if (iLevel <= 100)
-		return (__int64)((iLevel - 5) * (iLevel + 2) * (iLevel - 38) * 9);
-
-	// [레벨 139이하일 경우]  필요 경험치 = { (LV + 27) * (LV +34 ) * (LV + 220) }
-	if (iLevel <= 139)
-		return (__int64)((iLevel + 27) * (iLevel + 34) * (iLevel + 220));
-
-	// [레벨 200이하일 경우]  필요 경험치 = { (LV - 15) * (LV +7 ) * (LV - 126) * 41 }
-	return (__int64)((iLevel - 15) * (iLevel + 7) * (iLevel - 126) * 41);
-#endif
-
-	// 한국 계산식...2005.05.25(수정) ~ = Korean formula...2005.05.25(Modified) ~
-
+	// [Level 1–15] EXP = (LV + 3) * (LV + 5) * (LV + 10) * 0.7
 	if (iLevel <= 15) {
-		// [레벨 15 이하일 경우]  필요 경험치 = { (LV + 3) * (LV + 5 ) * (LV + 10) * 0.7 } 
 		return (__int64)(((iLevel + 3) * (iLevel + 5) * (iLevel + 10) * 0.7f));
 	}
 
+	// [Level 16–60] EXP = (LV - 5) * (LV + 2) * (LV + 2) * 2.2
 	if (iLevel <= 60) {
-		// [레벨 60 이하일 경우]  필요 경험치 = { (LV - 5) * (LV + 2 ) * (LV + 2) * 2.2 } 
 		return (__int64)(((iLevel - 5) * (iLevel + 2) * (iLevel + 2) * 2.2f));
 	}
 
+	// [Level 61–113] EXP = (LV - 11) * (LV) * (LV + 4) * 2.5
 	if (iLevel <= 113) {
-		// [레벨 113이하일 경우]  필요 경험치 = { (LV - 11) * ( LV ) * (LV + 4) * 2.5 } 
 		return (__int64)(((iLevel - 11) * (iLevel) * (iLevel + 4) * 2.5f));
 	}
 
+	// [Level 114–150] EXP = (LV - 31) * (LV - 20) * (LV + 4) * 3.8
 	if (iLevel <= 150) {
-		// [레벨 150이하일 경우]  필요 경험치 = { (LV - 31) * (LV - 20 ) * (LV + 4) * 3.8 } 
 		return (__int64)(((iLevel - 31) * (iLevel - 20) * (iLevel + 4) * 3.8f));
 	}
 
-	//	if ( iLevel <= 176 ) {
+	// [Level 151–189] EXP = (LV - 67) * (LV - 20) * (LV - 10) * 6
 	if (iLevel <= 189) {
-		// [레벨 189이하일 경우]  필요 경험치 = { (LV - 67) * (LV - 20 ) * (LV - 10) * 6 } 
+		// Original: (LV - 67) * (LV - 20) * (LV - 10) * 6
 		return (__int64)(((iLevel - 67) * (iLevel - 20) * (iLevel - 10) * 6.f));
 	}
 
-	// [레벨 200이하일 경우]  필요 경험치 = { (LV - 90) * (LV - 120) * (LV - 60) * (LV - 170) * (LV -188)}
+	// [Level 190–210] EXP = (LV - 100) * (LV - 50) * (LV - 10) * 8
+	if (iLevel <= 210) {
+		return (__int64)(((iLevel - 100) * (iLevel - 50) * (iLevel - 10) * 8.f));
+	}
+
+	// [Level 211–230] EXP = (LV - 120) * (LV - 70) * (LV - 20) * 10
+	if (iLevel <= 230) {
+		return (__int64)(((iLevel - 120) * (iLevel - 70) * (iLevel - 20) * 10.f));
+	}
+
+	// [Level 231–255] EXP = (LV - 150) * (LV - 100) * (LV - 50) * (LV - 10) * 12
+	if (iLevel <= 255) {
+		return (__int64)(((iLevel - 150) * (iLevel - 100) * (iLevel - 50) * (iLevel - 10) * 12.f));
+	}
+
+	// Should never reach here, but fallback to max chunk
+	return (__int64)(((iLevel - 150) * (iLevel - 100) * (iLevel - 50) * (iLevel - 10) * 12.f));
+
+/*
+// Original formulas for reference (JDOEBOY):
+#ifdef _PRE_EVO
+	if (iLevel <= 15)
+		return (__int64)((iLevel + 3) * (iLevel + 5) * (iLevel + 10) * 0.7);
+	if (iLevel <= 50)
+		return (__int64)((iLevel - 5) * (iLevel + 2) * (iLevel + 2) * 2.2);
+	if (iLevel <= 100)
+		return (__int64)((iLevel - 5) * (iLevel + 2) * (iLevel - 38) * 9);
+	if (iLevel <= 139)
+		return (__int64)((iLevel + 27) * (iLevel + 34) * (iLevel + 220));
+	return (__int64)((iLevel - 15) * (iLevel + 7) * (iLevel - 126) * 41);
+#endif
+	if (iLevel <= 15)
+		return (__int64)(((iLevel + 3) * (iLevel + 5) * (iLevel + 10) * 0.7f));
+	if (iLevel <= 60)
+		return (__int64)(((iLevel - 5) * (iLevel + 2) * (iLevel + 2) * 2.2f));
+	if (iLevel <= 113)
+		return (__int64)(((iLevel - 11) * (iLevel) * (iLevel + 4) * 2.5f));
+	if (iLevel <= 150)
+		return (__int64)(((iLevel - 31) * (iLevel - 20) * (iLevel + 4) * 3.8f));
+	if (iLevel <= 189)
+		return (__int64)(((iLevel - 67) * (iLevel - 20) * (iLevel - 10) * 6.f));
 	return (__int64)((iLevel - 90) * (iLevel - 120) * (iLevel - 60) * (iLevel - 170) * (iLevel - 188));
+*/
 }
 
 //-------------------------------------------------------------------------------------------------
