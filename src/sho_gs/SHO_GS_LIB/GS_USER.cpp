@@ -1067,7 +1067,7 @@ void classUSER::Add_EXP(__int64 iGetExp, bool bApplyStamina, WORD wFromObjIDX)
 			this->Set_LEVEL(this->Get_LEVEL() + 1);
 		}
 
-		this->AddCur_BonusPOINT((short)(this->Get_LEVEL() * 0.8) + 10);
+		this->AddCur_BonusPOINT((short)(this->Get_LEVEL() * 0.95) + 11); // JDOEBOY increasing for balance.
 
 #ifdef _PRE_EVO
 		for (short nD = 0; nD < g_TblSkillPoint.m_nDataCnt; nD++) {

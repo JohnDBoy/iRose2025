@@ -323,15 +323,28 @@ void CObjUSER::Update_SPEED ()
 
 //-------------------------------------------------------------------------------------------------
 void CObjUSER::Add_EXP (short nExp)
-{	
+{
+	// JDOEBOY: Only block EXP gain if already at MAX_LEVEL before any EXP math
+//	if ( this->Get_LEVEL() >= MAX_LEVEL ) {
+//		this->Set_LEVEL( MAX_LEVEL );
+//		return; // JDOEBOY: Already max, block all EXP gain but do NOT reset EXP
+//	}
+
 	m_GrowAbility.m_lEXP += nExp;
 
 	int  iNeedEXP = this->Get_NeedEXP( this->Get_LEVEL() );
 	bool bLevelUp=false;
 
 	while ( m_GrowAbility.m_lEXP >= iNeedEXP ) {
-		// 레벨 제한 ???
+		if (iNeedEXP <= 0) break; // JDOEBOY: Prevent infinite loop/crash if EXP required is zero or negative
+
 		this->Set_LEVEL( this->Get_LEVEL() + 1 );
+
+//		if ( this->Get_LEVEL() >= MAX_LEVEL ) {
+//			this->Set_LEVEL( MAX_LEVEL );
+			// JDOEBOY: Do NOT forcibly zero EXP here; allow overflow/leftover EXP to remain for tracking
+//			break; // JDOEBOY: Allow final level up, then break loop (not return)
+//		}
 
 		g_itMGR.AppendChatMsg(CStr::Printf (">>> %s LEVEL UP to %d", Get_NAME(), Get_LEVEL() ), IT_MGR::CHAT_TYPE_SYSTEM );
 

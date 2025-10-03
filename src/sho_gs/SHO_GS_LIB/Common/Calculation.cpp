@@ -64,26 +64,31 @@ __int64 CCal::Get_NeedRawEXP(int iLevel)
 	// [Level 151–189] EXP = (LV - 67) * (LV - 20) * (LV - 10) * 6
 	if (iLevel <= 189) {
 		// Original: (LV - 67) * (LV - 20) * (LV - 10) * 6
-		return (__int64)(((iLevel - 67) * (iLevel - 20) * (iLevel - 10) * 6.f));
+		return (__int64)(((iLevel - 31) * (iLevel - 20) * (iLevel + 4) * 3.8f));
 	}
 
 	// [Level 190–210] EXP = (LV - 100) * (LV - 50) * (LV - 10) * 8
 	if (iLevel <= 210) {
-		return (__int64)(((iLevel - 100) * (iLevel - 50) * (iLevel - 10) * 8.f));
+		return (__int64)(((iLevel - 31) * (iLevel - 20) * (iLevel + 4) * 3.8f));
 	}
 
 	// [Level 211–230] EXP = (LV - 120) * (LV - 70) * (LV - 20) * 10
 	if (iLevel <= 230) {
-		return (__int64)(((iLevel - 120) * (iLevel - 70) * (iLevel - 20) * 10.f));
+		return (__int64)(((iLevel - 31) * (iLevel - 20) * (iLevel + 4) * 3.8f));
 	}
 
 	// [Level 231–255] EXP = (LV - 150) * (LV - 100) * (LV - 50) * (LV - 10) * 12
 	if (iLevel <= 255) {
-		return (__int64)(((iLevel - 150) * (iLevel - 100) * (iLevel - 50) * (iLevel - 10) * 12.f));
+		return (__int64)(((iLevel - 31) * (iLevel - 20) * (iLevel + 4) * 3.8f));
+	}
+
+			// [Level 256] EXP = (LV - 31) * (LV - 20) * (LV + 4) * 10
+	if (iLevel <= 256) {
+		return (__int64)(((iLevel - 31) * (iLevel - 20) * (iLevel + 4) * 10.0f));
 	}
 
 	// Should never reach here, but fallback to max chunk
-	return (__int64)(((iLevel - 150) * (iLevel - 100) * (iLevel - 50) * (iLevel - 10) * 12.f));
+	return (__int64)(((iLevel - 31) * (iLevel - 20) * (iLevel + 4) * 3.8f));
 
 /*
 // Original formulas for reference (JDOEBOY):
